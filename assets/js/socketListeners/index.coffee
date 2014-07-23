@@ -40,5 +40,5 @@ $ ->
     x = data.element.x
     y = data.element.y
     z = data.element.z
-
+    $("\##{id}").zIndex z
     $("\##{id}").animate( top: y, left: x, 'z-index': z )
