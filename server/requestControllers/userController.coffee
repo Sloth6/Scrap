@@ -4,26 +4,32 @@ module.exports =
   
   # create a new user and default space, redirect to space
   newUser : (req, res, callback) ->
-    attributes =
-      name: req.body.user.name
-      email: req.body.user.email
-      password: req.body.user.password
+    { name, email, password } = req?.body?.user
     
-    models.User.create(attributes).complete (err, user) ->
-      if err?
-        if 'email' of err # not a valid email
-          console.log 'LOGIN FAILED: not a valid email'
+    models.User.find(where: { email }).complete (err, user) ->
+      if user?
+        if user.name? and user.password?
+          console.log 'LOGIN FAILED: duplicate email'
           return res.redirect "/"
-        if err.code == '23505' # not a unique email
-          console.log 'LOGIN FAILED: not a unique email'
-          return res.redirect "/"
-
-        return callback err
-
-      req.session.currentUserId = user.id
-      req.body.space =
-        name: "Welcome"
-      spaceController.newSpace req, res, callback
+        user.updateAttributes({name, password}).complete (err) ->
+          done user
+      else
+        models.User.create(attributes).complete (err, user) ->
+          if err?
+            if 'email' of err # not a valid email
+              console.log 'LOGIN FAILED: not a valid email'
+              return res.redirect "/"
+            if err.code == '23505' # not a unique email
+              console.log 'LOGIN FAILED: not a unique email'
+              return res.redirect "/"
+            return callback err
+          else
+            done user
+      done = (user) ->
+        req.session.currentUserId = user.id
+        req.body.space =
+          name: "Welcome"
+        spaceController.newSpace req, res, callback
 
   # verify login creds, redirect to first space
   login : (req, res, callback) ->

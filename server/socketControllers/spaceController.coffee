@@ -1,4 +1,5 @@
 models = require '../../models'
+mail = require '../adapters/nodemailer'
 module.exports =
   
   # update the space name and save it to the db
@@ -25,14 +26,28 @@ module.exports =
       models.User.find( where: { email }).complete (err, user) ->
         return callback err if err?
         if user?
-          # make sure we don't add the user twice
-          space.hasUser(user).complete (err, hasUser) ->
-            if not hasUser
-              space.addUser(user).complete (err) ->
-                return callback err if err?
-                sio.to(spaceKey).emit 'addUserToSpace', { name: user.name }
-                return callback()
-        return sio.to(spaceKey).emit 'addUserToSpace', null
+          add user, space
+        else # no user
+          models.User.create({ email }).complete (err, user) ->
+            return callback err if err?
+            mail.send {
+              to: email
+              subject: 'scrap'
+              text: 'You have been invited to scrap!'
+              html: '<b><p>You have been invited to scrap!<p></b>'
+            }
+            add user, space
+
+    add = (user, space) ->
+      space.hasUser(user).complete (err, hasUser) ->
+        # make sure we don't add the user twice
+        if not hasUser
+          space.addUser(user).complete (err) ->
+            return callback err if err?
+            sio.to(spaceKey).emit 'addUserToSpace', { name: user.name }
+            callback()
+        else
+          callback()
 
   removeUserFromSpace : (sio, socket, data, spaceKey, callback) ->
     id = data.id

@@ -53,7 +53,7 @@ module.exports =
         }
         upload.on 'completed', (err, res) ->
           console.log 'upload completed'
-          callback null, 'https://s3.amazonaws.com/scrap_images/' +url
+          callback null, "https://s3.amazonaws.com/scrap_images/#{url}"
 
         upload.on 'failed', (err) ->
           console.log 'upload failed with error', err
