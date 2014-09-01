@@ -3,8 +3,7 @@ $ ->
   socket = io.connect()
 
   mouse = { x: 0, y: 0 }
-  ctrlDown = false
-  vKeyCode = 86
+
   # On document so that it doesn't get messed up by screenDrag
   $(document).on 'mousemove', (event) ->
     mouse.x = event.clientX
@@ -151,14 +150,15 @@ $ ->
               <input type='hidden' name='policy'>
               <input type='hidden' name='signature'>
               <input type='hidden' name='success_action_status' value='201'>
-              <input type='hidden' name='Content-Type'>
-              <input type='file' class='file-input' name='file'>
-            </form>
+              <input type='hidden' name='Content-Type'>" +
+              (if createdByCntrl then "" else "<input type='file' class='file-input' name='file'>") +
+            "</form>
           </p>
         </div>
       </article>"
 
     # add the new element form
+    # if not createdByCntrl
     $('.content').append elementForm
     $('.add-element').on 'click', (event) -> event.stopPropagation()
       .css(
@@ -169,7 +169,8 @@ $ ->
         left: "#{x}px")
 
     # allow file uploads
-    $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
+    # if not createdByCntrl
+    #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
     # haveKeyPressed = false
     $('textarea').focus().autoGrow()
