@@ -136,7 +136,7 @@ $ ->
     screenScale = $('.content').css('scale')
     x = (eventX - $('.content').offset().left) / screenScale
     y = (eventY - $('.content').offset().top) / screenScale
-
+    # x -= 150
     elementForm =
       "<article class='add-element'>
         <div class='card text'>
@@ -174,17 +174,13 @@ $ ->
     # haveKeyPressed = false
     $('textarea').focus().autoGrow()
       .on 'keyup', (event) ->
-        # event.keyCode
         # on paste of image, submit without hitting enter
-
-        # console.log ctrlDown, event.keyCode == vKeyCode, event.keyCode
         if isImage $(this).val() 
           content = $(this).val()
           innerHTML = (content) -> "<img src='#{content}'>"
           addCaption x, y, 1/screenScale, 'image', content, innerHTML
 
         # on enter (not shift + enter), submit either website or text
-
         else if (event.keyCode is 13 and not event.shiftKey) or createdByCntrl
           if isWebsite $(this).val() 
             content = $(this).val().slice(0, -1)
@@ -196,4 +192,3 @@ $ ->
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)
             emitElement x, y, 1/screenScale, content, 'text'
-        # haveKeyPressed = true
