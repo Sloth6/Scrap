@@ -3,14 +3,18 @@ $ ->
   socket = io.connect()
 
   mouse = { x: 0, y: 0 }
-
+  ctrlDown = false
+  vKeyCode = 86
   # On document so that it doesn't get messed up by screenDrag
   $(document).on 'mousemove', (event) ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
   $(window).on 'click', (event) -> $('.add-element').remove()
+  $(window).on 'dblclick', (event) -> addElement event, false
+  $(window).bind 'paste', (event) -> addElement event, true
 
+# 
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = (x, y, contentType, scale) ->
     multipart = false
@@ -126,10 +130,12 @@ $ ->
       .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
 
   # on double-click, append new element form, then process the new element if one is submitted
-  $(window).on 'dblclick', (event) ->
+  addElement = (event, createdByCntrl) ->
+    eventX = event.clientX || mouse.x
+    eventY = event.clientY || mouse.y
     screenScale = $('.content').css('scale')
-    x = (event.clientX - $('.content').offset().left) / screenScale
-    y = (event.clientY - $('.content').offset().top) / screenScale
+    x = (eventX - $('.content').offset().left) / screenScale
+    y = (eventY - $('.content').offset().top) / screenScale
 
     elementForm =
       "<article class='add-element'>
@@ -165,17 +171,21 @@ $ ->
     # allow file uploads
     $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
+    # haveKeyPressed = false
     $('textarea').focus().autoGrow()
       .on 'keyup', (event) ->
-
+        # event.keyCode
         # on paste of image, submit without hitting enter
+
+        # console.log ctrlDown, event.keyCode == vKeyCode, event.keyCode
         if isImage $(this).val() 
           content = $(this).val()
           innerHTML = (content) -> "<img src='#{content}'>"
           addCaption x, y, 1/screenScale, 'image', content, innerHTML
 
         # on enter (not shift + enter), submit either website or text
-        else if event.keyCode is 13 and not event.shiftKey
+
+        else if (event.keyCode is 13 and not event.shiftKey) or createdByCntrl
           if isWebsite $(this).val() 
             content = $(this).val().slice(0, -1)
             innerHTML = (content) ->
@@ -186,3 +196,4 @@ $ ->
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)
             emitElement x, y, 1/screenScale, content, 'text'
+        # haveKeyPressed = true
