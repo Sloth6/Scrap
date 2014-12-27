@@ -1,9 +1,12 @@
 $colorWashDark:             #444444;
 $colorWashMedium:           #aaaaaa;
-$colorWashMediumLight:      #f3f3f3;
+$colorWashMediumLight:      #fafafa;
 $colorWashLight:            #ffffff;
 $colorWashLightTrans:       rgba(255,255,255,.925);
 $colorWashLightTransHalf:   rgba(255,255,255,.96);
 $colorTypeDark:             #333333;
 $colorAccentMedium:         #ed3f00;
 $colorAlert:                red;
+
+$colorCardBackground:       $colorWashLightTrans;
+$colorBackground:           $colorWashMediumLight;

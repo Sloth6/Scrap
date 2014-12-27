@@ -1,11 +1,12 @@
-$fontRegular:   "Futura";
-$fontBold:      "FuturaStd-Bold";
-$fontItalic:    "Futura-MediumItalic";
-$fontBoldItalic:"FuturaStd-BoldItalic";
+$fontLight:     "UniversLTStd-Light";
+$fontRegular:   "UniversLTStd";
+$fontBold:      "UniversLTStd-Bold";
+$fontItalic:    "UniversLTStd-MediumItalic";
+$fontBoldItalic:"UniversLTStd-BoldItalic";
 
 @mixin typeBody {
-    font-family: $fontRegular, serif;
-    font-size: 12pt;
+    font-family: $fontRegular, sans-serif;
+    font-size: 10pt;
     line-height: 1.5em;
 }
 

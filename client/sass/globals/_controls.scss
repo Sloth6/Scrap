@@ -1,5 +1,5 @@
 @mixin cardStyle {
-    background-color: $colorWashLightTrans;
+    background-color: $colorCardBackground;
 //     @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
     @include transition(.125s $defaultCurve);
     @include transition-property(transform,
