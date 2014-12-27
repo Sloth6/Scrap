@@ -78,6 +78,8 @@ section.container {
                 textarea {
                     width: 100%;
                     height: $baseline * 6;
+                    font-size: $typeBodySize * $typeSizeMultiplier;
+                    line-height: 1.5em;
                 }
                                 
                 .card {
