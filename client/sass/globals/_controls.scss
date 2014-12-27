@@ -1,19 +1,26 @@
 @mixin cardStyle {
     background-color: $colorWashLightTrans;
-    @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
-    @include transition(.125s $bouncyCurve);
-    @include transition-property(   transform,
-                            -webkit-transform,
-                               -moz-transform,
-                                    box-shadow,
-                            -webkit-box-shadow,
-                               -moz-box-shadow,
-                                    background-color);
+//     @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
+    @include transition(.125s $defaultCurve);
+    @include transition-property(transform,
+                         -webkit-transform,
+                            -moz-transform,
+                                 box-shadow,
+                         -webkit-box-shadow,
+                            -moz-box-shadow,
+                                 background-color);
 }
 
 @mixin cardHover {
-    @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
-    @include transform(scale(1.0625));
+//     @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
+//     @include transform(scale(1.0625));
+}
+
+@mixin cardDrag {
+    @include transform(rotate(-3deg));
+    cursor: move;
+//     @include transform(scale(1.0625) rotate(-3deg));
+//     @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
 }
 
 form {

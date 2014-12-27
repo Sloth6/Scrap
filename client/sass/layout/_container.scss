@@ -1,178 +1,176 @@
 section.container {
-  width: 100%;
-  height: 100%;
-  
-  section.space {
     width: 100%;
     height: 100%;
-
-    h1 {
-      position: fixed;
-      text-align: right;
-      @include resetInput;
-      bottom: $gutter;
-      right: $gutter;
-      width: $col * 2;
-      height: 1.5em;
-      z-index: 2;
-      @include typeSpaceName;
-      
-      form {
-        
-        input {
-          @include resetInput;
-          @include typeSpaceName;
-          text-align: right;
-          position: absolute;
-          left: 0;
-          width: $col * 2;
-          height: 1.5em;
-
-        }
-      }
-    }
     
-    &:active {
-      cursor: move;
-    }
-
-    ul.users {
-      position: fixed;
-      z-index: 2;
-      top: 0;
-      right: 0;
-    
-      li {
-        display: block;
-        height: 3rem;
-        width:  3rem;
-        margin: .5em;
-      
-        img {
-          height: 100%;
-          width:  100%;   
-          border-radius: 100%;
-          background-color: red;
-        }
-        
-      }
-    }
-
-    section.content {
-      transform-origin: 0 0;
-      @include transform(scale(1));
-      position: relative;
-      z-index: 1;
-                  
-      article {
-        width: $col*2;
-        color: $colorTypeDark;
-        position: absolute;
-        backface-visibility: hidden;
-        background-color: transparent !important;
-        
-        textarea {
-          width: 100%;
-          height: $baseline * 6;
-        }
-                
-        .card {
-          position: relative;
-          @include cardStyle;
-          
-          &:hover, &.rollover {
-            cursor: move;
-            
-            @include cardHover;
-            
-            &.text {
-              background-color: $colorWashLightTransHalf;
-            }
-            
-            img {
-              opacity: 1;
-            }          
-          }
-          
-          &:active, &.dragging {
-            cursor: move;
-            @include transform(scale(1.0625) rotate(-3deg));
-            @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
-            
-            &.text {
-              background-color: $colorWashLightTransHalf;
-            }
-            
-            img {
-              opacity: 1;
-            }
-          }
-          
-          &.text {
-            padding: $cardPadding;
-          }
-          
-          &.image {
-            background-color: transparent;
-          }
-          
-          &.website {
-            p a {
-              word-break: break-all;
-            }
-          }
-          
-          &.caption {
-            left: $gutter;
-            top: -$baseline;
-          }
-          
-          img {
-            width: 100%;
-            opacity: .9;
-            margin-bottom: -12pt;
-          }
-        }
-      }
-    }
-    
-    .delete {
-      text-align: center;
-      position: fixed;
-      z-index: 5;
-      width: $col;
-      padding: $gutter * 2;
-      bottom: -$col;
-      left: 50%;
-      margin-left: -$col/2;
-      @include transition(all .25s $defaultCurve);
-      @include transform(scale(.5));
-      
-      &.visible {
-        bottom: 0;
-        opacity: 1;
-      }
-      
-      &.rollover {
-        @include transform(scale(1.25));
-        opacity: 1;
-        bottom: 0;
-      }
-
-      &:after {
-        text-align: center;
-        content: "×";
-        font-size: 6em;
-        position: relative;
-        top: 33.333%;
+    section.space {
+        width: 100%;
         height: 100%;
-        margin-top: -75%;
-        color: white;
-        font-family: "Helvetica Neue", "Helvetica", sans-serif;
-        margin-top: 2em;
-        font-weight: 100;
-        color: $colorAlert;
-      }
+
+        h1 {
+            position: fixed;
+            text-align: right;
+            @include resetInput;
+            bottom: $gutter;
+            right: $gutter;
+            width: $col * 2;
+            height: 1.5em;
+            z-index: 2;
+            @include typeSpaceName;
+            
+            form {
+                
+                input {
+                    @include resetInput;
+                    @include typeSpaceName;
+                    text-align: right;
+                    position: absolute;
+                    left: 0;
+                    width: $col * 2;
+                    height: 1.5em;
+
+                }
+            }
+        }
+        
+        &:active {
+            cursor: move;
+        }
+
+        ul.users {
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            right: 0;
+        
+            li {
+                display: block;
+                height: 3rem;
+                width:    3rem;
+                margin: .5em;
+            
+                img {
+                    height: 100%;
+                    width:    100%;     
+                    border-radius: 100%;
+                    background-color: red;
+                }
+                
+            }
+        }
+
+        section.content {
+            transform-origin: 0 0;
+            @include transform(scale(1));
+            position: relative;
+            z-index: 1;
+                                    
+            article {
+                width: $col*2;
+                color: $colorTypeDark;
+                position: absolute;
+                backface-visibility: hidden;
+                background-color: transparent !important;
+                
+                textarea {
+                    width: 100%;
+                    height: $baseline * 6;
+                }
+                                
+                .card {
+                    position: relative;
+                    @include cardStyle;
+                    
+                    &:hover, &.rollover {
+                        cursor: move;
+                        
+                        @include cardHover;
+                        
+                        &.text {
+                            background-color: $colorWashLightTransHalf;
+                        }
+                        
+                        img {
+                            opacity: 1;
+                        }                    
+                    }
+                    
+                    &:active, &.dragging {
+                        @include cardDrag;
+                        
+                        &.text {
+                            background-color: $colorWashLightTransHalf;
+                        }
+                        
+                        img {
+                            opacity: 1;
+                        }
+                    }
+                    
+                    &.text {
+                        padding: $cardPadding;
+                    }
+                    
+                    &.image {
+                        background-color: transparent;
+                    }
+                    
+                    &.website {
+                        p a {
+                            word-break: break-all;
+                        }
+                    }
+                    
+                    &.caption {
+                        left: $gutter;
+                        top: -$baseline;
+                    }
+                    
+                    img {
+                        width: 100%;
+                        opacity: .9;
+                        margin-bottom: -12pt;
+                    }
+                }
+            }
+        }
+        
+        .delete {
+            text-align: center;
+            position: fixed;
+            z-index: 5;
+            width: $col;
+            padding: $gutter * 2;
+            bottom: -$col;
+            left: 50%;
+            margin-left: -$col/2;
+            @include transition(all .25s $defaultCurve);
+            @include transform(scale(.5));
+            
+            &.visible {
+                bottom: 0;
+                opacity: 1;
+            }
+            
+            &.rollover {
+                @include transform(scale(1.25));
+                opacity: 1;
+                bottom: 0;
+            }
+
+            &:after {
+                text-align: center;
+                content: "×";
+                font-size: 6em;
+                position: relative;
+                top: 33.333%;
+                height: 100%;
+                margin-top: -75%;
+                color: white;
+                font-family: "Helvetica Neue", "Helvetica", sans-serif;
+                margin-top: 2em;
+                font-weight: 100;
+                color: $colorAlert;
+            }
+        }
     }
-  }
 }
