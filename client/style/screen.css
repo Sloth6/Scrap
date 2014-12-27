@@ -250,29 +250,21 @@ ul.menu li a {
   -moz-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  font-size: .666em;
-  font-family: "Futura";
-  letter-spacing: .125em;
-  text-transform: uppercase !important;
 }
-/* line 128, ../sass/globals/_controls.scss */
+/* line 127, ../sass/globals/_controls.scss */
 ul.menu li a:hover {
   padding-left: .5em;
 }
-/* line 133, ../sass/globals/_controls.scss */
+/* line 132, ../sass/globals/_controls.scss */
 ul.menu li input {
   width: 95% !important;
-  font-size: .666em;
-  font-family: "Futura";
-  letter-spacing: .125em;
-  text-transform: uppercase !important;
 }
-/* line 137, ../sass/globals/_controls.scss */
+/* line 135, ../sass/globals/_controls.scss */
 ul.menu li input[type=submit] {
   display: none;
 }
 
-/* line 144, ../sass/globals/_controls.scss */
+/* line 142, ../sass/globals/_controls.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -324,6 +316,13 @@ header ul.menu {
   opacity: .75;
   margin-right: 1rem;
   text-align: left;
+}
+/* line 26, ../sass/layout/_header.scss */
+header ul.menu li a, header ul.menu li input, header ul.menu li span {
+  font-size: .666em;
+  font-family: "Futura";
+  letter-spacing: .125em;
+  text-transform: uppercase !important;
 }
 
 /* line 1, ../sass/layout/_container.scss */
@@ -472,7 +471,7 @@ section.container section.space section.content article .card:active img, sectio
 }
 /* line 110, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.text {
-  padding: 0.33333rem 1rem 0.33333rem 0.5rem;
+  padding: 0.125rem 1rem 0.125rem 0.25rem;
 }
 /* line 114, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {

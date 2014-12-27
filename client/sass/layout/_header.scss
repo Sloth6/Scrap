@@ -21,5 +21,11 @@ header {
 		opacity: .75;
 		margin-right: $gutter;
 		text-align: left;
+		
+		li {
+    		a, input, span {
+	    		@include smallCaps;
+    		}
+		}
 	}
 }
