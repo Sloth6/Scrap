@@ -66,11 +66,13 @@ section.container {
             z-index: 1;
                                     
             article {
-                max-width: $col*3;
+                max-width: $col*30;
                 color: $colorTypeDark;
                 position: absolute;
                 backface-visibility: hidden;
                 background-color: transparent !important;
+                font-size: $typeBodySize * $typeSizeMultiplier;
+                line-height: 1.5em;
                 
                 textarea {
                     width: 100%;

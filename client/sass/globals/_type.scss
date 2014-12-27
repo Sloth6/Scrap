@@ -11,9 +11,11 @@ $fontBold:      "FuturaStd-Bold";
 $fontItalic:    "Futura-MediumItalic";
 $fontBoldItalic:"FuturaStd-BoldItalic";
 
+$typeBodySize:  10pt;
+
 @mixin typeBody {
     font-family: $fontRegular, sans-serif;
-    font-size: 10pt;
+    font-size: $typeBodySize;
     letter-spacing: .5pt;
     line-height: 1.5em;
 }
