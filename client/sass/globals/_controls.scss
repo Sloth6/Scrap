@@ -31,8 +31,8 @@ input {
     @include resetInput;
     @include typeBody;
     line-height: 1.5em;
-    font-family: $fontItalic;
-    border-bottom: 1px $colorWashMedium solid;
+//     font-family: $fontItalic;
+    border-bottom: .5pt $colorWashMedium solid;
     
     &:focus {
         border-color: $colorWashDark;
@@ -95,6 +95,7 @@ ul.menu {
         }
     }
     
+/*
     &:after {
         content: "▴";
         font-size: 1.25em;
@@ -106,27 +107,32 @@ ul.menu {
         @include basicTransition;
         @include transition-property(opacity);
     }
+*/
     
     li {
-        height: $baseline;
-        position: relative;
-        padding: $baseline * .25;
+        height: $baseline * 1.5;
+        padding-left: .5em;
+        
+        &:first-of-type {
+            padding-top: $baseline/2
+        }
         
         a {
             border: none;
             display: block;
-            height: 100%;
             width: 100%;
+            height: 100%;
             @include transition(padding-left .25s $defaultCurve);
-
+            @include smallCaps;
             
             &:hover {
-                padding-left: $gutter;
+                padding-left: .5em;
             }
         }
         
         input {
-            max-width: 100% !important;
+            width: 95% !important;
+            @include smallCaps;
             
             &[type=submit] {
                 display: none;

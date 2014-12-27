@@ -76,19 +76,27 @@ html {
   user-select: none;
 }
 
-/* line 31, ../sass/globals/_type.scss */
+/*
+$fontLight:     "UniversLTStd-Light";
+$fontRegular:   "UniversLTStd";
+$fontBold:      "UniversLTStd-Bold";
+$fontItalic:    "UniversLTStd-MediumItalic";
+$fontBoldItalic:"UniversLTStd-BoldItalic";
+*/
+/* line 39, ../sass/globals/_type.scss */
 html {
-  font-family: "UniversLTStd", sans-serif;
+  font-family: "FuturaStd-Book", sans-serif;
   font-size: 10pt;
+  letter-spacing: .5pt;
   line-height: 1.5em;
 }
-/* line 34, ../sass/globals/_type.scss */
+/* line 42, ../sass/globals/_type.scss */
 html a {
   color: #333333;
   text-decoration: none;
   border-bottom: 1px #aaaaaa solid;
 }
-/* line 42, ../sass/globals/_type.scss */
+/* line 50, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 0.75rem;
 }
@@ -105,12 +113,12 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "UniversLTStd", sans-serif;
+  font-family: "FuturaStd-Book", sans-serif;
   font-size: 10pt;
+  letter-spacing: .5pt;
   line-height: 1.5em;
   line-height: 1.5em;
-  font-family: "UniversLTStd-MediumItalic";
-  border-bottom: 1px #aaaaaa solid;
+  border-bottom: 0.5pt #aaaaaa solid;
 }
 /* line 37, ../sass/globals/_controls.scss */
 input:focus {
@@ -156,7 +164,7 @@ input.offset:active {
 /* line 61, ../sass/globals/_controls.scss */
 input[type=submit], input[type=button] {
   font-size: .666em;
-  font-weight: bold;
+  font-family: "Futura";
   letter-spacing: .125em;
   text-transform: uppercase !important;
   border: 0;
@@ -171,7 +179,7 @@ input[type=checkbox] {
 /* line 72, ../sass/globals/_controls.scss */
 input[type=checkbox] + label {
   font-size: .666em;
-  font-weight: bold;
+  font-family: "Futura";
   letter-spacing: .125em;
   text-transform: uppercase !important;
 }
@@ -200,6 +208,19 @@ ul.menu {
   -moz-transition-property: opacity;
   -o-transition-property: opacity;
   transition-property: opacity;
+  /*
+      &:after {
+          content: "▴";
+          font-size: 1.25em;
+          position: absolute;
+          top: $baseline/2.5;
+          right: $baseline/4;
+          opacity: .25;
+          @include transform(rotate(180deg));
+          @include basicTransition;
+          @include transition-property(opacity);
+      }
+  */
 }
 /* line 89, ../sass/globals/_controls.scss */
 ul.menu:hover {
@@ -210,67 +231,57 @@ ul.menu:hover {
 ul.menu:hover:after {
   opacity: 1;
 }
-/* line 98, ../sass/globals/_controls.scss */
-ul.menu:after {
-  content: "▴";
-  font-size: 1.25em;
-  position: absolute;
-  top: 0.6rem;
-  right: 0.375rem;
-  opacity: .25;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-}
-/* line 110, ../sass/globals/_controls.scss */
+/* line 112, ../sass/globals/_controls.scss */
 ul.menu li {
-  height: 1.5rem;
-  position: relative;
-  padding: 0.375rem;
+  height: 2.25rem;
+  padding-left: .5em;
 }
-/* line 115, ../sass/globals/_controls.scss */
+/* line 116, ../sass/globals/_controls.scss */
+ul.menu li:first-of-type {
+  padding-top: 0.75rem;
+}
+/* line 120, ../sass/globals/_controls.scss */
 ul.menu li a {
   border: none;
   display: block;
-  height: 100%;
   width: 100%;
+  height: 100%;
   -webkit-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -moz-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-}
-/* line 123, ../sass/globals/_controls.scss */
-ul.menu li a:hover {
-  padding-left: 1rem;
+  font-size: .666em;
+  font-family: "Futura";
+  letter-spacing: .125em;
+  text-transform: uppercase !important;
 }
 /* line 128, ../sass/globals/_controls.scss */
-ul.menu li input {
-  max-width: 100% !important;
+ul.menu li a:hover {
+  padding-left: .5em;
 }
-/* line 131, ../sass/globals/_controls.scss */
+/* line 133, ../sass/globals/_controls.scss */
+ul.menu li input {
+  width: 95% !important;
+  font-size: .666em;
+  font-family: "Futura";
+  letter-spacing: .125em;
+  text-transform: uppercase !important;
+}
+/* line 137, ../sass/globals/_controls.scss */
 ul.menu li input[type=submit] {
   display: none;
 }
 
-/* line 138, ../sass/globals/_controls.scss */
+/* line 144, ../sass/globals/_controls.scss */
 textarea {
   outline: 0;
   padding: 0;
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "UniversLTStd", sans-serif;
+  font-family: "FuturaStd-Book", sans-serif;
   font-size: 10pt;
+  letter-spacing: .5pt;
   line-height: 1.5em;
   width: 100%;
   height: 9rem;
@@ -341,10 +352,10 @@ section.container section.space h1 {
   height: 1.5em;
   z-index: 2;
   font-size: .666em;
-  font-weight: bold;
+  font-family: "Futura";
   letter-spacing: .125em;
   text-transform: uppercase !important;
-  font-family: "UniversLTStd";
+  font-family: "FuturaStd-Book";
   font-size: .75rem;
   line-height: 1.5em;
 }
@@ -356,10 +367,10 @@ section.container section.space h1 form input {
   border: 0;
   background: transparent;
   font-size: .666em;
-  font-weight: bold;
+  font-family: "Futura";
   letter-spacing: .125em;
   text-transform: uppercase !important;
-  font-family: "UniversLTStd";
+  font-family: "FuturaStd-Book";
   font-size: .75rem;
   line-height: 1.5em;
   text-align: right;

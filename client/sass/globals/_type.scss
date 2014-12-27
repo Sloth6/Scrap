@@ -1,18 +1,26 @@
+/*
 $fontLight:     "UniversLTStd-Light";
 $fontRegular:   "UniversLTStd";
 $fontBold:      "UniversLTStd-Bold";
 $fontItalic:    "UniversLTStd-MediumItalic";
 $fontBoldItalic:"UniversLTStd-BoldItalic";
+*/
+$fontRegular:   "FuturaStd-Book";
+$fontMedium:    "Futura";
+$fontBold:      "FuturaStd-Bold";
+$fontItalic:    "Futura-MediumItalic";
+$fontBoldItalic:"FuturaStd-BoldItalic";
 
 @mixin typeBody {
     font-family: $fontRegular, sans-serif;
     font-size: 10pt;
+    letter-spacing: .5pt;
     line-height: 1.5em;
 }
 
 @mixin smallCaps {
     font-size: .666em;
-    font-weight: bold;
+    font-family: $fontMedium;
     letter-spacing: .125em;
     text-transform: uppercase !important;
 }
