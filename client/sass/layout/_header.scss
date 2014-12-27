@@ -1,13 +1,15 @@
 header {
-	position: absolute;
+	position: fixed;
 	z-index: 2;
 	top: 0;
+	right: 0;
 	margin: $gutter/2 0 0 $gutter/2;
 	height: $headerHeight;
 	width: $col * 3.5;
 	opacity: .5;
 	@include basicTransition;
 	@include transition-property(opacity);
+	text-align: right;
 	
 	&:hover {
 		opacity: 1;
@@ -15,13 +17,9 @@ header {
 	
 	ul.menu {
 		display: inline-block;
-		margin-right: $gutter/2;
 		width: 1.5 * $col;
 		opacity: .75;
-		
-		input {
-			
-		}
-		
+		margin-right: $gutter;
+		text-align: left;
 	}
 }
