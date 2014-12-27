@@ -1,6 +1,7 @@
 section.container {
-    width: 100%;
-    height: 100%;
+    width: 10000%;
+    height: 10000%;
+    position: fixed;
     
     section.space {
         width: 100%;
@@ -65,7 +66,7 @@ section.container {
             z-index: 1;
                                     
             article {
-                width: $col*2;
+                max-width: $col*3;
                 color: $colorTypeDark;
                 position: absolute;
                 backface-visibility: hidden;
