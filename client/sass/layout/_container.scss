@@ -73,7 +73,11 @@ section.container {
                 background-color: transparent !important;
                 font-size: $typeBodySize * $typeSizeMultiplier;
                 line-height: 1.5em;
-//                 @include transform(scale(1/ $typeSizeMultiplier));
+                
+                &.add-element{
+//                     @include transform(scale(1/ $typeSizeMultiplier));
+//                     transform: scale(1/ ($typeSizeMultiplier / 2)) !important;
+                }
                 
                 textarea {
                     width: 100%;
