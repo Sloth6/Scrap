@@ -67,12 +67,13 @@ section.container {
                                     
             article {
                 max-width: $col*30;
-                color: $colorTypeDark;
+                color: $colorType;
                 position: absolute;
                 backface-visibility: hidden;
                 background-color: transparent !important;
                 font-size: $typeBodySize * $typeSizeMultiplier;
                 line-height: 1.5em;
+                
                 
                 &.add-element{
 //                     @include transform(scale(1/ $typeSizeMultiplier));
@@ -89,6 +90,7 @@ section.container {
                 .card {
                     position: relative;
                     @include cardStyle;
+//                     border: $colorBackground 1pt solid;
                     
                     &:hover, &.rollover {
                         cursor: move;
@@ -96,7 +98,7 @@ section.container {
                         @include cardHover;
                         
                         &.text {
-                            background-color: $colorWashLightTransHalf;
+                            background-color: $colorWashLight;
                         }
                         
                         img {
@@ -108,7 +110,7 @@ section.container {
                         @include cardDrag;
                         
                         &.text {
-                            background-color: $colorWashLightTransHalf;
+                            background-color: $colorWashLight;
                         }
                         
                         img {

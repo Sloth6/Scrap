@@ -35,7 +35,7 @@ input {
     border-bottom: .5pt $colorWashMedium solid;
     
     &:focus {
-        border-color: $colorWashDark;
+        border-color: $colorType;
     }
     
     &.offset {
