@@ -127,10 +127,11 @@ $ ->
 
   # on double-click, append new element form, then process the new element if one is submitted
   $(window).on 'dblclick', (event) ->
-    screenScale = $('.content').css('scale')
+    screenScale = $('.content').css('scale') 
+    elementScale = 1 / (screenScale * 6)
     x = (event.clientX - $('.content').offset().left) / screenScale
     y = (event.clientY - $('.content').offset().top) / screenScale
-
+# console.log(screenScale)
     elementForm =
       "<article class='add-element'>
         <div class='card text'>
@@ -156,7 +157,7 @@ $ ->
     $('.content').append elementForm
     $('.add-element').on 'click', (event) -> event.stopPropagation()
       .css(
-        scale: 1/screenScale
+        scale: elementScale
         "transform-origin": "top left"
         'z-index': "#{window.maxZ + 1}"
         top: "#{y}px"
@@ -172,7 +173,7 @@ $ ->
         if isImage $(this).val() 
           content = $(this).val()
           innerHTML = (content) -> "<img src='#{content}'>"
-          addCaption x, y, 1/screenScale, 'image', content, innerHTML
+          addCaption x, y, elementScale, 'image', content, innerHTML
 
         # on enter (not shift + enter), submit either website or text
         else if event.keyCode is 13 and not event.shiftKey
@@ -181,8 +182,8 @@ $ ->
             innerHTML = (content) ->
               "<p><a href='#{content}'>#{content}</a></p>
                <p><code>Loading thumbnail...</code></p>"
-            addCaption x, y, 1/screenScale, 'website', content, innerHTML
+            addCaption x, y, elementScale, 'website', content, innerHTML
 
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)
-            emitElement x, y, 1/screenScale, content, 'text'
+            emitElement x, y, elementScale, content, 'text'

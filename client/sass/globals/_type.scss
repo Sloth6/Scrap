@@ -1,17 +1,28 @@
-$fontRegular:   "Futura";
+/*
+$fontLight:     "UniversLTStd-Light";
+$fontRegular:   "UniversLTStd";
+$fontBold:      "UniversLTStd-Bold";
+$fontItalic:    "UniversLTStd-MediumItalic";
+$fontBoldItalic:"UniversLTStd-BoldItalic";
+*/
+$fontRegular:   "FuturaStd-Book";
+$fontMedium:    "Futura";
 $fontBold:      "FuturaStd-Bold";
 $fontItalic:    "Futura-MediumItalic";
 $fontBoldItalic:"FuturaStd-BoldItalic";
 
+$typeBodySize:  10pt;
+
 @mixin typeBody {
-    font-family: $fontRegular, serif;
-    font-size: 12pt;
+    font-family: $fontRegular, sans-serif;
+    font-size: $typeBodySize;
+    letter-spacing: .5pt;
     line-height: 1.5em;
 }
 
 @mixin smallCaps {
     font-size: .666em;
-    font-weight: bold;
+    font-family: $fontMedium;
     letter-spacing: .125em;
     text-transform: uppercase !important;
 }
@@ -31,7 +42,7 @@ html {
     @include typeBody;
     
     a {
-        color: $colorTypeDark;
+        color: $colorType;
         text-decoration: none;
         border-bottom: 1px $colorWashMedium solid;
     }

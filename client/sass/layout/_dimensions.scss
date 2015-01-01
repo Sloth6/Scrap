@@ -1,2 +1,4 @@
-$headerHeight:  25vh;
-$cardPadding:   $gutter/3 $gutter $gutter/3 $gutter/2;
+$headerHeight:          25vh;
+$typeSizeMultiplier:    12;
+$cardPaddingUnit:       $gutter * $typeSizeMultiplier;
+$cardPadding:           $cardPaddingUnit/8 $cardPaddingUnit/2.5 $cardPaddingUnit/8 $cardPaddingUnit/2.5;
