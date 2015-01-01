@@ -1,6 +1,9 @@
 - var creator = current_space.creator
 - var isCreator = current_user.id == creator.id
 
+script.
+  username="#{creator.name}";
+
 ul.users.menu
   if isCreator
     li(data-id=current_user.id)

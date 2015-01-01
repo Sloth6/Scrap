@@ -7,4 +7,4 @@ $ ->
     event.preventDefault()
     email = $('input[name="user[email]"]', this).val()
     $('input[name="user[email]"]', this).val('')
-    socket.emit 'addUserToSpace', { email }
+    socket.emit 'addUserToSpace', { email, name: window.username }

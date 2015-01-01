@@ -1,5 +1,10 @@
 models = require '../../models'
 mail = require '../adapters/nodemailer'
+
+toTitleCase = (str) -> 
+  str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
+
+
 module.exports =
   
   # update the space name and save it to the db
@@ -19,17 +24,25 @@ module.exports =
       callback()
 
   addUserToSpace : (sio, socket, data, spaceKey, callback) ->
-    email = data.email
+    { email, name } = data
+    name = toTitleCase name
 
     models.Space.find( where: { spaceKey }).complete (err, space) ->
       return callback err if err?
       models.User.find( where: { email }).complete (err, user) ->
         return callback err if err?
+
+        hostUrl = "http://54.69.196.168:9003/"
+        spaceNameWithLink = "<a href=\"#{hostUrl}/s/#{spaceKey}\">#{space.name}</a>"
+        subject = "#{name} invited you to #{space.name} on Scrap."
+        html = "<h1>View #{spaceNameWithLink} on Scrap.</h1>
+        <p><a href=\"#{hostUrl}\">Scrap</a> is a simple visual organization tool.</p>"
+
         mail.send {
           to: email
-          subject: 'scrap'
-          text: 'You have been invited to scrap!'
-          html: '<b><p>You have been invited to scrap!<p></b>'
+          subject: subject
+          text: html
+          html: html
         }
         if user?
           add user, space
