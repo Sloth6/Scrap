@@ -41,9 +41,9 @@ module.exports =
       webshot data.content, '', options, (err, renderStream) ->
         return callback err if err
         upload = new Uploader {
-          accessKey:  'AKIAJQ7VP2SMGLIV5JQA'
-          secretKey:  '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'
-          bucket:     'scrap_images'
+          accessKey:  'AKIAJKJJR5OLTKWMMHSA'
+          secretKey:  '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'
+          bucket:     'scrappreviews'
           objectName: url
           stream:     renderStream
           streamType: 'png'
@@ -53,7 +53,7 @@ module.exports =
         }
         upload.on 'completed', (err, res) ->
           console.log 'upload completed'
-          callback null, "https://s3.amazonaws.com/scrap_images/#{url}"
+          callback null, "https://s3.amazonaws.com/scrappreviews/#{url}"
 
         upload.on 'failed', (err) ->
           console.log 'upload failed with error', err
