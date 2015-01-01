@@ -25,17 +25,17 @@ module.exports =
       return callback err if err?
       models.User.find( where: { email }).complete (err, user) ->
         return callback err if err?
+        mail.send {
+          to: email
+          subject: 'scrap'
+          text: 'You have been invited to scrap!'
+          html: '<b><p>You have been invited to scrap!<p></b>'
+        }
         if user?
           add user, space
         else # no user
           models.User.create({ email }).complete (err, user) ->
-            return callback err if err?
-            mail.send {
-              to: email
-              subject: 'scrap'
-              text: 'You have been invited to scrap!'
-              html: '<b><p>You have been invited to scrap!<p></b>'
-            }
+            return callback err if err?   
             add user, space
 
     add = (user, space) ->
