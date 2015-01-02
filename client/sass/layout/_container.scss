@@ -166,10 +166,11 @@ h1 {
                         }
                     }
                     
-                    &.caption {
+                    &.caption, &.comment {
                         left: $gutter;
                         top: -$baseline;
                         width: auto;
+                        color: red;
                     }
                     
                     img {

@@ -506,18 +506,19 @@ section.container section.space section.content article > .card.website p a {
   word-break: break-all;
 }
 /* line 169, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.caption {
+section.container section.space section.content article > .card.caption, section.container section.space section.content article > .card.comment {
   left: 1rem;
   top: -1.5rem;
   width: auto;
+  color: red;
 }
-/* line 175, ../sass/layout/_container.scss */
+/* line 176, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 184, ../sass/layout/_container.scss */
+/* line 185, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -536,12 +537,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 196, ../sass/layout/_container.scss */
+/* line 197, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 201, ../sass/layout/_container.scss */
+/* line 202, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -550,7 +551,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 207, ../sass/layout/_container.scss */
+/* line 208, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";
