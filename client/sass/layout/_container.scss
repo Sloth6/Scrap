@@ -88,17 +88,16 @@ h1 {
                         
                         .fileInputWrapper {
 //                             @include button;
-                            position: absolute;
-                            bottom: 0;
+                            position: relative;
                             display: block;
                             @include smallCaps;
                             overflow: hidden;
                             font-size: .5em;
                             width: $col * 8;
-                                                                
+                            height: $baseline * ($typeSizeMultiplier - 2);
+                     
                             &:after {
                                 content: "Upload a file";
-                                cursor: pointer;
                                 position: absolute;
                                 left: 0;
                                 width: 100%;
@@ -107,6 +106,9 @@ h1 {
                             input[type="file"] {
                                 @include transform(scale($typeSizeMultiplier));
                                 opacity: 0;
+                                z-index: 2;
+                                position: relative;
+                                cursor: pointer;
                             }
                         }
                     }
