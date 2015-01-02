@@ -7,7 +7,8 @@ section.container {
         width: 100%;
         height: 100%;
 
-        h1 {
+        /*
+h1 {
             position: fixed;
             text-align: right;
             @include resetInput;
@@ -32,6 +33,7 @@ section.container {
                 }
             }
         }
+*/
         
         &:active {
             cursor: move;
@@ -66,18 +68,48 @@ section.container {
             z-index: 1;
                                     
             article {
-                max-width: $col*30;
                 color: $colorType;
                 position: absolute;
                 backface-visibility: hidden;
                 background-color: transparent !important;
                 font-size: $typeBodySize * $typeSizeMultiplier;
                 line-height: 1.5em;
-                
+//                 max-width: $col*3* $typeSizeMultiplier;
                 
                 &.add-element{
 //                     @include transform(scale(1/ $typeSizeMultiplier));
 //                     transform: scale(1/ ($typeSizeMultiplier / 2)) !important;
+
+                    > .card {
+                        @include cardHover;   
+                    }
+
+                    form {
+                        
+                        .fileInputWrapper {
+//                             @include button;
+                            position: absolute;
+                            bottom: 0;
+                            display: block;
+                            @include smallCaps;
+                            overflow: hidden;
+                            font-size: .5em;
+                            width: $col * 8;
+                                                                
+                            &:after {
+                                content: "Upload a file";
+                                cursor: pointer;
+                                position: absolute;
+                                left: 0;
+                                width: 100%;
+                            }
+                            
+                            input[type="file"] {
+                                @include transform(scale($typeSizeMultiplier));
+                                opacity: 0;
+                            }
+                        }
+                    }
                 }
                 
                 textarea {
@@ -87,14 +119,14 @@ section.container {
                     line-height: 1.5em;
                 }
                                 
-                .card {
+                > .card {
                     position: relative;
-                    @include cardStyle;
+                    max-width: $col*3* $typeSizeMultiplier;
+                    width: auto;
 //                     border: $colorBackground 1pt solid;
                     
                     &:hover, &.rollover {
                         cursor: move;
-                        
                         @include cardHover;
                         
                         &.text {
@@ -119,11 +151,13 @@ section.container {
                     }
                     
                     &.text {
-                        padding: $cardPadding;
+                        @include cardStyle;
+                        width: auto;
                     }
                     
                     &.image {
                         background-color: transparent;
+                        width: $col*3* $typeSizeMultiplier;
                     }
                     
                     &.website {
@@ -135,6 +169,7 @@ section.container {
                     &.caption {
                         left: $gutter;
                         top: -$baseline;
+                        width: auto;
                     }
                     
                     img {

@@ -147,7 +147,7 @@ $ ->
               <input type='hidden' name='signature'>
               <input type='hidden' name='success_action_status' value='201'>
               <input type='hidden' name='Content-Type'>
-              <input type='file' class='file-input' name='file'>
+              <span class='fileInputWrapper'><input type='file' class='file-input' name='file'></span>
             </form>
           </p>
         </div>
