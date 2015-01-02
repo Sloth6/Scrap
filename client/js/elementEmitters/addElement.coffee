@@ -121,9 +121,9 @@ $ ->
       top: "#{y}px"
       left: "#{x}px")
     $(this).remove()
-    $('textarea').focus()
-      .on 'blur', (event) -> emitElement x, y, scale, content, contentType
-      .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
+    # $('textarea').focus()
+    #   .on 'blur', (event) -> emitElement x, y, scale, content, contentType
+    #   .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
 
   # on double-click, append new element form, then process the new element if one is submitted
   $(window).on 'dblclick', (event) ->
@@ -183,6 +183,7 @@ $ ->
               "<p><a href='#{content}'>#{content}</a></p>
                <p><code>Loading thumbnail...</code></p>"
             addCaption x, y, elementScale, 'website', content, innerHTML
+            emitElement x, y, elementScale, content, 'website'
 
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)
