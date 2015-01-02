@@ -5,7 +5,8 @@ module.exports =
   # create a new user and default space, redirect to space
   newUser : (req, res, callback) ->
     { name, email, password } = req?.body?.user
-    
+    attributes = { name, email, password }
+
     models.User.find(where: { email }).complete (err, user) ->
       if user?
         if user.name? and user.password?

@@ -3,13 +3,15 @@ async    = require 'async'
 webshot  = require 'webshot'
 fs       = require 'fs'
 Uploader = require('s3-streaming-upload').Uploader
+request = require 'request'
+cheerio = require 'cheerio'
 
 memCache = {}
-
+console.log 'sdsadasd'
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
-
+    console.log 'newElement'
     attributes = {
       contentType: data.contentType
       content: data.content
@@ -27,63 +29,41 @@ module.exports =
         text += possible.charAt(Math.floor(Math.random() * possible.length))
       text
 
-    createThumbNail = (callback) ->
+    createWebContent = (callback) ->
       if data.contentType isnt 'website'
         return callback null, null
-      if data.content of memCache
-        return callback null, memCache[data.content]
 
-      url = "websites/#{randString()}_#{data.content}.png"
-      options =
-        windowSize: { width: 900, height: 1200 }
-        shotSize:   { width: 'window', height: 'window' }
-
-      webshot data.content, '', options, (err, renderStream) ->
-        return callback err if err
-        upload = new Uploader {
-          accessKey:  'AKIAJKJJR5OLTKWMMHSA'
-          secretKey:  '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'
-          bucket:     'scrappreviews'
-          objectName: url
-          stream:     renderStream
-          streamType: 'png'
-          objectParams:
-            ACL: 'public-read'
-            ContentType: 'image/png'
-        }
-        upload.on 'completed', (err, res) ->
-          console.log 'upload completed'
-          callback null, "https://s3.amazonaws.com/scrappreviews/#{url}"
-
-        upload.on 'failed', (err) ->
-          console.log 'upload failed with error', err
-          callback err
-
+      url = data.content
+      request url, (error, response, body) ->
+        if !error and response.statusCode is 200
+          $ = cheerio.load body
+          metadata =
+            title: $('meta[property="og:title"]').attr('content')
+            type: $('meta[property="og:type"]').attr('content')
+            image: $('meta[property="og:image"]').attr('content')
+            url: $('meta[property="og:url"]').attr('content')
+            description: $('meta[property="og:description"]').attr('content')
+          callback null, metadata
+        else
+          # console.log 'ERROR', error
+          callback error
+          
     models.Space.find(where: { spaceKey }).complete (err, space) =>
       return callback err if err?
       attributes.SpaceId = space.id
-      models.Element.create(attributes).complete (err, element) =>
-        return callback err if err?
-        # emit element before laboriously generating thumbnail
-        sio.to(spaceKey).emit 'newElement', { element, loaded: false }
-  
-        createThumbNail (err, thumbnail) =>
-          memCache[data.content] = thumbnail
+      if data.contentType is 'website'
+        createWebContent (err, webContent) ->
           return callback err if err?
-          # if it was a website and we made a thumbnail, then emit the updated
-          # element to the room
-          if thumbnail?
-            query = "UPDATE \"Elements\" SET"
-            query += " \"thumbnail\"=:thumbnail "
-            query += "WHERE \"id\"=:id RETURNING *"
-
-            # new element to be filled in by update
-            elementShell = models.Element.build()
-
-            models.sequelize.query(query, elementShell, null, { thumbnail, id: element.id })
-              .complete (err, result) ->
-                return callback err if err?
-                sio.to(spaceKey).emit 'newElement', { element: result, loaded: true}
+          attributes.content = JSON.stringify(webContent)
+          models.Element.create(attributes).complete (err, element) =>
+            return callback err if err?
+            element.content = webContent
+            sio.to(spaceKey).emit 'newElement', { element }
+      else
+        models.Element.create(attributes).complete (err, element) =>
+          return callback err if err?
+          sio.to(spaceKey).emit 'newElement', { element }
+        
 
   # delete the element
   removeElement : (sio, socket, data, spaceKey, callback) =>

@@ -19,10 +19,8 @@ $ ->
 
   socket.on 'newElement', (data) ->
     element = data.element
-    content = element.content
-    contentType = element.contentType
-    caption = element.caption
-    thumbnail = element.thumbnail
+    { content, contentType, caption } = element
+    console.log 'NEW ELEMT CONTENT', content
 
     id = element.id
     x = element.x + totalDelta.x
@@ -30,9 +28,10 @@ $ ->
     z = element.z
     scale = element.scale
 
-    if not caption? or caption is ''
-      captionDiv = ''
-    else
+    titleDiv = ''
+    captionDiv = ''
+
+    if caption? and caption != ''
       captionDiv =
         "<div class='card text caption'>
           <p>#{caption}</p>
@@ -43,16 +42,17 @@ $ ->
 
     if contentType is 'image'
       innerHTML = (content) -> "<img src=#{content}>"
-
     else if contentType is 'website'
-      if data.loaded
-        $("\##{id}").remove()
-        innerHTML = (content) -> "<a href='#{content}' target='_blank'><img src=#{thumbnail}></a>"
-      else
-        innerHTML = (content) ->
-          "<p><a href=#{content} target='_blank'>#{content}</a></p>
-            <p><code>Loading thumbnail...</code></p>"
-
+      innerHTML = (content) ->
+        "<div class='card text title'>
+          <p>#{content.title}</p>
+        </div>
+        <div class='card img'>
+          <img src=\"#{content.image}\">
+        </div>
+        <div class='card text description'>
+          <p>#{content.description}</p>
+        </div>"
     else # type == text
       innerHTML = (content) -> "<p>#{content}</p>"
     
@@ -66,7 +66,7 @@ $ ->
         </div>
         #{captionDiv}
       </article>"
-
+    console.log newArticle
     $('.content').append newArticle
     $("\##{id}").draggable(draggableOptions socket)
       .css({ "-webkit-transform-origin": "top left", scale })

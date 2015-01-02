@@ -6,9 +6,12 @@ module.exports = (sequelize, DataTypes) ->
     content:
       type: DataTypes.TEXT
       allowNull: false
-    thumbnail:
+    preview:
       type: DataTypes.TEXT
       allowNull: true
+    # thumbnail:
+    #   type: DataTypes.TEXT
+    #   allowNull: true
     caption:
       type: DataTypes.TEXT
       allowNull: true
