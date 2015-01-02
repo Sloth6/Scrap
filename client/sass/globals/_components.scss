@@ -1,6 +1,7 @@
 @mixin cardStyle {
     background-color: $colorCardBackground;
 //     @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
+    padding: $cardPadding;
     @include transition(.125s $defaultCurve);
     @include transition-property(transform,
                          -webkit-transform,
@@ -23,6 +24,30 @@
 //     @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
 }
 
+@mixin button {
+    @include cardStyle;
+    @include smallCaps;
+    padding: $gutter;
+
+    &:hover, &:focus {
+        @include cardHover;
+        @include transform(scale(1.125));
+    }
+    
+    &:active {
+        @include transform(scale(.925));
+        @include box-shadow(0 $gutter/6 $gutter/2 rgba(0,0,0,.125));
+    }
+}
+
+@mixin buttonOffset {
+    position: relative;
+    margin-left: -$gutter*1.5;
+    margin-top: -.666em;
+    left: 100%;
+    float: left;
+}
+
 form {
     position: relative;
 }
@@ -39,23 +64,8 @@ input {
     }
     
     &.offset {
-        @include cardStyle;
-        padding: 1em;
-        position: relative;
-        margin-left: -$gutter*1.5;
-        margin-top: -.666em;
-        left: 100%;
-        float: left;
-        
-        &:hover, &:focus {
-            @include cardHover;
-            @include transform(scale(1.125));
-        }
-        
-        &:active {
-            @include transform(scale(.925));
-            @include box-shadow(0 $gutter/6 $gutter/2 rgba(0,0,0,.125));
-        }
+        @include button;
+        @include buttonOffset;
     }
     
     &[type=submit], &[type=button] {
@@ -78,6 +88,7 @@ input {
 
 ul.menu {
     @include cardStyle;
+    padding: 0; // override cardStyle
     width: $col;
     position: relative;
     max-height: $baseline * 1.5;
