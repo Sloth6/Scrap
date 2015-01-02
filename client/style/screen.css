@@ -422,17 +422,15 @@ section.container section.space section.content article.add-element form .fileIn
   text-transform: uppercase !important;
   overflow: hidden;
   font-size: .5em;
-  width: 64rem;
-  height: 0rem;
 }
-/* line 99, ../sass/layout/_container.scss */
+/* line 97, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element form .fileInputWrapper:after {
   content: "Upload a file";
   position: absolute;
   left: 0;
   width: 100%;
 }
-/* line 106, ../sass/layout/_container.scss */
+/* line 104, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element form .fileInputWrapper input[type="file"] {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
@@ -443,32 +441,32 @@ section.container section.space section.content article.add-element form .fileIn
   position: relative;
   cursor: pointer;
 }
-/* line 117, ../sass/layout/_container.scss */
+/* line 115, ../sass/layout/_container.scss */
 section.container section.space section.content article textarea {
   width: 100%;
   height: 9rem;
   font-size: 20pt;
   line-height: 1.5em;
 }
-/* line 124, ../sass/layout/_container.scss */
+/* line 122, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card {
   position: relative;
   max-width: 48rem;
   width: auto;
 }
-/* line 130, ../sass/layout/_container.scss */
+/* line 128, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card:hover, section.container section.space section.content article > .card.rollover {
   cursor: move;
 }
-/* line 134, ../sass/layout/_container.scss */
+/* line 132, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card:hover.text, section.container section.space section.content article > .card.rollover.text {
   background-color: white;
 }
-/* line 138, ../sass/layout/_container.scss */
+/* line 136, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card:hover img, section.container section.space section.content article > .card.rollover img {
   opacity: 1;
 }
-/* line 143, ../sass/layout/_container.scss */
+/* line 141, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card:active, section.container section.space section.content article > .card.dragging {
   -moz-transform: rotate(-3deg);
   -ms-transform: rotate(-3deg);
@@ -476,15 +474,15 @@ section.container section.space section.content article > .card:active, section.
   transform: rotate(-3deg);
   cursor: move;
 }
-/* line 146, ../sass/layout/_container.scss */
+/* line 144, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card:active.text, section.container section.space section.content article > .card.dragging.text {
   background-color: white;
 }
-/* line 150, ../sass/layout/_container.scss */
+/* line 148, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card:active img, section.container section.space section.content article > .card.dragging img {
   opacity: 1;
 }
-/* line 155, ../sass/layout/_container.scss */
+/* line 153, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   padding: 0.25rem 0.8rem 0.25rem 0.8rem;
@@ -498,28 +496,28 @@ section.container section.space section.content article > .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 160, ../sass/layout/_container.scss */
+/* line 158, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card.image {
   background-color: transparent;
   width: 48rem;
 }
-/* line 166, ../sass/layout/_container.scss */
+/* line 164, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card.website p a {
   word-break: break-all;
 }
-/* line 171, ../sass/layout/_container.scss */
+/* line 169, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card.caption {
   left: 1rem;
   top: -1.5rem;
   width: auto;
 }
-/* line 177, ../sass/layout/_container.scss */
+/* line 175, ../sass/layout/_container.scss */
 section.container section.space section.content article > .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 186, ../sass/layout/_container.scss */
+/* line 184, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -538,12 +536,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 198, ../sass/layout/_container.scss */
+/* line 196, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 203, ../sass/layout/_container.scss */
+/* line 201, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -552,7 +550,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 209, ../sass/layout/_container.scss */
+/* line 207, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";

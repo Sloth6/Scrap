@@ -93,8 +93,6 @@ h1 {
                             @include smallCaps;
                             overflow: hidden;
                             font-size: .5em;
-                            width: $col * 8;
-                            height: $baseline * ($typeSizeMultiplier - 2);
                      
                             &:after {
                                 content: "Upload a file";
