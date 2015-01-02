@@ -128,7 +128,7 @@ $ ->
   # on double-click, append new element form, then process the new element if one is submitted
   $(window).on 'dblclick', (event) ->
     screenScale = $('.content').css('scale') 
-    elementScale = 1 / (screenScale * 6)
+    elementScale = 1 / screenScale
     x = (event.clientX - $('.content').offset().left) / screenScale
     y = (event.clientY - $('.content').offset().top) / screenScale
 # console.log(screenScale)
