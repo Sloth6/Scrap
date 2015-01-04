@@ -20,7 +20,7 @@ $ ->
   socket.on 'newElement', (data) ->
     element = data.element
     { content, contentType, caption } = element
-    console.log 'NEW ELEMT CONTENT', content
+    # console.log 'NEW ELEMT CONTENT', content
 
     id = element.id
     x = element.x + totalDelta.x
@@ -44,6 +44,7 @@ $ ->
       innerHTML = (content) -> "<img src=#{content}>"
     else if contentType is 'website'
       innerHTML = (content) ->
+        content = JSON.parse content
         "<div class='card text title'>
           <p>#{content.title}</p>
         </div>
@@ -66,7 +67,6 @@ $ ->
         </div>
         #{captionDiv}
       </article>"
-    console.log newArticle
     $('.content').append newArticle
     $("\##{id}").draggable(draggableOptions socket)
       .css({ "-webkit-transform-origin": "top left", scale })

@@ -79,7 +79,7 @@ $ ->
     caption = if caption? then caption.slice(0, -1) else caption # remove last newline 
     window.maxZ += 1
     z = window.maxZ
-
+    console.log 'content', content, typeof content
     socket.emit 'newElement', { contentType, content, x, y, z, scale, caption }
 
     $('.add-element').remove()
@@ -121,9 +121,9 @@ $ ->
       top: "#{y}px"
       left: "#{x}px")
     $(this).remove()
-    # $('textarea').focus()
-    #   .on 'blur', (event) -> emitElement x, y, scale, content, contentType
-    #   .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
+    $('textarea').focus()
+      .on 'blur', (event) -> emitElement x, y, scale, content, contentType
+      .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
 
   # on double-click, append new element form, then process the new element if one is submitted
   $(window).on 'dblclick', (event) ->
@@ -131,7 +131,7 @@ $ ->
     elementScale = 1 / screenScale
     x = (event.clientX - $('.content').offset().left) / screenScale
     y = (event.clientY - $('.content').offset().top) / screenScale
-# console.log(screenScale)
+    # console.log(screenScale)
     elementForm =
       "<article class='add-element'>
         <div class='card text'>
@@ -177,13 +177,20 @@ $ ->
 
         # on enter (not shift + enter), submit either website or text
         else if event.keyCode is 13 and not event.shiftKey
-          if isWebsite $(this).val() 
-            content = $(this).val().slice(0, -1)
-            innerHTML = (content) ->
-              "<p><a href='#{content}'>#{content}</a></p>
-               <p><code>Loading thumbnail...</code></p>"
-            addCaption x, y, elementScale, 'website', content, innerHTML
-            emitElement x, y, elementScale, content, 'website'
+          if isWebsite $(this).val()
+            url = $(this).val().slice(0, -1)
+            $.get "/webpreview?url=#{url}", (content) ->
+              innerHTML = () ->
+                "<div class='card text title'>
+                  <p>#{content.title}</p>
+                </div>
+                <div class='card img'>
+                  <img src=\"#{content.image}\">
+                </div>
+                <div class='card text description'>
+                  <p>#{content.description}</p>
+                </div>"
+              addCaption x, y, elementScale, 'website', content, innerHTML
 
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)

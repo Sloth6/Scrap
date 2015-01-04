@@ -17,7 +17,7 @@ module.exports = (io)->
     socket.join spaceKey
     console.log 'joined', spaceKey
 
-    socket.on 'newElement',   (data) -> elementController.newElement io, socket, clean(data), spaceKey, errorHandler
+    socket.on 'newElement',   (data) -> elementController.newElement io, socket, data, spaceKey, errorHandler
     socket.on 'removeElement',(data) -> elementController.removeElement io, socket, clean(data), spaceKey, errorHandler
     socket.on 'updateElement',(data) -> elementController.updateElement io, socket, clean(data), spaceKey, errorHandler
     socket.on 'updateSpace',(data) -> spaceController.updateSpace io, socket, clean(data), spaceKey, errorHandler

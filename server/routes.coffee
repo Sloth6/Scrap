@@ -19,6 +19,9 @@ module.exports = (server) ->
   server.get '/s/:spaceKey', (req, res) ->
     controllers.spaceController.showSpace req, res, errorHandler
 
+  server.get '/webpreview', (req, res) ->
+    controllers.previewController.web req, res, errorHandler
+
   server.post '/login', (req, res) ->
     controllers.userController.login req, res, errorHandler
 

@@ -4,6 +4,9 @@ uuid = require('node-uuid')
 mime = require('mime')
 moment = require('moment')
 
+request = require 'request'
+cheerio = require 'cheerio'
+
 config = 
   aws_key:  "AKIAJQ7VP2SMGLIV5JQA" #AWS Key
   aws_secret:  "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" #AWS Secret
