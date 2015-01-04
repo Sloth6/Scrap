@@ -48,7 +48,7 @@ $ ->
         "<div class='card img'>
           <img src=\"#{content.image}\">
         </div>
-        <div class='card header'>
+        <div class='card header text'>
           <div class='title'>
             <p>#{content.title}</p>
           </div>
