@@ -45,14 +45,16 @@ $ ->
     else if contentType is 'website'
       innerHTML = (content) ->
         content = JSON.parse content
-        "<div class='card text title'>
-          <p>#{content.title}</p>
-        </div>
-        <div class='card img'>
+        "<div class='card img'>
           <img src=\"#{content.image}\">
         </div>
-        <div class='card text description'>
-          <p>#{content.description}</p>
+        <div class='card header'>
+          <div class='title'>
+            <p>#{content.title}</p>
+          </div>
+          <div class='description'>
+            <p>#{content.description}</p>
+          </div>
         </div>"
     else # type == text
       innerHTML = (content) -> "<p>#{content}</p>"
@@ -61,7 +63,6 @@ $ ->
       "<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
         <div class='card #{contentType}'>
           #{innerHTML content}
-          <div class='background'></div>
           <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>
           </div>
         </div>

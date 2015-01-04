@@ -127,7 +127,7 @@ input:focus {
 /* line 68, ../sass/globals/_components.scss */
 input.offset {
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -191,7 +191,7 @@ input[type=checkbox] + label {
 /* line 91, ../sass/globals/_components.scss */
 ul.menu {
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -288,7 +288,7 @@ textarea {
 /* line 1, ../sass/layout/_body.scss */
 body {
   height: 100%;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
 }
 
 /* line 1, ../sass/layout/_header.scss */
@@ -460,23 +460,39 @@ section.container section.space section.content article.dragging {
   opacity: .8;
   cursor: move;
 }
-/* line 124, ../sass/layout/_container.scss */
+/* line 128, ../sass/layout/_container.scss */
+section.container section.space section.content article.website .card.header.text {
+  position: relative;
+  z-index: 2;
+}
+/* line 137, ../sass/layout/_container.scss */
+section.container section.space section.content article.website .card.header.text .title {
+  line-height: 1.25em;
+}
+/* line 141, ../sass/layout/_container.scss */
+section.container section.space section.content article.website .card.header.text .description {
+  font-size: 10pt;
+  line-height: 1.5em;
+  font-family: "Futura";
+  padding-top: 1.5rem;
+}
+/* line 151, ../sass/layout/_container.scss */
 section.container section.space section.content article textarea {
   width: 100%;
   height: 9rem;
   font-size: 20pt;
   line-height: 1.5em;
 }
-/* line 131, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card {
+/* line 158, ../sass/layout/_container.scss */
+section.container section.space section.content article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 136, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.text {
+/* line 163, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -487,29 +503,29 @@ section.container section.space section.content article > .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 141, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.image {
+/* line 168, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.image {
   background-color: transparent;
   width: 48rem;
 }
-/* line 147, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.website p a {
+/* line 174, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.website p a {
   word-break: break-all;
 }
-/* line 152, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.caption, section.container section.space section.content article > .card.comment {
+/* line 179, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.caption, section.container section.space section.content article .card.comment {
   left: 1rem;
   top: -1.5rem;
   color: white;
   background-color: #333;
 }
-/* line 160, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card img {
+/* line 187, ../sass/layout/_container.scss */
+section.container section.space section.content article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 169, ../sass/layout/_container.scss */
+/* line 196, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -528,12 +544,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 181, ../sass/layout/_container.scss */
+/* line 208, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 186, ../sass/layout/_container.scss */
+/* line 213, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -542,7 +558,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 192, ../sass/layout/_container.scss */
+/* line 219, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";
@@ -563,7 +579,7 @@ section.container section.space .delete:after {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
