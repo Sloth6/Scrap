@@ -3,7 +3,8 @@ draggableOptions = (socket) ->
     screenScale = $('.content').css('scale')
     if not getIdsInCluster( this.id )?
       return
-    $('.delete').addClass('visible')
+    $('.delete').addClass 'visible'
+    $(this).addClass 'dragging'
     $(window).off 'mousemove'
     click.x = event.clientX
     click.y = event.clientY
@@ -38,6 +39,7 @@ draggableOptions = (socket) ->
 
   stop: (event, ui) ->
     $('.delete').removeClass 'visible'
+    $(this).removeClass 'dragging'
     getIdsInCluster( this.id ).forEach (id) ->
       elem = $('#'+id)
       # Make sure to account for screen drag (totalDelta)

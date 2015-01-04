@@ -112,6 +112,15 @@ h1 {
                     }
                 }
                 
+                &:hover {
+                    cursor: move;
+                    @include cardHover;
+                }
+                
+                &.dragging {
+                    @include cardDrag;
+                }
+                
                 textarea {
                     width: 100%;
                     height: $baseline * 6;
@@ -121,34 +130,8 @@ h1 {
                                 
                 > .card {
                     position: relative;
-                    max-width: $col*3* $typeSizeMultiplier;
+                    max-width: $col * 2 * $typeSizeMultiplier;
                     width: auto;
-//                     border: $colorBackground 1pt solid;
-                    
-                    &:hover, &.rollover {
-                        cursor: move;
-                        @include cardHover;
-                        
-                        &.text {
-                            background-color: $colorWashLight;
-                        }
-                        
-                        img {
-                            opacity: 1;
-                        }                    
-                    }
-                    
-                    &:active, &.dragging {
-                        @include cardDrag;
-                        
-                        &.text {
-                            background-color: $colorWashLight;
-                        }
-                        
-                        img {
-                            opacity: 1;
-                        }
-                    }
                     
                     &.text {
                         @include cardStyle;
@@ -169,7 +152,7 @@ h1 {
                     &.caption, &.comment {
                         left: $gutter;
                         top: -$baseline;
-                        width: auto;
+
                         color: $colorTypeLight;
                         background-color: $colorCardBackgroundDark;
                     }

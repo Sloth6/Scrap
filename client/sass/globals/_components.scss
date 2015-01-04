@@ -15,10 +15,12 @@
 @mixin cardHover {
 //     @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
 //     @include transform(scale(1.0625));
+    opacity: .9;
 }
 
 @mixin cardDrag {
-    @include transform(rotate(-3deg));
+    @include transform(rotate(-2deg));
+    opacity: .8;
     cursor: move;
 //     @include transform(scale(1.0625) rotate(-3deg));
 //     @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
