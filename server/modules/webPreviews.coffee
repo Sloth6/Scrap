@@ -40,7 +40,13 @@ extractUrl = ($) ->
   $('meta[property="og:url"]').attr('content')
 
 module.exports = (url, callback) ->
-  request url, (error, response, body) ->
+  jar = request.jar()
+  options =
+    method: 'GET'
+    url: url
+    followAllRedirects: true
+    jar: jar
+  request options, (error, response, body) ->
     if error or response.statusCode isnt 200
       # console.log 'Error in getting html for preview', response.statusCode,{error, body}
       callback error or response.statusCode
