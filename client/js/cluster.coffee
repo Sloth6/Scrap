@@ -6,6 +6,7 @@ getIdsInCluster = (id) ->
   clusterToIds[idToClusters[id]] or []
 
 cluster = () ->
+  return
   leaves = (hcluster) ->
     # flatten cluster hierarchy
     if !hcluster.left
