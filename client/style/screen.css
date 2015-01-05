@@ -101,12 +101,12 @@ html p + p {
   margin-top: 0.75rem;
 }
 
-/* line 51, ../sass/globals/_components.scss */
+/* line 53, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
 
-/* line 55, ../sass/globals/_components.scss */
+/* line 57, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -120,14 +120,14 @@ input {
   line-height: 1.5em;
   border-bottom: 0.5pt #aaaaaa solid;
 }
-/* line 62, ../sass/globals/_components.scss */
+/* line 64, ../sass/globals/_components.scss */
 input:focus {
   border-color: #000000;
 }
-/* line 66, ../sass/globals/_components.scss */
+/* line 68, ../sass/globals/_components.scss */
 input.offset {
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -147,14 +147,15 @@ input.offset {
   left: 100%;
   float: left;
 }
-/* line 32, ../sass/globals/_components.scss */
+/* line 34, ../sass/globals/_components.scss */
 input.offset:hover, input.offset:focus {
+  opacity: .9;
   -moz-transform: scale(1.125);
   -ms-transform: scale(1.125);
   -webkit-transform: scale(1.125);
   transform: scale(1.125);
 }
-/* line 37, ../sass/globals/_components.scss */
+/* line 39, ../sass/globals/_components.scss */
 input.offset:active {
   -moz-transform: scale(0.925);
   -ms-transform: scale(0.925);
@@ -164,7 +165,7 @@ input.offset:active {
   -webkit-box-shadow: 0 0.16667rem 0.5rem rgba(0, 0, 0, 0.125);
   box-shadow: 0 0.16667rem 0.5rem rgba(0, 0, 0, 0.125);
 }
-/* line 71, ../sass/globals/_components.scss */
+/* line 73, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   font-size: .666em;
   font-family: "Futura";
@@ -173,13 +174,13 @@ input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
 }
-/* line 77, ../sass/globals/_components.scss */
+/* line 79, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
-/* line 82, ../sass/globals/_components.scss */
+/* line 84, ../sass/globals/_components.scss */
 input[type=checkbox] + label {
   font-size: .666em;
   font-family: "Futura";
@@ -187,10 +188,10 @@ input[type=checkbox] + label {
   text-transform: uppercase !important;
 }
 
-/* line 89, ../sass/globals/_components.scss */
+/* line 91, ../sass/globals/_components.scss */
 ul.menu {
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -227,25 +228,25 @@ ul.menu {
       }
   */
 }
-/* line 100, ../sass/globals/_components.scss */
+/* line 102, ../sass/globals/_components.scss */
 ul.menu:hover {
   max-height: none;
   opacity: 1;
 }
-/* line 104, ../sass/globals/_components.scss */
+/* line 106, ../sass/globals/_components.scss */
 ul.menu:hover:after {
   opacity: 1;
 }
-/* line 123, ../sass/globals/_components.scss */
+/* line 125, ../sass/globals/_components.scss */
 ul.menu li {
   height: 2.25rem;
   padding-left: .5em;
 }
-/* line 127, ../sass/globals/_components.scss */
+/* line 129, ../sass/globals/_components.scss */
 ul.menu li:first-of-type {
   padding-top: 0.75rem;
 }
-/* line 131, ../sass/globals/_components.scss */
+/* line 133, ../sass/globals/_components.scss */
 ul.menu li a {
   border: none;
   display: block;
@@ -256,20 +257,20 @@ ul.menu li a {
   -webkit-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 138, ../sass/globals/_components.scss */
+/* line 140, ../sass/globals/_components.scss */
 ul.menu li a:hover {
   padding-left: .5em;
 }
-/* line 143, ../sass/globals/_components.scss */
+/* line 145, ../sass/globals/_components.scss */
 ul.menu li input {
   width: 95% !important;
 }
-/* line 146, ../sass/globals/_components.scss */
+/* line 148, ../sass/globals/_components.scss */
 ul.menu li input[type=submit] {
   display: none;
 }
 
-/* line 153, ../sass/globals/_components.scss */
+/* line 155, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -287,7 +288,7 @@ textarea {
 /* line 1, ../sass/layout/_body.scss */
 body {
   height: 100%;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
 }
 
 /* line 1, ../sass/layout/_header.scss */
@@ -412,6 +413,10 @@ section.container section.space section.content article {
   font-size: 20pt;
   line-height: 1.5em;
 }
+/* line 83, ../sass/layout/_container.scss */
+section.container section.space section.content article.add-element > .card {
+  opacity: .9;
+}
 /* line 89, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element form .fileInputWrapper {
   position: relative;
@@ -442,50 +447,60 @@ section.container section.space section.content article.add-element form .fileIn
   cursor: pointer;
 }
 /* line 115, ../sass/layout/_container.scss */
+section.container section.space section.content article:hover {
+  cursor: move;
+  opacity: .9;
+}
+/* line 121, ../sass/layout/_container.scss */
+section.container section.space section.content article:hover .card .ui-resizable-handle {
+  opacity: .2;
+}
+/* line 127, ../sass/layout/_container.scss */
+section.container section.space section.content article.resizing .card .ui-resizable-handle {
+  opacity: .5;
+}
+/* line 132, ../sass/layout/_container.scss */
+section.container section.space section.content article.dragging {
+  -moz-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  -webkit-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+  opacity: .8;
+  cursor: move;
+}
+/* line 140, ../sass/layout/_container.scss */
+section.container section.space section.content article.website .card.header.text {
+  position: relative;
+  z-index: 2;
+}
+/* line 149, ../sass/layout/_container.scss */
+section.container section.space section.content article.website .card.header.text .title {
+  line-height: 1.25em;
+}
+/* line 153, ../sass/layout/_container.scss */
+section.container section.space section.content article.website .card.header.text .description {
+  font-size: 10pt;
+  line-height: 1.5em;
+  font-family: "Futura";
+  padding-top: 1.5rem;
+}
+/* line 163, ../sass/layout/_container.scss */
 section.container section.space section.content article textarea {
   width: 100%;
   height: 9rem;
   font-size: 20pt;
   line-height: 1.5em;
 }
-/* line 122, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card {
+/* line 170, ../sass/layout/_container.scss */
+section.container section.space section.content article .card {
   position: relative;
-  max-width: 48rem;
+  max-width: 32rem;
   width: auto;
 }
-/* line 128, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card:hover, section.container section.space section.content article > .card.rollover {
-  cursor: move;
-}
-/* line 132, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card:hover.text, section.container section.space section.content article > .card.rollover.text {
-  background-color: white;
-}
-/* line 136, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card:hover img, section.container section.space section.content article > .card.rollover img {
-  opacity: 1;
-}
-/* line 141, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card:active, section.container section.space section.content article > .card.dragging {
-  -moz-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  -webkit-transform: rotate(-3deg);
-  transform: rotate(-3deg);
-  cursor: move;
-}
-/* line 144, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card:active.text, section.container section.space section.content article > .card.dragging.text {
-  background-color: white;
-}
-/* line 148, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card:active img, section.container section.space section.content article > .card.dragging img {
-  opacity: 1;
-}
-/* line 153, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.text {
+/* line 175, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -496,28 +511,66 @@ section.container section.space section.content article > .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 158, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.image {
+/* line 180, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.image {
   background-color: transparent;
   width: 48rem;
 }
-/* line 164, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.website p a {
+/* line 185, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.image .ui-resizable-handle:after {
+  color: white !important;
+}
+/* line 192, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.website p a {
   word-break: break-all;
 }
-/* line 169, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card.caption {
+/* line 197, ../sass/layout/_container.scss */
+section.container section.space section.content article .card.caption, section.container section.space section.content article .card.comment {
   left: 1rem;
   top: -1.5rem;
-  width: auto;
+  color: white;
+  background-color: #333;
 }
-/* line 175, ../sass/layout/_container.scss */
-section.container section.space section.content article > .card img {
+/* line 205, ../sass/layout/_container.scss */
+section.container section.space section.content article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 184, ../sass/layout/_container.scss */
+/* line 211, ../sass/layout/_container.scss */
+section.container section.space section.content article .card .ui-resizable-handle {
+  z-index: 9999999;
+  background: none !important;
+  font-size: 10pt !important;
+  bottom: 0;
+  text-align: right;
+  right: 0;
+  overflow: hidden;
+  opacity: 0;
+  -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+}
+/* line 222, ../sass/layout/_container.scss */
+section.container section.space section.content article .card .ui-resizable-handle:hover {
+  opacity: .5;
+}
+/* line 226, ../sass/layout/_container.scss */
+section.container section.space section.content article .card .ui-resizable-handle:after {
+  content: "◢";
+  position: absolute;
+  bottom: 110%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+                            /*
+position: absolute;
+                            top: 0;
+                            left: 0;
+*/
+}
+/* line 246, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -536,12 +589,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 196, ../sass/layout/_container.scss */
+/* line 258, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 201, ../sass/layout/_container.scss */
+/* line 263, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -550,7 +603,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 207, ../sass/layout/_container.scss */
+/* line 269, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";
@@ -571,7 +624,7 @@ section.container section.space .delete:after {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
   background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.25rem 0.8rem 0.25rem 0.8rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;

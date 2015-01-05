@@ -112,6 +112,54 @@ h1 {
                     }
                 }
                 
+                &:hover {
+                    cursor: move;
+                    @include cardHover;
+                }
+                
+                &:hover {
+                    .card .ui-resizable-handle {
+                        opacity: .2;
+                    }
+                }
+                
+                &.resizing {
+                    .card .ui-resizable-handle {
+                        opacity: .5;
+                    }
+                }
+                
+                &.dragging {
+                    @include cardDrag;
+                }
+                
+                &.website {
+                    
+                    .card {
+                        
+                        &.header.text {
+                            position: relative;
+//                             margin-top: -.2em;
+//                             left: $gutter * 2;
+//                             background-color: transparent;
+//                             background-image: -webkit-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 100%);
+                            z-index: 2;
+//                             color: $colorTypeLight;
+                            
+                            .title {
+                                line-height: 1.25em;
+                            }
+                                                    
+                            .description {
+                                font-size: $typeBodySize;
+                                line-height: 1.5em;
+                                font-family: $fontMedium;
+                                padding-top: $baseline;
+                            }
+                        }
+                    }
+                }
+                
                 textarea {
                     width: 100%;
                     height: $baseline * 6;
@@ -119,37 +167,11 @@ h1 {
                     line-height: 1.5em;
                 }
                                 
-                > .card {
+                .card {
                     position: relative;
-                    max-width: $col*3* $typeSizeMultiplier;
+                    max-width: $col * 2 * $typeSizeMultiplier;
                     width: auto;
-//                     border: $colorBackground 1pt solid;
-                    
-                    &:hover, &.rollover {
-                        cursor: move;
-                        @include cardHover;
-                        
-                        &.text {
-                            background-color: $colorWashLight;
-                        }
-                        
-                        img {
-                            opacity: 1;
-                        }                    
-                    }
-                    
-                    &:active, &.dragging {
-                        @include cardDrag;
-                        
-                        &.text {
-                            background-color: $colorWashLight;
-                        }
-                        
-                        img {
-                            opacity: 1;
-                        }
-                    }
-                    
+                                        
                     &.text {
                         @include cardStyle;
                         width: auto;
@@ -158,6 +180,12 @@ h1 {
                     &.image {
                         background-color: transparent;
                         width: $col*3*$typeSizeMultiplier;
+                        
+                        .ui-resizable-handle {
+                            &:after {
+                                color: white !important;
+                            }
+                        }
                     }
                     
                     &.website {
@@ -166,16 +194,50 @@ h1 {
                         }
                     }
                     
-                    &.caption {
+                    &.caption, &.comment {
                         left: $gutter;
                         top: -$baseline;
-                        width: auto;
+
+                        color: $colorTypeLight;
+                        background-color: $colorCardBackgroundDark;
                     }
                     
                     img {
                         width: 100%;
                         opacity: .9;
                         margin-bottom: -12pt;
+                    }
+                    
+                    .ui-resizable-handle {
+                        z-index: 9999999;
+                        background: none !important;
+                        font-size: 10pt !important;
+                        bottom: 0;
+                        text-align: right;
+                        right: 0;
+                        overflow: hidden;
+                        opacity: 0;
+                        @include transition(opacity .25s $defaultCurve);
+                        
+                        &:hover {
+                            opacity: .5;
+                        }
+                        
+                        &:after {
+                            content: "◢";
+                            position: absolute;
+                            bottom: 110%;
+                            left: 0%;
+//                             text-indent: 1.5pt;
+                            height: 100%;
+                            width: 100%;
+                            
+                            /*
+position: absolute;
+                            top: 0;
+                            left: 0;
+*/
+                        }
                     }
                 }
             }

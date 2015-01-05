@@ -97,8 +97,8 @@ $ ->
   addCaption = (x, y, scale, contentType, content, innerHTML) ->
     $('.add-element').remove()
     captionForm = 
-      "<div class='card text'>
-        <textarea name='caption' placeholder='Add a caption'></textarea>
+      "<div class='card text comment'>
+        <textarea name='comment' placeholder='Add a comment'></textarea>
         <div class='background'></div>
       </div>
       <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>
@@ -134,9 +134,9 @@ $ ->
     # console.log(screenScale)
     elementForm =
       "<article class='add-element'>
-        <div class='card text'>
+        <div class='card text comment'>
           <p>
-            <textarea name='content' placeholder='Add something new'></textarea>
+            <textarea name='content' placeholder='Paste a link or an image'></textarea>
           </p>
           <p>
             <form enctype='multipart/form-data' class='direct-upload'>
