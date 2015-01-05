@@ -166,6 +166,23 @@ h1 {
                     font-size: $typeBodySize * $typeSizeMultiplier;
                     line-height: 1.5em;
                 }
+                
+                a.delete {
+                    position: absolute;
+                    height: $gutter * 2;
+                    width: $gutter * 2;
+                    top: 0;
+                    left: 0;
+                    
+                    &:after {
+                        content: "╳"; // ✕
+                        font-size: 10pt;
+                        color: white;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+                }
                                 
                 .card {
                     position: relative;
@@ -180,6 +197,8 @@ h1 {
                     &.image {
                         background-color: transparent;
                         width: $col*3*$typeSizeMultiplier;
+                        max-height: $baseline * 20;
+                        overflow: hidden;
                         
                         .ui-resizable-handle {
                             &:after {

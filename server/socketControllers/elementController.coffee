@@ -29,7 +29,7 @@ module.exports =
         if err?
           console.log url, err, pageData
           attributes.content = JSON.stringify { 
-            title: url.match(/www.([a-z]*)/)[1]
+            title: ''#url.match(/www.([a-z]*)/)[1]
             url: encodeURIComponent(url)
             description: ''
           }

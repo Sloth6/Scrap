@@ -43,6 +43,7 @@ block content
           - minScale = element.scale
 
         article.draggable(id=element.id, class=element.contentType, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};"+"transform:scale(#{element.scale},#{element.scale});-webkit-transform-origin: top left")
+          a.delete
           case element.contentType
             when 'image'
               include partials/contentTypes/image

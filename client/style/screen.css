@@ -492,12 +492,29 @@ section.container section.space section.content article textarea {
   line-height: 1.5em;
 }
 /* line 170, ../sass/layout/_container.scss */
+section.container section.space section.content article a.delete {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  top: 0;
+  left: 0;
+}
+/* line 177, ../sass/layout/_container.scss */
+section.container section.space section.content article a.delete:after {
+  content: "╳";
+  font-size: 10pt;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 187, ../sass/layout/_container.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 175, ../sass/layout/_container.scss */
+/* line 192, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -511,33 +528,35 @@ section.container section.space section.content article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 180, ../sass/layout/_container.scss */
+/* line 197, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
   background-color: transparent;
   width: 48rem;
+  max-height: 30rem;
+  overflow: hidden;
 }
-/* line 185, ../sass/layout/_container.scss */
+/* line 204, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 192, ../sass/layout/_container.scss */
+/* line 211, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.website p a {
   word-break: break-all;
 }
-/* line 197, ../sass/layout/_container.scss */
+/* line 216, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.caption, section.container section.space section.content article .card.comment {
   left: 1rem;
   top: -1.5rem;
   color: white;
   background-color: #333;
 }
-/* line 205, ../sass/layout/_container.scss */
+/* line 224, ../sass/layout/_container.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 211, ../sass/layout/_container.scss */
+/* line 230, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle {
   z-index: 9999999;
   background: none !important;
@@ -552,11 +571,11 @@ section.container section.space section.content article .card .ui-resizable-hand
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 222, ../sass/layout/_container.scss */
+/* line 241, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:hover {
   opacity: .5;
 }
-/* line 226, ../sass/layout/_container.scss */
+/* line 245, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:after {
   content: "◢";
   position: absolute;
@@ -570,7 +589,7 @@ position: absolute;
                             left: 0;
 */
 }
-/* line 246, ../sass/layout/_container.scss */
+/* line 265, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -589,12 +608,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 258, ../sass/layout/_container.scss */
+/* line 277, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 263, ../sass/layout/_container.scss */
+/* line 282, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -603,7 +622,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 269, ../sass/layout/_container.scss */
+/* line 288, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";
