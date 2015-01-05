@@ -136,7 +136,7 @@ $ ->
       "<article class='add-element'>
         <div class='card text comment'>
           <p>
-            <textarea name='content' placeholder='Add something new'></textarea>
+            <textarea name='content' placeholder='Paste a link or an image'></textarea>
           </p>
           <p>
             <form enctype='multipart/form-data' class='direct-upload'>

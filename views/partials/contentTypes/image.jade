@@ -2,9 +2,9 @@
   img(src= element.content)
   .background
   if element.caption == '' || element.caption == null
-    .ui-resizable-handle.ui-resizable-se.ui-icon.ui-icon-grip-diagonal-se
+    .ui-resizable-handle.ui-resizable-se
 if element.caption !== '' && element.caption !== null
   .card.text.caption
     p!=element.caption
     .background
-    .ui-resizable-handle.ui-resizable-se.ui-icon.ui-icon-grip-diagonal-se
+    .ui-resizable-handle.ui-resizable-se

@@ -117,6 +117,18 @@ h1 {
                     @include cardHover;
                 }
                 
+                &:hover {
+                    .card .ui-resizable-handle {
+                        opacity: .2;
+                    }
+                }
+                
+                &.resizing {
+                    .card .ui-resizable-handle {
+                        opacity: .5;
+                    }
+                }
+                
                 &.dragging {
                     @include cardDrag;
                 }
@@ -159,7 +171,7 @@ h1 {
                     position: relative;
                     max-width: $col * 2 * $typeSizeMultiplier;
                     width: auto;
-                    
+                                        
                     &.text {
                         @include cardStyle;
                         width: auto;
@@ -168,6 +180,12 @@ h1 {
                     &.image {
                         background-color: transparent;
                         width: $col*3*$typeSizeMultiplier;
+                        
+                        .ui-resizable-handle {
+                            &:after {
+                                color: white !important;
+                            }
+                        }
                     }
                     
                     &.website {
@@ -188,6 +206,38 @@ h1 {
                         width: 100%;
                         opacity: .9;
                         margin-bottom: -12pt;
+                    }
+                    
+                    .ui-resizable-handle {
+                        z-index: 9999999;
+                        background: none !important;
+                        font-size: 10pt !important;
+                        bottom: 0;
+                        text-align: right;
+                        right: 0;
+                        overflow: hidden;
+                        opacity: 0;
+                        @include transition(opacity .25s $defaultCurve);
+                        
+                        &:hover {
+                            opacity: .5;
+                        }
+                        
+                        &:after {
+                            content: "◢";
+                            position: absolute;
+                            bottom: 110%;
+                            left: 0%;
+//                             text-indent: 1.5pt;
+                            height: 100%;
+                            width: 100%;
+                            
+                            /*
+position: absolute;
+                            top: 0;
+                            left: 0;
+*/
+                        }
                     }
                 }
             }

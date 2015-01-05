@@ -5,10 +5,12 @@ resize = (socket) ->
     element = $(this).parent().parent()
     clickX = event.clientX
     clickY = event.clientY
+    element.addClass 'resizing'
     screenScale = $('.content').css('scale')
 
     $(window).on 'mouseup', (event) ->
       socket.emit 'updateElement', { elementId: element.attr('id'), scale: elementScale element }
+      element.removeClass 'resizing'
 
     $(window).on 'mousemove', (event) ->
       event.preventDefault()
