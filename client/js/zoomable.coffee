@@ -44,7 +44,7 @@ $ ->
     tooSmall = newScale < screenFitScale()/2 # zoom out
     tooBig = newScale > 1/window.minScale # zoom in
 
-    if not tooBig and not tooSmall
+    if true#not tooBig and not tooSmall
       viewOffsetX += (event.clientX / 100 / newScale) * event.deltaY
       viewOffsetY += (event.clientY / 100 / newScale) * event.deltaY
 

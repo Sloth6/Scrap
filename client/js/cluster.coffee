@@ -1,14 +1,14 @@
 idToClusters = {}
-
 clusterToIds = {}
+socket = io.connect()
 
 getIdsInCluster = (id) ->
   clusterToIds[idToClusters[id]] or []
 
 cluster = () ->
   leaves = (hcluster) ->
-   # flatten cluster hierarchy
-    if(!hcluster.left)
+    # flatten cluster hierarchy
+    if !hcluster.left
       [hcluster]
     else
       leaves(hcluster.left).concat(leaves(hcluster.right))
@@ -29,10 +29,10 @@ cluster = () ->
           y: Math.floor(parseInt($elem.css('top')))
           w: Math.floor(dimens.w)
           h: Math.floor(dimens.h)
-          tooBig: false
+          # tooBig: false
 
-        if porportionOFScreen(elem) > .10
-          elem.tooBig = true
+        # if porportionOFScreen(elem) > .10
+        #   elem.tooBig = true
         elem
       catch
         null).filter((elem) -> !!elem)
@@ -40,7 +40,7 @@ cluster = () ->
   worker = {}
   
   intersect = (a, b) ->
-    screenScale = $('.content').css('scale')
+    screenScale = 1#$('.content').css('scale')
     offset = 10 / screenScale
     maxAx = a.x + a.w + offset
     maxAy = a.y + a.h + offset
@@ -60,53 +60,84 @@ cluster = () ->
     aBelowB   = maxAy < minBy;
     return !( aLeftOfB || aRightOfB || aAboveB || aBelowB );
 
-
   compare = (e1, e2) ->
-    if e1.tooBig || e2.tooBig
-      return Infinity
-    screenScale = $('.content').css('scale')
-    Math.sqrt(Math.pow( (e1.x - e2.x) * screenScale, 2) + Math.pow(e1.y * screenScale - e2.y * screenScale, 2))
-    if intersect e1, e2 then 0 else Infinity
+    # if e1.tooBig || e2.tooBig
+    #   return Infinity
+    # screenScale = $('.content').css('scale')
+    # Math.sqrt(Math.pow( (e1.x - e2.x) * screenScale, 2) + Math.pow(e1.y * screenScale - e2.y * screenScale, 2))
+    if intersect e1, e2 then 0 else 50
+  
+  compare2 = (a,b) ->
+    xa = a.x + a.w/2
+    ya = a.y + a.h/2
+    xb = b.x + b.w/2
+    yb = b.x + b.h/2
+    Math.sqrt(Math.pow( (xa - xb), 2) + Math.pow(ya - yb, 2))
 
-  worker.onmessage = (event) ->
-    clusters = event.data.clusters.map((hcluster) ->
+
+  colorClusters = (clusters) ->
+    $('.cluster').remove()
+    idToClusters = {}
+    clusterToIds = {}
+    cid = 0
+    # console.log clusters
+    for clust in clusters
+      continue if clust.length < 2
+      maxX = Math.max.apply(null, clust.map (e) -> (e.x + e.w))
+      maxY = Math.max.apply(null, clust.map (e) -> (e.y + e.h))
+      minX = Math.min.apply(null, clust.map (e) -> e.x)
+      minY = Math.min.apply(null, clust.map (e) -> e.y)
+      width = (maxX - minX)
+      height = (maxY - minY)
+      $('<div />').addClass('cluster').css({
+        top: minY - 20
+        left: minX - 20
+        width: width + 40
+        height: height + 40 
+        position: 'absolute'
+        "transform-origin": "top left"
+        'background-color': 'grey'
+      }).data({
+        elems: clust.map (e) -> e.id
+      }).draggable(draggableOptions socket)
+        .appendTo $('.content')
+
+  flatten = (clusters) ->
+    console.log clusters
+    clusters = clusters.map((hcluster) ->
       leaves(hcluster).map((leaf) -> leaf.value))
     try
       colorClusters clusters
   
-  colorClusters = (clusters) ->
-    idToClusters = {}
-    clusterToIds = {}
-    cid = 0
-    for clust in clusters
-      if clust.length > 1
-        color = "#" + Math.random().toString(16).slice(2, 8)
-      else 
-        color = "rgba(255,255,255,.925)"
-      avg = { x: 0, y: 0 }
-      l = clust.length
-      clusterToIds[cid] = []
-      for elem in clust
-        clusterToIds[cid].push(elem.id)
-        idToClusters[elem.id] = cid
-        $('.card','#'+elem.id).css('border-color', color);
-        avg.x += elem.x
-        avg.y += elem.y
-        
-      cid += 1
-
-  onmessage = (event) ->
-    data = event.data
-    t1 = Date.now()
-    clusters = clusterElems(data.coords, data.frameRate, data.linkage)
-    t2 = Date.now()
-    worker.onmessage(data: {clusters: clusters, time: t2 - t1})
-
-
-  clusterElems = (coords, frameRate, linkage) ->
-    clusterfck.hcluster coords, compare, 'single', 60
-
-  onmessage({data : {
-    coords: getCoords(),
-    frameRate: 1000
-  }})
+  makeDiv = ({ x, y, w, h }) ->
+    style =
+      top: y
+      left: x
+      width: w
+      height: h
+      opacity: 0.3
+      'background-color': 'grey'
+      "transform-origin": "top left"
+      position:'absolute'
+    div = $('<div>').css(style).addClass('cluster')
+    $('.content').append div
+  
+  format = (obj) ->
+    if obj.size is 1
+      obj.value
+    else
+      L = format(obj.left)
+      R = format(obj.right)
+      d = Math.sqrt(Math.pow( (L.x - R.x), 2) + Math.pow(L.y - R.y, 2))
+      # console.log
+      x = Math.min L.x, R.x
+      y = Math.min L.y, R.y
+      w = (Math.max L.x+L.w, R.x+R.w) - x
+      h = (Math.max L.y+L.h, R.y+R.h) - y
+      makeDiv { x, y, w, h } if d < 200
+      return { x, y, w, h }
+ 
+  $('.cluster').remove()
+  coords = getCoords()
+  clusters = clusterfck.hcluster coords, compare2, 'single'
+  console.log(format clusters)

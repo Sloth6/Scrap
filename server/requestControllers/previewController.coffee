@@ -21,7 +21,7 @@ extractImage = ($) ->
       return
   return img if img?
 
-  img = $('link[rel="shortcut icon"]')[0].href
+  img = $('link[rel="shortcut icon"]')[0]?.href
   return img if img?
   return null
 
