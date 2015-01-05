@@ -20,7 +20,7 @@ $ ->
   socket.on 'newElement', (data) ->
     element = data.element
     { content, contentType, caption } = element
-    # console.log 'NEW ELEMT CONTENT', content
+    console.log 'NEW ELEMT CONTENT', content
 
     id = element.id
     x = element.x + totalDelta.x
@@ -41,21 +41,24 @@ $ ->
         <div class='background'></div></div>"
 
     if contentType is 'image'
-      innerHTML = (content) -> "<img src=#{content}>"
+      innerHTML = () -> "<img src=#{content}>"
     else if contentType is 'website'
-      innerHTML = (content) ->
-        content = JSON.parse content
-        "<div class='card text title'>
-          <p>#{content.title}</p>
-        </div>
-        <div class='card img'>
-          <img src=\"#{content.image}\">
-        </div>
-        <div class='card text description'>
-          <p>#{content.description}</p>
-        </div>"
+      innerHTML = () ->
+        data = JSON.parse content
+        url = decodeURIComponent data.url
+        "<a href=\"#{url}\" target=\"_blank\">
+          <div class='card text title'>
+            <p>#{data.title}</p>
+          </div>"+
+          (if data.image? then "<div class='card img'>
+            <img src=\"#{data.image}\">
+            </div>" else '')+
+          "<div class='card text description'>
+            <p>#{data.description}</p>
+          </div>
+        <\a>"
     else # type == text
-      innerHTML = (content) -> "<p>#{content}</p>"
+      innerHTML = () -> "<p>#{content}</p>"
     
     newArticle =
       "<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>

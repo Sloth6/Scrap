@@ -5,9 +5,10 @@ path = require 'path'
 
 controllers = {}
 fs.readdirSync(__dirname + '/requestControllers').forEach (fileName) ->
-  controllerName = fileName.slice(0, -7)
-  pathName = path.join __dirname, '/requestControllers', controllerName
-  controllers[controllerName] = require(pathName)
+  if fileName.match /.coffee$/
+    controllerName = fileName.slice(0, -7)
+    pathName = path.join __dirname, '/requestControllers', controllerName
+    controllers[controllerName] = require(pathName)
 
 module.exports = (server) ->
   server.get '/', (req,res) ->
@@ -18,9 +19,6 @@ module.exports = (server) ->
 
   server.get '/s/:spaceKey', (req, res) ->
     controllers.spaceController.showSpace req, res, errorHandler
-
-  server.get '/webpreview', (req, res) ->
-    controllers.previewController.web req, res, errorHandler
 
   server.post '/login', (req, res) ->
     controllers.userController.login req, res, errorHandler

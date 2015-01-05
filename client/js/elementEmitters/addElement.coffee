@@ -107,7 +107,7 @@ $ ->
     element =
       "<article class='#{contentType} add-#{contentType}'>
         <div class='card #{contentType}'>
-          #{innerHTML content}
+          #{innerHTML()}
           <div class='background'></div>
         </div>
         #{captionForm}
@@ -178,19 +178,8 @@ $ ->
         # on enter (not shift + enter), submit either website or text
         else if event.keyCode is 13 and not event.shiftKey
           if isWebsite $(this).val()
-            url = $(this).val().slice(0, -1)
-            $.get "/webpreview?url=#{url}", (content) ->
-              innerHTML = () ->
-                "<div class='card text title'>
-                  <p>#{content.title}</p>
-                </div>
-                <div class='card img'>
-                  <img src=\"#{content.image}\">
-                </div>
-                <div class='card text description'>
-                  <p>#{content.description}</p>
-                </div>"
-              addCaption x, y, elementScale, 'website', content, innerHTML
+            url = encodeURIComponent $(this).val().slice(0, -1)
+            emitElement x, y, elementScale, url, 'website'
 
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)

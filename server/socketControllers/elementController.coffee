@@ -1,12 +1,19 @@
 models   = require '../../models'
 async    = require 'async'
+webPreviews = require '../modules/webPreviews.coffee'
 memCache = {}
 
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
-    if typeof data.content is 'object'
-      data.content = JSON.stringify data.content
+    console.log 'Received content', data.content, typeof data.content
+    done = (attributes) ->
+      models.Space.find(where: { spaceKey }).complete (err, space) =>
+        return callback err if err?
+        attributes.SpaceId = space.id
+        models.Element.create(attributes).complete (err, element) =>
+          return callback err if err?
+          sio.to(spaceKey).emit 'newElement', { element }
     attributes = {
       contentType: data.contentType
       content: data.content
@@ -16,13 +23,22 @@ module.exports =
       z: data.z
       scale: data.scale
     }
-
-    models.Space.find(where: { spaceKey }).complete (err, space) =>
-      return callback err if err?
-      attributes.SpaceId = space.id
-      models.Element.create(attributes).complete (err, element) =>
-        return callback err if err?
-        sio.to(spaceKey).emit 'newElement', { element }
+    if data.contentType is 'website'
+      url = decodeURIComponent data.content
+      webPreviews url, (err, pageData) ->
+        if err?
+          console.log url, err, pageData
+          attributes.content = JSON.stringify { 
+            title: url.match(/www.([a-z]*)/)[1]
+            url: encodeURIComponent(url)
+            description: ''
+          }
+        else
+          pageData.url = encodeURIComponent pageData.url
+          attributes.content = JSON.stringify pageData
+        done attributes
+    else
+      done attributes
         
 
   # delete the element
