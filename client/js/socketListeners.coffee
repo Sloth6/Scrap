@@ -46,17 +46,20 @@ $ ->
       innerHTML = () ->
         data = JSON.parse content
         url = decodeURIComponent data.url
-        "<a href=\"#{url}\" target=\"_blank\">
-          <div class='card text title'>
-            <p>#{data.title}</p>
-          </div>"+
-          (if data.image? then "<div class='card img'>
-            <img src=\"#{data.image}\">
-            </div>" else '')+
-          "<div class='card text description'>
-            <p>#{data.description}</p>
-          </div>
-        <\a>"
+        "<a href=\"#{url}\" target=\"_blank\">" +
+          (if data.image? then "<div class='card img'><img src=\"#{data.image}\"></div>" else '')+
+          "<div class='header card text'>
+              <div class='title'>
+                <p>#{data.title}</p>
+              </div>
+              <div class='url'>
+                <p>bloomberg.com</p>
+              </div>
+              <div class='description'>
+                <p>#{data.description}</p>
+              </div>
+           </div>
+        </a>"
     else # type == text
       innerHTML = () -> "<p>#{content}</p>"
     
@@ -64,7 +67,7 @@ $ ->
       "<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
         <div class='card #{contentType}'>
           #{innerHTML content}
-          <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>
+          <div class='ui-resizable-handle ui-resizable-se'>
           </div>
         </div>
         #{captionDiv}

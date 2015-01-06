@@ -115,6 +115,10 @@ h1 {
                 &:hover {
                     cursor: move;
                     @include cardHover;
+
+                    a.delete {
+                        opacity: 1;
+                    }
                 }
                 
                 &:hover {
@@ -149,6 +153,15 @@ h1 {
                             .title {
                                 line-height: 1.25em;
                             }
+                            
+                            .url {
+                                @include smallCaps;
+                                font-size: $typeBodySize * .666;
+                                font-family: $fontMedium;
+                                line-height: 2em;
+                                opacity: .25;
+//                                 color: $colorTypeLight;
+                            }
                                                     
                             .description {
                                 font-size: $typeBodySize;
@@ -156,6 +169,10 @@ h1 {
                                 font-family: $fontMedium;
                                 padding-top: $baseline;
                             }
+                        }
+                        
+                        &.image {
+                            max-height: $baseline * 12;
                         }
                     }
                 }
@@ -168,19 +185,32 @@ h1 {
                 }
                 
                 a.delete {
+
+                    opacity: 0;
                     position: absolute;
-                    height: $gutter * 2;
-                    width: $gutter * 2;
-                    top: 0;
-                    left: 0;
+                    display: block;
+                    cursor: pointer;
+                    height: 30pt;
+                    width:  30pt;
+                    top: -18pt;
+                    left: -10pt;
+//                     background: red;
+                    overflow: hidden;
+                    z-index: 99999;
+                    @include transition(opacity .25s $defaultCurve);
                     
                     &:after {
                         content: "╳"; // ✕
-                        font-size: 10pt;
-                        color: white;
+                        font-size: 60pt;
+                        margin: 0;
+                        color: $colorType;
                         position: absolute;
-                        top: 0;
+                        top: 5pt;
                         left: 0;
+                        height: 100%;
+                        width:  100%;
+                        display: block;
+//                         background: blue;                        
                     }
                 }
                                 
@@ -197,7 +227,7 @@ h1 {
                     &.image {
                         background-color: transparent;
                         width: $col*3*$typeSizeMultiplier;
-                        max-height: $baseline * 20;
+
                         overflow: hidden;
                         
                         .ui-resizable-handle {
@@ -214,8 +244,8 @@ h1 {
                     }
                     
                     &.caption, &.comment {
-                        left: $gutter;
-                        top: -$baseline;
+//                         left: $gutter;
+//                         top: -$baseline;
 
                         color: $colorTypeLight;
                         background-color: $colorCardBackgroundDark;
