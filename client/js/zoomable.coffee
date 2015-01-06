@@ -41,10 +41,10 @@ $ ->
     scaleDelta = (parseFloat(oldScale) * (event.deltaY / 100))
     newScale = oldScale - scaleDelta
 
-    tooSmall = newScale < screenFitScale()/2 # zoom out
+    tooSmall = newScale < screenFitScale()/5 # zoom out
     tooBig = newScale > 1/window.minScale # zoom in
 
-    if true#not tooBig and not tooSmall
+    if not tooBig and not tooSmall
       viewOffsetX += (event.clientX / 100 / newScale) * event.deltaY
       viewOffsetY += (event.clientY / 100 / newScale) * event.deltaY
 
