@@ -100,16 +100,15 @@ $ ->
     captionForm = 
       "<div class='card text comment'>
         <textarea name='comment' placeholder='Add a comment'></textarea>
-        <div class='background'></div>
       </div>
       <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>
       </div>"
 
     element =
       "<article class='#{contentType} add-#{contentType}'>
+        <a class='delete' href='#'></a>
         <div class='card #{contentType}'>
           #{innerHTML()}
-          <div class='background'></div>
         </div>
         #{captionForm}
       </article>"

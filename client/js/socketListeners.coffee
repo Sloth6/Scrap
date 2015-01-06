@@ -65,6 +65,7 @@ $ ->
     
     newArticle =
       "<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
+        <a class='delete' href='#'></a>
         <div class='card #{contentType}'>
           #{innerHTML content}
           <div class='ui-resizable-handle ui-resizable-se'>
