@@ -534,19 +534,20 @@ section.container section.space section.content article a.delete:after {
   margin: 0;
   color: #000000;
   position: absolute;
-  top: 5pt;
+  top: 10pt;
   left: 0;
   height: 100%;
   width: 100%;
   display: block;
+  font-family: sans-serif;
 }
-/* line 216, ../sass/layout/_container.scss */
+/* line 217, ../sass/layout/_container.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 221, ../sass/layout/_container.scss */
+/* line 222, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -560,32 +561,32 @@ section.container section.space section.content article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 226, ../sass/layout/_container.scss */
+/* line 227, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
   background-color: transparent;
   width: 48rem;
   overflow: hidden;
 }
-/* line 232, ../sass/layout/_container.scss */
+/* line 233, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 239, ../sass/layout/_container.scss */
+/* line 240, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.website p a {
   word-break: break-all;
 }
-/* line 244, ../sass/layout/_container.scss */
+/* line 245, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.caption, section.container section.space section.content article .card.comment {
   color: white;
   background-color: #333;
 }
-/* line 252, ../sass/layout/_container.scss */
+/* line 253, ../sass/layout/_container.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 258, ../sass/layout/_container.scss */
+/* line 259, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle {
   z-index: 9999999;
   background: none !important;
@@ -600,11 +601,11 @@ section.container section.space section.content article .card .ui-resizable-hand
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 269, ../sass/layout/_container.scss */
+/* line 270, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:hover {
   opacity: .5;
 }
-/* line 273, ../sass/layout/_container.scss */
+/* line 274, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:after {
   content: "◢";
   position: absolute;
@@ -618,7 +619,7 @@ position: absolute;
                             left: 0;
 */
 }
-/* line 293, ../sass/layout/_container.scss */
+/* line 294, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -637,12 +638,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 305, ../sass/layout/_container.scss */
+/* line 306, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 310, ../sass/layout/_container.scss */
+/* line 311, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -651,7 +652,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 316, ../sass/layout/_container.scss */
+/* line 317, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";
