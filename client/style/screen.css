@@ -396,11 +396,14 @@ section.container section.space ul.users li img {
 }
 /* line 64, ../sass/layout/_container.scss */
 section.container section.space section.content {
-  transform-origin: 0 0;
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -webkit-transform: scale(1);
   transform: scale(1);
+  -moz-transform-origin: top left 50%;
+  -ms-transform-origin: top left 50%;
+  -webkit-transform-origin: top left 50%;
+  transform-origin: top left 50%;
   position: relative;
   z-index: 1;
 }
@@ -501,7 +504,7 @@ section.container section.space section.content article.website .card.header.tex
 }
 /* line 174, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.image {
-  max-height: 18rem;
+  max-height: 36rem;
 }
 /* line 180, ../sass/layout/_container.scss */
 section.container section.space section.content article textarea {
@@ -563,7 +566,7 @@ section.container section.space section.content article .card.text {
 }
 /* line 227, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.925);
   width: 48rem;
   overflow: hidden;
 }

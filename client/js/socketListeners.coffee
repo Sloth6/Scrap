@@ -47,7 +47,7 @@ $ ->
         data = JSON.parse content
         url = decodeURIComponent data.url
         "<a href=\"#{url}\" target=\"_blank\">" +
-          (if data.image? then "<div class='card img'><img src=\"#{data.image}\"></div>" else '')+
+          (if data.image? then "<div class='card image'><img src=\"#{data.image}\"></div>" else '')+
           "<div class='header card text'>
               <div class='title'>
                 <p>#{data.title}</p>
