@@ -4,6 +4,9 @@ uuid = require('node-uuid')
 mime = require('mime')
 moment = require('moment')
 
+request = require 'request'
+cheerio = require 'cheerio'
+
 config = 
   aws_key:  "AKIAJQ7VP2SMGLIV5JQA" #AWS Key
   aws_secret:  "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" #AWS Secret
@@ -34,8 +37,8 @@ module.exports =
             # redirect to new page
             res.redirect "/s/" + spaceKey
             callback()
-  
-  showSpace: (req, res, callback) ->
+            
+  showSpace : (req, res, callback) ->
     currentUserId = req.session.currentUserId
     models.Space.find(
       where: { spaceKey: req.params.spaceKey }
@@ -51,16 +54,14 @@ module.exports =
           space.hasUser(user).complete (err, result) ->
             return callback err if err?
             if result
-              # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
               res.render 'space.jade',
                 title : space.name
                 current_space: space
                 current_user: user
             callback()
       else
-        res.redirect '/'
-        # res.status 404
-        # res.render '404', { url: req.url }
+        res.status 404
+        res.render '404', { url: req.url }
         callback()
 
   uploadFile : (req, res, callback) ->

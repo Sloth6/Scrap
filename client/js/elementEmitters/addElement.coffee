@@ -68,8 +68,7 @@ $ ->
       x = y = scale = null
 
   # Initialize file uploads by dragging
-  if $('.drag-upload').fileupload
-    $('.drag-upload').fileupload fileuploadOptions null
+  $('.drag-upload').fileupload fileuploadOptions null
 
   # adding a new element
   emitElement = (x, y, scale, content, contentType) ->
@@ -172,7 +171,9 @@ $ ->
         # on paste of image, submit without hitting enter
         if isImage $(this).val() 
           content = $(this).val()
-          emitElement x, y, elementScale, content, 'image'
+          innerHTML = (content) -> "<img src='#{content}'>"
+          addCaption x, y, elementScale, 'image', content, innerHTML
+
         # on enter (not shift + enter), submit either website or text
         else if event.keyCode is 13 and not event.shiftKey
           if isWebsite $(this).val()

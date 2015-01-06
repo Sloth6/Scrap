@@ -1,54 +1,21 @@
 extends layout
 
 block scripts
-  include partials/indexScripts
+  include partials/baseScripts
 
 block content
-  section.space
-  
-    section.content
-      article.draggable
-        .card.login.text.nondraggable
-          p
-            input(type="checkbox", id="toggle-login")
-            label(for="toggle-login") Make a new account
-          form.login(action="/login",  method="post")
-            p
-              input(type="text", name="user[email]", placeholder="Mail")
-            p
-              input(type="password", name="user[password]", placeholder="Password")
-            p
-              input.offset(type="submit", value="Login", method="post")
-
-      each element in elements
-        if element.z > maxZ
-          - maxZ = element.z
-
-        if (element.x + 300 * element.scale) > maxX
-          - maxX = (element.x + 300 * element.scale)
-
-        if element.x < minX
-          - minX = element.x
-
-        if element.y > maxY
-          - maxY = element.y
-
-        if element.y < minY
-          - minY = element.y
-
-        if element.scale < minScale
-          - minScale = element.scale
-
-        article.draggable(class=element.contentType, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};"+"transform:scale(#{element.scale},#{element.scale});-webkit-transform-origin: top left")
-          a.delete
-          case element.contentType
-            when 'image'
-              include partials/contentTypes/image
-            when 'website'
-              include partials/contentTypes/website
-            default
-              include partials/contentTypes/text
-
+  article
+    .card.login.text.nondraggable
+      p
+        input(type="checkbox", id="toggle-login")
+        label(for="toggle-login") Make a new account
+      form.login(action="/login",  method="post")
+        p
+          input(type="text", name="user[email]", placeholder="Mail")
+        p
+          input(type="password", name="user[password]", placeholder="Password")
+        p
+          input.offset(type="submit", value="Login", method="post")
   script
     $('#toggle-login').change(function() {
       if($(this).is(":checked")) {

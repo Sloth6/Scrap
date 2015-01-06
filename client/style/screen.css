@@ -510,7 +510,6 @@ section.container section.space section.content article textarea {
   font-size: 20pt;
   line-height: 1.5em;
 }
-
 /* line 187, ../sass/layout/_container.scss */
 section.container section.space section.content article a.delete {
   opacity: 0;
@@ -547,7 +546,6 @@ section.container section.space section.content article .card {
   max-width: 32rem;
   width: auto;
 }
-
 /* line 221, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
@@ -562,7 +560,6 @@ section.container section.space section.content article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-
 /* line 226, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
   background-color: transparent;
@@ -582,7 +579,6 @@ section.container section.space section.content article .card.caption, section.c
   color: white;
   background-color: #333;
 }
-
 /* line 252, ../sass/layout/_container.scss */
 section.container section.space section.content article .card img {
   width: 100%;
@@ -604,7 +600,6 @@ section.container section.space section.content article .card .ui-resizable-hand
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
 /* line 269, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:hover {
   opacity: .5;
@@ -623,9 +618,7 @@ position: absolute;
                             left: 0;
 */
 }
-
 /* line 293, ../sass/layout/_container.scss */
->>>>>>> 06688b3ff28793f5d93cefe3e2d3d6246510f143
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -644,13 +637,11 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-
 /* line 305, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-
 /* line 310, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
@@ -660,7 +651,6 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-
 /* line 316, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;

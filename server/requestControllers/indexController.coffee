@@ -1,6 +1,6 @@
 models = require '../../models'
-indexElements = require '../indexElements'
 module.exports =
+
   index: (req, res, callback) ->
     if req.session.currentUserId?
       currentUserId = req.session.currentUserId
@@ -17,6 +17,5 @@ module.exports =
         title : 'Welcome to Scrap!'
         description: ''
         author: 'scrap'
-        elements: indexElements
         analyticssiteid: 'XXXXXXX'
       callback()
