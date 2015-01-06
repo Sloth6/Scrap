@@ -37,8 +37,8 @@ module.exports =
             # redirect to new page
             res.redirect "/s/" + spaceKey
             callback()
-            
-  showSpace : (req, res, callback) ->
+  
+  showSpace: (req, res, callback) ->
     currentUserId = req.session.currentUserId
     models.Space.find(
       where: { spaceKey: req.params.spaceKey }
@@ -54,6 +54,7 @@ module.exports =
           space.hasUser(user).complete (err, result) ->
             return callback err if err?
             if result
+              # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
               res.render 'space.jade',
                 title : space.name
                 current_space: space
