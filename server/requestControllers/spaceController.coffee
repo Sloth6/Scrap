@@ -54,6 +54,7 @@ module.exports =
           space.hasUser(user).complete (err, result) ->
             return callback err if err?
             if result
+              # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
               res.render 'space.jade',
                 title : space.name
                 current_space: space

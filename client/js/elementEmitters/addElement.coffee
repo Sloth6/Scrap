@@ -68,7 +68,8 @@ $ ->
       x = y = scale = null
 
   # Initialize file uploads by dragging
-  $('.drag-upload').fileupload fileuploadOptions null
+  if $('.drag-upload').fileupload
+    $('.drag-upload').fileupload fileuploadOptions null
 
   # adding a new element
   emitElement = (x, y, scale, content, contentType) ->
