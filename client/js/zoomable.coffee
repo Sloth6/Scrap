@@ -38,6 +38,7 @@ $ ->
   $(window).on 'mousewheel', (event) ->
     event.preventDefault()
     oldScale = content.css 'scale'
+    # console.log event.deltaY
     scaleDelta = (parseFloat(oldScale) * (event.deltaY / 100))
     newScale = oldScale - scaleDelta
 
