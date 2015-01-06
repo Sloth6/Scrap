@@ -75,6 +75,9 @@ h1 {
                 background-color: transparent !important;
                 font-size: $typeBodySize * $typeSizeMultiplier;
                 line-height: 1.5em;
+                transform-origin: top left;
+                -webkit-transform-origin: top left;
+                
 //                 max-width: $col*3* $typeSizeMultiplier;
                 
                 &.add-element{
