@@ -396,11 +396,14 @@ section.container section.space ul.users li img {
 }
 /* line 64, ../sass/layout/_container.scss */
 section.container section.space section.content {
-  transform-origin: 0 0;
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -webkit-transform: scale(1);
   transform: scale(1);
+  -moz-transform-origin: top left 50%;
+  -ms-transform-origin: top left 50%;
+  -webkit-transform-origin: top left 50%;
+  transform-origin: top left 50%;
   position: relative;
   z-index: 1;
 }
