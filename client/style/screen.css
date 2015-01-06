@@ -501,7 +501,7 @@ section.container section.space section.content article.website .card.header.tex
 }
 /* line 174, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.image {
-  max-height: 18rem;
+  max-height: 36rem;
 }
 /* line 180, ../sass/layout/_container.scss */
 section.container section.space section.content article textarea {
@@ -563,7 +563,7 @@ section.container section.space section.content article .card.text {
 }
 /* line 227, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.925);
   width: 48rem;
   overflow: hidden;
 }
