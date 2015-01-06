@@ -33,7 +33,7 @@ module.exports =
         return callback err if err?
 
         hostUrl = "http://54.69.196.168:9003/"
-        spaceNameWithLink = "<a href=\"#{hostUrl}/s/#{spaceKey}\">#{space.name}</a>"
+        spaceNameWithLink = "<a href=\"#{hostUrl}s/#{spaceKey}\">#{space.name}</a>"
         subject = "#{name} invited you to #{space.name} on Scrap."
         html = "<h1>View #{spaceNameWithLink} on Scrap.</h1>
         <p><a href=\"#{hostUrl}\">Scrap</a> is a simple visual organization tool.</p>"

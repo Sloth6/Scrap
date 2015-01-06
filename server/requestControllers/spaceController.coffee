@@ -4,9 +4,6 @@ uuid = require('node-uuid')
 mime = require('mime')
 moment = require('moment')
 
-request = require 'request'
-cheerio = require 'cheerio'
-
 config = 
   aws_key:  "AKIAJQ7VP2SMGLIV5JQA" #AWS Key
   aws_secret:  "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" #AWS Secret
@@ -61,8 +58,9 @@ module.exports =
                 current_user: user
             callback()
       else
-        res.status 404
-        res.render '404', { url: req.url }
+        res.redirect '/'
+        # res.status 404
+        # res.render '404', { url: req.url }
         callback()
 
   uploadFile : (req, res, callback) ->
