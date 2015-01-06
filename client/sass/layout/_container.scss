@@ -75,6 +75,9 @@ h1 {
                 background-color: transparent !important;
                 font-size: $typeBodySize * $typeSizeMultiplier;
                 line-height: 1.5em;
+                transform-origin: top left;
+                -webkit-transform-origin: top left;
+                
 //                 max-width: $col*3* $typeSizeMultiplier;
                 
                 &.add-element{
@@ -226,7 +229,7 @@ h1 {
                     }
                     
                     &.image {
-                        background-color: /* rgba(255,255,255,.4) */ $colorCardBackground;
+                        background-color: rgba(255,255,255,.4) /* $colorCardBackground */;
                         width: $col*3*$typeSizeMultiplier;
                         overflow: hidden;
                         

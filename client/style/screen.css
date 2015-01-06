@@ -413,12 +413,14 @@ section.container section.space section.content article {
   background-color: transparent !important;
   font-size: 20pt;
   line-height: 1.5em;
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
 }
-/* line 84, ../sass/layout/_container.scss */
+/* line 87, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element > .card {
   opacity: .9;
 }
-/* line 90, ../sass/layout/_container.scss */
+/* line 93, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element form .fileInputWrapper {
   position: relative;
   display: block;
@@ -429,14 +431,14 @@ section.container section.space section.content article.add-element form .fileIn
   overflow: hidden;
   font-size: .5em;
 }
-/* line 98, ../sass/layout/_container.scss */
+/* line 101, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element form .fileInputWrapper:after {
   content: "Upload a file";
   position: absolute;
   left: 0;
   width: 100%;
 }
-/* line 105, ../sass/layout/_container.scss */
+/* line 108, ../sass/layout/_container.scss */
 section.container section.space section.content article.add-element form .fileInputWrapper input[type="file"] {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
@@ -447,24 +449,24 @@ section.container section.space section.content article.add-element form .fileIn
   position: relative;
   cursor: pointer;
 }
-/* line 116, ../sass/layout/_container.scss */
+/* line 119, ../sass/layout/_container.scss */
 section.container section.space section.content article:hover {
   cursor: move;
   opacity: .9;
 }
-/* line 120, ../sass/layout/_container.scss */
+/* line 123, ../sass/layout/_container.scss */
 section.container section.space section.content article:hover a.delete {
   opacity: 1;
 }
-/* line 126, ../sass/layout/_container.scss */
+/* line 129, ../sass/layout/_container.scss */
 section.container section.space section.content article:hover .card .ui-resizable-handle {
   opacity: .2;
 }
-/* line 132, ../sass/layout/_container.scss */
+/* line 135, ../sass/layout/_container.scss */
 section.container section.space section.content article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 137, ../sass/layout/_container.scss */
+/* line 140, ../sass/layout/_container.scss */
 section.container section.space section.content article.dragging {
   -moz-transform: rotate(-2deg);
   -ms-transform: rotate(-2deg);
@@ -473,16 +475,16 @@ section.container section.space section.content article.dragging {
   opacity: .8;
   cursor: move;
 }
-/* line 145, ../sass/layout/_container.scss */
+/* line 148, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.header.text {
   position: relative;
   z-index: 2;
 }
-/* line 154, ../sass/layout/_container.scss */
+/* line 157, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.header.text .title {
   line-height: 1.25em;
 }
-/* line 158, ../sass/layout/_container.scss */
+/* line 161, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.header.text .url {
   font-size: .666em;
   font-family: "Futura";
@@ -493,25 +495,25 @@ section.container section.space section.content article.website .card.header.tex
   line-height: 2em;
   opacity: .25;
 }
-/* line 167, ../sass/layout/_container.scss */
+/* line 170, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.header.text .description {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "Futura";
   padding-top: 1.5rem;
 }
-/* line 175, ../sass/layout/_container.scss */
+/* line 178, ../sass/layout/_container.scss */
 section.container section.space section.content article.website .card.image {
   max-height: 36rem;
 }
-/* line 181, ../sass/layout/_container.scss */
+/* line 184, ../sass/layout/_container.scss */
 section.container section.space section.content article textarea {
   width: 100%;
   height: 9rem;
   font-size: 20pt;
   line-height: 1.5em;
 }
-/* line 188, ../sass/layout/_container.scss */
+/* line 191, ../sass/layout/_container.scss */
 section.container section.space section.content article a.delete {
   opacity: 0;
   position: absolute;
@@ -528,7 +530,7 @@ section.container section.space section.content article a.delete {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 202, ../sass/layout/_container.scss */
+/* line 205, ../sass/layout/_container.scss */
 section.container section.space section.content article a.delete:after {
   content: "╳";
   font-size: 60pt;
@@ -542,13 +544,13 @@ section.container section.space section.content article a.delete:after {
   display: block;
   font-family: sans-serif;
 }
-/* line 218, ../sass/layout/_container.scss */
+/* line 221, ../sass/layout/_container.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 223, ../sass/layout/_container.scss */
+/* line 226, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -562,32 +564,31 @@ section.container section.space section.content article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 228, ../sass/layout/_container.scss */
+/* line 231, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
-  background-color: rgba(255, 255, 255, 0.925);
   width: 48rem;
   overflow: hidden;
 }
-/* line 234, ../sass/layout/_container.scss */
+/* line 237, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 241, ../sass/layout/_container.scss */
+/* line 244, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.website p a {
   word-break: break-all;
 }
-/* line 246, ../sass/layout/_container.scss */
+/* line 249, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.caption, section.container section.space section.content article .card.comment {
   color: white;
   background-color: #333;
 }
-/* line 254, ../sass/layout/_container.scss */
+/* line 257, ../sass/layout/_container.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 260, ../sass/layout/_container.scss */
+/* line 263, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle {
   z-index: 9999999;
   background: none !important;
@@ -602,11 +603,11 @@ section.container section.space section.content article .card .ui-resizable-hand
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 271, ../sass/layout/_container.scss */
+/* line 274, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:hover {
   opacity: .5;
 }
-/* line 275, ../sass/layout/_container.scss */
+/* line 278, ../sass/layout/_container.scss */
 section.container section.space section.content article .card .ui-resizable-handle:after {
   content: "◢";
   position: absolute;
@@ -620,7 +621,7 @@ position: absolute;
                             left: 0;
 */
 }
-/* line 295, ../sass/layout/_container.scss */
+/* line 298, ../sass/layout/_container.scss */
 section.container section.space .delete {
   text-align: center;
   position: fixed;
@@ -639,12 +640,12 @@ section.container section.space .delete {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
-/* line 307, ../sass/layout/_container.scss */
+/* line 310, ../sass/layout/_container.scss */
 section.container section.space .delete.visible {
   bottom: 0;
   opacity: 1;
 }
-/* line 312, ../sass/layout/_container.scss */
+/* line 315, ../sass/layout/_container.scss */
 section.container section.space .delete.rollover {
   -moz-transform: scale(1.25);
   -ms-transform: scale(1.25);
@@ -653,7 +654,7 @@ section.container section.space .delete.rollover {
   opacity: 1;
   bottom: 0;
 }
-/* line 318, ../sass/layout/_container.scss */
+/* line 321, ../sass/layout/_container.scss */
 section.container section.space .delete:after {
   text-align: center;
   content: "×";
