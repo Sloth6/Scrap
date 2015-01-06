@@ -64,16 +64,17 @@ $ ->
       innerHTML = () -> "<p>#{content}</p>"
     
     newArticle =
-      "<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
-        <a class='delete' href='#'></a>
+      $("<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
+        <a class='delete'></a>
         <div class='card #{contentType}'>
           #{innerHTML content}
           <div class='ui-resizable-handle ui-resizable-se'>
           </div>
         </div>
         #{captionDiv}
-      </article>"
+      </article>")
     $('.content').append newArticle
+    makeDeletable newArticle
     $("\##{id}").draggable(draggableOptions socket)
       .css({ "-webkit-transform-origin": "top left", scale })
     $('.ui-resizable-handle', "\##{id}").on 'mousedown', resize socket

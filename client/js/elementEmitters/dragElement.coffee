@@ -3,8 +3,7 @@ draggableOptions = (socket) ->
     elem = $(this)
     screenScale = $('.content').css('scale')
 
-    $('.delete').addClass('visible')
-
+    # $('.delete').addClass('visible')
 
     $(window).off 'mousemove'
     click.x = event.clientX
