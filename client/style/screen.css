@@ -566,6 +566,8 @@ section.container section.space section.content article .card.text {
 }
 /* line 231, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.image {
+  background-color: rgba(255, 255, 255, 0.4);
+  /* $colorCardBackground */
   width: 48rem;
   overflow: hidden;
 }
