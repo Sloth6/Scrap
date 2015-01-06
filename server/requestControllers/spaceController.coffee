@@ -8,10 +8,10 @@ request = require 'request'
 cheerio = require 'cheerio'
 
 config = 
-  aws_key:  "AKIAJQ7VP2SMGLIV5JQA" #AWS Key
-  aws_secret:  "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" #AWS Secret
-  aws_bucket:  "scrap_images" #AWS Bucket
-  redirect_host:  "http://ocalhost:3000/" #Host to redirect after uploading
+  aws_key:  "AKIAJKJJR5OLTKWMMHSA" #AWS Key
+  aws_secret:  "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" #AWS Secret
+  aws_bucket:  "scrapimagesteamnap" #AWS Bucket
+  redirect_host:  "http://localhost:3000/" #Host to redirect after uploading
   host:  "s3.amazonaws.com" #S3 provider host
   bucket_dir:  "uploads/";
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)

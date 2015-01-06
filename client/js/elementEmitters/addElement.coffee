@@ -14,7 +14,7 @@ $ ->
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = (x, y, contentType, scale) ->
     multipart = false
-    url: "http://scrap_images.s3.amazonaws.com" # Grabs form's action src
+    url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
     type: 'POST'
     autoUpload: true
     dataType: 'xml' # S3's XML response
@@ -51,25 +51,25 @@ $ ->
     success: (data) ->
       # On drag-to-upload, these variables won't have been set yet, so let's set them
       scale ||= $('.content').css 'scale'
-      x ||= Math.round((mouse.x - 128 - $('.content').offset().left) / scale)
-      y ||= Math.round((mouse.y - $('.content').offset().top) / scale)
+      x ||= Math.round((x - 128 - $('.content').offset().left) / scale)
+      y ||= Math.round((y - $('.content').offset().top) / scale)
 
       content = $(data).find('Location').text(); # Find location value from XML response
       console.log 'success', content, contentType
 
       # If multiple files were uploaded, don't add caption boxes for all of them
-      if multipart
-        emitElement x, y, 1/scale, content, contentType
-      else
-        innerHTML = (content) -> "<img src='#{content}'>"
-        addCaption x, y, 1/scale, contentType, content, innerHTML
+      # if multipart
+      emitElement x, y, 1/scale, content, contentType
+      # else
+      #   innerHTML = (content) -> "<img src='#{content}'>"
+      #   addCaption x, y, 1/scale, contentType, content, innerHTML
 
       # Reset variables for next drag-upload
-      x = y = scale = null
+      # x  = y = scale = null
 
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
-    $('.drag-upload').fileupload fileuploadOptions null
+    $('.drag-upload').fileupload fileuploadOptions(mouse.x, mouse.y, null, $('.content').css('scale'))
 
   # adding a new element
   emitElement = (x, y, scale, content, contentType) ->
