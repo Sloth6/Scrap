@@ -153,6 +153,15 @@ h1 {
                             .title {
                                 line-height: 1.25em;
                             }
+                            
+                            .url {
+                                @include smallCaps;
+                                font-size: $typeBodySize * .666;
+                                font-family: $fontMedium;
+                                line-height: 2em;
+                                opacity: .25;
+//                                 color: $colorTypeLight;
+                            }
                                                     
                             .description {
                                 font-size: $typeBodySize;

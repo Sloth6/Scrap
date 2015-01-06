@@ -52,6 +52,9 @@ $ ->
               <div class='title'>
                 <p>#{data.title}</p>
               </div>
+              <div class='url'>
+                <p>bloomberg.com</p>
+              </div>
               <div class='description'>
                 <p>#{data.description}</p>
               </div>
