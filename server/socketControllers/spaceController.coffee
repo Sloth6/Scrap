@@ -32,7 +32,7 @@ module.exports =
       models.User.find( where: { email }).complete (err, user) ->
         return callback err if err?
 
-        hostUrl = "http://54.69.196.168:9003/"
+        hostUrl = "http://54.175.30.159:9001/"
         spaceNameWithLink = "<a href=\"#{hostUrl}s/#{spaceKey}\">#{space.name}</a>"
         subject = "#{name} invited you to #{space.name} on Scrap."
         html = "<h1>View #{spaceNameWithLink} on Scrap.</h1>
