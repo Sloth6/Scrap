@@ -36,7 +36,8 @@ module.exports =
         spaceNameWithLink = "<a href=\"#{hostUrl}s/#{spaceKey}\">#{space.name}</a>"
         subject = "#{name} invited you to #{space.name} on Scrap."
         html = "<h1>View #{spaceNameWithLink} on Scrap.</h1>
-        <p><a href=\"#{hostUrl}\">Scrap</a> is a simple visual organization tool.</p>"
+            <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
+            <p><a href=\"#{hostUrl}\">Scrap</a> is a simple visual organization tool.</p>"
 
         mail.send {
           to: email
