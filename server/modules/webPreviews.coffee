@@ -13,27 +13,29 @@ extractImage = ($) ->
   isImage = (url) -> 
     console.log url
     url? and url.match(/\.(jpeg|jpg|gif|png)$/)?
+
   img = $('meta[property="og:image"]').attr('content')
-  # console.log 'Got image from OG' if img?
   return img if isImage img
   
-  min = 200
   max = 0
-  $('img').each () ->
-    # console.log @attribs.src, @attribs
+  srcMax = ''
+  for img in $('img')
+  
+    size = $(img).attr('width') * $(img).attr('height')
+    src = $(img).attr('src')
+    console.log src, $(img).attr('width'), $(img).attr('height')
+    continue unless isImage src
     # Take the first image larger than our min size,
-    if @attribs.width >= min and @attribs.height >= min
-      img = @attribs.src
+    if size >= 40000
+      return src
       # console.log 'Got large' if img?
-      return if isImage img
     # Or take the largest image
-    size = @attribs.width * @attribs.height
-    if size > max and isImage @attribs.src
+    if size > max
       max = size
-      img = @attribs.src 
+      srcMax = src
 
   # console.log 'Got largest' if img?
-  return img if img?
+  return srcMax if isImage srcMax
   #if no images on page try the favicon... :(
   img = $('link[rel="shortcut icon"]')[0]?.href
   return img if isImage img
@@ -53,6 +55,7 @@ extractDomain = (url) ->
   # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
 
 formatImage = (domain, src) ->
+  return unless src?
   if src.match /^\//
     console.log domain, src
     'http://'+domain+src
@@ -60,7 +63,15 @@ formatImage = (domain, src) ->
     src
 
 module.exports = (url, callback) ->
-  request url, (error, response, body) ->
+  jar = request.jar()
+
+  options =
+    method: 'GET'
+    url: url
+    followAllRedirects: true
+    jar: jar
+
+  request options, (error, response, body) ->
     if error or response.statusCode isnt 200
       # console.log 'Error in getting html for preview', response.statusCode,{error, body}
       callback error or response.statusCode
