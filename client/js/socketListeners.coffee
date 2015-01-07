@@ -33,7 +33,7 @@ $ ->
 
     if caption? and caption != ''
       captionDiv =
-        "<div class='card text caption'>
+        "<div class='card text caption comment'>
           <p>#{caption}</p>
           <div class='background'></div>
           <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>

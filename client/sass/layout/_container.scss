@@ -1,3 +1,8 @@
+@mixin commentCard {                           
+    color: $colorTypeLight;
+    background-color: $colorCardBackgroundDark;
+}
+
 section.container {
     width: 10000%;
     height: 10000%;
@@ -181,6 +186,13 @@ h1 {
                     }
                 }
                 
+                &.text {
+                    
+                    .card.text {
+                        @include commentCard;
+                    }
+                }
+                
                 textarea {
                     width: 100%;
                     height: $baseline * 6;
@@ -249,9 +261,7 @@ h1 {
                     &.caption, &.comment {
 //                         left: $gutter;
 //                         top: -$baseline;
-
-                        color: $colorTypeLight;
-                        background-color: $colorCardBackgroundDark;
+                        @include commentCard;
                     }
                     
                     img {
