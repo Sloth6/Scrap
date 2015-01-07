@@ -10,20 +10,18 @@ module.exports =
     models.User.find(where: { email }).complete (err, user) ->
       if user?
         if user.name? and user.password?
-          console.log 'LOGIN FAILED: duplicate email'
-          return res.redirect "/"
+          return res.send 400, 'Duplicate email'
+
         user.updateAttributes({name, password}).complete (err) ->
           done user
       else
         models.User.create(attributes).complete (err, user) ->
           if err?
             if 'email' of err # not a valid email
-              console.log 'LOGIN FAILED: not a valid email'
-              return res.redirect "/"
+              return res.send 400, 'LOGIN FAILED: not a valid email'
             if err.code == '23505' # not a unique email
-              console.log 'LOGIN FAILED: not a unique email'
-              return res.redirect "/"
-            return callback err
+              return res.send 400, 'LOGIN FAILED: not a unique email'
+            return res.send 400, err
           else
             done user
       done = (user) ->
@@ -41,10 +39,11 @@ module.exports =
       where: { email }
       include: [ models.Space ]
     ).complete (err, user) ->
-      return callback err if err?
+      return res.send 400, err if err?
+      res.send 400, "No account found for that email" if not user?
       if user?
         user.verifyPassword password, (err, result) ->
-          return callback err if err?
+          return res.send 400, err if err?
 
           # render first space on success
           if result
@@ -52,14 +51,11 @@ module.exports =
             res.redirect "/s/" + user.spaces[0].spaceKey
             callback()
           else
-            res.redirect "/"
-            callback()
+            return res.send 400, 'Incorrect password.'
       else
-        res.redirect "/"
-        callback()
+        
 
   logout : (req, res, callback) ->
     req.session.destroy (err) ->
       return callback err if err?
       res.redirect "/"
-      callback()

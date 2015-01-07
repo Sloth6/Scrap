@@ -53,7 +53,7 @@ $ ->
                 <p>#{data.title}</p>
               </div>
               <div class='url'>
-                <p>bloomberg.com</p>
+                <p>#{url}</p>
               </div>
               <div class='description'>
                 <p>#{data.description}</p>

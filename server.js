@@ -35,10 +35,6 @@ app.configure(function(){
     }));
 });
 
-AWS_ACCESS_KEY = 'AKIAJKOD56YSMVDFPX7Q'//process.env.AWS_ACCESS_KEY;
-AWS_SECRET_KEY = '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'//process.env.AWS_SECRET_KEY;
-S3_BUCKET = 'scrap_images'//process.env.S3_BUCKET;
-
 db.sequelize.sync({ force: false }).complete(function(err) {
     if (err) {
         throw err[0];
