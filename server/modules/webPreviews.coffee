@@ -53,7 +53,7 @@ extractDomain = (url) ->
   # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
 
 formatImage = (domain, src) ->
-  if src.match /^/
+  if src.match /^\//
     console.log domain, src
     'http://'+domain+src
   else
