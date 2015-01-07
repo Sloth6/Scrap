@@ -53,7 +53,7 @@ $ ->
                 <p>#{data.title}</p>
               </div>
               <div class='url'>
-                <p>#{url}</p>
+                <p>#{data.domain}</p>
               </div>
               <div class='description'>
                 <p>#{data.description}</p>

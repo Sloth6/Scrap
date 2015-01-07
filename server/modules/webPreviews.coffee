@@ -39,6 +39,12 @@ extractDescription = ($) ->
 extractUrl = ($) ->
   $('meta[property="og:url"]').attr('content')
 
+extractDomain = (url) ->
+  reg =  new RegExp("^(?:([^:/?#.]+):)?(?://)?(([^:/?#]*)(?::(\\d*))?)((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[\\?#]|$)))*/?)?([^?#/]*))?(?:\\?([^#]*))?(?:#(.*))?")
+  parts = reg.exec url
+  parts[2] or ''
+  # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
+
 module.exports = (url, callback) ->
   request url, (error, response, body) ->
     if error or response.statusCode isnt 200
@@ -51,5 +57,5 @@ module.exports = (url, callback) ->
         image: extractImage($)
         url: extractUrl($) or url
         description: extractDescription($)
-      # console.log 'METADATA', metadata
+        domain: extractDomain url
       callback null, metadata
