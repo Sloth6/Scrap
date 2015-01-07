@@ -61,9 +61,10 @@ module.exports =
                 current_user: user
             callback()
       else
-        res.status 404
-        res.render '404', { url: req.url }
-        callback()
+        res.redirect '/'
+        # res.status 404
+        # res.render '404', { url: req.url }
+        # callback()
 
   uploadFile : (req, res, callback) ->
     mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension
