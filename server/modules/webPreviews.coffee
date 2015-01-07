@@ -10,9 +10,13 @@ extractTitle = ($) ->
   return null
 
 extractImage = ($) ->
+  isImage = (url) -> 
+    console.log url
+    url? and url.match(/\.(jpeg|jpg|gif|png)$/)?
   img = $('meta[property="og:image"]').attr('content')
-  return img if img? 
-
+  # console.log 'Got image from OG' if img?
+  return img if isImage img
+  
   min = 200
   max = 0
   $('img').each () ->
@@ -20,17 +24,20 @@ extractImage = ($) ->
     # Take the first image larger than our min size,
     if @attribs.width >= min and @attribs.height >= min
       img = @attribs.src
-      return
+      # console.log 'Got large' if img?
+      return if isImage img
     # Or take the largest image
     size = @attribs.width * @attribs.height
-    if size > max
+    if size > max and isImage @attribs.src
       max = size
-      img = @attribs.src
+      img = @attribs.src 
 
+  # console.log 'Got largest' if img?
   return img if img?
   #if no images on page try the favicon... :(
   img = $('link[rel="shortcut icon"]')[0]?.href
-  return img if img?
+  return img if isImage img
+  console.log 'found none'
   return null
 
 extractDescription = ($) ->
@@ -45,6 +52,13 @@ extractDomain = (url) ->
   parts[2] or ''
   # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
 
+formatImage = (domain, src) ->
+  if src.match /^/
+    console.log domain, src
+    'http://'+domain+src
+  else
+    src
+
 module.exports = (url, callback) ->
   request url, (error, response, body) ->
     if error or response.statusCode isnt 200
@@ -52,10 +66,11 @@ module.exports = (url, callback) ->
       callback error or response.statusCode
     else
       $ = cheerio.load body
+      domain = extractDomain url
       metadata =
         title: extractTitle($)
-        image: extractImage($)
+        image: formatImage(domain, extractImage($))
         url: extractUrl($) or url
         description: extractDescription($)
-        domain: extractDomain url
+        domain: domain
       callback null, metadata
