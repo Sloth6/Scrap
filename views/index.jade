@@ -12,7 +12,7 @@ block content
           p
             input(type="checkbox", id="toggle-login")
             label(for="toggle-login") Make a new account
-          form.login(action="/login",  method="post")
+          form.login(action="/login",  method="post", onError="showErrorMessage")
             p
               input(type="text", name="user[email]", placeholder="Mail")
             p
@@ -39,7 +39,7 @@ block content
         if element.scale < minScale
           - minScale = element.scale
 
-        article.draggable(class=element.contentType, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};"+"transform:scale(#{element.scale},#{element.scale});-webkit-transform-origin: top left")
+        article.draggable(class=element.contentType, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};"+"transform:scale(#{element.scale},#{element.scale})")
           a.delete
           case element.contentType
             when 'image'
@@ -50,6 +50,9 @@ block content
               include partials/contentTypes/text
 
   script
+    function showErrorMessage() {
+      console.log(arguments)
+    }
     $('#toggle-login').change(function() {
       if($(this).is(":checked")) {
         console.log("not checked?");
