@@ -89,4 +89,5 @@ $ ->
     .on 'mouseout', ->
       $(this).css 'z-index', $(this).data 'oldZ'
     .on 'click', ->
+      $(window).trigger 'mouseup'
       socket.emit 'updateElement', { z: $(this).css('z-index'), elementId: $(this).attr 'id' }
