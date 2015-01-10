@@ -3,6 +3,7 @@ crypto = require 'crypto'
 uuid = require('node-uuid')
 mime = require('mime')
 moment = require('moment')
+async = require 'async'
 
 request = require 'request'
 cheerio = require 'cheerio'
@@ -20,7 +21,7 @@ module.exports =
   # create a new space and redirect to it
   newSpace : (req, res, callback) ->
     spaceKey = uuid.v4().split('-')[0]
-    name = req.body.space.name
+    { name, welcomeSpace } = req.body.space
     currentUserId = req.session.currentUserId
     
     models.User.find(
@@ -34,10 +35,19 @@ module.exports =
           return callback err if err?
           space.setCreator(user).complete (err) ->
             return callback err if err?
-            # redirect to new page
-            res.redirect "/s/" + spaceKey
-            callback()
-            
+            if welcomeSpace
+              createWelcomePage space, (err) ->
+                return callback err if err?
+                res.redirect "/s/" + spaceKey
+            else
+              res. redirect "/s/" + spaceKey
+
+    createWelcomePage = (space, callback) ->
+      async.each welcomeElements, (attributes, cb) ->
+        attributes.SpaceId = space.id
+        models.Element.create(attributes).complete cb
+      , callback
+
   showSpace : (req, res, callback) ->
     currentUserId = req.session.currentUserId
     models.Space.find(
@@ -54,7 +64,7 @@ module.exports =
           space.hasUser(user).complete (err, result) ->
             return callback err if err?
             if result
-              # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
+              console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
               res.render 'space.jade',
                 title : space.name
                 current_space: space

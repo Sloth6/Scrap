@@ -28,6 +28,7 @@ module.exports =
         req.session.currentUserId = user.id
         req.body.space =
           name: "Welcome"
+          welcomeSpace: true
         spaceController.newSpace req, res, callback
 
   # verify login creds, redirect to first space
