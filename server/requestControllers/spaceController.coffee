@@ -29,7 +29,7 @@ module.exports =
       include: [ models.Space ]
     ).complete (err, user) ->
       return callback err if err?
-      models.Space.create( { name, spaceKey } ).complete (err, space) ->
+      models.Space.create( { name, spaceKey, publicRead:true } ).complete (err, space) ->
         return callback err if err?
         space.addUser(user).complete (err) ->
           return callback err if err?
@@ -49,33 +49,48 @@ module.exports =
       , callback
 
   showSpace : (req, res, callback) ->
-    currentUserId = req.session.currentUserId
     models.Space.find(
       where: { spaceKey: req.params.spaceKey }
       include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
     ).complete (err, space) ->
       return callback err if err?
-      if space? and currentUserId?
+      return res.redirect '/' unless space?
+      currentUserId = req.session.currentUserId
+      
+      if not currentUserId?
+        if space.publicRead
+          showReadOnly(space)
+        else 
+          res.redirect '/'
+      else
         models.User.find(
           where: { id: currentUserId }
           include: [ models.Space ]
         ).complete (err, user) ->
           return callback err if err?
-          space.hasUser(user).complete (err, result) ->
+          space.hasUser(user).complete (err, hasAccess) ->
             return callback err if err?
-            if result
-              console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
-              res.render 'space.jade',
-                title : space.name
-                current_space: space
-                current_user: user
-            callback()
-      else
-        res.redirect '/'
-        # res.status 404
-        # res.render '404', { url: req.url }
-        # callback()
+            if hasAccess
+              show space, user
+            else if space.publicSpace
+              showReadOnly space
+            else res.redirect '/'
 
+    showReadOnly = (space) ->
+      console.log 'render read only'
+      res.render 'publicSpace.jade',
+        title : space.name
+        current_space: space
+
+    show = (space, user) ->
+      console.log 'render private space'
+      # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
+      res.render 'space.jade',
+        title : space.name
+        current_space: space
+        current_user: user
+
+          
   uploadFile : (req, res, callback) ->
     mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
