@@ -41,20 +41,16 @@ module.exports =
       include: [ models.Space ]
     ).complete (err, user) ->
       return res.send 400, err if err?
-      res.send 400, "No account found for that email" if not user?
-      if user?
-        user.verifyPassword password, (err, result) ->
-          return res.send 400, err if err?
-
-          # render first space on success
-          if result
-            req.session.currentUserId = user.id
-            res.redirect "/s/" + user.spaces[0].spaceKey
-            callback()
-          else
-            return res.send 400, 'Incorrect password.'
-      else
-        
+      return res.send "No account found for that email" if not user?
+      user.verifyPassword password, (err, result) ->
+        return res.send 400, err if err?
+        # render first space on success
+        if result
+          req.session.currentUserId = user.id
+          res.redirect "/s/" + user.spaces[0].spaceKey
+          callback()
+        else
+          return res.send 400, 'Incorrect password.'
 
   logout : (req, res, callback) ->
     req.session.destroy (err) ->
