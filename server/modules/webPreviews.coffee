@@ -1,5 +1,6 @@
 request = require 'request'
 cheerio = require 'cheerio'
+url = require 'url'
 
 extractTitle = ($) ->
   title = $('meta[property="og:title"]').attr('content')
@@ -23,23 +24,21 @@ extractImage = ($) ->
   
     size = $(img).attr('width') * $(img).attr('height')
     src = $(img).attr('src')
-    console.log src, $(img).attr('width'), $(img).attr('height')
+    # console.log src, $(img).attr('width'), $(img).attr('height')
     continue unless isImage src
     # Take the first image larger than our min size,
     if size >= 40000
       return src
-      # console.log 'Got large' if img?
     # Or take the largest image
     if size > max
       max = size
       srcMax = src
 
-  # console.log 'Got largest' if img?
   return srcMax if isImage srcMax
   #if no images on page try the favicon... :(
   img = $('link[rel="shortcut icon"]')[0]?.href
   return img if isImage img
-  console.log 'found none'
+  # console.log 'found none'
   return null
 
 extractDescription = ($) ->
@@ -55,12 +54,8 @@ extractDomain = (url) ->
   # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
 
 formatImage = (domain, src) ->
-  return unless src?
-  if src.match /^\//
-    console.log domain, src
-    'http://'+domain+src
-  else
-    src
+  return null unless src?
+  url.resolve domain, src
 
 module.exports = (url, callback) ->
   jar = request.jar()
