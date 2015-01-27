@@ -2,7 +2,10 @@
 - var isCreator = current_user.id == creator.id
 
 script.
-  username="#{creator.name}";
+  creator="#{creator.name}";
+  username = "#{current_user.name}";
+  userId = "#{current_user.id}";
+
 
 ul.users.menu
   if isCreator

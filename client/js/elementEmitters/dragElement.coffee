@@ -76,7 +76,7 @@ draggableOptions = (socket) ->
     window.maxY = Math.max y, maxY
     window.minY = Math.min y, minY
 
-    socket.emit('updateElement', { x, y, z, elementId: id })
+    socket.emit('updateElement', { x, y, z, elementId: id, userId })
     cluster()
 
 $ ->

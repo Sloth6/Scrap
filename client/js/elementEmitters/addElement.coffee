@@ -80,8 +80,8 @@ $ ->
     caption = if caption? then caption.slice(0, -1) else caption # remove last newline 
     window.maxZ += 1
     z = window.maxZ
-    console.log 'content', content, typeof content
-    socket.emit 'newElement', { contentType, content, x, y, z, scale, caption }
+    data = { contentType, content, x, y, z, scale, caption, userId }
+    socket.emit 'newElement', data
 
     $('.add-element').remove()
     $('.add-image').remove()

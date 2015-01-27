@@ -14,7 +14,9 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           sio.to(spaceKey).emit 'newElement', { element }
-    attributes = {
+    
+    attributes =
+      # creatorId: userID
       contentType: data.contentType
       content: data.content
       caption: data.caption
@@ -22,7 +24,7 @@ module.exports =
       y: data.y
       z: data.z
       scale: data.scale
-    }
+
     if data.contentType is 'website'
       url = decodeURIComponent data.content
       webPreviews url, (err, pageData) ->
