@@ -19,7 +19,7 @@ $ ->
 
   socket.on 'newElement', (data) ->
     element = data.element
-    { content, contentType, caption } = element
+    { content, contentType, caption, creatorId } = element
     console.log 'NEW ELEMT CONTENT', content
 
     id = element.id
@@ -64,7 +64,7 @@ $ ->
       innerHTML = () -> "<p>#{content}</p>"
     
     newArticle =
-      $("<article class='#{contentType}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
+      $("<article class='#{contentType} creator#{creatorId}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
         <a class='delete'></a>
         <div class='card #{contentType}'>
           #{innerHTML content}

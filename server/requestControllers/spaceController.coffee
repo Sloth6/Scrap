@@ -77,7 +77,7 @@ module.exports =
             else res.redirect '/'
 
     showReadOnly = (space) ->
-      console.log 'render read only'
+      # console.log 'render read only'
       res.render 'publicSpace.jade',
         title : space.name
         current_space: space
@@ -85,10 +85,12 @@ module.exports =
     show = (space, user) ->
       console.log 'render private space'
       # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
+      users = (space.users.map (u) -> { name: u.name, id: u.id, email: u.email })
       res.render 'space.jade',
         title : space.name
         current_space: space
         current_user: user
+        users: users
 
           
   uploadFile : (req, res, callback) ->

@@ -16,7 +16,7 @@ module.exports =
           sio.to(spaceKey).emit 'newElement', { element }
     
     attributes =
-      # creatorId: userID
+      creatorId: data.userId
       contentType: data.contentType
       content: data.content
       caption: data.caption
