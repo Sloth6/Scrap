@@ -4,6 +4,7 @@ uuid = require('node-uuid')
 mime = require('mime')
 moment = require('moment')
 async = require 'async'
+welcomeElements = require '../welcomeElements'
 
 request = require 'request'
 cheerio = require 'cheerio'
