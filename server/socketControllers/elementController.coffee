@@ -58,7 +58,7 @@ module.exports =
 
   updateElement : (sio, socket, data, spaceKey, callback) =>
     data.id = +data.elementId
-
+    data.final = JSON.parse data.final
     query = "UPDATE \"Elements\" SET"
     query += " \"x\"=:x," if data.x?
     query += " \"y\"=:y," if data.y?
@@ -69,9 +69,19 @@ module.exports =
     query += " WHERE \"id\"=:id RETURNING *"
 
     # new element to be filled in by update
-    element = models.Element.build()
-
-    models.sequelize.query(query, element, null, data).complete (err, result) ->
-      return callback err if err?
-      sio.to("#{spaceKey}").emit 'updateElement', { element: result }
-      callback()
+    if data.final
+      element = models.Element.build()
+      models.sequelize.query(query, element, null, data).complete (err, result) ->
+        return callback err if err?
+        sio.to("#{spaceKey}").emit 'updateElement', { element: result }
+        callback()
+    else
+      userId = data.userId
+      element =
+        x : parseInt data.x
+        y : parseInt data.y
+        z : parseInt data.z
+        scale : parseInt data.scale
+        id: data.id
+      # console.log userId
+      sio.to("#{spaceKey}").emit 'updateElement', { element, userId }

@@ -95,6 +95,9 @@ $ ->
       $(this).remove()
 
   socket.on 'updateElement', (data) ->
+    if data.userId == window.userId
+      return
+
     element = data.element
     id = element.id
     # Make sure to account for screen drag
@@ -106,10 +109,11 @@ $ ->
     window.maxZ +=1
     updateGlobals element
 
-    $("\##{id}").css 'z-index', (window.maxZ)
+    $("\##{id}").css 'z-index', window.maxZ
     $("\##{id}").data 'oldZ', window.maxZ
-    $("\##{id}").animate({ top: y, left: x }, cluster)
-    $("\##{id}").transition { scale }
+    $("\##{id}").css { top: y, left: x }
+    # $("\##{id}").animate({ top: y, left: x }, cluster)
+    $("\##{id}").transition { scale } if scale?
 
   updateGlobals = (element) ->
     if (element.x + 300 * element.scale) > window.maxX
