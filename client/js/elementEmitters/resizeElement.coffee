@@ -9,8 +9,14 @@ resize = (socket) ->
     screenScale = $('.content').css('scale')
 
     $(window).on 'mouseup', (event) ->
-      socket.emit 'updateElement', { elementId: element.attr('id'), scale: elementScale element }
       element.removeClass 'resizing'
+      data =
+        elementId: element.attr 'id'
+        scale: elementScale element
+        userId: userId
+        final: true
+      socket.emit 'updateElement', data
+
 
     $(window).on 'mousemove', (event) ->
       event.preventDefault()
@@ -28,6 +34,13 @@ resize = (socket) ->
       newScale *= -1 if deltaX < 0 || deltaY < 0
 
       element.css("scale": Math.max(+oldElementScale + newScale, 0.5))
+
+      data =
+        elementId: element.attr 'id'
+        scale: elementScale element
+        userId: userId
+        final: false
+      socket.emit 'updateElement', data
 
 $ ->
 
