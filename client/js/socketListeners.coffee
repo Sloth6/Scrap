@@ -103,12 +103,12 @@ $ ->
     id = element.id
 
     if final
-      $("\##{id}").removeClass 'locked'
-      $("\##{id}").css { opacity: 1.0 }
+      $("\##{id}").addClass 'locked'
+      $("\##{id}").draggable 'enable'
 
     else
       $("\##{id}").addClass 'locked'
-      $("\##{id}").css { opacity: .5 }
+      $("\##{id}").draggable 'disable'
 
     # Make sure to account for screen drag
     if element.x and element.y

@@ -1,5 +1,6 @@
 resize = (socket) ->
   (event) ->
+    # return if elem.hasClass 'locked'
     $(this).off 'mouseup'
     event.stopPropagation()
     element = $(this).parent().parent()

@@ -54,7 +54,6 @@ draggableOptions = (socket) ->
     socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: false }
 
   stop: (event, ui) ->
-    console.log 'stop'
     elem = $(this)
     $('.delete').removeClass 'visible'
 
@@ -75,10 +74,8 @@ draggableOptions = (socket) ->
     socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: true }
     cluster()
 
-$ ->
-  socket = io.connect()
-
-  $('article').draggable draggableOptions socket
+makeDraggable = (elements, socket) ->
+  elements.draggable draggableOptions socket
     .on 'mouseover', ->
       $(this).data('oldZ', $(this).css 'z-index')
       $(this).css 'z-index', window.maxZ + 1
@@ -87,3 +84,6 @@ $ ->
     .on 'click', ->
       $(window).trigger 'mouseup'
       # socket.emit 'updateElement', { z: $(this).css('z-index'), elementId: $(this).attr 'id' }
+$ ->
+  socket = io.connect()
+  makeDraggable $('article'), socket
