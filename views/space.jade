@@ -42,7 +42,7 @@ block content
         if element.scale < minScale
           - minScale = element.scale
 
-        article.draggable(id=element.id, class=element.contentType,class="creator"+element.creatorId, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale(#{element.scale},#{element.scale});transform:scale(#{element.scale},#{element.scale});")
+        article.draggable(id=element.id, class=element.contentType,class="color"+colors[element.creatorId], style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale(#{element.scale},#{element.scale});transform:scale(#{element.scale},#{element.scale});")
           a.delete
           case element.contentType
             when 'image'

@@ -77,14 +77,24 @@ module.exports =
               showReadOnly space
             else res.redirect '/'
 
+    colorMap = (space) ->
+      map = {}
+      n_colors = 10
+      for i in [0...space.users.length]
+        id = space.users[i].id
+        map[id] = i%n_colors
+      map
+      
+
     showReadOnly = (space) ->
       # console.log 'render read only'
       res.render 'publicSpace.jade',
         title : space.name
         current_space: space
+        colors: colorMap space
 
     show = (space, user) ->
-      console.log 'render private space'
+      # console.log 'render private space'
       # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
       users = (space.users.map (u) -> { name: u.name, id: u.id, email: u.email })
       res.render 'space.jade',
@@ -92,6 +102,7 @@ module.exports =
         current_space: space
         current_user: user
         users: users
+        colors: colorMap space
 
           
   uploadFile : (req, res, callback) ->
