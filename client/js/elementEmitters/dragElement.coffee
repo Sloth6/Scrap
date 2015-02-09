@@ -1,10 +1,7 @@
 draggableOptions = (socket) ->
   start: (event, ui) ->
     elem = $(this)
-    screenScale = $('.content').css('scale')
-
-    # $('.delete').addClass('visible')
-
+    screenScale = $('.content').css 'scale'
     $(window).off 'mousemove'
     click.x = event.clientX
     click.y = event.clientY
@@ -16,20 +13,11 @@ draggableOptions = (socket) ->
     startPosition.left = ui.position.left
     startPosition.top = ui.position.top 
 
-    # getIdsInCluster( this.id ).forEach (id)->
-    if elem.hasClass('cluster')
-      elem.data('elems').forEach (id) ->
-        e = $('#'+id)
-        # console.log e
-        e.data 'startPosition', {
-          left: parseFloat(e.css('left')) * screenScale
-          top: parseFloat(e.css('top')) * screenScale
-        }
-    else
-      elem.data 'startPosition', {
-        left: parseFloat(elem.css('left')) * screenScale
-        top: parseFloat(elem.css('top')) * screenScale
-      }
+    elem.data 'startPosition', {
+      left: parseFloat(elem.css('left')) * screenScale
+      top: parseFloat(elem.css('top')) * screenScale
+    }
+    # socket.emit 'getLock', { userId, elementId: $(this).attr 'id' }
 
   drag: (event, ui) ->
     elem = $(this)
@@ -57,6 +45,13 @@ draggableOptions = (socket) ->
     ui.position =
       left: (event.clientX - click.x + startPosition.left) / (screenScale)
       top: (event.clientY - click.y + startPosition.top) / (screenScale)
+    
+    # socket.emit 'getLock', { userId, elementId: $(this).attr 'id' }
+    id = this.id
+    x = parseInt Math.round(parseInt(elem.css('left')) - totalDelta.x)
+    y = parseInt Math.round(parseInt(elem.css('top')) - totalDelta.y)
+    z = parseInt elem.zIndex()
+    socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: false }
 
   stop: (event, ui) ->
     elem = $(this)
@@ -65,9 +60,9 @@ draggableOptions = (socket) ->
     # getIdsInCluster( this.id ).forEach (id) ->
     id = this.id
     # Make sure to account for screen drag (totalDelta)
-    x = Math.round(parseInt(elem.css('left')) - totalDelta.x)
-    y = Math.round(parseInt(elem.css('top')) - totalDelta.y)
-    z = elem.zIndex()
+    x = parseInt Math.round(parseInt(elem.css('left')) - totalDelta.x)
+    y = parseInt Math.round(parseInt(elem.css('top')) - totalDelta.y)
+    z = parseInt elem.zIndex()
     # elementId = id
     
     window.maxX = Math.max x, maxX
@@ -76,13 +71,11 @@ draggableOptions = (socket) ->
     window.maxY = Math.max y, maxY
     window.minY = Math.min y, minY
     userId = window.userId or null
-    socket.emit('updateElement', { x, y, z, elementId: id, userId })
+    socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: true }
     cluster()
 
-$ ->
-  socket = io.connect()
-
-  $('article').draggable draggableOptions socket
+makeDraggable = (elements, socket) ->
+  elements.draggable draggableOptions socket
     .on 'mouseover', ->
       $(this).data('oldZ', $(this).css 'z-index')
       $(this).css 'z-index', window.maxZ + 1
@@ -90,4 +83,7 @@ $ ->
       $(this).css 'z-index', $(this).data 'oldZ'
     .on 'click', ->
       $(window).trigger 'mouseup'
-      socket.emit 'updateElement', { z: $(this).css('z-index'), elementId: $(this).attr 'id' }
+      # socket.emit 'updateElement', { z: $(this).css('z-index'), elementId: $(this).attr 'id' }
+$ ->
+  socket = io.connect()
+  makeDraggable $('article'), socket

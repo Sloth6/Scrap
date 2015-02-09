@@ -95,21 +95,41 @@ $ ->
       $(this).remove()
 
   socket.on 'updateElement', (data) ->
+    if data.userId == window.userId
+      return
+
     element = data.element
+    final = data.final
     id = element.id
+
+    if final
+      $("\##{id}").addClass 'locked'
+      $("\##{id}").draggable 'enable'
+
+    else
+      $("\##{id}").addClass 'locked'
+      $("\##{id}").draggable 'disable'
+
     # Make sure to account for screen drag
-    x = element.x + totalDelta.x
-    y = element.y + totalDelta.y
-    z = element.z
-    scale = element.scale
+    if element.x and element.y
+      x = element.x + totalDelta.x
+      y = element.y + totalDelta.y
+      $("\##{id}").css { top: y, left: x }
+    # if element.z
+    #   z = element.z
+    if element.scale?
+      scale = element.scale
+      $("\##{id}").css { scale }
+      # $("\##{id}").transition { scale }
 
     window.maxZ +=1
     updateGlobals element
 
-    $("\##{id}").css 'z-index', (window.maxZ)
+    $("\##{id}").css 'z-index', window.maxZ
     $("\##{id}").data 'oldZ', window.maxZ
-    $("\##{id}").animate({ top: y, left: x }, cluster)
-    $("\##{id}").transition { scale }
+    
+    # $("\##{id}").animate({ top: y, left: x }, cluster)
+    
 
   updateGlobals = (element) ->
     if (element.x + 300 * element.scale) > window.maxX
