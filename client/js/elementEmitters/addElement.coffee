@@ -1,15 +1,17 @@
 $ ->
 
   socket = io.connect()
-
   mouse = { x: 0, y: 0 }
+  ignoreMouseup = false
 
   # On document so that it doesn't get messed up by screenDrag
   $(document).on 'mousemove', (event) ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
-  $(window).on 'click', (event) -> $('.add-element').remove()
+  $('.container').mousedown (event) ->
+    ignoreMouseup = $('.add-element').length
+    $('.add-element').remove()
 
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = (x, y, contentType, scale) ->
@@ -126,7 +128,12 @@ $ ->
       .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
 
   # on double-click, append new element form, then process the new element if one is submitted
-  $(window).on 'dblclick', (event) ->
+  $('.container').mouseup (event) ->
+    return if window.screenDragging
+    if ignoreMouseup
+      ignoreMouseup = false
+      return
+    boxUp = true
     screenScale = $('.content').css('scale') 
     elementScale = 1 / screenScale
     x = (event.clientX - $('.content').offset().left) / screenScale

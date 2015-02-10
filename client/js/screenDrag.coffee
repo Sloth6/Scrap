@@ -1,5 +1,5 @@
 $ ->
-
+  window.screenDragging = false
   $(window).on 'mousedown', (event) ->
     $(this).off 'mouseup'
     prev =
@@ -7,6 +7,7 @@ $ ->
       y: event.clientY
       
     $(window).on 'mousemove', (event) ->
+      window.screenDragging = true
       screenScale = $('.content').css('scale')
       deltaX = (event.clientX - prev.x) / screenScale
       deltaY = (event.clientY - prev.y) / screenScale
@@ -20,6 +21,7 @@ $ ->
       $('article,.cluster').animate( { top: "+=#{deltaY}", left: "+=#{deltaX}" }, 0, 'linear' )
 
     $(window).on 'mouseup', ->
+      window.screenDragging = false
       $(this).off 'mousemove'
 
   $('article').on 'click', (event) ->
