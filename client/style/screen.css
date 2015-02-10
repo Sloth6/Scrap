@@ -167,7 +167,7 @@ input:focus {
 }
 /* line 68, ../sass/globals/_components.scss */
 input.offset {
-  background-color: rgba(255, 255, 255, 0.925);
+  background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -231,7 +231,7 @@ input[type=checkbox] + label {
 
 /* line 91, ../sass/globals/_components.scss */
 ul.menu {
-  background-color: rgba(255, 255, 255, 0.925);
+  background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -606,7 +606,7 @@ section.container section.space section.content article .card {
 }
 /* line 249, ../sass/layout/_container.scss */
 section.container section.space section.content article .card.text {
-  background-color: rgba(255, 255, 255, 0.925);
+  background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -730,7 +730,7 @@ section.container section.space .delete:after {
 .card.login {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
-  background-color: rgba(255, 255, 255, 0.925);
+  background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
