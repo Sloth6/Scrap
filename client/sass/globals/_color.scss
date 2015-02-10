@@ -10,3 +10,46 @@ $colorBackground:           $colorWashMediumLight;
 
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
+
+body section.space section.content article {
+    &.color0 div.card.text.comment {
+        background-color: #FF3B30;
+    }
+    
+    &.color1 div.card.text.comment  {
+        background-color: #FF9500;
+    }
+    
+    &.color2 div.card.text.comment  {
+        background-color: #FFCC00;
+    }
+    
+    &.color3 div.card.text.comment  {
+        background-color: #4CD964;        
+    }
+    
+    &.color4 div.card.text.comment  {
+        background-color: #007AFF;        
+    }
+    
+    &.color5 div.card.text.comment  {
+        background-color: #FF2D55;        
+    }
+    
+    &.color6 div.card.text.comment  {
+        background-color: #87FC70;
+    }
+    
+    &.color7 div.card.text.comment  {
+        background-color: #FF1300;
+    }
+    
+    &.color8 div.card.text.comment  {
+        background-color: #EF4DB6;
+    }
+    
+    &.color9 div.card.text.comment  {
+        background-color: #52EDC7;
+    }
+    
+}

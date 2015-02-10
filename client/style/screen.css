@@ -76,6 +76,47 @@ html {
   user-select: none;
 }
 
+/* line 15, ../sass/globals/_color.scss */
+body section.space section.content article.color0 div.card.text.comment {
+  background-color: #FF3B30;
+}
+/* line 19, ../sass/globals/_color.scss */
+body section.space section.content article.color1 div.card.text.comment {
+  background-color: #FF9500;
+}
+/* line 23, ../sass/globals/_color.scss */
+body section.space section.content article.color2 div.card.text.comment {
+  background-color: #FFCC00;
+}
+/* line 27, ../sass/globals/_color.scss */
+body section.space section.content article.color3 div.card.text.comment {
+  background-color: #4CD964;
+}
+/* line 31, ../sass/globals/_color.scss */
+body section.space section.content article.color4 div.card.text.comment {
+  background-color: #007AFF;
+}
+/* line 35, ../sass/globals/_color.scss */
+body section.space section.content article.color5 div.card.text.comment {
+  background-color: #FF2D55;
+}
+/* line 39, ../sass/globals/_color.scss */
+body section.space section.content article.color6 div.card.text.comment {
+  background-color: #87FC70;
+}
+/* line 43, ../sass/globals/_color.scss */
+body section.space section.content article.color7 div.card.text.comment {
+  background-color: #FF1300;
+}
+/* line 47, ../sass/globals/_color.scss */
+body section.space section.content article.color8 div.card.text.comment {
+  background-color: #EF4DB6;
+}
+/* line 51, ../sass/globals/_color.scss */
+body section.space section.content article.color9 div.card.text.comment {
+  background-color: #52EDC7;
+}
+
 /*
 $fontLight:     "UniversLTStd-Light";
 $fontRegular:   "UniversLTStd";
