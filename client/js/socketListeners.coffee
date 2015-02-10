@@ -74,17 +74,19 @@ $ ->
         #{captionDiv}
       </article>")
     $('.content').append newArticle
+    newArticle.css {
+      "-webkit-transform-origin": "top left"
+      "transform-origin": "top left"
+      scale: scale
+    }
     makeDeletable newArticle
+    # makeDraggable newArticle, socket
+
     newArticle.draggable(draggableOptions socket)
-      .css({
-        "-webkit-transform-origin": "top left"
-        "transform-origin": "top left"
-        scale: scale
-        })
+    #   
     newArticle.on 'click', ->
       $(window).trigger 'mouseup'
-    $('.ui-resizable-handle', "\##{id}").on 'mousedown', resize socket
-    cluster()
+      $('.ui-resizable-handle', "\##{id}").on 'mousedown', resize socket
 
     updateGlobals element
 

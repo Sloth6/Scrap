@@ -2,57 +2,52 @@ draggableOptions = (socket) ->
   start: (event, ui) ->
     elem = $(this)
     window.dontAddNext = true
-
     screenScale = $('.content').css 'scale'
     $(window).off 'mousemove'
     click.x = event.clientX
     click.y = event.clientY
 
-    window.maxZ += 1
-    z = window.maxZ
-    $(this).zIndex z
+    initDragOnElem = (_elem) ->
+      window.maxZ += 1
+      z = window.maxZ
+      _elem.zIndex z
 
-    startPosition.left = ui.position.left
-    startPosition.top = ui.position.top 
+      # startPosition.left = ui.position.left
+      # startPosition.top = ui.position.top 
 
-    elem.data 'startPosition', {
-      left: parseFloat(elem.css('left')) * screenScale
-      top: parseFloat(elem.css('top')) * screenScale
-    }
-    # socket.emit 'getLock', { userId, elementId: $(this).attr 'id' }
-
+      _elem.data 'startPosition', {
+        left: parseFloat(_elem.css('left')) * screenScale
+        top: parseFloat(_elem.css('top')) * screenScale
+      }
+    
+    initDragOnElem elem
+    if elem.data('comments')?.length
+      for comment in elem.data('comments').map((id) -> $('#'+id))
+        initDragOnElem comment
+        
   drag: (event, ui) ->
-    elem = $(this)
     screenScale = $('.content').css('scale')
     diffX = event.clientX - click.x
     diffY = event.clientY - click.y
 
-    # getIdsInCluster( this.id ).forEach (id)->
-    if elem.hasClass('cluster')
-      elem.data('elems').forEach (id) ->
-        e = $('#'+id)
-        start = e.data 'startPosition'
-        # console.log start
-        e.css('left', (event.clientX - click.x + start.left)/screenScale)
-        e.css('top', (event.clientY - click.y + start.top)/screenScale)
-        # ui.position =
-        #   left: (event.clientX - click.x + startPosition.left) / (screenScale)
-        #   top: (event.clientY - click.y + startPosition.top) / (screenScale)
-    else
+    dragElem = (elem) ->
       start = elem.data 'startPosition'
       elem.css('left', (event.clientX - click.x + start.left)/screenScale)
       elem.css('top', (event.clientY - click.y + start.top)/screenScale)
-
-    ui.position =
-      left: (event.clientX - click.x + startPosition.left) / (screenScale)
-      top: (event.clientY - click.y + startPosition.top) / (screenScale)
+      ui.position =
+        left: (event.clientX - click.x + startPosition.left) / (screenScale)
+        top: (event.clientY - click.y + startPosition.top) / (screenScale)
+      
+      id = elem[0].id
+      x = parseInt Math.round(parseInt(elem.css('left')) - totalDelta.x)
+      y = parseInt Math.round(parseInt(elem.css('top')) - totalDelta.y)
+      z = parseInt elem.zIndex()
+      socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: false }
     
-    # socket.emit 'getLock', { userId, elementId: $(this).attr 'id' }
-    id = this.id
-    x = parseInt Math.round(parseInt(elem.css('left')) - totalDelta.x)
-    y = parseInt Math.round(parseInt(elem.css('top')) - totalDelta.y)
-    z = parseInt elem.zIndex()
-    socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: false }
+    dragElem $(this)
+    if $(this).data('comments')?.length
+      for comment in $(this).data('comments').map((id) -> $('#'+id))
+        dragElem comment
 
   stop: (event, ui) ->
     elem = $(this)
@@ -77,10 +72,11 @@ draggableOptions = (socket) ->
     # cluster()
 
 makeDraggable = (elements, socket) ->
+  # console.log elements
   elements.draggable draggableOptions socket
-    .on 'mouseover', ->
-      $(this).data('oldZ', $(this).css 'z-index')
-      $(this).css 'z-index', window.maxZ + 1
+    # .on 'mouseover', ->
+      # $(this).data('oldZ', $(this).css 'z-index')
+      # $(this).css 'z-index', window.maxZ + 1
     .on 'mouseout', ->
       $(this).css 'z-index', $(this).data 'oldZ'
     .on 'click', ->
