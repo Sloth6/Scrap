@@ -233,6 +233,13 @@ section.container {
 //                         background: blue;                        
                     }
                 }
+                
+                &.attached {
+                    
+                    .card {
+                        border: 10pt red solid;
+                    }
+                }
                                 
                 .card {
                     position: relative;
