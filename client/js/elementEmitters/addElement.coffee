@@ -2,15 +2,15 @@ $ ->
 
   socket = io.connect()
   mouse = { x: 0, y: 0 }
-  ignoreMouseup = false
+  window.ignoreMouseup = false
 
   # On document so that it doesn't get messed up by screenDrag
   $(document).on 'mousemove', (event) ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
-  $('.container').mousedown (event) ->
-    ignoreMouseup = $('.add-element').length
+  $(window).mousedown (event) ->
+    window.dontAddNext = $('.add-element').length
     $('.add-element').remove()
 
   # The options for s3-streamed file uploads, used later
@@ -129,9 +129,8 @@ $ ->
 
   # on double-click, append new element form, then process the new element if one is submitted
   $('.container').mouseup (event) ->
-    return if window.screenDragging
-    if ignoreMouseup
-      ignoreMouseup = false
+    if window.dontAddNext
+      window.dontAddNext = false
       return
     boxUp = true
     screenScale = $('.content').css('scale') 

@@ -1,6 +1,8 @@
 draggableOptions = (socket) ->
   start: (event, ui) ->
     elem = $(this)
+    window.dontAddNext = true
+
     screenScale = $('.content').css 'scale'
     $(window).off 'mousemove'
     click.x = event.clientX
@@ -21,7 +23,6 @@ draggableOptions = (socket) ->
 
   drag: (event, ui) ->
     elem = $(this)
-    # console.log this
     screenScale = $('.content').css('scale')
     diffX = event.clientX - click.x
     diffY = event.clientY - click.y
@@ -72,7 +73,8 @@ draggableOptions = (socket) ->
     window.minY = Math.min y, minY
     userId = window.userId or null
     socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: true }
-    cluster()
+    makeTextChild elem
+    # cluster()
 
 makeDraggable = (elements, socket) ->
   elements.draggable draggableOptions socket
