@@ -99,37 +99,37 @@ $ ->
   socket.on 'updateElement', (data) ->
     if data.userId == window.userId
       return
-
+    console.log data
     element = data.element
     final = data.final
     id = element.id
-
+    elem = $("\##{id}")
+    
     if final
-      $("\##{id}").addClass 'locked'
-      $("\##{id}").draggable 'enable'
-
+      elem.removeClass 'locked'
+      elem.draggable 'enable'
     else
-      $("\##{id}").addClass 'locked'
-      $("\##{id}").draggable 'disable'
+      elem.addClass 'locked'
+      elem.draggable 'disable'
 
     # Make sure to account for screen drag
     if element.x and element.y
       x = element.x + totalDelta.x
       y = element.y + totalDelta.y
-      $("\##{id}").css { top: y, left: x }
+      elem.css { top: y, left: x }
     # if element.z
     #   z = element.z
     if element.scale?
       scale = element.scale
-      $("\##{id}").css { scale }
-      # $("\##{id}").transition { scale }
+      elem.css { scale }
+      # elem.transition { scale }
 
-    window.maxZ +=1
+    # window.maxZ +=1
     updateGlobals element
 
-    $("\##{id}").css 'z-index', window.maxZ
-    $("\##{id}").data 'oldZ', window.maxZ
-    
+    elem.css 'z-index', data.element.z
+    elem.data 'oldZ', window.maxZ
+    makeTextChild elem
     # $("\##{id}").animate({ top: y, left: x }, cluster)
     
 
