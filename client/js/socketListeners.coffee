@@ -65,6 +65,7 @@ $ ->
     
     newArticle =
       $("<article class='#{contentType} creator#{creatorId}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
+        <author>#{names[creatorId]}</author>
         <a class='delete'></a>
         <div class='card #{contentType}'>
           #{innerHTML content}
