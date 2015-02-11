@@ -99,7 +99,6 @@ $ ->
   socket.on 'updateElement', (data) ->
     if data.userId == window.userId
       return
-    console.log data
     element = data.element
     final = data.final
     id = element.id

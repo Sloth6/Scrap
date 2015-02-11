@@ -11,6 +11,7 @@ draggableOptions = (socket) ->
       window.maxZ += 1
       z = window.maxZ
       _elem.zIndex z
+      console.log z
 
       # startPosition.left = ui.position.left
       # startPosition.top = ui.position.top 
