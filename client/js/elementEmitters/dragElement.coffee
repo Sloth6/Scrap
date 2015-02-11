@@ -21,8 +21,8 @@ draggableOptions = (socket) ->
       }
     
     initDragOnElem elem
-    if elem.data('comments')?.length
-      for comment in elem.data('comments').map((id) -> $('#'+id))
+    if elem.data('children')?.length
+      for comment in elem.data('children').map((id) -> $('#'+id))
         initDragOnElem comment
         
   drag: (event, ui) ->
@@ -45,8 +45,8 @@ draggableOptions = (socket) ->
       socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: false }
     
     dragElem $(this)
-    if $(this).data('comments')?.length
-      for comment in $(this).data('comments').map((id) -> $('#'+id))
+    if $(this).data('children')?.length
+      for comment in $(this).data('children').map((id) -> $('#'+id))
         dragElem comment
 
   stop: (event, ui) ->

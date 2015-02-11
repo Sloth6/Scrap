@@ -17,34 +17,38 @@ makeTextChild = (elem) ->
     return false unless a.left+a.w < b.left+b.w
     return true
 
-
   getAllCoords = () ->
     $('.content').children().get().map getCoords
     
   getParent = (elem, others) -> 
     for b in others
-      return b if isWithen elem, b 
+      return $('#'+b.id) if isWithen elem, b 
     null
   
+  attach = (child, parent) ->
+    child.addClass 'attached'
+    elem.data 'parent', parent.attr('id')
+    
+    children = parent.data('children') or []
+    children.push child.attr('id')
+    parent.data 'children', children
+
+  detach = (child) ->
+    id = child.attr 'id'
+    child.removeClass 'attached'
+    parent = child.data 'parent'
+    if parent
+      parent = $('#'+parent)
+      children = parent.data 'children'
+      children.splice(children.indexOf(id),1)
+      parent.data 'children', children
+    child.data 'parent', null
+
   return unless elem.children().hasClass('comment')
+  detach elem
   parent = getParent getCoords(elem), getAllCoords()
-  # console.log parent
-  id = elem[0].id
-  if parent
-    elem.addClass 'attached'
-    parentElem = $('#'+parent.id)
-    elem.data 'attachedTo', parentElem
-    comments = parentElem.data('comments') or []
-    comments.push id
-    parentElem.data('comments', comments)
-  else
-    elem.removeClass 'attached'
-    old_parent = elem.data 'attachedTo'
-    if old_parent
-      comments = old_parent.data('comments')
-      comments.splice(comments.indexOf(id),1)
-      old_parent.data('comments', comments)
-    elem.data 'attachedTo', null
+  attach(elem, parent) if parent 
+
 
 $ ->
   $('article').each () ->
