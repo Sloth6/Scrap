@@ -165,7 +165,15 @@ section.container {
             &.attached {
 
                 .card {
-                    border: 10pt red solid;
+                    
+                    &:before {
+                        content: "•";
+                        font-size: .5em;
+                        position: absolute;
+                        top: $gutter/1.6666;
+                        left: $gutter/4;
+                        line-height: 0;
+                    }
                 }
             }
 

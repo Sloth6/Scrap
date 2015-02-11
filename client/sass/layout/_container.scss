@@ -1,0 +1,114 @@
+@mixin commentCard {                           
+    color: $colorTypeLight;
+    background-color: $colorCardBackgroundDark;
+}
+
+section.container {
+    width: 10000%;
+    height: 10000%;
+    position: fixed;
+    
+    section.space {
+        width: 100%;
+        height: 100%;
+
+        // h1 {
+        //     position: fixed;
+        //     text-align: right;
+        //     @include resetInput;
+        //     bottom: $gutter;
+        //     right: $gutter;
+        //     width: $col * 2;
+        //     height: 1.5em;
+        //     z-index: 2;
+        //     @include typeSpaceName;
+        //     
+        //     form {
+        //         
+        //         input {
+        //             @include resetInput;
+        //             @include typeSpaceName;
+        //             text-align: right;
+        //             position: absolute;
+        //             left: 0;
+        //             width: $col * 2;
+        //             height: 1.5em;
+        // 
+        //         }
+        //     }
+        // }
+        
+        &:active {
+            cursor: move;
+        }
+
+        ul.users {
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            right: 0;
+        
+            li {
+                display: block;
+                height: 3rem;
+                width:    3rem;
+                margin: .5em;
+            
+                img {
+                    height: 100%;
+                    width:    100%;     
+                    border-radius: 100%;
+                    background-color: red;
+                }
+                
+            }
+        }
+
+        section.content {
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+            @include transform(scale(1));
+            position: relative;
+            z-index: 1;
+        }
+        
+        .delete {
+            text-align: center;
+            position: fixed;
+            z-index: 5;
+            width: $col;
+            padding: $gutter * 2;
+            bottom: -$col;
+            left: 50%;
+            margin-left: -$col/2;
+            @include transition(all .25s $defaultCurve);
+            @include transform(scale(.5));
+            
+            &.visible {
+                bottom: 0;
+                opacity: 1;
+            }
+            
+            &.rollover {
+                @include transform(scale(1.25));
+                opacity: 1;
+                bottom: 0;
+            }
+
+            &:after {
+                text-align: center;
+                content: "×";
+                font-size: 6em;
+                position: relative;
+                top: 33.333%;
+                height: 100%;
+                margin-top: -75%;
+                color: white;
+                font-family: "Helvetica Neue", "Helvetica", sans-serif;
+                margin-top: 2em;
+                font-weight: 100;
+                color: $colorAlert;
+            }
+        }
+    }
+}
