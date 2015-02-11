@@ -1,5 +1,6 @@
 draggableOptions = (socket) ->
   start: (event, ui) ->
+    window.dontAddNext = true
     elem = $(this)
     window.dontAddNext = true
     screenScale = $('.content').css 'scale'

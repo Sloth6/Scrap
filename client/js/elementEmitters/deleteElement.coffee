@@ -1,4 +1,5 @@
 onDelete = () ->
+	window.dontAddNext = true
 	if (confirm "Delete?")
 	  elementId = $(@).parent().attr 'id'
 	 	detach $(@).parent()
