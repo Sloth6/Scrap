@@ -50,26 +50,28 @@ draggableOptions = (socket) ->
         dragElem comment
 
   stop: (event, ui) ->
-    elem = $(this)
-    $('.delete').removeClass 'visible'
-
-    # getIdsInCluster( this.id ).forEach (id) ->
-    id = this.id
-    # Make sure to account for screen drag (totalDelta)
-    x = parseInt Math.round(parseInt(elem.css('left')) - totalDelta.x)
-    y = parseInt Math.round(parseInt(elem.css('top')) - totalDelta.y)
-    z = parseInt elem.zIndex()
-    # elementId = id
     
-    window.maxX = Math.max x, maxX
-    window.minX = Math.min x, minX
+    stopElem = (elem) ->
+      id = elem.attr('id')
+      # Make sure to account for screen drag (totalDelta)
+      x = parseInt Math.round(parseInt(elem.css('left')) - totalDelta.x)
+      y = parseInt Math.round(parseInt(elem.css('top')) - totalDelta.y)
+      z = parseInt elem.zIndex()
+      
+      window.maxX = Math.max x, maxX
+      window.minX = Math.min x, minX
 
-    window.maxY = Math.max y, maxY
-    window.minY = Math.min y, minY
-    userId = window.userId or null
-    socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: true }
-    makeTextChild elem
-    # cluster()
+      window.maxY = Math.max y, maxY
+      window.minY = Math.min y, minY
+      userId = window.userId or null
+      socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: true }
+
+    stopElem $(this)
+    if $(this).data('children')?.length
+      for comment in $(this).data('children').map((id) -> $('#'+id))
+        stopElem comment
+    else
+      makeTextChild $(this)
 
 makeDraggable = (elements, socket) ->
   # console.log elements

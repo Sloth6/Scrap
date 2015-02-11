@@ -1,6 +1,6 @@
 onDelete = () ->
   elementId = $(@).parent().attr 'id'
-  console.log elementId
+ 	detach $(@).parent()
   socket.emit 'removeElement', { elementId, userId }
 
 makeDeletable = (elem) ->

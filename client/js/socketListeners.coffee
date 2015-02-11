@@ -80,10 +80,10 @@ $ ->
       scale: scale
     }
     makeDeletable newArticle
-    # makeDraggable newArticle, socket
+    makeTextChild newArticle
+    makeDraggable newArticle, socket
+    # newArticle.draggable(draggableOptions socket)
 
-    newArticle.draggable(draggableOptions socket)
-    #   
     newArticle.on 'click', ->
       $(window).trigger 'mouseup'
       $('.ui-resizable-handle', "\##{id}").on 'mousedown', resize socket

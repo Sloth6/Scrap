@@ -1,3 +1,14 @@
+detach = (child) ->
+  id = child.attr 'id'
+  child.removeClass 'attached'
+  parent = child.data 'parent'
+  if parent
+    parent = $('#'+parent)
+    children = parent.data 'children'
+    children.splice(children.indexOf(id),1)
+    parent.data 'children', children
+  child.data 'parent', null
+
 makeTextChild = (elem) ->
   getCoords = (elem) ->
     $elem = $(elem)
@@ -33,18 +44,8 @@ makeTextChild = (elem) ->
     children.push child.attr('id')
     parent.data 'children', children
 
-  detach = (child) ->
-    id = child.attr 'id'
-    child.removeClass 'attached'
-    parent = child.data 'parent'
-    if parent
-      parent = $('#'+parent)
-      children = parent.data 'children'
-      children.splice(children.indexOf(id),1)
-      parent.data 'children', children
-    child.data 'parent', null
-
-  return unless elem.children().hasClass('comment')
+  
+  return unless elem.children().hasClass('text')
   detach elem
   parent = getParent getCoords(elem), getAllCoords()
   attach(elem, parent) if parent 
