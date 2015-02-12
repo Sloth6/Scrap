@@ -34,17 +34,18 @@ $ ->
     getSize = (e) ->
       s = content.css 'scale'
       { w, h } = dimension e
-      return 'small' if w * s < 150
-      return 'medium' if w * s < 450
+      return 'small' if w * s < 100
+      return 'medium' if w * s < 400
       'normal'
     
     switchImage = (img, key, size) ->
       root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'
-      url = "#{root}/#{spaceKey}/#{size}/#{key}"
+      url = "#{root}/#{spaceKey}/#{size}/#{key}.jpg"
       img.attr 'src', url
 
-    $('.image').each () ->
+    $('.card,.image').each () ->
       key = $(@).data('key')
+      console.log key
       if key
         size = getSize $(@).parent()
         switchImage $(@).children().first(), key, size

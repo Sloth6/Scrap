@@ -2,7 +2,8 @@ fs = require 'fs'
 path = require 'path'
 Sequelize = require 'sequelize'
 lodash = require 'lodash'
-sequelize = new Sequelize(process.env.POSTGRES_URL || 'postgres://localhost/scrapdb')
+psq_url = process.env.POSTGRES_URL || 'postgres://localhost/scrapdb'
+sequelize = new Sequelize(psq_url)#, {logging: false})
 db = {}
 
 fs.readdirSync(__dirname).filter((file) ->

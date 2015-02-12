@@ -16,6 +16,30 @@ module.exports =
           return callback err if err?
           sio.to(spaceKey).emit 'newElement', { element }
     
+    newImage = () ->
+      original_url = data.content
+
+      models.Space.find(where: { spaceKey }).complete (err, space) =>
+        return callback err if err?
+        attributes.SpaceId = space.id
+        
+        key = Math.random().toString(36).slice(2)
+        attributes.content = key
+
+        models.Element.create(attributes).complete (err, element) =>
+          return callback err if err?
+
+          element.contentType = 'temp_image'
+          element.content = original_url
+          sio.to(spaceKey).emit 'newElement', { element }
+
+          thumbnails { url: original_url, spaceKey, key }, (err) -> 
+            return callback err if err?
+            attributes.content = key
+          
+
+
+
     attributes =
       creatorId: data.userId
       contentType: data.contentType
@@ -42,10 +66,7 @@ module.exports =
         done attributes
     
     if data.contentType is 'image'
-      thumbnails { url: data.content, spaceId: spaceKey }, (err, img_name) -> 
-        return console.log err if err?
-        attributes.content = img_name
-        done attributes
+      newImage()
     else
       done attributes
         
