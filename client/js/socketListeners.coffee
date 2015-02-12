@@ -41,7 +41,9 @@ $ ->
         <div class='background'></div></div>"
 
     if contentType is 'image'
-      innerHTML = () -> "<img src=#{content}>"
+      innerHTML = () ->
+
+        "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
     else if contentType is 'website'
       innerHTML = () ->
         data = JSON.parse content

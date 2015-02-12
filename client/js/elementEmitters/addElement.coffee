@@ -90,7 +90,7 @@ $ ->
     $('.add-website').remove()
 
   isImage = (url) ->
-    url.match(/\.(jpeg|jpg|gif|png)$/)?
+    url.match(/^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png)$/)?
 
   isWebsite = (url) ->
     expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
@@ -179,7 +179,8 @@ $ ->
         if isImage $(this).val() 
           content = $(this).val()
           innerHTML = (content) -> "<img src='#{content}'>"
-          addCaption x, y, elementScale, 'image', content, innerHTML
+          emitElement x, y, elementScale, content, 'image'
+          # addCaption x, y, elementScale, 'image', content, innerHTML
 
         # on enter (not shift + enter), submit either website or text
         else if event.keyCode is 13 and not event.shiftKey

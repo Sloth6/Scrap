@@ -1,12 +1,13 @@
 models   = require '../../models'
 async    = require 'async'
 webPreviews = require '../modules/webPreviews.coffee'
+thumbnails = require '../modules/thumbnails.coffee'
 memCache = {}
 
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
-    console.log 'Received content', data.content, typeof data.content
+    console.log 'Received content', data.contentType
     done = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
         return callback err if err?
@@ -38,6 +39,12 @@ module.exports =
         else
           pageData.url = encodeURIComponent pageData.url
           attributes.content = JSON.stringify pageData
+        done attributes
+    
+    if data.contentType is 'image'
+      thumbnails { url: data.content, spaceId: spaceKey }, (err, img_name) -> 
+        return console.log err if err?
+        attributes.content = img_name
         done attributes
     else
       done attributes

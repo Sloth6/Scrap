@@ -1,0 +1,6 @@
+{
+	"accessKeyId"			: "AKIAJKJJR5OLTKWMMHSA", 
+	"secretAccessKey"	: "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",
+	"region"					: "us-east-1",
+	"POSTGRES_URL"		: "postgres://fizz:derptopia@fizzdbinstance.cdzhdhngrg63.us-east-1.rds.amazonaws.com:5432/fbgdb"
+}
