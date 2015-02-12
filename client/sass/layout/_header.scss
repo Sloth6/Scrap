@@ -1,31 +1,51 @@
 .container > header {
-	position: fixed;
-	z-index: 2;
-	top: 0;
-	right: 0;
-	margin: $gutter/2 0 0 $gutter/2;
-	height: $headerHeight;
-	width: $col * 3.5;
-	opacity: .5;
-	@include basicTransition;
-	@include transition-property(opacity);
-	text-align: right;
-	
-	&:hover {
-		opacity: 1;
-	}
-	
-	ul.menu {
-		display: inline-block;
-		width: 1.5 * $col;
-		opacity: .75;
-		margin-right: $gutter;
-		text-align: left;
-		
-		li {
-    		a, input, span {
-	    		@include smallCaps;
-    		}
-		}
-	}
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: left;
+    height: $headerHeight;
+    width: 100%;
+    opacity: .5;
+    @include basicTransition;
+    @include transition-property(opacity);
+    text-align: left;
+    // background-color: rgba(255,0,0,.25);
+        
+    &:hover {
+    opacity: 1;
+    }
+    
+    ul.menu {
+        display: inline-block;
+        width: 1.5 * $col;
+        opacity: .75;
+        margin-right: $gutter;
+        margin: $gutter/2 0 0 $gutter/2;
+    }
+    
+    ul.users {
+        float: right;
+        width: auto;
+        
+        > li.user {
+            display: inline-block;
+            border-top: green 2pt solid;
+            // color: rgba(0,0,0,0);
+            
+            &:first-of-type {
+                padding-top: 0;
+            }
+            
+            input {
+                padding-top: 0;
+            }
+        }
+    }
+    
+    li {
+        @include typeBodySmallCaps;
+        input {
+            @include typeBodySmallCaps;
+        }
+    }    
 }

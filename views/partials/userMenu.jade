@@ -8,12 +8,13 @@ script.
   users =  !{JSON.stringify(users)}
   names = !{JSON.stringify(names)}
 
-ul.users.menu
+ul.users
   if isCreator
-    li(data-id=current_user.id)
-      span #{current_user.name} (owner)
+    li.user.color0(data-id=current_user.id)
+      span.owner #{current_user.name}
   else
-    li(data-id=current_user.id)=current_user.name
+    li John Appleseed
+    li.user(data-id=current_user.id)=current_user.name
   each user in current_space.users
     if user.id != current_user.id
       if user.id != creator.id && isCreator
@@ -22,9 +23,19 @@ ul.users.menu
         li(data-id=user.id) #{user.name} (owner)
       else
         li(data-id=user.id)=user.name
-  li
-    form.add-user
-      input(type="text", name="user[email]", placeholder="Add someone to this space")
-      input(type="submit", style="visibility: hidden;")
-  li
-    a.logout(href="/logout") Logout
+  li.user.color4 Denice Lavigne
+  li.user.color5 Idell Morace
+  li.user.color5 Felisha Kilday
+  li.user.color6 Concetta Morehouse
+  li.user.color7 Maegan Hochstetler
+  li.user.color8 Thomas Pera
+  li.user.color9 Bryan Velarde
+  li.settings
+    ul.menu.settings
+      li settings
+      li
+        form.add-user
+          input(type="text", name="user[email]", placeholder="Invite someone to this space")
+          input(type="submit", style="visibility: hidden;")
+      li
+        a.logout(href="/logout") Logout

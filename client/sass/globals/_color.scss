@@ -11,7 +11,10 @@ $colorBackground:           $colorWashMediumLight;
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
 
+// ARTICLES
+
 body section.space section.content article {
+    
     &.color0 div.card.text.comment, &.color0 header {
         background-color: #FF3B30;
     }
@@ -51,5 +54,48 @@ body section.space section.content article {
     &.color9 div.card.text.comment, &.color9 header  {
         background-color: #52EDC7;
     }
-    
 }
+
+// USER LIST
+
+.container > header ul.users li.user {
+    &.color0 {
+        border-color: #FF3B30;
+    }
+    
+    &.color1 {
+        border-color: #FF9500;
+    }
+    
+    &.color2 {
+        border-color: #FFCC00;
+    }
+    
+    &.color3 {
+        border-color: #4CD964;        
+    }
+    
+    &.color4 {
+        border-color: #007AFF;        
+    }
+    
+    &.color5 {
+        border-color: #FF2D55;        
+    }
+    
+    &.color6 {
+        border-color: #87FC70;
+    }
+    
+    &.color7 {
+        border-color: #FF1300;
+    }
+    
+    &.color8 {
+        border-color: #EF4DB6;
+    }
+    
+    &.color9 {
+        border-color: #52EDC7;
+    }
+}    
