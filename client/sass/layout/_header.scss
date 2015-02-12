@@ -5,15 +5,8 @@
     right: left;
     height: $headerHeight;
     width: 100%;
-    opacity: .5;
-    @include basicTransition;
-    @include transition-property(opacity);
+    // opacity: .5;
     text-align: left;
-    // background-color: rgba(255,0,0,.25);
-        
-    &:hover {
-    opacity: 1;
-    }
     
     ul.menu {
         display: inline-block;
@@ -29,11 +22,21 @@
         
         > li.user {
             display: inline-block;
-            border-top: green 2pt solid;
-            // color: rgba(0,0,0,0);
+            border-top: 2pt solid;
+            padding: 0 $gutter/4;
+            width: ($gutter * 2) - $gutter/2;
+            @include smoothTransition;
+            @include transition-property(width);
+            white-space: nowrap;
+            color: rgba(0,0,0,0);
             
-            &:first-of-type {
-                padding-top: 0;
+            &.online {
+                
+            }
+            
+            &:hover {
+                width: $col;
+                color: auto;
             }
             
             input {

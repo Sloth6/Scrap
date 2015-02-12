@@ -61,41 +61,81 @@ body section.space section.content article {
 .container > header ul.users li.user {
     &.color0 {
         border-color: #FF3B30;
+        
+        &.online {
+            background-color: #FF3B30;
+        }
     }
     
     &.color1 {
         border-color: #FF9500;
+
+        &.online {
+            background-color: #FF9500;
+        }
     }
     
     &.color2 {
         border-color: #FFCC00;
+        
+        &.online {
+            background-color: #FFCC00;
+        }
     }
     
     &.color3 {
         border-color: #4CD964;        
+        
+        &.online {
+            background-color: #4CD964;
+        }
     }
     
     &.color4 {
-        border-color: #007AFF;        
+        border-color: #007AFF;
+
+        &.online {
+            background-color: #007AFF;
+        }
     }
     
     &.color5 {
         border-color: #FF2D55;        
+
+        &.online {
+            background-color: #FF2D55;
+        }
     }
     
     &.color6 {
         border-color: #87FC70;
+
+        &.online {
+            background-color: #87FC70;
+        }
     }
     
     &.color7 {
         border-color: #FF1300;
+
+        &.online {
+            background-color: #FF1300;
+        }
     }
     
     &.color8 {
         border-color: #EF4DB6;
+
+        &.online {
+            background-color: #EF4DB6;
+        }
     }
     
     &.color9 {
         border-color: #52EDC7;
+
+        &.online {
+            background-color: #52EDC7;
+        }
     }
 }    

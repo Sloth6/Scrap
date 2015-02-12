@@ -121,41 +121,81 @@ body section.space section.content article.color9 div.card.text.comment, body se
 .container > header ul.users li.user.color0 {
   border-color: #FF3B30;
 }
-/* line 66, ../sass/globals/_color.scss */
+/* line 65, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color0.online {
+  background-color: #FF3B30;
+}
+/* line 70, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color1 {
   border-color: #FF9500;
 }
-/* line 70, ../sass/globals/_color.scss */
+/* line 73, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color1.online {
+  background-color: #FF9500;
+}
+/* line 78, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color2 {
   border-color: #FFCC00;
 }
-/* line 74, ../sass/globals/_color.scss */
+/* line 81, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color2.online {
+  background-color: #FFCC00;
+}
+/* line 86, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color3 {
   border-color: #4CD964;
 }
-/* line 78, ../sass/globals/_color.scss */
+/* line 89, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color3.online {
+  background-color: #4CD964;
+}
+/* line 94, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color4 {
   border-color: #007AFF;
 }
-/* line 82, ../sass/globals/_color.scss */
+/* line 97, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color4.online {
+  background-color: #007AFF;
+}
+/* line 102, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color5 {
   border-color: #FF2D55;
 }
-/* line 86, ../sass/globals/_color.scss */
+/* line 105, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color5.online {
+  background-color: #FF2D55;
+}
+/* line 110, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color6 {
   border-color: #87FC70;
 }
-/* line 90, ../sass/globals/_color.scss */
+/* line 113, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color6.online {
+  background-color: #87FC70;
+}
+/* line 118, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color7 {
   border-color: #FF1300;
 }
-/* line 94, ../sass/globals/_color.scss */
+/* line 121, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color7.online {
+  background-color: #FF1300;
+}
+/* line 126, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color8 {
   border-color: #EF4DB6;
 }
-/* line 98, ../sass/globals/_color.scss */
+/* line 129, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color8.online {
+  background-color: #EF4DB6;
+}
+/* line 134, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color9 {
   border-color: #52EDC7;
+}
+/* line 137, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color9.online {
+  background-color: #52EDC7;
 }
 
 /*
@@ -368,22 +408,9 @@ body {
   right: left;
   height: 25vh;
   width: 100%;
-  opacity: .5;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  -webkit-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
   text-align: left;
 }
-/* line 14, ../sass/layout/_header.scss */
-.container > header:hover {
-  opacity: 1;
-}
-/* line 18, ../sass/layout/_header.scss */
+/* line 11, ../sass/layout/_header.scss */
 .container > header ul.menu {
   display: inline-block;
   width: 12rem;
@@ -391,25 +418,38 @@ body {
   margin-right: 1rem;
   margin: 0.5rem 0 0 0.5rem;
 }
-/* line 26, ../sass/layout/_header.scss */
+/* line 19, ../sass/layout/_header.scss */
 .container > header ul.users {
   float: right;
   width: auto;
 }
-/* line 30, ../sass/layout/_header.scss */
+/* line 23, ../sass/layout/_header.scss */
 .container > header ul.users > li.user {
   display: inline-block;
-  border-top: green 2pt solid;
+  border-top: 2pt solid;
+  padding: 0 0.25rem;
+  width: 1.5rem;
+  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition-property: width;
+  -o-transition-property: width;
+  -webkit-transition-property: width;
+  transition-property: width;
+  white-space: nowrap;
+  color: transparent;
 }
-/* line 35, ../sass/layout/_header.scss */
-.container > header ul.users > li.user:first-of-type {
-  padding-top: 0;
+/* line 37, ../sass/layout/_header.scss */
+.container > header ul.users > li.user:hover {
+  width: 8rem;
+  color: auto;
 }
-/* line 39, ../sass/layout/_header.scss */
+/* line 42, ../sass/layout/_header.scss */
 .container > header ul.users > li.user input {
   padding-top: 0;
 }
-/* line 45, ../sass/layout/_header.scss */
+/* line 48, ../sass/layout/_header.scss */
 .container > header li {
   font-size: .666em;
   font-family: "Futura";
@@ -418,7 +458,7 @@ body {
   font-size: 6.66pt;
   font-family: "Futura";
 }
-/* line 47, ../sass/layout/_header.scss */
+/* line 50, ../sass/layout/_header.scss */
 .container > header li input {
   font-size: .666em;
   font-family: "Futura";
