@@ -11,7 +11,12 @@ script.
 ul.users
   if isCreator
     li.user.color0.online(data-id=current_user.id)
-      span.owner #{current_user.name}
+      span.owner
+        span.initial D
+        span.name enice
+        span.initial L
+        span.name avigne
+
   else
     li John Appleseed
     li.user(data-id=current_user.id)=current_user.name
@@ -23,13 +28,41 @@ ul.users
         li(data-id=user.id) #{user.name} (owner)
       else
         li(data-id=user.id)=user.name
-  li.user.color4.online Denice Lavigne
-  li.user.color5.online Idell Morace
-  li.user.color5 Felisha Kilday
-  li.user.color6 Concetta Morehouse
-  li.user.color7 Maegan Hochstetler
-  li.user.color8.online Thomas Pera
-  li.user.color9 Bryan Velarde
+  li.user.color4.online
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
+  li.user.color5.online
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
+  li.user.color5
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
+  li.user.color6
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
+  li.user.color7
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
+  li.user.color8.online
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
+  li.user.color9
+    span.initial D
+    span.name enice
+    span.initial L
+    span.name avigne
   li.settings
     ul.menu.settings
       li settings

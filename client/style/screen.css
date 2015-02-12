@@ -438,18 +438,53 @@ body {
   -webkit-transition-property: width;
   transition-property: width;
   white-space: nowrap;
+  text-align: center;
+  font-family: "FuturaStd-Bold";
+  line-height: 2.666em;
+}
+/* line 39, ../sass/layout/_header.scss */
+.container > header ul.users > li.user.online:hover span.name, .container > header ul.users > li.user.online:hover span.initial {
+  color: white;
+}
+/* line 44, ../sass/layout/_header.scss */
+.container > header ul.users > li.user.online span.initial {
+  color: white;
+}
+/* line 49, ../sass/layout/_header.scss */
+.container > header ul.users > li.user:hover {
+  width: 12rem;
+  color: #000000;
+  text-align: left;
+  padding-left: 0.57143rem;
+}
+/* line 55, ../sass/layout/_header.scss */
+.container > header ul.users > li.user:hover span.name {
+  color: #000000;
+  width: auto;
+  margin-right: .25em;
+}
+/* line 62, ../sass/layout/_header.scss */
+.container > header ul.users > li.user span {
+  display: inline-block;
+  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition-property: color;
+  -o-transition-property: color;
+  -webkit-transition-property: color;
+  transition-property: color;
+}
+/* line 67, ../sass/layout/_header.scss */
+.container > header ul.users > li.user span.initial {
+  color: #000000;
+}
+/* line 71, ../sass/layout/_header.scss */
+.container > header ul.users > li.user span.name {
+  width: 0;
   color: transparent;
 }
-/* line 37, ../sass/layout/_header.scss */
-.container > header ul.users > li.user:hover {
-  width: 8rem;
-  color: auto;
-}
-/* line 42, ../sass/layout/_header.scss */
-.container > header ul.users > li.user input {
-  padding-top: 0;
-}
-/* line 48, ../sass/layout/_header.scss */
+/* line 79, ../sass/layout/_header.scss */
 .container > header li {
   font-size: .666em;
   font-family: "Futura";
@@ -458,7 +493,7 @@ body {
   font-size: 6.66pt;
   font-family: "Futura";
 }
-/* line 50, ../sass/layout/_header.scss */
+/* line 81, ../sass/layout/_header.scss */
 .container > header li input {
   font-size: .666em;
   font-family: "Futura";
