@@ -1,251 +1,230 @@
-section.container {
-    section.space {
-        article {
-            color: $colorType;
-            position: absolute;
-            backface-visibility: hidden;
-            background-color: transparent !important;
+section.container section.space {
+    
+    article {
+        color: $colorType;
+        position: absolute;
+        backface-visibility: hidden;
+        background-color: transparent !important;
+        font-size: $typeBodySize * $typeSizeMultiplier;
+        line-height: 1.5em;
+        transform-origin: top left;
+        -webkit-transform-origin: top left;
+        
+        // EVENTS
+        
+        &:hover {
+            cursor: move;
+            @include cardHover;
+            
+            header {
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            .card .ui-resizable-handle {
+                opacity: .2;
+            }
+        }
+
+        &.locked {
+            opacity: .25;
+            -webkit-filter: grayscale(1);
+        }
+
+        &.resizing {
+            .card .ui-resizable-handle {
+                opacity: .5;
+            }
+        }
+
+        &.dragging {
+            @include cardDrag;
+        }
+        
+        &.attached {
+        
+            .card {
+                
+                &:before {
+                    content: "•";
+                    font-size: .5em;
+                    position: absolute;
+                    top: $gutter/1.6666;
+                    left: $gutter/4;
+                    line-height: 0;
+                }
+            }
+        }
+        
+        // NEW ELEMENT
+        
+        &.add-element{
+            > .card {
+                @include cardHover;   
+            }
+            
+            form {
+            
+                .fileInputWrapper {
+                    position: relative;
+                    display: block;
+                    @include smallCaps;
+                    overflow: hidden;
+                    font-size: .5em;
+                    
+                    &:after {
+                        content: "Upload a file";
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                    }
+                    
+                    input[type="file"] {
+                        @include transform(scale($typeSizeMultiplier));
+                        opacity: 0;
+                        z-index: 2;
+                        position: relative;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        // CONTENTS
+        
+        textarea {
+            width: 100%;
+            height: $baseline * 6;
             font-size: $typeBodySize * $typeSizeMultiplier;
             line-height: 1.5em;
-            transform-origin: top left;
-            -webkit-transform-origin: top left;
+        }
+        
+        header {
+            background: green;
+            min-width: 10em;
+            width: auto;
+            text-align:left;
+            height: $baseline;
+            z-index: 4;
+            position: relative;
+            padding-left: $cardPaddingUnit/2;
+            @include typeBodySmallCaps;
 
-//                 max-width: $col*3* $typeSizeMultiplier;
-
-            &.add-element{
-//                     @include transform(scale(1/ $typeSizeMultiplier));
-//                     transform: scale(1/ ($typeSizeMultiplier / 2)) !important;
-
-                > .card {
-                    @include cardHover;   
-                }
-
-                form {
-
-                    .fileInputWrapper {
-//                             @include button;
-                        position: relative;
-                        display: block;
-                        @include smallCaps;
-                        overflow: hidden;
-                        font-size: .5em;
-
-                        &:after {
-                            content: "Upload a file";
-                            position: absolute;
-                            left: 0;
-                            width: 100%;
-                        }
-
-                        input[type="file"] {
-                            @include transform(scale($typeSizeMultiplier));
-                            opacity: 0;
-                            z-index: 2;
-                            position: relative;
-                            cursor: pointer;
-                        }
-                    }
-                }
+            opacity: 0;
+            @include transition(opacity .25s $defaultCurve);
+            
+            author {
+                display: inline-block;
+                position: relative;
+                top: -$baseline / 2;
             }
-
-            &:hover {
-                cursor: move;
-                @include cardHover;
-
-                a.delete {
-                    opacity: 1;
-                }
-            }
-
-            &:hover {
-                .card .ui-resizable-handle {
-                    opacity: .2;
-                }
-            }
-
-            &.locked {
-                opacity: .25;
-                -webkit-filter: grayscale(1);
-            }
-
-            &.resizing {
-                .card .ui-resizable-handle {
-                    opacity: .5;
-                }
-            }
-
-            &.dragging {
-                @include cardDrag;
-            }
-
-            &.website {
-
-                .card {
-
-                    &.header.text {
-                        position: relative;
-//                             margin-top: -.2em;
-//                             left: $gutter * 2;
-//                             background-color: transparent;
-//                             background-image: -webkit-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 100%);
-                        z-index: 2;
-//                             color: $colorTypeLight;
-
-                        .title {
-                            line-height: 1.25em;
-                        }
-
-                        .url {
-                            @include smallCaps;
-                            font-size: $typeBodySize * .666;
-                            font-family: $fontMedium;
-                            line-height: 2em;
-                            opacity: .25;
-//                                 color: $colorTypeLight;
-                        }
-
-                        .description {
-                            font-size: $typeBodySize;
-                            line-height: 1.5em;
-                            font-family: $fontMedium;
-                            padding-top: $baseline;
-                        }
-                    }
-
-                    &.image {
-                        max-height: $baseline * 24;
-                    }
-                }
-            }
-
-            &.text {
-
-                .card.text {
-                    @include commentCard;
-                }
-            }
-
-            textarea {
-                width: 100%;
-                height: $baseline * 6;
-                font-size: $typeBodySize * $typeSizeMultiplier;
-                line-height: 1.5em;
-            }
-
+        
             a.delete {
-                opacity: 0;
+                display: inline-block;
                 position: absolute;
-                display: block;
+                top: 2pt;
+                left: 1pt;
+                font-weight: bold;
                 cursor: pointer;
-                height: 30pt;
-                width:  30pt;
-                top: -18pt;
-                left: -10pt;
-//                     background: red;
-                overflow: hidden;
+                font-size: 1.5em;
+                line-height: 1em;
+                border: none;
                 z-index: 99999;
                 @include transition(opacity .25s $defaultCurve);
-
-                &:after {
-                    content: "╳"; // ✕
-                    font-size: 60pt;
-                    margin: 0;
-                    color: $colorType;
-                    position: absolute;
-                    top: 10pt;
-                    left: 0;
-                    height: 100%;
-                    width:  100%;
-                    display: block;
-                    font-family: sans-serif;
-//                         background: blue;                        
+                
+                &:hover {
+                    color: white;
                 }
             }
+        }
+        
+        // CONTENT
+        
+        .card {
+            position: relative;
+            max-width:$col * 2 * $typeSizeMultiplier;
+            width: auto;
 
-            &.attached {
-
-                .card {
-                    
-                    &:before {
-                        content: "•";
-                        font-size: .5em;
-                        position: absolute;
-                        top: $gutter/1.6666;
-                        left: $gutter/4;
-                        line-height: 0;
-                    }
-                }
-            }
-
-            .card {
-                position: relative;
-                max-width: $col * 2 * $typeSizeMultiplier;
+            &.text {
+                @include cardStyle;
                 width: auto;
+            }
 
-                &.text {
-                    @include cardStyle;
-                    width: auto;
-                }
-
-                &.image {
+            &.image {
                     background-color: rgba(255,255,255,.4); /* $colorCardBackground */;
                     width: $col*3*$typeSizeMultiplier;
                     overflow: hidden;
+                    
+               .ui-resizable-handle {
+                    &:after {
+                        color: white !important;
+                    }
+                }
+            }
+            
+            &.website {
+                .card.header.text {
+                    position: relative;
+                    z-index: 2;
 
-                    .ui-resizable-handle {
-                        &:after {
-                            color: white !important;
+                    .title p {
+                        line-height: 1.25em;
+                    }
+
+                    .url p {
+                        @include typeBodySmallCaps;
+                        line-height: 2em;
+                        opacity: .25;
+                    }
+
+                    .description p {
+                        @include typeBody;
+                        
+                        a {
+                            word-break: break-all;
                         }
                     }
                 }
 
-                &.website {
-                    p a {
-                        word-break: break-all;
-                    }
+                &.image {
+                    max-height: $baseline * 24;
                 }
+            }
 
-                &.caption, &.comment {
-//                         left: $gutter;
-//                         top: -$baseline;
-                    @include commentCard;
+            
+            &.caption, &.comment {
+                @include commentCard;
+            }
+
+            img {
+                width: 100%;
+                opacity: .9;
+                margin-bottom: -12pt;
+            }
+
+            .ui-resizable-handle {
+                z-index: 9999999;
+                background: none !important;
+                font-size: 10pt !important;
+                bottom:0;
+                text-align: right;
+                right: 0;
+                overflow: hidden;
+                opacity: 0;
+                @include transition(opacity .25s $defaultCurve);
+    
+                &:hover {
+                    opacity: .5;
                 }
-
-                img {
+    
+                &:after {
+                    content: "◢";
+                    position: absolute;
+                    bottom: 110%;
+                    left: 0%;
+                    height: 100%;
                     width: 100%;
-                    opacity: .9;
-                    margin-bottom: -12pt;
-                }
-
-                .ui-resizable-handle {
-                    z-index: 9999999;
-                    background: none !important;
-                    font-size: 10pt !important;
-                    bottom: 0;
-                    text-align: right;
-                    right: 0;
-                    overflow: hidden;
-                    opacity: 0;
-                    @include transition(opacity .25s $defaultCurve);
-
-                    &:hover {
-                        opacity: .5;
-                    }
-
-                    &:after {
-                        content: "◢";
-                        position: absolute;
-                        bottom: 110%;
-                        left: 0%;
-//                             text-indent: 1.5pt;
-                        height: 100%;
-                        width: 100%;
-                        /*
-position: absolute;
-                        top: 0;
-                        left: 0;
-*/
-                    }
                 }
             }
         }

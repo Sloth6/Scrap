@@ -12,43 +12,43 @@ $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
 
 body section.space section.content article {
-    &.color0 div.card.text.comment {
+    &.color0 div.card.text.comment, &.color0 header {
         background-color: #FF3B30;
     }
     
-    &.color1 div.card.text.comment  {
+    &.color1 div.card.text.comment, &.color1 header  {
         background-color: #FF9500;
     }
     
-    &.color2 div.card.text.comment  {
+    &.color2 div.card.text.comment, &.color2 header  {
         background-color: #FFCC00;
     }
     
-    &.color3 div.card.text.comment  {
+    &.color3 div.card.text.comment, &.color3 header  {
         background-color: #4CD964;        
     }
     
-    &.color4 div.card.text.comment  {
+    &.color4 div.card.text.comment, &.color4 header  {
         background-color: #007AFF;        
     }
     
-    &.color5 div.card.text.comment  {
+    &.color5 div.card.text.comment, &.color5 header  {
         background-color: #FF2D55;        
     }
     
-    &.color6 div.card.text.comment  {
+    &.color6 div.card.text.comment, &.color6 header  {
         background-color: #87FC70;
     }
     
-    &.color7 div.card.text.comment  {
+    &.color7 div.card.text.comment, &.color7 header  {
         background-color: #FF1300;
     }
     
-    &.color8 div.card.text.comment  {
+    &.color8 div.card.text.comment, &.color8 header  {
         background-color: #EF4DB6;
     }
     
-    &.color9 div.card.text.comment  {
+    &.color9 div.card.text.comment, &.color9 header  {
         background-color: #52EDC7;
     }
     

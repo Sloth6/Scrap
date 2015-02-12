@@ -37,10 +37,6 @@ section.container {
         //         }
         //     }
         // }
-        
-        &:active {
-            cursor: move;
-        }
 
         ul.users {
             position: fixed;
@@ -70,45 +66,6 @@ section.container {
             @include transform(scale(1));
             position: relative;
             z-index: 1;
-        }
-        
-        .delete {
-            text-align: center;
-            position: fixed;
-            z-index: 5;
-            width: $col;
-            padding: $gutter * 2;
-            bottom: -$col;
-            left: 50%;
-            margin-left: -$col/2;
-            @include transition(all .25s $defaultCurve);
-            @include transform(scale(.5));
-            
-            &.visible {
-                bottom: 0;
-                opacity: 1;
-            }
-            
-            &.rollover {
-                @include transform(scale(1.25));
-                opacity: 1;
-                bottom: 0;
-            }
-
-            &:after {
-                text-align: center;
-                content: "×";
-                font-size: 6em;
-                position: relative;
-                top: 33.333%;
-                height: 100%;
-                margin-top: -75%;
-                color: white;
-                font-family: "Helvetica Neue", "Helvetica", sans-serif;
-                margin-top: 2em;
-                font-weight: 100;
-                color: $colorAlert;
-            }
         }
     }
 }

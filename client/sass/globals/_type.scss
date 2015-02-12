@@ -13,18 +13,31 @@ $fontBoldItalic:"FuturaStd-BoldItalic";
 
 $typeBodySize:  10pt;
 
-@mixin typeBody {
+@mixin smallCaps {
+    font-size: .666em;
+    font-family: $fontMedium;
+    letter-spacing: .1825em;
+    text-transform: uppercase !important;
+}
+
+@mixin typeTitle {
     font-family: $fontRegular, sans-serif;
     font-size: $typeBodySize;
     letter-spacing: .5pt;
     line-height: 1.5em;
 }
 
-@mixin smallCaps {
-    font-size: .666em;
+@mixin typeBody {
+    font-size: $typeBodySize;
+    line-height: 1.5em;
     font-family: $fontMedium;
-    letter-spacing: .125em;
-    text-transform: uppercase !important;
+    padding-top: $baseline;
+}
+
+@mixin typeBodySmallCaps {
+    @include smallCaps;
+    font-size: $typeBodySize * .666;
+    font-family: $fontMedium;
 }
 
 @mixin typeHeader {
@@ -39,7 +52,7 @@ $typeBodySize:  10pt;
 }
 
 html {
-    @include typeBody;
+    @include typeTitle;
     
     a {
         color: $colorType;
