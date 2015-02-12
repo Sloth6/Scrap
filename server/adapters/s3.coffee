@@ -10,14 +10,14 @@ module.exports =
   #     Key: path
   #   s3.getObject params, callback
 
-  putImage: ({ name, img, spaceId }, callback) ->
+  putImage: ({ name, img, spaceId, type }, callback) ->
     console.log name, spaceId, img
     params =
       Bucket: root
-      Key: "#{spaceId}/small/#{name}.png"
+      Key: "#{spaceId}/#{type}/#{name}.jpg"
       ACL: 'public-read'
       Body: img
-      ContentType: 'image/png'
+      ContentType: 'image/jpg'
     s3.putObject params, callback
 
   # copyImage: ({ path, toBucket, fromBucket }, callback) ->

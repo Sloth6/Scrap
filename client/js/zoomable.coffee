@@ -30,10 +30,29 @@ $ ->
 
     content.css { scale }
 
+  changeResolutions = () ->
+    getSize = (e) ->
+      s = content.css 'scale'
+      { w, h } = dimension e
+      return 'small' if w * s < 150
+      return 'medium' if w * s < 450
+      'normal'
+    
+    switchImage = (img, key, size) ->
+      root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'
+      url = "#{root}/#{spaceKey}/#{size}/#{key}"
+      img.attr 'src', url
+
+    $('.image').each () ->
+      key = $(@).data('key')
+      if key
+        size = getSize $(@).parent()
+        switchImage $(@).children().first(), key, size
+
   socket = io.connect()
   fitToCenter()
   scrollTimer = null
-
+  changeResolutions()
   # scroll unless too far in or too far out
   $(window).on 'mousewheel', (event) ->
     event.preventDefault()
@@ -57,6 +76,6 @@ $ ->
 
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->
-        cluster()
-      ), 200)
+        changeResolutions()
+      ), 100)
 
