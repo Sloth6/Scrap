@@ -237,7 +237,7 @@ input {
   background: transparent;
   font-size: 10pt;
   line-height: 1.5em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
   line-height: 1.5em;
   border-bottom: 0.5pt #aaaaaa solid;
@@ -259,7 +259,7 @@ input.offset {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   padding: 1rem;
@@ -290,7 +290,7 @@ input.offset:active {
 /* line 73, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   border: 0;
@@ -305,7 +305,7 @@ input[type=checkbox] {
 /* line 84, ../sass/globals/_components.scss */
 input[type=checkbox] + label {
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
 }
@@ -361,25 +361,26 @@ ul.menu li a {
   display: block;
   width: 100%;
   height: 100%;
-  -moz-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
 /* line 126, ../sass/globals/_components.scss */
 ul.menu li a:hover {
-  padding-left: .5em;
+  font-family: "FuturaStd-Bold";
 }
 /* line 131, ../sass/globals/_components.scss */
 ul.menu li input {
   width: 95% !important;
+  padding-top: 0;
 }
-/* line 134, ../sass/globals/_components.scss */
+/* line 135, ../sass/globals/_components.scss */
 ul.menu li input[type=submit] {
   display: none;
 }
 
-/* line 141, ../sass/globals/_components.scss */
+/* line 142, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -388,7 +389,7 @@ textarea {
   background: transparent;
   font-size: 10pt;
   line-height: 1.5em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
   width: 100%;
   height: 9rem;
@@ -457,31 +458,53 @@ body {
   color: #000000;
   text-align: left;
   padding-left: 0.57143rem;
+  background-color: white;
 }
-/* line 56, ../sass/layout/_header.scss */
+/* line 57, ../sass/layout/_header.scss */
 .container > header ul.users > li:hover.settings {
   padding: 0;
 }
-/* line 59, ../sass/layout/_header.scss */
+/* line 60, ../sass/layout/_header.scss */
 .container > header ul.users > li:hover.settings ul.menu {
   margin: 0;
+  opacity: 1;
   height: auto;
 }
-/* line 64, ../sass/layout/_header.scss */
+/* line 66, ../sass/layout/_header.scss */
 .container > header ul.users > li:hover.settings span.symbol {
   display: none;
 }
-/* line 69, ../sass/layout/_header.scss */
+/* line 71, ../sass/layout/_header.scss */
 .container > header ul.users > li:hover span.name {
   color: #000000;
   width: auto;
   margin-right: .25em;
 }
-/* line 75, ../sass/layout/_header.scss */
+/* line 77, ../sass/layout/_header.scss */
 .container > header ul.users > li:hover ul.menu {
   opacity: 1;
+  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
 }
-/* line 80, ../sass/layout/_header.scss */
+/* line 86, ../sass/layout/_header.scss */
+.container > header ul.users > li.settings span.symbol {
+  font-size: 2em;
+  line-height: 1em;
+  position: relative;
+  top: -2pt;
+}
+/* line 94, ../sass/layout/_header.scss */
+.container > header ul.users > li.settings ul.menu {
+  opacity: 0;
+  height: 0;
+}
+/* line 100, ../sass/layout/_header.scss */
 .container > header ul.users > li span {
   display: inline-block;
   -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -493,37 +516,32 @@ body {
   -webkit-transition-property: color;
   transition-property: color;
 }
-/* line 85, ../sass/layout/_header.scss */
+/* line 105, ../sass/layout/_header.scss */
 .container > header ul.users > li span.initial {
   color: #000000;
 }
-/* line 89, ../sass/layout/_header.scss */
+/* line 109, ../sass/layout/_header.scss */
 .container > header ul.users > li span.name {
   width: 0;
   color: transparent;
 }
-/* line 95, ../sass/layout/_header.scss */
-.container > header ul.users > li ul.menu {
-  opacity: 0;
-  height: 0;
-}
-/* line 102, ../sass/layout/_header.scss */
+/* line 117, ../sass/layout/_header.scss */
 .container > header li {
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
 }
-/* line 104, ../sass/layout/_header.scss */
+/* line 119, ../sass/layout/_header.scss */
 .container > header li input {
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
 }
 
 /* line 6, ../sass/layout/_container.scss */
@@ -630,7 +648,7 @@ section.container section.space article.add-element form .fileInputWrapper {
   position: relative;
   display: block;
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   overflow: hidden;
@@ -672,11 +690,11 @@ section.container section.space article header {
   position: relative;
   padding-left: 1rem;
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   opacity: 0;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -753,11 +771,11 @@ section.container section.space article .card.website .card.header.text .title p
 /* line 175, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   line-height: 2em;
   opacity: .25;
 }
@@ -765,7 +783,7 @@ section.container section.space article .card.website .card.header.text .url p {
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
-  font-family: "Futura";
+  font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
 }
 /* line 184, ../sass/layout/_article.scss */
