@@ -20,7 +20,7 @@ $ ->
   socket.on 'newElement', (data) ->
     element = data.element
     { content, contentType, caption, creatorId } = element
-    console.log 'NEW ELEMT CONTENT', content
+    console.log 'NEW ELEMT CONTENT', content, contentType
 
     id = element.id
     x = element.x + totalDelta.x
@@ -43,7 +43,7 @@ $ ->
     if contentType is 'image'
       innerHTML = () ->
         "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
-    else if contentType = 'temp_image'
+    else if contentType is 'temp_image'
       innerHTML = () ->
           "<img src=#{content}>"
     else if contentType is 'website'

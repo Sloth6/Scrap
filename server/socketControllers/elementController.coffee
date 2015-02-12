@@ -2,12 +2,31 @@ models   = require '../../models'
 async    = require 'async'
 webPreviews = require '../modules/webPreviews.coffee'
 thumbnails = require '../modules/thumbnails.coffee'
+request = require 'request'
+
 memCache = {}
+
+getType = (s, cb) ->
+  jar = request.jar()
+  options =
+    url: s
+    followAllRedirects: true
+    jar: jar
+
+  request.head options, (err, res) ->
+    console.log err, res?.statusCode
+    if err || res.statusCode != 200
+      return cb 'text'
+    contentType = res.headers['content-type']
+    return cb 'image' if contentType.match /^image\//
+    return cb 'website' if contentType.match /^text\/html/
+    return 'text'
 
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
     console.log 'Received content', data.contentType
+
     done = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
         return callback err if err?
@@ -15,8 +34,8 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           sio.to(spaceKey).emit 'newElement', { element }
-    
-    newImage = () ->
+          return callback()
+    newImage = (attributes) ->
       original_url = data.content
 
       models.Space.find(where: { spaceKey }).complete (err, space) =>
@@ -36,25 +55,12 @@ module.exports =
           thumbnails { url: original_url, spaceKey, key }, (err) -> 
             return callback err if err?
             attributes.content = key
-          
-
-
-
-    attributes =
-      creatorId: data.userId
-      contentType: data.contentType
-      content: data.content
-      caption: data.caption
-      x: data.x
-      y: data.y
-      z: data.z
-      scale: data.scale
-
-    if data.contentType is 'website'
-      url = decodeURIComponent data.content
-      webPreviews url, (err, pageData) ->
+            return callback()
+            
+    newWebsite = (attributes) ->
+      # url = decodeURIComponent data.content
+      webPreviews attributes.content, (err, pageData) ->
         if err?
-          console.log url, err, pageData
           attributes.content = JSON.stringify { 
             title: url.match(/www.([a-z]*)/)[1]
             url: encodeURIComponent(url)
@@ -65,10 +71,27 @@ module.exports =
           attributes.content = JSON.stringify pageData
         done attributes
     
-    if data.contentType is 'image'
-      newImage()
-    else
-      done attributes
+    # console.log data.content
+    data.content = decodeURIComponent data.content
+    # console.log data.content, '\n'
+    getType data.content, (contentType) ->
+      console.log {contentType}
+      attributes =
+        creatorId: data.userId
+        contentType: contentType
+        content: data.content
+        caption: data.caption
+        x: data.x
+        y: data.y
+        z: data.z
+        scale: data.scale
+
+      if contentType is 'website'
+        newWebsite attributes
+      else if contentType is 'image'
+        newImage attributes
+      else
+        done attributes
         
 
   # delete the element

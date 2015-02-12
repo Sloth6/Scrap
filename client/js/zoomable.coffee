@@ -45,7 +45,6 @@ $ ->
 
     $('.card,.image').each () ->
       key = $(@).data('key')
-      console.log key
       if key
         size = getSize $(@).parent()
         switchImage $(@).children().first(), key, size

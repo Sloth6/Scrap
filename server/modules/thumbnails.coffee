@@ -10,7 +10,7 @@ sizes =
 rand_key = () -> Math.random().toString(36).slice(2)
 
 module.exports = ({ url, spaceKey, key }, callback) ->
-  console.log url, spaceKey, key
+  # console.log url, spaceKey, key
   request.get { url, encoding: null }, (err, res, body) ->
     normal = images(body).encode("jpg", {quality: 100})
     medium = images(body).size(sizes.medium).encode("jpg", {quality: 100})

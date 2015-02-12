@@ -89,43 +89,9 @@ $ ->
     $('.add-image').remove()
     $('.add-website').remove()
 
-  isImage = (url) ->
-    url.match(/(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?/)?
-
   isWebsite = (url) ->
     expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
     !!url.match expression
-
-  # adds caption and element to DOM
-  addCaption = (x, y, scale, contentType, content, innerHTML) ->
-    $('.add-element').remove()
-    captionForm = 
-      "<div class='card text comment'>
-        <textarea name='comment' placeholder='Add a comment'></textarea>
-      </div>
-      <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>
-      </div>"
-
-    element =
-      "<article class='#{contentType} add-#{contentType}'>
-        <a class='delete' href='#'></a>
-        <div class='card #{contentType}'>
-          #{innerHTML()}
-        </div>
-        #{captionForm}
-      </article>"
-
-    $('.content').append element
-    $(".add-#{contentType}").css(
-      scale: scale
-      "transform-origin": "top left"
-      'z-index': window.maxZ
-      top: "#{y}px"
-      left: "#{x}px")
-    $(this).remove()
-    $('textarea').focus()
-      .on 'blur', (event) -> emitElement x, y, scale, content, contentType
-      .on 'keyup', (event) -> emitElement x, y, scale, content, contentType if event.keyCode is 13 and not event.shiftKey
 
   # on double-click, append new element form, then process the new element if one is submitted
   $('.container').mouseup (event) ->
@@ -174,16 +140,8 @@ $ ->
 
     $('textarea').focus().autoGrow()
       .on 'keyup', (event) ->
-
-        # on paste of image, submit without hitting enter
-        if isImage $(this).val() 
-          content = $(this).val()
-          innerHTML = (content) -> "<img src='#{content}'>"
-          emitElement x, y, elementScale, content, 'image'
-          # addCaption x, y, elementScale, 'image', content, innerHTML
-
         # on enter (not shift + enter), submit either website or text
-        else if event.keyCode is 13 and not event.shiftKey
+        if event.keyCode is 13 and not event.shiftKey
           if isWebsite $(this).val()
             url = encodeURIComponent $(this).val().slice(0, -1)
             emitElement x, y, elementScale, url, 'website'
