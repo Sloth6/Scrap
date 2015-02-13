@@ -35,6 +35,10 @@ resize = (socket) ->
       newScale *= -1 if deltaX < 0 || deltaY < 0
 
       element.css("scale": Math.max(+oldElementScale + newScale, 0.5))
+      
+      # elementScale = $(this).css("scale")
+      # header.css("scale": Math.max(+oldElementScale + newScale, 0.5))
+      console.log(element.css("scale"))
 
       data =
         elementId: element.attr 'id'
