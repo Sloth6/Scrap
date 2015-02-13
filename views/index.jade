@@ -41,8 +41,8 @@ block content
 
         article.draggable(class=element.contentType, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};"+"transform:scale(#{element.scale},#{element.scale})")
           header
-            a.delete ╳
-            author=names[element.creatorId]
+            a.delete X
+            //- author= names[element.creatorId]
           case element.contentType
             when 'image'
               include partials/contentTypes/image

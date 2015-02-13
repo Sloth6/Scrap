@@ -9,60 +9,64 @@ script.
   names = !{JSON.stringify(names)}
 
 ul.users
-  if isCreator
-    li.user.color0.online(data-id=current_user.id)
-      span.owner
-        span.initial D
-        span.name enice
-        span.initial L
-        span.name avigne
+  //- if isCreator
+  //-   li.user.color0.online(data-id=current_user.id)
+  //-     span.owner
+  //-       span.initial D
+  //-       span.name enice
+  //-       span.initial L
+  //-       span.name avigne
 
-  else
-    li John Appleseed
-    li.user(data-id=current_user.id)=current_user.name
+  //- else
+  //-   li John Appleseed
+  //-   li.user(data-id=current_user.id)=current_user.name
+  //- each user in current_space.users
+  //-   if user.id != current_user.id
+  //-     if user.id != creator.id && isCreator
+  //-       li.deletable-user(data-id=user.id)=user.name
+  //-     else if user.id == creator.id
+  //-       li(data-id=user.id) #{user.name} (owner)
+  //-     else
+  //-       li(data-id=user.id)=user.name
   each user in current_space.users
-    if user.id != current_user.id
-      if user.id != creator.id && isCreator
-        li.deletable-user(data-id=user.id)=user.name
-      else if user.id == creator.id
-        li(data-id=user.id) #{user.name} (owner)
-      else
-        li(data-id=user.id)=user.name
-  li.user.color4.online
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
-  li.user.color5.online
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
-  li.user.color5
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
-  li.user.color6
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
-  li.user.color7
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
-  li.user.color8.online
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
-  li.user.color9
-    span.initial D
-    span.name enice
-    span.initial L
-    span.name avigne
+    li.user(class = "color"+colors[user.id])
+      - names = user.name.split(' ')
+      span.initials= user.name[0]
+      span.name= names[0].slice(1)
+      if names[1]
+        span.initial= names[1][0]
+        span.name= names[1].slice(1)
+
+  //- li.user.color1.online
+  //-   span.initial D
+  //-   span.name enice
+  //-   span.initial L
+  //-   span.name avigne
+  //- li.user.color2
+  //-   span.initial D
+  //-   span.name enice
+  //-   span.initial L
+  //-   span.name avigne
+  //- li.user.color3
+  //-   span.initial D
+  //-   span.name enice
+  //-   span.initial L
+  //-   span.name avigne
+  //- li.user.color4
+  //-   span.initial D
+  //-   span.name enice
+  //-   span.initial L
+  //-   span.name avigne
+  //- li.user.color5.online
+  //-   span.initial D
+  //-   span.name enice
+  //-   span.initial L
+  //-   span.name avigne
+  //- li.user.color9
+  //-   span.initial D
+  //-   span.name enice
+  //-   span.initial L
+  //-   span.name avigne
   li.settings
     span.symbol
       …
