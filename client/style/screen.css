@@ -497,7 +497,7 @@ body {
   font-size: 2em;
   line-height: 1em;
   position: relative;
-  top: -2pt;
+  top: -1pt;
 }
 /* line 94, ../sass/layout/_header.scss */
 .container > header ul.users > li.settings ul.menu {
@@ -683,11 +683,12 @@ section.container section.space article textarea {
 section.container section.space article header {
   background: green;
   min-width: 10em;
-  width: auto;
+  display: inline-block;
   text-align: left;
-  height: 1.5rem;
+  height: 1.875rem;
   z-index: 4;
-  position: relative;
+  position: absolute;
+  top: -1.875rem;
   padding-left: 1rem;
   font-size: .666em;
   font-family: "FuturaStd-Medium";
@@ -695,19 +696,20 @@ section.container section.space article header {
   text-transform: uppercase !important;
   font-size: 6.66pt;
   font-family: "FuturaStd-Medium";
+  color: white;
   opacity: 0;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 117, ../sass/layout/_article.scss */
+/* line 119, ../sass/layout/_article.scss */
 section.container section.space article header author {
   display: inline-block;
   position: relative;
   top: -0.75rem;
 }
-/* line 123, ../sass/layout/_article.scss */
+/* line 125, ../sass/layout/_article.scss */
 section.container section.space article header a.delete {
   display: inline-block;
   position: absolute;
@@ -718,23 +720,24 @@ section.container section.space article header a.delete {
   font-size: 1.5em;
   line-height: 1em;
   border: none;
+  color: white;
   z-index: 99999;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 136, ../sass/layout/_article.scss */
+/* line 139, ../sass/layout/_article.scss */
 section.container section.space article header a.delete:hover {
   color: white;
 }
-/* line 144, ../sass/layout/_article.scss */
+/* line 147, ../sass/layout/_article.scss */
 section.container section.space article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 149, ../sass/layout/_article.scss */
+/* line 152, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -748,27 +751,27 @@ section.container section.space article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 154, ../sass/layout/_article.scss */
+/* line 157, ../sass/layout/_article.scss */
 section.container section.space article .card.image {
   background-color: rgba(255, 255, 255, 0.4);
   /* $colorCardBackground */
   width: 48rem;
   overflow: hidden;
 }
-/* line 160, ../sass/layout/_article.scss */
+/* line 163, ../sass/layout/_article.scss */
 section.container section.space article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 167, ../sass/layout/_article.scss */
+/* line 170, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text {
   position: relative;
   z-index: 2;
 }
-/* line 171, ../sass/layout/_article.scss */
+/* line 174, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .title p {
   line-height: 1.25em;
 }
-/* line 175, ../sass/layout/_article.scss */
+/* line 178, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
   font-family: "FuturaStd-Medium";
@@ -779,33 +782,33 @@ section.container section.space article .card.website .card.header.text .url p {
   line-height: 2em;
   opacity: .25;
 }
-/* line 181, ../sass/layout/_article.scss */
+/* line 184, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
 }
-/* line 184, ../sass/layout/_article.scss */
+/* line 187, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
   word-break: break-all;
 }
-/* line 190, ../sass/layout/_article.scss */
+/* line 193, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 196, ../sass/layout/_article.scss */
+/* line 199, ../sass/layout/_article.scss */
 section.container section.space article .card.caption, section.container section.space article .card.comment {
   color: white;
   background-color: #333;
 }
-/* line 200, ../sass/layout/_article.scss */
+/* line 203, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 206, ../sass/layout/_article.scss */
+/* line 209, ../sass/layout/_article.scss */
 section.container section.space article .card .ui-resizable-handle {
   z-index: 9999999;
   background: none !important;
@@ -820,11 +823,11 @@ section.container section.space article .card .ui-resizable-handle {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 217, ../sass/layout/_article.scss */
+/* line 220, ../sass/layout/_article.scss */
 section.container section.space article .card .ui-resizable-handle:hover {
   opacity: .5;
 }
-/* line 221, ../sass/layout/_article.scss */
+/* line 224, ../sass/layout/_article.scss */
 section.container section.space article .card .ui-resizable-handle:after {
   content: "◢";
   position: absolute;
