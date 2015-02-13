@@ -31,7 +31,7 @@ ul.users
   each user in current_space.users
     li.user(class = "color"+colors[user.id])
       - names = user.name.split(' ')
-      span.initials= user.name[0]
+      span.initial= user.name[0]
       span.name= names[0].slice(1)
       if names[1]
         span.initial= names[1][0]
