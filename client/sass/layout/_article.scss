@@ -1,0 +1,235 @@
+section.container section.space {
+    
+    article {
+        color: $colorType;
+        position: absolute;
+        backface-visibility: hidden;
+        background-color: transparent !important;
+        font-size: $typeBodySize * $typeSizeMultiplier;
+        line-height: 1.5em;
+        transform-origin: top left;
+        -webkit-transform-origin: top left;
+        
+        // EVENTS
+        
+        &:hover {
+            cursor: move;
+            @include cardHover;
+            
+            header {
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            .card .ui-resizable-handle {
+                opacity: .2;
+            }
+        }
+
+        &.locked {
+            opacity: .25;
+            -webkit-filter: grayscale(1);
+        }
+
+        &.resizing {
+            .card .ui-resizable-handle {
+                opacity: .5;
+            }
+        }
+
+        &.dragging {
+            @include cardDrag;
+        }
+        
+        &.attached {
+        
+            .card {
+                
+                &:before {
+                    content: "•";
+                    font-size: .5em;
+                    position: absolute;
+                    top: $gutter/1.6666;
+                    left: $gutter/4;
+                    line-height: 0;
+                }
+            }
+        }
+        
+        // NEW ELEMENT
+        
+        &.add-element{
+            > .card {
+                @include cardHover;   
+            }
+            
+            form {
+            
+                .fileInputWrapper {
+                    position: relative;
+                    display: block;
+                    @include smallCaps;
+                    overflow: hidden;
+                    font-size: .5em;
+                    
+                    &:after {
+                        content: "Upload a file";
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                    }
+                    
+                    input[type="file"] {
+                        @include transform(scale($typeSizeMultiplier));
+                        opacity: 0;
+                        z-index: 2;
+                        position: relative;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        // CONTENTS
+        
+        textarea {
+            width: 100%;
+            height: $baseline * 6;
+            font-size: $typeBodySize * $typeSizeMultiplier;
+            line-height: 1.5em;
+        }
+        
+        header {
+            background: green;
+            min-width: 10em;
+            display: inline-block;
+            text-align:left;
+            height: $baseline * 1.25;
+            z-index: 4;
+            position: absolute;
+            top: -$baseline * 1.25;
+            padding-left: $cardPaddingUnit/2;
+            @include typeBodySmallCaps;
+            color: $colorTypeLight;
+
+            opacity: 0;
+            @include transition(opacity .25s $defaultCurve);
+            
+            author {
+                display: inline-block;
+                position: relative;
+                top: -$baseline / 2;
+            }
+        
+            a.delete {
+                display: inline-block;
+                position: absolute;
+                top: 2pt;
+                left: 1pt;
+                font-weight: bold;
+                cursor: pointer;
+                font-size: 1.5em;
+                line-height: 1em;
+                border: none;
+                color: $colorTypeLight;
+                z-index: 99999;
+                @include transition(opacity .25s $defaultCurve);
+                
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+        
+        // CONTENT
+        
+        .card {
+            position: relative;
+            max-width:$col * 2 * $typeSizeMultiplier;
+            width: auto;
+
+            &.text {
+                @include cardStyle;
+                width: auto;
+            }
+
+            &.image {
+                    background-color: $colorWashLightTrans40; /* $colorCardBackground */;
+                    width: $col*3*$typeSizeMultiplier;
+                    overflow: hidden;
+                    
+               .ui-resizable-handle {
+                    &:after {
+                        color: white !important;
+                    }
+                }
+            }
+            
+            &.website {
+                .card.header.text {
+                    position: relative;
+                    z-index: 2;
+
+                    .title p {
+                        line-height: 1.25em;
+                    }
+
+                    .url p {
+                        @include typeBodySmallCaps;
+                        line-height: 2em;
+                        opacity: .25;
+                    }
+
+                    .description p {
+                        @include typeBody;
+                        
+                        a {
+                            word-break: break-all;
+                        }
+                    }
+                }
+
+                &.image {
+                    max-height: $baseline * 24;
+                }
+            }
+
+            
+            &.caption, &.comment {
+                @include commentCard;
+            }
+
+            img {
+                width: 100%;
+                opacity: .9;
+                margin-bottom: -12pt;
+            }
+
+            .ui-resizable-handle {
+                z-index: 9999999;
+                background: none !important;
+                font-size: 10pt !important;
+                bottom:0;
+                text-align: right;
+                right: 0;
+                overflow: hidden;
+                opacity: 0;
+                @include transition(opacity .25s $defaultCurve);
+    
+                &:hover {
+                    opacity: .5;
+                }
+    
+                &:after {
+                    content: "◢";
+                    position: absolute;
+                    bottom: 110%;
+                    left: 0%;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

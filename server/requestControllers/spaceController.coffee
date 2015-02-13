@@ -99,6 +99,9 @@ module.exports =
         colors: colorMap space
         names: nameMap space
 
+    initials = (name) ->
+      name.replace(/\W*(\w)\w*/g, '$1').toUpperCase()
+
     show = (space, user) ->
       # console.log 'render private space'
       # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
