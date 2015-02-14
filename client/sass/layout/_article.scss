@@ -173,8 +173,9 @@ section.container section.space {
             &.website {
             
                 &:hover {
-                    .card.header.text .description p {
+                    .card.header.text .description {
                         opacity: 1;
+                        height: auto;
                     }
                 }
                 
@@ -192,14 +193,18 @@ section.container section.space {
                         opacity: .25;
                     }
 
-                    .description p {
-                        @include typeBody;
+                    .description {
                         opacity: 0;
+                        height: 0;
                         @include smoothTransition;
                         @include transition-property(opacity);
                         
-                        a {
-                            word-break: break-all;
+                        p {
+                            @include typeBody;
+                            
+                            a {
+                                word-break: break-all;
+                            }
                         }
                     }
 
