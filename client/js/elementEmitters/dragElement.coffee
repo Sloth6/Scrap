@@ -88,4 +88,4 @@ makeDraggable = (elements, socket) ->
       # socket.emit 'updateElement', { z: $(this).css('z-index'), elementId: $(this).attr 'id' }
 $ ->
   socket = io.connect()
-  makeDraggable $('article'), socket
+  makeDraggable $('.draggable'), socket
