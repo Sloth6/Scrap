@@ -39,6 +39,13 @@ resize = (socket) ->
       # elementScale = $(this).css("scale")
       # header.css("scale": Math.max(+oldElementScale + newScale, 0.5))
       console.log(element.css("scale"))
+      
+      # Scale controls
+      $(element).children('header, .resize').each () ->
+        newHeaderScale = 1 / element.css("scale");
+        $(this).attr('data-scale', newHeaderScale)
+        scaleControls($(this), newHeaderScale, screenScale)
+      
 
       data =
         elementId: element.attr 'id'

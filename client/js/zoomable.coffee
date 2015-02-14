@@ -78,8 +78,7 @@ $ ->
       content.css scale: newScale
       
       $('article > header, article > .resize').each () ->
-        scaleControls($(this), newScale)
-      console.log "SCALE", content.css('scale')
+        scaleControls($(this), $(this).attr('data-scale'), newScale)
       
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->

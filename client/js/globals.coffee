@@ -15,8 +15,7 @@ dimension = (elem) ->
   h = parseInt(elem.css('height')) * elemScale
   { w, h }
   
-scaleControls = (control, spaceScale) ->
-    controlScale    = control.attr 'data-scale'
+scaleControls = (control, controlScale, spaceScale) ->
     newControlScale = (1 / spaceScale) * controlScale
     control.css         'transform', 'scale(' + newControlScale + ')'
     control.css '-webkit-transform', 'scale(' + newControlScale + ')'
