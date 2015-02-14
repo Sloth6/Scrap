@@ -14,6 +14,11 @@ dimension = (elem) ->
   w = parseInt(elem.css('width')) * elemScale
   h = parseInt(elem.css('height')) * elemScale
   { w, h }
+  
+scaleControls = (control, controlScale, spaceScale) ->
+    newControlScale = (1 / spaceScale) * controlScale
+    control.css         'transform', 'scale(' + newControlScale + ')'
+    control.css '-webkit-transform', 'scale(' + newControlScale + ')'
 
 click = {}
 

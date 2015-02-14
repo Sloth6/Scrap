@@ -1,7 +1,10 @@
 $ ->
   content = $ '.content'
   viewOffsetX = viewOffsetY = 0
-
+  
+  $('article > header, article > .resize').each () ->
+    scaleControls($(this), 0.35)
+  
   screenFitScale = () ->
     scaleX = (window.innerWidth / (window.maxX - window.minX)) * .95
     scaleY = (window.innerHeight / (window.maxY - window.minY)) * .95
@@ -23,7 +26,7 @@ $ ->
 
     viewOffsetX = centerX - clusterCenterX
     viewOffsetY = centerY - clusterCenterY
-
+    
     content.css
       marginLeft: viewOffsetX * scale
       marginTop: viewOffsetY * scale
@@ -73,7 +76,10 @@ $ ->
         marginTop: viewOffsetY * newScale
 
       content.css scale: newScale
-
+      
+      $('article > header, article > .resize').each () ->
+        scaleControls($(this), $(this).attr('data-scale'), newScale)
+      
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->
         changeResolutions()
