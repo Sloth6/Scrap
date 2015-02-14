@@ -171,6 +171,13 @@ section.container section.space {
             }
             
             &.website {
+            
+                &:hover {
+                    .card.header.text .description p {
+                        opacity: 1;
+                    }
+                }
+                
                 .card.header.text {
                     position: relative;
                     z-index: 2;
@@ -187,11 +194,15 @@ section.container section.space {
 
                     .description p {
                         @include typeBody;
+                        opacity: 0;
+                        @include smoothTransition;
+                        @include transition-property(opacity);
                         
                         a {
                             word-break: break-all;
                         }
                     }
+
                 }
 
                 &.image {
