@@ -45,8 +45,7 @@ resize = (socket) ->
         newHeaderScale = 1 / element.css("scale");
         $(this).attr('data-scale', newHeaderScale)
         scaleControls($(this), newHeaderScale, screenScale)
-      
-
+        
       data =
         elementId: element.attr 'id'
         scale: elementScale element
