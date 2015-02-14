@@ -89,6 +89,7 @@ module.exports =
       map = {}
       for user in space.users
         map[user.id] = user.name
+      console.log map
       map
       
     showReadOnly = (space) ->
@@ -113,7 +114,7 @@ module.exports =
         current_user: user
         users: users
         colors: colorMap space
-        names: nameMap space
+        nameMap: nameMap space
 
           
   uploadFile : (req, res, callback) ->
