@@ -76,126 +76,126 @@ html {
   user-select: none;
 }
 
-/* line 22, ../sass/globals/_color.scss */
+/* line 45, ../sass/globals/_color.scss */
 body section.space section.content article.color0 div.card.text.comment, body section.space section.content article.color0 header {
-  background-color: #FF3B30;
+  background-color: rgba(255, 59, 48, 0.9);
 }
-/* line 26, ../sass/globals/_color.scss */
+/* line 49, ../sass/globals/_color.scss */
 body section.space section.content article.color1 div.card.text.comment, body section.space section.content article.color1 header {
-  background-color: #FF9500;
+  background-color: rgba(255, 149, 0, 0.9);
 }
-/* line 30, ../sass/globals/_color.scss */
+/* line 53, ../sass/globals/_color.scss */
 body section.space section.content article.color2 div.card.text.comment, body section.space section.content article.color2 header {
-  background-color: #FFCC00;
+  background-color: rgba(255, 204, 0, 0.9);
 }
-/* line 34, ../sass/globals/_color.scss */
+/* line 57, ../sass/globals/_color.scss */
 body section.space section.content article.color3 div.card.text.comment, body section.space section.content article.color3 header {
-  background-color: #4CD964;
+  background-color: rgba(76, 217, 100, 0.9);
 }
-/* line 38, ../sass/globals/_color.scss */
+/* line 61, ../sass/globals/_color.scss */
 body section.space section.content article.color4 div.card.text.comment, body section.space section.content article.color4 header {
-  background-color: #007AFF;
+  background-color: rgba(0, 122, 255, 0.9);
 }
-/* line 42, ../sass/globals/_color.scss */
+/* line 65, ../sass/globals/_color.scss */
 body section.space section.content article.color5 div.card.text.comment, body section.space section.content article.color5 header {
-  background-color: #FF2D55;
-}
-/* line 46, ../sass/globals/_color.scss */
-body section.space section.content article.color6 div.card.text.comment, body section.space section.content article.color6 header {
-  background-color: #87FC70;
-}
-/* line 50, ../sass/globals/_color.scss */
-body section.space section.content article.color7 div.card.text.comment, body section.space section.content article.color7 header {
-  background-color: #FF1300;
-}
-/* line 54, ../sass/globals/_color.scss */
-body section.space section.content article.color8 div.card.text.comment, body section.space section.content article.color8 header {
-  background-color: #EF4DB6;
-}
-/* line 58, ../sass/globals/_color.scss */
-body section.space section.content article.color9 div.card.text.comment, body section.space section.content article.color9 header {
-  background-color: #52EDC7;
-}
-
-/* line 66, ../sass/globals/_color.scss */
-.container > header ul.users li.user.color0 {
-  border-color: #FF3B30;
+  background-color: rgba(255, 45, 85, 0.9);
 }
 /* line 69, ../sass/globals/_color.scss */
-.container > header ul.users li.user.color0.online {
-  background-color: #FF3B30;
+body section.space section.content article.color6 div.card.text.comment, body section.space section.content article.color6 header {
+  background-color: rgba(135, 252, 112, 0.9);
 }
-/* line 74, ../sass/globals/_color.scss */
-.container > header ul.users li.user.color1 {
-  border-color: #FF9500;
+/* line 73, ../sass/globals/_color.scss */
+body section.space section.content article.color7 div.card.text.comment, body section.space section.content article.color7 header {
+  background-color: rgba(255, 19, 0, 0.9);
 }
 /* line 77, ../sass/globals/_color.scss */
+body section.space section.content article.color8 div.card.text.comment, body section.space section.content article.color8 header {
+  background-color: rgba(239, 77, 182, 0.9);
+}
+/* line 81, ../sass/globals/_color.scss */
+body section.space section.content article.color9 div.card.text.comment, body section.space section.content article.color9 header {
+  background-color: rgba(82, 237, 199, 0.9);
+}
+
+/* line 89, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color0 {
+  border-color: #ff3b30;
+}
+/* line 92, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color0.online {
+  background-color: #ff3b30;
+}
+/* line 97, ../sass/globals/_color.scss */
+.container > header ul.users li.user.color1 {
+  border-color: #ff9500;
+}
+/* line 100, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color1.online {
-  background-color: #FF9500;
+  background-color: #ff9500;
 }
-/* line 82, ../sass/globals/_color.scss */
+/* line 105, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color2 {
-  border-color: #FFCC00;
+  border-color: #ffcc00;
 }
-/* line 85, ../sass/globals/_color.scss */
+/* line 108, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color2.online {
-  background-color: #FFCC00;
+  background-color: #ffcc00;
 }
-/* line 90, ../sass/globals/_color.scss */
+/* line 113, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color3 {
-  border-color: #4CD964;
+  border-color: #4cd964;
 }
-/* line 93, ../sass/globals/_color.scss */
+/* line 116, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color3.online {
-  background-color: #4CD964;
+  background-color: #4cd964;
 }
-/* line 98, ../sass/globals/_color.scss */
+/* line 121, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color4 {
-  border-color: #007AFF;
+  border-color: #007aff;
 }
-/* line 101, ../sass/globals/_color.scss */
+/* line 124, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color4.online {
-  background-color: #007AFF;
+  background-color: #007aff;
 }
-/* line 106, ../sass/globals/_color.scss */
+/* line 129, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color5 {
-  border-color: #FF2D55;
+  border-color: #ff2d55;
 }
-/* line 109, ../sass/globals/_color.scss */
+/* line 132, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color5.online {
-  background-color: #FF2D55;
+  background-color: #ff2d55;
 }
-/* line 114, ../sass/globals/_color.scss */
+/* line 137, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color6 {
-  border-color: #87FC70;
+  border-color: #87fc70;
 }
-/* line 117, ../sass/globals/_color.scss */
+/* line 140, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color6.online {
-  background-color: #87FC70;
+  background-color: #87fc70;
 }
-/* line 122, ../sass/globals/_color.scss */
+/* line 145, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color7 {
-  border-color: #FF1300;
+  border-color: #ff1300;
 }
-/* line 125, ../sass/globals/_color.scss */
+/* line 148, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color7.online {
-  background-color: #FF1300;
+  background-color: #ff1300;
 }
-/* line 130, ../sass/globals/_color.scss */
+/* line 153, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color8 {
-  border-color: #EF4DB6;
+  border-color: #ef4db6;
 }
-/* line 133, ../sass/globals/_color.scss */
+/* line 156, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color8.online {
-  background-color: #EF4DB6;
+  background-color: #ef4db6;
 }
-/* line 138, ../sass/globals/_color.scss */
+/* line 161, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color9 {
-  border-color: #52EDC7;
+  border-color: #52edc7;
 }
-/* line 141, ../sass/globals/_color.scss */
+/* line 164, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color9.online {
-  background-color: #52EDC7;
+  background-color: #52edc7;
 }
 
 /*
@@ -797,6 +797,8 @@ section.container section.space article .card.website .card.header.text .descrip
   margin-left: -1rem;
   padding-left: 1rem;
   padding-bottom: 0.5rem;
+  min-width: auto;
+  display: block;
   -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -806,28 +808,27 @@ section.container section.space article .card.website .card.header.text .descrip
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 205, ../sass/layout/_article.scss */
+/* line 207, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
 }
-/* line 208, ../sass/layout/_article.scss */
+/* line 210, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
   word-break: break-all;
 }
-/* line 216, ../sass/layout/_article.scss */
+/* line 218, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 226, ../sass/layout/_article.scss */
+/* line 228, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
-  opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 233, ../sass/layout/_article.scss */
+/* line 234, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   background: none;
@@ -844,11 +845,11 @@ section.container section.space article .ui-resizable-handle {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
 }
-/* line 246, ../sass/layout/_article.scss */
+/* line 247, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
-/* line 250, ../sass/layout/_article.scss */
+/* line 251, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:after {
   content: "◢";
   position: absolute;

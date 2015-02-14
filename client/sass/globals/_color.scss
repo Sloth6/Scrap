@@ -15,48 +15,71 @@ $colorBackground:           $colorWashMediumLight;
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
 
+// SPOT COLORS
+
+$color0:        rgba(255,59,48  ,1);
+$color0trans:   rgba(255,59,48  ,.9);
+$color1:        rgba(255,149,0  ,1);
+$color1trans:   rgba(255,149,0  ,.9);
+$color2:        rgba(255,204,0  ,1);
+$color2trans:   rgba(255,204,0  ,.9);
+$color3:        rgba(76,217,100 ,1);
+$color3trans:   rgba(76,217,100 ,.9);
+$color4:        rgba(0,122,255  ,1);
+$color4trans:   rgba(0,122,255  ,.9);
+$color5:        rgba(255,45,85  ,1);
+$color5trans:   rgba(255,45,85  ,.9);
+$color6:        rgba(135,252,112,1);
+$color6trans:   rgba(135,252,112,.9);
+$color7:        rgba(255,19,0   ,1);
+$color7trans:   rgba(255,19,0   ,.9);
+$color8:        rgba(239,77,182 ,1);
+$color8trans:   rgba(239,77,182 ,.9);
+$color9:        rgba(82,237,199 ,1);
+$color9trans:   rgba(82,237,199 ,.9);
+
 // ARTICLES
 
 body section.space section.content article {
     
     &.color0 div.card.text.comment, &.color0 header {
-        background-color: #FF3B30;
+        background-color: $color0trans;
     }
     
     &.color1 div.card.text.comment, &.color1 header  {
-        background-color: #FF9500;
+        background-color: $color1trans;
     }
     
     &.color2 div.card.text.comment, &.color2 header  {
-        background-color: #FFCC00;
+        background-color: $color2trans;
     }
     
     &.color3 div.card.text.comment, &.color3 header  {
-        background-color: #4CD964;        
+        background-color: $color3trans;        
     }
     
     &.color4 div.card.text.comment, &.color4 header  {
-        background-color: #007AFF;        
+        background-color: $color4trans;        
     }
     
     &.color5 div.card.text.comment, &.color5 header  {
-        background-color: #FF2D55;        
+        background-color: $color5trans;        
     }
     
     &.color6 div.card.text.comment, &.color6 header  {
-        background-color: #87FC70;
+        background-color: $color6trans;
     }
     
     &.color7 div.card.text.comment, &.color7 header  {
-        background-color: #FF1300;
+        background-color: $color7trans;
     }
     
     &.color8 div.card.text.comment, &.color8 header  {
-        background-color: #EF4DB6;
+        background-color: $color8trans;
     }
     
     &.color9 div.card.text.comment, &.color9 header  {
-        background-color: #52EDC7;
+        background-color: $color9trans;
     }
 }
 
@@ -64,82 +87,82 @@ body section.space section.content article {
 
 .container > header ul.users li.user {
     &.color0 {
-        border-color: #FF3B30;
+        border-color: $color0;
         
         &.online {
-            background-color: #FF3B30;
+            background-color: $color0;
         }
     }
     
     &.color1 {
-        border-color: #FF9500;
+        border-color: $color1;
 
         &.online {
-            background-color: #FF9500;
+            background-color: $color1;
         }
     }
     
     &.color2 {
-        border-color: #FFCC00;
+        border-color: $color2;
         
         &.online {
-            background-color: #FFCC00;
+            background-color: $color2;
         }
     }
     
     &.color3 {
-        border-color: #4CD964;        
+        border-color: $color3;        
         
         &.online {
-            background-color: #4CD964;
+            background-color: $color3;
         }
     }
     
     &.color4 {
-        border-color: #007AFF;
+        border-color: $color4;
 
         &.online {
-            background-color: #007AFF;
+            background-color: $color4;
         }
     }
     
     &.color5 {
-        border-color: #FF2D55;        
+        border-color: $color5;        
 
         &.online {
-            background-color: #FF2D55;
+            background-color: $color5;
         }
     }
     
     &.color6 {
-        border-color: #87FC70;
+        border-color: $color6;
 
         &.online {
-            background-color: #87FC70;
+            background-color: $color6;
         }
     }
     
     &.color7 {
-        border-color: #FF1300;
+        border-color: $color7;
 
         &.online {
-            background-color: #FF1300;
+            background-color: $color7;
         }
     }
     
     &.color8 {
-        border-color: #EF4DB6;
+        border-color: $color8;
 
         &.online {
-            background-color: #EF4DB6;
+            background-color: $color8;
         }
     }
     
     &.color9 {
-        border-color: #52EDC7;
+        border-color: $color9;
 
         &.online {
-            background-color: #52EDC7;
+            background-color: $color9;
         }
     }
 }    
