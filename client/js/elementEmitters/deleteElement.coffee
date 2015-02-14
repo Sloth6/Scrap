@@ -1,12 +1,14 @@
 onDelete = () ->
-	window.dontAddNext = true
-	if (confirm "Delete?")
-	  elementId = $(@).parent().attr 'id'
-	 	detach $(@).parent()
-	  socket.emit 'removeElement', { elementId, userId }
+  window.dontAddNext = true
+  # if (confirm "Delete?")
+  elementId = $(@).parent().parent().attr 'id'
+  detach $(@).parent()
+  console.log 'delete', elementId, userId
+
+  socket.emit 'removeElement', { elementId, userId }
 
 makeDeletable = (elem) ->
-	elem.find('a.delete').click onDelete
+  elem.find('a.delete').click onDelete
 
 $ ->
   socket = io.connect()
