@@ -57,4 +57,4 @@ block content
               include partials/contentTypes/website
             default
               include partials/contentTypes/text
-          .ui-resizable-handle.ui-resizable-se
+          .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale(#{1/element.scale},#{1/element.scale}); transform:scale(#{1/element.scale},#{1/element.scale});", data-scale="#{1/element.scale}")

@@ -1,7 +1,10 @@
 $ ->
   content = $ '.content'
   viewOffsetX = viewOffsetY = 0
-
+  
+  $('article > header, article > .resize').each () ->
+    scaleControls($(this), 0.35)
+  
   screenFitScale = () ->
     scaleX = (window.innerWidth / (window.maxX - window.minX)) * .95
     scaleY = (window.innerHeight / (window.maxY - window.minY)) * .95
@@ -74,8 +77,9 @@ $ ->
 
       content.css scale: newScale
       
-      $('article > header').each () ->
+      $('article > header, article > .resize').each () ->
         scaleControls($(this), newScale)
+      console.log "SCALE", content.css('scale')
       
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->
