@@ -23,12 +23,19 @@ $ ->
 
     viewOffsetX = centerX - clusterCenterX
     viewOffsetY = centerY - clusterCenterY
-
+    
     content.css
       marginLeft: viewOffsetX * scale
       marginTop: viewOffsetY * scale
 
     content.css { scale }
+  
+  # Set initial header scale value (relative to parent article)
+  $('article > header').each () ->
+    transform = $(this).css '-webkit-transform'
+    matrix = new WebKitCSSMatrix(transform)
+    headerScale = matrix.m11
+    $(this).attr 'data-scale', headerScale
 
   changeResolutions = () ->
     getSize = (e) ->
@@ -73,7 +80,16 @@ $ ->
         marginTop: viewOffsetY * newScale
 
       content.css scale: newScale
-
+      
+      $('article > header').each () ->
+        headerScale = $(this).attr 'data-scale'
+        
+        # headerScale = 1/(elementScale($(this)))
+        newHeaderScale =  (1 / newScale) * headerScale
+        $(this).css         'transform', 'scale(' + newHeaderScale + ')'
+        $(this).css '-webkit-transform', 'scale(' + newHeaderScale + ')'
+        console.log newHeaderScale
+      
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->
         changeResolutions()

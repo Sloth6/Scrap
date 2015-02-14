@@ -112,6 +112,10 @@ section.container section.space {
             padding-left: $cardPaddingUnit/2;
             @include typeBodySmallCaps;
             color: $colorTypeLight;
+            
+            // For scaling
+                    transform-origin: bottom left;
+            -webkit-transform-origin: bottom left;
 
             opacity: 0;
             @include transition(opacity .25s $defaultCurve);
