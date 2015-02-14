@@ -31,15 +31,6 @@ $ ->
     titleDiv = ''
     captionDiv = ''
 
-    if caption? and caption != ''
-      captionDiv =
-        "<div class='card text caption comment'>
-          <p>#{caption}</p>
-          <div class='background'></div>
-          <div class='ui-resizable-handle ui-resizable-se ui-icon ui-icon-grip-diagonal-se'>
-          </div>
-        <div class='background'></div></div>"
-
     if contentType is 'image'
       innerHTML = () ->
         "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
@@ -65,6 +56,7 @@ $ ->
            </div>
         </a>"
     else # type == text
+      # innerHTML = () -> "<form>Hello<input type='text' name='firstname'></form>"
       innerHTML = () -> "<p>#{content}</p>"
     
     newArticle =
@@ -127,6 +119,10 @@ $ ->
       scale = element.scale
       elem.css { scale }
       # elem.transition { scale }
+    if element.content
+      elem.children('.card.text.comment').children('p').html element.content
+      # ...
+    
 
     # window.maxZ +=1
     updateGlobals element

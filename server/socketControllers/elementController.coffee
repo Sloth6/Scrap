@@ -116,12 +116,13 @@ module.exports =
     query += " \"y\"=:y," if data.y?
     query += " \"z\"=:z," if data.z?
     query += " \"scale\"=:scale" if data.scale?
+    query += " \"content\"=:content" if data.content?
     # remove the trailing comma if necessary
     query = query.slice(0,query.length - 1) if query[query.length - 1] is ","
     query += " WHERE \"id\"=:id RETURNING *"
 
     # new element to be filled in by update
-    # console.log data
+    # console.log data.final
     if data.final
       element = models.Element.build()
       models.sequelize.query(query, element, null, data).complete (err, result) ->
@@ -139,5 +140,5 @@ module.exports =
       element.y = parseInt data.y if data.y
       element.z = parseInt data.z if data.z
       element.scale = parseFloat data.scale if data.scale
-      # console.log element.scale
+      element.content = data.content if data.content
       sio.to("#{spaceKey}").emit 'updateElement', { element, userId: data.userId }

@@ -10,8 +10,8 @@ $ ->
     mouse.y = event.clientY
 
   $(window).mousedown (event) ->
-    if window.dontAddNext == false
-      window.dontAddNext = !!$('.add-element').length
+    if !!$('.add-element').length
+      window.dontAddNext = true
     $('.add-element').remove()
 
   # The options for s3-streamed file uploads, used later
@@ -109,7 +109,7 @@ $ ->
       "<article class='add-element'>
         <div class='card text comment'>
           <p>
-            <textarea name='content' placeholder='Paste a link or an image'></textarea>
+            <textarea name='content' class='new' placeholder='Paste a link or an image'></textarea>
           </p>
           <p>
             <form enctype='multipart/form-data' class='direct-upload'>
@@ -139,7 +139,7 @@ $ ->
     # allow file uploads
     $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
-    $('textarea').focus().autoGrow()
+    $('textarea.new').focus().autoGrow()
       .on 'keyup', (event) ->
         # on enter (not shift + enter), submit either website or text
         if event.keyCode is 13 and not event.shiftKey
