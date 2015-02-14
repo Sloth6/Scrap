@@ -544,39 +544,39 @@ body {
   font-family: "FuturaStd-Medium";
 }
 
-/* line 6, ../sass/layout/_container.scss */
+/* line 1, ../sass/layout/_container.scss */
 section.container {
   width: 10000%;
   height: 10000%;
   position: fixed;
 }
-/* line 11, ../sass/layout/_container.scss */
+/* line 6, ../sass/layout/_container.scss */
 section.container section.space {
   width: 100%;
   height: 100%;
 }
-/* line 41, ../sass/layout/_container.scss */
+/* line 36, ../sass/layout/_container.scss */
 section.container section.space ul.users {
   position: fixed;
   z-index: 2;
   top: 0;
   right: 0;
 }
-/* line 47, ../sass/layout/_container.scss */
+/* line 42, ../sass/layout/_container.scss */
 section.container section.space ul.users li {
   display: block;
   height: 3rem;
   width: 3rem;
   margin: .5em;
 }
-/* line 53, ../sass/layout/_container.scss */
+/* line 48, ../sass/layout/_container.scss */
 section.container section.space ul.users li img {
   height: 100%;
   width: 100%;
   border-radius: 100%;
   background-color: red;
 }
-/* line 63, ../sass/layout/_container.scss */
+/* line 58, ../sass/layout/_container.scss */
 section.container section.space section.content {
   transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
@@ -696,7 +696,6 @@ section.container section.space article header {
   text-transform: uppercase !important;
   font-size: 6.66pt;
   font-family: "FuturaStd-Medium";
-  color: white;
   transform-origin: bottom left;
   -webkit-transform-origin: bottom left;
   opacity: 0;
@@ -705,13 +704,13 @@ section.container section.space article header {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 121, ../sass/layout/_article.scss */
+/* line 120, ../sass/layout/_article.scss */
 section.container section.space article header author {
   display: inline-block;
   position: relative;
   top: -0.75rem;
 }
-/* line 127, ../sass/layout/_article.scss */
+/* line 126, ../sass/layout/_article.scss */
 section.container section.space article header a.delete {
   display: inline-block;
   position: absolute;
@@ -722,24 +721,23 @@ section.container section.space article header a.delete {
   font-size: 1.5em;
   line-height: 1em;
   border: none;
-  color: white;
   z-index: 99999;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 141, ../sass/layout/_article.scss */
+/* line 139, ../sass/layout/_article.scss */
 section.container section.space article header a.delete:hover {
   color: white;
 }
-/* line 149, ../sass/layout/_article.scss */
+/* line 147, ../sass/layout/_article.scss */
 section.container section.space article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 154, ../sass/layout/_article.scss */
+/* line 152, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -753,32 +751,32 @@ section.container section.space article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 159, ../sass/layout/_article.scss */
+/* line 157, ../sass/layout/_article.scss */
 section.container section.space article .card.image {
   background-color: rgba(255, 255, 255, 0.4);
   /* $colorCardBackground */
   width: 48rem;
   overflow: hidden;
 }
-/* line 165, ../sass/layout/_article.scss */
+/* line 163, ../sass/layout/_article.scss */
 section.container section.space article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 174, ../sass/layout/_article.scss */
+/* line 172, ../sass/layout/_article.scss */
 section.container section.space article .card.website:hover .card.header.text .description {
   opacity: 1;
   height: auto;
 }
-/* line 180, ../sass/layout/_article.scss */
+/* line 178, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text {
   position: relative;
   z-index: 2;
 }
-/* line 184, ../sass/layout/_article.scss */
+/* line 182, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .title p {
   line-height: 1.25em;
 }
-/* line 188, ../sass/layout/_article.scss */
+/* line 186, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
   font-family: "FuturaStd-Medium";
@@ -789,7 +787,7 @@ section.container section.space article .card.website .card.header.text .url p {
   line-height: 2em;
   opacity: .25;
 }
-/* line 194, ../sass/layout/_article.scss */
+/* line 192, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description {
   opacity: 0;
   height: 0;
@@ -802,37 +800,32 @@ section.container section.space article .card.website .card.header.text .descrip
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 200, ../sass/layout/_article.scss */
+/* line 198, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
 }
-/* line 203, ../sass/layout/_article.scss */
+/* line 201, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
   word-break: break-all;
 }
-/* line 211, ../sass/layout/_article.scss */
+/* line 209, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 217, ../sass/layout/_article.scss */
-section.container section.space article .card.caption, section.container section.space article .card.comment {
-  color: white;
-  background-color: #333;
-}
-/* line 221, ../sass/layout/_article.scss */
+/* line 219, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 228, ../sass/layout/_article.scss */
+/* line 226, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   background: none;
-  font-size: 10pt !important;
+  font-size: 12pt !important;
   bottom: 0;
   text-align: right;
   right: 0;
@@ -842,6 +835,8 @@ section.container section.space article .ui-resizable-handle {
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
 }
 /* line 239, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {

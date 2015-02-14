@@ -109,7 +109,6 @@ section.container section.space {
             top: -$baseline * 1.25;
             padding-left: $cardPaddingUnit/2;
             @include typeBodySmallCaps;
-            color: $colorTypeLight;
             
             // For scaling
                     transform-origin: bottom left;
@@ -134,7 +133,6 @@ section.container section.space {
                 font-size: 1.5em;
                 line-height: 1em;
                 border: none;
-                color: $colorTypeLight;
                 z-index: 99999;
                 @include transition(opacity .25s $defaultCurve);
                 
@@ -214,8 +212,8 @@ section.container section.space {
             }
 
             
-            &.caption, &.comment {
-                @include commentCard;
+            &.caption, &.comment {                       
+                // background-color: $colorCardBackgroundLight;
             }
 
             img {
@@ -228,13 +226,15 @@ section.container section.space {
         .ui-resizable-handle {
             z-index: 9999999;
             background: none;
-            font-size: 10pt !important;
+            font-size: 12pt !important;
             bottom:0;
             text-align: right;
             right: 0;
             overflow: hidden;
             opacity: 0;
             @include transition(opacity .25s $defaultCurve);
+            transform-origin:           bottom right;
+            -webkit-transform-origin:   bottom right;
         
             &:hover {
                 opacity: .5;
