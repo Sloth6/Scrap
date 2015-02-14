@@ -6,6 +6,25 @@ section.container {
     section.space {
         width:  100%;
         height: 100%;
+        
+        article#spaceName {
+            cursor: default;
+            
+            .card {
+                max-width: 100em !important;
+                background-color: transparent;
+                left: -50%;
+                margin-top: -12.5%;
+            }
+            
+            p {
+                // @include smallCaps;
+                font-family: $fontMedium;
+                font-size: 4em;
+                line-height: 1em;
+                // letter-spacing: -.03125em;
+            }
+        }
 
         // h1 {
         //     position: fixed;
