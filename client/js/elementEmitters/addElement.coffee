@@ -10,7 +10,8 @@ $ ->
     mouse.y = event.clientY
 
   $(window).mousedown (event) ->
-    window.dontAddNext = $('.add-element').length
+    if window.dontAddNext == false
+      window.dontAddNext = !!$('.add-element').length
     $('.add-element').remove()
 
   # The options for s3-streamed file uploads, used later
