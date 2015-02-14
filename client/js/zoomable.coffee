@@ -36,6 +36,8 @@ $ ->
   changeResolutions = () ->
     getSize = (e) ->
       s = content.css 'scale'
+      # x = Math.floor(parseInt(e.css('left')))
+      # y = Math.floor(parseInt(e.css('top')))
       { w, h } = dimension e
       return 'small' if w * s < 100
       return 'medium' if w * s < 400

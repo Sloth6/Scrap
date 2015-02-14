@@ -4,7 +4,10 @@ $ ->
   $('.card.comment.text').mousedown () ->
     window.dontAddNext = true
 
-  # $(window).mousedown () -> done()
+  # completeCurrent = null
+  # $(window).mousedown () -> 
+  #   completeCurrent() if completeCurrent)
+  #   done()
 
   $('.card.comment.text').on 'dblclick', () ->
     elem = $(this)
@@ -21,7 +24,8 @@ $ ->
     elem.prepend(form)
     p.remove()
 
-    done = (content) ->
+    done = () ->
+      content = $('textarea[name=content]').val().slice(0, -1)
       p.html content.replace /\n/g, '<br>'
       elem.prepend(p)
       form.remove()
@@ -29,12 +33,10 @@ $ ->
       socket.emit 'updateElement', { elementId: id, content, final: true, userId }
 
     form.focus().autoGrow()
-      .on 'keyup', (event) ->
-        final = false
-        content = $('textarea[name=content]').val().slice(0, -1)
-        # console.log content
-        # console.log event.keyCode 
+      .on 'keydown', (event) ->
         if event.keyCode is 13 and not event.shiftKey
-          done content
-        else
+          done()
+      .on 'keyup', (event) ->
+        if not(event.keyCode is 13 and not event.shiftKey)
+          content = $('textarea[name=content]').val().slice(0, -1)
           socket.emit 'updateElement', { elementId: id, content, final: false, userId }
