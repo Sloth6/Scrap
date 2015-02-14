@@ -608,20 +608,20 @@ section.container section.space article:hover {
 section.container section.space article:hover header {
   opacity: 1;
 }
-/* line 25, ../sass/layout/_article.scss */
-section.container section.space article:hover .card .ui-resizable-handle {
+/* line 23, ../sass/layout/_article.scss */
+section.container section.space article:hover .ui-resizable-handle {
   opacity: .2;
 }
-/* line 30, ../sass/layout/_article.scss */
+/* line 28, ../sass/layout/_article.scss */
 section.container section.space article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
-/* line 36, ../sass/layout/_article.scss */
+/* line 34, ../sass/layout/_article.scss */
 section.container section.space article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 41, ../sass/layout/_article.scss */
+/* line 39, ../sass/layout/_article.scss */
 section.container section.space article.dragging {
   -moz-transform: rotate(-2deg);
   -ms-transform: rotate(-2deg);
@@ -630,7 +630,7 @@ section.container section.space article.dragging {
   opacity: .8;
   cursor: move;
 }
-/* line 49, ../sass/layout/_article.scss */
+/* line 47, ../sass/layout/_article.scss */
 section.container section.space article.attached .card:before {
   content: "•";
   font-size: .5em;
@@ -639,11 +639,11 @@ section.container section.space article.attached .card:before {
   left: 0.25rem;
   line-height: 0;
 }
-/* line 63, ../sass/layout/_article.scss */
+/* line 61, ../sass/layout/_article.scss */
 section.container section.space article.add-element > .card {
   opacity: .9;
 }
-/* line 69, ../sass/layout/_article.scss */
+/* line 67, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper {
   position: relative;
   display: block;
@@ -654,14 +654,14 @@ section.container section.space article.add-element form .fileInputWrapper {
   overflow: hidden;
   font-size: .5em;
 }
-/* line 76, ../sass/layout/_article.scss */
+/* line 74, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper:after {
   content: "Upload a file";
   position: absolute;
   left: 0;
   width: 100%;
 }
-/* line 83, ../sass/layout/_article.scss */
+/* line 81, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper input[type="file"] {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
@@ -672,14 +672,14 @@ section.container section.space article.add-element form .fileInputWrapper input
   position: relative;
   cursor: pointer;
 }
-/* line 96, ../sass/layout/_article.scss */
+/* line 94, ../sass/layout/_article.scss */
 section.container section.space article textarea {
   width: 100%;
   height: 9rem;
   font-size: 20pt;
   line-height: 1.5em;
 }
-/* line 103, ../sass/layout/_article.scss */
+/* line 101, ../sass/layout/_article.scss */
 section.container section.space article header {
   background: green;
   min-width: 10em;
@@ -705,13 +705,13 @@ section.container section.space article header {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 123, ../sass/layout/_article.scss */
+/* line 121, ../sass/layout/_article.scss */
 section.container section.space article header author {
   display: inline-block;
   position: relative;
   top: -0.75rem;
 }
-/* line 129, ../sass/layout/_article.scss */
+/* line 127, ../sass/layout/_article.scss */
 section.container section.space article header a.delete {
   display: inline-block;
   position: absolute;
@@ -729,17 +729,17 @@ section.container section.space article header a.delete {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 143, ../sass/layout/_article.scss */
+/* line 141, ../sass/layout/_article.scss */
 section.container section.space article header a.delete:hover {
   color: white;
 }
-/* line 151, ../sass/layout/_article.scss */
+/* line 149, ../sass/layout/_article.scss */
 section.container section.space article .card {
   position: relative;
   max-width: 32rem;
   width: auto;
 }
-/* line 156, ../sass/layout/_article.scss */
+/* line 154, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: white;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -753,32 +753,32 @@ section.container section.space article .card.text {
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   width: auto;
 }
-/* line 161, ../sass/layout/_article.scss */
+/* line 159, ../sass/layout/_article.scss */
 section.container section.space article .card.image {
   background-color: rgba(255, 255, 255, 0.4);
   /* $colorCardBackground */
   width: 48rem;
   overflow: hidden;
 }
-/* line 167, ../sass/layout/_article.scss */
+/* line 165, ../sass/layout/_article.scss */
 section.container section.space article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 176, ../sass/layout/_article.scss */
+/* line 174, ../sass/layout/_article.scss */
 section.container section.space article .card.website:hover .card.header.text .description {
   opacity: 1;
   height: auto;
 }
-/* line 182, ../sass/layout/_article.scss */
+/* line 180, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text {
   position: relative;
   z-index: 2;
 }
-/* line 186, ../sass/layout/_article.scss */
+/* line 184, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .title p {
   line-height: 1.25em;
 }
-/* line 190, ../sass/layout/_article.scss */
+/* line 188, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
   font-family: "FuturaStd-Medium";
@@ -789,7 +789,7 @@ section.container section.space article .card.website .card.header.text .url p {
   line-height: 2em;
   opacity: .25;
 }
-/* line 196, ../sass/layout/_article.scss */
+/* line 194, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description {
   opacity: 0;
   height: 0;
@@ -802,36 +802,36 @@ section.container section.space article .card.website .card.header.text .descrip
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 202, ../sass/layout/_article.scss */
+/* line 200, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
 }
-/* line 205, ../sass/layout/_article.scss */
+/* line 203, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
   word-break: break-all;
 }
-/* line 213, ../sass/layout/_article.scss */
+/* line 211, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 219, ../sass/layout/_article.scss */
+/* line 217, ../sass/layout/_article.scss */
 section.container section.space article .card.caption, section.container section.space article .card.comment {
   color: white;
   background-color: #333;
 }
-/* line 223, ../sass/layout/_article.scss */
+/* line 221, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
   opacity: .9;
   margin-bottom: -12pt;
 }
-/* line 229, ../sass/layout/_article.scss */
-section.container section.space article .card .ui-resizable-handle {
+/* line 228, ../sass/layout/_article.scss */
+section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
-  background: none !important;
+  background: none;
   font-size: 10pt !important;
   bottom: 0;
   text-align: right;
@@ -843,12 +843,12 @@ section.container section.space article .card .ui-resizable-handle {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 240, ../sass/layout/_article.scss */
-section.container section.space article .card .ui-resizable-handle:hover {
+/* line 239, ../sass/layout/_article.scss */
+section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
-/* line 244, ../sass/layout/_article.scss */
-section.container section.space article .card .ui-resizable-handle:after {
+/* line 243, ../sass/layout/_article.scss */
+section.container section.space article .ui-resizable-handle:after {
   content: "◢";
   position: absolute;
   bottom: 110%;

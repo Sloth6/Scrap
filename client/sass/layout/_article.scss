@@ -19,10 +19,8 @@ section.container section.space {
             header {
                 opacity: 1;
             }
-        }
 
-        &:hover {
-            .card .ui-resizable-handle {
+            .ui-resizable-handle {
                 opacity: .2;
             }
         }
@@ -225,30 +223,30 @@ section.container section.space {
                 opacity: .9;
                 margin-bottom: -12pt;
             }
-
-            .ui-resizable-handle {
-                z-index: 9999999;
-                background: none !important;
-                font-size: 10pt !important;
-                bottom:0;
-                text-align: right;
-                right: 0;
-                overflow: hidden;
-                opacity: 0;
-                @include transition(opacity .25s $defaultCurve);
-    
-                &:hover {
-                    opacity: .5;
-                }
-    
-                &:after {
-                    content: "◢";
-                    position: absolute;
-                    bottom: 110%;
-                    left: 0%;
-                    height: 100%;
-                    width: 100%;
-                }
+        }
+        
+        .ui-resizable-handle {
+            z-index: 9999999;
+            background: none;
+            font-size: 10pt !important;
+            bottom:0;
+            text-align: right;
+            right: 0;
+            overflow: hidden;
+            opacity: 0;
+            @include transition(opacity .25s $defaultCurve);
+        
+            &:hover {
+                opacity: .5;
+            }
+        
+            &:after {
+                content: "◢";
+                position: absolute;
+                bottom: 110%;
+                left: 0%;
+                height: 100%;
+                width: 100%;
             }
         }
     }
