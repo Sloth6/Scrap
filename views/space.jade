@@ -47,7 +47,7 @@ block content
           - minScale = element.scale
 
         article.draggable(id=element.id, class=element.contentType,class="color"+colors[element.creatorId], style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale(#{element.scale},#{element.scale});transform:scale(#{element.scale},#{element.scale});")
-          header
+          header(style="-webkit-transform:scale(#{1/element.scale},#{1/element.scale}); transform:scale(#{1/element.scale},#{1/element.scale});")
             a.delete ╳
             author=names[element.creatorId]
           case element.contentType
