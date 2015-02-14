@@ -19,10 +19,8 @@ section.container section.space {
             header {
                 opacity: 1;
             }
-        }
 
-        &:hover {
-            .card .ui-resizable-handle {
+            .ui-resizable-handle {
                 opacity: .2;
             }
         }
@@ -102,16 +100,15 @@ section.container section.space {
         
         header {
             background: green;
-            min-width: 10em;
             display: inline-block;
             text-align:left;
-            height: $baseline * 1.25;
+            height: $baseline;
             z-index: 4;
             position: absolute;
-            top: -$baseline * 1.25;
-            padding-left: $cardPaddingUnit/2;
+            top: -$baseline;
+            padding-left: $cardPaddingUnit;
+            padding-right: $cardPaddingUnit/4;
             @include typeBodySmallCaps;
-            color: $colorTypeLight;
             
             // For scaling
                     transform-origin: bottom left;
@@ -123,25 +120,27 @@ section.container section.space {
             author {
                 display: inline-block;
                 position: relative;
-                top: -$baseline / 2;
+                font-family: $fontMedium;
+                top: -$baseline / 2.25;
             }
         
             a.delete {
                 display: inline-block;
                 position: absolute;
-                top: 2pt;
-                left: 1pt;
-                font-weight: bold;
+                top: 0;
+                left: 0;
+                height: $baseline;
+                width: $baseline + .2rem;
                 cursor: pointer;
-                font-size: 1.5em;
-                line-height: 1em;
                 border: none;
-                color: $colorTypeLight;
                 z-index: 99999;
                 @include transition(opacity .25s $defaultCurve);
+                overflow: hidden;
+                background-image: url('../images/elementClose.png');
+                background-size: 100% 100%;
                 
                 &:hover {
-                    color: white;
+                    background-color: $colorWashLightTrans40;
                 }
             }
         }
@@ -173,8 +172,9 @@ section.container section.space {
             &.website {
             
                 &:hover {
-                    .card.header.text .description p {
+                    .card.header.text .description {
                         opacity: 1;
+                        height: auto;
                     }
                 }
                 
@@ -192,14 +192,18 @@ section.container section.space {
                         opacity: .25;
                     }
 
-                    .description p {
-                        @include typeBody;
+                    .description {
                         opacity: 0;
+                        height: 0;
                         @include smoothTransition;
                         @include transition-property(opacity);
                         
-                        a {
-                            word-break: break-all;
+                        p {
+                            @include typeBody;
+                            
+                            a {
+                                word-break: break-all;
+                            }
                         }
                     }
 
@@ -211,8 +215,8 @@ section.container section.space {
             }
 
             
-            &.caption, &.comment {
-                @include commentCard;
+            &.caption, &.comment {                       
+                // background-color: $colorCardBackgroundLight;
             }
 
             img {
@@ -220,30 +224,32 @@ section.container section.space {
                 opacity: .9;
                 margin-bottom: -12pt;
             }
-
-            .ui-resizable-handle {
-                z-index: 9999999;
-                background: none !important;
-                font-size: 10pt !important;
-                bottom:0;
-                text-align: right;
-                right: 0;
-                overflow: hidden;
-                opacity: 0;
-                @include transition(opacity .25s $defaultCurve);
-    
-                &:hover {
-                    opacity: .5;
-                }
-    
-                &:after {
-                    content: "◢";
-                    position: absolute;
-                    bottom: 110%;
-                    left: 0%;
-                    height: 100%;
-                    width: 100%;
-                }
+        }
+        
+        .ui-resizable-handle {
+            z-index: 9999999;
+            background: none;
+            font-size: 12pt !important;
+            bottom:0;
+            text-align: right;
+            right: 0;
+            overflow: hidden;
+            opacity: 0;
+            @include transition(opacity .25s $defaultCurve);
+            transform-origin:           bottom right;
+            -webkit-transform-origin:   bottom right;
+        
+            &:hover {
+                opacity: .5;
+            }
+        
+            &:after {
+                content: "◢";
+                position: absolute;
+                bottom: 110%;
+                left: 0%;
+                height: 100%;
+                width: 100%;
             }
         }
     }

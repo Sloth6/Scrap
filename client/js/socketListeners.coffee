@@ -73,10 +73,10 @@ $ ->
         <author>#{names[creatorId]}</author>
         <div class='card #{contentType}'>
           #{innerHTML content}
-          <div class='ui-resizable-handle ui-resizable-se'>
           </div>
         </div>
         #{captionDiv}
+      <div class='ui-resizable-handle ui-resizable-se'>
       </article>")
     $('.content').append newArticle
     newArticle.css {

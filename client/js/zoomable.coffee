@@ -1,7 +1,10 @@
 $ ->
   content = $ '.content'
   viewOffsetX = viewOffsetY = 0
-
+  
+  $('article > header, article > .resize').each () ->
+    scaleControls($(this), 0.35)
+  
   screenFitScale = () ->
     scaleX = (window.innerWidth / (window.maxX - window.minX)) * .95
     scaleY = (window.innerHeight / (window.maxY - window.minY)) * .95
@@ -29,13 +32,6 @@ $ ->
       marginTop: viewOffsetY * scale
 
     content.css { scale }
-  
-  # Set initial header scale value (relative to parent article)
-  $('article > header').each () ->
-    transform = $(this).css '-webkit-transform'
-    matrix = new WebKitCSSMatrix(transform)
-    headerScale = matrix.m11
-    $(this).attr 'data-scale', headerScale
 
   changeResolutions = () ->
     getSize = (e) ->
@@ -81,14 +77,8 @@ $ ->
 
       content.css scale: newScale
       
-      $('article > header').each () ->
-        headerScale = $(this).attr 'data-scale'
-        
-        # headerScale = 1/(elementScale($(this)))
-        newHeaderScale =  (1 / newScale) * headerScale
-        $(this).css         'transform', 'scale(' + newHeaderScale + ')'
-        $(this).css '-webkit-transform', 'scale(' + newHeaderScale + ')'
-        console.log newHeaderScale
+      $('article > header, article > .resize').each () ->
+        scaleControls($(this), $(this).attr('data-scale'), newScale)
       
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->
