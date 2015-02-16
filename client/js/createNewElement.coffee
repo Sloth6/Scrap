@@ -47,7 +47,6 @@ createNewElement = (element) ->
     </article>")
   if contentType is 'text'
     newArticle.children('.card').addClass('comment')
-  # console.log newArticle
   $('.content').append newArticle
   newArticle.css {
     top:y
@@ -57,12 +56,7 @@ createNewElement = (element) ->
     "transform-origin": "top left"
     scale: scale
   }
-  
 
-  newArticle.children('header').css {
-    scale: 1/element.scale
-  }
-  console.log newArticle.children('header').css()
   makeDeletable newArticle
   makeTextChild newArticle
   makeDraggable newArticle, socket
@@ -71,5 +65,4 @@ createNewElement = (element) ->
   newArticle.on 'click', ->
     $(window).trigger 'mouseup'
     $('.ui-resizable-handle', "\##{id}").on 'mousedown', resize socket
-
-  updateGlobals element
+  newArticle

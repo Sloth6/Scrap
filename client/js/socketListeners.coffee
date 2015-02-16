@@ -18,8 +18,8 @@ $ ->
       $(this).remove()
 
   socket.on 'newElement', (data) ->
-    element = data.element
-    createNewElement element
+    createNewElement data.element
+    updateGlobals data.element
 
   socket.on 'removeElement', (data) ->
     id = data.id
