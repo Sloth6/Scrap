@@ -61,6 +61,7 @@ createNewElement = (element) ->
   makeTextChild newArticle
   makeDraggable newArticle, socket
   scaleControls newArticle
+  makeModifiable newArticle
 
   newArticle.on 'click', ->
     $(window).trigger 'mouseup'
