@@ -38,7 +38,7 @@ resize = (socket) ->
       
       # elementScale = $(this).css("scale")
       # header.css("scale": Math.max(+oldElementScale + newScale, 0.5))
-      console.log(element.css("scale"))
+      # console.log(element.css("scale"))
       
       # Scale controls
       $(element).children('header, .resize').each () ->

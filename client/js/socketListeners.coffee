@@ -19,77 +19,10 @@ $ ->
 
   socket.on 'newElement', (data) ->
     element = data.element
-    { content, contentType, caption, creatorId } = element
-    console.log 'NEW ELEMT CONTENT', content, contentType
-
-    id = element.id
-    x = element.x + totalDelta.x
-    y = element.y + totalDelta.y
-    z = element.z
-    scale = element.scale
-
-    titleDiv = ''
-    captionDiv = ''
-
-    if contentType is 'image'
-      innerHTML = () ->
-        "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
-    else if contentType is 'temp_image'
-      innerHTML = () ->
-          "<img src=#{content}>"
-    else if contentType is 'website'
-      innerHTML = () ->
-        data = JSON.parse content
-        url = decodeURIComponent data.url
-        "<a href=\"#{url}\" target=\"_blank\">" +
-          (if data.image? then "<div class='card image'><img src=\"#{data.image}\"></div>" else '')+
-          "<div class='header card text'>
-              <div class='title'>
-                <p>#{data.title}</p>
-              </div>
-              <div class='url'>
-                <p>#{data.domain}</p>
-              </div>
-              <div class='description'>
-                <p>#{data.description}</p>
-              </div>
-           </div>
-        </a>"
-    else # type == text
-      # innerHTML = () -> "<form>Hello<input type='text' name='firstname'></form>"
-      innerHTML = () -> "<p>#{content}</p>"
-    
-    newArticle =
-      $("<article class='#{contentType} creator#{creatorId}' id='#{id}' style='top:#{y}px;left:#{x}px;z-index:#{z};'>
-        <a class='delete'></a>
-        <author>#{names[creatorId]}</author>
-        <div class='card #{contentType}'>
-          #{innerHTML content}
-          </div>
-        </div>
-        #{captionDiv}
-      <div class='ui-resizable-handle ui-resizable-se'>
-      </article>")
-    $('.content').append newArticle
-    newArticle.css {
-      "-webkit-transform-origin": "top left"
-      "transform-origin": "top left"
-      scale: scale
-    }
-    makeDeletable newArticle
-    makeTextChild newArticle
-    makeDraggable newArticle, socket
-    # newArticle.draggable(draggableOptions socket)
-
-    newArticle.on 'click', ->
-      $(window).trigger 'mouseup'
-      $('.ui-resizable-handle', "\##{id}").on 'mousedown', resize socket
-
-    updateGlobals element
+    createNewElement element
 
   socket.on 'removeElement', (data) ->
     id = data.id
-
     $("\##{id}").fadeOut -> 
       $(this).remove()
 
