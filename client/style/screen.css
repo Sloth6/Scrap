@@ -848,32 +848,24 @@ section.container section.space article .card img {
 /* line 234, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
-  background: none;
-  font-size: 12pt !important;
-  bottom: 0;
-  text-align: right;
   right: 0;
-  overflow: hidden;
+  bottom: 0;
   opacity: 0;
+  background-image: url("../images/elementResize.png");
+  background-size: 100% 100%;
+  background-position: top left;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
+  height: 1rem;
+  width: 1rem;
 }
-/* line 247, ../sass/layout/_article.scss */
+/* line 248, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
-}
-/* line 251, ../sass/layout/_article.scss */
-section.container section.space article .ui-resizable-handle:after {
-  content: "◢";
-  position: absolute;
-  bottom: 110%;
-  left: 0%;
-  height: 100%;
-  width: 100%;
 }
 
 /* line 1, ../sass/layout/_login.scss */
