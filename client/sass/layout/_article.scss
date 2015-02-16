@@ -122,6 +122,7 @@ section.container section.space {
                 position: relative;
                 font-family: $fontMedium;
                 top: -$baseline / 2.25;
+                white-space: nowrap;
             }
         
             a.delete {
