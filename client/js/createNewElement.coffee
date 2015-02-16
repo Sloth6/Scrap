@@ -40,7 +40,7 @@ createNewElement = (element) ->
         <author>#{names[creatorId]}</author>
       </header>
       <div class='card #{contentType}'>
-        <p>#{content}</p>
+        #{cardDom content, contentType }
         </div>
       </div>
     <div class='ui-resizable-handle ui-resizable-se'>
