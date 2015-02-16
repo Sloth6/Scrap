@@ -12,7 +12,7 @@ $ ->
   $(window).mousedown (event) ->
     if !!$('.add-element').length
       window.dontAddNext = true
-    $('.add-element').remove()
+      $('.add-element').remove()
 
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = (x, y, contentType, scale) ->

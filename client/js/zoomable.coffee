@@ -2,9 +2,6 @@ $ ->
   content = $ '.content'
   viewOffsetX = viewOffsetY = 0
   
-  $('article > header, article > .resize').each () ->
-    scaleControls($(this), 0.35)
-  
   screenFitScale = () ->
     scaleX = (window.innerWidth / (window.maxX - window.minX)) * .95
     scaleY = (window.innerHeight / (window.maxY - window.minY)) * .95
@@ -58,6 +55,9 @@ $ ->
   fitToCenter()
   scrollTimer = null
   changeResolutions()
+  $('article > header, article > .resize').each () ->
+    scaleControls($(this))
+  
   # scroll unless too far in or too far out
   $(window).on 'mousewheel', (event) ->
     event.preventDefault()
@@ -80,7 +80,7 @@ $ ->
       content.css scale: newScale
       
       $('article > header, article > .resize').each () ->
-        scaleControls($(this), $(this).attr('data-scale'), newScale)
+        scaleControls($(this))
       
       clearTimeout(scrollTimer)
       scrollTimer = setTimeout((() ->

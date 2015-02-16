@@ -15,12 +15,19 @@ dimension = (elem) ->
   h = parseInt(elem.css('height')) * elemScale
   { w, h }
   
-scaleControls = (control, controlScale, spaceScale) ->
-    newControlScale = (1 / spaceScale) * controlScale
-    control.css         'transform', 'scale(' + newControlScale + ')'
-    control.css '-webkit-transform', 'scale(' + newControlScale + ')'
+scaleControls = (control) ->
+  spaceScale = $('.content').css 'scale'
+  controlScale = control.attr('data-scale')
+  newControlScale = (1 / spaceScale) * controlScale
+  control.css         'transform', 'scale(' + newControlScale + ')'
+  control.css '-webkit-transform', 'scale(' + newControlScale + ')'
 
 click = {}
 
 startPosition = {}
 
+$ ->
+  $('.menu').mousedown (e) ->
+    e.stopPropagation()
+  $('.menu').mouseup (e) ->
+    e.stopPropagation()

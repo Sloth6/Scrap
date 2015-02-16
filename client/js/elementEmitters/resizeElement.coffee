@@ -8,7 +8,8 @@ resize = (socket) ->
     clickY = event.clientY
     element.addClass 'resizing'
     screenScale = $('.content').css('scale')
-
+    window.dontAddNext = true
+    
     $(window).on 'mouseup', (event) ->
       element.removeClass 'resizing'
       data =
@@ -54,13 +55,5 @@ resize = (socket) ->
       socket.emit 'updateElement', data
 
 $ ->
-
   socket = io.connect()
-
   $('.ui-resizable-handle').on 'mousedown', resize socket
-
-
-
-
-
-

@@ -58,12 +58,15 @@ createNewElement = (element) ->
     scale: scale
   }
   
+
   newArticle.children('header').css {
     scale: 1/element.scale
   }
+  console.log newArticle.children('header').css()
   makeDeletable newArticle
   makeTextChild newArticle
   makeDraggable newArticle, socket
+  scaleControls newArticle
 
   newArticle.on 'click', ->
     $(window).trigger 'mouseup'
