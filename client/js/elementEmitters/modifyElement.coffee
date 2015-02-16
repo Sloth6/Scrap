@@ -25,7 +25,7 @@ $ ->
     p.remove()
 
     done = () ->
-      content = $('textarea[name=content]').val().slice(0, -1)
+      content = $('textarea[name=content]').val()#.slice(0, -1)
       p.html content.replace /\n/g, '<br>'
       elem.prepend(p)
       form.remove()
