@@ -521,7 +521,7 @@ body {
   font-family: "FuturaStd-Medium";
 }
 /* line 128, ../sass/layout/_header.scss */
-.container > header.public .card {
+.container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -537,19 +537,19 @@ body {
   display: inline-block;
 }
 /* line 134, ../sass/layout/_header.scss */
-.container > header.public .card > p {
+.container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
 /* line 138, ../sass/layout/_header.scss */
-.container > header.public .card form {
+.container > header.public .card form, .container > header.index .card form {
   width: auto;
 }
 /* line 141, ../sass/layout/_header.scss */
-.container > header.public .card form input {
+.container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
 }
 /* line 144, ../sass/layout/_header.scss */
-.container > header.public .card form input[type=submit] {
+.container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
 

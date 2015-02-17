@@ -5,12 +5,13 @@ block scripts
 
 
 block content
-  include partials/registration
+  header.index
+    .card.form
+      include partials/registration
   section.space
   
     section.content
-      
-
+    
       each element in elements
         if element.z > maxZ
           - maxZ = element.z
