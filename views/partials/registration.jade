@@ -10,7 +10,7 @@
     p.password
       input(id="password",type="password", name="user[password]", placeholder="Password")
     p.submit
-      input.offset(type="submit", value="Login")
+      input.offset(type="submit", value="Sign up")
     p(id="errorField")
 script.
   function onError(res) {
@@ -39,7 +39,7 @@ script.
     $('#errorField').text("");
     if($(this).is(":checked")) {
       $("form").removeClass("register")
-        .addClass("login")
+        .addClass("log in")
       $("p.name").remove();
       $("input[type=submit]").val("Login");
     }
@@ -48,6 +48,6 @@ script.
       $("form").removeClass("login")
         .addClass("register")
         .prepend(nameInput)
-      $("input[type=submit]").val("Register");
+      $("input[type=submit]").val("Sign up");
     }
   })
