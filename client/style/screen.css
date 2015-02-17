@@ -78,7 +78,7 @@ html {
 
 /* line 25, ../sass/globals/_boilerplate.scss */
 article, article header {
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
 }

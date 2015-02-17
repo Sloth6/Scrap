@@ -23,7 +23,7 @@ block content
   
     section.content
       
-      article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale(1.0,1.0);transform:scale(1.0,1.0);")
+      article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale3d(1.0,1.0,1.0);transform:scale(1.0,1.0,1.0);")
         .card.text.comment
           p= current_space.name
 
@@ -46,8 +46,8 @@ block content
         if element.scale < minScale
           - minScale = element.scale
 
-        article.draggable(id=element.id, class=element.contentType,class="color"+colors[element.creatorId], style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale(#{element.scale},#{element.scale});transform:scale(#{element.scale},#{element.scale});")
-          header(style="-webkit-transform:scale(#{1/element.scale},#{1/element.scale}); transform:scale(#{1/element.scale},#{1/element.scale});", data-scale="#{1/element.scale}")
+        article.draggable(id=element.id, class=element.contentType,class="color"+colors[element.creatorId], style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale3d(#{element.scale},#{element.scale},1.0); transform:scale3d(#{element.scale},#{element.scale},1.0);")
+          header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
             a.delete
             author= nameMap[element.creatorId]
           case element.contentType
@@ -57,4 +57,4 @@ block content
               include partials/contentTypes/website
             default
               include partials/contentTypes/text
-          .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale(#{1/element.scale},#{1/element.scale}); transform:scale(#{1/element.scale},#{1/element.scale});", data-scale="#{1/element.scale}")
+          .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
