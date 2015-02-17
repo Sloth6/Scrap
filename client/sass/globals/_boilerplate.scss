@@ -19,3 +19,11 @@ html {
   border: 0;
   background: transparent;
 }
+
+// Fix anti-aliasing issues in Webkit
+
+article, article header {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}

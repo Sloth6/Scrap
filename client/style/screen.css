@@ -76,6 +76,13 @@ html {
   user-select: none;
 }
 
+/* line 25, ../sass/globals/_boilerplate.scss */
+article, article header {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+
 /* line 45, ../sass/globals/_color.scss */
 body section.space section.content article.color0 div.card.text.comment, body section.space section.content article.color0 header {
   background-color: rgba(255, 59, 48, 0.9);
