@@ -11,12 +11,9 @@ extractTitle = ($) ->
   return null
 
 extractImage = ($) ->
-  isImage = (url) -> 
-    console.log url
-    url? and url.match(/\.(jpeg|jpg|gif|png)$/)?
-
+  
   img = $('meta[property="og:image"]').attr('content')
-  return img if isImage img
+  return img if img?
   
   max = 0
   srcMax = ''
@@ -25,7 +22,6 @@ extractImage = ($) ->
     size = $(img).attr('width') * $(img).attr('height')
     src = $(img).attr('src')
     # console.log src, $(img).attr('width'), $(img).attr('height')
-    continue unless isImage src
     # Take the first image larger than our min size,
     if size >= 40000
       return src
@@ -34,10 +30,7 @@ extractImage = ($) ->
       max = size
       srcMax = src
 
-  return srcMax if isImage srcMax
-  #if no images on page try the favicon... :(
-  img = $('link[rel="shortcut icon"]')[0]?.href
-  return img if isImage img
+  return srcMax if max > 0
   # console.log 'found none'
   return null
 

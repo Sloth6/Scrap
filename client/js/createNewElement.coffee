@@ -24,7 +24,6 @@ cardDom = (content, contentType) ->
       </a>"
     else "<p>#{content}</p>"
   
-
 createNewElement = (element) ->
   { content, contentType, creatorId, id, x, y, z, scale } = element
   console.log 'NEW ELEMENT CONTENT', content, contentType
