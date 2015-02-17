@@ -89,7 +89,6 @@ module.exports =
       map = {}
       for user in space.users
         map[user.id] = user.name
-      console.log map
       map
       
     showReadOnly = (space) ->

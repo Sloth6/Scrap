@@ -46,7 +46,7 @@ extractDomain = (url) ->
   parts[2] or ''
   # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
 
-formatImage = (domain, src) ->
+formatImageUrl = (domain, src) ->
   return null unless src?
   url.resolve domain, src
 
@@ -65,11 +65,12 @@ module.exports = (url, callback) ->
       callback error or response.statusCode
     else
       $ = cheerio.load body
+      url = extractUrl($) or url
       domain = extractDomain url
       metadata =
         title: extractTitle($)
-        image: formatImage(domain, extractImage($))
-        url: extractUrl($) or url
+        image: formatImageUrl(url, extractImage($))
+        url: url
         description: extractDescription($)
         domain: domain
       callback null, metadata
