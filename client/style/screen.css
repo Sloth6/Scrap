@@ -223,12 +223,17 @@ html p + p {
   margin-top: 0.75rem;
 }
 
-/* line 53, ../sass/globals/_components.scss */
+/* line 60, ../sass/globals/_components.scss */
+.card.form {
+  padding-left: 2rem !important;
+}
+
+/* line 65, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
 
-/* line 57, ../sass/globals/_components.scss */
+/* line 69, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -239,55 +244,27 @@ input {
   line-height: 1.5em;
   font-family: "FuturaStd-Medium";
   padding-top: 1.5rem;
-  line-height: 1.5em;
   border-bottom: 0.5pt #aaaaaa solid;
 }
-/* line 64, ../sass/globals/_components.scss */
+/* line 74, ../sass/globals/_components.scss */
 input:focus {
   border-color: #000000;
 }
-/* line 68, ../sass/globals/_components.scss */
+/* line 78, ../sass/globals/_components.scss */
 input.offset {
-  background-color: white;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
-  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
-  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
-  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
-  transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   font-size: .666em;
   font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
-  padding: 1rem;
-  position: relative;
-  margin-left: -1.5rem;
-  margin-top: -.666em;
-  left: 100%;
-  float: left;
+  font-size: 6.66pt;
+  font-family: "FuturaStd-Medium";
 }
-/* line 34, ../sass/globals/_components.scss */
-input.offset:hover, input.offset:focus {
-  opacity: .9;
-  -moz-transform: scale(1.125);
-  -ms-transform: scale(1.125);
-  -webkit-transform: scale(1.125);
-  transform: scale(1.125);
+/* line 44, ../sass/globals/_components.scss */
+input.offset:hover {
+  font-family: "FuturaStd-Bold";
+  letter-spacing: 0.1em;
 }
-/* line 39, ../sass/globals/_components.scss */
-input.offset:active {
-  -moz-transform: scale(0.925);
-  -ms-transform: scale(0.925);
-  -webkit-transform: scale(0.925);
-  transform: scale(0.925);
-  -moz-box-shadow: 0 0.16667rem 0.5rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.16667rem 0.5rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.16667rem 0.5rem rgba(0, 0, 0, 0.125);
-}
-/* line 73, ../sass/globals/_components.scss */
+/* line 83, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   font-size: .666em;
   font-family: "FuturaStd-Medium";
@@ -296,13 +273,13 @@ input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
 }
-/* line 79, ../sass/globals/_components.scss */
+/* line 89, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
-/* line 84, ../sass/globals/_components.scss */
+/* line 94, ../sass/globals/_components.scss */
 input[type=checkbox] + label {
   font-size: .666em;
   font-family: "FuturaStd-Medium";
@@ -310,9 +287,9 @@ input[type=checkbox] + label {
   text-transform: uppercase !important;
 }
 
-/* line 91, ../sass/globals/_components.scss */
+/* line 101, ../sass/globals/_components.scss */
 ul.menu {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -337,25 +314,25 @@ ul.menu {
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 102, ../sass/globals/_components.scss */
+/* line 112, ../sass/globals/_components.scss */
 ul.menu:hover {
   max-height: none;
   opacity: 1;
 }
-/* line 106, ../sass/globals/_components.scss */
+/* line 116, ../sass/globals/_components.scss */
 ul.menu:hover:after {
   opacity: 1;
 }
-/* line 111, ../sass/globals/_components.scss */
+/* line 121, ../sass/globals/_components.scss */
 ul.menu li {
   height: 2.25rem;
   padding-left: .5em;
 }
-/* line 115, ../sass/globals/_components.scss */
+/* line 125, ../sass/globals/_components.scss */
 ul.menu li:first-of-type {
   padding-top: 0.75rem;
 }
-/* line 119, ../sass/globals/_components.scss */
+/* line 129, ../sass/globals/_components.scss */
 ul.menu li a {
   border: none;
   display: block;
@@ -366,21 +343,21 @@ ul.menu li a {
   -webkit-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 126, ../sass/globals/_components.scss */
+/* line 136, ../sass/globals/_components.scss */
 ul.menu li a:hover {
   font-family: "FuturaStd-Bold";
 }
-/* line 131, ../sass/globals/_components.scss */
+/* line 141, ../sass/globals/_components.scss */
 ul.menu li input {
   width: 95% !important;
   padding-top: 0;
 }
-/* line 135, ../sass/globals/_components.scss */
+/* line 145, ../sass/globals/_components.scss */
 ul.menu li input[type=submit] {
   display: none;
 }
 
-/* line 142, ../sass/globals/_components.scss */
+/* line 152, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -542,6 +519,38 @@ body {
   text-transform: uppercase !important;
   font-size: 6.66pt;
   font-family: "FuturaStd-Medium";
+}
+/* line 128, ../sass/layout/_header.scss */
+.container > header.public .card {
+  float: right;
+  background-color: rgba(255, 255, 255, 0.925);
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  width: 16rem;
+  display: inline-block;
+}
+/* line 134, ../sass/layout/_header.scss */
+.container > header.public .card > p {
+  padding-bottom: 0.75rem;
+}
+/* line 138, ../sass/layout/_header.scss */
+.container > header.public .card form {
+  width: auto;
+}
+/* line 141, ../sass/layout/_header.scss */
+.container > header.public .card form input {
+  width: 100%;
+}
+/* line 144, ../sass/layout/_header.scss */
+.container > header.public .card form input[type=submit] {
+  width: auto;
 }
 
 /* line 1, ../sass/layout/_container.scss */
@@ -759,7 +768,7 @@ section.container section.space article .card {
 }
 /* line 155, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -872,7 +881,7 @@ section.container section.space article .ui-resizable-handle:hover {
 .card.login {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;

@@ -1,13 +1,15 @@
 .login
   p
     input(type="checkbox", id="toggle-login")
-    label(for="toggle-login") Sign Up
+    label(for="toggle-login") I have an account
   form(id="login")
-    p
+    p.name
+      input(id="name",type="text", name="user[name]", placeholder="Name")
+    p.mail
       input(id="email",type="text", name="user[email]", placeholder="Mail")
-    p
+    p.password
       input(id="password",type="password", name="user[password]", placeholder="Password")
-    p
+    p.submit
       input.offset(type="submit", value="Login")
     p(id="errorField")
 script.
@@ -36,17 +38,16 @@ script.
   $('#toggle-login').change(function() {
     $('#errorField').text("");
     if($(this).is(":checked")) {
-      console.log("not checked?");
-      var nameInput = "<p><input id='name' type='text' name='user[name]' placeholder='Full Name'></p>"
+      $("form").removeClass("register")
+        .addClass("login")
+      $("p.name").remove();
+      $("input[type=submit]").val("Login");
+    }
+    else {
+      var nameInput = "<p class='name'><input id='name' type='text' name='user[name]' placeholder='Name'></p>"
       $("form").removeClass("login")
         .addClass("register")
         .prepend(nameInput)
       $("input[type=submit]").val("Register");
-    }
-    else {
-      $("form").removeClass("register")
-        .addClass("login")
-      $("input[name='user[name]']").remove();
-      $("input[type=submit]").val("Login");
     }
   })
