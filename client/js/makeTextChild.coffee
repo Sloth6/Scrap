@@ -21,6 +21,28 @@ makeTextChild = (elem) ->
       w: Math.floor(dimens.w)
       h: Math.floor(dimens.h)
 
+  intersect = (a, b) ->
+    return false if a.id == b.id
+    offset = 0#10 / screenScale
+    maxAx = a.left + a.w + offset
+    maxAy = a.top + a.h + offset
+
+    maxBx = b.left + b.w + offset
+    maxBy = b.top + b.h + offset
+
+    minAx = a.left - offset
+    minAy = a.top - offset
+
+    minBx = b.left - offset
+    minBy = b.top - offset
+
+    aLeftOfB  = maxAx < minBx;
+    aRightOfB = minAx > maxBx;
+    aAboveB   = minAy > maxBy;
+    aBelowB   = maxAy < minBy;
+    return !( aLeftOfB || aRightOfB || aAboveB || aBelowB )
+
+
   isWithen = (a, b) ->
     return false unless a.top > b.top
     return false unless a.left > b.left
@@ -29,11 +51,13 @@ makeTextChild = (elem) ->
     return true
 
   getAllCoords = () ->
-    $('.content').children().get().map getCoords
+    # $(".content .card .image,.website").parent().get().map getCoords
+    $("article:not(.text)").get().map getCoords
     
   getParent = (elem, others) -> 
     for b in others
-      return $('#'+b.id) if isWithen elem, b 
+      if intersect elem, b
+        return $('#'+b.id)
     null
   
   attach = (child, parent) ->

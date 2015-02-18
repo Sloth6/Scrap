@@ -41,8 +41,7 @@ cluster = () ->
   worker = {}
   
   intersect = (a, b) ->
-    screenScale = 1#$('.content').css('scale')
-    offset = 10 / screenScale
+    offset = 0#10 / screenScale
     maxAx = a.x + a.w + offset
     maxAy = a.y + a.h + offset
 
