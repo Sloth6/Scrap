@@ -4,7 +4,6 @@ resize = (socket) ->
     $(this).off 'mouseup'
     event.stopPropagation()
     element = $(this).parent()
-    console.log element
     clickX = event.clientX
     clickY = event.clientY
     element.addClass 'resizing'
@@ -24,25 +23,17 @@ resize = (socket) ->
     $(window).on 'mousemove', (event) ->
       event.preventDefault()
       oldElementScale = elementScale element
-
       deltaX = (event.clientX - clickX) / screenScale
       deltaY = (event.clientY - clickY) / screenScale
 
       delta = Math.sqrt(deltaX*deltaX + deltaY*deltaY)
-      # console.log delta
       clickX = event.clientX
       clickY = event.clientY
 
       newScale = delta / Math.sqrt(element.width()*element.width() + element.height() * element.height())
       newScale *= -1 if deltaX < 0 || deltaY < 0
-      # console.log oldElementScale, newScale, Math.max(+oldElementScale + newScale, 0.5)
-      console.log element.css("scale")
-      element.css("scale": Math.max(+oldElementScale + newScale, 0.5))
-      
-      # elementScale = $(this).css("scale")
-      # header.css("scale": Math.max(+oldElementScale + newScale, 0.5))
-      # console.log(element.css("scale"))
-      
+      element.css "scale": Math.max(+oldElementScale + newScale, 0.5)
+
       # Scale controls
       $(element).children('header, .resize').each () ->
         newHeaderScale = 1 / element.css("scale");
