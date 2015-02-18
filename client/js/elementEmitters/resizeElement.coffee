@@ -4,6 +4,7 @@ resize = (socket) ->
     $(this).off 'mouseup'
     event.stopPropagation()
     element = $(this).parent()
+    console.log element
     clickX = event.clientX
     clickY = event.clientY
     element.addClass 'resizing'
@@ -28,13 +29,14 @@ resize = (socket) ->
       deltaY = (event.clientY - clickY) / screenScale
 
       delta = Math.sqrt(deltaX*deltaX + deltaY*deltaY)
-
+      # console.log delta
       clickX = event.clientX
       clickY = event.clientY
 
       newScale = delta / Math.sqrt(element.width()*element.width() + element.height() * element.height())
       newScale *= -1 if deltaX < 0 || deltaY < 0
-
+      # console.log oldElementScale, newScale, Math.max(+oldElementScale + newScale, 0.5)
+      console.log element.css("scale")
       element.css("scale": Math.max(+oldElementScale + newScale, 0.5))
       
       # elementScale = $(this).css("scale")
@@ -54,6 +56,10 @@ resize = (socket) ->
         final: false
       socket.emit 'updateElement', data
 
+makeResizeable = (elem, socket) ->
+  elem.find('.ui-resizable-handle').on 'mousedown', resize socket
+
 $ ->
   socket = io.connect()
-  $('.ui-resizable-handle').on 'mousedown', resize socket
+  makeResizeable $('article'), socket
+  

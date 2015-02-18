@@ -32,6 +32,7 @@ createNewElement = (element) ->
   y += totalDelta.y
   # {cardDom content, contentType}
   classes = "#{contentType} draggable color#{colors[element.creatorId]}"
+
   newArticle =
     $("<article class='#{classes}' id='#{id}'>
       <header>
@@ -42,7 +43,7 @@ createNewElement = (element) ->
         #{cardDom content, contentType }
         </div>
       </div>
-    <div class='ui-resizable-handle ui-resizable-se'>
+    <div class='resize ui-resizable-handle ui-resizable-se' data-scale=#{1/scale}>
     </article>")
   if contentType is 'text'
     newArticle.children('.card').addClass('comment')
@@ -51,16 +52,18 @@ createNewElement = (element) ->
     top:y
     left:x
     'z-index':z
-    "-webkit-transform-origin": "top left"
-    "transform-origin": "top left"
     scale: scale
   }
+  newArticle.children('.ui-resizable-handle').css({
+    scale: 1/scale
+  })
 
   makeDeletable newArticle
   makeTextChild newArticle
   makeDraggable newArticle, socket
   scaleControls newArticle
   makeModifiable newArticle
+  makeResizeable newArticle, socket
 
   newArticle.on 'click', ->
     $(window).trigger 'mouseup'
