@@ -19,20 +19,20 @@ script.
 
   $("#login").submit(function(e) {
     e.preventDefault();
+    var url = '/login';
     var fields = {
       email: $('#email').val(),
       password: $('#password').val()
     }
-    var url = '';
-    if($("#login").hasClass('register')) {
+    
+    if (!$('#toggle-login').is(":checked")) {
       url = '/register';
       fields.name = $('#name').val();
-    } else {
-      url = '/login';
     }
     $.post(url, fields).error(onError).success(function(path){
       location.pathname = path;
-    })
+    });
+
   });
 
   $('#toggle-login').change(function() {
