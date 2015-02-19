@@ -20,12 +20,6 @@ script.
     return name.match(/^[a-zA-Z]{2,} [a-zA-Z]{2,}$/i);
   }
 
-  validateName('js')
-  validateName('j s')
-  validateName('joel s')
-  validateName('j simon')
-  validateName('joel simon')
-
   $("#login").submit(function(e) {
     e.preventDefault();
     var url = '/login';
