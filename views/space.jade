@@ -19,6 +19,7 @@ block content
     input(type="hidden",name="Content-Type")
     input(type="file", style="visibility:hidden;",name="file")
 
+  .delete.visible(style='z-index:999;width:200px;height:200px;position:fixed;background-color:grey;')
   section.space
   
     section.content
@@ -26,6 +27,8 @@ block content
       article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale3d(1.0,1.0,1.0);transform:scale(1.0,1.0,1.0);")
         .card.text.comment
           p= current_space.name
+      
+
 
       each element in current_space.elements
         if element.z > maxZ
@@ -58,3 +61,4 @@ block content
             default
               include partials/contentTypes/text
           .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
+
