@@ -16,6 +16,15 @@ script.
   function onError(res) {
     $('#errorField').text(res.responseText);
   };
+  function validateName(name) {
+    return name.match(/^[a-zA-Z]{2,} [a-zA-Z]{2,}$/i);
+  }
+
+  validateName('js')
+  validateName('j s')
+  validateName('joel s')
+  validateName('j simon')
+  validateName('joel simon')
 
   $("#login").submit(function(e) {
     e.preventDefault();
@@ -28,6 +37,10 @@ script.
     if (!$('#toggle-login').is(":checked")) {
       url = '/register';
       fields.name = $('#name').val();
+      if (!validateName(fields.name)) {
+        $('#errorField').text("Please enter a full name.");
+        return;
+      }
     }
     $.post(url, fields).error(onError).success(function(path){
       location.pathname = path;
