@@ -1,16 +1,17 @@
 $ ->
   content = $ '.content'
+  scale_constant = 2.0 #half the size of what will fit on screen
   viewOffsetX = viewOffsetY = 0
   
   screenFitScale = () ->
     scaleX = (window.innerWidth / (window.maxX - window.minX)) * .95
     scaleY = (window.innerHeight / (window.maxY - window.minY)) * .95
-    Math.min scaleX, scaleY
+    (Math.min scaleX, scaleY)/scale_constant
 
   fitToCenter = () ->
     cluster()
     scale = Math.min(screenFitScale(), 1/window.minScale)
-    scale = if scale isnt 0 then scale else 1
+    scale = if scale isnt 0 then scale else .5
 
     centerX = window.innerWidth / 2 / scale
     centerY = window.innerHeight / 2 / scale
