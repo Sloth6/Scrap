@@ -27,27 +27,39 @@
 }
 
 @mixin button {
-    @include cardStyle;
-    @include smallCaps;
-    padding: $gutter;
-
-    &:hover, &:focus {
-        @include cardHover;
-        @include transform(scale(1.125));
-    }
+    // @include cardStyle;
+    @include typeBodySmallCaps;
+    // padding: $gutter;
+    // 
+    // &:hover, &:focus {
+    //     @include cardHover;
+    //     @include transform(scale(1.125));
+    // }
+    // 
+    // &:active {
+    //     @include transform(scale(.925));
+    //     @include box-shadow(0 $gutter/6 $gutter/2 rgba(0,0,0,.125));
+    // }
     
-    &:active {
-        @include transform(scale(.925));
-        @include box-shadow(0 $gutter/6 $gutter/2 rgba(0,0,0,.125));
+    &:hover {
+        font-family: $fontBold;
+        letter-spacing: 0.1em;
     }
 }
 
 @mixin buttonOffset {
-    position: relative;
-    margin-left: -$gutter*1.5;
-    margin-top: -.666em;
-    left: 100%;
-    float: left;
+    // position: relative;
+    // margin-left: -$gutter*1.5;
+    // margin-top: -.666em;
+    // left: 100%;
+    // float: left;
+}
+
+.card {
+    
+    &.form {
+        padding-left: $gutter * 2 !important;
+    }
 }
 
 form {
@@ -57,8 +69,6 @@ form {
 input {
     @include resetInput;
     @include typeBody;
-    line-height: 1.5em;
-//     font-family: $fontItalic;
     border-bottom: .5pt $colorWashMedium solid;
     
     &:focus {

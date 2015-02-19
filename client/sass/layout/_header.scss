@@ -117,5 +117,33 @@
         input {
             @include typeBodySmallCaps;
         }
-    }    
+    }
+    
+    // Public space
+    
+    &.public, &.index {
+        
+        .card {
+            float: right;
+            @include cardStyle;
+            width: $col *2;
+            display: inline-block;
+            
+            > p {
+                padding-bottom: $baseline/2;
+            }
+            
+            form {
+                width: auto;
+                
+                input {
+                    width: 100%;
+                    
+                    &[type=submit] {
+                        width: auto;
+                    }
+                }
+            }            
+        }
+    }
 }

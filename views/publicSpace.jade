@@ -3,14 +3,19 @@ extends layout
 block scripts
   include partials/readOnlyScripts
 
-block content
-  header 
-    p You can not make changes to this space.
 
+block content
+  header.public
+    .card.form
+      p Log in or register to make changes to this space
+      include partials/registration
+  
   section.space
   
     section.content
-
+      article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale(1.0,1.0);transform:scale(1.0,1.0);")
+        .card.text.comment
+          p= current_space.name
       each element in current_space.elements
         if element.z > maxZ
           - maxZ = element.z

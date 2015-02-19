@@ -3,24 +3,15 @@ extends layout
 block scripts
   include partials/indexScripts
 
+
 block content
+  header.index
+    .card.form
+      include partials/registration
   section.space
   
     section.content
-      article.draggable
-        .card.login.text.nondraggable
-          p
-            input(type="checkbox", id="toggle-login")
-            label(for="toggle-login") Sign Up
-          form(id="login")
-            p
-              input(id="email",type="text", name="user[email]", placeholder="Mail")
-            p
-              input(id="password",type="password", name="user[password]", placeholder="Password")
-            p
-              input.offset(type="submit", value="Login")
-            p(id="errorField")
-
+    
       each element in elements
         if element.z > maxZ
           - maxZ = element.z
@@ -51,44 +42,3 @@ block content
               include partials/contentTypes/website
             default
               include partials/contentTypes/text
-
-  script
-    function onError(res) {
-      $('#errorField').text(res.responseText);
-    };
-
-    $("#login").submit(function(e) {
-      e.preventDefault();
-      var fields = {
-        email: $('#email').val(),
-        password: $('#password').val()
-      }
-      var url = '';
-      if($("#login").hasClass('register')) {
-        url = '/register';
-        fields.name = $('#name').val();
-      } else {
-        url = '/login';
-      }
-      $.post(url, fields).error(onError).success(function(path){
-        location.pathname = path;
-      })
-    });
-
-    $('#toggle-login').change(function() {
-      $('#errorField').text("");
-      if($(this).is(":checked")) {
-        console.log("not checked?");
-        var nameInput = "<p><input id='name' type='text' name='user[name]' placeholder='Full Name'></p>"
-        $("form").removeClass("login")
-          .addClass("register")
-          .prepend(nameInput)
-        $("input[type=submit]").val("Register");
-      }
-      else {
-        $("form").removeClass("register")
-          .addClass("login")
-        $("input[name='user[name]']").remove();
-        $("input[type=submit]").val("Login");
-      }
-    })
