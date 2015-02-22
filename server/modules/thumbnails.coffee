@@ -9,24 +9,20 @@ sizes =
 
 rand_key = () -> Math.random().toString(36).slice(2)
 
-module.exports = ({ url, spaceKey, key }, callback) ->
-  # console.log url, spaceKey, key
+module.exports = ({ url, spaceKey, key, contentType }, callback) ->
   request.get { url, encoding: null }, (err, res, body) ->
     normal = images(body).encode("jpg", {quality: 100})
     medium = images(body).size(sizes.medium).encode("jpg", {quality: 100})
     small = images(body).size(sizes.small).encode("jpg", {quality: 100})
-    async.parallel [
-      ((cb) -> s3.putImage { key, spaceKey, img: small, type: 'small' }, cb),
-      ((cb) -> s3.putImage { key, spaceKey, img: medium, type: 'medium' }, cb),
-      ((cb) -> s3.putImage { key, spaceKey, img: normal, type: 'normal' }, cb),
-    ], (err) ->
-      console.log 'err',err
+    uploads = [
+      ((cb) -> s3.putImage { key, spaceKey, img: small, path: 'small', type: 'jpg' }, cb),
+      ((cb) -> s3.putImage { key, spaceKey, img: medium, path: 'medium', type: 'jpg' }, cb),
+      ((cb) -> s3.putImage { key, spaceKey, img: normal, path: 'normal', type: 'jpg' }, cb),
+    ]
+    if contentType is 'gif'
+      uploads.push ((cb) ->
+        s3.putImage { key, spaceKey, img: body, path: 'gif', type: 'gif' }, cb
+      )
+    async.parallel uploads, (err) ->
       return callback err if err?
       callback null
-
-
-# module.exports {
-#   url: 'http://bigtent.tv/wp-content/uploads/2013/08/IMG_1604.jpg'
-#   spaceId: '17cbc8d6'
-# }, (err, id) ->
-#   console.log err, id

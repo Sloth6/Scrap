@@ -5,7 +5,6 @@ cardDom = (content, contentType) ->
     when 'image'
       "<img src=#{content}>"
     when 'gif'
-      # "<img src=#> "
       "<canvas></canvas>"
     when 'website'
       data = JSON.parse content
@@ -49,7 +48,7 @@ createNewElement = (element) ->
   if contentType is 'text'
     newArticle.children('.card').addClass('comment')
   else if contentType is 'gif'
-    makeInteractive newArticle, content
+    createGif newArticle, content
 
   $('.content').append newArticle
   newArticle.css {
