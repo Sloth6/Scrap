@@ -14,10 +14,11 @@ getType = (s, cb) ->
     jar: jar
 
   request.head options, (err, res) ->
-    console.log err, res?.statusCode
+    # console.log err, res?.statusCode
     if err || res.statusCode != 200
       return cb 'text'
     contentType = res.headers['content-type']
+    return cb 'gif' if contentType.match /^image\/gif/
     return cb 'image' if contentType.match /^image\//
     return cb 'website' if contentType.match /^text\/html/
     return 'text'
@@ -25,7 +26,7 @@ getType = (s, cb) ->
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
-    console.log 'Received content', data.contentType
+    console.log 'Received content', data.content
 
     done = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
@@ -35,9 +36,9 @@ module.exports =
           return callback err if err?
           sio.to(spaceKey).emit 'newElement', { element }
           return callback()
+    
     newImage = (attributes) ->
       original_url = data.content
-
       models.Space.find(where: { spaceKey }).complete (err, space) =>
         return callback err if err?
         attributes.SpaceId = space.id
@@ -48,11 +49,17 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
 
-          element.contentType = 'temp_image'
+          # element.contentType = 'temp_image'
           element.content = original_url
           sio.to(spaceKey).emit 'newElement', { element }
 
-          thumbnails { url: original_url, spaceKey, key }, (err) -> 
+          options =
+            url: original_url
+            contentType: element.contentType
+            spaceKey: spaceKey
+            key: key
+
+          thumbnails options, (err) -> 
             return callback err if err?
             attributes.content = key
             return callback()
@@ -88,7 +95,7 @@ module.exports =
 
       if contentType is 'website'
         newWebsite attributes
-      else if contentType is 'image'
+      else if contentType in ['image', 'gif']
         newImage attributes
       else
         done attributes

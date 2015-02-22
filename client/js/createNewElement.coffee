@@ -1,10 +1,12 @@
-'use strict'
 cardDom = (content, contentType) ->
   switch contentType
+    # when 'image'
+    #   "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
     when 'image'
-      "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
-    when 'temp_image'
       "<img src=#{content}>"
+    when 'gif'
+      # "<img src=#> "
+      "<canvas></canvas>"
     when 'website'
       data = JSON.parse content
       url = decodeURIComponent data.url
@@ -46,6 +48,9 @@ createNewElement = (element) ->
     </article>")
   if contentType is 'text'
     newArticle.children('.card').addClass('comment')
+  else if contentType is 'gif'
+    makeInteractive newArticle, content
+
   $('.content').append newArticle
   newArticle.css {
     top:y
