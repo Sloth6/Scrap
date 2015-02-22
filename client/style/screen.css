@@ -628,7 +628,6 @@ section.container > .delete.trash {
   text-align: center;
   color: #fb2705;
   font-family: "FuturaStd-Medium";
-  background-color: #f0f0f0;
   background-image: url("../images/trash.png");
   background-size: 100% 100%;
   background-position: top left;
@@ -657,7 +656,7 @@ section.container > .delete.trash {
   -webkit-transform: scale3d(0.75, 0.75, 0.75);
   transform: scale3d(0.75, 0.75, 0.75);
 }
-/* line 109, ../sass/layout/_container.scss */
+/* line 108, ../sass/layout/_container.scss */
 section.container > .delete.trash:after {
   content: "Delete";
   width: 100%;
@@ -666,11 +665,11 @@ section.container > .delete.trash:after {
   bottom: -3em;
   left: 1pt;
 }
-/* line 118, ../sass/layout/_container.scss */
+/* line 117, ../sass/layout/_container.scss */
 section.container > .delete.trash.visible {
   bottom: 3rem;
 }
-/* line 123, ../sass/layout/_container.scss */
+/* line 122, ../sass/layout/_container.scss */
 section.container > .delete.trash.overlap {
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);

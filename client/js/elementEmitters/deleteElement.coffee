@@ -33,8 +33,7 @@ $ ->
 
     over: (event, ui) ->
       $(this).addClass('overlap')
-      elem.addClass('hello')
-
+      
     out: (event, ui) ->
       $(this).removeClass('overlap')
   )
