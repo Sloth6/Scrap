@@ -7,6 +7,8 @@ draggableOptions = (socket) ->
     $(window).off 'mousemove'
     click.x = event.clientX
     click.y = event.clientY
+    
+    $(".delete.trash").addClass("visible");
 
     initDragOnElem = (_elem) ->
       window.maxZ += 1
@@ -51,7 +53,7 @@ draggableOptions = (socket) ->
         dragElem comment
 
   stop: (event, ui) ->
-    
+    $(".delete.trash").removeClass("visible");
     stopElem = (elem) ->
       id = elem.attr('id')
       # Make sure to account for screen drag (totalDelta)
