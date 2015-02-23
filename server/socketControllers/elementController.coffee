@@ -116,7 +116,7 @@ module.exports =
         content = results[0].content
         if type in ['gif', 'image']
           s3.deleteImage { spaceKey, key: content, type }, (err) ->
-            console.log err
+            console.log err if err
           
         sio.to(spaceKey).emit 'removeElement', { id }
         callback()

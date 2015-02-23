@@ -5,14 +5,7 @@ s3 = new AWS.S3()
 Bucket = 'scrapimagesteamnap'
 async = require 'async'
 module.exports = 
-  # getImage: ({bucket, path}, callback) ->
-  #   params =
-  #     Bucket: bucket
-  #     Key: path
-  #   s3.getObject params, callback
-
   putImage: ({ key, img, spaceKey, path, type }, callback) ->
-    # console.log 's3', "#{spaceKey}/#{path}/#{key}.#{type}"
     params =
       Bucket: Bucket
       Key: "#{spaceKey}/#{key}/#{path}.#{type}"
@@ -30,22 +23,6 @@ module.exports =
     ]
     if type is 'gif'
       foo.push(
-        (cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/gif.gif" }
+        (cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/gif.gif" }, cb
       )
     async.parallel foo, cb
-      
-  # copyImage: ({ path, toBucket, fromBucket }, callback) ->
-  #   params =
-  #     Bucket: toBucket
-  #     Key:    path
-  #     ACL:    'public-read'
-  #     ContentType: 'image/jpg'
-  #     CopySource: "#{fromBucket}/#{path}"
-  #   s3.copyObject params, callback
-
-  # deleteImg: (id, cb) ->
-  #   console.log 'deleting', id
-  #   params =
-  #     Bucket: 'facebookGraffiti'
-  #     Key: id+'.jpg'
-  #   s3.deleteObject params, cb
