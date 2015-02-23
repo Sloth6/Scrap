@@ -3,6 +3,7 @@ async    = require 'async'
 webPreviews = require '../modules/webPreviews.coffee'
 thumbnails = require '../modules/thumbnails.coffee'
 request = require 'request'
+s3 = require '../adapters/s3.coffee'
 
 memCache = {}
 
@@ -105,12 +106,18 @@ module.exports =
   removeElement : (sio, socket, data, spaceKey, callback) =>
     id = data.elementId
 
-    query = "DELETE FROM \"Elements\" WHERE \"id\"=:id"
+    query = "DELETE FROM \"Elements\" WHERE \"id\"=:id returning \"contentType\", content"
 
     elementShell = models.Element.build()
     models.sequelize.query(query, null, null, { id })
-      .complete (err, result) ->
+      .complete (err, results) ->
         return callback err if err?
+        type = results[0].contentType
+        content = results[0].content
+        if type in ['gif', 'image']
+          s3.deleteImage { spaceKey, key: content, type }, (err) ->
+            console.log err
+          
         sio.to(spaceKey).emit 'removeElement', { id }
         callback()
 

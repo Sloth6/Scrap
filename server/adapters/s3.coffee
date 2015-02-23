@@ -1,8 +1,9 @@
+async = require 'async'
 AWS = require 'aws-sdk'
 AWS.config.loadFromPath __dirname+'/../config.json'
 s3 = new AWS.S3()
-root = 'scrapimagesteamnap'
-
+Bucket = 'scrapimagesteamnap'
+async = require 'async'
 module.exports = 
   # getImage: ({bucket, path}, callback) ->
   #   params =
@@ -13,13 +14,26 @@ module.exports =
   putImage: ({ key, img, spaceKey, path, type }, callback) ->
     # console.log 's3', "#{spaceKey}/#{path}/#{key}.#{type}"
     params =
-      Bucket: root
+      Bucket: Bucket
       Key: "#{spaceKey}/#{key}/#{path}.#{type}"
       ACL: 'public-read'
       Body: img
       ContentType: "image/#{type}"
     s3.putObject params, callback
 
+
+  deleteImage: ({ spaceKey, key, type }, cb) ->
+    foo = [
+      ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/small.jpg" }, cb),
+      ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/medium.jpg" }, cb),
+      ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.jpg" }, cb)
+    ]
+    if type is 'gif'
+      foo.push(
+        (cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/gif.gif" }
+      )
+    async.parallel foo, cb
+      
   # copyImage: ({ path, toBucket, fromBucket }, callback) ->
   #   params =
   #     Bucket: toBucket
