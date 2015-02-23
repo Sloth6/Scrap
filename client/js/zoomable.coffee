@@ -43,7 +43,7 @@ $ ->
     
     switchImage = (img, key, size) ->
       root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'
-      url = "#{root}/#{spaceKey}/#{size}/#{key}.jpg"
+      url = "#{root}/#{spaceKey}/#{key}/#{size}.jpg"
       img.attr 'src', url
 
     $('.card,.image').not('.animated').each () ->
