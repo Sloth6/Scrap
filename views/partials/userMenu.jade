@@ -31,12 +31,13 @@ ul.users
   //-       li(data-id=user.id)=user.name
   each user in current_space.users
     li.user(class = "color"+colors[user.id])
-      - names = user.name.split(' ')
-      span.initial= user.name[0]
-      span.name= names[0].slice(1)
-      if names[1]
-        span.initial= names[1][0]
-        span.name= names[1].slice(1)
+      if user.name != null
+        - names = user.name.split(' ')
+        span.initial= user.name[0]
+        span.name= names[0].slice(1)
+        if names[1]
+          span.initial= names[1][0]
+          span.name= names[1].slice(1)
 
   //- li.user.color1.online
   //-   span.initial D
