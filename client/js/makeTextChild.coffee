@@ -76,5 +76,5 @@ makeTextChild = (elem) ->
 
 
 $ ->
-  $('article').each () ->
+  $('article').not('#spaceName').each () ->
     makeTextChild $(this)
