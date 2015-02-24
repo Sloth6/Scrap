@@ -7,6 +7,8 @@ indexPage = (res) ->
     description: ''
     author: 'scrap'
     elements: indexElements
+    current_space:
+      spaceKey: 'index'
     analyticssiteid: 'XXXXXXX'
 
 module.exports =

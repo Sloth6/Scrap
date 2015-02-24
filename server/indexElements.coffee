@@ -1,11 +1,13 @@
 module.exports = [
-	{"contentType":"text","content":"Join scrap to make your own space.","scale":0.94954976748836,"x":453,"y":-270},
-	{"contentType":"website","content":"{\"title\":\"Bronx Museum of the Arts Plans Art Exchange With Cuba\",\"image\":\"http://static01.nyt.com/images/2015/01/22/arts/jpartcuba/jpartcuba-facebookJumbo.jpg\",\"url\":\"http%3A%2F%2Fwww.nytimes.com%2F2015%2F01%2F22%2Farts%2Fdesign%2Fbronx-museum-plans-ambitious-art-exchange-with-cuba.html\",\"description\":\"The Bronx Museum of the Arts and the National Museum of Fine Arts in Havana plan a major exchange of art that reflects a running conversation about their overlapping interests.\",\"domain\":\"www.nytimes.com\"}","scale":0.782136995158675,"x":-424,"y":142},
-	{"contentType":"website","content":"{\"title\":\"Google Hopes to Take the Web Directly to Billions Lacking Access\",\"image\":\"http://static01.nyt.com/images/2015/01/22/business/22GOOGLEjp/22GOOGLEjp-facebookJumbo.jpg\",\"url\":\"http%3A%2F%2Fwww.nytimes.com%2F2015%2F01%2F22%2Fbusiness%2Fgoogle-hopes-to-take-the-web-directly-to-billions-lacking-access.html\",\"description\":\"The company believes it can use its growing collection of devices in the sky to spread the Internet to underserved areas around the world.\",\"domain\":\"www.nytimes.com\"}","scale":0.807892893903961,"x":-683,"y":84},
-	{"contentType":"text","content":"Cats","scale":2.33403758621327,"x":492,"y":65},
-	{"contentType":"text","content":"Drag around and resize elements!","scale":1.46434085185272,"x":299,"y":-348},
-	{"contentType":"text","content":"FOO","scale":1.50098948083608,"x":-616,"y":3},
-	{"contentType":"text","content":"Welcome to Scrap","scale":2.55377368542388,"x":-671,"y":-632},
-	{"contentType":"text","content":"Cute!","scale":0.749928585078522,"x":817,"y":398},
-	{"contentType":"text","content":"Scrap is a simple visual tool for collaborating on ideas.","scale":1.0576854663738,"x":-606,"y":-491}
+	{"contentType":"website","content":"{\"title\":\"Dov Charney's Sleazy Struggle for Control of American Apparel\",\"image\":\"http://images.bwbx.io/cms/2014-07-09/feat_american29__01__970.jpg\",\"url\":\"http%3A%2F%2Fwww.bloomberg.com%2Fbw%2Farticles%2F2014-07-09%2Famerican-apparel-dov-charneys-sleazy-struggle-for-control\",\"description\":\"The inside story of Dov Charney’s overthrow and the chaotic battle for control of American Apparel\",\"domain\":\"www.bloomberg.com\"}","scale":0.395983697583099,"x":-350,"y":-146},
+	{"contentType":"text","content":"Images copyright Victor Song. Used with permission.","scale":0.062835320675092,"x":344,"y":99},
+	{"contentType":"image","content":"lmwcip3zwljtt9","scale":0.435314022200933,"x":7,"y":108},
+	{"contentType":"text","content":"Scroll to zoom in or out","scale":0.574465118489693,"x":1,"y":-20},
+	{"contentType":"image","content":"edp826t1w77ousor","scale":0.266642945181119,"x":354,"y":-31},
+	{"contentType":"image","content":"1xsfevyam7vi","scale":0.141206235755353,"x":324,"y":-63},
+	{"contentType":"image","content":"lmr03q64f4leg66r","scale":0.333115058396029,"x":275,"y":54},
+	{"contentType":"website","content":"{\"title\":\"Jonathan Ive and the Future of Apple - The New Yorker\",\"image\":\"http://www.newyorker.com/wp-content/uploads/2015/02/150223_r26173-1200-630-11102519.jpg\",\"url\":\"http%3A%2F%2Fwww.newyorker.com%2Fmagazine%2F2015%2F02%2F23%2Fshape-things-come\",\"description\":\"Inside the top-secret lab where the world’s most powerful design team created the Apple Watch.\",\"domain\":\"www.newyorker.com\"}","scale":0.412806306012253,"x":-233,"y":-226},
+	{"contentType":"text","content":"Drag items around and resize them to organize your space","scale":0.232458018590258,"x":173,"y":174},
+	{"contentType":"text","content":"Click anywhere to write a note, or add a webpage or image","scale":0.283654634786463,"x":-63,"y":-59},
+	{"contentType":"text","content":"A simple way to organize stuff with other people","scale":0.686897222223016,"x":-126,"y":201}
 ]
