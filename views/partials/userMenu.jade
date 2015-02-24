@@ -30,8 +30,8 @@ ul.users
   //-     else
   //-       li(data-id=user.id)=user.name
   each user in current_space.users
-    li.user(class = "color"+colors[user.id])
-      if user.name != null
+    if user.name != null
+      li.user(class = "color"+colors[user.id])
         - names = user.name.split(' ')
         span.initial= user.name[0]
         span.name= names[0].slice(1)
