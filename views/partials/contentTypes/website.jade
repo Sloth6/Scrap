@@ -1,13 +1,13 @@
 -var content = JSON.parse(element.content)
 -var url = decodeURIComponent(content.url)
 .card.website
-  a(href=url, target='_blank')
-    .card.image
-      img(src=content.image)
-    .card.header.text
-      .title
-        p!=content.title
-      .url
+  .card.image
+    img(src=content.image)
+  .card.header.text
+    .title
+      p!=content.title
+    .url
+      a(href=url, target='_blank')
         p!=content.domain
-      .description
-        p!=content.description
+    .description
+      p!=content.description
