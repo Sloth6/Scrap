@@ -524,7 +524,7 @@ body {
   font-size: 6.66pt;
   font-family: "FuturaStd-Medium";
 }
-/* line 128, ../sass/layout/_header.scss */
+/* line 126, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
@@ -540,19 +540,19 @@ body {
   width: 16rem;
   display: inline-block;
 }
-/* line 134, ../sass/layout/_header.scss */
+/* line 132, ../sass/layout/_header.scss */
 .container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
-/* line 138, ../sass/layout/_header.scss */
+/* line 136, ../sass/layout/_header.scss */
 .container > header.public .card form, .container > header.index .card form {
   width: auto;
 }
-/* line 141, ../sass/layout/_header.scss */
+/* line 139, ../sass/layout/_header.scss */
 .container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
 }
-/* line 144, ../sass/layout/_header.scss */
+/* line 142, ../sass/layout/_header.scss */
 .container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
@@ -582,7 +582,7 @@ section.container section.space article#spaceName .card {
 /* line 20, ../sass/layout/_container.scss */
 section.container section.space article#spaceName p {
   font-family: "FuturaStd-Medium";
-  font-size: 4em;
+  font-size: 16em;
   line-height: 1em;
 }
 /* line 55, ../sass/layout/_container.scss */
@@ -718,8 +718,8 @@ section.container section.space article header {
   z-index: 4;
   position: absolute;
   top: -1.5rem;
-  padding-left: 2rem;
-  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.33333rem;
   font-size: .666em;
   font-family: "FuturaStd-Medium";
   letter-spacing: .1825em;
