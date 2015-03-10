@@ -9,11 +9,17 @@ $ ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
+  window.oncontextmenu = () -> false
   $(window).mousedown (event) ->
-    if !!$('.add-element').length
-      window.dontAddNext = true
+    if event.which is 3 #right mouse
+      event.preventDefault()
       $('.add-element').remove()
+      addElement event, false
 
+  $(window).on 'click', (event) -> $('.add-element').remove()
+  $(window).bind 'paste', (event) -> addElement event, true
+
+# 
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = (x, y, contentType, scale) ->
     multipart = false
@@ -95,16 +101,23 @@ $ ->
     !!url.match expression
 
   # on double-click, append new element form, then process the new element if one is submitted
-  $('.container').mouseup (event) ->
-    if window.dontAddNext
-      window.dontAddNext = false
-      return
-    boxUp = true
-    screenScale = $('.content').css('scale') 
-    elementScale = 1 / screenScale
-    x = (event.clientX - $('.content').offset().left) / screenScale
-    y = (event.clientY - $('.content').offset().top) / screenScale
+
+  # $('.container').mouseup (event) ->
+  #   screenScale = $('.content').css('scale') 
+  #   elementScale = 1 / screenScale
+  #   x = (event.clientX - $('.content').offset().left) / screenScale
+  #   y = (event.clientY - $('.content').offset().top) / screenScale
     # console.log(screenScale)
+
+  addElement = (event, createdByCntrl) ->
+    eventX = event.clientX || mouse.x
+    eventY = event.clientY || mouse.y
+    screenScale = $('.content').css('scale')
+    scale = 1 / screenScale
+
+    x = (eventX - $('.content').offset().left) / screenScale
+    y = (eventY - $('.content').offset().top) / screenScale
+
     elementForm =
       "<article class='add-element'>
         <div class='card text comment'>
@@ -119,25 +132,27 @@ $ ->
               <input type='hidden' name='policy'>
               <input type='hidden' name='signature'>
               <input type='hidden' name='success_action_status' value='201'>
-              <input type='hidden' name='Content-Type'>
-              <span class='fileInputWrapper'><input type='file' class='file-input' name='file'></span>
-            </form>
+              <input type='hidden' name='Content-Type'>" +
+              (if createdByCntrl then "" else "<input type='file' class='file-input' name='file'>") +
+            "</form>
           </p>
         </div>
       </article>"
 
     # add the new element form
+    # if not createdByCntrl
     $('.content').append elementForm
     $('.add-element').on 'click', (event) -> event.stopPropagation()
       .css(
-        scale: elementScale
+        scale: scale
         "transform-origin": "top left"
         'z-index': "#{window.maxZ + 1}"
         top: "#{y}px"
         left: "#{x}px")
 
     # allow file uploads
-    $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
+    # if not createdByCntrl
+    #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
     $('textarea.new').focus().autoGrow()
       .on 'keyup', (event) ->
@@ -145,8 +160,8 @@ $ ->
         if event.keyCode is 13 and not event.shiftKey
           if isWebsite $(this).val()
             url = encodeURIComponent $(this).val().slice(0, -1)
-            emitElement x, y, elementScale, url, 'website'
+            emitElement x, y, scale, url, 'website'
 
           else # this is text
             content = $('textarea[name=content]').val().slice(0, -1)
-            emitElement x, y, elementScale, content, 'text'
+            emitElement x, y, scale, content, 'text'
