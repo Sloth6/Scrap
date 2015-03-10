@@ -1,8 +1,6 @@
 $ ->
-
   socket = io.connect()
   mouse = { x: 0, y: 0 }
-  window.ignoreMouseup = false
 
   # On document so that it doesn't get messed up by screenDrag
   $(document).on 'mousemove', (event) ->
@@ -18,6 +16,10 @@ $ ->
 
   $(window).on 'click', (event) -> $('.add-element').remove()
   $(window).bind 'paste', (event) -> addElement event, true
+  
+  $(window).keypress (event) -> 
+    if $('.add-element').length is 0
+      addElement event, false
 
 # 
   # The options for s3-streamed file uploads, used later
