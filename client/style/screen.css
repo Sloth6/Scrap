@@ -205,27 +205,20 @@ body section.space section.content article.color9 div.card.text.comment, body se
   background-color: #52edc7;
 }
 
-/*
-$fontLight:     "UniversLTStd-Light";
-$fontRegular:   "UniversLTStd";
-$fontBold:      "UniversLTStd-Bold";
-$fontItalic:    "UniversLTStd-MediumItalic";
-$fontBoldItalic:"UniversLTStd-BoldItalic";
-*/
-/* line 55, ../sass/globals/_type.scss */
+/* line 51, ../sass/globals/_type.scss */
 html {
-  font-family: "FuturaStd-Book", sans-serif;
+  font-family: "Futura W01 Book", sans-serif;
   font-size: 10pt;
-  letter-spacing: .5pt;
+  letter-spacing: .75pt;
   line-height: 1.5em;
 }
-/* line 58, ../sass/globals/_type.scss */
+/* line 54, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 1px #aaaaaa solid;
 }
-/* line 66, ../sass/globals/_type.scss */
+/* line 62, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 0.75rem;
 }
@@ -249,8 +242,9 @@ input {
   background: transparent;
   font-size: 10pt;
   line-height: 1.5em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   padding-top: 1.5rem;
+  letter-spacing: .0625em;
   border-bottom: 0.5pt #aaaaaa solid;
 }
 /* line 74, ../sass/globals/_components.scss */
@@ -260,21 +254,21 @@ input:focus {
 /* line 78, ../sass/globals/_components.scss */
 input.offset {
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
 }
 /* line 44, ../sass/globals/_components.scss */
 input.offset:hover {
-  font-family: "FuturaStd-Bold";
+  font-family: "Futura W01 Heavy";
   letter-spacing: 0.1em;
 }
 /* line 83, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   border: 0;
@@ -289,7 +283,7 @@ input[type=checkbox] {
 /* line 94, ../sass/globals/_components.scss */
 input[type=checkbox] + label {
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
 }
@@ -352,7 +346,7 @@ ul.menu li a {
 }
 /* line 136, ../sass/globals/_components.scss */
 ul.menu li a:hover {
-  font-family: "FuturaStd-Bold";
+  font-family: "Futura W01 Heavy";
 }
 /* line 141, ../sass/globals/_components.scss */
 ul.menu li input {
@@ -373,8 +367,9 @@ textarea {
   background: transparent;
   font-size: 10pt;
   line-height: 1.5em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   padding-top: 1.5rem;
+  letter-spacing: .0625em;
   width: 100%;
   height: 9rem;
 }
@@ -421,7 +416,7 @@ body {
   transition-property: width;
   white-space: nowrap;
   text-align: center;
-  font-family: "FuturaStd-Bold";
+  font-family: "Futura W01 Heavy";
   line-height: 2.666em;
   background-color: rgba(255, 255, 255, 0.4);
 }
@@ -509,20 +504,20 @@ body {
 /* line 115, ../sass/layout/_header.scss */
 .container > header li {
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
 }
 /* line 117, ../sass/layout/_header.scss */
 .container > header li input {
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
 }
 /* line 126, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
@@ -581,7 +576,7 @@ section.container section.space article#spaceName .card {
 }
 /* line 20, ../sass/layout/_container.scss */
 section.container section.space article#spaceName p {
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   font-size: 16em;
   line-height: 1em;
 }
@@ -627,7 +622,7 @@ section.container > .delete.trash {
   position: fixed;
   text-align: center;
   color: #fb2705;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   background-image: url("../images/trash.png");
   background-size: 100% 100%;
   background-position: top left;
@@ -646,11 +641,11 @@ section.container > .delete.trash {
   -webkit-transition-property: bottom, -webkit-transform, -webkit-transform;
   transition-property: bottom, transform, -webkit-transform;
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   -moz-transform: scale3d(0.75, 0.75, 0.75);
   -ms-transform: scale3d(0.75, 0.75, 0.75);
   -webkit-transform: scale3d(0.75, 0.75, 0.75);
@@ -737,7 +732,7 @@ section.container section.space article.add-element form .fileInputWrapper {
   position: relative;
   display: block;
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   overflow: hidden;
@@ -780,11 +775,11 @@ section.container section.space article header {
   padding-left: 0.5rem;
   padding-right: 0.33333rem;
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   transform-origin: bottom left;
   -webkit-transform-origin: bottom left;
   opacity: 0;
@@ -797,7 +792,7 @@ section.container section.space article header {
 section.container section.space article header author {
   display: inline-block;
   position: relative;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   top: -0.66667rem;
   white-space: nowrap;
 }
@@ -870,11 +865,11 @@ section.container section.space article .card.website .card.header.text .title p
 /* line 189, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   letter-spacing: .1825em;
   text-transform: uppercase !important;
   font-size: 6.66pt;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   line-height: 2em;
   opacity: .25;
 }
@@ -902,8 +897,9 @@ section.container section.space article .card.website .card.header.text .descrip
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
-  font-family: "FuturaStd-Medium";
+  font-family: "Futura W01 Medium";
   padding-top: 1.5rem;
+  letter-spacing: .0625em;
 }
 /* line 211, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
