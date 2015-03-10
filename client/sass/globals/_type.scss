@@ -1,16 +1,11 @@
-/*
-$fontLight:     "UniversLTStd-Light";
-$fontRegular:   "UniversLTStd";
-$fontBold:      "UniversLTStd-Bold";
-$fontItalic:    "UniversLTStd-MediumItalic";
-$fontBoldItalic:"UniversLTStd-BoldItalic";
-*/
-$fontLight:   "FuturaStd-Light";
-$fontRegular:   "FuturaStd-Book";
-$fontMedium:    "FuturaStd-Medium";
-$fontBold:      "FuturaStd-Bold";
-$fontItalic:    "Futura-MediumItalic";
-$fontBoldItalic:"FuturaStd-BoldItalic";
+$fontLight:         'Futura W01 Light';
+$fontLightItalic:   'FuturaW01-LightOblique';
+$fontRegular:       'Futura W01 Book';
+$fontItalic:        'Futura W01 Book Oblique';
+$fontMedium:        'Futura W01 Medium';
+$fontMediumItalic:  'FuturaW01-MediumOblique';
+$fontBold:          'Futura W01 Heavy';
+$fontBoldItalic:    'FuturaW01-HeavyOblique';
 
 $typeBodySize:  10pt;
 
@@ -24,7 +19,7 @@ $typeBodySize:  10pt;
 @mixin typeTitle {
     font-family: $fontRegular, sans-serif;
     font-size: $typeBodySize;
-    letter-spacing: .5pt;
+    letter-spacing: .75pt;
     line-height: 1.5em;
 }
 
@@ -33,6 +28,7 @@ $typeBodySize:  10pt;
     line-height: 1.5em;
     font-family: $fontMedium;
     padding-top: $baseline;
+    letter-spacing: .0625em;
 }
 
 @mixin typeBodySmallCaps {

@@ -20,7 +20,7 @@ section.container {
             p {
                 // @include smallCaps;
                 font-family: $fontMedium;
-                font-size: 4em;
+                font-size: 16em;
                 line-height: 1em;
                 // letter-spacing: -.03125em;
             }
@@ -81,5 +81,46 @@ section.container {
             position: relative;
             z-index: 1;
         }
+    }
+    
+    > .delete.trash {
+        $trashSize: $col * .5;
+        z-index:    999;
+        bottom:-$trashSize;
+        right: $gutter;
+        height: $trashSize;
+        width:  $trashSize;
+        position:   fixed;
+        text-align: center;
+        color: $colorAlert;
+        font-family: $fontMedium;
+        background-image: url('../images/trash.png');
+        background-size: 100% 100%;
+        background-position: top left;
+        border: .75pt $colorAlert solid;
+        border-radius: $trashSize;
+        @include bouncyTransition;
+        @include transition-duration(.5s);
+        @include transition-property(bottom, transform, -webkit-transform);
+        @include typeBodySmallCaps;
+        @include transform(scale3d(.75, .75, .75));
+        
+        &:after {
+            content: "Delete";
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: -3em;
+            left: 1pt;
+        }
+        
+        &.visible {
+            bottom: $baseline * 2;
+            
+        }
+        
+        &.overlap {
+            @include transform(scale3d(1.0, 1.0, 1.0));
+        }  
     }
 }

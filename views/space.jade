@@ -19,6 +19,8 @@ block content
     input(type="hidden",name="Content-Type")
     input(type="file", style="visibility:hidden;",name="file")
 
+  .delete.trash
+  
   section.space
   
     section.content
@@ -26,6 +28,8 @@ block content
       article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale3d(1.0,1.0,1.0);transform:scale(1.0,1.0,1.0);")
         .card.text.comment
           p= current_space.name
+      
+
 
       each element in current_space.elements
         if element.z > maxZ
@@ -48,7 +52,6 @@ block content
         - var classes = [ "color"+colors[element.creatorId], element.contentType, "draggable" ]
         article(id=element.id, class= classes, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale3d(#{element.scale},#{element.scale},1.0); transform:scale3d(#{element.scale},#{element.scale},1.0);")
           header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
-            a.delete
             author= nameMap[element.creatorId]
           case element.contentType
             when 'image'
@@ -60,3 +63,4 @@ block content
             default
               include partials/contentTypes/text
           .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
+

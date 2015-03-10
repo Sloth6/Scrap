@@ -106,8 +106,8 @@ section.container section.space {
             z-index: 4;
             position: absolute;
             top: -$baseline;
-            padding-left: $cardPaddingUnit;
-            padding-right: $cardPaddingUnit/4;
+            padding-left: $cardPaddingUnit/4;
+            padding-right: $cardPaddingUnit/6;
             @include typeBodySmallCaps;
             
             // For scaling
