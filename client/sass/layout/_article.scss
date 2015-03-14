@@ -12,9 +12,13 @@ section.container section.space {
         
         // EVENTS
         
-        &:hover {
+        &:hover. &.hover {
             cursor: move;
-            @include cardHover;
+            
+            > .card {
+                @include cardHover;
+            }
+
             
             header {
                 opacity: 1;
@@ -36,10 +40,17 @@ section.container section.space {
             }
         }
 
-        &.dragging {
-            @include cardDrag;
+        &.dragging, &.ui-draggable-dragging {
+            > .card {
+                @include cardDrag;
+            }
+            
+            > header {
+                display: none;
+            }
         }
         
+/*
         &.attached {
         
             .card {
@@ -54,6 +65,7 @@ section.container section.space {
                 }
             }
         }
+*/
         
         // NEW ELEMENT
         
@@ -152,6 +164,14 @@ section.container section.space {
             position: relative;
             max-width:$col * 2 * $typeSizeMultiplier;
             width: auto;
+            @include transition(.125s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform,
+                                         box-shadow,
+                                 -webkit-box-shadow,
+                                    -moz-box-shadow,
+                                         background-color);
 
             &.text {
                 @include cardStyle;
