@@ -18,9 +18,6 @@ cardDom = (content, contentType) ->
             <div class='url'>
               <p>#{data.domain}</p>
             </div>
-            <div class='description'>
-              <p>#{data.description}</p>
-            </div>
          </div>
       </a>"
     else "<p>#{content}</p>"
