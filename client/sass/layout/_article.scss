@@ -12,7 +12,7 @@ section.container section.space {
         
         // EVENTS
         
-        &:hover. &.hover {
+        &:hover, &.hover {
             cursor: move;
             
             > .card {
