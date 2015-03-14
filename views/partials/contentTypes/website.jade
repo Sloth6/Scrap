@@ -1,6 +1,8 @@
 -var content = JSON.parse(element.content)
 -var url = decodeURIComponent(content.url)
 .card.website
+  header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
+    author= nameMap[element.creatorId]
   .card.image
     img(src=content.image)
   .card.header.text
@@ -9,3 +11,4 @@
     .url
       a(href=url, target='_blank')
         p!=content.domain
+  .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")

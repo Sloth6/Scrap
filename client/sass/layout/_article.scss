@@ -44,10 +44,6 @@ section.container section.space {
             > .card {
                 @include cardDrag;
             }
-            
-            > header {
-                display: none;
-            }
         }
         
 /*

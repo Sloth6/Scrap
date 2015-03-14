@@ -51,8 +51,6 @@ block content
           - minScale = element.scale
         - var classes = [ "color"+colors[element.creatorId], element.contentType, "draggable" ]
         article(id=element.id, class= classes, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale3d(#{element.scale},#{element.scale},1.0); transform:scale3d(#{element.scale},#{element.scale},1.0);")
-          header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
-            author= nameMap[element.creatorId]
           case element.contentType
             when 'image'
               include partials/contentTypes/image
@@ -62,5 +60,4 @@ block content
               include partials/contentTypes/website
             default
               include partials/contentTypes/text
-          .resize.ui-resizable-handle.ui-resizable-se(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
 

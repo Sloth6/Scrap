@@ -56,7 +56,7 @@ $ ->
   fitToCenter()
   scrollTimer = null
   changeResolutions()
-  $('article > header, article > .resize').each () ->
+  $('article header, article .resize').each () ->
     scaleControls($(this))
   
   # scroll unless too far in or too far out
@@ -80,7 +80,7 @@ $ ->
 
       content.css scale: newScale
       
-      $('article > header, article > .resize').each () ->
+      $('article header, article .resize').each () ->
         scaleControls($(this))
       
       clearTimeout(scrollTimer)
