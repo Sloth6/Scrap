@@ -107,20 +107,22 @@ section.container section.space {
         }
         
         header {
-            background: green;
+            background: white !important;
             display: inline-block;
             text-align:left;
             height: $baseline;
             z-index: 4;
             position: absolute;
-            top: -$baseline;
+            top: -$baseline/2;
+//             left: -$cardPaddingUnit;
+            margin-right: $cardPaddingUnit/4;
             padding-left: $cardPaddingUnit/4;
             padding-right: $cardPaddingUnit/6;
             @include typeBodySmallCaps;
             
             // For scaling
-                    transform-origin: bottom left;
-            -webkit-transform-origin: bottom left;
+                    transform-origin: center left;
+            -webkit-transform-origin: center left;
 
             opacity: 0;
             @include transition(opacity .25s $defaultCurve);
