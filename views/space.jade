@@ -4,7 +4,8 @@ block scripts
   include partials/spaceScripts
 
 block content
-  header 
+  header
+    a(href='/') Home
     include partials/spaceMenu
     h1.spaceName= current_space.name
     include partials/userMenu
