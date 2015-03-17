@@ -47,7 +47,7 @@ module.exports =
         # render first space on success
         if result
           req.session.currentUserId = user.id
-          res.send "/s/" + user.spaces[0].spaceKey
+          res.send "/"#"/s/" + user.spaces[0].spaceKey
           callback()
         else
           # res.status 400

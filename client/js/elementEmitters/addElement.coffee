@@ -60,6 +60,7 @@ $ ->
           title: add_data.files[0].name
           type: add_data.files[0].type
           spaceKey: spaceKey
+
         async: false
         success: (success_data) ->
           file_name = success_data.key.split('/').pop().split('.')[0]
@@ -107,7 +108,7 @@ $ ->
 
     $('.add-element').remove()
 
-  addElement = (event, createdByCntrl) ->
+  addElement = (event, createdByPaste) ->
     eventX = event.clientX || mouse.x
     eventY = event.clientY || mouse.y
     scale = 1 / $('.content').css('scale')
@@ -132,11 +133,11 @@ $ ->
         left: "#{x}px"
       .on 'click', (event) -> event.stopPropagation()
     # allow file uploads
-    # if not createdByCntrl
+    # if not createdByPaste
     #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
     $('textarea.new').focus().autoGrow()
-    
+ 
     if createdByCntrl
       setTimeout(() ->
         content = $('.add-element .new').val()
