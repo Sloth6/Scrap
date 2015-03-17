@@ -29,11 +29,14 @@ $ ->
     type: 'POST'
     autoUpload: true
     dataType: 'xml' # S3's XML response
-    add: (event, data) ->      
+    add: (event, data) ->
+      # console.log data
+      title = data.files[0].name or null
+      type = data.files[0].type or null
       $.ajax "/sign_s3", {
         type: 'GET'
         dataType: 'json'
-        data: {title: data.files[0].name} # Send filename to /signed for the signed response 
+        data: { title, type } # Send filename to /signed for the signed response 
         async: false
         success: (data) ->
           # Now that we have our data, we update the form so it contains all
@@ -111,7 +114,7 @@ $ ->
   #   y = (event.clientY - $('.content').offset().top) / screenScale
     # console.log(screenScale)
 
-  addElement = (event, createdByCntrl) ->
+  addElement = (event, createdByPaste) ->
     eventX = event.clientX || mouse.x
     eventY = event.clientY || mouse.y
     screenScale = $('.content').css('scale')
@@ -135,14 +138,14 @@ $ ->
               <input type='hidden' name='signature'>
               <input type='hidden' name='success_action_status' value='201'>
               <input type='hidden' name='Content-Type'>" +
-              (if createdByCntrl then "" else "<input type='file' class='file-input' name='file'>") +
+              (if createdByPaste then "" else "<input type='file' class='file-input' name='file'>") +
             "</form>
           </p>
         </div>
       </article>"
 
     # add the new element form
-    # if not createdByCntrl
+    # if not createdByPaste
     $('.content').append elementForm
     $('.add-element').on 'click', (event) -> event.stopPropagation()
       .css(
@@ -153,13 +156,13 @@ $ ->
         left: "#{x}px")
 
     # allow file uploads
-    # if not createdByCntrl
+    # if not createdByPaste
     #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
     $('textarea.new').focus().autoGrow()
       .on 'keyup', (event) ->
         # on enter (not shift + enter), submit either website or text
-        if event.keyCode is 13 and not event.shiftKey
+        if (event.keyCode is 13 and not event.shiftKey)# or createdByPaste
           if isWebsite $(this).val()
             url = encodeURIComponent $(this).val().slice(0, -1)
             emitElement x, y, scale, url, 'website'

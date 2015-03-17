@@ -22,7 +22,11 @@ module.exports =
         return callback err if err?
         return indexPage res unless user?
         req.session.currentUserId = user.id
-        res.redirect "/s/" + user.spaces[0].spaceKey
+        
+        # res.redirect "/s/" + user.spaces[0].spaceKey
+        res.render 'meta-space.jade',
+          user: user
+          title: user.name
         callback()
     else
       indexPage res

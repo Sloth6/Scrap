@@ -114,10 +114,13 @@ module.exports =
         users: users
         colors: colorMap space
         nameMap: nameMap space
-
-          
+         
   uploadFile : (req, res, callback) ->
-    mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension
+    if req.query.type
+      mime_type = req.query.type
+    else 
+      mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension
+
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
     file_key = uuid.v4() # Generate uuid for filename
 
