@@ -32,15 +32,13 @@ createNewElement = (element) ->
 
   newArticle =
     $("<article class='#{classes}' id='#{id}'>
-      <header data-scale=#{1/scale}>
-        <a class='delete'></a>
-        <author>#{names[creatorId]}</author>
-      </header>
-      <div class='card #{contentType}'>
+        <div class='card #{contentType}'>
+          <header data-scale=#{1/scale}>
+            <author>#{names[creatorId]}</author>
+          </header>
         #{cardDom content, contentType }
+          <div class='resize ui-resizable-handle ui-resizable-se' data-scale=#{1/scale}></div>
         </div>
-      </div>
-    <div class='resize ui-resizable-handle ui-resizable-se' data-scale=#{1/scale}>
     </article>")
   if contentType is 'text'
     newArticle.children('.card').addClass('comment')
