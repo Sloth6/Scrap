@@ -4,6 +4,7 @@ webPreviews = require '../modules/webPreviews.coffee'
 thumbnails = require '../modules/thumbnails.coffee'
 request = require 'request'
 s3 = require '../adapters/s3.coffee'
+spacePreviews = require '../modules/spacePreviews.coffee'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->

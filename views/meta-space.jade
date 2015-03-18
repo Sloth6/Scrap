@@ -18,7 +18,7 @@ block scripts
 
   script(src="/js/screenDrag.js")
   script(src="/js/dragSpace.js")
-
+  script(src="/js/lib/html2canvas.js")
 
 block content
   header 
@@ -29,10 +29,12 @@ block content
       - x = 25
       - y = 25
       each space in user.spaces
-        - cssString = "position:absolute;top:"+y+"px;left:"+x+"px;z-index:#{1};-webkit-transform:scale3d(#{1},#{1},1.0); transform:scale3d(#{1},#{1},1.0);background-image:url(http://www.carvart.com/assets/images/gradient-etch-01-460.jpg);width:100px;height:100px;"
-        div.draggable(data-spaceId = space.spaceKey, style=cssString)
+        - cssString = "position:absolute;top:"+y+"px;left:"+x+"px;"+"z-index:#{1};-webkit-transform:scale3d(#{1},#{1},1.0); transform:scale3d(#{1},#{1},1.0);width:300px;height:200px;"
+        - borderCss = "border:black;border-style:solid;border-width:2px;"
+        - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
+        div.draggable(data-spaceId = space.spaceKey, style=cssString+borderCss+imageCss)
           h1= space.name
-        - y += 125
+        - x += 375
       //- each element in user.spaces
       //-   if element.z > maxZ
       //-     - maxZ = element.z
