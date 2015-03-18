@@ -26,13 +26,13 @@ block content
   section.space
   
     section.content
-      - x = 50
-      - y = 0
+      - x = 25
+      - y = 25
       each space in user.spaces
-        - cssString = "top:#{y}px;left:#{x}px;z-index:#{1};-webkit-transform:scale3d(#{1},#{1},1.0); transform:scale3d(#{1},#{1},1.0);background-image:url(http://www.carvart.com/assets/images/gradient-etch-01-460.jpg);width:100px;height:100px;"
+        - cssString = "position:absolute;top:"+y+"px;left:"+x+"px;z-index:#{1};-webkit-transform:scale3d(#{1},#{1},1.0); transform:scale3d(#{1},#{1},1.0);background-image:url(http://www.carvart.com/assets/images/gradient-etch-01-460.jpg);width:100px;height:100px;"
         div.draggable(data-spaceId = space.spaceKey, style=cssString)
           h1= space.name
-        - y += 50
+        - y += 125
       //- each element in user.spaces
       //-   if element.z > maxZ
       //-     - maxZ = element.z
