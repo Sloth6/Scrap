@@ -30,8 +30,19 @@ makeDraggable = (elements) ->
 
   elements.click () ->
     url = window.location+"s/"+$(@).data().spaceid
-    console.log url
-    window.location = url
+    me = $(@)
+    $.get url, (data) ->
+      # console.log 'gotit'
+      # $('body').html data
+      me.animate({
+        top: 0
+        left: 0
+        width: $(window).width()
+        height: $(window).height()
+      }, 500, () ->
+        $('body').html data)
+      # # console.log data
+    
 
 $ ->
   makeDraggable $('.draggable')
