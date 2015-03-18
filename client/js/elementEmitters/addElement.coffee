@@ -123,21 +123,7 @@ $ ->
     elementForm =
       "<article class='add-element'>
         <div class='card text comment'>
-          <p>
-            <textarea name='content' class='new' placeholder='Paste a link or an image'></textarea>
-          </p>
-          <p>
-            <form enctype='multipart/form-data' class='direct-upload'>
-              <input type='hidden' name='key'>
-              <input type='hidden' name='AWSAccessKeyId' value='AKIAJQ7VP2SMGLIV5JQA'>
-              <input type='hidden' name='acl' value='public-read'>
-              <input type='hidden' name='policy'>
-              <input type='hidden' name='signature'>
-              <input type='hidden' name='success_action_status' value='201'>
-              <input type='hidden' name='Content-Type'>" +
-              (if createdByCntrl then "" else "<input type='file' class='file-input' name='file'>") +
-            "</form>
-          </p>
+          <textarea name='content' class='new' placeholder=''></textarea>
         </div>
       </article>"
 

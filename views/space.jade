@@ -29,8 +29,6 @@ block content
         .card.text.comment
           p= current_space.name
       
-
-
       each element in current_space.elements
         if element.z > maxZ
           - maxZ = element.z

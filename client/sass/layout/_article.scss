@@ -70,9 +70,6 @@ section.container section.space {
         // NEW ELEMENT
         
         &.add-element{
-            > .card {
-                @include cardHover;   
-            }
             
             form {
             
@@ -105,9 +102,10 @@ section.container section.space {
         
         textarea {
             width: 100%;
-            height: $baseline * 6;
+            height: $baseline;
             font-size: $typeBodySize * $typeSizeMultiplier;
             line-height: 1.5em;
+            margin-bottom: -$baseline*2.25 !important;
         }
         
         header {
