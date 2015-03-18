@@ -28,22 +28,58 @@ makeDraggable = (elements) ->
     .on 'click', ->
       $(window).trigger 'mouseup'
 
+  elements.each () ->
+    url = window.location+"s/"+$(@).data().spaceid
+    $(@).width 300#$(window).width()/7
+    $(@).height 200#$(window).height()/7
+
+    # $(@).width $(window).width()
+      
+    # $(@).height $(window).height()
+    # $(@).css {
+    #   width: 100/$(window).width()
+    #   height: 100/$(window).height()
+    # }
+    # $.get url, (data) ->
+    #   console.log data
+      # html2canvas data, {
+      #   onrendered: (canvas) ->
+      #     console.log canvas.toDataURL()
+      #     $(@).css('background-image', canvas.toDataURL())
+      # }
+
   elements.click () ->
     url = window.location+"s/"+$(@).data().spaceid
-    me = $(@)
-    $.get url, (data) ->
-      # console.log 'gotit'
-      # $('body').html data
-      toScale = $(window).width()/ me.width()
-      me.css 'transform-origin', '0% 0%'
-      me.zIndex 100
-      me.animate({
+    # toScale = $(window).width()/ me.width()
+    $(@).css 'transform-origin', '0% 0%'
+    $(@).zIndex 100
+
+    $.get url, (data) =>
+      $('<iframe />', {
+        name: 'myFrame'
+        id:   'myFrame'
+        src: url
+      }).css({
         top: 0
         left: 0
-        scale: toScale
-      }, 500, () ->
-        $('body').html data
-      )
+        "transform-origin": '0% 0%'
+        position: 'relative'
+        width: $(window).width()#'100%'
+        height: $(window).height()#'100%'
+        scale: 1/7
+      }).click((event)->
+        event.preventDefault()
+        event.stopPropagation()
+      ).prependTo($(@)).ready () =>
+        setTimeout(() =>
+          $(@).children('iframe').animate { scale: 1 }, 500
+          $(@).animate({
+            top: 0
+            left: 0
+            width: $(window).width()
+            height: $(window).height()
+          }, 500)
+        ,500)
     
 
 $ ->

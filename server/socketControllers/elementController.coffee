@@ -4,6 +4,7 @@ webPreviews = require '../modules/webPreviews.coffee'
 thumbnails = require '../modules/thumbnails.coffee'
 request = require 'request'
 s3 = require '../adapters/s3.coffee'
+spacePreviews = require '../modules/spacePreviews.coffee'
 
 memCache = {}
 
@@ -36,6 +37,7 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           sio.to(spaceKey).emit 'newElement', { element }
+          spacePreviews spaceKey
           return callback()
     
     newImage = (attributes) ->
