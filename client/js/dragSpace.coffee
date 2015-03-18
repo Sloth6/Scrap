@@ -34,14 +34,16 @@ makeDraggable = (elements) ->
     $.get url, (data) ->
       # console.log 'gotit'
       # $('body').html data
+      toScale = $(window).width()/ me.width()
+      me.css 'transform-origin', '0% 0%'
+      me.zIndex 100
       me.animate({
         top: 0
         left: 0
-        width: $(window).width()
-        height: $(window).height()
+        scale: toScale
       }, 500, () ->
-        $('body').html data)
-      # # console.log data
+        $('body').html data
+      )
     
 
 $ ->
