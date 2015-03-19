@@ -37,7 +37,6 @@ createNewElement = (element) ->
             <author>#{names[creatorId]}</author>
           </header>
         #{cardDom content, contentType }
-          <div class='resize ui-resizable-handle ui-resizable-se' data-scale=#{1/scale}></div>
         </div>
     </article>")
   if contentType is 'text'
