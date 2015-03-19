@@ -17,12 +17,13 @@ block scripts
   script(src="/js/jquery/jquery-mousewheel.min.js")
 
   script(src="/js/screenDrag.js")
-  script(src="/js/dragSpace.js")
-  script(src="/js/lib/html2canvas.js")
+  script(src="/js/meta-space/dragSpace.js")
+  script(src="/js/meta-space/enterSpace.js")
+  script(src="/js/meta-space/closeSpace.js")
 
 block content
   header 
-  
+    a(id="home",href='/', style="display:none;") Home
   section.space
   
     section.content
