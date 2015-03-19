@@ -1478,6 +1478,25 @@ section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
 
+/* line 5, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview {
+  position: absolute;
+  border: 1pt rgba(0, 0, 0, 0.25) solid;
+  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  height: 25vh;
+  width: 25vw;
+}
+/* line 12, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview iframe {
+  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 /* line 1, ../sass/layout/_login.scss */
 .card.login {
   padding-left: 2rem !important;
