@@ -23,17 +23,14 @@ block scripts
 
 block content
   header 
-    a(id="home",href='/', style="display:none;") Home
+    a(class="home",href='/', style="display:none;") Home
   section.space
   
     section.content
-      - x = 25
-      - y = 25
       each space in user.spaces
-        - cssString = "position:absolute;top:"+y+"px;left:"+x+"px;"+"z-index:#{1};-webkit-transform:scale3d(#{1},#{1},1.0); transform:scale3d(#{1},#{1},1.0);width:300px;height:200px;"
-        - borderCss = "border:black;border-style:solid;border-width:2px;"
+        - cssString = "z-index:#{1};-webkit-transform:scale3d(#{1},#{1},1.0); transform:scale3d(#{1},#{1},1.0);"
         - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
-        div.draggable(data-spaceId = space.spaceKey, style=cssString+borderCss+imageCss)
+        div.spacePreview.draggable(data-spaceId = space.spaceKey, style=cssString+imageCss)
           h1= space.name
         - x += 375
       //- each element in user.spaces

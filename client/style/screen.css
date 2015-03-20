@@ -1006,15 +1006,51 @@ body > section.container > section.space section.content div.spacePreview {
   -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  height: 25vh;
-  width: 25vw;
+  height: 100vh;
+  width: 100vw;
+  -moz-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
+  -ms-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
+  -webkit-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
+  transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  background-color: #f0f0f0;
+  z-index: 1;
 }
-/* line 12, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview iframe {
+/* line 21, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview.open {
+  -moz-transform: scale3d(1, 1, 1) translate(0px, 0px);
+  -ms-transform: scale3d(1, 1, 1) translate(0px, 0px);
+  -webkit-transform: scale3d(1, 1, 1) translate(0px, 0px);
+  transform: scale3d(1, 1, 1) translate(0px, 0px);
+  border: 0;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 2;
+}
+/* line 28, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview.open iframe.spaceFrame {
+  opacity: 1;
+}
+/* line 33, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview iframe.spaceFrame {
   -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  opacity: 0;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #f0f0f0;
 }
 
 /* line 1, ../sass/layout/_login.scss */

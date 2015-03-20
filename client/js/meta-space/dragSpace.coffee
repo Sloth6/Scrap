@@ -13,8 +13,9 @@ draggableOptions = (socket) ->
     diffY = event.clientY - click.y
 
     start = $(this).data 'startPosition'
-    $(this).css('left', (event.clientX - click.x + start.left)/screenScale)
-    $(this).css('top', (event.clientY - click.y + start.top)/screenScale)
+    $(this).translate([(event.clientX - click.x + start.left)/screenScale, (event.clientY - click.y + start.top)/screenScale])
+#     $(this).css('left', (event.clientX - click.x + start.left)/screenScale)
+#     $(this).css('top', (event.clientY - click.y + start.top)/screenScale)
       # ui.position =
       #   left: (event.clientX - click.x + startPosition.left) / (screenScale)
       #   top: (event.clientY - click.y + startPosition.top) / (screenScale)
