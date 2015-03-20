@@ -1482,10 +1482,10 @@ section.container section.space article .ui-resizable-handle:hover {
 body > section.container > section.space section.content div.spacePreview {
   position: absolute;
   border: 4pt rgba(0, 0, 0, 0.25) solid;
-  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   height: 100vh;
   width: 100vw;
   -moz-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
@@ -1519,13 +1519,18 @@ body > section.container > section.space section.content div.spacePreview.open {
 /* line 32, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview.open iframe.spaceFrame {
   opacity: 1;
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
 }
-/* line 37, ../sass/layout/_home.scss */
+/* line 38, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview iframe.spaceFrame {
-  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 1s linear 0s;
+  -o-transition: all 1s linear 0s;
+  -webkit-transition: all 1s linear;
+  -webkit-transition-delay: 0s;
+  transition: all 1s linear 0s;
   -webkit-transform-origin: center center;
   transform-origin: center center;
   opacity: 0;
