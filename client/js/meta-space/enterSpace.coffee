@@ -5,7 +5,7 @@ $ ->
 
     $('<iframe />', {
       name: 'spaceFrame'
-      class:   'spaceFrame'
+      class:'spaceFrame'
       src: url
     }).
     click((event)->
@@ -15,7 +15,6 @@ $ ->
     prependTo($(@)).
     ready () =>
       setTimeout(() =>
-
         $('.home').show()
         $(@).addClass("open")
       ,500)

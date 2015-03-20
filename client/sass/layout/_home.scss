@@ -4,7 +4,7 @@ body > section.container > section.space {
         
         div.spacePreview {
             position:absolute;
-            border: 1pt rgba(0,0,0,.25) solid;
+            border: 4pt rgba(0,0,0,.25) solid;
             @include transition(all 2s $defaultCurve);
             height: 100vh;
             width: 100vw;
@@ -17,6 +17,10 @@ body > section.container > section.space {
             left: 0;
             background-color: $colorBackground;
             z-index: 1;
+            
+            h1 {
+                text-indent: -99999em;
+            }
             
             &.open {
                 @include transform(scale3d(1.0, 1.0, 1.0) translate(0px, 0px));
