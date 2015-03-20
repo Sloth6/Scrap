@@ -1001,7 +1001,7 @@ section.container section.space article .ui-resizable-handle:hover {
 /* line 5, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview {
   position: absolute;
-  border: 1pt rgba(0, 0, 0, 0.25) solid;
+  border: 4pt rgba(0, 0, 0, 0.25) solid;
   -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
@@ -1022,6 +1022,10 @@ body > section.container > section.space section.content div.spacePreview {
   z-index: 1;
 }
 /* line 21, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview h1 {
+  text-indent: -99999em;
+}
+/* line 25, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview.open {
   -moz-transform: scale3d(1, 1, 1) translate(0px, 0px);
   -ms-transform: scale3d(1, 1, 1) translate(0px, 0px);
@@ -1032,11 +1036,11 @@ body > section.container > section.space section.content div.spacePreview.open {
   left: 0 !important;
   z-index: 2;
 }
-/* line 28, ../sass/layout/_home.scss */
+/* line 32, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview.open iframe.spaceFrame {
   opacity: 1;
 }
-/* line 33, ../sass/layout/_home.scss */
+/* line 37, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview iframe.spaceFrame {
   -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
