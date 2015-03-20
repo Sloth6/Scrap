@@ -6,11 +6,41 @@ body > section.container > section.space {
             position:absolute;
             border: 1pt rgba(0,0,0,.25) solid;
             @include transition(all 2s $defaultCurve);
-            height: 25vh;
-            width: 25vw;
+            height: 100vh;
+            width: 100vw;
+            @include transform(scale3d(.25, .25, .25) translate(200px, 500px));
+            -webkit-transform-origin: top left;
+                    transform-origin: top left;
+            background-repeat: no-repeat;
+            background-size: cover;
+            top: 0;
+            left: 0;
+            background-color: $colorBackground;
+            z-index: 1;
             
-            iframe {
+            &.open {
+                @include transform(scale3d(1.0, 1.0, 1.0) translate(0px, 0px));
+                border: 0;
+                top: 0 !important;
+                left: 0 !important;
+                z-index: 2;
+                
+                iframe.spaceFrame {
+                    opacity: 1;
+                }
+            }
+            
+            iframe.spaceFrame {
                 @include transition(all 2s $defaultCurve);
+                -webkit-transform-origin: center center;
+                        transform-origin: center center;
+                opacity: 0;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                background-color: $colorBackground;
             }
         }
     }
