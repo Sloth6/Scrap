@@ -5,4 +5,4 @@ $ ->
     $('.spaceFrame').parent().removeClass("open")
     setTimeout (->
       $('.spaceFrame').remove()
-    ), 500
+    ), 2000 # duration of animation
