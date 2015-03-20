@@ -1,3 +1,5 @@
+$articleFontSize: $typeBodySize * $typeSizeMultiplier;
+
 section.container section.space {
     
     article {
@@ -5,7 +7,7 @@ section.container section.space {
         position: absolute;
         backface-visibility: hidden;
         background-color: transparent !important;
-        font-size: $typeBodySize * $typeSizeMultiplier;
+        font-size: $articleFontSize;
         line-height: 1.5em;
         transform-origin: top left;
         -webkit-transform-origin: top left;
@@ -99,7 +101,7 @@ section.container section.space {
         textarea {
             width: 100%;
             height: $baseline;
-            font-size: $typeBodySize * $typeSizeMultiplier;
+            font-size: $articleFontSize;
             line-height: 1.5em;
             margin-bottom: -$baseline*2.25 !important;
         }
@@ -172,6 +174,10 @@ section.container section.space {
             &.text {
                 @include cardStyle;
                 width: auto;
+                
+                &.long {
+                    font-size: ($articleFontSize) / 2;
+                }
             }
 
             &.image {
