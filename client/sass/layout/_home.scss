@@ -5,7 +5,7 @@ body > section.container > section.space {
         div.spacePreview {
             position:absolute;
             border: 4pt rgba(0,0,0,.25) solid;
-            @include transition(all 3s $defaultCurve);
+            @include transition(all 1s $defaultCurve);
             height: 100vh;
             width: 100vw;
             @include transform(scale3d(.25, .25, .25) translate(200px, 500px));
@@ -31,12 +31,17 @@ body > section.container > section.space {
                 
                 iframe.spaceFrame {
                     opacity: 1;
-                    @include transition-delay(.5s);
+//                     @include transition-delay(.5s);
                 }
             }
             
+            &.hidden {
+                opacity: 0;
+                @include transition-timing-function(linear);
+            }
+            
             iframe.spaceFrame {
-                @include transition(all 1s linear 0s);
+                @include transition(all 2s $defaultCurve 0s);
                 -webkit-transform-origin: center center;
                         transform-origin: center center;
                 opacity: 0;

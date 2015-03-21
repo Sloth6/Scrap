@@ -16,6 +16,7 @@ $ ->
     ready () =>
       setTimeout(() =>
         $('.home').show()
+        $(".draggable").not($(this)).addClass("hidden")
         $(@).addClass("open")
-      ,500)
+      , 500)
     
