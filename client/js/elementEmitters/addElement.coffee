@@ -17,9 +17,9 @@ $ ->
   $(window).on 'click', (event) -> $('.add-element').remove()
   $(window).bind 'paste', (event) -> addElement event, true
   
-  $(window).keypress (event) -> 
-    if $('.add-element').length is 0
-      addElement event, false
+  # $(window).keypress (event) -> 
+  #   if $('.add-element').length is 0
+  #     addElement event, false
 
 # 
   # The options for s3-streamed file uploads, used later
@@ -83,33 +83,19 @@ $ ->
     $('.drag-upload').fileupload fileuploadOptions(mouse.x, mouse.y, null, $('.content').css('scale'))
 
   # adding a new element
-  emitElement = (x, y, scale, content, contentType) ->
+  emitElement = (x, y, scale, content) ->
     # Make sure to account for screen drag (totalDelta)
     x = Math.round(x - totalDelta.x)
     y = Math.round(y - totalDelta.y)
-    caption = $('textarea[name=caption]').val()
-    caption = if caption? then caption.slice(0, -1) else caption # remove last newline 
     window.maxZ += 1
     z = window.maxZ
-    data = { contentType, content, x, y, z, scale, caption, userId }
+    content = encodeURIComponent content.slice(0, -1)
+    data = { content, x, y, z, scale, userId }
     socket.emit 'newElement', data
 
     $('.add-element').remove()
     $('.add-image').remove()
     $('.add-website').remove()
-
-  isWebsite = (url) ->
-    expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
-    !!url.match expression
-
-  # on double-click, append new element form, then process the new element if one is submitted
-
-  # $('.container').mouseup (event) ->
-  #   screenScale = $('.content').css('scale') 
-  #   elementScale = 1 / screenScale
-  #   x = (event.clientX - $('.content').offset().left) / screenScale
-  #   y = (event.clientY - $('.content').offset().top) / screenScale
-    # console.log(screenScale)
 
   addElement = (event, createdByCntrl) ->
     eventX = event.clientX || mouse.x
@@ -127,8 +113,7 @@ $ ->
         </div>
       </article>"
 
-    # add the new element form
-    # if not createdByCntrl
+    # add the new element form if not createdByCntrl
     $('.content').append elementForm
     $('.add-element').on 'click', (event) -> event.stopPropagation()
       .css(
@@ -137,19 +122,20 @@ $ ->
         'z-index': "#{window.maxZ + 1}"
         top: "#{y}px"
         left: "#{x}px")
-
     # allow file uploads
     # if not createdByCntrl
     #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
     $('textarea.new').focus().autoGrow()
-      .on 'keyup', (event) ->
-        # on enter (not shift + enter), submit either website or text
-        if event.keyCode is 13 and not event.shiftKey
-          if isWebsite $(this).val()
-            url = encodeURIComponent $(this).val().slice(0, -1)
-            emitElement x, y, scale, url, 'website'
-
-          else # this is text
-            content = $('textarea[name=content]').val().slice(0, -1)
-            emitElement x, y, scale, content, 'text'
+    
+    if createdByCntrl
+      setTimeout(() ->
+        content = $('.add-element .new').val()
+        emitElement x, y, scale, content
+      , 20)
+    else 
+      $('textarea.new').on 'keyup', (event) ->
+          # on enter (not shift + enter)
+          if event.keyCode is 13 and not event.shiftKey
+            content = $('.add-element .new').val()
+            emitElement x, y, scale, content
