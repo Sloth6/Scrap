@@ -91,7 +91,7 @@ $ ->
     y = Math.round(y - totalDelta.y)
     window.maxZ += 1
     z = window.maxZ
-    content = encodeURIComponent content.slice(0, -1)
+    content = encodeURIComponent content#.slice(0, -1)
     data = { content, x, y, z, scale, userId }
     socket.emit 'newElement', data
 
