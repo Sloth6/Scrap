@@ -48,7 +48,10 @@ block content
         if element.scale < minScale
           - minScale = element.scale
         - var classes = [ "color"+colors[element.creatorId], element.contentType, "draggable" ]
-        article(id=element.id, class= classes, style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale3d(#{element.scale},#{element.scale},1.0); transform:scale3d(#{element.scale},#{element.scale},1.0);")
+        - var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
+        - element.scale = 1.0
+        - var scaleString = "-webkit-transform:scale3d("+element.scale+","+element.scale+",1.0); transform:scale3d("+element.scale+","+element.scale+"},1.0);"
+        article(id=element.id, class= classes, style=posString+scaleString)
           case element.contentType
             when 'image'
               include partials/contentTypes/image

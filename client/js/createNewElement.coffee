@@ -24,6 +24,7 @@ cardDom = (content, contentType) ->
   
 createNewElement = (element) ->
   { content, contentType, creatorId, id, x, y, z, scale } = element
+  scale = 1.0
   console.log 'NEW ELEMENT CONTENT', content, contentType
 
   x += totalDelta.x
