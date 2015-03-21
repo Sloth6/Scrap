@@ -2,6 +2,12 @@ totalDelta =
   x: 0
   y: 0
 
+click = {}
+
+startPosition = {}
+
+longText = 50 #number of characters
+
 matrixToArray = (str) -> str.match(/(-?[0-9\.]+)/g)
 
 elementScale = (element) ->
@@ -22,9 +28,6 @@ scaleControls = (control) ->
   control.css         'transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
   control.css '-webkit-transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
 
-click = {}
-
-startPosition = {}
 
 $ ->
   $('.menu').mousedown (e) ->

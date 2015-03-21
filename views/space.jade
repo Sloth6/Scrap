@@ -48,6 +48,13 @@ block content
         if element.scale < minScale
           - minScale = element.scale
         - var classes = [ "color"+colors[element.creatorId], element.contentType, "draggable" ]
+        
+        if element.contentType == 'text'
+          if element.content.length >= 50
+            - classes.push("long")
+          else
+            - classes.push("short")
+
         - var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
         - element.scale = 1.0
         - var scaleString = "-webkit-transform:scale3d("+element.scale+","+element.scale+",1.0); transform:scale3d("+element.scale+","+element.scale+"},1.0);"

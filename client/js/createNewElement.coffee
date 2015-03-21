@@ -30,6 +30,8 @@ createNewElement = (element) ->
   x += totalDelta.x
   y += totalDelta.y
   classes = "#{contentType} draggable color#{colors[element.creatorId]}"
+  if contentType is 'text'
+    classes += if content.length >= longText then " long" else " short"
 
   newArticle =
     $("<article class='#{classes}' id='#{id}'>
