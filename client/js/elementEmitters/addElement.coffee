@@ -15,7 +15,9 @@ $ ->
       addElement event, false
 
   $(window).on 'click', (event) -> $('.add-element').remove()
-  $(window).bind 'paste', (event) -> addElement event, true
+  $(window).bind 'paste', (event) ->
+    if $('.add-element').length is 0
+      addElement event, true
   
   # $(window).keypress (event) -> 
   #   if $('.add-element').length is 0
