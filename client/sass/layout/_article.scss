@@ -1,4 +1,5 @@
 $articleFontSize: $typeBodySize * $typeSizeMultiplier;
+$articleWidth: $col * 2 * $typeSizeMultiplier;
 
 section.container section.space {
     
@@ -69,6 +70,14 @@ section.container section.space {
         // NEW ELEMENT
         
         &.add-element{
+            
+            .card {
+                width: $articleWidth !important;
+                
+                .autogrow-textarea-mirror {
+                    width: $articleWidth !important;
+                }
+            }
             
             form {
             
@@ -161,7 +170,7 @@ section.container section.space {
         
         .card {
             position: relative;
-            max-width:$col * 2 * $typeSizeMultiplier;
+            max-width: $articleWidth;
             width: auto;
             @include transition(.125s $defaultCurve);
             @include transition-property(transform,
