@@ -53,15 +53,13 @@ section.container section.space {
         &.long {
             
             p {
-                font-size: ($articleFontSize) * .75;
+                font-size: ($articleFontSize) * .5;
                 line-height: $leading;
             }
             
-/*
             .card {
                 max-width: $articleWidth * .75;
             }
-*/
         }
                 
 /*
