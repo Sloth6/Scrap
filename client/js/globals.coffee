@@ -22,12 +22,11 @@ dimension = (elem) ->
   { w, h }
   
 scaleControls = (control) ->
-  spaceScale = $('.content').css 'scale'
-  controlScale = control.attr('data-scale')
-  newControlScale = (1 / spaceScale) * controlScale
+  spaceScale        = $('.content').css 'scale'
+  controlScale      = control.attr('data-scale')
+  newControlScale   = (1 / spaceScale) * controlScale
   control.css         'transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
   control.css '-webkit-transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
-
 
 $ ->
   $('.menu').mousedown (e) ->
