@@ -1,19 +1,19 @@
 $ ->
   socket = io.connect()
   mouse = { x: 0, y: 0 }
-
-  # On document so that it doesn't get messed up by screenDrag
-  $(document).on 'mousemove', (event) ->
-    mouse.x = event.clientX
-    mouse.y = event.clientY
+  $(window).on 'dragover', (event) ->
+    event = event.originalEvent
+    scale = $('.content').css 'scale'
+    mouse.x = (event.clientX - $('.content').offset().left) / scale
+    mouse.y = (event.clientY - $('.content').offset().top) / scale
 
   window.oncontextmenu = () -> false
+
   $(window).mousedown (event) ->
     if event.which is 3 #right mouse
       event.preventDefault()
       $('.add-element').remove()
       addElement event, false
-
   $(window).on 'click', (event) -> $('.add-element').remove()
   $(window).bind 'paste', (event) ->
     if $('.add-element').length is 0
@@ -25,23 +25,30 @@ $ ->
 
 # 
   # The options for s3-streamed file uploads, used later
-  fileuploadOptions = (x, y, contentType, scale) ->
+  fileuploadOptions = () ->
+    # console.log x, y, scale
     multipart = false
+    startData =
+      x: 0
+      y: 0
+      scale: 1
+
     url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
     type: 'POST'
     autoUpload: true
     dataType: 'xml' # S3's XML response
-    add: (event, data) ->      
+    add: (event, data) ->
+      startData.x = mouse.x
+      startData.y = mouse.y
+      startData.scale = $('.content').css 'scale'
       $.ajax "/sign_s3", {
         type: 'GET'
         dataType: 'json'
-        data: {title: data.files[0].name} # Send filename to /signed for the signed response 
+        data: {title: data.files[0].name, type: data.files[0].type} # Send filename to /signed for the signed response 
         async: false
         success: (data) ->
           # Now that we have our data, we update the form so it contains all
           # the needed data to sign the request
-          contentType = data.contentType.split('/')[0]
-
           $('input[name=key]').val data.key
           $('input[name=policy]').val data.policy
           $('input[name=signature]').val data.signature
@@ -62,27 +69,13 @@ $ ->
       console.log 'fail', data
 
     success: (data) ->
-      # On drag-to-upload, these variables won't have been set yet, so let's set them
-      scale ||= $('.content').css 'scale'
-      x ||= Math.round((x - 128 - $('.content').offset().left) / scale)
-      y ||= Math.round((y - $('.content').offset().top) / scale)
-
       content = $(data).find('Location').text(); # Find location value from XML response
-      console.log 'success', content, contentType
+      emitElement startData.x, startData.y, 1/startData.scale, content
 
-      # If multiple files were uploaded, don't add caption boxes for all of them
-      # if multipart
-      emitElement x, y, 1/scale, content, contentType
-      # else
-      #   innerHTML = (content) -> "<img src='#{content}'>"
-      #   addCaption x, y, 1/scale, contentType, content, innerHTML
-
-      # Reset variables for next drag-upload
-      # x  = y = scale = null
 
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
-    $('.drag-upload').fileupload fileuploadOptions(mouse.x, mouse.y, null, $('.content').css('scale'))
+    $('.drag-upload').fileupload fileuploadOptions()
 
   # adding a new element
   emitElement = (x, y, scale, content) ->
