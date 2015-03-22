@@ -713,6 +713,7 @@ section.container section.space article {
                   }
               }
           }
+      
   */
 }
 /* line 19, ../sass/layout/_article.scss */
@@ -765,15 +766,24 @@ section.container section.space article.dragging > .card, section.container sect
   -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
   transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 74, ../sass/layout/_article.scss */
+/* line 53, ../sass/layout/_article.scss */
+section.container section.space article.long {
+  font-size: 15pt;
+  /*
+              .card {
+                  max-width: $articleWidth * .75;
+              }
+  */
+}
+/* line 85, ../sass/layout/_article.scss */
 section.container section.space article.add-element .card {
   width: 32rem !important;
 }
-/* line 77, ../sass/layout/_article.scss */
+/* line 88, ../sass/layout/_article.scss */
 section.container section.space article.add-element .card .autogrow-textarea-mirror {
   width: 32rem !important;
 }
-/* line 84, ../sass/layout/_article.scss */
+/* line 95, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper {
   position: relative;
   display: block;
@@ -784,14 +794,14 @@ section.container section.space article.add-element form .fileInputWrapper {
   overflow: hidden;
   font-size: .5em;
 }
-/* line 91, ../sass/layout/_article.scss */
+/* line 102, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper:after {
   content: "Upload a file";
   position: absolute;
   left: 0;
   width: 100%;
 }
-/* line 98, ../sass/layout/_article.scss */
+/* line 109, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper input[type="file"] {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
@@ -802,7 +812,7 @@ section.container section.space article.add-element form .fileInputWrapper input
   position: relative;
   cursor: pointer;
 }
-/* line 111, ../sass/layout/_article.scss */
+/* line 122, ../sass/layout/_article.scss */
 section.container section.space article textarea {
   width: 100%;
   height: 1.5rem;
@@ -810,7 +820,7 @@ section.container section.space article textarea {
   line-height: 1.5em;
   margin-bottom: -3.375rem !important;
 }
-/* line 119, ../sass/layout/_article.scss */
+/* line 130, ../sass/layout/_article.scss */
 section.container section.space article header {
   background: white !important;
   display: inline-block;
@@ -836,7 +846,7 @@ section.container section.space article header {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 140, ../sass/layout/_article.scss */
+/* line 151, ../sass/layout/_article.scss */
 section.container section.space article header author {
   display: inline-block;
   position: relative;
@@ -844,7 +854,7 @@ section.container section.space article header author {
   top: -0.66667rem;
   white-space: nowrap;
 }
-/* line 148, ../sass/layout/_article.scss */
+/* line 159, ../sass/layout/_article.scss */
 section.container section.space article header a.delete {
   display: inline-block;
   position: absolute;
@@ -863,11 +873,11 @@ section.container section.space article header a.delete {
   background-image: url("../images/elementClose.png");
   background-size: 100% 100%;
 }
-/* line 163, ../sass/layout/_article.scss */
+/* line 174, ../sass/layout/_article.scss */
 section.container section.space article header a.delete:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
-/* line 171, ../sass/layout/_article.scss */
+/* line 182, ../sass/layout/_article.scss */
 section.container section.space article .card {
   position: relative;
   max-width: 32rem;
@@ -881,7 +891,7 @@ section.container section.space article .card {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
 }
-/* line 184, ../sass/layout/_article.scss */
+/* line 195, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   -moz-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
@@ -890,34 +900,30 @@ section.container section.space article .card.text {
   padding: 0.5rem 1rem 0.5rem 1rem;
   width: auto;
 }
-/* line 188, ../sass/layout/_article.scss */
-section.container section.space article .card.text.long {
-  font-size: 10pt;
-}
-/* line 193, ../sass/layout/_article.scss */
+/* line 200, ../sass/layout/_article.scss */
 section.container section.space article .card.image {
   width: 48rem;
   overflow: hidden;
 }
-/* line 198, ../sass/layout/_article.scss */
+/* line 205, ../sass/layout/_article.scss */
 section.container section.space article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 207, ../sass/layout/_article.scss */
+/* line 214, ../sass/layout/_article.scss */
 section.container section.space article .card.website:hover .card.header.text .description {
   opacity: 1;
   height: auto;
 }
-/* line 213, ../sass/layout/_article.scss */
+/* line 220, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text {
   position: relative;
   z-index: 2;
 }
-/* line 217, ../sass/layout/_article.scss */
+/* line 224, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .title p {
   line-height: 1.25em;
 }
-/* line 221, ../sass/layout/_article.scss */
+/* line 228, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
   font-family: "Futura W01 Medium";
@@ -928,7 +934,7 @@ section.container section.space article .card.website .card.header.text .url p {
   line-height: 2em;
   opacity: .25;
 }
-/* line 227, ../sass/layout/_article.scss */
+/* line 234, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description {
   opacity: 0;
   height: 0;
@@ -948,28 +954,28 @@ section.container section.space article .card.website .card.header.text .descrip
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 240, ../sass/layout/_article.scss */
+/* line 247, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "Futura W01 Medium";
   letter-spacing: .0625em;
 }
-/* line 243, ../sass/layout/_article.scss */
+/* line 250, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
   word-break: break-all;
 }
-/* line 251, ../sass/layout/_article.scss */
+/* line 258, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 261, ../sass/layout/_article.scss */
+/* line 268, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
   margin-bottom: -12pt;
   background-color: rgba(255, 255, 255, 0.6);
 }
-/* line 268, ../sass/layout/_article.scss */
+/* line 275, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   right: 0;
@@ -987,7 +993,7 @@ section.container section.space article .ui-resizable-handle {
   height: 1rem;
   width: 1rem;
 }
-/* line 282, ../sass/layout/_article.scss */
+/* line 289, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
