@@ -8,6 +8,7 @@ $fontBold:          'Futura W01 Heavy';
 $fontBoldItalic:    'FuturaW01-HeavyOblique';
 
 $typeBodySize:  10pt;
+$leading:       1.5em;
 
 @mixin smallCaps {
     font-size: .666em;
@@ -20,12 +21,12 @@ $typeBodySize:  10pt;
     font-family: $fontRegular, sans-serif;
     font-size: $typeBodySize;
     letter-spacing: .75pt;
-    line-height: 1.5em;
+    line-height: $leading;
 }
 
 @mixin typeBody {
     font-size: $typeBodySize;
-    line-height: 1.5em;
+    line-height: $leading;
     font-family: $fontMedium;
     letter-spacing: .0625em;
 }
@@ -44,7 +45,7 @@ $typeBodySize:  10pt;
     @include typeHeader;
     font-family: $fontRegular;
     font-size: .75rem;
-    line-height: 1.5em;
+    line-height: $leading;
 }
 
 html {

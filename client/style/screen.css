@@ -205,20 +205,20 @@ body section.space section.content article.color9 div.card.text.comment, body se
   background-color: #52edc7;
 }
 
-/* line 50, ../sass/globals/_type.scss */
+/* line 51, ../sass/globals/_type.scss */
 html {
   font-family: "Futura W01 Book", sans-serif;
   font-size: 10pt;
   letter-spacing: .75pt;
   line-height: 1.5em;
 }
-/* line 53, ../sass/globals/_type.scss */
+/* line 54, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 1px #aaaaaa solid;
 }
-/* line 61, ../sass/globals/_type.scss */
+/* line 62, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 0.75rem;
 }
@@ -720,9 +720,9 @@ section.container section.space article:hover > .card, section.container section
   -ms-transform: scale3d(1.125, 1.125, 1.125);
   -webkit-transform: scale3d(1.125, 1.125, 1.125);
   transform: scale3d(1.125, 1.125, 1.125);
-  -moz-box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.25);
-  box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.33);
   -moz-transition-timing-function: cubic-bezier(0.19, 1.25, 0.22, 1.25);
   -o-transition-timing-function: cubic-bezier(0.19, 1.25, 0.22, 1.25);
   -webkit-transition-timing-function: cubic-bezier(0.19, 1.25, 0.22, 1.25);
@@ -748,13 +748,13 @@ section.container section.space article.resizing .card .ui-resizable-handle {
 /* line 48, ../sass/layout/_article.scss */
 section.container section.space article.dragging > .card, section.container section.space article.ui-draggable-dragging > .card {
   cursor: move;
-  -moz-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
-  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
-  -moz-transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
-  -ms-transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
-  -webkit-transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
-  transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
+  -moz-box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.33);
+  -moz-transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
+  -ms-transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
+  -webkit-transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
+  transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
   -moz-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -762,22 +762,26 @@ section.container section.space article.dragging > .card, section.container sect
 }
 /* line 53, ../sass/layout/_article.scss */
 section.container section.space article.long {
-  font-size: 15pt;
   /*
               .card {
                   max-width: $articleWidth * .75;
               }
   */
 }
-/* line 85, ../sass/layout/_article.scss */
+/* line 55, ../sass/layout/_article.scss */
+section.container section.space article.long p {
+  font-size: 15pt;
+  line-height: 1.5em;
+}
+/* line 89, ../sass/layout/_article.scss */
 section.container section.space article.add-element .card {
   width: 32rem !important;
 }
-/* line 88, ../sass/layout/_article.scss */
+/* line 92, ../sass/layout/_article.scss */
 section.container section.space article.add-element .card .autogrow-textarea-mirror {
   width: 32rem !important;
 }
-/* line 95, ../sass/layout/_article.scss */
+/* line 99, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper {
   position: relative;
   display: block;
@@ -788,14 +792,14 @@ section.container section.space article.add-element form .fileInputWrapper {
   overflow: hidden;
   font-size: .5em;
 }
-/* line 102, ../sass/layout/_article.scss */
+/* line 106, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper:after {
   content: "Upload a file";
   position: absolute;
   left: 0;
   width: 100%;
 }
-/* line 109, ../sass/layout/_article.scss */
+/* line 113, ../sass/layout/_article.scss */
 section.container section.space article.add-element form .fileInputWrapper input[type="file"] {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
@@ -806,7 +810,7 @@ section.container section.space article.add-element form .fileInputWrapper input
   position: relative;
   cursor: pointer;
 }
-/* line 122, ../sass/layout/_article.scss */
+/* line 126, ../sass/layout/_article.scss */
 section.container section.space article textarea {
   width: 100%;
   height: 1.5rem;
@@ -814,7 +818,7 @@ section.container section.space article textarea {
   line-height: 1.5em;
   margin-bottom: -3.375rem !important;
 }
-/* line 130, ../sass/layout/_article.scss */
+/* line 134, ../sass/layout/_article.scss */
 section.container section.space article header {
   background: white !important;
   display: inline-block;
@@ -840,7 +844,7 @@ section.container section.space article header {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 151, ../sass/layout/_article.scss */
+/* line 155, ../sass/layout/_article.scss */
 section.container section.space article header author {
   display: inline-block;
   position: relative;
@@ -848,7 +852,7 @@ section.container section.space article header author {
   top: -0.66667rem;
   white-space: nowrap;
 }
-/* line 159, ../sass/layout/_article.scss */
+/* line 163, ../sass/layout/_article.scss */
 section.container section.space article header a.delete {
   display: inline-block;
   position: absolute;
@@ -867,11 +871,11 @@ section.container section.space article header a.delete {
   background-image: url("../images/elementClose.png");
   background-size: 100% 100%;
 }
-/* line 174, ../sass/layout/_article.scss */
+/* line 178, ../sass/layout/_article.scss */
 section.container section.space article header a.delete:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
-/* line 182, ../sass/layout/_article.scss */
+/* line 186, ../sass/layout/_article.scss */
 section.container section.space article .card {
   position: relative;
   max-width: 32rem;
@@ -885,36 +889,36 @@ section.container section.space article .card {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
 }
-/* line 195, ../sass/layout/_article.scss */
+/* line 199, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   padding: 0.5rem 1rem 0.5rem 1rem;
   width: auto;
 }
-/* line 200, ../sass/layout/_article.scss */
+/* line 204, ../sass/layout/_article.scss */
 section.container section.space article .card.image {
   width: 48rem;
   overflow: hidden;
 }
-/* line 205, ../sass/layout/_article.scss */
+/* line 209, ../sass/layout/_article.scss */
 section.container section.space article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 214, ../sass/layout/_article.scss */
+/* line 218, ../sass/layout/_article.scss */
 section.container section.space article .card.website:hover .card.header.text .description {
   opacity: 1;
   height: auto;
 }
-/* line 220, ../sass/layout/_article.scss */
+/* line 224, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text {
   position: relative;
   z-index: 2;
 }
-/* line 224, ../sass/layout/_article.scss */
+/* line 228, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .title p {
   line-height: 1.25em;
 }
-/* line 228, ../sass/layout/_article.scss */
+/* line 232, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
   font-family: "Futura W01 Medium";
@@ -925,7 +929,7 @@ section.container section.space article .card.website .card.header.text .url p {
   line-height: 2em;
   opacity: .25;
 }
-/* line 234, ../sass/layout/_article.scss */
+/* line 238, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description {
   opacity: 0;
   height: 0;
@@ -945,28 +949,28 @@ section.container section.space article .card.website .card.header.text .descrip
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 247, ../sass/layout/_article.scss */
+/* line 251, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
   font-size: 10pt;
   line-height: 1.5em;
   font-family: "Futura W01 Medium";
   letter-spacing: .0625em;
 }
-/* line 250, ../sass/layout/_article.scss */
+/* line 254, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p a {
   word-break: break-all;
 }
-/* line 258, ../sass/layout/_article.scss */
+/* line 262, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 268, ../sass/layout/_article.scss */
+/* line 272, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
   margin-bottom: -12pt;
   background-color: rgba(255, 255, 255, 0.6);
 }
-/* line 275, ../sass/layout/_article.scss */
+/* line 279, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   right: 0;
@@ -984,7 +988,7 @@ section.container section.space article .ui-resizable-handle {
   height: 1rem;
   width: 1rem;
 }
-/* line 289, ../sass/layout/_article.scss */
+/* line 293, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }

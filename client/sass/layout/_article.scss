@@ -51,7 +51,11 @@ section.container section.space {
         }
 
         &.long {
-            font-size: ($articleFontSize) * .75;
+            
+            p {
+                font-size: ($articleFontSize) * .75;
+                line-height: $leading;
+            }
             
 /*
             .card {
