@@ -698,10 +698,6 @@ section.container section.space article {
   line-height: 1.5em;
   transform-origin: top left;
   -webkit-transform-origin: top left;
-  -moz-transform: scale(2) !important;
-  -ms-transform: scale(2) !important;
-  -webkit-transform: scale(2) !important;
-  transform: scale(2) !important;
   /*
           &.attached {
           
