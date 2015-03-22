@@ -24,22 +24,22 @@ $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
 @mixin cardStyle {
     background-color: $colorCardBackground;
-    @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
+//     @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
     padding: $cardPadding;
 }
 
 @mixin cardHover {
 //     opacity: .75;
     @include transform($cardHoverScaleMin);
-    @include box-shadow(0 $gutter/2 $gutter*4 rgba(0,0,0,.125));
+    @include box-shadow(0 $gutter/2 $gutter*3 rgba(0,0,0,.33));
     @include transition-timing-function($bouncyCurve);
 //     -webkit-animation: cardPulsateHover 1s ease-in-out infinite alternate;
 }
 
 @mixin cardDrag {
     cursor: move;
-    @include box-shadow(0 $gutter/2 $gutter*2 rgba(0,0,0,.125));
-    @include transform(rotateZ(-4deg) $cardHoverScaleMin);
+    @include box-shadow(0 $gutter/2 $gutter*3 rgba(0,0,0,.33));
+    @include transform(rotateZ(-2deg) $cardHoverScaleMin);
         @include transition-timing-function($defaultCurve);
 //     -webkit-animation: cardPulsateDrag 1s ease-in-out infinite alternate;
 
