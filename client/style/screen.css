@@ -318,9 +318,6 @@ input[type=checkbox] + label {
 /* line 120, ../sass/globals/_components.scss */
 ul.menu {
   background-color: rgba(255, 255, 255, 0.925);
-  -moz-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
   padding: 0.5rem 1rem 0.5rem 1rem;
   padding: 0;
   width: 8rem;
@@ -544,9 +541,6 @@ body {
 .container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
-  -moz-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
   padding: 0.5rem 1rem 0.5rem 1rem;
   width: 16rem;
   display: inline-block;
@@ -726,9 +720,9 @@ section.container section.space article:hover > .card, section.container section
   -ms-transform: scale3d(1.125, 1.125, 1.125);
   -webkit-transform: scale3d(1.125, 1.125, 1.125);
   transform: scale3d(1.125, 1.125, 1.125);
-  -moz-box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.25);
   -moz-transition-timing-function: cubic-bezier(0.19, 1.25, 0.22, 1.25);
   -o-transition-timing-function: cubic-bezier(0.19, 1.25, 0.22, 1.25);
   -webkit-transition-timing-function: cubic-bezier(0.19, 1.25, 0.22, 1.25);
@@ -754,9 +748,9 @@ section.container section.space article.resizing .card .ui-resizable-handle {
 /* line 48, ../sass/layout/_article.scss */
 section.container section.space article.dragging > .card, section.container section.space article.ui-draggable-dragging > .card {
   cursor: move;
-  -moz-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
   -moz-transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
   -ms-transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
   -webkit-transform: rotateZ(-4deg) scale3d(1.125, 1.125, 1.125);
@@ -894,9 +888,6 @@ section.container section.space article .card {
 /* line 195, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
-  -moz-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
   padding: 0.5rem 1rem 0.5rem 1rem;
   width: auto;
 }
@@ -1003,9 +994,6 @@ section.container section.space article .ui-resizable-handle:hover {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
   background-color: rgba(255, 255, 255, 0.925);
-  -moz-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  -webkit-box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
-  box-shadow: 0 0.16667rem 1rem rgba(0, 0, 0, 0.125);
   padding: 0.5rem 1rem 0.5rem 1rem;
   width: 16rem;
 }
