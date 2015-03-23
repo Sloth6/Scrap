@@ -3,9 +3,16 @@ $ ->
   mouse = { x: 0, y: 0 }
   $(window).on 'dragover', (event) ->
     event = event.originalEvent
-    scale = $('.content').css 'scale'
-    mouse.x = (event.clientX - $('.content').offset().left) / scale
-    mouse.y = (event.clientY - $('.content').offset().top) / scale
+    # scale = $('.content').css 'scale'
+    mouse.x = event.clientX#(event.clientX - $('.content').offset().left) / scale
+    mouse.y = event.clientY#(event.clientY - $('.content').offset().top) / scale
+  $(window).on 'mousemove', (event) ->
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+
+    # scale = $('.content').css 'scale'
+    # mouse.x = (event.clientX - $('.content').offset().left) / scale
+    # mouse.y = (event.clientY - $('.content').offset().top) / scale
 
   window.oncontextmenu = () -> false
 
@@ -38,9 +45,10 @@ $ ->
     autoUpload: true
     dataType: 'xml' # S3's XML response
     add: (event, data) ->
-      startData.x = mouse.x
-      startData.y = mouse.y
-      startData.scale = $('.content').css 'scale'
+      screenScale = $('.content').css 'scale'
+      startData.x = (mouse.x - $('.content').offset().left) / screenScale
+      startData.y = (mouse.y - $('.content').offset().top) / screenScale
+      startData.scale = screenScale
       $.ajax "/sign_s3", {
         type: 'GET'
         dataType: 'json'
@@ -49,7 +57,6 @@ $ ->
         success: (data) ->
           # Now that we have our data, we update the form so it contains all
           # the needed data to sign the request
-          # console.log 'key:', data.key
           createLoadingElement startData, data.key
           $('input[name=key]').val data.key
           $('input[name=policy]').val data.policy
@@ -87,8 +94,9 @@ $ ->
     window.maxZ += 1
     z = window.maxZ
     content = encodeURIComponent content#.slice(0, -1)
-    data = { content, x, y, z, scale, userId }
-    socket.emit 'newElement', data
+    if content != ''
+      data = { content, x, y, z, scale, userId }
+      socket.emit 'newElement', data
 
     $('.add-element').remove()
     $('.add-image').remove()
@@ -99,7 +107,6 @@ $ ->
     eventY = event.clientY || mouse.y
     screenScale = $('.content').css('scale')
     scale = 1 / screenScale
-
     x = (eventX - $('.content').offset().left) / screenScale
     y = (eventY - $('.content').offset().top) / screenScale
 
