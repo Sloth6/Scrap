@@ -49,6 +49,8 @@ $ ->
         success: (data) ->
           # Now that we have our data, we update the form so it contains all
           # the needed data to sign the request
+          # console.log 'key:', data.key
+          createLoadingElement startData, data.key
           $('input[name=key]').val data.key
           $('input[name=policy]').val data.policy
           $('input[name=signature]').val data.signature

@@ -18,8 +18,14 @@ $ ->
       $(this).remove()
 
   socket.on 'newElement', (data) ->
+    data.element.content = decodeURIComponent data.element.content
     createNewElement data.element
     updateGlobals data.element
+    $('.loading').each () ->
+      a = data.element.content.split('uploads/')[1]
+      b = $(@).data('content').split('uploads/')[1]
+      if a is b
+        $(@).remove()
 
   socket.on 'removeElement', (data) ->
     id = data.id

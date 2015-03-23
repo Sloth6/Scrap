@@ -50,7 +50,6 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
 
-          # element.contentType = 'temp_image'
           element.content = original_url
           sio.to(spaceKey).emit 'newElement', { element }
 
@@ -79,11 +78,10 @@ module.exports =
           attributes.content = JSON.stringify pageData
         done attributes
     
-    # console.log data.content
     data.content = decodeURIComponent data.content
-    # console.log data.content, '\n'
+    # if data.content = '<loading>'
+    #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
-      console.log {contentType}
       attributes =
         creatorId: data.userId
         contentType: contentType
@@ -100,7 +98,6 @@ module.exports =
         newImage attributes
       else
         done attributes
-        
 
   # delete the element
   removeElement : (sio, socket, data, spaceKey, callback) =>
