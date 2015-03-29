@@ -50,7 +50,7 @@ $ ->
       key = $(@).data('key')
       if key
         size = getSize $(@).parent()
-        switchImage $(@).children().first(), key, size
+        switchImage $(@).children('img'), key, size
 
   socket = io.connect()
   fitToCenter()
