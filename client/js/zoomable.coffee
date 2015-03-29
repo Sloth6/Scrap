@@ -46,7 +46,7 @@ $ ->
       url = "#{root}/#{spaceKey}/#{key}/#{size}.jpg"
       img.attr 'src', url
 
-    $('.card,.image').not('.animated').each () ->
+    $('.card,.image').not('.animated,.gif').each () ->
       key = $(@).data('key')
       if key
         size = getSize $(@).parent()

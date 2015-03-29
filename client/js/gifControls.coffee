@@ -13,9 +13,9 @@ createGif = (article, url) ->
     gif.remove()
 
   gif.attr { src: url }
-  makeInteractive article, gif
+  enableGifMouseover article, gif
 
-makeInteractive = (article, gif) ->
+enableGifMouseover = (article, gif) ->
   card = article.children '.card'
   gif_frame = if card.find('canvas').length
                 card.find('canvas')
@@ -35,6 +35,6 @@ $ ->
   $('article.gif').each () ->
     key = $(this).children('.card').data('key')
     root = "https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"
-    url = "#{root}#{spaceKey}/#{key}/gif.gif"
+    url = "#{root}#{spaceKey}/#{key}/normal.gif"
     gif = $('<img/>').attr { src: url }
-    makeInteractive $(this), gif
+    enableGifMouseover $(this), gif

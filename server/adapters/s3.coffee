@@ -16,13 +16,15 @@ module.exports =
 
 
   deleteImage: ({ spaceKey, key, type }, cb) ->
-    foo = [
-      ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/small.jpg" }, cb),
-      ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/medium.jpg" }, cb),
-      ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.jpg" }, cb)
-    ]
     if type is 'gif'
-      foo.push(
-        (cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/gif.gif" }, cb
-      )
-    async.parallel foo, cb
+      deletes = [
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.gif" }, cb),
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.png" }, cb)
+      ]
+    else
+      deletes = [
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/small.jpg" }, cb),
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/medium.jpg" }, cb),
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.jpg" }, cb)
+      ]
+    async.parallel deletes, cb
