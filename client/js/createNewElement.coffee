@@ -9,9 +9,7 @@ cardDom = (content, contentType) ->
       "<canvas></canvas>"
     when 'file'
       url = decodeURIComponent content
-      console.log url
       title = url.split('/').pop()
-      console.log url, title
       "<img src=https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png>"+
       "<div class='header card text'>" +
         "<div class='title'>"+
@@ -55,21 +53,28 @@ createNewElement = (element) ->
         #{cardDom content, contentType }
         </div>
     </article>")
-  if contentType is 'text'
-    newArticle.children('.card').addClass('comment')
-  else if contentType is 'gif'
-    createGif newArticle, content
+  
+  switch contentType
+    when 'text'
+      newArticle.children('.card').addClass('comment')
+    when 'gif'
+      createGif newArticle, content
+    when 'file'
+      makeDownloadable newArticle
 
-  $('.content').append newArticle
-  newArticle.css {
+  newArticle.css({
     top:y
     left:x
     'z-index':z
     scale: scale
-  }
+  }).data({
+    content: content  
+  }).appendTo $('.content')
+  
   makeDeletable newArticle
   makeTextChild newArticle
   makeDraggable newArticle, socket
   makeModifiable newArticle
   makeResizeable newArticle, socket
+  
   newArticle
