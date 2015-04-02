@@ -33,7 +33,6 @@ $ ->
 # 
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = () ->
-    # console.log x, y, scale
     multipart = false
     startData =
       x: 0
@@ -49,6 +48,7 @@ $ ->
       startData.x = (mouse.x - $('.content').offset().left) / screenScale
       startData.y = (mouse.y - $('.content').offset().top) / screenScale
       startData.scale = screenScale
+
       $.ajax "/sign_s3", {
         type: 'GET'
         dataType: 'json'
@@ -78,7 +78,7 @@ $ ->
       console.log 'fail', data
 
     success: (data) ->
-      content = $(data).find('Location').text(); # Find location value from XML response
+      content = decodeURIComponent $(data).find('Location').text(); # Find location value from XML response
       emitElement startData.x, startData.y, 1/startData.scale, content
 
 

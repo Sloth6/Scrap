@@ -25,7 +25,7 @@ block content
   
     section.content
       
-      article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale3d(1.0,1.0,1.0);transform:scale(1.0,1.0,1.0);")
+      article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale3d(0.5,0.5,0.5);transform:scale(0.5,0.5,0.5);")
         .card.text.comment
           p= current_space.name
       
@@ -66,6 +66,8 @@ block content
               include partials/contentTypes/gif
             when 'website'
               include partials/contentTypes/website
+            when 'file'
+              include partials/contentTypes/file
             default
               include partials/contentTypes/text
 

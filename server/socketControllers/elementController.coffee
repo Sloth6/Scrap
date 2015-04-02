@@ -15,19 +15,21 @@ getType = (s, cb) ->
     jar: jar
 
   request.head options, (err, res) ->
-    # console.log err, res?.statusCode
     if err || res.statusCode != 200
       return cb 'text'
     contentType = res.headers['content-type']
+    console.log contentType
     return cb 'gif' if contentType.match /^image\/gif/
     return cb 'image' if contentType.match /^image\//
     return cb 'website' if contentType.match /^text\/html/
-    return 'text'
+    return cb 'file'# if contentType.match /^application\//
+    
 
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
-    console.log 'Received content', data.content
+    data.content = decodeURIComponent data.content
+    console.log spaceKey, 'received content', data.content
 
     done = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
@@ -78,7 +80,7 @@ module.exports =
           attributes.content = JSON.stringify pageData
         done attributes
     
-    data.content = decodeURIComponent data.content
+    
     # if data.content = '<loading>'
     #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
@@ -91,12 +93,14 @@ module.exports =
         y: data.y
         z: data.z
         scale: data.scale
-
+      console.log '66', contentType
       if contentType is 'website'
         newWebsite attributes
       else if contentType in ['image', 'gif']
+        console.log 'wtf'
         newImage attributes
       else
+        console.log 'good'
         done attributes
 
   # delete the element

@@ -6,10 +6,12 @@ indexPage = (res) ->
     title : 'Welcome to Scrap!'
     description: ''
     author: 'scrap'
+    colors: {}
+    nameMap: {}
     elements: indexElements
     current_space:
       spaceKey: 'index'
-    analyticssiteid: 'XXXXXXX'
+    
 
 module.exports =
   index: (req, res, callback) ->

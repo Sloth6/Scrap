@@ -118,8 +118,9 @@ module.exports =
           
   uploadFile : (req, res, callback) ->
     # mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension
-    mime_type = req.query.type
-    console.log mime_type
+    { type, title } = req.query
+    title = title or 'undefined'
+    console.log title, type
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
     file_key = uuid.v4() # Generate uuid for filename
 
@@ -128,10 +129,10 @@ module.exports =
       "expiration": expire
       "conditions": [
         {"bucket": config.aws_bucket}
-        ["eq", "$key", config.bucket_dir + file_key]
+        ["eq", "$key", config.bucket_dir + file_key + "/" + title]
         {"acl": "public-read"}
         {"success_action_status": "201"}
-        ["starts-with", "$Content-Type", mime_type]
+        ["starts-with", "$Content-Type", type]
         ["content-length-range", 0, config.max_filesize]
       ]
     });
@@ -143,8 +144,8 @@ module.exports =
     res.json {
       policy: base64policy
       signature: signature
-      key: (config.bucket_dir + file_key)
+      key: (config.bucket_dir + file_key + "/" + title)
       success_action_redirect: "/"
-      contentType: mime_type
+      contentType: type
     }
     callback()

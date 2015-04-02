@@ -1,4 +1,5 @@
 cardDom = (content, contentType) ->
+  console.log contentType
   switch contentType
     # when 'image'
     #   "<img src=https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/#{spaceKey}/small/#{content}>"
@@ -6,6 +7,18 @@ cardDom = (content, contentType) ->
       "<img src=#{content}>"
     when 'gif'
       "<canvas></canvas>"
+    when 'file'
+      url = decodeURIComponent content
+      console.log url
+      title = url.split('/').pop()
+      console.log url, title
+      "<img src=https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png>"+
+      "<div class='header card text'>" +
+        "<div class='title'>"+
+            "<p>#{title}</p>"+
+          "</div>"+
+       "</div>"
+
     when 'website'
       data = JSON.parse content
       url = decodeURIComponent data.url
