@@ -24,7 +24,7 @@ dimension = (elem) ->
 scaleControls = (control) ->
   spaceScale        = $('.content').css 'scale'
   controlScale      = control.attr('data-scale')
-  newControlScale   = (1 / spaceScale) * controlScale
+  newControlScale   = ((1 / spaceScale) * controlScale) * .75
   control.css         'transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
   control.css '-webkit-transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
 
