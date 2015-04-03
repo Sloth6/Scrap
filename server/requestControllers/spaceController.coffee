@@ -18,6 +18,16 @@ config =
   bucket_dir:  "uploads/";
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
+randArray = () ->
+  a = [ 1,2,3,4,5,6,7,8,9,10 ]
+  i = a.length
+  while --i > 0
+    j = Math.floor(Math.random() * (i + 1))
+    t = a[j]
+    a[j] = a[i]
+    a[i] = t
+  a
+
 module.exports =
   # create a new space and redirect to it
   newSpace : (req, res, callback) ->
@@ -30,7 +40,8 @@ module.exports =
       include: [ models.Space ]
     ).complete (err, user) ->
       return callback err if err?
-      models.Space.create( { name, spaceKey, publicRead:true } ).complete (err, space) ->
+      attributes = { name, spaceKey, publicRead:true, colorOrder: randArray() }
+      models.Space.create( attributes ).complete (err, space) ->
         return callback err if err?
         space.addUser(user).complete (err) ->
           return callback err if err?
