@@ -19,7 +19,7 @@ $leading:       1.5em;
 
 @mixin typeTitle {
     font-family: $fontRegular, sans-serif;
-    font-size: $typeBodySize;
+    font-size: $typeBodySize * $typeSizeMultiplier;
     letter-spacing: .75pt;
     line-height: $leading;
 }
@@ -34,12 +34,12 @@ $leading:       1.5em;
 @mixin typeBodySmallCaps {
     @include smallCaps;
     font-size: $typeBodySize * .666;
-    font-family: $fontMedium;
 }
 
 @mixin typeHeader {
     @include smallCaps;
 }
+
 
 @mixin typeSpaceName {
     @include typeHeader;
@@ -49,8 +49,8 @@ $leading:       1.5em;
 }
 
 html {
-    @include typeTitle;
-    
+    @include typeBody;
+        
     a {
         color: $colorType;
         text-decoration: none;

@@ -1,5 +1,4 @@
-$articleFontSize: $typeBodySize * $typeSizeMultiplier;
-$articleWidth: $col * 2 * $typeSizeMultiplier;
+$articleWidth: $col * 4;
 
 section.container section.space {
     
@@ -8,11 +7,10 @@ section.container section.space {
         position: absolute;
         backface-visibility: hidden;
         background-color: transparent !important;
-        font-size: $articleFontSize;
         line-height: 1.5em;
         transform-origin: top left;
         -webkit-transform-origin: top left;
-//         @include transform(scale(2) !important);
+        @include typeTitle;
         
         // EVENTS
         
@@ -53,15 +51,13 @@ section.container section.space {
         &.long {
             
             p {
-                font-size: ($articleFontSize) * .75;
-                line-height: $leading;
+//                 font-size: ($articleFontSize) * .5;
+//                 line-height: $leading;
             }
             
-/*
             .card {
                 max-width: $articleWidth * .75;
             }
-*/
         }
                 
 /*
@@ -94,6 +90,7 @@ section.container section.space {
                 }
             }
             
+/*
             form {
             
                 .fileInputWrapper {
@@ -119,6 +116,7 @@ section.container section.space {
                     }
                 }
             }
+*/
         }
         
         // CONTENTS
@@ -126,7 +124,7 @@ section.container section.space {
         textarea {
             width: 100%;
             height: $baseline;
-            font-size: $articleFontSize;
+            @include typeTitle;
             line-height: 1.5em;
             margin-bottom: -$baseline*2.25 !important;
         }
@@ -202,7 +200,7 @@ section.container section.space {
             }
 
             &.image {
-                    width: $col*3*$typeSizeMultiplier;
+                    width: $articleWidth;
                     overflow: hidden;
                     
                .ui-resizable-handle {
@@ -231,8 +229,14 @@ section.container section.space {
 
                     .url p {
                         @include typeBodySmallCaps;
-                        line-height: 2em;
+                        line-height: $leading * 1.5;
+                        margin-top: .875em;
                         opacity: .25;
+                        @include transition(opacity .25s $defaultCurve);
+                        
+                        &:hover {
+                            opacity: 1;
+                        }
                     }
 
                     .description {
