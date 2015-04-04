@@ -1,4 +1,3 @@
-'use strict'
 createNewElement = (element) ->
   newArticle = $(element)
   contentType = newArticle.data('contenttype')
