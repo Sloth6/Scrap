@@ -17,6 +17,11 @@ cardDom = (content, contentType) ->
           "</div>"+
        "</div>"
 
+    when 'video'
+      "<video controls>"+
+        "<source src=#{content}>"+
+      "</video>"
+
     when 'website'
       data = JSON.parse content
       url = decodeURIComponent data.url

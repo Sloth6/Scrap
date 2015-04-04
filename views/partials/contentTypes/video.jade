@@ -1,10 +1,6 @@
-.card.video
-  iframe(src='//player.vimeo.com/video/'+element.content+'?badge=0', width = '350', height='200', frameborder='0', webkitallowfullscreen='webkitallowfullscreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowfullscreen')
-  .background
-  if element.caption == '' || element.caption == null
-    .ui-resizable-handle.ui-resizable-se.ui-icon.ui-icon-grip-diagonal-se
-//- if element.caption !== '' && element.caption !== null
-//-   .card.text.caption
-//-     p!=element.caption
-//-     .background
-//-     .ui-resizable-handle.ui-resizable-se.ui-icon.ui-icon-grip-diagonal-se
+
+header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
+  author= nameMap[element.creatorId]
+video("controls")
+  source(src=element.content)
+  | Your browser does not support the video tag

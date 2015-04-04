@@ -22,6 +22,7 @@ getType = (s, cb) ->
     return cb 'gif' if contentType.match /^image\/gif/
     return cb 'image' if contentType.match /^image\//
     return cb 'website' if contentType.match /^text\/html/
+    return cb 'video' if contentType.match /^video\//
     return cb 'file'# if contentType.match /^application\//
     
 
@@ -80,7 +81,8 @@ module.exports =
           attributes.content = JSON.stringify pageData
         done attributes
     
-    
+    newVideo = (attributes) ->
+      done attributes
     # if data.content = '<loading>'
     #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
@@ -88,19 +90,17 @@ module.exports =
         creatorId: data.userId
         contentType: contentType
         content: data.content
-        caption: data.caption
         x: data.x
         y: data.y
         z: data.z
         scale: data.scale
-      console.log '66', contentType
       if contentType is 'website'
         newWebsite attributes
       else if contentType in ['image', 'gif']
-        console.log 'wtf'
         newImage attributes
+      else if contentType is 'video'
+        newVideo attributes
       else
-        console.log 'good'
         done attributes
 
   # delete the element
