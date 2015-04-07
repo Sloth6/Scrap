@@ -14,6 +14,8 @@ module.exports =
       ContentType: "image/#{type}"
     s3.putObject params, callback
 
+  delete: ({key}, cb) ->
+    s3.deleteObject { Bucket, Key: key }, cb
 
   deleteImage: ({ spaceKey, key, type }, cb) ->
     if type is 'gif'

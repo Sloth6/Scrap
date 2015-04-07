@@ -1,3 +1,28 @@
+# CKEDITOR.on 'instanceCreated', ( event ) ->
+#   console.log 'hello!!!', event
+#   editor = event.editor
+#   element = editor.element
+#   # Customize editors for headers and tag list.
+#   # These editors don't need features like smileys, templates, iframes etc.
+#   if ( element.is( 'h1', 'h2', 'h3' ) || element.getAttribute( 'id' ) == 'taglist' )
+#     # Customize the editor configurations on "configLoaded" event,
+#     # which is fired after the configuration file loading and
+#     # execution. This makes it possible to change the
+#     # configurations before the editor initialization takes place.
+#     editor.on 'configLoaded', () ->
+#       # Remove unnecessary plugins to make the editor simpler.
+#       editor.config.removePlugins = 'colorbutton,find,flash,font,' +
+#         'forms,iframe,image,newpage,removeformat,' +
+#         'smiley,specialchar,stylescombo,templates'
+
+#       # Rearrange the layout of the toolbar.
+#       editor.config.toolbarGroups = [
+#         { name: 'editing',    groups: [ 'basicstyles', 'links' ] },
+#         { name: 'undo' },
+#         { name: 'clipboard',  groups: [ 'selection', 'clipboard' ] },
+#         { name: 'about' }
+#       ]
+
 cardDom = (content, contentType) ->
   console.log contentType
   switch contentType
@@ -36,7 +61,8 @@ cardDom = (content, contentType) ->
             </div>
          </div>
       </a>"
-    else "<p>#{content}</p>"
+    else '<div contenteditable="true"><p>"Hello test"</p></div>'
+    # "<p>#{content}</p>"
   
 createNewElement = (element) ->
   { content, contentType, creatorId, id, x, y, z, scale } = element
@@ -75,6 +101,9 @@ createNewElement = (element) ->
   }).data({
     content: content  
   }).appendTo $('.content')
+
+  console.log newArticle[0]
+  CKEDITOR.replace newArticle[0]
   
   makeDeletable newArticle
   makeTextChild newArticle

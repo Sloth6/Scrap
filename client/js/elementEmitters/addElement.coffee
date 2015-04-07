@@ -52,7 +52,10 @@ $ ->
       $.ajax "/sign_s3", {
         type: 'GET'
         dataType: 'json'
-        data: {title: data.files[0].name, type: data.files[0].type} # Send filename to /signed for the signed response 
+        data:# Send filename to /signed for the signed response 
+          title: data.files[0].name
+          type: data.files[0].type
+          spaceKey: spaceKey
         async: false
         success: (data) ->
           # Now that we have our data, we update the form so it contains all

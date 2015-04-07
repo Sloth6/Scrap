@@ -15,7 +15,6 @@ config =
   aws_bucket:  "scrapimagesteamnap" #AWS Bucket
   redirect_host:  "http://localhost:3000/" #Host to redirect after uploading
   host:  "s3.amazonaws.com" #S3 provider host
-  bucket_dir:  "uploads/";
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
 randArray = () ->
@@ -129,9 +128,9 @@ module.exports =
           
   uploadFile : (req, res, callback) ->
     # mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension
-    { type, title } = req.query
+    { type, title, spaceKey } = req.query
     title = title or 'undefined'
-    console.log title, type
+    console.log title, type, spaceKey
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
     file_key = uuid.v4() # Generate uuid for filename
 
@@ -140,7 +139,7 @@ module.exports =
       "expiration": expire
       "conditions": [
         {"bucket": config.aws_bucket}
-        ["eq", "$key", config.bucket_dir + file_key + "/" + title]
+        ["eq", "$key", spaceKey + "/" + file_key + "/" + title]
         {"acl": "public-read"}
         {"success_action_status": "201"}
         ["starts-with", "$Content-Type", type]
@@ -155,7 +154,7 @@ module.exports =
     res.json {
       policy: base64policy
       signature: signature
-      key: (config.bucket_dir + file_key + "/" + title)
+      key: (spaceKey + "/" + file_key + "/" + title)
       success_action_redirect: "/"
       contentType: type
     }
