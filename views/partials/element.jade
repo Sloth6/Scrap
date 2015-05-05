@@ -12,11 +12,13 @@ if element.contentType == 'text'
 - var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
 - var scaleString = "-webkit-transform:scale3d(1.0,1.0,1.0); transform:scale3d(1.0,1.0},1.0);"
 
-article(id=element.id, class= classes, style=posString, data-contentType=element.contentType, data-content=element.content)
+article(id=element.id, class= classes, style=posString, data-contentType=element.contentType, data-content=element.content, data-creatorid=element.creatorId)
   .card
     header
       if names
         author= names[element.creatorId]
+      else
+        author= ''
     case element.contentType
       when 'image'
         img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')
