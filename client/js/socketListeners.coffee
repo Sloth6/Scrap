@@ -18,12 +18,13 @@ $ ->
       $(this).remove()
 
   socket.on 'newElement', (data) ->
-    data.element.content = decodeURIComponent data.element.content
-    createNewElement data.element
-    updateGlobals data.element
+    html = decodeURIComponent data.element
+    element = createNewElement html
+    updateGlobals element
+
     $('.loading').each () ->
-      a = data.element.content.split('uploads/')[1]
-      b = $(@).data('content').split('uploads/')[1]
+      a = element.data('content').split(spaceKey)[1]
+      b = $(@).data('content').split(spaceKey)[1]
       if a is b
         $(@).remove()
 
