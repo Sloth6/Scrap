@@ -113,17 +113,15 @@ module.exports =
       name.replace(/\W*(\w)\w*/g, '$1').toUpperCase()
 
     show = (space, user) ->
-      # console.log 'render private space'
-      # console.log JSON.stringify(space.elements.map ({contentType, content, scale, x, y}) -> {contentType, content, scale, x, y})
       users = (space.users.map (u) -> { name: u.name, id: u.id, email: u.email })
-      # console.log space.elements
+      console.log(nameMap space)
       res.render 'space.jade',
         title : space.name
         current_space: space
         current_user: user
         users: users
         colors: colorMap space
-        nameMap: nameMap space
+        names: nameMap space
 
           
   uploadFile : (req, res, callback) ->

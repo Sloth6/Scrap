@@ -28,7 +28,7 @@ block content
       article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale3d(0.5,0.5,0.5);transform:scale(0.5,0.5,0.5);")
         .card.text.comment
           p= current_space.name
-      
+
       each element in current_space.elements
         if element.z > maxZ
           - maxZ = element.z
@@ -47,29 +47,7 @@ block content
 
         if element.scale < minScale
           - minScale = element.scale
-        - var classes = [ "color"+colors[element.creatorId], element.contentType, "draggable" ]
-        
-        if element.contentType == 'text'
-          if element.content.length >= 50
-            - classes.push("long")
-          else
-            - classes.push("short")
 
-        - var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
-        - element.scale = 1.0
-        - var scaleString = "-webkit-transform:scale3d("+element.scale+","+element.scale+",1.0); transform:scale3d("+element.scale+","+element.scale+"},1.0);"
-        article(id=element.id, class= classes, style=posString+scaleString)
-          case element.contentType
-            when 'image'
-              include partials/contentTypes/image
-            when 'gif'
-              include partials/contentTypes/gif
-            when 'website'
-              include partials/contentTypes/website
-            when 'file'
-              include partials/contentTypes/file
-            when 'video'
-              include partials/contentTypes/video
-            default
-              include partials/contentTypes/text
 
+
+        include partials/element

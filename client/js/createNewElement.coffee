@@ -16,5 +16,5 @@ createNewElement = (element) ->
   makeTextChild newArticle
   makeDraggable newArticle, socket
   makeModifiable newArticle
-  makeResizeable newArticle, socket
+  # makeResizeable newArticle, socket
   newArticle

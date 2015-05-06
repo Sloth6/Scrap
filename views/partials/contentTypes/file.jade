@@ -1,7 +1,0 @@
-.card.file(data-content=element.content)
-  header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
-    author= nameMap[element.creatorId]
-  img(src="https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png")
-  .card.header.text
-    .title
-      p!=element.content.split('/').pop()

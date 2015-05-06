@@ -6,7 +6,7 @@ script.
   username = "#{current_user.name}";
   userId = "#{current_user.id}";
   users =  !{JSON.stringify(users)}
-  names = !{JSON.stringify(nameMap)}
+  names = !{JSON.stringify(names)}
   colors = !{JSON.stringify(colors)}
 
 ul.users
@@ -32,12 +32,12 @@ ul.users
   each user in current_space.users
     if user.name != null
       li.user(class = "color"+colors[user.id])
-        - names = user.name.split(' ')
+        - name = user.name.split(' ')
         span.initial= user.name[0]
-        span.name= names[0].slice(1)
-        if names[1]
-          span.initial= names[1][0]
-          span.name= names[1].slice(1)
+        span.name= name[0].slice(1)
+        if name[1]
+          span.initial= name[1][0]
+          span.name= name[1].slice(1)
 
   //- li.user.color1.online
   //-   span.initial D
