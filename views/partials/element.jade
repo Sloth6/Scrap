@@ -1,7 +1,7 @@
 
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
-- var colors = colors || []
-//- - var names = names || []
+//- - colors2 = colors || {}
+//- - names2 = names || {}
 - var classes = [element.contentType, "draggable"]
 
 if element.contentType == 'text'
@@ -16,10 +16,9 @@ if element.contentType == 'text'
 article(id=element.id, class= classes, style=posString, data-contentType=element.contentType, data-content=element.content, data-creatorid=element.creatorId)
   .card(class= "color"+colors[element.creatorId])
     header
-      //- if names
+
       author= names[element.creatorId]
-      //- else
-      //-   author= ''
+
     case element.contentType
       when 'image'
         img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')

@@ -47,7 +47,7 @@ module.exports =
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
-          element_html = encodeURIComponent(element_jade({element}))
+          element_html = encodeURIComponent(element_jade({element, colors:{}, names:{}}))
           sio.to(spaceKey).emit 'newElement', { element: element_html }
           return callback()
     
