@@ -1,13 +1,19 @@
 'use strict'
-createNewElement = (element) ->  
-  newArticle = $(element).appendTo $('.content')
+createNewElement = (element) ->
+  newArticle = $(element)
   contentType = newArticle.data('contenttype')
-  console.log 'NEW ELEMENT', contentType, newArticle
+  console.log 'NEW ELEMENT', contentType
 
   creatorId = newArticle.data('creatorid')
   newArticle.find('author').text(names[creatorId])
-  newArticle.find('.card').addClass("color#{colors[creatorId]}")
-  newArticle.find('.card').removeClass("colorundefined")
+  newArticle.find('.card').addClass "color#{colors[creatorId]}"
+  newArticle.find('.card').removeClass "colorundefined"
+
+  { top, left } = newArticle.css(['top', 'left'])
+  x = parseInt(left) + totalDelta.x
+  y = parseInt(top) + totalDelta.y
+  newArticle.css({ top: y, left:x }).appendTo $('.content')
+
   switch contentType
     when 'gif'
       createGif newArticle, content
@@ -18,5 +24,4 @@ createNewElement = (element) ->
   makeTextChild newArticle
   makeDraggable newArticle, socket
   makeModifiable newArticle
-  # makeResizeable newArticle, socket
   newArticle

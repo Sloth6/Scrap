@@ -91,8 +91,6 @@ module.exports =
           attributes.content = JSON.stringify pageData
         done attributes
     
-    newVideo = (attributes) ->
-      done attributes
     # if data.content = '<loading>'
     #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
@@ -103,13 +101,13 @@ module.exports =
         x: data.x
         y: data.y
         z: data.z
-        scale: data.scale
+        scale: 1.0#data.scale
       if contentType is 'website'
         newWebsite attributes
       else if contentType in ['image', 'gif']
         newImage attributes
-      else if contentType is 'video'
-        newVideo attributes
+      # else if contentType is 'video'
+      #   newVideo attributes
       else
         done attributes
 
@@ -144,7 +142,7 @@ module.exports =
     query += " \"x\"=:x," if data.x?
     query += " \"y\"=:y," if data.y?
     query += " \"z\"=:z," if data.z?
-    query += " \"scale\"=:scale" if data.scale?
+    # query += " \"scale\"=:scale" if data.scale?
     query += " \"content\"=:content" if data.content?
     # remove the trailing comma if necessary
     query = query.slice(0,query.length - 1) if query[query.length - 1] is ","
@@ -168,6 +166,6 @@ module.exports =
       element.x = parseInt data.x if data.x
       element.y = parseInt data.y if data.y
       element.z = parseInt data.z if data.z
-      element.scale = parseFloat data.scale if data.scale
+      # element.scale = parseFloat data.scale if data.scale
       element.content = data.content if data.content
       sio.to("#{spaceKey}").emit 'updateElement', { element, userId: data.userId }

@@ -90,15 +90,17 @@ $ ->
     $('.drag-upload').fileupload fileuploadOptions()
 
   # adding a new element
-  emitElement = (x, y, scale, content) ->
+  emitElement = (x, y, content) ->
     # Make sure to account for screen drag (totalDelta)
+    # console.log x, y
     x = Math.round(x - totalDelta.x)
     y = Math.round(y - totalDelta.y)
+    console.log 'emitting', {x, y}
     window.maxZ += 1
     z = window.maxZ
     content = encodeURIComponent content#.slice(0, -1)
     if content != ''
-      data = { content, x, y, z, scale, userId }
+      data = { content, x, y, z, userId }
       socket.emit 'newElement', data
 
     $('.add-element').remove()
@@ -108,10 +110,9 @@ $ ->
   addElement = (event, createdByCntrl) ->
     eventX = event.clientX || mouse.x
     eventY = event.clientY || mouse.y
-    screenScale = $('.content').css('scale')
-    scale = 1 / screenScale
-    x = (eventX - $('.content').offset().left) / screenScale
-    y = (eventY - $('.content').offset().top) / screenScale
+    scale = 1 / $('.content').css('scale')
+    x = (eventX - $('.content').offset().left) * scale
+    y = (eventY - $('.content').offset().top) * scale
 
     elementForm =
       "<article class='add-element'>
@@ -138,11 +139,11 @@ $ ->
     if createdByCntrl
       setTimeout(() ->
         content = $('.add-element .new').val()
-        emitElement x, y, scale, content
+        emitElement x, y, content
       , 20)
     else 
       $('textarea.new').on 'keyup', (event) ->
           # on enter (not shift + enter)
           if event.keyCode is 13 and not event.shiftKey
             content = $('.add-element .new').val()
-            emitElement x, y, scale, content
+            emitElement x, y, content

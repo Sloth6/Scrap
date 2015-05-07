@@ -114,7 +114,7 @@ module.exports =
 
     show = (space, user) ->
       users = (space.users.map (u) -> { name: u.name, id: u.id, email: u.email })
-      console.log(nameMap space)
+      # console.log(nameMap space)
       res.render 'space.jade',
         title : space.name
         current_space: space
