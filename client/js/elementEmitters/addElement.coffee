@@ -21,8 +21,12 @@ $ ->
       event.preventDefault()
       $('.add-element').remove()
       addElement event, false
-  $(window).on 'click', (event) -> $('.add-element').remove()
+  
+  $(window).on 'click', (event) ->
+    $('.add-element').remove()
+  
   $(window).bind 'paste', (event) ->
+    # ensure the add element panel is not already open.
     if $('.add-element').length is 0
       addElement event, true
   
@@ -84,7 +88,6 @@ $ ->
       content = decodeURIComponent $(data).find('Location').text(); # Find location value from XML response
       emitElement startData.x, startData.y, 1/startData.scale, content
 
-
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
     $('.drag-upload').fileupload fileuploadOptions()
@@ -92,13 +95,12 @@ $ ->
   # adding a new element
   emitElement = (x, y, content) ->
     # Make sure to account for screen drag (totalDelta)
-    # console.log x, y
     x = Math.round(x - totalDelta.x)
     y = Math.round(y - totalDelta.y)
     console.log 'emitting', {x, y}
     window.maxZ += 1
     z = window.maxZ
-    content = encodeURIComponent content#.slice(0, -1)
+    content = encodeURIComponent content
     if content != ''
       data = { content, x, y, z, userId }
       socket.emit 'newElement', data
@@ -123,13 +125,14 @@ $ ->
 
     # add the new element form if not createdByCntrl
     $('.content').append elementForm
-    $('.add-element').on 'click', (event) -> event.stopPropagation()
-      .css(
+    $('.add-element')
+      .css
         scale: scale
         "transform-origin": "top left"
         'z-index': "#{window.maxZ + 1}"
         top: "#{y}px"
-        left: "#{x}px")
+        left: "#{x}px"
+      .on 'click', (event) -> event.stopPropagation()
     # allow file uploads
     # if not createdByCntrl
     #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
