@@ -17,16 +17,6 @@ config =
   host:  "s3.amazonaws.com" #S3 provider host
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
-randArray = () ->
-  a = [ 1,2,3,4,5,6,7,8,9,10 ]
-  i = a.length
-  while --i > 0
-    j = Math.floor(Math.random() * (i + 1))
-    t = a[j]
-    a[j] = a[i]
-    a[i] = t
-  a
-
 module.exports =
   # create a new space and redirect to it
   newSpace : (req, res, callback) ->
@@ -39,7 +29,7 @@ module.exports =
       include: [ models.Space ]
     ).complete (err, user) ->
       return callback err if err?
-      attributes = { name, spaceKey, publicRead:true, colorOrder: randArray() }
+      attributes = { name, spaceKey, publicRead:true }
       models.Space.create( attributes ).complete (err, space) ->
         return callback err if err?
         space.addUser(user).complete (err) ->
@@ -87,14 +77,6 @@ module.exports =
               showReadOnly space
             else res.redirect '/'
 
-    colorMap = (space) ->
-      map = {}
-      n_colors = 10
-      for i in [0...space.users.length]
-        id = space.users[i].id
-        map[id] = i%n_colors
-      map
-
     nameMap = (space) ->
       map = {}
       for user in space.users
@@ -106,7 +88,6 @@ module.exports =
       res.render 'publicSpace.jade',
         title : space.name
         current_space: space
-        colors: colorMap space
         names: nameMap space
 
     initials = (name) ->
@@ -120,7 +101,6 @@ module.exports =
         current_space: space
         current_user: user
         users: users
-        colors: colorMap space
         names: nameMap space
 
           

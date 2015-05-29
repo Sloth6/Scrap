@@ -6,9 +6,6 @@ module.exports = (sequelize, DataTypes) ->
     spaceKey:
       type: DataTypes.TEXT
       allowNull: false
-    colorOrder:
-      type: DataTypes.ARRAY(DataTypes.INTEGER)
-      allowNull: false
     publicRead:
       type: DataTypes.BOOLEAN
       allowNull: false

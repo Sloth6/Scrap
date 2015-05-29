@@ -6,8 +6,6 @@ createNewElement = (element) ->
 
   creatorId = newArticle.data('creatorid')
   newArticle.find('author').text(names[creatorId])
-  newArticle.find('.card').addClass "color#{colors[creatorId]}"
-  newArticle.find('.card').removeClass "colorundefined"
 
   { top, left } = newArticle.css(['top', 'left'])
   x = parseInt(left) + totalDelta.x
