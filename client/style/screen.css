@@ -205,20 +205,20 @@ body section.space section.content article.color9 div.card.text.comment, body se
   background-color: #52edc7;
 }
 
-/* line 51, ../sass/globals/_type.scss */
+/* line 48, ../sass/globals/_type.scss */
 html {
-  font-size: 10pt;
+  font-size: 12pt;
   line-height: 1.5em;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
 }
-/* line 54, ../sass/globals/_type.scss */
+/* line 51, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 1px #aaaaaa solid;
 }
-/* line 62, ../sass/globals/_type.scss */
+/* line 59, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 0.75rem;
 }
@@ -251,141 +251,110 @@ html p + p {
     transform: rotateZ(-2deg) scale3d(1.15, 1.15, 1.15);
   }
 }
-/* line 79, ../sass/globals/_components.scss */
+/* line 74, ../sass/globals/_components.scss */
 .card.form {
   padding-left: 2rem !important;
 }
 
-/* line 84, ../sass/globals/_components.scss */
+/* line 79, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
 
-/* line 88, ../sass/globals/_components.scss */
+/* line 83, ../sass/globals/_components.scss */
+label {
+  font-size: 12pt;
+  line-height: 1.5em;
+  font-family: "Futura W01 Medium", Futura;
+  letter-spacing: .0625em;
+}
+
+/* line 87, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
   margin: 0;
   border: 0;
   background: transparent;
-  font-size: 10pt;
+  font-size: 12pt;
   line-height: 1.5em;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
-  border-bottom: 0.5pt #aaaaaa solid;
+  border-bottom: 1.5pt #aaaaaa solid;
 }
-/* line 93, ../sass/globals/_components.scss */
+/* line 92, ../sass/globals/_components.scss */
 input:focus {
   border-color: #000000;
 }
-/* line 97, ../sass/globals/_components.scss */
-input.offset {
-  font-size: .666em;
-  font-family: "Futura W01 Medium";
-  letter-spacing: .1825em;
-  text-transform: uppercase !important;
-  font-size: 6.66pt;
-}
-/* line 63, ../sass/globals/_components.scss */
-input.offset:hover {
-  font-family: "Futura W01 Heavy";
-  letter-spacing: 0.1em;
-}
-/* line 102, ../sass/globals/_components.scss */
+/* line 101, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
-  font-size: .666em;
-  font-family: "Futura W01 Medium";
-  letter-spacing: .1825em;
-  text-transform: uppercase !important;
   border: 0;
   cursor: pointer;
 }
-/* line 108, ../sass/globals/_components.scss */
+/* line 106, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
-/* line 113, ../sass/globals/_components.scss */
-input[type=checkbox] + label {
-  font-size: .666em;
-  font-family: "Futura W01 Medium";
-  letter-spacing: .1825em;
-  text-transform: uppercase !important;
-}
 
-/* line 120, ../sass/globals/_components.scss */
+/*
 ul.menu {
-  background-color: rgba(255, 255, 255, 0.925);
-  padding: 0.5rem 1rem 0.66667rem 1rem;
-  padding: 0;
-  width: 8rem;
-  position: relative;
-  max-height: 2.25rem;
-  overflow: hidden;
-  vertical-align: top;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  -webkit-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
+    @include cardStyle;
+    padding: 0; // override cardStyle
+    width: $col;
+    position: relative;
+    max-height: $baseline * 1.5;
+    overflow: hidden;
+    vertical-align: top;
+    @include basicTransition;
+    @include transition-property(opacity);
+    
+    &:hover {
+        max-height: none;
+        opacity: 1;
+        
+        &:after {
+            opacity: 1;
+        }
+    }
+    
+    li {
+        height: $baseline * 1.5;
+        padding-left: .5em;
+        
+        &:first-of-type {
+            padding-top: $baseline/2
+        }
+        
+        a {
+            border: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        input {
+            width: 95% !important;
+            padding-top: 0;
+            
+            &[type=submit] {
+                display: none;
+            }
+        }
+    }
 }
-/* line 131, ../sass/globals/_components.scss */
-ul.menu:hover {
-  max-height: none;
-  opacity: 1;
-}
-/* line 135, ../sass/globals/_components.scss */
-ul.menu:hover:after {
-  opacity: 1;
-}
-/* line 140, ../sass/globals/_components.scss */
-ul.menu li {
-  height: 2.25rem;
-  padding-left: .5em;
-}
-/* line 144, ../sass/globals/_components.scss */
-ul.menu li:first-of-type {
-  padding-top: 0.75rem;
-}
-/* line 148, ../sass/globals/_components.scss */
-ul.menu li a {
-  border: none;
-  display: block;
-  width: 100%;
-  height: 100%;
-  -moz-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: font-family 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-}
-/* line 155, ../sass/globals/_components.scss */
-ul.menu li a:hover {
-  font-family: "Futura W01 Heavy";
-}
-/* line 160, ../sass/globals/_components.scss */
-ul.menu li input {
-  width: 95% !important;
-  padding-top: 0;
-}
-/* line 164, ../sass/globals/_components.scss */
-ul.menu li input[type=submit] {
-  display: none;
-}
-
-/* line 171, ../sass/globals/_components.scss */
+*/
+/* line 162, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
   margin: 0;
   border: 0;
   background: transparent;
-  font-size: 10pt;
+  font-size: 12pt;
   line-height: 1.5em;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
   width: 100%;
   height: 1.5rem;
@@ -404,137 +373,27 @@ body {
   top: 0;
   right: left;
   width: 100%;
+  font-family: "Futura W01 Book", Futura, sans-serif;
+  font-size: 24pt;
+  letter-spacing: .75pt;
+  line-height: 1.5em;
   text-align: left;
 }
-/* line 11, ../sass/layout/_header.scss */
-.container > header ul.menu {
-  display: inline-block;
-  width: 12rem;
-  opacity: .75;
-}
-/* line 17, ../sass/layout/_header.scss */
-.container > header ul.users {
-  float: right;
-  width: auto;
-}
-/* line 21, ../sass/layout/_header.scss */
-.container > header ul.users > li {
-  display: inline-block;
-  border-top: 2pt solid;
-  padding: 0 0.25rem;
-  width: 1.5rem;
-  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -moz-transition-property: width;
-  -o-transition-property: width;
-  -webkit-transition-property: width;
-  transition-property: width;
-  white-space: nowrap;
-  text-align: center;
-  font-family: "Futura W01 Heavy";
-  line-height: 2.666em;
-  background-color: rgba(255, 255, 255, 0.4);
-}
-/* line 38, ../sass/layout/_header.scss */
-.container > header ul.users > li.online:hover span.name, .container > header ul.users > li.online:hover span.initial {
-  color: white;
-}
-/* line 43, ../sass/layout/_header.scss */
-.container > header ul.users > li.online span.initial {
-  color: white;
-}
-/* line 48, ../sass/layout/_header.scss */
-.container > header ul.users > li:hover {
-  width: 12rem;
-  color: #000000;
-  text-align: left;
-  padding-left: 0.57143rem;
-  background-color: white;
-}
-/* line 55, ../sass/layout/_header.scss */
-.container > header ul.users > li:hover.settings {
-  padding: 0;
-}
-/* line 58, ../sass/layout/_header.scss */
-.container > header ul.users > li:hover.settings ul.menu {
-  margin: 0;
-  opacity: 1;
-  height: auto;
-}
-/* line 64, ../sass/layout/_header.scss */
-.container > header ul.users > li:hover.settings span.symbol {
+/* line 12, ../sass/layout/_header.scss */
+.container > header h1.spaceName {
   display: none;
 }
-/* line 69, ../sass/layout/_header.scss */
-.container > header ul.users > li:hover span.name {
-  color: #000000;
-  width: auto;
-  margin-right: .25em;
-}
-/* line 75, ../sass/layout/_header.scss */
-.container > header ul.users > li:hover ul.menu {
-  opacity: 1;
-  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
-}
-/* line 84, ../sass/layout/_header.scss */
-.container > header ul.users > li.settings span.symbol {
-  font-size: 2em;
-  line-height: 1em;
-  position: relative;
-  top: -1pt;
-}
-/* line 92, ../sass/layout/_header.scss */
-.container > header ul.users > li.settings ul.menu {
-  opacity: 0;
-  height: 0;
-}
-/* line 98, ../sass/layout/_header.scss */
-.container > header ul.users > li span {
+/* line 16, ../sass/layout/_header.scss */
+.container > header ul.menu {
   display: inline-block;
-  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -moz-transition-property: color;
-  -o-transition-property: color;
-  -webkit-transition-property: color;
-  transition-property: color;
+  opacity: .75;
+  float: left;
 }
-/* line 103, ../sass/layout/_header.scss */
-.container > header ul.users > li span.initial {
-  color: #000000;
+/* line 22, ../sass/layout/_header.scss */
+.container > header ul.users {
+  float: right;
 }
-/* line 107, ../sass/layout/_header.scss */
-.container > header ul.users > li span.name {
-  width: 0;
-  color: transparent;
-}
-/* line 115, ../sass/layout/_header.scss */
-.container > header li {
-  font-size: .666em;
-  font-family: "Futura W01 Medium";
-  letter-spacing: .1825em;
-  text-transform: uppercase !important;
-  font-size: 6.66pt;
-}
-/* line 117, ../sass/layout/_header.scss */
-.container > header li input {
-  font-size: .666em;
-  font-family: "Futura W01 Medium";
-  letter-spacing: .1825em;
-  text-transform: uppercase !important;
-  font-size: 6.66pt;
-}
-/* line 126, ../sass/layout/_header.scss */
+/* line 30, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
@@ -542,19 +401,19 @@ body {
   width: 16rem;
   display: inline-block;
 }
-/* line 132, ../sass/layout/_header.scss */
+/* line 36, ../sass/layout/_header.scss */
 .container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
-/* line 136, ../sass/layout/_header.scss */
+/* line 40, ../sass/layout/_header.scss */
 .container > header.public .card form, .container > header.index .card form {
   width: auto;
 }
-/* line 139, ../sass/layout/_header.scss */
+/* line 43, ../sass/layout/_header.scss */
 .container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
 }
-/* line 142, ../sass/layout/_header.scss */
+/* line 46, ../sass/layout/_header.scss */
 .container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
@@ -571,44 +430,27 @@ section.container section.space {
   height: 100%;
 }
 /* line 10, ../sass/layout/_container.scss */
-section.container section.space article#spaceName {
-  cursor: default;
-}
-/* line 13, ../sass/layout/_container.scss */
-section.container section.space article#spaceName .card {
-  max-width: 100em !important;
-  background-color: transparent;
-  left: -50%;
-  margin-top: -12.5%;
-}
-/* line 20, ../sass/layout/_container.scss */
-section.container section.space article#spaceName p {
-  font-family: "Futura W01 Medium";
-  font-size: 16em;
-  line-height: 1em;
-}
-/* line 55, ../sass/layout/_container.scss */
 section.container section.space ul.users {
   position: fixed;
   z-index: 2;
   top: 0;
   right: 0;
 }
-/* line 61, ../sass/layout/_container.scss */
+/* line 16, ../sass/layout/_container.scss */
 section.container section.space ul.users li {
   display: block;
   height: 3rem;
   width: 3rem;
   margin: .5em;
 }
-/* line 67, ../sass/layout/_container.scss */
+/* line 22, ../sass/layout/_container.scss */
 section.container section.space ul.users li img {
   height: 100%;
   width: 100%;
   border-radius: 100%;
   background-color: red;
 }
-/* line 77, ../sass/layout/_container.scss */
+/* line 32, ../sass/layout/_container.scss */
 section.container section.space section.content {
   transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
@@ -619,7 +461,7 @@ section.container section.space section.content {
   position: relative;
   z-index: 1;
 }
-/* line 86, ../sass/layout/_container.scss */
+/* line 41, ../sass/layout/_container.scss */
 section.container > .delete.trash {
   z-index: 999;
   bottom: -4rem;
@@ -629,7 +471,7 @@ section.container > .delete.trash {
   position: fixed;
   text-align: center;
   color: #fb2705;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   background-image: url("../images/trash.png");
   background-size: 100% 100%;
   background-position: top left;
@@ -647,17 +489,12 @@ section.container > .delete.trash {
   -o-transition-property: bottom, -o-transform, -webkit-transform;
   -webkit-transition-property: bottom, -webkit-transform, -webkit-transform;
   transition-property: bottom, transform, -webkit-transform;
-  font-size: .666em;
-  font-family: "Futura W01 Medium";
-  letter-spacing: .1825em;
-  text-transform: uppercase !important;
-  font-size: 6.66pt;
   -moz-transform: scale3d(0.75, 0.75, 0.75);
   -ms-transform: scale3d(0.75, 0.75, 0.75);
   -webkit-transform: scale3d(0.75, 0.75, 0.75);
   transform: scale3d(0.75, 0.75, 0.75);
 }
-/* line 108, ../sass/layout/_container.scss */
+/* line 62, ../sass/layout/_container.scss */
 section.container > .delete.trash:after {
   content: "Delete";
   width: 100%;
@@ -666,11 +503,11 @@ section.container > .delete.trash:after {
   bottom: -3em;
   left: 1pt;
 }
-/* line 117, ../sass/layout/_container.scss */
+/* line 71, ../sass/layout/_container.scss */
 section.container > .delete.trash.visible {
   bottom: 3rem;
 }
-/* line 122, ../sass/layout/_container.scss */
+/* line 76, ../sass/layout/_container.scss */
 section.container > .delete.trash.overlap {
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);
@@ -687,8 +524,8 @@ section.container section.space article {
   line-height: 1.5em;
   transform-origin: top left;
   -webkit-transform-origin: top left;
-  font-family: "Futura W01 Book", sans-serif;
-  font-size: 20pt;
+  font-family: "Futura W01 Book", Futura, sans-serif;
+  font-size: 24pt;
   letter-spacing: .75pt;
   line-height: 1.5em;
   /*
@@ -805,8 +642,8 @@ section.container section.space article.add-element .card .autogrow-textarea-mir
 section.container section.space article textarea {
   width: 100%;
   height: 1.5rem;
-  font-family: "Futura W01 Book", sans-serif;
-  font-size: 20pt;
+  font-family: "Futura W01 Book", Futura, sans-serif;
+  font-size: 24pt;
   letter-spacing: .75pt;
   line-height: 1.5em;
   line-height: 1.5em;
@@ -825,10 +662,10 @@ section.container section.space article header {
   padding-left: 0.5rem;
   padding-right: 0.33333rem;
   font-size: .666em;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   letter-spacing: .1825em;
   text-transform: uppercase !important;
-  font-size: 6.66pt;
+  font-size: 7.992pt;
   transform-origin: center left;
   -webkit-transform-origin: center left;
   opacity: 0;
@@ -841,7 +678,7 @@ section.container section.space article header {
 section.container section.space article header author {
   display: inline-block;
   position: relative;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   top: -0.66667rem;
   white-space: nowrap;
 }
@@ -914,10 +751,10 @@ section.container section.space article .card.website .card.header.text .title p
 /* line 230, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .url p {
   font-size: .666em;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   letter-spacing: .1825em;
   text-transform: uppercase !important;
-  font-size: 6.66pt;
+  font-size: 7.992pt;
   line-height: 2.25em;
   margin-top: .875em;
   opacity: .25;
@@ -952,9 +789,9 @@ section.container section.space article .card.website .card.header.text .descrip
 }
 /* line 255, ../sass/layout/_article.scss */
 section.container section.space article .card.website .card.header.text .description p {
-  font-size: 10pt;
+  font-size: 12pt;
   line-height: 1.5em;
-  font-family: "Futura W01 Medium";
+  font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
 }
 /* line 258, ../sass/layout/_article.scss */

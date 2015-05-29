@@ -10,7 +10,7 @@ section.container section.space {
         line-height: 1.5em;
         transform-origin: top left;
         -webkit-transform-origin: top left;
-        @include typeTitle;
+        @include typeHeader;
         
         // EVENTS
         
@@ -124,7 +124,7 @@ section.container section.space {
         textarea {
             width: 100%;
             height: $baseline;
-            @include typeTitle;
+            @include typeHeader;
             line-height: 1.5em;
             margin-bottom: -$baseline*2.25 !important;
         }
