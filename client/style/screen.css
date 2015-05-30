@@ -1220,7 +1220,14 @@ section.container section.space article .card.image {
 section.container section.space article .card.image .ui-resizable-handle:after {
   color: white !important;
 }
-/* line 215, ../sass/layout/_article.scss */
+/* line 216, ../sass/layout/_article.scss */
+section.container section.space article .card.website:hover .text {
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
+}
+/* line 221, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text {
   position: relative;
   z-index: 2;
@@ -1231,11 +1238,11 @@ section.container section.space article .card.website .text {
   -webkit-transform-origin: bottom right;
   border-top: 0;
 }
-/* line 221, ../sass/layout/_article.scss */
+/* line 227, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text .title p {
   line-height: 1.25em;
 }
-/* line 225, ../sass/layout/_article.scss */
+/* line 231, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text .url p {
   margin-top: 1.5em;
   font-size: 12pt;
@@ -1243,17 +1250,17 @@ section.container section.space article .card.website .text .url p {
   font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
 }
-/* line 231, ../sass/layout/_article.scss */
+/* line 237, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 241, ../sass/layout/_article.scss */
+/* line 247, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
   margin-bottom: -12pt;
   background-color: rgba(255, 255, 255, 0.6);
 }
-/* line 248, ../sass/layout/_article.scss */
+/* line 254, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   right: 0;
@@ -1271,7 +1278,7 @@ section.container section.space article .ui-resizable-handle {
   height: 1rem;
   width: 1rem;
 }
-/* line 262, ../sass/layout/_article.scss */
+/* line 268, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }

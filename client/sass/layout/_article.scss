@@ -212,6 +212,12 @@ section.container section.space {
             
             &.website {
                 
+                &:hover {
+                    .text {
+                        @include hoverAnimation;
+                    }
+                }
+                
                 .text {
                     position: relative;
                     z-index: 2;
