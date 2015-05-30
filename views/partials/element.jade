@@ -12,8 +12,9 @@ if element.contentType == 'text'
 
 article(id=element.id, class= classes, style=posString+scaleString)
   .card(data-key=element.content, class=element.contentType)
-    header
-      author= names[element.creatorId]
+    if names[element.creatorId] != ""
+      header
+        author= names[element.creatorId]
     case element.contentType
       when 'image'
         img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')

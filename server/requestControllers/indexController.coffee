@@ -7,7 +7,7 @@ indexPage = (res) ->
     description: ''
     author: 'scrap'
     colors: {}
-    nameMap: {}
+    names: { 1: "" }
     elements: indexElements
     current_space:
       spaceKey: 'index'

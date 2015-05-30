@@ -3,7 +3,6 @@ extends layout
 block scripts
   include partials/indexScripts
 
-
 block content
   header.index
     .card.form
@@ -11,24 +10,6 @@ block content
   section.space
   
     section.content
-    
-      //- each element in elements
-      //-   if element.z > maxZ
-      //-     - maxZ = element.z
-
-      //-   if (element.x + 300 * element.scale) > maxX
-      //-     - maxX = (element.x + 300 * element.scale)
-
-      //-   if element.x < minX
-      //-     - minX = element.x
-
-      //-   if element.y > maxY
-      //-     - maxY = element.y
-
-      //-   if element.y < minY
-      //-     - minY = element.y
-
-      //-   if element.scale < minScale
-      //-     - minScale = element.scale
-
-      //-   include partials/element
+      
+      each element in elements
+        include partials/element
