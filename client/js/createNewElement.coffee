@@ -2,9 +2,9 @@
 createNewElement = (element) ->
   newArticle = $(element)
   contentType = newArticle.data('contenttype')
-  console.log 'NEW ELEMENT', contentType
-
   creatorId = newArticle.data('creatorid')
+  console.log 'NEW ELEMENT', {contentType, creatorId}
+
   newArticle.find('author').text(names[creatorId])
 
   { top, left } = newArticle.css(['top', 'left'])
