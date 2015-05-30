@@ -923,22 +923,18 @@ section.container section.space section.content {
 section.container > .delete.trash {
   z-index: 999;
   bottom: -4rem;
-  right: 1rem;
+  right: 50%;
+  margin-left: -2rem;
   height: 4rem;
   width: 4rem;
   position: fixed;
+  color: #000000;
   text-align: center;
-  color: #fb2705;
   font-family: "Futura W01 Medium", Futura;
-  background-image: url("../images/trash.png");
-  background-size: 100% 100%;
-  background-position: top left;
-  border: 0.75pt #fb2705 solid;
-  border-radius: 4rem;
-  -moz-transition: all 0.25s cubic-bezier(0.19, 1.25, 0.22, 1.25);
-  -o-transition: all 0.25s cubic-bezier(0.19, 1.25, 0.22, 1.25);
-  -webkit-transition: all 0.25s cubic-bezier(0.19, 1.25, 0.22, 1.25);
-  transition: all 0.25s cubic-bezier(0.19, 1.25, 0.22, 1.25);
+  -moz-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
   -webkit-transition-duration: 0.5s;
@@ -947,30 +943,36 @@ section.container > .delete.trash {
   -o-transition-property: bottom, -o-transform, -webkit-transform;
   -webkit-transition-property: bottom, -webkit-transform, -webkit-transform;
   transition-property: bottom, transform, -webkit-transform;
-  -moz-transform: scale3d(0.75, 0.75, 0.75);
-  -ms-transform: scale3d(0.75, 0.75, 0.75);
-  -webkit-transform: scale3d(0.75, 0.75, 0.75);
-  transform: scale3d(0.75, 0.75, 0.75);
+  -moz-transform: scale3d(0.1, 0.1, 1);
+  -ms-transform: scale3d(0.1, 0.1, 1);
+  -webkit-transform: scale3d(0.1, 0.1, 1);
+  transform: scale3d(0.1, 0.1, 1);
 }
-/* line 62, ../sass/layout/_container.scss */
+/* line 58, ../sass/layout/_container.scss */
 section.container > .delete.trash:after {
-  content: "Delete";
+  content: "×";
+  font-size: 96pt;
+  position: absolute;
   width: 100%;
   text-align: center;
-  position: absolute;
-  bottom: -3em;
-  left: 1pt;
+  top: 0;
+  left: 0;
 }
-/* line 71, ../sass/layout/_container.scss */
+/* line 68, ../sass/layout/_container.scss */
 section.container > .delete.trash.visible {
-  bottom: 3rem;
+  bottom: 0;
+  -moz-transform: scale3d(0.75, 0.75, 1);
+  -ms-transform: scale3d(0.75, 0.75, 1);
+  -webkit-transform: scale3d(0.75, 0.75, 1);
+  transform: scale3d(0.75, 0.75, 1);
 }
-/* line 76, ../sass/layout/_container.scss */
+/* line 73, ../sass/layout/_container.scss */
 section.container > .delete.trash.overlap {
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);
   -webkit-transform: scale3d(1, 1, 1);
   transform: scale3d(1, 1, 1);
+  color: #fb2705;
 }
 
 /* line 5, ../sass/layout/_article.scss */
