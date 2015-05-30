@@ -12,9 +12,10 @@ ul.users.menu.right
   li.share
     a(href="#") Share
     form.add-user
-      input(type="text", name="user[email]", placeholder="name@email.com")
       label Share this space with someone
+      input(type="text", name="user[email]", placeholder="name@email.com")
       input(type="submit", style="visibility: hidden;display:none;")
+  li.heading Current members of this space
   each user in current_space.users
     if user.name != null
       li.user()

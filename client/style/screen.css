@@ -564,150 +564,159 @@ ul.menu li {
   */
 }
 /* line 178, ../sass/globals/_components.scss */
+ul.menu li.heading {
+  font-size: 12pt;
+  line-height: 1.5em;
+  font-family: "Futura W01 Medium", Futura;
+  letter-spacing: .0625em;
+  text-transform: lowercase;
+  margin-top: 1.5em;
+}
+/* line 184, ../sass/globals/_components.scss */
 ul.menu li form {
   white-space: nowrap;
 }
-/* line 204, ../sass/globals/_components.scss */
+/* line 210, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 205, ../sass/globals/_components.scss */
+/* line 211, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 206, ../sass/globals/_components.scss */
+/* line 212, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 207, ../sass/globals/_components.scss */
+/* line 213, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 208, ../sass/globals/_components.scss */
+/* line 214, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
-/* line 209, ../sass/globals/_components.scss */
+/* line 215, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.6s;
   -o-transition-delay: 0.6s;
   -webkit-transition-delay: 0.6s;
   transition-delay: 0.6s;
 }
-/* line 210, ../sass/globals/_components.scss */
+/* line 216, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.7s;
   -o-transition-delay: 0.7s;
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-/* line 211, ../sass/globals/_components.scss */
+/* line 217, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.8s;
   -o-transition-delay: 0.8s;
   -webkit-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
-/* line 212, ../sass/globals/_components.scss */
+/* line 218, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.9s;
   -o-transition-delay: 0.9s;
   -webkit-transition-delay: 0.9s;
   transition-delay: 0.9s;
 }
-/* line 213, ../sass/globals/_components.scss */
+/* line 219, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 214, ../sass/globals/_components.scss */
+/* line 220, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.11s;
   -o-transition-delay: 0.11s;
   -webkit-transition-delay: 0.11s;
   transition-delay: 0.11s;
 }
-/* line 215, ../sass/globals/_components.scss */
+/* line 221, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.12s;
   -o-transition-delay: 0.12s;
   -webkit-transition-delay: 0.12s;
   transition-delay: 0.12s;
 }
-/* line 216, ../sass/globals/_components.scss */
+/* line 222, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.13s;
   -o-transition-delay: 0.13s;
   -webkit-transition-delay: 0.13s;
   transition-delay: 0.13s;
 }
-/* line 217, ../sass/globals/_components.scss */
+/* line 223, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.14s;
   -o-transition-delay: 0.14s;
   -webkit-transition-delay: 0.14s;
   transition-delay: 0.14s;
 }
-/* line 218, ../sass/globals/_components.scss */
+/* line 224, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 219, ../sass/globals/_components.scss */
+/* line 225, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.16s;
   -o-transition-delay: 0.16s;
   -webkit-transition-delay: 0.16s;
   transition-delay: 0.16s;
 }
-/* line 220, ../sass/globals/_components.scss */
+/* line 226, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.17s;
   -o-transition-delay: 0.17s;
   -webkit-transition-delay: 0.17s;
   transition-delay: 0.17s;
 }
-/* line 221, ../sass/globals/_components.scss */
+/* line 227, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.18s;
   -o-transition-delay: 0.18s;
   -webkit-transition-delay: 0.18s;
   transition-delay: 0.18s;
 }
-/* line 222, ../sass/globals/_components.scss */
+/* line 228, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 0.19s;
   -o-transition-delay: 0.19s;
   -webkit-transition-delay: 0.19s;
   transition-delay: 0.19s;
 }
-/* line 227, ../sass/globals/_components.scss */
+/* line 233, ../sass/globals/_components.scss */
 ul.menu:hover {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
 }
-/* line 232, ../sass/globals/_components.scss */
+/* line 238, ../sass/globals/_components.scss */
 ul.menu:hover li a, ul.menu:hover li form {
   position: relative;
 }
@@ -759,7 +768,7 @@ ul.menu {
     }
 }
 */
-/* line 287, ../sass/globals/_components.scss */
+/* line 293, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
