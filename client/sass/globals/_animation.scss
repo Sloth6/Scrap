@@ -12,3 +12,68 @@ $bouncyCurve: cubic-bezier(0.19, 1.25, 0.22, 1.25);
 @mixin bouncyTransition {
     @include transition(all .25s $bouncyCurve);
 }
+
+// Hover Text
+
+@mixin hoverKeyframes {    
+    0% {
+        color: cyan;
+        border-color: cyan;
+    }
+
+    14.28% {
+        color: lime;
+        border-color: lime;
+    }    
+    
+    28.57% {
+        color: #ffe100;
+        border-color: #ffe100;
+    }
+    
+    42.86% {
+        color: orange;
+        border-color: orange;
+    }
+    
+    57.14% {
+        color: red;
+        border-color: red;
+    }
+    
+    71.42% {
+        color: magenta;
+        border-color: magenta;
+    }
+
+    85.71% {
+        color: #0052ff;
+        border-color: #0052ff;
+    }
+    
+    100% {
+        color: cyan;
+        border-color: cyan;
+    }
+    
+}
+
+@-webkit-keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+@-moz-keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+@-o-keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+@keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+
+@mixin hoverAnimation {
+    -webkit-animation: hoverFlicker .125s infinite linear;
+    -moz-animation:    hoverFlicker .125s infinite linear;
+    -o-animation:      hoverFlicker .125s infinite linear;
+    animation:         hoverFlicker .125s infinite linear;
+}

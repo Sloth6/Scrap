@@ -51,7 +51,11 @@ html {
     a {
         color: $colorType;
         text-decoration: none;
-        border-bottom: 1px $colorWashMedium solid;
+        border-bottom: .125em $colorType solid;
+        
+        &:hover, &:active {
+            @include hoverAnimation;
+        }
     }
     
     p {

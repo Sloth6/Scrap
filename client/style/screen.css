@@ -205,6 +205,142 @@ body section.space section.content article.color9 div.card.text.comment, body se
   background-color: #52edc7;
 }
 
+@-webkit-keyframes hoverFlicker {
+  0% {
+    color: cyan;
+    border-color: cyan;
+  }
+  14.28% {
+    color: lime;
+    border-color: lime;
+  }
+  28.57% {
+    color: #ffe100;
+    border-color: #ffe100;
+  }
+  42.86% {
+    color: orange;
+    border-color: orange;
+  }
+  57.14% {
+    color: red;
+    border-color: red;
+  }
+  71.42% {
+    color: magenta;
+    border-color: magenta;
+  }
+  85.71% {
+    color: #0052ff;
+    border-color: #0052ff;
+  }
+  100% {
+    color: cyan;
+    border-color: cyan;
+  }
+}
+@-moz-keyframes hoverFlicker {
+  0% {
+    color: cyan;
+    border-color: cyan;
+  }
+  14.28% {
+    color: lime;
+    border-color: lime;
+  }
+  28.57% {
+    color: #ffe100;
+    border-color: #ffe100;
+  }
+  42.86% {
+    color: orange;
+    border-color: orange;
+  }
+  57.14% {
+    color: red;
+    border-color: red;
+  }
+  71.42% {
+    color: magenta;
+    border-color: magenta;
+  }
+  85.71% {
+    color: #0052ff;
+    border-color: #0052ff;
+  }
+  100% {
+    color: cyan;
+    border-color: cyan;
+  }
+}
+@-o-keyframes hoverFlicker {
+  0% {
+    color: cyan;
+    border-color: cyan;
+  }
+  14.28% {
+    color: lime;
+    border-color: lime;
+  }
+  28.57% {
+    color: #ffe100;
+    border-color: #ffe100;
+  }
+  42.86% {
+    color: orange;
+    border-color: orange;
+  }
+  57.14% {
+    color: red;
+    border-color: red;
+  }
+  71.42% {
+    color: magenta;
+    border-color: magenta;
+  }
+  85.71% {
+    color: #0052ff;
+    border-color: #0052ff;
+  }
+  100% {
+    color: cyan;
+    border-color: cyan;
+  }
+}
+@keyframes hoverFlicker {
+  0% {
+    color: cyan;
+    border-color: cyan;
+  }
+  14.28% {
+    color: lime;
+    border-color: lime;
+  }
+  28.57% {
+    color: #ffe100;
+    border-color: #ffe100;
+  }
+  42.86% {
+    color: orange;
+    border-color: orange;
+  }
+  57.14% {
+    color: red;
+    border-color: red;
+  }
+  71.42% {
+    color: magenta;
+    border-color: magenta;
+  }
+  85.71% {
+    color: #0052ff;
+    border-color: #0052ff;
+  }
+  100% {
+    color: cyan;
+    border-color: cyan;
+  }
+}
 /* line 48, ../sass/globals/_type.scss */
 html {
   font-size: 12pt;
@@ -216,9 +352,16 @@ html {
 html a {
   color: #000000;
   text-decoration: none;
-  border-bottom: 1px #aaaaaa solid;
+  border-bottom: 0.125em #000000 solid;
 }
-/* line 59, ../sass/globals/_type.scss */
+/* line 56, ../sass/globals/_type.scss */
+html a:hover, html a:active {
+  -webkit-animation: hoverFlicker .125s infinite linear;
+  -moz-animation: hoverFlicker .125s infinite linear;
+  -o-animation: hoverFlicker .125s infinite linear;
+  animation: hoverFlicker .125s infinite linear;
+}
+/* line 63, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 0.75rem;
 }
@@ -251,17 +394,17 @@ html p + p {
     transform: rotateZ(-2deg) scale3d(1.15, 1.15, 1.15);
   }
 }
-/* line 74, ../sass/globals/_components.scss */
+/* line 75, ../sass/globals/_components.scss */
 .card.form {
   padding-left: 2rem !important;
 }
 
-/* line 79, ../sass/globals/_components.scss */
+/* line 80, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
 
-/* line 83, ../sass/globals/_components.scss */
+/* line 84, ../sass/globals/_components.scss */
 label {
   font-size: 12pt;
   line-height: 1.5em;
@@ -269,7 +412,59 @@ label {
   letter-spacing: .0625em;
 }
 
-/* line 87, ../sass/globals/_components.scss */
+/* line 97, ../sass/globals/_components.scss */
+::-webkit-input-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+/* line 92, ../sass/globals/_components.scss */
+::-webkit-input-placeholder:hover {
+  -webkit-animation: hoverFlicker .125s infinite linear;
+  -moz-animation: hoverFlicker .125s infinite linear;
+  -o-animation: hoverFlicker .125s infinite linear;
+  animation: hoverFlicker .125s infinite linear;
+}
+
+/* line 101, ../sass/globals/_components.scss */
+:-moz-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+/* line 92, ../sass/globals/_components.scss */
+:-moz-placeholder:hover {
+  -webkit-animation: hoverFlicker .125s infinite linear;
+  -moz-animation: hoverFlicker .125s infinite linear;
+  -o-animation: hoverFlicker .125s infinite linear;
+  animation: hoverFlicker .125s infinite linear;
+}
+
+/* line 104, ../sass/globals/_components.scss */
+::-moz-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+/* line 92, ../sass/globals/_components.scss */
+::-moz-placeholder:hover {
+  -webkit-animation: hoverFlicker .125s infinite linear;
+  -moz-animation: hoverFlicker .125s infinite linear;
+  -o-animation: hoverFlicker .125s infinite linear;
+  animation: hoverFlicker .125s infinite linear;
+}
+
+/* line 107, ../sass/globals/_components.scss */
+:-ms-input-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+/* line 92, ../sass/globals/_components.scss */
+:-ms-input-placeholder:hover {
+  -webkit-animation: hoverFlicker .125s infinite linear;
+  -moz-animation: hoverFlicker .125s infinite linear;
+  -o-animation: hoverFlicker .125s infinite linear;
+  animation: hoverFlicker .125s infinite linear;
+}
+
+/* line 112, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -280,18 +475,22 @@ input {
   line-height: 1.5em;
   font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
-  border-bottom: 1.5pt #aaaaaa solid;
+  color: #000000;
+  border-bottom: 0.125em #000000 solid;
 }
-/* line 92, ../sass/globals/_components.scss */
-input:focus {
-  border-color: #000000;
+/* line 118, ../sass/globals/_components.scss */
+input:focus, input:hover {
+  -webkit-animation: hoverFlicker .125s infinite linear;
+  -moz-animation: hoverFlicker .125s infinite linear;
+  -o-animation: hoverFlicker .125s infinite linear;
+  animation: hoverFlicker .125s infinite linear;
 }
-/* line 101, ../sass/globals/_components.scss */
+/* line 127, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
 }
-/* line 106, ../sass/globals/_components.scss */
+/* line 132, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
@@ -345,7 +544,7 @@ ul.menu {
     }
 }
 */
-/* line 162, ../sass/globals/_components.scss */
+/* line 188, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -363,7 +562,7 @@ textarea {
 /* line 1, ../sass/layout/_body.scss */
 body {
   height: 100%;
-  background-color: #fafafa;
+  background-color: white;
 }
 
 /* line 1, ../sass/layout/_header.scss */
@@ -393,27 +592,35 @@ body {
 .container > header ul.users {
   float: right;
 }
-/* line 30, ../sass/layout/_header.scss */
+/* line 28, ../sass/layout/_header.scss */
+.container > header form label, .container > header form input {
+  font-family: "Futura W01 Book", Futura, sans-serif;
+  font-size: 24pt;
+  letter-spacing: .75pt;
+  line-height: 1.5em;
+}
+/* line 36, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
+  border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   width: 16rem;
   display: inline-block;
 }
-/* line 36, ../sass/layout/_header.scss */
+/* line 42, ../sass/layout/_header.scss */
 .container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
-/* line 40, ../sass/layout/_header.scss */
+/* line 46, ../sass/layout/_header.scss */
 .container > header.public .card form, .container > header.index .card form {
   width: auto;
 }
-/* line 43, ../sass/layout/_header.scss */
+/* line 49, ../sass/layout/_header.scss */
 .container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
 }
-/* line 46, ../sass/layout/_header.scss */
+/* line 52, ../sass/layout/_header.scss */
 .container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
@@ -722,6 +929,7 @@ section.container section.space article .card {
 /* line 197, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
+  border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   width: auto;
 }
@@ -836,6 +1044,7 @@ section.container section.space article .ui-resizable-handle:hover {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
   background-color: rgba(255, 255, 255, 0.925);
+  border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   width: 16rem;
 }

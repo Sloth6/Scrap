@@ -6,14 +6,14 @@ $colorWashLightTrans:       rgba(255,255,255,.925);
 $colorWashLightTrans60:     rgba(255,255,255,.6);
 $colorWashLightTrans40:     rgba(255,255,255,.4);
 $colorWashLightTrans20:     rgba(255,255,255,.2);
-$colorType:                 #000000;
-$colorAlert:                #fb2705;
 
 $colorCardBackground:       $colorWashLightTrans;
-$colorBackground:           $colorWashMediumLight;
-
+$colorBackground:           $colorWashLight;
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
+
+$colorType:                 #000000;
+$colorAlert:                #fb2705;
 
 // SPOT COLORS
 

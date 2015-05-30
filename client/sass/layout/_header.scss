@@ -23,6 +23,12 @@
         float: right;
     }
     
+    
+    form {
+        label, input {
+            @include typeHeader;
+        }
+    }
     // Public space
     
     &.public, &.index {

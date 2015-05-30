@@ -25,6 +25,7 @@ $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 @mixin cardStyle {
     background-color: $colorCardBackground;
 //     @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
+    border: .125em solid $colorType;
     padding: $cardPadding;
 }
 
@@ -84,13 +85,38 @@ label {
     @include typeBody;
 }
 
+@mixin placeHolderOverride {
+    color: $colorType;
+    opacity: 1;
+    
+    &:hover {
+        @include hoverAnimation;
+    }
+}
+
+::-webkit-input-placeholder {
+    @include placeHolderOverride;
+}
+
+:-moz-placeholder {
+    @include placeHolderOverride;
+}
+::-moz-placeholder { 
+    @include placeHolderOverride;
+}
+:-ms-input-placeholder { 
+    @include placeHolderOverride;
+}
+
+
 input {
     @include resetInput;
     @include typeBody;
-    border-bottom: 1.5pt $colorWashMedium solid;
-    
-    &:focus {
-        border-color: $colorType;
+    color: $colorType;
+    border-bottom: .125em $colorType solid;
+        
+    &:focus, &:hover {
+        @include hoverAnimation;
     }
     
     &.offset {
