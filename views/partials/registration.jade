@@ -49,11 +49,11 @@ script.
     if($(this).is(":checked")) {
       $("form").removeClass("register")
         .addClass("log in")
-      $("p.name").remove();
+      $("li.name").remove();
       $("input[type=submit]").val("Log in");
     }
     else {
-      var nameInput = "<p class='name'><input id='name' type='text' name='user[name]' placeholder='Name'></p>"
+      var nameInput = "<li class='name'><input id='name' type='text' name='user[name]' placeholder='Name'></li>"
       $("form").removeClass("login")
         .addClass("register")
         .prepend(nameInput)

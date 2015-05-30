@@ -24,7 +24,7 @@
         width: 40vw;
         
         input {
-//             max-width: 20vw;
+            max-width: 100%;
         }
     }
     
@@ -35,23 +35,19 @@
         
         li {
             
-            &.share {
-                    
-                form {
-                                                
-                    label {
-                        @include typeBody;
-                        text-transform: lowercase;
-                        display: block;
-                        margin-top: $leading/4;
-                    }
+            form {
+                                            
+                label {
+                    @include typeBody;
+                    text-transform: lowercase;
+                    display: block;
+                    margin-top: $leading/4;
                 }
             }
             
             a {
                 
                 &.logout:hover {
-                    
                     @include hoverWarningAnimation;
                 }
             }

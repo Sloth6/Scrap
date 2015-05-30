@@ -9,7 +9,7 @@ script.
   names = !{JSON.stringify(names)}
 
 ul.users.menu.right.hideFirst
-  li.share
+  li
     a(href="#") Share
   li
     form.add-user
@@ -18,6 +18,7 @@ ul.users.menu.right.hideFirst
       input(type="submit", style="visibility: hidden;display:none;")
   li.heading Current members of this space
   each user in current_space.users
+    name = user.name.split(' ')
     if user.name != null
       li.user()
         span.name= name[0] + " " + name[1]

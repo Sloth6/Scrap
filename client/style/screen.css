@@ -1017,14 +1017,18 @@ body {
   float: left;
   width: 40vw;
 }
+/* line 26, ../sass/layout/_header.scss */
+.container > header ul.menu input {
+  max-width: 100%;
+}
 /* line 31, ../sass/layout/_header.scss */
 .container > header ul.users {
   float: right;
   text-align: right;
   position: relative;
 }
-/* line 42, ../sass/layout/_header.scss */
-.container > header ul.users li.share form label {
+/* line 40, ../sass/layout/_header.scss */
+.container > header ul.users li form label {
   font-size: 12pt;
   line-height: 1.5em;
   font-family: "Futura W01 Medium", Futura;
@@ -1033,47 +1037,47 @@ body {
   display: block;
   margin-top: 0.375em;
 }
-/* line 53, ../sass/layout/_header.scss */
+/* line 50, ../sass/layout/_header.scss */
 .container > header ul.users li a.logout:hover {
   -webkit-animation: hoverWarningFlicker 5s infinite linear;
   -moz-animation: hoverWarningFlicker 5s infinite linear;
   -o-animation: hoverWarningFlicker 5s infinite linear;
   animation: hoverWarningFlicker 5s infinite linear;
 }
-/* line 62, ../sass/layout/_header.scss */
+/* line 58, ../sass/layout/_header.scss */
 .container > header form label, .container > header form input {
   font-family: "Futura W01 Book", Futura, sans-serif;
   font-size: 24pt;
   letter-spacing: .75pt;
   line-height: 1.5em;
 }
-/* line 70, ../sass/layout/_header.scss */
+/* line 66, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
   float: right;
   display: inline-block;
 }
-/* line 74, ../sass/layout/_header.scss */
+/* line 70, ../sass/layout/_header.scss */
 .container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
-/* line 78, ../sass/layout/_header.scss */
+/* line 74, ../sass/layout/_header.scss */
 .container > header.public .card form, .container > header.index .card form {
   width: auto;
   text-align: left;
 }
-/* line 84, ../sass/layout/_header.scss */
+/* line 80, ../sass/layout/_header.scss */
 .container > header.public .card form p.submit input:hover, .container > header.index .card form p.submit input:hover {
   -webkit-animation: hoverConfirmFlicker 5s infinite linear;
   -moz-animation: hoverConfirmFlicker 5s infinite linear;
   -o-animation: hoverConfirmFlicker 5s infinite linear;
   animation: hoverConfirmFlicker 5s infinite linear;
 }
-/* line 89, ../sass/layout/_header.scss */
+/* line 85, ../sass/layout/_header.scss */
 .container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
   text-align: left;
 }
-/* line 93, ../sass/layout/_header.scss */
+/* line 89, ../sass/layout/_header.scss */
 .container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
