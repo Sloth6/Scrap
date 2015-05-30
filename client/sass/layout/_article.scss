@@ -220,7 +220,7 @@ section.container section.space {
                     border-top: 0;
                     
                     &:hover {
-                        @include hoverAnimation;
+                        @include hoverLinkAnimation;
                     }
 
                     .title p {

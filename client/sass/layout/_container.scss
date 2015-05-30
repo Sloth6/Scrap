@@ -72,7 +72,7 @@ section.container {
         
         &.overlap {
             @include transform(scale3d(1.0, 1.0, 1.0));
-            color: $colorAlert;
+            @include hoverWarningAnimation;
         }  
     }
 }

@@ -5,9 +5,9 @@
     left: 0;
     right: 0;
     padding: $baseline/4 $gutter;
-    right: left;
     @include typeHeader;
     text-align: left;
+    cursor: default;
     
     a {
         border: 0;

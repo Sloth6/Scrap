@@ -91,13 +91,13 @@ $hoverAnimationDuration: 5s;
     }
 
     25% {
-        color: orange;
-        border-color: orange;
+        color: #ff8d00;
+        border-color: #ff8d00;
     }
 
     50% {
-        color: yellow;
-        border-color: yellow;
+        color: red;
+        border-color: red;
     }    
     
     75% {
@@ -106,8 +106,8 @@ $hoverAnimationDuration: 5s;
     }
     
     100% {
-        color: blue;
-        border-color: blue;
+        color: red;
+        border-color: red;
     }
     
 }
@@ -181,4 +181,45 @@ $hoverAnimationDuration: 5s;
     -moz-animation:    hoverConfirmFlicker $hoverAnimationDuration infinite linear;
     -o-animation:      hoverConfirmFlicker $hoverAnimationDuration infinite linear;
     animation:         hoverConfirmFlicker $hoverAnimationDuration infinite linear;
+}
+
+// Link Hover Animation
+
+@mixin hoverLinkKeyframes {    
+
+    0% {
+        color: blue;
+        border-color: blue;
+    }
+
+    50% {
+        color: magenta;
+        border-color: magenta;
+    }    
+    
+    100% {
+        color: blue;
+        border-color: blue;
+    }
+    
+}
+
+@-webkit-keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+@-moz-keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+@-o-keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+@keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+
+@mixin hoverLinkAnimation {
+    -webkit-animation: hoverLinkFlicker $hoverAnimationDuration infinite linear;
+    -moz-animation:    hoverLinkFlicker $hoverAnimationDuration infinite linear;
+    -o-animation:      hoverLinkFlicker $hoverAnimationDuration infinite linear;
+    animation:         hoverLinkFlicker $hoverAnimationDuration infinite linear;
 }

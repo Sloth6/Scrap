@@ -246,21 +246,30 @@ ul.menu {
     &.hideFirst {
         
         &.right {
-            
+            &:hover {
+                > li:nth-child(1) {
+                    right: -$col * 2;
+                }
+            }
+        
+            > li:nth-child(1) {
+                right: 0;
+            }
         }
         
         &.left {
-            
-        }
-        
-        &:hover {
+            &:hover {
+                > li:nth-child(1) {
+                    left: -$col * 2;
+                }
+            }
+
             > li:nth-child(1) {
-                right: -$col * 2;
+                left: 0;
             }
         }
         
         > li:nth-child(1) {
-            right: 0;
             position: absolute;
             @include transition(1s $defaultCurve);
             @include transition-property(right);
