@@ -16,44 +16,45 @@ $bouncyCurve: cubic-bezier(0.19, 1.25, 0.22, 1.25);
 // Hover Text
 
 @mixin hoverKeyframes {    
+
     0% {
+        color: blue;
+        border-color: blue;
+    }
+
+    14.28% {
         color: cyan;
         border-color: cyan;
     }
 
-    14.28% {
+    28.57% {
         color: lime;
         border-color: lime;
     }    
     
-    28.57% {
+    42.86% {
         color: #ffe100;
         border-color: #ffe100;
     }
     
-    42.86% {
+    57.14% {
         color: orange;
         border-color: orange;
     }
     
-    57.14% {
+    71.42% {
         color: red;
         border-color: red;
     }
     
-    71.42% {
+    85.71% {
         color: magenta;
         border-color: magenta;
     }
 
-    85.71% {
-        color: #0052ff;
-        border-color: #0052ff;
-    }
-    
     100% {
-        color: cyan;
-        border-color: cyan;
+        color: blue;
+        border-color: blue;
     }
     
 }

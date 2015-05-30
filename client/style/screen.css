@@ -207,138 +207,138 @@ body section.space section.content article.color9 div.card.text.comment, body se
 
 @-webkit-keyframes hoverFlicker {
   0% {
+    color: blue;
+    border-color: blue;
+  }
+  14.28% {
     color: cyan;
     border-color: cyan;
   }
-  14.28% {
+  28.57% {
     color: lime;
     border-color: lime;
   }
-  28.57% {
+  42.86% {
     color: #ffe100;
     border-color: #ffe100;
   }
-  42.86% {
+  57.14% {
     color: orange;
     border-color: orange;
   }
-  57.14% {
+  71.42% {
     color: red;
     border-color: red;
   }
-  71.42% {
+  85.71% {
     color: magenta;
     border-color: magenta;
   }
-  85.71% {
-    color: #0052ff;
-    border-color: #0052ff;
-  }
   100% {
-    color: cyan;
-    border-color: cyan;
+    color: #blue;
+    border-color: blue;
   }
 }
 @-moz-keyframes hoverFlicker {
   0% {
+    color: blue;
+    border-color: blue;
+  }
+  14.28% {
     color: cyan;
     border-color: cyan;
   }
-  14.28% {
+  28.57% {
     color: lime;
     border-color: lime;
   }
-  28.57% {
+  42.86% {
     color: #ffe100;
     border-color: #ffe100;
   }
-  42.86% {
+  57.14% {
     color: orange;
     border-color: orange;
   }
-  57.14% {
+  71.42% {
     color: red;
     border-color: red;
   }
-  71.42% {
+  85.71% {
     color: magenta;
     border-color: magenta;
   }
-  85.71% {
-    color: #0052ff;
-    border-color: #0052ff;
-  }
   100% {
-    color: cyan;
-    border-color: cyan;
+    color: #blue;
+    border-color: blue;
   }
 }
 @-o-keyframes hoverFlicker {
   0% {
+    color: blue;
+    border-color: blue;
+  }
+  14.28% {
     color: cyan;
     border-color: cyan;
   }
-  14.28% {
+  28.57% {
     color: lime;
     border-color: lime;
   }
-  28.57% {
+  42.86% {
     color: #ffe100;
     border-color: #ffe100;
   }
-  42.86% {
+  57.14% {
     color: orange;
     border-color: orange;
   }
-  57.14% {
+  71.42% {
     color: red;
     border-color: red;
   }
-  71.42% {
+  85.71% {
     color: magenta;
     border-color: magenta;
   }
-  85.71% {
-    color: #0052ff;
-    border-color: #0052ff;
-  }
   100% {
-    color: cyan;
-    border-color: cyan;
+    color: #blue;
+    border-color: blue;
   }
 }
 @keyframes hoverFlicker {
   0% {
+    color: blue;
+    border-color: blue;
+  }
+  14.28% {
     color: cyan;
     border-color: cyan;
   }
-  14.28% {
+  28.57% {
     color: lime;
     border-color: lime;
   }
-  28.57% {
+  42.86% {
     color: #ffe100;
     border-color: #ffe100;
   }
-  42.86% {
+  57.14% {
     color: orange;
     border-color: orange;
   }
-  57.14% {
+  71.42% {
     color: red;
     border-color: red;
   }
-  71.42% {
+  85.71% {
     color: magenta;
     border-color: magenta;
   }
-  85.71% {
-    color: #0052ff;
-    border-color: #0052ff;
-  }
   100% {
-    color: cyan;
-    border-color: cyan;
+    color: #blue;
+    border-color: blue;
   }
 }
 /* line 53, ../sass/globals/_type.scss */
@@ -366,45 +366,17 @@ html p + p {
   margin-top: 0.75rem;
 }
 
-@-webkit-keyframes cardPulsateHover {
-  0% {
-    -moz-transform: scale3d(1.125, 1.125, 1.125);
-    -ms-transform: scale3d(1.125, 1.125, 1.125);
-    -webkit-transform: scale3d(1.125, 1.125, 1.125);
-    transform: scale3d(1.125, 1.125, 1.125);
-  }
-  100% {
-    -moz-transform: scale3d(1.15, 1.15, 1.15);
-    -ms-transform: scale3d(1.15, 1.15, 1.15);
-    -webkit-transform: scale3d(1.15, 1.15, 1.15);
-    transform: scale3d(1.15, 1.15, 1.15);
-  }
-}
-@-webkit-keyframes cardPulsateDrag {
-  0% {
-    -moz-transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
-    -ms-transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
-    -webkit-transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
-    transform: rotateZ(-2deg) scale3d(1.125, 1.125, 1.125);
-  }
-  100% {
-    -moz-transform: rotateZ(-2deg) scale3d(1.15, 1.15, 1.15);
-    -ms-transform: rotateZ(-2deg) scale3d(1.15, 1.15, 1.15);
-    -webkit-transform: rotateZ(-2deg) scale3d(1.15, 1.15, 1.15);
-    transform: rotateZ(-2deg) scale3d(1.15, 1.15, 1.15);
-  }
-}
-/* line 71, ../sass/globals/_components.scss */
+/* line 51, ../sass/globals/_components.scss */
 .card.form {
   padding-left: 2rem !important;
 }
 
-/* line 76, ../sass/globals/_components.scss */
+/* line 56, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
 
-/* line 80, ../sass/globals/_components.scss */
+/* line 60, ../sass/globals/_components.scss */
 label {
   font-size: 12pt;
   line-height: 1.5em;
@@ -412,12 +384,12 @@ label {
   letter-spacing: .0625em;
 }
 
-/* line 93, ../sass/globals/_components.scss */
+/* line 73, ../sass/globals/_components.scss */
 ::-webkit-input-placeholder {
   color: #000000;
   opacity: 1;
 }
-/* line 88, ../sass/globals/_components.scss */
+/* line 68, ../sass/globals/_components.scss */
 ::-webkit-input-placeholder:hover {
   -webkit-animation: hoverFlicker 10s infinite linear;
   -moz-animation: hoverFlicker 10s infinite linear;
@@ -425,12 +397,12 @@ label {
   animation: hoverFlicker 10s infinite linear;
 }
 
-/* line 97, ../sass/globals/_components.scss */
+/* line 77, ../sass/globals/_components.scss */
 :-moz-placeholder {
   color: #000000;
   opacity: 1;
 }
-/* line 88, ../sass/globals/_components.scss */
+/* line 68, ../sass/globals/_components.scss */
 :-moz-placeholder:hover {
   -webkit-animation: hoverFlicker 10s infinite linear;
   -moz-animation: hoverFlicker 10s infinite linear;
@@ -438,12 +410,12 @@ label {
   animation: hoverFlicker 10s infinite linear;
 }
 
-/* line 100, ../sass/globals/_components.scss */
+/* line 80, ../sass/globals/_components.scss */
 ::-moz-placeholder {
   color: #000000;
   opacity: 1;
 }
-/* line 88, ../sass/globals/_components.scss */
+/* line 68, ../sass/globals/_components.scss */
 ::-moz-placeholder:hover {
   -webkit-animation: hoverFlicker 10s infinite linear;
   -moz-animation: hoverFlicker 10s infinite linear;
@@ -451,12 +423,12 @@ label {
   animation: hoverFlicker 10s infinite linear;
 }
 
-/* line 103, ../sass/globals/_components.scss */
+/* line 83, ../sass/globals/_components.scss */
 :-ms-input-placeholder {
   color: #000000;
   opacity: 1;
 }
-/* line 88, ../sass/globals/_components.scss */
+/* line 68, ../sass/globals/_components.scss */
 :-ms-input-placeholder:hover {
   -webkit-animation: hoverFlicker 10s infinite linear;
   -moz-animation: hoverFlicker 10s infinite linear;
@@ -464,7 +436,7 @@ label {
   animation: hoverFlicker 10s infinite linear;
 }
 
-/* line 108, ../sass/globals/_components.scss */
+/* line 88, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -478,30 +450,30 @@ input {
   color: #000000;
   border-bottom: 0.125em #000000 solid;
 }
-/* line 114, ../sass/globals/_components.scss */
+/* line 94, ../sass/globals/_components.scss */
 input:focus, input:hover {
   -webkit-animation: hoverFlicker 10s infinite linear;
   -moz-animation: hoverFlicker 10s infinite linear;
   -o-animation: hoverFlicker 10s infinite linear;
   animation: hoverFlicker 10s infinite linear;
 }
-/* line 123, ../sass/globals/_components.scss */
+/* line 103, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
 }
-/* line 128, ../sass/globals/_components.scss */
+/* line 108, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
 
-/* line 137, ../sass/globals/_components.scss */
+/* line 117, ../sass/globals/_components.scss */
 ul.menu {
   height: 3rem;
 }
-/* line 141, ../sass/globals/_components.scss */
+/* line 121, ../sass/globals/_components.scss */
 ul.menu.left li {
   left: -33.6rem;
   -moz-transition-property: left, opacity;
@@ -509,15 +481,15 @@ ul.menu.left li {
   -webkit-transition-property: left, opacity;
   transition-property: left, opacity;
 }
-/* line 145, ../sass/globals/_components.scss */
+/* line 125, ../sass/globals/_components.scss */
 ul.menu.left li:nth-of-type(1) {
   left: 0;
 }
-/* line 151, ../sass/globals/_components.scss */
+/* line 131, ../sass/globals/_components.scss */
 ul.menu.left:hover li {
   left: 0;
 }
-/* line 154, ../sass/globals/_components.scss */
+/* line 134, ../sass/globals/_components.scss */
 ul.menu.left:hover li a, ul.menu.left:hover li form {
   padding-left: 0;
   -moz-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -525,11 +497,11 @@ ul.menu.left:hover li a, ul.menu.left:hover li form {
   -webkit-transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: padding-left 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 158, ../sass/globals/_components.scss */
+/* line 138, ../sass/globals/_components.scss */
 ul.menu.left:hover li a:hover, ul.menu.left:hover li a:active, ul.menu.left:hover li a:focus, ul.menu.left:hover li form:hover, ul.menu.left:hover li form:active, ul.menu.left:hover li form:focus {
   padding-left: 2rem;
 }
-/* line 167, ../sass/globals/_components.scss */
+/* line 147, ../sass/globals/_components.scss */
 ul.menu.right li {
   right: -33.6rem;
   -moz-transition-property: right, opacity;
@@ -537,19 +509,19 @@ ul.menu.right li {
   -webkit-transition-property: right, opacity;
   transition-property: right, opacity;
 }
-/* line 171, ../sass/globals/_components.scss */
+/* line 151, ../sass/globals/_components.scss */
 ul.menu.right li:nth-of-type(1) {
   right: 0;
 }
-/* line 175, ../sass/globals/_components.scss */
+/* line 155, ../sass/globals/_components.scss */
 ul.menu.right li form, ul.menu.right li input {
   text-align: right;
 }
-/* line 181, ../sass/globals/_components.scss */
+/* line 161, ../sass/globals/_components.scss */
 ul.menu.right:hover li {
   right: 0;
 }
-/* line 184, ../sass/globals/_components.scss */
+/* line 164, ../sass/globals/_components.scss */
 ul.menu.right:hover li a, ul.menu.right:hover li form {
   padding-right: 0;
   -moz-transition: padding-right 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -557,11 +529,11 @@ ul.menu.right:hover li a, ul.menu.right:hover li form {
   -webkit-transition: padding-right 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: padding-right 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 188, ../sass/globals/_components.scss */
+/* line 168, ../sass/globals/_components.scss */
 ul.menu.right:hover li a:hover, ul.menu.right:hover li a:active, ul.menu.right:hover li a:focus, ul.menu.right:hover li form:hover, ul.menu.right:hover li form:active, ul.menu.right:hover li form:focus {
   padding-right: 2rem;
 }
-/* line 196, ../sass/globals/_components.scss */
+/* line 176, ../sass/globals/_components.scss */
 ul.menu li {
   position: relative;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -591,151 +563,151 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-delay(.1s); }
   */
 }
-/* line 200, ../sass/globals/_components.scss */
+/* line 180, ../sass/globals/_components.scss */
 ul.menu li form {
   white-space: nowrap;
 }
-/* line 226, ../sass/globals/_components.scss */
+/* line 206, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 227, ../sass/globals/_components.scss */
+/* line 207, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 228, ../sass/globals/_components.scss */
+/* line 208, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 229, ../sass/globals/_components.scss */
+/* line 209, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 230, ../sass/globals/_components.scss */
+/* line 210, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
-/* line 231, ../sass/globals/_components.scss */
+/* line 211, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.6s;
   -o-transition-delay: 0.6s;
   -webkit-transition-delay: 0.6s;
   transition-delay: 0.6s;
 }
-/* line 232, ../sass/globals/_components.scss */
+/* line 212, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.7s;
   -o-transition-delay: 0.7s;
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-/* line 233, ../sass/globals/_components.scss */
+/* line 213, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.8s;
   -o-transition-delay: 0.8s;
   -webkit-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
-/* line 234, ../sass/globals/_components.scss */
+/* line 214, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.9s;
   -o-transition-delay: 0.9s;
   -webkit-transition-delay: 0.9s;
   transition-delay: 0.9s;
 }
-/* line 235, ../sass/globals/_components.scss */
+/* line 215, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 236, ../sass/globals/_components.scss */
+/* line 216, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.11s;
   -o-transition-delay: 0.11s;
   -webkit-transition-delay: 0.11s;
   transition-delay: 0.11s;
 }
-/* line 237, ../sass/globals/_components.scss */
+/* line 217, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.12s;
   -o-transition-delay: 0.12s;
   -webkit-transition-delay: 0.12s;
   transition-delay: 0.12s;
 }
-/* line 238, ../sass/globals/_components.scss */
+/* line 218, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.13s;
   -o-transition-delay: 0.13s;
   -webkit-transition-delay: 0.13s;
   transition-delay: 0.13s;
 }
-/* line 239, ../sass/globals/_components.scss */
+/* line 219, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.14s;
   -o-transition-delay: 0.14s;
   -webkit-transition-delay: 0.14s;
   transition-delay: 0.14s;
 }
-/* line 240, ../sass/globals/_components.scss */
+/* line 220, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 241, ../sass/globals/_components.scss */
+/* line 221, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.16s;
   -o-transition-delay: 0.16s;
   -webkit-transition-delay: 0.16s;
   transition-delay: 0.16s;
 }
-/* line 242, ../sass/globals/_components.scss */
+/* line 222, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.17s;
   -o-transition-delay: 0.17s;
   -webkit-transition-delay: 0.17s;
   transition-delay: 0.17s;
 }
-/* line 243, ../sass/globals/_components.scss */
+/* line 223, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.18s;
   -o-transition-delay: 0.18s;
   -webkit-transition-delay: 0.18s;
   transition-delay: 0.18s;
 }
-/* line 244, ../sass/globals/_components.scss */
+/* line 224, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 0.19s;
   -o-transition-delay: 0.19s;
   -webkit-transition-delay: 0.19s;
   transition-delay: 0.19s;
 }
-/* line 249, ../sass/globals/_components.scss */
+/* line 229, ../sass/globals/_components.scss */
 ul.menu:hover {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
 }
-/* line 254, ../sass/globals/_components.scss */
+/* line 234, ../sass/globals/_components.scss */
 ul.menu:hover li a, ul.menu:hover li form {
   position: relative;
 }
@@ -787,7 +759,7 @@ ul.menu {
     }
 }
 */
-/* line 309, ../sass/globals/_components.scss */
+/* line 289, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -842,36 +814,87 @@ body {
 .container > header ul.users {
   float: right;
   text-align: right;
+  position: relative;
 }
 /* line 38, ../sass/layout/_header.scss */
+.container > header ul.users:hover li.share a {
+  opacity: 0;
+  right: -8rem;
+}
+/* line 43, ../sass/layout/_header.scss */
+.container > header ul.users:hover li.share form {
+  opacity: 1;
+  right: 0;
+}
+/* line 53, ../sass/layout/_header.scss */
+.container > header ul.users li.share a {
+  opacity: 1;
+  right: 0;
+  position: absolute;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -moz-transition-property: right, opacity;
+  -o-transition-property: right, opacity;
+  -webkit-transition-property: right, opacity;
+  transition-property: right, opacity;
+}
+/* line 61, ../sass/layout/_header.scss */
+.container > header ul.users li.share form {
+  opacity: 0;
+  position: relative;
+  right: -32rem;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -moz-transition-property: right, opacity, padding-right;
+  -o-transition-property: right, opacity, padding-right;
+  -webkit-transition-property: right, opacity, padding-right;
+  transition-property: right, opacity, padding-right;
+}
+/* line 68, ../sass/layout/_header.scss */
+.container > header ul.users li.share form label {
+  font-size: 12pt;
+  line-height: 1.5em;
+  font-family: "Futura W01 Medium", Futura;
+  letter-spacing: .0625em;
+  text-transform: lowercase;
+  display: block;
+  margin-top: 0.375em;
+}
+/* line 79, ../sass/layout/_header.scss */
 .container > header form label, .container > header form input {
   font-family: "Futura W01 Book", Futura, sans-serif;
   font-size: 24pt;
   letter-spacing: .75pt;
   line-height: 1.5em;
 }
-/* line 46, ../sass/layout/_header.scss */
+/* line 87, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
   border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
   width: 16rem;
   display: inline-block;
 }
-/* line 52, ../sass/layout/_header.scss */
+/* line 93, ../sass/layout/_header.scss */
 .container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
-/* line 56, ../sass/layout/_header.scss */
+/* line 97, ../sass/layout/_header.scss */
 .container > header.public .card form, .container > header.index .card form {
   width: auto;
 }
-/* line 59, ../sass/layout/_header.scss */
+/* line 100, ../sass/layout/_header.scss */
 .container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
 }
-/* line 62, ../sass/layout/_header.scss */
+/* line 103, ../sass/layout/_header.scss */
 .container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
@@ -1184,6 +1207,8 @@ section.container section.space article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
   border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
   width: auto;
 }
 /* line 202, ../sass/layout/_article.scss */
@@ -1202,6 +1227,8 @@ section.container section.space article .card.website .text {
   background-color: rgba(255, 255, 255, 0.925);
   border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
   border-top: 0;
 }
 /* line 221, ../sass/layout/_article.scss */
@@ -1256,6 +1283,8 @@ section.container section.space article .ui-resizable-handle:hover {
   background-color: rgba(255, 255, 255, 0.925);
   border: 0.125em solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
   width: 16rem;
 }
 /* line 12, ../sass/layout/_login.scss */

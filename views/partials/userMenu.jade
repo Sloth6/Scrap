@@ -9,19 +9,15 @@ script.
   names = !{JSON.stringify(names)}
 
 ul.users.menu.right
+  li.share
+    a(href="#") Share
+    form.add-user
+      input(type="text", name="user[email]", placeholder="name@email.com")
+      label Share this space with someone
+      input(type="submit", style="visibility: hidden;display:none;")
   each user in current_space.users
     if user.name != null
       li.user()
-        - name = user.name.split(' ')
-        span.initial= user.name[0]
-        span.name= name[0].slice(1)
-        if name[1]
-          span.initial= name[1][0]
-          span.name= name[1].slice(1)
-
-  li
-    form.add-user
-      input(type="text", name="user[email]", placeholder="Invite someone to this space")
-      input(type="submit", style="visibility: hidden;")
+        span.name= name[0] + " " + name[1]
   li
     a.logout(href="/logout") Logout

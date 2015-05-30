@@ -1,32 +1,12 @@
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-@-webkit-keyframes cardPulsateHover {
-    0% {
-        @include transform($cardHoverScaleMin);
-    }
-    
-    100% {
-        @include transform($cardHoverScaleMax);
-    }
-}
-
-
-@-webkit-keyframes cardPulsateDrag {
-    0% {
-    @include transform(rotateZ(-2deg) $cardHoverScaleMin);
-    }
-    
-    100% {
-    @include transform(rotateZ(-2deg) $cardHoverScaleMax);
-    }
-}
-
 @mixin cardStyle {
     background-color: $colorCardBackground;
-//     @include box-shadow(0 $gutter/6 $gutter rgba(0,0,0,.125));
     border: .125em solid $colorType;
     padding: $cardPadding;
+    transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
 }
 
 @mixin cardHover {
