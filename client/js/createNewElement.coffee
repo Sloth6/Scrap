@@ -17,7 +17,6 @@ createNewElement = (element) ->
       createGif newArticle, content
     when 'file'
       makeDownloadable newArticle
-
   makeDeletable newArticle
   makeTextChild newArticle
   makeDraggable newArticle, socket

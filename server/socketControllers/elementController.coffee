@@ -47,24 +47,30 @@ module.exports =
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
-          element_html = encodeURIComponent(element_jade({element, colors:{}, names:{}}))
+          element_html = encodeURIComponent(element_jade({element, names:{}}))
           sio.to(spaceKey).emit 'newElement', { element: element_html }
           return callback()
     
     newImage = (attributes) ->
-      original_url = data.content
       models.Space.find(where: { spaceKey }).complete (err, space) =>
         return callback err if err?
-        attributes.SpaceId = space.id
         
         key = Math.random().toString(36).slice(2)
+        original_url = data.content
         attributes.content = key
+        attributes.SpaceId = space.id
 
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
 
           element.content = original_url
-          sio.to(spaceKey).emit 'newElement', { element }
+          element_html = encodeURIComponent(element_jade({
+            element: element
+            names: {}
+            original_url
+          }))
+          
+          sio.to(spaceKey).emit 'newElement', { element: element_html }
 
           options =
             url: original_url

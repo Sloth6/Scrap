@@ -10,15 +10,19 @@ if element.contentType == 'text'
 - var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
 - var scaleString = "-webkit-transform:scale3d(1.0,1.0,1.0); transform:scale3d(1.0,1.0},1.0);"
 
-article(id=element.id, class= classes, style=posString+scaleString, data-creatorid=element.creatorId, data-contenttype=element.contentType)
+article(id=element.id, class= classes, style=posString+scaleString, data-content=element.content, data-creatorid=element.creatorId, data-contenttype=element.contentType)
   .card(data-key=element.content, class=element.contentType)
     if names[element.creatorId] != ""
       header
         author= names[element.creatorId]
-        
+
     case element.contentType
       when 'image'
-        img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')
+        - if (typeof(original_url) !== 'undefined'){
+          img(src= original_url)
+        - } else {
+          img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')
+        - }
 
       when 'gif'
         img(src= root+current_space.spaceKey+"/"+element.content+'/normal.png')

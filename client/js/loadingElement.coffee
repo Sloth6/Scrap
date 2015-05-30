@@ -1,4 +1,5 @@
-createLoadingElement = (position, content) ->
+createLoadingElement = (position, name) ->
+  # console.log 'loading name', name
   html = "<article class=loading>
             <div class='card'>
               <header data-scale=#{1}>
@@ -7,7 +8,6 @@ createLoadingElement = (position, content) ->
             <div class='loadingIndicator'></div>
             </div>
           </article>"
-
   $(html).
   css({
     top: position.y
@@ -20,5 +20,7 @@ createLoadingElement = (position, content) ->
     'border-style': 'solid'
     'border-width': 2
   }).
-  data({ content }).
+  addClass(name).
   appendTo($('.content'))
+  # data({ content }).
+  

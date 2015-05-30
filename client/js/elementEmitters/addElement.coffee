@@ -47,7 +47,7 @@ $ ->
     type: 'POST'
     autoUpload: true
     dataType: 'xml' # S3's XML response
-    add: (event, data) ->
+    add: (event, add_data) ->
       screenScale = $('.content').css 'scale'
       startData.x = (mouse.x - $('.content').offset().left) / screenScale
       startData.y = (mouse.y - $('.content').offset().top) / screenScale
@@ -57,20 +57,21 @@ $ ->
         type: 'GET'
         dataType: 'json'
         data:# Send filename to /signed for the signed response 
-          title: data.files[0].name
-          type: data.files[0].type
+          title: add_data.files[0].name
+          type: add_data.files[0].type
           spaceKey: spaceKey
         async: false
-        success: (data) ->
+        success: (success_data) ->
+          file_name = success_data.key.split('/').pop().split('.')[0]
+          createLoadingElement startData, file_name
           # Now that we have our data, we update the form so it contains all
           # the needed data to sign the request
-          createLoadingElement startData, data.key
-          $('input[name=key]').val data.key
-          $('input[name=policy]').val data.policy
-          $('input[name=signature]').val data.signature
-          $('input[name=Content-Type]').val data.contentType
+          $('input[name=key]').val success_data.key
+          $('input[name=policy]').val success_data.policy
+          $('input[name=signature]').val success_data.signature
+          $('input[name=Content-Type]').val success_data.contentType
       }
-      data.submit()
+      add_data.submit()
 
     send: (e, data) ->
       # Determine if this was a multiple upload
@@ -86,7 +87,7 @@ $ ->
 
     success: (data) ->
       content = decodeURIComponent $(data).find('Location').text(); # Find location value from XML response
-      emitElement startData.x, startData.y, 1/startData.scale, content
+      emitElement startData.x, startData.y, content
 
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
@@ -97,7 +98,6 @@ $ ->
     # Make sure to account for screen drag (totalDelta)
     x = Math.round(x - totalDelta.x)
     y = Math.round(y - totalDelta.y)
-    console.log 'emitting', {x, y}
     window.maxZ += 1
     z = window.maxZ
     content = encodeURIComponent content
@@ -106,8 +106,6 @@ $ ->
       socket.emit 'newElement', data
 
     $('.add-element').remove()
-    $('.add-image').remove()
-    $('.add-website').remove()
 
   addElement = (event, createdByCntrl) ->
     eventX = event.clientX || mouse.x
