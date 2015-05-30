@@ -211,56 +211,20 @@ section.container section.space {
             }
             
             &.website {
-
-                &:hover {
-                    .card.header.text .description {
-                        opacity: 1;
-                        height: auto;
-                    }
-                }
                 
-                .card.header.text {
+                .text {
                     position: relative;
                     z-index: 2;
+                    @include cardStyle;
 
                     .title p {
                         line-height: 1.25em;
                     }
 
                     .url p {
-                        @include typeBodySmallCaps;
-                        line-height: $leading * 1.5;
-                        margin-top: .875em;
-                        opacity: .25;
-                        @include transition(opacity .25s $defaultCurve);
-                        
-                        &:hover {
-                            opacity: 1;
-                        }
+                        margin-top: $leading;
+                        @include typeBody;
                     }
-
-                    .description {
-                        opacity: 0;
-                        height: 0;
-                        position: absolute;
-                        background-color: $colorWashMediumLightTrans;
-                        margin-left: -$cardPaddingUnit/2;
-                        padding-left: $cardPaddingUnit/2;
-                        padding-bottom: $cardPaddingUnit/4;
-                        min-width: auto;
-                        display: block;
-                        @include smoothTransition;
-                        @include transition-property(opacity);
-                        
-                        p {
-                            @include typeBody;
-                            
-                            a {
-                                word-break: break-all;
-                            }
-                        }
-                    }
-
                 }
 
                 &.image {

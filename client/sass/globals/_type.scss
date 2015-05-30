@@ -37,6 +37,11 @@ $leading:           1.5em;
     font-size: $typeBodySize * .666;
 }
 
+@mixin typeHeaderSmallCaps {
+    @include smallCaps;
+    font-size: $typeHeaderSize * .666;
+}
+
 
 @mixin typeSpaceName {
     @include typeHeader;
