@@ -212,24 +212,22 @@ section.container section.space {
             
             &.website {
                 
-                &:hover {
-                    .text {
-                        @include hoverAnimation;
-                    }
-                }
-                
                 .text {
                     position: relative;
                     z-index: 2;
                     @include cardStyle;
                     border-top: 0;
+                    
+                    &:hover {
+                        @include hoverAnimation;
+                    }
 
                     .title p {
                         line-height: 1.25em;
                     }
 
                     .url p {
-                        margin-top: $leading;
+                        margin-top: $leading/3;
                         @include typeBody;
                     }
                 }

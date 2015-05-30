@@ -10,14 +10,12 @@ $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 }
 
 @mixin cardHover {
-    @include hoverAnimation;
     @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
     @include transform($cardHoverScaleMin);
 }
 
 @mixin cardDrag {
     cursor: move;
-    @include hoverAnimation;
     @include transform($cardHoverScaleMax);
     @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
 }
