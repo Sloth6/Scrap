@@ -196,6 +196,7 @@ section.container section.space {
 
             &.text {
                 @include cardStyle;
+                @include typeBody;
                 width: auto;
             }
 
