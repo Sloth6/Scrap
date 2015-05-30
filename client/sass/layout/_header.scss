@@ -2,12 +2,16 @@
     position: fixed;
     z-index: 2;
     top: 0;
+    left: 0;
+    right: 0;
+    padding: $baseline/4 $gutter;
     right: left;
-    // height: $headerHeight;
-    width: 100%;
-    // opacity: .5;
     @include typeHeader;
     text-align: left;
+    
+    a {
+        border: 0;
+    }
     
     h1.spaceName {
         display: none;
@@ -17,10 +21,16 @@
         display: inline-block;
         opacity: .75;
         float: left;
+        width: 40vw;
+        
+        input {
+//             max-width: 20vw;
+        }
     }
     
     ul.users {
         float: right;
+        text-align: right;
     }
     
     

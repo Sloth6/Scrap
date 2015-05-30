@@ -8,7 +8,7 @@ script.
   users =  !{JSON.stringify(users)}
   names = !{JSON.stringify(names)}
 
-ul.users
+ul.users.menu.right
   each user in current_space.users
     if user.name != null
       li.user()
@@ -19,11 +19,9 @@ ul.users
           span.initial= name[1][0]
           span.name= name[1].slice(1)
 
-  li.settings
-    ul.menu.settings
-      li
-        form.add-user
-          input(type="text", name="user[email]", placeholder="Invite someone to this space")
-          input(type="submit", style="visibility: hidden;")
-      li
-        a.logout(href="/logout") Logout
+  li
+    form.add-user
+      input(type="text", name="user[email]", placeholder="Invite someone to this space")
+      input(type="submit", style="visibility: hidden;")
+  li
+    a.logout(href="/logout") Logout

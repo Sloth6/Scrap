@@ -137,6 +137,131 @@ input {
     
 }
 
+
+ul.menu {
+    height: $baseline * 2;
+    
+    &.left {
+        li {
+            left: -$col*4.2;
+            @include transition-property(left, opacity);
+            
+            &:nth-of-type(1) {
+                left: 0;
+            }
+        }
+        
+        &:hover {
+            li {
+                left: 0;
+                
+                a, form {
+                    padding-left: 0;
+                    @include transition(padding-left .25s $defaultCurve);
+                    
+                    &:hover, &:active, &:focus {
+                        padding-left: $gutter * 2;
+                    }
+                }
+            }
+        }    
+    }
+    
+    &.right {
+        li {
+            right: -$col*4.2;
+            @include transition-property(right, opacity);
+            
+            &:nth-of-type(1) {
+                right: 0;
+            }
+            
+            form, input {
+                text-align: right;
+            }
+        }
+        
+        &:hover {
+            li {
+                right: 0;
+                
+                a, form {
+                    padding-right: 0;
+                    @include transition(padding-right .25s $defaultCurve);
+                    
+                    &:hover, &:active, &:focus {
+                        padding-right: $gutter * 2;
+                    }
+                }
+            }
+        }    
+    }
+    
+    li {
+        position: relative;
+        @include transition(.5s $defaultCurve);
+        
+        form {
+            white-space: nowrap;
+        }
+/*
+        
+        &:nth-of-type(2)  { @include transition-delay(.19s); }
+        &:nth-of-type(3)  { @include transition-delay(.18s); }
+        &:nth-of-type(4)  { @include transition-delay(.17s); }
+        &:nth-of-type(5)  { @include transition-delay(.16s); }
+        &:nth-of-type(6)  { @include transition-delay(.15s); }
+        &:nth-of-type(7)  { @include transition-delay(.14s); }
+        &:nth-of-type(8)  { @include transition-delay(.13s); }
+        &:nth-of-type(9)  { @include transition-delay(.12s); }
+        &:nth-of-type(10) { @include transition-delay(.11s); }
+        &:nth-of-type(11) { @include transition-delay(.10s); }
+        &:nth-of-type(12) { @include transition-delay(.9s); }
+        &:nth-of-type(13) { @include transition-delay(.8s); }
+        &:nth-of-type(14) { @include transition-delay(.7s); }
+        &:nth-of-type(15) { @include transition-delay(.6s); }
+        &:nth-of-type(16) { @include transition-delay(.5s); }
+        &:nth-of-type(17) { @include transition-delay(.4s); }
+        &:nth-of-type(18) { @include transition-delay(.3s); }
+        &:nth-of-type(19) { @include transition-delay(.2s); }
+        &:nth-of-type(20) { @include transition-delay(.1s); }
+*/
+        
+        &:nth-of-type(2)  { @include transition-delay(.1s); }
+        &:nth-of-type(3)  { @include transition-delay(.2s); }
+        &:nth-of-type(4)  { @include transition-delay(.3s); }
+        &:nth-of-type(5)  { @include transition-delay(.4s); }
+        &:nth-of-type(6)  { @include transition-delay(.5s); }
+        &:nth-of-type(7)  { @include transition-delay(.6s); }
+        &:nth-of-type(8)  { @include transition-delay(.7s); }
+        &:nth-of-type(9)  { @include transition-delay(.8s); }
+        &:nth-of-type(10) { @include transition-delay(.9s); }
+        &:nth-of-type(11) { @include transition-delay(.10s); }
+        &:nth-of-type(12) { @include transition-delay(.11s); }
+        &:nth-of-type(13) { @include transition-delay(.12s); }
+        &:nth-of-type(14) { @include transition-delay(.13s); }
+        &:nth-of-type(15) { @include transition-delay(.14s); }
+        &:nth-of-type(16) { @include transition-delay(.15s); }
+        &:nth-of-type(17) { @include transition-delay(.16s); }
+        &:nth-of-type(18) { @include transition-delay(.17s); }
+        &:nth-of-type(19) { @include transition-delay(.18s); }
+        &:nth-of-type(20) { @include transition-delay(.19s); }
+
+        
+    }
+    
+    &:hover {
+        @include transition(2s $defaultCurve);
+        
+        li {
+            
+            a, form {
+                position: relative;
+            }
+        }
+    }
+}
+
 /*
 ul.menu {
     @include cardStyle;
