@@ -8,9 +8,10 @@ script.
   users =  !{JSON.stringify(users)}
   names = !{JSON.stringify(names)}
 
-ul.users.menu.right
+ul.users.menu.right.hideFirst
   li.share
     a(href="#") Share
+  li
     form.add-user
       label Share this space with someone
       input(type="text", name="user[email]", placeholder="name@email.com")

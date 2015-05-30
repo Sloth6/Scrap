@@ -61,6 +61,7 @@ label {
 
 @mixin placeHolderOverride {
     color: $colorType;
+    font-style: italic;
     opacity: 1;
     
     &:hover {
@@ -114,6 +115,7 @@ input {
 
 ul.menu {
     height: $baseline * 2;
+    position: relative;
     
     &.left {
         li {
@@ -129,7 +131,7 @@ ul.menu {
             li {
                 left: 0;
                 
-                a, form {
+                a {
                     padding-left: 0;
                     @include transition(padding-left .25s $defaultCurve);
                     
@@ -159,7 +161,7 @@ ul.menu {
             li {
                 right: 0;
                 
-                a, form {
+                a {
                     padding-right: 0;
                     @include transition(padding-right .25s $defaultCurve);
                     
@@ -178,7 +180,7 @@ ul.menu {
         &.heading {
             @include typeBody;
             text-transform: lowercase;
-            margin-top: $leading;
+            padding-top: $leading;
         }
         
         form {
@@ -238,6 +240,30 @@ ul.menu {
             a, form {
                 position: relative;
             }
+        }
+    }
+    
+    &.hideFirst {
+        
+        &.right {
+            
+        }
+        
+        &.left {
+            
+        }
+        
+        &:hover {
+            > li:nth-child(1) {
+                right: -$col * 2;
+            }
+        }
+        
+        > li:nth-child(1) {
+            right: 0;
+            position: absolute;
+            @include transition(1s $defaultCurve);
+            @include transition-property(right);
         }
     }
 }

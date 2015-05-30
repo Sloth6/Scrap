@@ -33,43 +33,26 @@
         text-align: right;
         position: relative;
         
-        &:hover {
-            li.share {
-                a {
-                    opacity: 0;
-                    right: -$col;
-                }
-                
+        li {
+            
+            &.share {
+                    
                 form {
-                    opacity: 1;
-                    right: 0;
+                                                
+                    label {
+                        @include typeBody;
+                        text-transform: lowercase;
+                        display: block;
+                        margin-top: $leading/4;
+                    }
                 }
-            }
-        }
-
-        
-        li.share {
-                        
-            a {
-                opacity: 1;
-                right: 0;
-                position: absolute;
-                @include transition(1s $defaultCurve);
-                @include transition-property(right, opacity);
             }
             
-            form {
-                opacity: 0;
-                position: relative;
-                right: -$col * 4;
-                @include transition(1s $defaultCurve);
-                @include transition-property(right, opacity, padding-right);
-                                            
-                label {
-                    @include typeBody;
-                    text-transform: lowercase;
-                    display: block;
-                    margin-top: $leading/4;
+            a {
+                
+                &.logout:hover {
+                    
+                    @include hoverWarningAnimation;
                 }
             }
         }
@@ -86,19 +69,26 @@
         
         .card {
             float: right;
-            @include cardStyle;
-            width: $col *2;
             display: inline-block;
             
             > p {
                 padding-bottom: $baseline/2;
-            }
+                            }
             
             form {
                 width: auto;
+                text-align: left;
+                
+                p {
+                                        
+                    &.submit input:hover {
+                        @include hoverConfirmAnimation;
+                    }
+                }
                 
                 input {
                     width: 100%;
+                    text-align: left;
                     
                     &[type=submit] {
                         width: auto;
