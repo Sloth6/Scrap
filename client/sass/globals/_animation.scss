@@ -73,8 +73,8 @@ $bouncyCurve: cubic-bezier(0.19, 1.25, 0.22, 1.25);
 }
 
 @mixin hoverAnimation {
-    -webkit-animation: hoverFlicker 10s infinite linear;
-    -moz-animation:    hoverFlicker 10s infinite linear;
-    -o-animation:      hoverFlicker 10s infinite linear;
-    animation:         hoverFlicker 10s infinite linear;
+    -webkit-animation: hoverFlicker .1s infinite linear;
+    -moz-animation:    hoverFlicker .1s infinite linear;
+    -o-animation:      hoverFlicker .1s infinite linear;
+    animation:         hoverFlicker .1s infinite linear;
 }

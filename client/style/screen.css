@@ -235,7 +235,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
     border-color: magenta;
   }
   100% {
-    color: #blue;
+    color: blue;
     border-color: blue;
   }
 }
@@ -269,7 +269,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
     border-color: magenta;
   }
   100% {
-    color: #blue;
+    color: blue;
     border-color: blue;
   }
 }
@@ -303,7 +303,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
     border-color: magenta;
   }
   100% {
-    color: #blue;
+    color: blue;
     border-color: blue;
   }
 }
@@ -337,7 +337,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
     border-color: magenta;
   }
   100% {
-    color: #blue;
+    color: blue;
     border-color: blue;
   }
 }
@@ -356,10 +356,10 @@ html a {
 }
 /* line 61, ../sass/globals/_type.scss */
 html a:hover, html a:active {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
 }
 /* line 68, ../sass/globals/_type.scss */
 html p + p {
@@ -391,10 +391,10 @@ label {
 }
 /* line 68, ../sass/globals/_components.scss */
 ::-webkit-input-placeholder:hover {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
 }
 
 /* line 77, ../sass/globals/_components.scss */
@@ -404,10 +404,10 @@ label {
 }
 /* line 68, ../sass/globals/_components.scss */
 :-moz-placeholder:hover {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
 }
 
 /* line 80, ../sass/globals/_components.scss */
@@ -417,10 +417,10 @@ label {
 }
 /* line 68, ../sass/globals/_components.scss */
 ::-moz-placeholder:hover {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
 }
 
 /* line 83, ../sass/globals/_components.scss */
@@ -430,10 +430,10 @@ label {
 }
 /* line 68, ../sass/globals/_components.scss */
 :-ms-input-placeholder:hover {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
 }
 
 /* line 88, ../sass/globals/_components.scss */
@@ -452,10 +452,10 @@ input {
 }
 /* line 94, ../sass/globals/_components.scss */
 input:focus, input:hover {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
 }
 /* line 103, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
@@ -1035,10 +1035,10 @@ section.container section.space article:hover, section.container section.space a
 }
 /* line 20, ../sass/layout/_article.scss */
 section.container section.space article:hover > .card, section.container section.space article.hover > .card {
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
   -moz-box-shadow: 1rem 1rem 0 rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: 1rem 1rem 0 rgba(0, 0, 0, 0.6);
   box-shadow: 1rem 1rem 0 rgba(0, 0, 0, 0.6);
@@ -1067,10 +1067,10 @@ section.container section.space article.resizing .card .ui-resizable-handle {
 /* line 46, ../sass/layout/_article.scss */
 section.container section.space article.dragging > .card, section.container section.space article.ui-draggable-dragging > .card {
   cursor: move;
-  -webkit-animation: hoverFlicker 10s infinite linear;
-  -moz-animation: hoverFlicker 10s infinite linear;
-  -o-animation: hoverFlicker 10s infinite linear;
-  animation: hoverFlicker 10s infinite linear;
+  -webkit-animation: hoverFlicker .1s infinite linear;
+  -moz-animation: hoverFlicker .1s infinite linear;
+  -o-animation: hoverFlicker .1s infinite linear;
+  animation: hoverFlicker .1s infinite linear;
   -moz-transform: scale3d(1.15, 1.15, 1.15);
   -ms-transform: scale3d(1.15, 1.15, 1.15);
   -webkit-transform: scale3d(1.15, 1.15, 1.15);
