@@ -31,25 +31,15 @@ $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
 @mixin cardHover {
     @include hoverAnimation;
-/*
-//     opacity: .75;
+    @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
     @include transform($cardHoverScaleMin);
-    @include box-shadow(0 $gutter/2 $gutter*3 rgba(0,0,0,.4));
-    @include transition-timing-function($bouncyCurve);
-//     -webkit-animation: cardPulsateHover 1s ease-in-out infinite alternate;
-*/
 }
 
 @mixin cardDrag {
     cursor: move;
     @include hoverAnimation;
-/*
-    @include box-shadow(0 $gutter/2 $gutter*3 rgba(0,0,0,.4));
-    @include transform(rotateZ(-2deg) $cardHoverScaleMin);
-        @include transition-timing-function($defaultCurve);
-//     -webkit-animation: cardPulsateDrag 1s ease-in-out infinite alternate;
-*/
-
+    @include transform($cardHoverScaleMax);
+    @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
 }
 
 @mixin button {

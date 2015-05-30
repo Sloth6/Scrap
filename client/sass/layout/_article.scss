@@ -216,6 +216,7 @@ section.container section.space {
                     position: relative;
                     z-index: 2;
                     @include cardStyle;
+                    border-top: 0;
 
                     .title p {
                         line-height: 1.25em;
