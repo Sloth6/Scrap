@@ -875,7 +875,7 @@ body {
 .container > header.public .card, .container > header.index .card {
   float: right;
   background-color: rgba(255, 255, 255, 0.925);
-  border: 0.125em solid #000000;
+  border: 3pt solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1197,7 +1197,7 @@ section.container section.space article .card {
 /* line 197, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: rgba(255, 255, 255, 0.925);
-  border: 0.125em solid #000000;
+  border: 3pt solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1221,7 +1221,7 @@ section.container section.space article .card.website .text {
   position: relative;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.925);
-  border: 0.125em solid #000000;
+  border: 3pt solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1284,7 +1284,7 @@ section.container section.space article .ui-resizable-handle:hover {
   padding-left: 2rem !important;
   padding-bottom: 1rem !important;
   background-color: rgba(255, 255, 255, 0.925);
-  border: 0.125em solid #000000;
+  border: 3pt solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
