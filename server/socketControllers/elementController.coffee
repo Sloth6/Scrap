@@ -9,11 +9,7 @@ spacePreviews = require '../modules/spacePreviews.coffee'
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
   throw err if err
-  # console.log(data)
   element_jade = require('jade').compile data
-  # html = fn({name:'Oleg'});
-  # console.log(html);
-
 
 memCache = {}
 
@@ -50,6 +46,7 @@ module.exports =
           return callback err if err?
           element_html = encodeURIComponent(element_jade({element, names:{}}))
           sio.to(spaceKey).emit 'newElement', { element: element_html }
+          spacePreviews spaceKey
           return callback()
     
     newImage = (attributes) ->

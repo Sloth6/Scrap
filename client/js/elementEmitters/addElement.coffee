@@ -47,6 +47,7 @@ $ ->
     type: 'POST'
     autoUpload: true
     dataType: 'xml' # S3's XML response
+
     add: (event, add_data) ->
       screenScale = $('.content').css 'scale'
       startData.x = (mouse.x - $('.content').offset().left) / screenScale
@@ -60,7 +61,6 @@ $ ->
           title: add_data.files[0].name
           type: add_data.files[0].type
           spaceKey: spaceKey
-
         async: false
         success: (success_data) ->
           file_name = success_data.key.split('/').pop().split('.')[0]
@@ -108,6 +108,20 @@ $ ->
 
     $('.add-element').remove()
 
+
+  isWebsite = (url) ->
+    expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+    !!url.match expression
+
+  # on double-click, append new element form, then process the new element if one is submitted
+
+  # $('.container').mouseup (event) ->
+  #   screenScale = $('.content').css('scale') 
+  #   elementScale = 1 / screenScale
+  #   x = (event.clientX - $('.content').offset().left) / screenScale
+  #   y = (event.clientY - $('.content').offset().top) / screenScale
+    # console.log(screenScale)
+
   addElement = (event, createdByPaste) ->
     eventX = event.clientX || mouse.x
     eventY = event.clientY || mouse.y
@@ -123,6 +137,7 @@ $ ->
       </article>"
 
     # add the new element form if not createdByCntrl
+
     $('.content').append elementForm
     $('.add-element')
       .css
@@ -136,8 +151,7 @@ $ ->
     # if not createdByPaste
     #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
-    $('textarea.new').focus().autoGrow()
- 
+    $('textarea.new').focus().autoGrow() 
     if createdByPaste
       setTimeout(() ->
         content = $('.add-element .new').val()
@@ -149,3 +163,4 @@ $ ->
           if event.keyCode is 13 and not event.shiftKey
             content = $('.add-element .new').val()
             emitElement x, y, content
+

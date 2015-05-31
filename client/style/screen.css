@@ -1409,12 +1409,22 @@ section.container section.space article .card.image {
   width: 32rem;
   border: 3pt solid #000000;
 }
+<<<<<<< HEAD
 /* line 176, ../sass/layout/_article.scss */
 section.container section.space article .card.website {
   border: 3pt solid #000000;
 }
 /* line 179, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text {
+=======
+/* line 196, ../sass/layout/_article.scss */
+section.container section.space article .card.website:hover .card.header.text .description {
+  opacity: 1;
+  height: auto;
+}
+/* line 202, ../sass/layout/_article.scss */
+section.container section.space article .card.website .card.header.text {
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
   position: relative;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.925);
@@ -1425,6 +1435,7 @@ section.container section.space article .card.website .text {
   border: 0;
   border-top: 3pt solid #000000;
 }
+<<<<<<< HEAD
 /* line 186, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text:hover {
   -webkit-animation: hoverLinkFlicker 5s infinite linear;
@@ -1441,21 +1452,77 @@ section.container section.space article .card.website .text .title p {
 section.container section.space article .card.website .text .url p {
   margin-top: 0.5em;
   font-size: 12pt;
+=======
+/* line 206, ../sass/layout/_article.scss */
+section.container section.space article .card.website .card.header.text .title p {
+  line-height: 1.25em;
+}
+/* line 210, ../sass/layout/_article.scss */
+section.container section.space article .card.website .card.header.text .url p {
+  font-size: .666em;
+  font-family: "Futura W01 Medium";
+  letter-spacing: .1825em;
+  text-transform: uppercase !important;
+  font-size: 6.66pt;
+  font-family: "Futura W01 Medium";
+  line-height: 2em;
+  opacity: .25;
+}
+/* line 216, ../sass/layout/_article.scss */
+section.container section.space article .card.website .card.header.text .description {
+  opacity: 0;
+  height: 0;
+  position: absolute;
+  background-color: rgba(248, 248, 248, 0.925);
+  margin-left: -1rem;
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+  min-width: auto;
+  display: block;
+  -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+}
+/* line 229, ../sass/layout/_article.scss */
+section.container section.space article .card.website .card.header.text .description p {
+  font-size: 10pt;
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
   line-height: 1.5em;
   font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
 }
+<<<<<<< HEAD
 /* line 201, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
 /* line 211, ../sass/layout/_article.scss */
+=======
+/* line 232, ../sass/layout/_article.scss */
+section.container section.space article .card.website .card.header.text .description p a {
+  word-break: break-all;
+}
+/* line 240, ../sass/layout/_article.scss */
+section.container section.space article .card.website.image {
+  max-height: 36rem;
+}
+/* line 250, ../sass/layout/_article.scss */
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
 section.container section.space article .card img {
   width: 100%;
   margin-bottom: -9pt;
   background-color: rgba(255, 255, 255, 0.925);
 }
+<<<<<<< HEAD
 /* line 218, ../sass/layout/_article.scss */
+=======
+/* line 256, ../sass/layout/_article.scss */
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   right: 0;
@@ -1473,7 +1540,11 @@ section.container section.space article .ui-resizable-handle {
   height: 1rem;
   width: 1rem;
 }
+<<<<<<< HEAD
 /* line 232, ../sass/layout/_article.scss */
+=======
+/* line 270, ../sass/layout/_article.scss */
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
@@ -1482,10 +1553,17 @@ section.container section.space article .ui-resizable-handle:hover {
 body > section.container > section.space section.content div.spacePreview {
   position: absolute;
   border: 4pt rgba(0, 0, 0, 0.25) solid;
+<<<<<<< HEAD
   -moz-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
+=======
+  -moz-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
   height: 100vh;
   width: 100vw;
   -moz-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
@@ -1519,6 +1597,7 @@ body > section.container > section.space section.content div.spacePreview.open {
 /* line 32, ../sass/layout/_home.scss */
 body > section.container > section.space section.content div.spacePreview.open iframe.spaceFrame {
   opacity: 1;
+<<<<<<< HEAD
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
@@ -1531,6 +1610,24 @@ body > section.container > section.space section.content div.spacePreview iframe
   -webkit-transition: all 1s linear;
   -webkit-transition-delay: 0s;
   transition: all 1s linear 0s;
+=======
+}
+/* line 38, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview.hidden {
+  opacity: 0;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+/* line 43, ../sass/layout/_home.scss */
+body > section.container > section.space section.content div.spacePreview iframe.spaceFrame {
+  -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition-delay: 0s;
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+>>>>>>> ad5ac8d59c8b234094c07dae32d008a64fdcc0dc
   -webkit-transform-origin: center center;
   transform-origin: center center;
   opacity: 0;
