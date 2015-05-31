@@ -171,12 +171,6 @@ section.container section.space {
             &.image {
                 width: $articleWidth;
                 border: $cardBorder;
-                    
-               .ui-resizable-handle {
-                    &:after {
-                        color: white !important;
-                    }
-                }
             }
             
             &.website {
@@ -216,7 +210,7 @@ section.container section.space {
 
             img {
                 width: 100%;
-                margin-bottom: -12pt;
+                margin-bottom: -9pt;
                 background-color: $colorCardBackground;
             }
         }

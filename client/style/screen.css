@@ -1410,14 +1410,10 @@ section.container section.space article .card.image {
   border: 3pt solid #000000;
 }
 /* line 176, ../sass/layout/_article.scss */
-section.container section.space article .card.image .ui-resizable-handle:after {
-  color: white !important;
-}
-/* line 182, ../sass/layout/_article.scss */
 section.container section.space article .card.website {
   border: 3pt solid #000000;
 }
-/* line 185, ../sass/layout/_article.scss */
+/* line 179, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text {
   position: relative;
   z-index: 2;
@@ -1429,7 +1425,7 @@ section.container section.space article .card.website .text {
   border: 0;
   border-top: 3pt solid #000000;
 }
-/* line 192, ../sass/layout/_article.scss */
+/* line 186, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text:hover {
   -webkit-animation: hoverLinkFlicker 5s infinite linear;
   -moz-animation: hoverLinkFlicker 5s infinite linear;
@@ -1437,11 +1433,11 @@ section.container section.space article .card.website .text:hover {
   animation: hoverLinkFlicker 5s infinite linear;
   border-color: #000000 !important;
 }
-/* line 197, ../sass/layout/_article.scss */
+/* line 191, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text .title p {
   line-height: 1.25em;
 }
-/* line 201, ../sass/layout/_article.scss */
+/* line 195, ../sass/layout/_article.scss */
 section.container section.space article .card.website .text .url p {
   margin-top: 0.5em;
   font-size: 12pt;
@@ -1449,17 +1445,17 @@ section.container section.space article .card.website .text .url p {
   font-family: "Futura W01 Medium", Futura;
   letter-spacing: .0625em;
 }
-/* line 207, ../sass/layout/_article.scss */
+/* line 201, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 36rem;
 }
-/* line 217, ../sass/layout/_article.scss */
+/* line 211, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
-  margin-bottom: -12pt;
+  margin-bottom: -9pt;
   background-color: rgba(255, 255, 255, 0.925);
 }
-/* line 224, ../sass/layout/_article.scss */
+/* line 218, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle {
   z-index: 9999999;
   right: 0;
@@ -1477,7 +1473,7 @@ section.container section.space article .ui-resizable-handle {
   height: 1rem;
   width: 1rem;
 }
-/* line 238, ../sass/layout/_article.scss */
+/* line 232, ../sass/layout/_article.scss */
 section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
