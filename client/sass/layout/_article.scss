@@ -186,8 +186,9 @@ section.container section.space {
             }
 
             &.image {
-                    width: $articleWidth;
-                    overflow: hidden;
+                width: $articleWidth;
+                overflow: hidden;
+                border: $cardBorder;
                     
                .ui-resizable-handle {
                     &:after {
@@ -197,12 +198,14 @@ section.container section.space {
             }
             
             &.website {
+                border: $cardBorder;
                 
                 .text {
                     position: relative;
                     z-index: 2;
                     @include cardStyle;
-                    border-top: 0;
+                    border: 0;
+                    border-top: $cardBorder;
                     
                     &:hover {
                         @include hoverLinkAnimation;
