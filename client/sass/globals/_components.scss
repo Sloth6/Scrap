@@ -63,6 +63,7 @@ label {
     color: $colorType;
     font-style: italic;
     opacity: 1;
+    text-transform: none;
     
     &:hover {
         @include hoverAnimation;
@@ -110,6 +111,10 @@ input {
         margin-right: .5em;
     }
     
+    &[type=email] {
+        text-transform: lowercase;
+    }
+    
 }
 
 ul.menu {
@@ -132,7 +137,7 @@ ul.menu {
         &.right {
             &:hover, &.open {
                 > li:nth-child(1) {
-                    right: -$col * 2;
+                    right: -50vw;
                 }
             }
         
@@ -144,7 +149,7 @@ ul.menu {
         &.left {
             &:hover, &.open {
                 > li:nth-child(1) {
-                    left: -$col * 2;
+                    left: -50vw;
                 }
             }
 
@@ -162,7 +167,7 @@ ul.menu {
     
     &.left {
         li {
-            left: -$col*4.2;
+            left: -50vw;
             @include transition-property(left, opacity);
             
             &:nth-of-type(1) {
@@ -188,7 +193,7 @@ ul.menu {
     
     &.right {
         li {
-            right: -$col*4.2;
+            right: -50vw;
             @include transition-property(right, opacity);
             
             &:nth-of-type(1) {

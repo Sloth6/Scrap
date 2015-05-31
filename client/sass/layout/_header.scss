@@ -26,39 +26,50 @@
         input {
             max-width: 100%;
         }
-    }
-    
-    ul.users {
-        float: right;
-        text-align: right;
-        position: relative;
         
-        li {
+        &.spaces {
+            li a {
+                text-transform: capitalize;
+            }
+        }
+        
+        &.users {
+            float: right;
+            text-align: right;
+            position: relative;
             
-            form {
-                                            
-                label {
-                    @include typeBody;
-                    text-transform: lowercase;
-                    display: block;
-                    margin-top: $leading/4;
+            li {
+                
+                &.user {
+                    text-transform: capitalize;
+                }
+                
+                form {
+                                                
+                    label {
+                        @include typeBody;
+                        text-transform: lowercase;
+                        display: block;
+                        margin-top: $leading/4;
+                    }
+                }
+                
+                a {
+                    
+                    &.logout:hover {
+                        @include hoverWarningAnimation;
+                    }
                 }
             }
-            
-            a {
-                
-                &.logout:hover {
-                    @include hoverWarningAnimation;
-                }
+        }
+        
+        form {
+            label, input {
+                @include typeHeader;
             }
         }
     }
     
-    form {
-        label, input {
-            @include typeHeader;
-        }
-    }
     // Public space
     
     &.public, &.index {
@@ -85,6 +96,10 @@
                 input {
                     width: 100%;
                     text-align: left;
+                    
+                    &#name {
+                        text-transform: capitalize;
+                    }
                     
                     &[type=submit] {
                         width: auto;

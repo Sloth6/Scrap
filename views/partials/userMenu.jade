@@ -14,7 +14,7 @@ ul.users.menu.right.hideFirst
   li
     form.add-user
       label Share this space with someone
-      input(type="text", name="user[email]", placeholder="name@email.com")
+      input(type="email", name="user[email]", placeholder="name@email.com")
       input(type="submit", style="visibility: hidden;display:none;")
   li.heading Current members of this space
   each user in current_space.users
