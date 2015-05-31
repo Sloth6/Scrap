@@ -1,12 +1,14 @@
 $ ->
+  socket = io.connect()
   content = $ '.content'
-  scale_constant = 2.0 #half the size of what will fit on screen
+  init_scale = 0.5 #half the size of what will fit on screen
   viewOffsetX = viewOffsetY = 0
-  
+  scrollTimer = null
+
   screenFitScale = () ->
     scaleX = (window.innerWidth / (window.maxX - window.minX)) * .95
     scaleY = (window.innerHeight / (window.maxY - window.minY)) * .95
-    (Math.min scaleX, scaleY)/scale_constant
+    (Math.min scaleX, scaleY)*init_scale
 
   fitToCenter = () ->
     # cluster()
@@ -52,10 +54,9 @@ $ ->
         size = getSize $(@).parent()
         switchImage $(@).children('img'), key, size
 
-  socket = io.connect()
   fitToCenter()
-  scrollTimer = null
   changeResolutions()
+
   $('article header, article .resize').each () ->
     scaleControls($(this))
   
@@ -63,7 +64,6 @@ $ ->
   $(window).on 'mousewheel', (event) ->
     event.preventDefault()
     oldScale = content.css 'scale'
-    # console.log event.deltaY
     scaleDelta = (parseFloat(oldScale) * (event.deltaY / 100))
     newScale = oldScale - scaleDelta
 
@@ -74,11 +74,17 @@ $ ->
       viewOffsetX += (event.clientX / 100 / newScale) * event.deltaY
       viewOffsetY += (event.clientY / 100 / newScale) * event.deltaY
 
+      small_threshhold = 0.1
+      if oldScale > small_threshhold and newScale <= small_threshhold
+        $('article').addClass('small')
+      
+      if oldScale <= small_threshhold and newScale > small_threshhold
+        $('article').removeClass('small')
+
       content.css
         marginLeft: viewOffsetX  * newScale
         marginTop: viewOffsetY * newScale
-
-      content.css scale: newScale
+        scale: newScale
       
       $('article header, article .resize').each () ->
         scaleControls($(this))
