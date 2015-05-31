@@ -112,12 +112,11 @@ input {
     
 }
 
-
 ul.menu {
     height: $baseline * 2;
     position: relative;
     
-    &:hover {
+    &:hover, &.open {
         @include transition(2s $defaultCurve);
         
         li {
@@ -127,11 +126,11 @@ ul.menu {
             }
         }
     }
-    
+
     &.hideFirst {
         
         &.right {
-            &:hover {
+            &:hover, &.open {
                 > li:nth-child(1) {
                     right: -$col * 2;
                 }
@@ -143,7 +142,7 @@ ul.menu {
         }
         
         &.left {
-            &:hover {
+            &:hover, &.open {
                 > li:nth-child(1) {
                     left: -$col * 2;
                 }
@@ -171,7 +170,7 @@ ul.menu {
             }
         }
         
-        &:hover {
+        &:hover, &.open {
             li {
                 left: 0;
                 
@@ -201,7 +200,7 @@ ul.menu {
             }
         }
         
-        &:hover {
+        &:hover, &.open {
             li {
                 right: 0;
                 

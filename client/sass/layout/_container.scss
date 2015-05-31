@@ -6,27 +6,12 @@ section.container {
     section.space {
         width:  100%;
         height: 100%;
-
-        ul.users {
-            position: fixed;
-            z-index: 2;
-            top: 0;
-            right: 0;
+        @include transition(1s $defaultCurve);
+        @include transition-property(opacity, -webkit-filter);
         
-            li {
-                display: block;
-                height: 3rem;
-                width:    3rem;
-                margin: .5em;
-            
-                img {
-                    height: 100%;
-                    width:    100%;     
-                    border-radius: 100%;
-                    background-color: red;
-                }
-                
-            }
+        &.obscured {
+            opacity: .333;
+            -webkit-filter: blur(20px);
         }
 
         section.content {
