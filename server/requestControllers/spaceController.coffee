@@ -101,6 +101,7 @@ module.exports =
         current_space: space
         current_user: user
         users: users
+        names: nameMap space
    
   uploadFile : (req, res, callback) ->
     # mime_type = mime.lookup(req.query.title) # Uses node-mime to detect mime-type based on file extension

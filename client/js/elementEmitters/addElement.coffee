@@ -138,7 +138,7 @@ $ ->
 
     $('textarea.new').focus().autoGrow()
  
-    if createdByCntrl
+    if createdByPaste
       setTimeout(() ->
         content = $('.add-element .new').val()
         emitElement x, y, content
