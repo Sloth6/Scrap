@@ -12,3 +12,214 @@ $bouncyCurve: cubic-bezier(0.19, 1.25, 0.22, 1.25);
 @mixin bouncyTransition {
     @include transition(all .25s $bouncyCurve);
 }
+
+// Hover Effects
+
+$hoverAnimationDuration: 5s;
+
+@mixin hoverKeyframes {    
+
+    0% {
+        color: blue;
+        border-color: blue;
+    }
+
+    14.28% {
+        color: cyan;
+        border-color: cyan;
+    }
+
+    28.57% {
+        color: lime;
+        border-color: lime;
+    }    
+    
+    42.86% {
+        color: #ffe100;
+        border-color: #ffe100;
+    }
+    
+    57.14% {
+        color: orange;
+        border-color: orange;
+    }
+    
+    71.42% {
+        color: red;
+        border-color: red;
+    }
+    
+    85.71% {
+        color: magenta;
+        border-color: magenta;
+    }
+
+    100% {
+        color: blue;
+        border-color: blue;
+    }
+    
+}
+
+@-webkit-keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+@-moz-keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+@-o-keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+@keyframes hoverFlicker {
+    @include hoverKeyframes;
+}
+
+@mixin hoverAnimation {
+    -webkit-animation: hoverFlicker $hoverAnimationDuration infinite linear;
+    -moz-animation:    hoverFlicker $hoverAnimationDuration infinite linear;
+    -o-animation:      hoverFlicker $hoverAnimationDuration infinite linear;
+    animation:         hoverFlicker $hoverAnimationDuration infinite linear;
+}
+
+// Warning Hover Animation
+
+@mixin hoverWarningKeyframes {    
+
+    0% {
+        color: red;
+        border-color: red;
+    }
+
+    25% {
+        color: #ff8d00;
+        border-color: #ff8d00;
+    }
+
+    50% {
+        color: red;
+        border-color: red;
+    }    
+    
+    75% {
+        color: magenta;
+        border-color: magenta;
+    }
+    
+    100% {
+        color: red;
+        border-color: red;
+    }
+    
+}
+
+@-webkit-keyframes hoverWarningFlicker {
+    @include hoverWarningKeyframes;
+}
+@-moz-keyframes hoverWarningFlicker {
+    @include hoverWarningKeyframes;
+}
+@-o-keyframes hoverWarningFlicker {
+    @include hoverWarningKeyframes;
+}
+@keyframes hoverWarningFlicker {
+    @include hoverWarningKeyframes;
+}
+
+@mixin hoverWarningAnimation {
+    -webkit-animation: hoverWarningFlicker $hoverAnimationDuration infinite linear;
+    -moz-animation:    hoverWarningFlicker $hoverAnimationDuration infinite linear;
+    -o-animation:      hoverWarningFlicker $hoverAnimationDuration infinite linear;
+    animation:         hoverWarningFlicker $hoverAnimationDuration infinite linear;
+}
+
+// Confirm Hover Animation
+
+@mixin hoverConfirmKeyframes {    
+
+    0% {
+        color: lime;
+        border-color: lime;
+    }
+
+    25% {
+        color: cyan;
+        border-color: cyan;
+    }
+
+    50% {
+        color: #ffe100;
+        border-color: #ffe100;
+    }    
+    
+    75% {
+        color: #00e6ff;
+        border-color: #00e6ff;
+    }
+    
+    100% {
+        color: lime;
+        border-color: lime;
+    }
+    
+}
+
+@-webkit-keyframes hoverConfirmFlicker {
+    @include hoverConfirmKeyframes;
+}
+@-moz-keyframes hoverConfirmFlicker {
+    @include hoverConfirmKeyframes;
+}
+@-o-keyframes hoverConfirmFlicker {
+    @include hoverConfirmKeyframes;
+}
+@keyframes hoverConfirmFlicker {
+    @include hoverConfirmKeyframes;
+}
+
+@mixin hoverConfirmAnimation {
+    -webkit-animation: hoverConfirmFlicker $hoverAnimationDuration infinite linear;
+    -moz-animation:    hoverConfirmFlicker $hoverAnimationDuration infinite linear;
+    -o-animation:      hoverConfirmFlicker $hoverAnimationDuration infinite linear;
+    animation:         hoverConfirmFlicker $hoverAnimationDuration infinite linear;
+}
+
+// Link Hover Animation
+
+@mixin hoverLinkKeyframes {    
+
+    0% {
+        color: blue;
+        border-color: blue;
+    }
+
+    50% {
+        color: magenta;
+        border-color: magenta;
+    }    
+    
+    100% {
+        color: blue;
+        border-color: blue;
+    }
+    
+}
+
+@-webkit-keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+@-moz-keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+@-o-keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+@keyframes hoverLinkFlicker {
+    @include hoverLinkKeyframes;
+}
+
+@mixin hoverLinkAnimation {
+    -webkit-animation: hoverLinkFlicker $hoverAnimationDuration infinite linear;
+    -moz-animation:    hoverLinkFlicker $hoverAnimationDuration infinite linear;
+    -o-animation:      hoverLinkFlicker $hoverAnimationDuration infinite linear;
+    animation:         hoverLinkFlicker $hoverAnimationDuration infinite linear;
+}

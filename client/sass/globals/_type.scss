@@ -1,14 +1,15 @@
-$fontLight:         'Futura W01 Light';
-$fontLightItalic:   'FuturaW01-LightOblique';
-$fontRegular:       'Futura W01 Book';
-$fontItalic:        'Futura W01 Book Oblique';
-$fontMedium:        'Futura W01 Medium';
-$fontMediumItalic:  'FuturaW01-MediumOblique';
-$fontBold:          'Futura W01 Heavy';
-$fontBoldItalic:    'FuturaW01-HeavyOblique';
+$fontLight:         'Futura W01 Light', Futura;
+$fontLightItalic:   'FuturaW01-LightOblique', Futura;
+$fontRegular:       'Futura W01 Book', Futura;
+$fontItalic:        'Futura W01 Book Oblique', Futura;
+$fontMedium:        'Futura W01 Medium', Futura;
+$fontMediumItalic:  'FuturaW01-MediumOblique', Futura;
+$fontBold:          'Futura W01 Heavy', Futura;
+$fontBoldItalic:    'FuturaW01-HeavyOblique', Futura;
 
-$typeBodySize:  10pt;
-$leading:       1.5em;
+$typeBodySize:      12pt;
+$typeHeaderSize:    24pt;
+$leading:           1.5em;
 
 @mixin smallCaps {
     font-size: .666em;
@@ -17,9 +18,9 @@ $leading:       1.5em;
     text-transform: uppercase !important;
 }
 
-@mixin typeTitle {
+@mixin typeHeader {
     font-family: $fontRegular, sans-serif;
-    font-size: $typeBodySize * $typeSizeMultiplier;
+    font-size: $typeHeaderSize;
     letter-spacing: .75pt;
     line-height: $leading;
 }
@@ -36,8 +37,9 @@ $leading:       1.5em;
     font-size: $typeBodySize * .666;
 }
 
-@mixin typeHeader {
+@mixin typeHeaderSmallCaps {
     @include smallCaps;
+    font-size: $typeHeaderSize * .666;
 }
 
 
@@ -54,7 +56,11 @@ html {
     a {
         color: $colorType;
         text-decoration: none;
-        border-bottom: 1px $colorWashMedium solid;
+        border-bottom: .125em $colorType solid;
+        
+        &:hover, &:active {
+            @include hoverAnimation;
+        }
     }
     
     p {

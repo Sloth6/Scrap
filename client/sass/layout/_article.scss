@@ -10,7 +10,7 @@ section.container section.space {
         line-height: 1.5em;
         transform-origin: top left;
         -webkit-transform-origin: top left;
-        @include typeTitle;
+        @include typeHeader;
         
         // EVENTS
         
@@ -124,24 +124,34 @@ section.container section.space {
         textarea {
             width: 100%;
             height: $baseline;
-            @include typeTitle;
+            @include typeHeader;
             line-height: 1.5em;
             margin-bottom: -$baseline*2.25 !important;
         }
         
+        author {
+            font-style: italic;
+            @include typeBodySmallCaps;
+            
+            &:before {
+                content: " "
+            }
+        }
+        
         header {
-            background: white !important;
+            background: $colorCardBackground;
             display: inline-block;
             text-align:left;
-            height: $baseline;
             z-index: 4;
             position: absolute;
-            top: -$baseline/2;
-//             left: -$cardPaddingUnit;
-            margin-right: $cardPaddingUnit/4;
-            padding-left: $cardPaddingUnit/4;
-            padding-right: $cardPaddingUnit/6;
-            @include typeBodySmallCaps;
+            padding: $cardPadding;
+            padding-bottom: 0;
+            top: -$leading * 1.5;
+            left: -3pt;
+            line-height: 1em;
+            border: 3pt $colorType solid;
+            border-bottom: 0;
+            @include typeBody;
             
             // For scaling
                     transform-origin: center left;
@@ -151,31 +161,6 @@ section.container section.space {
             @include transition(opacity .25s $defaultCurve);
             
             author {
-                display: inline-block;
-                position: relative;
-                font-family: $fontMedium;
-                top: -$baseline / 2.25;
-                white-space: nowrap;
-            }
-        
-            a.delete {
-                display: inline-block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: $baseline;
-                width: $baseline + .2rem;
-                cursor: pointer;
-                border: none;
-                z-index: 99999;
-                @include transition(opacity .25s $defaultCurve);
-                overflow: hidden;
-                background-image: url('../images/elementClose.png');
-                background-size: 100% 100%;
-                
-                &:hover {
-                    background-color: $colorWashLightTrans40;
-                }
             }
         }
         
@@ -196,6 +181,7 @@ section.container section.space {
 
             &.text {
                 @include cardStyle;
+                @include typeBody;
                 width: auto;
             }
 
@@ -211,56 +197,25 @@ section.container section.space {
             }
             
             &.website {
-
-                &:hover {
-                    .card.header.text .description {
-                        opacity: 1;
-                        height: auto;
-                    }
-                }
                 
-                .card.header.text {
+                .text {
                     position: relative;
                     z-index: 2;
+                    @include cardStyle;
+                    border-top: 0;
+                    
+                    &:hover {
+                        @include hoverLinkAnimation;
+                    }
 
                     .title p {
                         line-height: 1.25em;
                     }
 
                     .url p {
-                        @include typeBodySmallCaps;
-                        line-height: $leading * 1.5;
-                        margin-top: .875em;
-                        opacity: .25;
-                        @include transition(opacity .25s $defaultCurve);
-                        
-                        &:hover {
-                            opacity: 1;
-                        }
+                        margin-top: $leading/3;
+                        @include typeBody;
                     }
-
-                    .description {
-                        opacity: 0;
-                        height: 0;
-                        position: absolute;
-                        background-color: $colorWashMediumLightTrans;
-                        margin-left: -$cardPaddingUnit/2;
-                        padding-left: $cardPaddingUnit/2;
-                        padding-bottom: $cardPaddingUnit/4;
-                        min-width: auto;
-                        display: block;
-                        @include smoothTransition;
-                        @include transition-property(opacity);
-                        
-                        p {
-                            @include typeBody;
-                            
-                            a {
-                                word-break: break-all;
-                            }
-                        }
-                    }
-
                 }
 
                 &.image {

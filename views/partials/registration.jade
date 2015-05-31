@@ -1,17 +1,19 @@
-.login
-  p
+ul.menu.login.right.hideFirst
+  li Join/Login
+  li
     input(type="checkbox", id="toggle-login")
     label(for="toggle-login") I already have an account
-  form(id="login")
-    p.name
-      input(id="name",type="text", name="user[name]", placeholder="Name")
-    p.mail
-      input(id="email",type="text", name="user[email]", placeholder="Mail")
-    p.password
-      input(id="password",type="password", name="user[password]", placeholder="Password")
-    p.submit
-      input.offset(type="submit", value="Sign up")
-    p(id="errorField")
+  li 
+    form(id="login")
+      li.name
+        input(id="name",type="text", name="user[name]", placeholder="Name")
+      li.mail
+        input(id="email",type="email", name="user[email]", placeholder="Mail")
+      li.password
+        input(id="password",type="password", name="user[password]", placeholder="Password")
+      li.submit
+        input.offset(type="submit", value="Sign up")
+      li(id="errorField")
 script.
   function onError(res) {
     $('#errorField').text(res.responseText);
@@ -47,11 +49,11 @@ script.
     if($(this).is(":checked")) {
       $("form").removeClass("register")
         .addClass("log in")
-      $("p.name").remove();
+      $("li.name").remove();
       $("input[type=submit]").val("Log in");
     }
     else {
-      var nameInput = "<p class='name'><input id='name' type='text' name='user[name]' placeholder='Name'></p>"
+      var nameInput = "<li class='name'><input id='name' type='text' name='user[name]' placeholder='Name'></li>"
       $("form").removeClass("login")
         .addClass("register")
         .prepend(nameInput)

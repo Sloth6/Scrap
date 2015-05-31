@@ -2,142 +2,89 @@
     position: fixed;
     z-index: 2;
     top: 0;
-    right: left;
-    // height: $headerHeight;
-    width: 100%;
-    // opacity: .5;
+    left: 0;
+    right: 0;
+    padding: $baseline/4 $gutter;
+    @include typeHeader;
     text-align: left;
+    cursor: default;
+    
+    a {
+        border: 0;
+    }
+    
+    h1.spaceName {
+        display: none;
+    }
         
     ul.menu {
         display: inline-block;
-        width: 1.5 * $col;
         opacity: .75;
+        float: left;
+        width: 40vw;
+        
+        input {
+            max-width: 100%;
+        }
     }
     
     ul.users {
         float: right;
-        width: auto;
+        text-align: right;
+        position: relative;
         
-        > li {
-            display: inline-block;
-            border-top: 2pt solid;
-            padding: 0 $gutter/4;
-            width: ($gutter * 2) - $gutter/2;
-            @include smoothTransition;
-            @include transition-property(width);
-            white-space: nowrap;
-            text-align: center;
-            font-family: $fontBold;
-            line-height: 2.666em;
-            background-color: $colorWashLightTrans40;
+        li {
             
-            &.online {
-                // padding-bottom: 2pt;
-                
-                &:hover {
-                    span.name, span.initial {
-                        color: $colorTypeLight;
-                    }
-                }
-                
-                span.initial {
-                    color: $colorTypeLight;
+            form {
+                                            
+                label {
+                    @include typeBody;
+                    text-transform: lowercase;
+                    display: block;
+                    margin-top: $leading/4;
                 }
             }
             
-            &:hover {
-                width: $col * 1.5;
-                color: $colorType;
-                text-align: left;
-                padding-left: $gutter/1.75;
-                background-color: $colorWashLight;
+            a {
                 
-                &.settings {
-                    padding: 0;
-                    
-                    ul.menu {
-                        margin: 0;
-                        opacity: 1;
-                        height: auto;
-                    }
-                    
-                    span.symbol {
-                        display: none;
-                    }
-                }
-                
-                span.name {
-                    color: $colorType;
-                    width: auto;
-                    margin-right: .25em; // Space
-                }
-                
-                ul.menu {
-                    opacity: 1;
-                    @include smoothTransition;
-                    @include transition-property(opacity);
-                }
-            }
-            
-            &.settings {
-            
-                span.symbol {
-                    font-size: 2em;
-                    // font-family: $fontRegular;
-                    line-height: 1em;
-                    position: relative;
-                    top: -1pt;
-                }
-                
-                ul.menu {
-                    opacity: 0;
-                    height: 0;
-                }                
-            }
-            
-            span {
-                display: inline-block;
-                @include smoothTransition;
-                @include transition-property(color);
-                
-                &.initial {
-                    color: $colorType;
-                }
-                
-                &.name {
-                    width: 0;
-                    color: rgba(0,0,0,0);
+                &.logout:hover {
+                    @include hoverWarningAnimation;
                 }
             }
         }
     }
     
-    li {
-        @include typeBodySmallCaps;
-        input {
-            @include typeBodySmallCaps;
+    form {
+        label, input {
+            @include typeHeader;
         }
     }
-    
     // Public space
     
     &.public, &.index {
         
         .card {
             float: right;
-            @include cardStyle;
-            width: $col *2;
             display: inline-block;
             
             > p {
                 padding-bottom: $baseline/2;
-            }
+                            }
             
             form {
                 width: auto;
+                text-align: left;
+                
+                p {
+                                        
+                    &.submit input:hover {
+                        @include hoverConfirmAnimation;
+                    }
+                }
                 
                 input {
                     width: 100%;
+                    text-align: left;
                     
                     &[type=submit] {
                         width: auto;
