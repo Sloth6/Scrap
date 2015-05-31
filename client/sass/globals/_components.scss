@@ -1,9 +1,13 @@
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
+$cardBorderWidth:   3pt;
+$cardBorder:        $cardBorderWidth solid $colorType;
+
+
 @mixin cardStyle {
     background-color: $colorCardBackground;
-    border: 3pt solid $colorType;
+    border: $cardBorder;
     padding: $cardPadding;
     transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
@@ -63,6 +67,7 @@ label {
     color: $colorType;
     font-style: italic;
     opacity: 1;
+    text-transform: none;
     
     &:hover {
         @include hoverAnimation;
@@ -110,14 +115,17 @@ input {
         margin-right: .5em;
     }
     
+    &[type=email] {
+        text-transform: lowercase;
+    }
+    
 }
-
 
 ul.menu {
     height: $baseline * 2;
     position: relative;
     
-    &:hover {
+    &:hover, &.open {
         @include transition(2s $defaultCurve);
         
         li {
@@ -127,13 +135,13 @@ ul.menu {
             }
         }
     }
-    
+
     &.hideFirst {
         
         &.right {
-            &:hover {
+            &:hover, &.open {
                 > li:nth-child(1) {
-                    right: -$col * 2;
+                    right: -50vw;
                 }
             }
         
@@ -143,9 +151,9 @@ ul.menu {
         }
         
         &.left {
-            &:hover {
+            &:hover, &.open {
                 > li:nth-child(1) {
-                    left: -$col * 2;
+                    left: -50vw;
                 }
             }
 
@@ -163,7 +171,7 @@ ul.menu {
     
     &.left {
         li {
-            left: -$col*4.2;
+            left: -50vw;
             @include transition-property(left, opacity);
             
             &:nth-of-type(1) {
@@ -171,7 +179,7 @@ ul.menu {
             }
         }
         
-        &:hover {
+        &:hover, &.open {
             li {
                 left: 0;
                 
@@ -189,7 +197,7 @@ ul.menu {
     
     &.right {
         li {
-            right: -$col*4.2;
+            right: -50vw;
             @include transition-property(right, opacity);
             
             &:nth-of-type(1) {
@@ -201,7 +209,7 @@ ul.menu {
             }
         }
         
-        &:hover {
+        &:hover, &.open {
             li {
                 right: 0;
                 
