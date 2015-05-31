@@ -36,4 +36,4 @@ makeModifiable = (elem) ->
 
 $ ->
   socket = io.connect()
-  makeModifiable $('.card.comment.text').parent()
+  makeModifiable $('article.text')

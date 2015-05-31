@@ -22,14 +22,7 @@ $ ->
     element = createNewElement html
     updateGlobals element
     url = element.data('content').split('/').pop().split('.')[0]
-    console.log 'url', url
-    # console.log 'yeehaw', element.data()#.split(spaceKey)[1]
-    # url = url.split('/').pop()
     $(".loading.#{url}").remove()
-  #   a = element.data('content').split(spaceKey)[1]
-  #   b = $(@).data('content').split(spaceKey)[1]
-  #   if a is b
-  #     $(@).remove()
 
   socket.on 'removeElement', (data) ->
     id = data.id

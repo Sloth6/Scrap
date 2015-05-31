@@ -1,23 +1,23 @@
-makeDownloadable = (e) ->
-  downloadURI = (uri, name) ->
-    link = document.createElement "a"
-    link.download = name
-    link.href = uri
-    link.click()
+downloadURI = (uri, name) ->
+  link = document.createElement "a"
+  link.download = name
+  link.href = uri
+  link.click()
 
+makeDownloadable = (elem) ->
   lastX = null
   lastY = null
 
-  $(e).mousedown (e) ->
+  elem.mousedown (e) ->
     lastX = e.clientX
     lastY = e.clientY
 
-  $(e).mouseup (e) ->
+  elem.mouseup (e) ->
     if e.clientX is lastX and e.clientY is lastY
-      uri = $(@).data('content')
+      uri = elem.data 'content'
       name = uri.split('/').pop()
       downloadURI uri, name
 
 $ ->
-  $('.card.file').each () -> makeDownloadable @
+  $('.file').each () -> makeDownloadable $(@)
     
