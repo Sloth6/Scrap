@@ -12,8 +12,9 @@ if element.contentType == 'text'
 
 article(id=element.id, class= classes, style=posString+scaleString, data-content=element.content, data-creatorid=element.creatorId, data-contenttype=element.contentType)
   .card(data-key=element.content, class=element.contentType)
-    author= names[element.creatorId]
     if names[element.creatorId] != ""
+      author= names[element.creatorId]
+   
     case element.contentType
       when 'image'
         - if (typeof(original_url) !== 'undefined'){
