@@ -15,6 +15,7 @@ $cardBorder:        $cardBorderWidth solid $colorType;
 
 @mixin cardHover {
     @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
+    background-color: $colorWashLight;
     @include transform($cardHoverScaleMin);
 }
 
