@@ -12,14 +12,14 @@ if element.contentType == 'text'
 
 article(id=element.id, class= classes, style=posString+scaleString)
   .card(data-key=element.content, class=element.contentType)
-    header
-      author= names[element.creatorId]
     case element.contentType
       when 'image'
         img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')
+        author= names[element.creatorId]
 
       when 'gif'
         img(src= root+current_space.spaceKey+"/"+element.content+'/normal.png')
+        author= names[element.creatorId]
 
       when 'website'
         -var content = JSON.parse(element.content)
@@ -31,16 +31,20 @@ article(id=element.id, class= classes, style=posString+scaleString)
               p!=content.title
             .url
               p!=content.domain
+                author= names[element.creatorId]
 
       when 'file'
         img(src="https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png")
         .title
           p!=element.content.split('/').pop()
+            author= names[element.creatorId]
 
       when 'video'
         video("controls")
           source(src=element.content)
           | Your browser does not support the video tag
+        author= names[element.creatorId]
 
       default
         p!= element.content
+          author= names[element.creatorId]
