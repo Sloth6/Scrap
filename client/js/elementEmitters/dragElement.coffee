@@ -75,7 +75,6 @@ draggableOptions = (socket) ->
       makeTextChild $(this)
 
 makeDraggable = (elements, socket) ->
-  # console.log elements
   elements.draggable draggableOptions socket
     # .on 'mouseover', ->
       # $(this).data('oldZ', $(this).css 'z-index')

@@ -1,8 +1,6 @@
 include baseScripts
 script.
   spaceKey="#{current_space.spaceKey}";
-script(src="/js/globals.js")
-script.
   window.io = {
     connect: function() {
       var socketStub = {
@@ -11,10 +9,15 @@ script.
       return socketStub;
     }
   }
+  $('img').mousedown(function(event) {
+    console.log('img lcickes')
+    return false;
+  });
+  console.log('what')
+
+script(src="/js/globals.js")
 script(src="/js/jquery/jquery.autogrowtextarea.min.js")
 script(src="/js/jquery/jquery.transit.min.js")
 script(src="/js/jquery/jquery-mousewheel.min.js")
-script(src='/js/lib/clusterfck.js')
 script(src='/js/zoomable.js')
-script(src='/js/cluster.js')
 script(src="/js/screenDrag.js")

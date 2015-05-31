@@ -9,7 +9,7 @@ $ ->
     (Math.min scaleX, scaleY)/scale_constant
 
   fitToCenter = () ->
-    cluster()
+    # cluster()
     scale = Math.min(screenFitScale(), 1/window.minScale)
     scale = if scale isnt 0 then scale else .5
 

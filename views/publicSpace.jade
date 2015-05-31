@@ -13,21 +13,23 @@ block content
   section.space
   
     section.content
+
       article(id="spaceName", class="text", style="top:0px;left:0px;z-index:1;-webkit-transform:scale(1.0,1.0);transform:scale(1.0,1.0);")
         .card.text.comment
           p= current_space.name
+          
       each element in current_space.elements
         if element.z > maxZ
           - maxZ = element.z
 
-        if (element.x + 300 * element.scale) > maxX
-          - maxX = (element.x + 300 * element.scale)
+        if (element.x + 30 * element.scale) > maxX
+          - maxX = (element.x + 30 * element.scale)
 
         if element.x < minX
           - minX = element.x
 
-        if element.y > maxY
-          - maxY = element.y
+        if element.y+30 > maxY
+          - maxY = element.y+30
 
         if element.y < minY
           - minY = element.y
@@ -35,12 +37,4 @@ block content
         if element.scale < minScale
           - minScale = element.scale
 
-        article.draggable(id=element.id, class=element.contentType,class="color"+colors[element.creatorId], style="top:#{element.y}px;left:#{element.x}px;z-index:#{element.z};-webkit-transform:scale(#{element.scale},#{element.scale});transform:scale(#{element.scale},#{element.scale});")
-          a.delete
-          case element.contentType
-            when 'image'
-              include partials/contentTypes/image
-            when 'website'
-              include partials/contentTypes/website
-            default
-              include partials/contentTypes/text
+        include partials/element
