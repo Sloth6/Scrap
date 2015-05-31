@@ -1,6 +1,8 @@
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
-$cardBorder:        3pt solid $colorType;
+
+$cardBorderWidth:   3pt;
+$cardBorder:        $cardBorderWidth solid $colorType;
 
 
 @mixin cardStyle {

@@ -21,9 +21,9 @@ section.container section.space {
                 @include cardHover;
             }
 
-            
-            header {
+            author {
                 opacity: 1;
+                top: -$leading * 1.5;
             }
 
             .ui-resizable-handle {
@@ -130,38 +130,21 @@ section.container section.space {
         }
         
         author {
-            font-style: italic;
-            @include typeBodySmallCaps;
-            
-            &:before {
-                content: " "
-            }
-        }
-        
-        header {
-            background: $colorCardBackground;
-            display: inline-block;
-            text-align:left;
-            z-index: 4;
-            position: absolute;
-            padding: $cardPadding;
-            padding-bottom: 0;
-            top: -$leading * 1.5;
-            left: -3pt;
-            line-height: 1em;
-            border: 3pt $colorType solid;
-            border-bottom: 0;
             @include typeBody;
-            
-            // For scaling
-                    transform-origin: center left;
-            -webkit-transform-origin: center left;
-
+            line-height: 1em;
+            position: absolute;
+            display: block;
+            color: $colorTypeLight;
+            background: $colorWashDark;
+            margin-left: -$cardBorderWidth;
+            text-indent: $cardBorderWidth;
+            padding: $cardPadding;
+            top: 0;
+            left: 0;
             opacity: 0;
-            @include transition(opacity .25s $defaultCurve);
-            
-            author {
-            }
+            z-index: -900;
+            @include transition(.25s $defaultCurve);
+            @include transition-property(opacity, top);
         }
         
         // CONTENT
@@ -209,6 +192,7 @@ section.container section.space {
                     
                     &:hover {
                         @include hoverLinkAnimation;
+                        border-color: $colorType !important;
                     }
 
                     .title p {
@@ -234,7 +218,7 @@ section.container section.space {
             img {
                 width: 100%;
                 margin-bottom: -12pt;
-                background-color: $colorWashLightTrans60;
+                background-color: $colorCardBackground;
             }
         }
         
