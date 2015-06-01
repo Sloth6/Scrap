@@ -42,7 +42,7 @@ section.container section.space {
             }
         }
 
-        &.dragging, &.ui-draggable-dragging {
+        &.dragging, &.ui-draggable-dragging, &.active, &:active {
             > .card {
                 @include cardDrag;
             }

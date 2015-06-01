@@ -26,19 +26,6 @@ $cardBorder:        $cardBorderWidth solid $colorType;
 }
 
 @mixin button {
-    // @include cardStyle;
-    // padding: $gutter;
-    // 
-    // &:hover, &:focus {
-    //     @include cardHover;
-    //     @include transform(scale(1.125));
-    // }
-    // 
-    // &:active {
-    //     @include transform(scale(.925));
-    //     @include box-shadow(0 $gutter/6 $gutter/2 rgba(0,0,0,.125));
-    // }
-    
 }
 
 @mixin buttonOffset {
