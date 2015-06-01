@@ -12,8 +12,8 @@ createNewElement = (element) ->
   newArticle.css({ top: y, left:x }).appendTo $('.content')
 
   switch contentType
-    when 'gif'
-      createGif newArticle, content
+    # when 'gif'
+      # createGif newArticle, content
     when 'file'
       makeDownloadable newArticle
   

@@ -67,6 +67,7 @@ module.exports =
           element_html = encodeURIComponent(element_jade({
             element: element
             names: {}
+            current_space: space.id
             original_url
           }))
           
