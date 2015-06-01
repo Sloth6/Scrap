@@ -16,9 +16,11 @@ createNewElement = (element) ->
       createGif newArticle, content
     when 'file'
       makeDownloadable newArticle
-      
-  makeDeletable newArticle
+  
+  socket = io.connect()
+  
+  makeDeletable newArticle  
   makeTextChild newArticle
   makeDraggable newArticle, socket
-  makeModifiable newArticle
+  makeModifiable newArticle, socket
   newArticle
