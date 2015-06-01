@@ -52,6 +52,12 @@ $cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
     // float: left;
 }
 
+a {
+    &:hover, &:active, &:focus {
+        @include hoverAnimation;
+    }
+}
+
 .card {
     
     &.form {
@@ -131,6 +137,7 @@ ul.menu {
     display: inline-block;
     width: $menuWidth;
     @include transition(1s $defaultCurve);
+    @include transition-property(left, right);
     
     &:hover, &.open {
         @include transition(2s $defaultCurve);
@@ -178,7 +185,7 @@ ul.menu {
     
     &.left {
         float: left;
-        @include transition-property(left);
+        left: 0;
         
         li {
             left: -50vw;
@@ -208,7 +215,7 @@ ul.menu {
     &.right {
         float: right;
         text-align: right;
-        @include transition-property(right);
+        right: 0;
         
         li {
             right: -50vw;
@@ -242,11 +249,11 @@ ul.menu {
     &.hidden {
         
         &.left {
-            left: -$menuWidth;
+            left: -$menuWidth * 1.1;
         }
         
         &.right {
-            right: -$menuWidth;
+            right: -$menuWidth * 1.1;
         }
     }
     

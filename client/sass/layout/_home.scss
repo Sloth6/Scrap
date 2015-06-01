@@ -48,18 +48,10 @@ body {
                                     -moz-transform);
                                     
             &.closed {
-                & > section.content {
+                > section.content {
                     @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
                 }
             }
-/*
-            
-            &.open {
-                & > section.content {
-                    @include transform(scale3d(1.0, 1.0, 1.0));
-                }
-            }
-*/
     
             > section.content {
                 text-align: center;
