@@ -13,9 +13,6 @@ draggableOptions = (socket) ->
       z = window.maxZ
       _elem.zIndex z
 
-      # startPosition.left = ui.position.left
-      # startPosition.top = ui.position.top 
-
       _elem.data 'startPosition', {
         left: parseFloat(_elem.css('left')) * screenScale
         top: parseFloat(_elem.css('top')) * screenScale
@@ -76,14 +73,30 @@ draggableOptions = (socket) ->
 
 makeDraggable = (elements, socket) ->
   elements.draggable draggableOptions socket
-    # .on 'mouseover', ->
-      # $(this).data('oldZ', $(this).css 'z-index')
-      # $(this).css 'z-index', window.maxZ + 1
+    # when we mouse over an element we want to bring it to the top temporarily
+    .on 'mouseover', ->
+      elem = $(this)
+      for comment in [elem].concat(getComments elem)
+        comment.data 'oldZ', comment.css 'z-index'
+        comment.css 'z-index', window.maxZ + 1
+        comment.addClass 'hover'
+        window.maxZ += 1
+
+    # if an item is clicked, we want to make the temporary z-index change
+    # permanent.
+    .on 'mousedown', ->
+      elem = $(this)
+      for comment in [elem].concat(getComments elem)
+        comment.data 'oldZ', comment.css 'z-index'
+        comment.addClass 'active'
+
     .on 'mouseout', ->
-      $(this).css 'z-index', $(this).data 'oldZ'
-    .on 'click', ->
-      $(window).trigger 'mouseup'
-      # socket.emit 'updateElement', { z: $(this).css('z-index'), elementId: $(this).attr 'id' }
+      elem = $(this)
+      for comment in [elem].concat(getComments elem)
+        comment.css 'z-index', $(this).data 'oldZ'
+        comment.removeClass 'hover'
+        comment.removeClass 'active'
+
 $ ->
   socket = io.connect()
   makeDraggable $('.draggable'), socket
