@@ -38,7 +38,7 @@ draggableOptions = (socket) ->
     elem = $(this)
     $(".delete.trash").removeClass("visible");
     for e in [elem].concat(getComments elem)
-      id = elem.attr('id')
+      id = e.attr('id')
       # Make sure to account for screen drag (totalDelta)
       x = parseInt Math.round(parseInt(e.css('left')) - totalDelta.x)
       y = parseInt Math.round(parseInt(e.css('top')) - totalDelta.y)
@@ -51,7 +51,9 @@ draggableOptions = (socket) ->
       window.minY = Math.min y, minY
       userId = window.userId or null
       socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: true }
-
+      window.maxZ += 1
+      e.css('z-index', window.maxZ)
+      e.data('oldZ', e.css('z-index'))
       makeTextChild e
 
 makeDraggable = (elements, socket) ->
@@ -60,6 +62,7 @@ makeDraggable = (elements, socket) ->
     # elements
     .on 'mouseover', ->
       elem = $(this)
+      # console.log elem.attr('id'), elem.css 'zIndex'
       for comment in [elem].concat(getComments elem)
         # store its old z-index
         comment.data 'oldZ', comment.css 'z-index'
