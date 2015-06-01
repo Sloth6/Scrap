@@ -4,8 +4,8 @@ $ ->
   elements = $('.draggable')
   elements.click () ->
     url = window.location+"s/"+$(@).data().spaceid
-    offsetLeft      = parseFloat -($(this).offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple
-    offsetTop       = parseFloat -($(this).offset().top  * scaleMultiple) + $('.metaspace').height()/scaleMultiple
+    offsetLeft      = parseFloat -($(this).offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple  - ($(this).width()  * .1275)
+    offsetTop       = parseFloat -($(this).offset().top  * scaleMultiple) + $('.metaspace').height()/scaleMultiple - ($(this).height() * .1285)
 
     $('<iframe />', {
       name: 'spaceFrame'

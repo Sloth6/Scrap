@@ -70,7 +70,11 @@ body {
                 div.spacePreview {
                     position: relative;
                     display: inline-block;
-                    @include transition(all $openSpaceDuration $defaultCurve);
+                    @include transition(.25s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform,
+                                        box-shadow);
                     height: 100vh;
                     width:  100vw;
                     -webkit-transform-origin: top left;
@@ -80,16 +84,25 @@ body {
                     background-position: center center;
                     background-color: $colorBackground;
                     z-index: 1;
-                    @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
                     border: $cardBorder;
                     border-width: $cardBorderWidth * $scaleMultiple;
                     margin: $col/2 $col/2;
-    /*
-                    border-top: 0;
-                    border-left: 0;
-    */
-    //                 border-radius: 200vh;
+                    @include transform(scale3d(1.0, 1.0, 1.0));
+                    -webkit-transform-origin: bottom right;
+                            transform-origin: bottom right;
                     
+                    &:hover {
+                        @include transform($cardHoverScaleMin);
+                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
+                    }
+
+/*
+                    &:active {
+                        @include transform($cardHoverScaleMax);
+                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
+                    }
+*/
+
                     h1.spaceName {
                         position: absolute;
                         padding-top: ($gutter/4) * $scaleMultiple;
