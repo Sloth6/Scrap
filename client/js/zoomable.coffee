@@ -1,7 +1,8 @@
 $ ->
   socket = io.connect()
   content = $ '.content'
-  init_scale = 0.5 #half the size of what will fit on screen
+  init_scale = 0.8 #half the size of what will fit on screen
+  small_threshhold = 0.1 #scale that triggers 'small' class
   viewOffsetX = viewOffsetY = 0
   scrollTimer = null
 
@@ -74,7 +75,6 @@ $ ->
       viewOffsetX += (event.clientX / 100 / newScale) * event.deltaY
       viewOffsetY += (event.clientY / 100 / newScale) * event.deltaY
 
-      small_threshhold = 0.1
       if oldScale > small_threshhold and newScale <= small_threshhold
         $('article').addClass('small')
       
