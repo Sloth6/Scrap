@@ -3,8 +3,15 @@ $ ->
     event.preventDefault()
     $('.metaspace').addClass('closed');
     $('.metaspace').removeClass('open');
-    $(".metaspace").css("transform", "scale3d("+1/scaleMultiple+","+1/scaleMultiple+",1) translate3d(0px, 0px, 0px)");
-#     $(".draggable").not($(this)).removeClass("hidden")
+    $(".metaspace").css("transform", "translate3d(0px, 0px, 0px)");
+    $(".metaspace > section.content").css("transform", "scale3d("+1.0/scaleMultiple+","+ 1.0/scaleMultiple+","+ 1.0+")")
+    $(".spacePreview").not($(this)).removeClass("hidden")
+    $(".spacePreview").removeClass('open');
+
+    $('ul.menu.settings').removeClass('hidden')
+    $('h1.logo').removeClass('hidden')
+    $('a.back').addClass('hidden')
+
     setTimeout (->
       $('.spaceFrame').remove()
-    ), 2000 # duration of animation
+    ), 1000 # duration of animation

@@ -1,10 +1,12 @@
+$headerPadding: $baseline/4 $gutter;
+
 .container > header {
     position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
     right: 0;
-    padding: $baseline/4 $gutter;
+    padding: $headerPadding;
     @include typeHeader;
     text-align: left;
     cursor: default;
@@ -12,20 +14,8 @@
     a {
         border: 0;
     }
-    
-    h1.spaceName {
-        position: absolute;
-        width: 50vw;
-        left: 50%;
-        margin-left: -25vw;
-        text-align: center;
-    }
         
     ul.menu {
-        display: inline-block;
-        opacity: .75;
-        float: left;
-        width: 40vw;
         
         input {
             max-width: 100%;
@@ -38,9 +28,6 @@
         }
         
         &.users {
-            float: right;
-            text-align: right;
-            position: relative;
             
             li {
                 

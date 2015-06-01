@@ -20,10 +20,13 @@ $ ->
     ready () =>
       setTimeout(() =>
         $('.home').show()
-#         $(".draggable").not($(this)).addClass("hidden")
-        $(@).addClass("open")
+        $(".spacePreview").not($(this)).addClass("hidden")
+        $(this).addClass("open")
         $('.metaspace').addClass('open')
         $('.metaspace').removeClass('closed')
-        $(".metaspace").css("transform", "scale3d(1, 1, 1) translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)");
-        console.log         "transform", "scale3d(1, 1, 1) translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)"
+        $(".metaspace > section.content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
+        $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0)")
+        $('ul.menu.settings').addClass('hidden')
+        $('h1.logo').addClass('hidden')
+        $('a.back').removeClass('hidden')
       , 500)    

@@ -1,8 +1,11 @@
+$menuWidth: 40vw;
+
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
 $cardBorderWidth:   3pt;
 $cardBorder:        $cardBorderWidth solid $colorType;
+$cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
 
 
 @mixin cardStyle {
@@ -125,6 +128,9 @@ input {
 ul.menu {
     height: $baseline * 2;
     position: relative;
+    display: inline-block;
+    width: $menuWidth;
+    @include transition(1s $defaultCurve);
     
     &:hover, &.open {
         @include transition(2s $defaultCurve);
@@ -171,6 +177,9 @@ ul.menu {
     }
     
     &.left {
+        float: left;
+        @include transition-property(left);
+        
         li {
             left: -50vw;
             @include transition-property(left, opacity);
@@ -197,6 +206,10 @@ ul.menu {
     }
     
     &.right {
+        float: right;
+        text-align: right;
+        @include transition-property(right);
+        
         li {
             right: -50vw;
             @include transition-property(right, opacity);
@@ -223,7 +236,18 @@ ul.menu {
                     }
                 }
             }
-        }    
+        }
+    }
+    
+    &.hidden {
+        
+        &.left {
+            left: -$menuWidth;
+        }
+        
+        &.right {
+            right: -$menuWidth;
+        }
     }
     
     li {
