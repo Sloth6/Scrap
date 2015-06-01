@@ -1,56 +1,83 @@
-body > section.container > section.space {
+$scaleMultiple: 3;
+
+body > section.container {
+    background-color: green;
+
+    section.space.metaspace {
+        height: 100vh * $scaleMultiple;
+        width:  100vw * $scaleMultiple;
+        position: absolute;
+        top:  -(100vh * $scaleMultiple) / $scaleMultiple;
+        left: -(100vw * $scaleMultiple) / $scaleMultiple;
+        -webkit-transform-origin: center center;
+                transform-origin: center center;
+        @include transition(1s $defaultCurve);
+        @include transition-property(transform,
+                             -webkit-transform,
+                                -moz-transform,
+                                     box-shadow,
+                             -webkit-box-shadow,
+                                -moz-box-shadow,
+                                     background-color);
     
-    section.content {
-        
-        div.spacePreview {
-            position:absolute;
-            border: 4pt rgba(0,0,0,.25) solid;
-            @include transition(all 3s $defaultCurve);
-            height: 100vh;
-            width: 100vw;
-            @include transform(scale3d(.25, .25, .25) translate(200px, 500px));
-            -webkit-transform-origin: top left;
-                    transform-origin: top left;
-            background-repeat: no-repeat;
-            background-size: cover;
-            top: 0;
-            left: 0;
-            background-color: $colorBackground;
-            z-index: 1;
+        &.closed {
+            @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1)translate3d(0, 0, 0));        
+        }
+    
+        &.open {
+            @include transform(scale3d(1, 1, 1) translate3d(0, 0, 0));
+        }
+        section.content {
             
-            h1 {
-                text-indent: -99999em;
-            }
-            
-            &.open {
-                @include transform(scale3d(1.0, 1.0, 1.0) translate(0px, 0px));
-                border: 0;
-                top: 0 !important;
-                left: 0 !important;
-                z-index: 2;
-                
-                iframe.spaceFrame {
-                    opacity: 1;
-                    @include transition-delay(.5s);
-                }
-            }
-            
-            &.hidden {
-                opacity: 0;
-                @include transition-timing-function(linear);
-            }
-            
-            iframe.spaceFrame {
-                @include transition(all 2s $defaultCurve 0s);
-                -webkit-transform-origin: center center;
-                        transform-origin: center center;
-                opacity: 0;
+            div.spacePreview {
+//                 border: $cardBorder;
+                display: inline-block;
+                @include transition(all 3s $defaultCurve);
                 height: 100vh;
-                position: absolute;
+                width:  100vw;
+                -webkit-transform-origin: top left;
+                        transform-origin: top left;
+                background-repeat: no-repeat;
+                background-size: cover;
                 top: 0;
                 left: 0;
-                width: 100vw;
                 background-color: $colorBackground;
+                z-index: 1;
+                cursor: pointer;
+                
+                h1 {
+                }
+                
+                &.open {
+                    @include transform(scale3d(1.0, 1.0, 1.0) translate(0px, 0px));
+                    border: 0;
+                    top: 0 !important;
+                    left: 0 !important;
+                    z-index: 2;
+                    
+                    iframe.spaceFrame {
+                        opacity: 1;
+                        @include transition-delay(.5s);
+                    }
+                }
+                
+                &.hidden {
+                    opacity: 0;
+                    @include transition-timing-function(linear);
+                }
+                
+                iframe.spaceFrame {
+                    @include transition(all 2s $defaultCurve 0s);
+                    -webkit-transform-origin: center center;
+                            transform-origin: center center;
+                    opacity: 0;
+                    height: 100vh;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    background-color: $colorBackground;
+                }
             }
         }
     }

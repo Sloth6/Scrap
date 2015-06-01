@@ -17,14 +17,15 @@ block scripts
   script(src="/js/jquery/jquery-mousewheel.min.js")
 
   script(src="/js/screenDrag.js")
-  script(src="/js/meta-space/dragSpace.js")
   script(src="/js/meta-space/enterSpace.js")
   script(src="/js/meta-space/closeSpace.js")
 
 block content
   header 
-    a(class="home",href='/', style="display:none;") Home
-  section.space
+    h1 Dish
+    a(class="back",href='/') ‹
+    include partials/settingsMenu
+  section.space.metaspace.closed
   
     section.content
       each space in user.spaces
@@ -32,4 +33,4 @@ block content
         - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
         div.spacePreview.draggable(data-spaceId = space.spaceKey, style=cssString+imageCss)
 
-          h1= space.name
+          h1.spaceName= space.name

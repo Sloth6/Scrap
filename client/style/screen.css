@@ -1042,34 +1042,38 @@ body {
 }
 /* line 16, ../sass/layout/_header.scss */
 .container > header h1.spaceName {
-  display: none;
+  position: absolute;
+  width: 50vw;
+  left: 50%;
+  margin-left: -25vw;
+  text-align: center;
 }
-/* line 20, ../sass/layout/_header.scss */
+/* line 24, ../sass/layout/_header.scss */
 .container > header ul.menu {
   display: inline-block;
   opacity: .75;
   float: left;
   width: 40vw;
 }
-/* line 26, ../sass/layout/_header.scss */
+/* line 30, ../sass/layout/_header.scss */
 .container > header ul.menu input {
   max-width: 100%;
 }
-/* line 31, ../sass/layout/_header.scss */
+/* line 35, ../sass/layout/_header.scss */
 .container > header ul.menu.spaces li a {
   text-transform: capitalize;
 }
-/* line 36, ../sass/layout/_header.scss */
+/* line 40, ../sass/layout/_header.scss */
 .container > header ul.menu.users {
   float: right;
   text-align: right;
   position: relative;
 }
-/* line 43, ../sass/layout/_header.scss */
+/* line 47, ../sass/layout/_header.scss */
 .container > header ul.menu.users li.user {
   text-transform: capitalize;
 }
-/* line 49, ../sass/layout/_header.scss */
+/* line 53, ../sass/layout/_header.scss */
 .container > header ul.menu.users li form label {
   font-size: 12pt;
   line-height: 1.5em;
@@ -1079,51 +1083,51 @@ body {
   display: block;
   margin-top: 0.375em;
 }
-/* line 59, ../sass/layout/_header.scss */
+/* line 63, ../sass/layout/_header.scss */
 .container > header ul.menu.users li a.logout:hover {
   -webkit-animation: hoverWarningFlicker 5s infinite linear;
   -moz-animation: hoverWarningFlicker 5s infinite linear;
   -o-animation: hoverWarningFlicker 5s infinite linear;
   animation: hoverWarningFlicker 5s infinite linear;
 }
-/* line 67, ../sass/layout/_header.scss */
+/* line 71, ../sass/layout/_header.scss */
 .container > header ul.menu form label, .container > header ul.menu form input {
   font-family: "Futura W01 Book", Futura, sans-serif;
   font-size: 24pt;
   letter-spacing: .75pt;
   line-height: 1.5em;
 }
-/* line 77, ../sass/layout/_header.scss */
+/* line 81, ../sass/layout/_header.scss */
 .container > header.public .card, .container > header.index .card {
   float: right;
   display: inline-block;
 }
-/* line 81, ../sass/layout/_header.scss */
+/* line 85, ../sass/layout/_header.scss */
 .container > header.public .card > p, .container > header.index .card > p {
   padding-bottom: 0.75rem;
 }
-/* line 85, ../sass/layout/_header.scss */
+/* line 89, ../sass/layout/_header.scss */
 .container > header.public .card form, .container > header.index .card form {
   width: auto;
   text-align: left;
 }
-/* line 91, ../sass/layout/_header.scss */
+/* line 95, ../sass/layout/_header.scss */
 .container > header.public .card form p.submit input:hover, .container > header.index .card form p.submit input:hover {
   -webkit-animation: hoverConfirmFlicker 5s infinite linear;
   -moz-animation: hoverConfirmFlicker 5s infinite linear;
   -o-animation: hoverConfirmFlicker 5s infinite linear;
   animation: hoverConfirmFlicker 5s infinite linear;
 }
-/* line 96, ../sass/layout/_header.scss */
+/* line 100, ../sass/layout/_header.scss */
 .container > header.public .card form input, .container > header.index .card form input {
   width: 100%;
   text-align: left;
 }
-/* line 100, ../sass/layout/_header.scss */
+/* line 104, ../sass/layout/_header.scss */
 .container > header.public .card form input#name, .container > header.index .card form input#name {
   text-transform: capitalize;
 }
-/* line 104, ../sass/layout/_header.scss */
+/* line 108, ../sass/layout/_header.scss */
 .container > header.public .card form input[type=submit], .container > header.index .card form input[type=submit] {
   width: auto;
 }
@@ -1478,20 +1482,51 @@ section.container section.space article .ui-resizable-handle:hover {
   opacity: .5;
 }
 
-/* line 5, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview {
+/* line 3, ../sass/layout/_home.scss */
+body > section.container {
+  background-color: green;
+}
+/* line 6, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace {
+  height: 300vh;
+  width: 300vw;
   position: absolute;
-  border: 4pt rgba(0, 0, 0, 0.25) solid;
+  top: -100vh;
+  left: -100vw;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+  transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color;
+}
+/* line 23, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace.closed {
+  -moz-transform: scale3d(0.33333, 0.33333, 1) translate3d(0, 0, 0);
+  -ms-transform: scale3d(0.33333, 0.33333, 1) translate3d(0, 0, 0);
+  -webkit-transform: scale3d(0.33333, 0.33333, 1) translate3d(0, 0, 0);
+  transform: scale3d(0.33333, 0.33333, 1) translate3d(0, 0, 0);
+}
+/* line 27, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace.open {
+  -moz-transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  -ms-transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  -webkit-transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+}
+/* line 32, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace section.content div.spacePreview {
+  display: inline-block;
   -moz-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   height: 100vh;
   width: 100vw;
-  -moz-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
-  -ms-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
-  -webkit-transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
-  transform: scale3d(0.25, 0.25, 0.25) translate(200px, 500px);
   -webkit-transform-origin: top left;
   transform-origin: top left;
   background-repeat: no-repeat;
@@ -1500,13 +1535,10 @@ body > section.container > section.space section.content div.spacePreview {
   left: 0;
   background-color: white;
   z-index: 1;
+  cursor: pointer;
 }
-/* line 21, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview h1 {
-  text-indent: -99999em;
-}
-/* line 25, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview.open {
+/* line 51, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace section.content div.spacePreview.open {
   -moz-transform: scale3d(1, 1, 1) translate(0px, 0px);
   -ms-transform: scale3d(1, 1, 1) translate(0px, 0px);
   -webkit-transform: scale3d(1, 1, 1) translate(0px, 0px);
@@ -1516,24 +1548,24 @@ body > section.container > section.space section.content div.spacePreview.open {
   left: 0 !important;
   z-index: 2;
 }
-/* line 32, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview.open iframe.spaceFrame {
+/* line 58, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace section.content div.spacePreview.open iframe.spaceFrame {
   opacity: 1;
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
-/* line 38, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview.hidden {
+/* line 64, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace section.content div.spacePreview.hidden {
   opacity: 0;
   -moz-transition-timing-function: linear;
   -o-transition-timing-function: linear;
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 43, ../sass/layout/_home.scss */
-body > section.container > section.space section.content div.spacePreview iframe.spaceFrame {
+/* line 69, ../sass/layout/_home.scss */
+body > section.container section.space.metaspace section.content div.spacePreview iframe.spaceFrame {
   -moz-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s;
   -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s;
   -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);

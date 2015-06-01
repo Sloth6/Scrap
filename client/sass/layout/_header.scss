@@ -14,7 +14,11 @@
     }
     
     h1.spaceName {
-        display: none;
+        position: absolute;
+        width: 50vw;
+        left: 50%;
+        margin-left: -25vw;
+        text-align: center;
     }
         
     ul.menu {
