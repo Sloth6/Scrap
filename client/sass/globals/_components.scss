@@ -194,20 +194,21 @@ ul.menu {
             &:nth-of-type(1) {
                 left: 0;
             }
+                        
+            a {
+                position: relative;
+                left: 0;
+                @include transition(left .25s $defaultCurve);
+                
+                &:hover, &:active, &:focus {
+                    left: $gutter * 2;
+                }
+            }
         }
         
         &:hover, &.open {
             li {
                 left: 0;
-                
-                a {
-                    padding-left: 0;
-                    @include transition(padding-left .25s $defaultCurve);
-                    
-                    &:hover, &:active, &:focus {
-                        padding-left: $gutter * 2;
-                    }
-                }
             }
         }    
     }
@@ -228,20 +229,21 @@ ul.menu {
             form, input {
                 text-align: right;
             }
+            
+            a {
+                position: relative;
+                right: 0;
+                @include transition(right .25s $defaultCurve);
+                
+                &:hover, &:active, &:focus {
+                    right: $gutter * 2;
+                }
+            }
         }
         
         &:hover, &.open {
             li {
                 right: 0;
-                
-                a {
-                    padding-right: 0;
-                    @include transition(padding-right .25s $defaultCurve);
-                    
-                    &:hover, &:active, &:focus {
-                        padding-right: $gutter * 2;
-                    }
-                }
             }
         }
     }

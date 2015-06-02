@@ -13,6 +13,7 @@ $headerPadding: $baseline/4 $gutter;
     
     a {
         border: 0;
+        cursor: pointer;
     }
         
     ul.menu {
@@ -24,6 +25,14 @@ $headerPadding: $baseline/4 $gutter;
         &.spaces {
             li a {
                 text-transform: capitalize;
+            }
+        }
+        
+        &.settings {
+            a { 
+                &.logout:hover {
+                    @include hoverWarningAnimation;
+                }
             }
         }
         
@@ -42,13 +51,6 @@ $headerPadding: $baseline/4 $gutter;
                         text-transform: lowercase;
                         display: block;
                         margin-top: $leading/4;
-                    }
-                }
-                
-                a {
-                    
-                    &.logout:hover {
-                        @include hoverWarningAnimation;
                     }
                 }
             }

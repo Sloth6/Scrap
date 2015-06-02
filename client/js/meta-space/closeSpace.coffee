@@ -11,12 +11,11 @@ $ ->
     $(".metaspace > section.content").css("transform", "scale3d("+1.0/scaleMultiple+","+ 1.0/scaleMultiple+","+ 1.0+")")
     $(".spacePreview").not($(this)).removeClass("hidden")
     $(".spacePreview").removeClass('open');
-
+    $('a.back').addClass('hidden')
+    $('.menu.users').addClass('hidden')
 
     setTimeout (->
       $('h1.logo').removeClass('hidden')
-      $('a.back').addClass('hidden')
-      $('.menu.users').addClass('hidden')
       $('.menu.users').remove()
       $('.menu.settings').removeClass('hidden')
     ), 500
