@@ -135,12 +135,13 @@ ul.menu {
     height: $baseline * 2;
     position: relative;
     display: inline-block;
-    width: $menuWidth;
+    width: $menuWidth/2;
     @include transition(1s $defaultCurve);
     @include transition-property(left, right);
     
     &:hover, &.open {
         @include transition(2s $defaultCurve);
+        width: $menuWidth;
         
         li {
             
