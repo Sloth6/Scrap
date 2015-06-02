@@ -249,11 +249,11 @@ ul.menu {
     &.hidden {
         
         &.left {
-            left: -$menuWidth * 1.1;
+            left: -$menuWidth * 1.5;
         }
         
         &.right {
-            right: -$menuWidth * 1.1;
+            right: -$menuWidth * 1.5;
         }
     }
     

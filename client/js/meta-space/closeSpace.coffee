@@ -1,6 +1,10 @@
 $ ->    
   $('.back').click (event) ->
     event.preventDefault()
+    $('.container > header').append(window.userSettings)
+#     $('.menu.settings').css('right', '-50vw')
+    $('.menu.settings').addClass('hidden')
+    
     $('.metaspace').addClass('closed');
     $('.metaspace').removeClass('open');
     $(".metaspace").css("transform", "translate3d(0px, 0px, 0px)");
@@ -8,12 +12,15 @@ $ ->
     $(".spacePreview").not($(this)).removeClass("hidden")
     $(".spacePreview").removeClass('open');
 
-    $('ul.menu.settings').removeClass('hidden')
-    $('h1.logo').removeClass('hidden')
-    $('a.back').addClass('hidden')
-    $('.users.menu').remove()
 
     setTimeout (->
+      $('h1.logo').removeClass('hidden')
+      $('a.back').addClass('hidden')
+      $('.menu.users').addClass('hidden')
+      $('.menu.users').remove()
+      $('.menu.settings').removeClass('hidden')
+    ), 500
+    
+    setTimeout (->
       $('.spaceFrame').remove()
-      $('.container > header').append(window.userSettings)
     ), 1000 # duration of animation
