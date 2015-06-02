@@ -24,7 +24,7 @@ module.exports =
         return callback err if err?
         return indexPage res unless user?
         req.session.currentUserId = user.id
-        res.render 'meta-space.jade', { user: user }
+        res.render 'meta-space.jade', { user, title:'' }
         callback()
     else
       indexPage res
