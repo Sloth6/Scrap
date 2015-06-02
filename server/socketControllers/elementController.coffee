@@ -125,9 +125,12 @@ module.exports =
     models.sequelize.query(query, null, null, { id })
       .complete (err, results) ->
         return callback err if err?
+        
+        spacePreviews spaceKey
+
         type = results[0].contentType
         content = results[0].content
-
+        
         if type in ['gif', 'image']
           s3.deleteImage { spaceKey, key: content, type }, (err) ->
             console.log err if err
