@@ -1,4 +1,4 @@
-$ ->
+$ ->    
   $('.back').click (event) ->
     event.preventDefault()
     $('.metaspace').addClass('closed');
@@ -11,7 +11,9 @@ $ ->
     $('ul.menu.settings').removeClass('hidden')
     $('h1.logo').removeClass('hidden')
     $('a.back').addClass('hidden')
+    $('.users.menu').remove()
 
     setTimeout (->
       $('.spaceFrame').remove()
+      $('.container > header').append(window.userSettings)
     ), 1000 # duration of animation

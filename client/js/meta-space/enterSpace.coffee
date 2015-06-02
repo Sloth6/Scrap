@@ -1,6 +1,7 @@
 scaleMultiple   = 3
 
-$ -> 
+$ ->
+  window.userSettings = $('ul.menu.settings')
   elements = $('.draggable')
   elements.click () ->
     url = window.location+"s/"+$(@).data().spaceid
@@ -26,7 +27,11 @@ $ ->
         $('.metaspace').removeClass('closed')
         $(".metaspace > section.content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
         $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0)")
-        $('ul.menu.settings').addClass('hidden')
+        # $('ul.menu.settings').addClass('hidden')
+        window.userSettings.remove()
         $('h1.logo').addClass('hidden')
         $('a.back').removeClass('hidden')
-      , 500)    
+      , 500)
+      setTimeout(() ->
+        $('.container > header').append($("iframe").contents().find('.users.menu'))
+      , 2000)
