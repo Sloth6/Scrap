@@ -166,6 +166,7 @@ module.exports =
           userId: data.userId
           final: true
         }
+        spacePreviews spaceKey
         callback()
     else
       userId = data.userId

@@ -31,8 +31,7 @@ module.exports =
     #   ContentType: "image/jpg"
     s3obj = new AWS.S3({ params: { Bucket: Bucket, Key: "#{spaceKey}/screenshot.jpg" }})
     readableStream = new Stream.Readable().wrap(stream)
-    s3obj.upload { Body: readableStream, ACL: 'public-read' }, (err, data) ->
-      console.log err, data
+    s3obj.upload { Body: readableStream, ACL: 'public-read' }, callback
 
 
   deleteImage: ({ spaceKey, key, type }, cb) ->

@@ -1,8 +1,15 @@
 $ ->    
   $('.back').click (event) ->
     event.preventDefault()
+
+        #update the url
+    bg = $('.spacePreview.open').css 'background-image'
+    bg = bg.replace('url(','').replace(')','')
+    url = bg+'?'+(new Date().getTime())
+    $('.spacePreview.open').css 'background-image', 'url('+url+')'
+
+
     $('.container > header').append(window.userSettings)
-#     $('.menu.settings').css('right', '-50vw')
     $('.menu.settings').addClass('hidden')
     
     $('.metaspace').addClass('closed');

@@ -15,8 +15,12 @@ options =
 
 module.exports = (spaceKey) ->
 	url = "http://localhost:9001/s/#{spaceKey}"
+	console.time('new webshot')
 	webshot url, options, (err, stream) ->
 		if err?
 			return console.log 'Err in webshot', err
-		console.log 'new webshot', spaceKey
-		s3.uploadSpacePreview { spaceKey, stream }
+		s3.uploadSpacePreview { spaceKey, stream }, (err) ->
+			console.timeEnd('new webshot')
+			if err?
+				console.log 'err in upload space preview', err
+			

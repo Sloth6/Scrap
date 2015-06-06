@@ -4,9 +4,10 @@ $ ->
   window.userSettings = $('ul.menu.right.settings')
   elements = $('.draggable')
   elements.click () ->
-    url = window.location+"s/"+$(@).data().spaceid
-    offsetLeft      = parseFloat -($(this).offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple  - ($(this).width()  * .1275)
-    offsetTop       = parseFloat -($(this).offset().top  * scaleMultiple) + $('.metaspace').height()/scaleMultiple - ($(this).height() * .1285)
+    spaceId = $(@).data().spaceid
+    url = window.location+"s/"+spaceId
+    offsetLeft = parseFloat -($(this).offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple  - ($(this).width()  * .1275)
+    offsetTop  = parseFloat -($(this).offset().top  * scaleMultiple) + $('.metaspace').height()/scaleMultiple - ($(this).height() * .1285)
 
     $('<iframe />', {
       name: 'spaceFrame'
