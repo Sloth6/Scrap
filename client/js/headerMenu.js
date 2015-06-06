@@ -1,29 +1,38 @@
 $(document).ready(function() {
     var menu = $("ul.menu"),
         space = $("section.space"),
+        mask = $("<div class='mask'></div>"),
         focused = false;
     
     menu.mouseenter(function() {
-        $(this).addClass("open");
-        space.addClass("obscured");
+        toggleMenu("open")
     });
     
     menu.mouseleave(function() {
-        if (focused) {
-            return;
-        } else {
-            $(this).removeClass("open");
-            space.removeClass("obscured");
+        if (!(focused)) {
+            toggleMenu("close")
         }
     });
-    
+
     menu.find("input").focus(function() {
         focused = true;
+        toggleMenu("open")
     });
     
-    menu.find("input").blur(function() {
-        focused = false;
-        menu.removeClass("open");
-        space.removeClass("obscured");
-    });
+    function toggleMenu(to) {
+        if (to === "open") {
+            $(menu).addClass("open");
+            space.addClass("obscured");
+            $("section.container").prepend(mask)                    
+            $('.mask').click(function(){
+                toggleMenu("close")
+                console.log("HI")
+            })
+        } else {
+            $(menu).removeClass("open");
+            space.removeClass("obscured");
+            mask.remove()
+        }
+    }
+    
 });
