@@ -103,6 +103,24 @@ body {
                         @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
                     }
 */
+                    
+                    &.new {
+                        border-style: dashed;
+                        &:after {
+                            content: "+";
+                            font-weight: $fontWeightLight;
+                            font-size: $typeBodySize * 18;
+                            line-height: 1em;
+                            position: absolute;
+                            height: 100%;
+                            width:100%;
+                            top: 65%;
+                            margin-top: -25%;
+                            right: 0;
+                            left: 0;
+                            display: block;
+                        }
+                    }
 
                     h1.spaceName {
                         position: absolute;

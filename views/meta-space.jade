@@ -12,12 +12,14 @@ block scripts
 block content
   header 
     h1.logo
-      a Dish
+      a Mosh
     a(class="back hidden", href='/', title='Back to home') ‹
     include partials/settingsMenu
     
   section.space.metaspace.closed  
     section.content
+      div.spacePreview.new.draggable
+        h1.spaceName New Space
       each space in user.spaces
         - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
         div.spacePreview.draggable(data-spaceId = space.spaceKey, style=imageCss)
