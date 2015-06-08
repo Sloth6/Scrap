@@ -106,16 +106,19 @@ body {
                     
                     &.new {
                         border-style: dashed;
+                        
+                        h1.spaceName {
+                            text-indent: -99999em;
+                        }
                         &:after {
                             content: "+";
                             font-weight: $fontWeightLight;
-                            font-size: $typeBodySize * 18;
+                            font-size: $typeBodySize * 12;
                             line-height: 1em;
                             position: absolute;
                             height: 100%;
                             width:100%;
-                            top: 65%;
-                            margin-top: -25%;
+                            top: 36%;
                             right: 0;
                             left: 0;
                             display: block;
