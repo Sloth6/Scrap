@@ -21,27 +21,28 @@ module.exports =
   # create a new space and redirect to it
   newSpace : (req, res, callback) ->
     spaceKey = uuid.v4().split('-')[0]
-    { name, welcomeSpace } = req.body.space
+    { name, welcomeSpace } = req.body
     currentUserId = req.session.currentUserId
     
     models.User.find(
       where: { id: currentUserId }
       include: [ models.Space ]
     ).complete (err, user) ->
-      return callback err if err?
+      return res.send 400 if err?
       attributes = { name, spaceKey, publicRead:true }
       models.Space.create( attributes ).complete (err, space) ->
-        return callback err if err?
+        return res.send 400 if err?
         space.addUser(user).complete (err) ->
-          return callback err if err?
+          return res.send 400 if err?
           space.setCreator(user).complete (err) ->
-            return callback err if err?
-            if welcomeSpace
-              createWelcomePage space, (err) ->
-                return callback err if err?
-                res.redirect "/s/" + spaceKey
-            else
-              res. redirect "/s/" + spaceKey
+            return res.send 400 if err?
+            # if welcomeSpace
+            #   createWelcomePage space, (err) ->
+            #     return callback err if err?
+            #     res.redirect "/s/" + spaceKey
+            # else
+            #   res. redirect "/s/" + spaceKey
+            res.status(200).send spaceKey
 
     createWelcomePage = (space, callback) ->
       async.each welcomeElements, (attributes, cb) ->
