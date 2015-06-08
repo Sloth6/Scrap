@@ -34,7 +34,6 @@ section.container {
         position:   fixed;
         color: $colorType;
         text-align: center;
-        font-family: $fontMedium;
         @include transition-timing-function($defaultCurve);
         @include transition-duration(.5s);
         @include transition-property(bottom, transform, -webkit-transform);

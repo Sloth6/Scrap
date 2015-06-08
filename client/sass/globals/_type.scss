@@ -1,3 +1,4 @@
+/*
 $fontLight:         'Futura W01 Light', Futura;
 $fontLightItalic:   'FuturaW01-LightOblique', Futura;
 $fontRegular:       'Futura W01 Book', Futura;
@@ -6,46 +7,54 @@ $fontMedium:        'Futura W01 Medium', Futura;
 $fontMediumItalic:  'FuturaW01-MediumOblique', Futura;
 $fontBold:          'Futura W01 Heavy', Futura;
 $fontBoldItalic:    'FuturaW01-HeavyOblique', Futura;
+*/
+
+$fontFamily:        'BT Futura W01';
+$fontWeightLight:   100;
+$fontWeightRegular: 200;
+$fontWeightMedium:  300;
+$fontWeightDemi:    400;
+$fontWeightBold:    500;
 
 $typeBodySize:      12pt;
 $typeHeaderSize:    24pt;
 $leading:           1.5em;
 
+@mixin typeBody {
+    font-family:    $fontFamily;
+    font-size:      $typeBodySize;
+    font-weight:    $fontWeightMedium;
+    line-height:    $leading;
+    letter-spacing: .09375;
+}
+
+@mixin typeHeader {
+    font-size:      $typeHeaderSize;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: .75pt;
+    line-height:    $leading;
+}
+
 @mixin smallCaps {
-    font-size: .666em;
-    font-family: $fontMedium;
+    font-size:      .666em;
     letter-spacing: .1825em;
     text-transform: uppercase !important;
 }
 
-@mixin typeHeader {
-    font-family: $fontRegular, sans-serif;
-    font-size: $typeHeaderSize;
-    letter-spacing: .75pt;
-    line-height: $leading;
-}
-
-@mixin typeBody {
-    font-size: $typeBodySize;
-    line-height: $leading;
-    font-family: $fontMedium;
-    letter-spacing: .0625em;
-}
-
 @mixin typeBodySmallCaps {
-    @include smallCaps;
-    font-size: $typeBodySize * .666;
+    @include        smallCaps;
+    font-size:      $typeBodySize * .666;
 }
 
 @mixin typeHeaderSmallCaps {
-    @include smallCaps;
-    font-size: $typeHeaderSize * .666;
+    @include        smallCaps;
+    font-size:      $typeHeaderSize * .666;
 }
 
 
 @mixin typeSpaceName {
     @include typeHeader;
-    font-family: $fontRegular;
+    font-family: $fontFamily;
     font-size: .75rem;
     line-height: $leading;
 }
