@@ -17,7 +17,7 @@ $cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
 }
 
 @mixin cardHover {
-    @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
+    @include box-shadow($cardBoxShadow);
     background-color: $colorWashLight;
     @include transform($cardHoverScaleMin);
 }
@@ -25,7 +25,7 @@ $cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
 @mixin cardDrag {
     cursor: move;
     @include transform($cardHoverScaleMax);
-    @include box-shadow($gutter $gutter 0 rgba(0,0,0,.6));
+    @include box-shadow($cardBoxShadow);
 }
 
 @mixin button {

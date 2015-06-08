@@ -14,20 +14,18 @@ section.container section.space {
         
         // EVENTS
         
+        &:hover, &.hover, &.dragging, &.ui-draggable-dragging/* , &.add-element, &.editing  */{
+            author {
+                opacity: 1;
+                @include transform(translate3d(0, -$leading * 1.575, 0));
+            }
+        }
+        
         &:hover, &.hover {
             cursor: move;
             
             > .card {
                 @include cardHover;
-            }
-
-            author {
-                opacity: 1;
-                top: -$leading * 1.5;
-            }
-
-            .ui-resizable-handle {
-                opacity: .2;
             }
         }
 
@@ -60,63 +58,40 @@ section.container section.space {
             }
         }
                 
-/*
-        &.attached {
-        
-            .card {
-                
-                &:before {
-                    content: "•";
-                    font-size: .5em;
-                    position: absolute;
-                    top: $gutter/1.6666;
-                    left: $gutter/4;
-                    line-height: 0;
-                }
-            }
-        }
-    
-*/
-        
         // NEW ELEMENT
         
         &.add-element{
-            
+
             .card {
+                @include cardHover;
+                @include cardDrag;
                 width: $articleWidth !important;
-                
+
+                &.text {
+                    color: $colorType;
+                    background-color: $colorCardBackground;
+                }
+
                 .autogrow-textarea-mirror {
                     width: $articleWidth !important;
                 }
             }
+        }
+        
+        // EDITING 
+        
+        &.editing {
             
-/*
-            form {
-            
-                .fileInputWrapper {
-                    position: relative;
-                    display: block;
-                    @include smallCaps;
-                    overflow: hidden;
-                    font-size: .5em;
-                    
-                    &:after {
-                        content: "Upload a file";
-                        position: absolute;
-                        left: 0;
-                        width: 100%;
-                    }
-                    
-                    input[type="file"] {
-                        @include transform(scale($typeSizeMultiplier));
-                        opacity: 0;
-                        z-index: 2;
-                        position: relative;
-                        cursor: pointer;
-                    }
+            .card {
+                @include cardHover;
+                @include cardDrag;
+
+                &.text {
+                    color: $colorType;
+                    background-color: $colorCardBackground;
                 }
             }
-*/
+            
         }
         
         // CONTENTS
@@ -124,9 +99,10 @@ section.container section.space {
         textarea {
             width: 100%;
             height: $baseline;
-            @include typeHeader;
-            line-height: 1.5em;
-            margin-bottom: -$baseline*2.25 !important;
+            @include typeBody;
+            color: $colorType;
+            background-color: transparent;
+            letter-spacing: .09375em;
         }
         
         author {
@@ -144,8 +120,13 @@ section.container section.space {
             opacity: 0;
             white-space: nowrap;
             z-index: -900;
+            @include box-shadow($cardBoxShadow);
+            @include transform(translate3d(0,0,0));
             @include transition(.25s $defaultCurve);
-            @include transition-property(opacity, top);
+            @include transition-property(opacity,
+                                         transform,
+                                 -webkit-transform,
+                                    -moz-transform);
         }
         
         // CONTENT
@@ -160,7 +141,8 @@ section.container section.space {
                                          box-shadow,
                                  -webkit-box-shadow,
                                     -moz-box-shadow,
-                                         background-color);
+                                         background-color,
+                                         color);
 
             &.text {
                 @include cardStyle;
@@ -213,25 +195,6 @@ section.container section.space {
                 width: 100%;
                 margin-bottom: -9.5pt;
                 background-color: $colorCardBackground;
-            }
-        }
-        
-        .ui-resizable-handle {
-            z-index: 9999999;
-            right: 0;
-            bottom:0;
-            opacity: 0;
-            background-image: url('../images/elementResize.png');
-            background-size: 100% 100%;
-            background-position: top left;
-            @include transition(opacity .25s $defaultCurve);
-            transform-origin:           bottom right;
-            -webkit-transform-origin:   bottom right;
-            height: $gutter;
-            width: $gutter;
-            
-            &:hover {
-                opacity: .5;
             }
         }
     }
