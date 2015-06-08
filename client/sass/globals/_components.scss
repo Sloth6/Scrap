@@ -136,6 +136,7 @@ ul.menu {
     position: relative;
     display: inline-block;
     width: $menuWidth/2;
+    white-space: nowrap;
     @include transition(1s $defaultCurve);
     @include transition-property(left, right);
     
