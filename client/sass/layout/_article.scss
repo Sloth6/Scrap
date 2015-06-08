@@ -60,17 +60,28 @@ section.container section.space {
                 
         // NEW ELEMENT
         
-        &.add-element{
+        &.add-element, &.editing {
+            &:hover {
+                author {
+                    opacity: 0;
+                }
+            }
 
             .card {
                 @include cardHover;
                 @include cardDrag;
-                width: $articleWidth !important;
-
+ 
                 &.text {
                     color: $colorType;
                     background-color: $colorCardBackground;
                 }
+            }            
+        }
+        
+        &.add-element{
+            
+            .card {
+                width: $articleWidth !important;
 
                 .autogrow-textarea-mirror {
                     width: $articleWidth !important;
@@ -81,16 +92,6 @@ section.container section.space {
         // EDITING 
         
         &.editing {
-            
-            .card {
-                @include cardHover;
-                @include cardDrag;
-
-                &.text {
-                    color: $colorType;
-                    background-color: $colorCardBackground;
-                }
-            }
             
         }
         
