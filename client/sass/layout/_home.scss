@@ -107,9 +107,12 @@ body {
                     &.new {
                         border-style: dashed;
                         
-                        h1.spaceName {
-                            text-indent: -99999em;
+                        &.open {
+                            h1.spaceName {
+                                opacity: 1;
+                            }
                         }
+
                         &:after {
                             content: "+";
                             font-weight: $fontWeightLight;
@@ -122,6 +125,10 @@ body {
                             right: 0;
                             left: 0;
                             display: block;
+                        }
+                        
+                        h1.spaceName {
+                            opacity: 0;
                         }
                     }
 
@@ -145,9 +152,7 @@ body {
                         @include transition-property(transform,
                                              -webkit-transform,
                                                 -moz-transform,
-                                                     box-shadow,
-                                             -webkit-box-shadow,
-                                                -moz-box-shadow);
+                                                     opacity);
                     }
     
                     &.open {
