@@ -28,8 +28,12 @@ body {
                 margin-left: 0;
                 @include transition(margin-left $openSpaceDuration $defaultCurve);
 
-                &.hidden {
+                &.hidden, &.hidden:hover {
                     margin-left: -$col;
+                }
+                
+                &:hover {
+                    margin-left: $gutter;
                 }
             }
         }
@@ -104,7 +108,7 @@ body {
                     }
 */
                     
-                    &.new {
+                    &.add {
                         border-style: dashed;
                         
                         &.open {

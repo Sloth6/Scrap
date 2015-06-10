@@ -1,11 +1,11 @@
-scaleMultiple   = 3
+scaleMultiple     = 3
 
 $ ->
   window.userSettings = $('ul.menu.right.settings')
-  elements = $('.spacePreview').not('.new')
+  elements = $('.spacePreview').not('.add')
   elements.click () ->
     enterSpace $(@).data().spaceid, $(@)
-
+  
 enterSpace = (spaceId, parent) ->
   url = window.location+"r/"+spaceId
   offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple  - (parent.width()  * .1275)
@@ -21,7 +21,7 @@ enterSpace = (spaceId, parent) ->
     event.stopPropagation()
   ).
   prependTo(parent).
-  ready () =>
+  ready () =>    
     setTimeout(() =>
       $('.home').show()
       $(".spacePreview").not(parent).addClass("hidden")

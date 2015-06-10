@@ -1,7 +1,8 @@
 $ ->
-  $('.spacePreview.new').click ->
+  $('.spacePreview.add').click ->
     elem = $(@)
-    elem.removeClass('new')
+    $('.spacePreview.add').addClass('new')
+    elem.removeClass('add')
+# 
     $.post '/s/new', { name: 'New Space' }, (spaceId) ->
       enterSpace spaceId, elem
-      # $('.content').prepend('<div class="spacePreview new"><h1 class="spaceName">New Space</h1></div>')

@@ -42,6 +42,7 @@ section.container {
         &:after {
             content: "×";
             font-size: $typeHeaderSize * 4;
+            font-weight: $fontWeightLight;
             position: absolute;
             width: 100%;
             text-align: center;

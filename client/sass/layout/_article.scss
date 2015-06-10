@@ -70,6 +70,7 @@ section.container section.space {
             .card {
                 @include cardHover;
                 @include cardDrag;
+                border-style: dashed;
  
                 &.text {
                     color: $colorType;
