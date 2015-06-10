@@ -43,7 +43,11 @@ extractUrl = ($) ->
 extractDomain = (url) ->
   reg =  new RegExp("^(?:([^:/?#.]+):)?(?://)?(([^:/?#]*)(?::(\\d*))?)((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[\\?#]|$)))*/?)?([^?#/]*))?(?:\\?([^#]*))?(?:#(.*))?")
   parts = reg.exec url
-  parts[2] or ''
+  if parts[2]
+    parts[2].split('www.')[1]
+  else
+    console.log 'failed to extract domain', url
+    url
   # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
 
 formatImageUrl = (domain, src) ->
