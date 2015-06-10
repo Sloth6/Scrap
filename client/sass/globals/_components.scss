@@ -190,27 +190,41 @@ ul.menu {
         left: 0;
         
         li {
-            left: -50vw;
-            @include transition-property(left, opacity);
+//             left: -50vw;
+            @include transform(translate3d(-500.0px, 0.0, 0.0));
+            @include transition-property(left, opacity,
+                                         transform,
+                                 -webkit-transform,
+                                    -moz-transform);
             
             &:nth-of-type(1) {
-                left: 0;
+//                 left: 0;
+                @include transform(translate3d(0, 0, 0))
             }
                         
             a {
                 position: relative;
                 left: 0;
-                @include transition(left .25s $defaultCurve);
+/*
+                display: inline-block;
+                @include transform(translate3d(0.0, 0.0, 0.0));
+*/
+                @include transition(.25s $defaultCurve);
+                @include transition-property(left, transform,
+                                     -webkit-transform,
+                                        -moz-transform);
                 
                 &:hover, &:active, &:focus {
-                    left: $gutter * 2;
+                    left: $gutter;
+//                     @include transform(translate3d(25.0, 0.0, 0.0));
                 }
             }
         }
         
         &:hover, &.open {
             li {
-                left: 0;
+//                 left: 0;
+                @include transform(translate3d(0, 0, 0))
             }
         }    
     }
@@ -221,11 +235,17 @@ ul.menu {
         right: 0;
         
         li {
-            right: -50vw;
-            @include transition-property(right, opacity);
+//             right: -50vw;
+//             right: 0;
+            @include transform(translate3d(500.0px, 0.0, 0.0));
+            @include transition-property(right, opacity,
+                                         transform,
+                                 -webkit-transform,
+                                    -moz-transform);
             
             &:nth-of-type(1) {
-                right: 0;
+//                 right: 0;
+                @include transform(translate3d(0, 0, 0))
             }
             
             form, input {
@@ -235,17 +255,26 @@ ul.menu {
             a {
                 position: relative;
                 right: 0;
-                @include transition(right .25s $defaultCurve);
+/*
+                display: inline-block;
+                @include transform(translate3d(0.0, 0.0, 0.0));
+*/
+                @include transition(.25s $defaultCurve);
+                @include transition-property(right, transform,
+                                     -webkit-transform,
+                                        -moz-transform);
                 
                 &:hover, &:active, &:focus {
-                    right: $gutter * 2;
+                    right: $gutter;
+//                     @include transform(translate3d(-25.0, 0.0, 0.0));
                 }
             }
         }
         
         &:hover, &.open {
             li {
-                right: 0;
+//                 right: 0;
+                                @include transform(translate3d(0, 0, 0))
             }
         }
     }
