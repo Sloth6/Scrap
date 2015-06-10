@@ -18,7 +18,10 @@ module.exports = (server) ->
     controllers.spaceController.newSpace req, res, errorHandler
 
   server.get '/s/:spaceKey', (req, res) ->
-    controllers.spaceController.showSpace req, res, errorHandler
+    controllers.spaceController.spacePage req, res, errorHandler
+
+  server.get '/r/:spaceKey', (req, res) ->
+    controllers.spaceController.renderSpace req, res, errorHandler
 
   server.post '/login', (req, res) ->
     controllers.userController.login req, res, errorHandler

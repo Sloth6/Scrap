@@ -7,7 +7,7 @@ $ ->
     enterSpace $(@).data().spaceid, $(@)
 
 enterSpace = (spaceId, parent) ->
-  url = window.location+"s/"+spaceId
+  url = window.location+"r/"+spaceId
   offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple  - (parent.width()  * .1275)
   offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + $('.metaspace').height()/scaleMultiple - (parent.height() * .1285)
 
