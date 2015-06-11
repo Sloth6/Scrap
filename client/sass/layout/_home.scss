@@ -97,8 +97,8 @@ body {
                             transform-origin: bottom right;
                     
                     &:hover {
-                        @include transform($cardHoverScaleMin);
-                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
+                        @include cardHover;
+                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
                     }
 
 /*
@@ -163,6 +163,10 @@ body {
                         @include transform(scale3d(1.0, 1.0, 1.0) translate3d(-$cardBorderWidth * $scaleMultiple, -$cardBorderWidth * $scaleMultiple, 0px));
     //                     border-width: 0;
                         z-index: 2;
+                        
+                        &:hover {
+                            color: $colorType;
+                        }
                         
                         h1.spaceName {
                             @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(0px, 0px, 0px));
