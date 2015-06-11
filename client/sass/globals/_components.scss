@@ -5,7 +5,7 @@ $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
 $cardBorderWidth:           3pt;
 $cardBorder:                $cardBorderWidth solid $colorType;
-$cardBoxShadowDimensions:   $gutter $gutter 0;
+$cardBoxShadowDimensions:   $gutter $gutter 0 0;
 $cardBoxShadowColor:        $colorType;
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
@@ -13,7 +13,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     background-color: $colorCardBackground;
     border: $cardBorder;
     padding: $cardPadding;
-    transform-origin: bottom right;
+            transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
 }
 
@@ -21,7 +21,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
     border-color: $colorAccent !important;
     color: $colorAccent;
-    @include transform($cardHoverScaleMin);
+    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin);
     * { 
         border-color: $colorAccent;
     }
@@ -29,7 +29,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardDrag {
     cursor: move;
-    @include transform($cardHoverScaleMin rotate(1.5deg));
+    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin rotate(1.5deg));
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
 
@@ -80,7 +80,7 @@ label {
 
 @mixin placeHolderOverride {
     color: $colorType;
-    opacity: .25;
+    opacity: 1;
     text-transform: none;
     
     &:hover {

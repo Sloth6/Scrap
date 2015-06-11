@@ -97,7 +97,9 @@ body {
                             transform-origin: bottom right;
                     
                     &:hover {
-                        @include cardHover;
+                        border-color: $colorAccent !important;
+                        color: $colorAccent;
+                        @include transform($cardHoverScaleMin);
                         @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
                     }
 
