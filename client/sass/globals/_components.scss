@@ -3,10 +3,11 @@ $menuWidth: 40vw;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:   2.5pt;
-$cardBorder:        $cardBorderWidth solid $colorType;
-$cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
-
+$cardBorderWidth:           3pt;
+$cardBorder:                $cardBorderWidth solid $colorType;
+$cardBoxShadowDimensions:   $gutter $gutter 0;
+$cardBoxShadowColor:        $colorType;
+$cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardStyle {
     background-color: $colorCardBackground;
@@ -17,15 +18,19 @@ $cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
 }
 
 @mixin cardHover {
-    @include box-shadow($cardBoxShadow);
-    background-color: $colorWashLight;
+    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    border-color: $colorAccent !important;
+    color: $colorAccent;
     @include transform($cardHoverScaleMin);
+    * { 
+        border-color: $colorAccent;
+    }
 }
 
 @mixin cardDrag {
     cursor: move;
-    @include transform($cardHoverScaleMax);
-    @include box-shadow($cardBoxShadow);
+    @include transform($cardHoverScaleMin rotate(1.5deg));
+    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
 
 @mixin button {

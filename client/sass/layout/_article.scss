@@ -8,13 +8,15 @@ section.container section.space {
         backface-visibility: hidden;
         background-color: transparent !important;
         line-height: 1.5em;
-        transform-origin: top left;
-        -webkit-transform-origin: top left;
+        transform-origin: bottom right;
+        -webkit-transform-origin: bottom right;
         @include typeHeader;
         
         // EVENTS
         
         &:hover, &.hover, &.dragging, &.ui-draggable-dragging/* , &.add-element, &.editing  */{
+            z-index: 9999999;
+
             author {
                 opacity: 1;
                 @include transform(translate3d(0, -$leading * 1.575, 0));
@@ -26,6 +28,10 @@ section.container section.space {
             
             > .card {
                 @include cardHover;
+                
+                &.text {
+                    background-color: $colorAccent;
+                }
             }
         }
 
@@ -69,8 +75,7 @@ section.container section.space {
 
             .card {
                 @include cardHover;
-                @include cardDrag;
-                border-style: dashed;
+                border-style: dashed !important;
  
                 &.text {
                     color: $colorType;
@@ -113,7 +118,7 @@ section.container section.space {
             position: absolute;
             display: block;
             color: $colorTypeLight;
-            background: $colorWashDark;
+            background: $colorAccent;
             margin-left: -$cardBorderWidth;
             text-indent: $cardBorderWidth;
             padding: $cardPadding;
@@ -122,7 +127,7 @@ section.container section.space {
             opacity: 0;
             white-space: nowrap;
             z-index: -900;
-            @include box-shadow($cardBoxShadow);
+//             @include box-shadow($cardBoxShadowDimensions $colorAccent);
             @include transform(translate3d(0,0,0));
             @include transition(.25s $defaultCurve);
             @include transition-property(opacity,
@@ -156,10 +161,18 @@ section.container section.space {
             &.image {
                 width: $articleWidth;
                 border: $cardBorder;
+                border-color: transparent;
             }
             
             &.website {
                 border: $cardBorder;
+                                
+                &:hover {
+                    .text {
+                        border-top-color: $colorAccent !important;
+                        color: $colorAccent;
+                    }
+                }                
                 
                 .text {
                     position: relative;
@@ -169,8 +182,21 @@ section.container section.space {
                     border-top: $cardBorder;
                     
                     &:hover {
-                        @include hoverLinkAnimation;
-                        border-color: $colorType !important;
+//                         @include hoverLinkAnimation;
+                        background-color: $colorAccent;
+                        color: $colorTypeLight;
+                    }
+                    
+                    &:after {
+                        content: "›";
+                        font-size: $typeHeaderSize;
+                        font-weight: $fontWeightLight;
+                        position: absolute;
+                        display: block;
+                        height: 1em;
+                        margin-top: -.75em;
+                        top: 50%;
+                        right: $gutter/4;
                     }
 
                     .title p {
@@ -178,7 +204,7 @@ section.container section.space {
                     }
 
                     .url p {
-                        margin-top: $leading/3;
+                        margin-top: $leading/4;
                         @include typeBody;
                     }
                 }

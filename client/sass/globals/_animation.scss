@@ -75,10 +75,14 @@ $hoverAnimationDuration: 5s;
 }
 
 @mixin hoverAnimation {
+/*
     -webkit-animation: hoverFlicker $hoverAnimationDuration infinite linear;
     -moz-animation:    hoverFlicker $hoverAnimationDuration infinite linear;
     -o-animation:      hoverFlicker $hoverAnimationDuration infinite linear;
     animation:         hoverFlicker $hoverAnimationDuration infinite linear;
+*/
+    color: $colorAccent;
+    border-color: $colorAccent;
 }
 
 // Warning Hover Animation
@@ -126,10 +130,14 @@ $hoverAnimationDuration: 5s;
 }
 
 @mixin hoverWarningAnimation {
+/*
     -webkit-animation: hoverWarningFlicker $hoverAnimationDuration infinite linear;
     -moz-animation:    hoverWarningFlicker $hoverAnimationDuration infinite linear;
     -o-animation:      hoverWarningFlicker $hoverAnimationDuration infinite linear;
     animation:         hoverWarningFlicker $hoverAnimationDuration infinite linear;
+*/
+    color: $colorAccent;
+    border-color: $colorAccent;
 }
 
 // Confirm Hover Animation
@@ -177,10 +185,14 @@ $hoverAnimationDuration: 5s;
 }
 
 @mixin hoverConfirmAnimation {
+/*
     -webkit-animation: hoverConfirmFlicker $hoverAnimationDuration infinite linear;
     -moz-animation:    hoverConfirmFlicker $hoverAnimationDuration infinite linear;
     -o-animation:      hoverConfirmFlicker $hoverAnimationDuration infinite linear;
     animation:         hoverConfirmFlicker $hoverAnimationDuration infinite linear;
+*/
+    color: $colorAccent;
+    border-color: $colorAccent;
 }
 
 // Link Hover Animation
@@ -218,8 +230,12 @@ $hoverAnimationDuration: 5s;
 }
 
 @mixin hoverLinkAnimation {
+/*
     -webkit-animation: hoverLinkFlicker $hoverAnimationDuration infinite linear;
     -moz-animation:    hoverLinkFlicker $hoverAnimationDuration infinite linear;
     -o-animation:      hoverLinkFlicker $hoverAnimationDuration infinite linear;
     animation:         hoverLinkFlicker $hoverAnimationDuration infinite linear;
+*/
+    color: blue;
+    border-color: blue;
 }

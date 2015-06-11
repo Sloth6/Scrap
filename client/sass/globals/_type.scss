@@ -32,7 +32,7 @@ $fontWeightBold:    400;
 
 
 $typeBodySize:      12pt;
-$typeBodyTracking:  .09375;
+$typeBodyTracking:  .09375em;
 $typeHeaderSize:    24pt;
 $leading:           1.5em;
 
@@ -47,7 +47,7 @@ $leading:           1.5em;
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
     font-weight:    $fontWeightRegular;
-    letter-spacing: .75pt;
+    letter-spacing: .03125em;
     line-height:    $leading;
 }
 
