@@ -10,6 +10,7 @@ $headerPadding: $baseline/4 $gutter;
     @include typeHeader;
     text-align: left;
     cursor: default;
+    text-transform: lowercase;
     
     a {
         border: 0;
@@ -24,7 +25,7 @@ $headerPadding: $baseline/4 $gutter;
         
         &.spaces {
             li a {
-                text-transform: capitalize;
+                text-transform: lowercase;
             }
         }
         
@@ -41,7 +42,7 @@ $headerPadding: $baseline/4 $gutter;
             li {
                 
                 &.user {
-                    text-transform: capitalize;
+                    text-transform: lowercase;
                 }
                 
                 form {
@@ -91,7 +92,7 @@ $headerPadding: $baseline/4 $gutter;
                     text-align: left;
                     
                     &#name {
-                        text-transform: capitalize;
+                        text-transform: lowercase;
                     }
                     
                     &[type=submit] {
