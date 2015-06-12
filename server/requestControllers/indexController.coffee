@@ -24,6 +24,7 @@ module.exports =
         return callback err if err?
         return indexPage res unless user?
         req.session.currentUserId = user.id
+        user.spaces.reverse()
         res.render 'meta-space.jade', { user, title:'' }
         callback()
     else
