@@ -1,4 +1,4 @@
-scaleMultiple     = 3
+scaleMultiple = 3
 
 $ ->
   window.userSettings = $('ul.menu.right.settings')
