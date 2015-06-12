@@ -97,8 +97,10 @@ body {
                             transform-origin: bottom right;
                     
                     &:hover {
+                        border-color: $colorAccent !important;
+                        color: $colorAccent;
                         @include transform($cardHoverScaleMin);
-                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
+                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
                     }
 
 /*
@@ -140,7 +142,7 @@ body {
                         position: absolute;
                         padding-top: ($gutter/4) * $scaleMultiple;
                         cursor: default;
-                        text-transform: capitalize;
+                        text-transform: lowercase;
                         top: 0;
                         left: 50%;
                         margin-left: -50vw;
@@ -163,6 +165,10 @@ body {
                         @include transform(scale3d(1.0, 1.0, 1.0) translate3d(-$cardBorderWidth * $scaleMultiple, -$cardBorderWidth * $scaleMultiple, 0px));
     //                     border-width: 0;
                         z-index: 2;
+                        
+                        &:hover {
+                            color: $colorType;
+                        }
                         
                         h1.spaceName {
                             @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(0px, 0px, 0px));

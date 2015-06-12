@@ -8,13 +8,15 @@ $colorWashLightTrans60:     rgba(255,255,255,.6);
 $colorWashLightTrans40:     rgba(255,255,255,.4);
 $colorWashLightTrans20:     rgba(255,255,255,.2);
 
-$colorCardBackground:       $colorWashLightTrans;
-$colorBackground:           $colorWashLight;
+$colorCardBackground:       $colorWashLight;
+$colorBackground:           #fffbf1;
+// $colorBackground:           $colorWashLight;
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
 
 $colorType:                 #000000;
-$colorAlert:                #fb2705;
+$colorAlert:                #ff0000;
+$colorAccent:               #ff2d00;
 
 // SPOT COLORS
 
@@ -56,7 +58,8 @@ body section.space section.content article {
     }
     
     &.color3 div.card.text.comment, &.color3 header  {
-        background-color: $color3trans;        
+        background-color: $color3trans;  
+        color: #fffbf1      
     }
     
     &.color4 div.card.text.comment, &.color4 header  {

@@ -3,29 +3,34 @@ $menuWidth: 40vw;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:   2.5pt;
-$cardBorder:        $cardBorderWidth solid $colorType;
-$cardBoxShadow:     $gutter $gutter 0 rgba(0,0,0,.6);
-
+$cardBorderWidth:           3pt;
+$cardBorder:                $cardBorderWidth solid $colorType;
+$cardBoxShadowDimensions:   $gutter $gutter 0 0;
+$cardBoxShadowColor:        $colorType;
+$cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardStyle {
     background-color: $colorCardBackground;
     border: $cardBorder;
     padding: $cardPadding;
-    transform-origin: bottom right;
+            transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
 }
 
 @mixin cardHover {
-    @include box-shadow($cardBoxShadow);
-    background-color: $colorWashLight;
-    @include transform($cardHoverScaleMin);
+    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    border-color: $colorAccent !important;
+    color: $colorAccent;
+    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin);
+    * { 
+        border-color: $colorAccent;
+    }
 }
 
 @mixin cardDrag {
     cursor: move;
-    @include transform($cardHoverScaleMax);
-    @include box-shadow($cardBoxShadow);
+    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin rotate(1.5deg));
+    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
 
 @mixin button {
@@ -75,7 +80,6 @@ label {
 
 @mixin placeHolderOverride {
     color: $colorType;
-    font-style: italic;
     opacity: 1;
     text-transform: none;
     
