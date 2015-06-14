@@ -6,6 +6,7 @@ $ ->
       x: event.clientX
       y: event.clientY
 
+    $(event.target).addClass('dragging')
     onScreenDrag = (event) ->
 
       screenScale = $('.content').css 'scale'
@@ -21,4 +22,6 @@ $ ->
   
     $(this).off 'mouseup'
     $(window).on 'mousemove', onScreenDrag
-    $(window).on 'mouseup', -> $(this).off 'mousemove', onScreenDrag
+    $(window).on 'mouseup', ->
+      $(event.target).removeClass 'dragging'
+      $(this).off 'mousemove', onScreenDrag
