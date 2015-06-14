@@ -1,7 +1,10 @@
 section.container {
-    width: 10000%;
-    height: 10000%;
     position: fixed;
+    cursor: text;
+    
+    &.dragging {
+        cursor: all-scroll;
+    }
     
     section.space {
         width:  100%;
