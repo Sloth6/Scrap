@@ -60,7 +60,7 @@ module.exports =
   spacePage : (req, res) ->
     showReadOnly = (space) ->
       res.render 'publicSpace.jade',
-        title : space.name
+        title : "#{space.name} on Hotpot"
         current_space: space
         names: nameMap space
 
@@ -102,7 +102,7 @@ module.exports =
         return res.send 400 if err
         users = (space.users.map (u) -> { name: u.name, id: u.id, email: u.email })
         res.render 'space.jade',
-          title : space.name
+          title : "#{space.name} on Hotpot"
           current_space: space
           current_user: user
           users: users

@@ -3,7 +3,7 @@ indexElements = require '../indexElements'
 
 indexPage = (res) ->
   res.render 'index.jade',
-    title : 'Welcome to Scrap!'
+    title : 'Hotpot: Collect & Share Anything Instantly'
     description: ''
     author: 'scrap'
     colors: {}
