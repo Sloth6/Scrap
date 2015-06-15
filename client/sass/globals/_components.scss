@@ -137,14 +137,14 @@ input {
 
 ul.menu {
     height: $baseline * 2;
-    position: relative;
+    position: absolute;
     display: inline-block;
     width: $menuWidth/2;
     white-space: nowrap;
     @include transition(1s $defaultCurve);
     @include transition-property(left, right);
     
-    &:hover, &.open {
+    &.open {
         @include transition(2s $defaultCurve);
         width: $menuWidth;
         
@@ -155,11 +155,11 @@ ul.menu {
             }
         }
     }
-
+    
     &.hideFirst {
         
         &.right {
-            &:hover, &.open {
+            &.open {
                 > li:nth-child(1) {
                     right: -50vw;
                 }
@@ -171,7 +171,7 @@ ul.menu {
         }
         
         &.left {
-            &:hover, &.open {
+            &.open {
                 > li:nth-child(1) {
                     left: -50vw;
                 }
@@ -191,15 +191,11 @@ ul.menu {
     
     &.left {
         float: left;
-        left: 0;
+        left: $gutter;
         
-        li {
+        li, &.open li.hidden {
 //             left: -50vw;
             @include transform(translate3d(-500.0px, 0.0, 0.0));
-            @include transition-property(left, opacity,
-                                         transform,
-                                 -webkit-transform,
-                                    -moz-transform);
             
             &:nth-of-type(1) {
 //                 left: 0;
@@ -214,10 +210,7 @@ ul.menu {
                 @include transform(translate3d(0.0, 0.0, 0.0));
 */
                 @include transition(.25s $defaultCurve);
-                @include transition-property(left, transform,
-                                     -webkit-transform,
-                                        -moz-transform);
-                
+                                
                 &:hover, &:active, &:focus {
                     left: $gutter;
 //                     @include transform(translate3d(25.0, 0.0, 0.0));
@@ -225,7 +218,7 @@ ul.menu {
             }
         }
         
-        &:hover, &.open {
+        &.open {
             li {
 //                 left: 0;
                 @include transform(translate3d(0, 0, 0))
@@ -236,16 +229,12 @@ ul.menu {
     &.right {
         float: right;
         text-align: right;
-        right: 0;
+        right: $gutter;
         
-        li {
+        li, &.open li.hidden {
 //             right: -50vw;
 //             right: 0;
             @include transform(translate3d(500.0px, 0.0, 0.0));
-            @include transition-property(right, opacity,
-                                         transform,
-                                 -webkit-transform,
-                                    -moz-transform);
             
             &:nth-of-type(1) {
 //                 right: 0;
@@ -264,9 +253,6 @@ ul.menu {
                 @include transform(translate3d(0.0, 0.0, 0.0));
 */
                 @include transition(.25s $defaultCurve);
-                @include transition-property(right, transform,
-                                     -webkit-transform,
-                                        -moz-transform);
                 
                 &:hover, &:active, &:focus {
                     right: $gutter;
@@ -275,7 +261,7 @@ ul.menu {
             }
         }
         
-        &:hover, &.open {
+        &.open {
             li {
 //                 right: 0;
                                 @include transform(translate3d(0, 0, 0))
@@ -296,12 +282,20 @@ ul.menu {
     
     li {
         position: relative;
+        height: $leading;
         @include transition(.5s $defaultCurve);
-    
+        @include transition-property(left, right, height, opacity,
+                                     transform,
+                             -webkit-transform,
+                                -moz-transform);
         &.heading {
             @include typeBody;
             text-transform: lowercase;
             padding-top: $leading;
+        }
+        
+        &.hidden {
+            height: 0;
         }
         
         form {
@@ -312,6 +306,9 @@ ul.menu {
             display: block;
             width: 100%;
             position: relative;
+            @include transition-property(left, right, transform,
+                                              -webkit-transform,
+                                                 -moz-transform);
         }
 /*
         

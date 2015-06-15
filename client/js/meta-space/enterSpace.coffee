@@ -3,12 +3,6 @@ scaleMultiple = 2
 $ ->
   window.userSettings = $('ul.menu.right.settings')
   elements = $('.spacePreview').not('.add')
-  
-  $('.headerSpaceName').click () ->
-    $('.headerSpaceName').hide()
-    $('.spaceForm').show()
-    $('.spaceForm :input').val $('.headerSpaceName').text()
-
   elements.click () ->
     spaceKey = $(@).data().spaceid
     history.pushState {name: "/s/#{spaceKey}"}, "", "/s/#{spaceKey}"
@@ -23,7 +17,6 @@ enterSpace = (spaceKey, parent, callback) ->
   #Take the name from the home page view and hide it.
   homeSpaceName = parent.find('.spaceName').hide()
 
-  #Create the iframe
   $('<iframe />', {
     name: 'spaceFrame'
     class:'spaceFrame'
@@ -45,27 +38,18 @@ enterSpace = (spaceKey, parent, callback) ->
       $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0)")
       $('ul.menu.settings').addClass('hidden')
       $('h1.logo').addClass('hidden')
+<<<<<<< HEAD
+=======
+      history.pushState {name: "/s/#{spaceId}"}, "", "/s/#{spaceId}"
+>>>>>>> 5e3c90a56895eb4f947b35f3eb4c8ec48c1566be
     , 500)
     
     setTimeout(() ->
       $('.container > header').append($("iframe").contents().find('.users.menu'))
-      window.userSettings.remove()
-
+#       window.userSettings.remove()
+    , 600)
+    
+    setTimeout(() ->
       $('.users.menu').removeClass('hidden')
       $('a.back').removeClass('hidden')
-
-
-      $('.headerSpaceName').show().text homeSpaceName.text()
-
-      callback() if callback
-      $('.spaceForm').submit (e) ->
-        e.preventDefault()
-        newName = $(@).find(':input').val()
-        $.post '/s/update', { spaceKey, name: newName }
-
-        $('.headerSpaceName').show().text newName
-        homeSpaceName.text newName
-        $(@).hide()
-
-      
     , 700)
