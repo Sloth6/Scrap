@@ -8,6 +8,7 @@ startPosition = {}
 
 longText = 50 #number of characters
 
+
 matrixToArray = (str) -> str.match(/(-?[0-9\.]+)/g)
 
 elementScale = (element) ->
