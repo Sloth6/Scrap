@@ -1,20 +1,17 @@
 $ ->
-  socket = io.connect()
+  window.socket = io.connect()
+  window.elementForm = $('.addElementForm').remove()
   mouse = { x: 0, y: 0 }
   $(window).on 'dragover', (event) ->
     event = event.originalEvent
-    # scale = $('.content').css 'scale'
-    mouse.x = event.clientX#(event.clientX - $('.content').offset().left) / scale
-    mouse.y = event.clientY#(event.clientY - $('.content').offset().top) / scale
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+
   $(window).on 'mousemove', (event) ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
-    # scale = $('.content').css 'scale'
-    # mouse.x = (event.clientX - $('.content').offset().left) / scale
-    # mouse.y = (event.clientY - $('.content').offset().top) / scale
-
-  window.oncontextmenu = () -> false
+  window.oncontextmenu = () ->false
 
   $(window).mousedown (event) ->
     if event.which is 3 #right mouse
@@ -34,7 +31,6 @@ $ ->
   #   if $('.add-element').length is 0
   #     addElement event, false
 
-# 
   # The options for s3-streamed file uploads, used later
   fileuploadOptions = () ->
     multipart = false
@@ -94,57 +90,54 @@ $ ->
     $('.drag-upload').fileupload fileuploadOptions()
 
   # adding a new element
-  emitElement = (x, y, content) ->
-    # Make sure to account for screen drag (totalDelta)
-    x = Math.round(x - totalDelta.x)
-    y = Math.round(y - totalDelta.y)
-    window.maxZ += 1
-    z = window.maxZ
-    content = encodeURIComponent content
-    if content != ''
-      data = { content, x, y, z, userId }
-      socket.emit 'newElement', data
 
-    $('.add-element').remove()
+emitElement = (x, y, content) ->
+  # Make sure to account for screen drag (totalDelta)
+  x = Math.round(x - totalDelta.x)
+  y = Math.round(y - totalDelta.y)
+  window.maxZ += 1
+  z = window.maxZ
+  content = encodeURIComponent content
+  if content != ''
+    data = { content, x, y, z, userId }
+    socket.emit 'newElement', data
 
-  addElement = (event, createdByCntrl) ->
-    eventX = event.clientX || mouse.x
-    eventY = event.clientY || mouse.y
-    scale = 1 / $('.content').css('scale')
-    x = (eventX - $('.content').offset().left) * scale
-    y = (eventY - $('.content').offset().top) * scale
+  $('.addElementForm').remove()
 
-    elementForm =
-      "<article class='add-element'>
-        <div class='card text comment'>
-          <textarea name='content' class='new' placeholder=''></textarea>
-        </div>
-      </article>"
+addElement = (event, createdByCntrl) ->
+  eventX = event.clientX || mouse.x
+  eventY = event.clientY || mouse.y
+  scale = 1 / $('.content').css('scale')
+  x = (eventX - $('.content').offset().left) * scale
+  y = (eventY - $('.content').offset().top) * scale
 
-    # add the new element form if not createdByCntrl
-    $('.content').append elementForm
-    $('.add-element')
-      .css
-        scale: scale
-        "transform-origin": "top left"
-        'z-index': "#{window.maxZ + 1}"
-        top: "#{y}px"
-        left: "#{x}px"
-      .on 'click', (event) -> event.stopPropagation()
-    # allow file uploads
-    # if not createdByCntrl
-    #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
+  input = elementForm.find('.textInput')
+  input.off 'keyup'
+  elementForm.find('.textInput,.urlInput').val('')
+  # add the new element form if not createdByCntrl
+  elementForm.
+    css
+      scale: scale
+      "transform-origin": "top left"
+      'z-index': "#{window.maxZ + 1}"
+      top: "#{y}px"
+      left: "#{x}px"
+    .appendTo $('.content')
+    .on 'click', (event) -> event.stopPropagation()
+  # allow file uploads
+  # if not createdByCntrl
+  #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
 
-    $('textarea.new').focus().autoGrow()
-    
-    if createdByCntrl
-      setTimeout(() ->
-        content = $('.add-element .new').val()
+  input.focus().autoGrow()
+  
+  if createdByCntrl
+    setTimeout(() ->
+      content = input.val()
+      emitElement x, y, content
+    , 20)
+  else 
+    input.on 'keyup', (event) ->
+      # on enter (not shift + enter)
+      if event.keyCode is 13 and not event.shiftKey
+        content = input.val()
         emitElement x, y, content
-      , 20)
-    else 
-      $('textarea.new').on 'keyup', (event) ->
-          # on enter (not shift + enter)
-          if event.keyCode is 13 and not event.shiftKey
-            content = $('.add-element .new').val()
-            emitElement x, y, content

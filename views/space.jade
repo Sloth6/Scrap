@@ -25,6 +25,15 @@ block content
   
     section.content
       
+      article.addElementForm
+        ul
+          li.text.url.closed.hidden
+            input.urlInput(type="text")
+          li.text.note.closed.hidden
+            textarea.textInput
+          li.button.hidden
+            input.fileUpload(type="file")
+
       each element in current_space.elements
         if element.z > maxZ
           - maxZ = element.z
