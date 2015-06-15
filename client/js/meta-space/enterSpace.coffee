@@ -1,4 +1,4 @@
-scaleMultiple = 3
+scaleMultiple = 2
 
 $ ->
   window.userSettings = $('ul.menu.right.settings')
@@ -14,9 +14,9 @@ $ ->
   
 enterSpace = (spaceKey, parent) ->
   url = window.location+"r/"+spaceKey
-  offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + $('.metaspace').width()/scaleMultiple  - (parent.width()  * .1275)
-  offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + $('.metaspace').height()/scaleMultiple - (parent.height() * .1285)
-  
+  offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + parent.parent().width()/4  - (parent.width()  * .0635)
+  offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + parent.parent().height()/4 - (parent.height() * .0635)
+
   #Take the name from the home page view and hide it.
   homeSpaceName = parent.find('.spaceName').hide()
 

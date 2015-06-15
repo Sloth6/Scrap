@@ -1,4 +1,4 @@
-$scaleMultiple: 3;
+$scaleMultiple: 2;
 $openSpaceDuration: 1s;
 
 body {
@@ -42,9 +42,8 @@ body {
             height: 100vh * $scaleMultiple;
             width:  100vw * $scaleMultiple;
             position: absolute;
-                            overflow: scroll;
-            top:  -(100vh * $scaleMultiple) / $scaleMultiple;
-            left: -(100vw * $scaleMultiple) / $scaleMultiple;
+            top:  -(100vh * $scaleMultiple) / 4;
+            left: -(100vw * $scaleMultiple) / 4;
             -webkit-transform-origin: center center;
                     transform-origin: center center;
             @include transition($openSpaceDuration linear);
@@ -62,9 +61,11 @@ body {
                 text-align: center;
                 position: absolute;
                 overflow: scroll;
-                height: 100vh * $scaleMultiple;
+                cursor: -webkit-zoom-out;
+                height: 400vh * $scaleMultiple;
                 width:  100vw * $scaleMultiple;
-                top:  0;
+                padding-top: 150vh * $scaleMultiple;
+                top: -150vh * $scaleMultiple;
                 left: 0;
                 -webkit-transform-origin: center center;
                         transform-origin: center center;
@@ -83,8 +84,8 @@ body {
                                             box-shadow);
                     height: 100vh;
                     width:  100vw;
-                    -webkit-transform-origin: top left;
-                            transform-origin: top left;
+                    -webkit-transform-origin: center center;
+                            transform-origin: center center;
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center center;
@@ -95,22 +96,22 @@ body {
                     border-width: $cardBorderWidth * $scaleMultiple;
                     margin: $col/2 $col/2;
                     @include transform(scale3d(1.0, 1.0, 1.0));
-                    -webkit-transform-origin: bottom right;
-                            transform-origin: bottom right;
+                    
+                    &:last-of-type {
+                        margin-bottom: 900vh;
+                    }
                     
                     &:hover {
                         border-color: $colorAccent !important;
+                                            -webkit-transform-origin: center center;
                         color: $colorAccent;
-                        @include transform($cardHoverScaleMin);
-                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
-                    }
+                        @include transform(scale3d(1.125, 1.125, 1.0));
+//                         @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
 
-/*
-                    &:active {
-                        @include transform($cardHoverScaleMax);
-                        @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 rgba(0,0,0,.6));
+                        h1.spaceName span {
+                            @include transform(scale3d(0.89, 0.89, 1.0));
+                        }
                     }
-*/
                     
                     &.add {
                         border-style: dashed;
@@ -161,6 +162,18 @@ body {
                                              -webkit-transform,
                                                 -moz-transform,
                                                      opacity);
+                        
+                        span { // so that h1 can have multiple timing curves for different UI states
+                            display: block;
+                            -webkit-transform-origin: bottom center;
+                                    transform-origin: bottom center;
+                            @include transform(scale3d(1.0, 1.0, 1.0));
+                            @include transition(.25s $defaultCurve);
+                            @include transition-property(transform,
+                                                 -webkit-transform,
+                                                    -moz-transform);
+
+                        }
                     }
     
                     &.open {
@@ -174,6 +187,10 @@ body {
                         
                         h1.spaceName {
                             @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(0px, 0px, 0px));
+                            
+                            span {
+                                @include transform(scale3d(1.0, 1.0, 1.0));
+                            }
                         }
                         
                         iframe.spaceFrame {
