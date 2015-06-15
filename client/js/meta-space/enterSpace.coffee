@@ -38,10 +38,7 @@ enterSpace = (spaceKey, parent, callback) ->
       $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0)")
       $('ul.menu.settings').addClass('hidden')
       $('h1.logo').addClass('hidden')
-<<<<<<< HEAD
-=======
-      history.pushState {name: "/s/#{spaceId}"}, "", "/s/#{spaceId}"
->>>>>>> 5e3c90a56895eb4f947b35f3eb4c8ec48c1566be
+
     , 500)
     
     setTimeout(() ->
