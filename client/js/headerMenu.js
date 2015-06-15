@@ -2,20 +2,31 @@ $(document).ready(function() {
     var menu = $("ul.menu"),
         space = $("section.space"),
         mask = $("<div class='mask'></div>"),
-        focused = false;
+        inputIsFocused = false,
+        subMenuIsOpen = false;
     
     menu.mouseenter(function() {
-        toggleMenu("open")
+        if (inputIsFocused || subMenuIsOpen) {
+            console.log("cantopenMenu")
+            return;
+        } else {
+                        console.log("openMenu")
+            toggleMenu("open")
+        }
     });
     
     menu.mouseleave(function() {
-        if (!(focused)) {
+        // if no inputs are focused and no submenus are open
+        if (inputIsFocused || subMenuIsOpen) {
+            return;
+        } else {
+            console.log("closeMenu")
             toggleMenu("close")
         }
     });
 
     menu.find("input").focus(function() {
-        focused = true;
+        inputIsFocused = true;
         toggleMenu("open")
     });
     
@@ -26,13 +37,33 @@ $(document).ready(function() {
             $("section.container").prepend(mask)                    
             $('.mask').click(function(){
                 toggleMenu("close")
-                console.log("HI")
             })
         } else {
             $(menu).removeClass("open");
             space.removeClass("obscured");
             mask.remove()
+            inputIsFocused = false;
+            subMenuIsOpen = false;
+            resetSubmenu()
         }
     }
     
+    function resetSubmenu() {
+        $("li.hideOnOpenSubmenu").removeClass("hidden") // reset hidden items
+        $("ul.menu.changeUserInfo").addClass("hidden") // collapse submenus
+    }
+    
+    // Settings menu
+    
+    $("li.update").click(function() {
+        inputIsFocused = true;
+        subMenuIsOpen = true;
+        $("ul.menu.submenu").removeClass("hidden")
+        $("li.hideOnOpenSubmenu").addClass("hidden")
+        console.log("subMenuIsOpen")
+    });
+    
+    $("ul.menu.submenu li.closeButton").click(function() {
+        resetSubmenu();
+    });
 });

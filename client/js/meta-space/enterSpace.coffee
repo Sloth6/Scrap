@@ -9,7 +9,7 @@ $ ->
 enterSpace = (spaceId, parent) ->
   url = window.location+"r/"+spaceId
   offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + parent.parent().width()/4  - (parent.width()  * .0635)
-  offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + parent.parent().height()/4 - (parent.height() * .0635)
+  offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + parent.parent().height()/4 - (parent.height() * .064)
 
   $('<iframe />', {
     name: 'spaceFrame'
@@ -37,7 +37,7 @@ enterSpace = (spaceId, parent) ->
     
     setTimeout(() ->
       $('.container > header').append($("iframe").contents().find('.users.menu'))
-      window.userSettings.remove()
+#       window.userSettings.remove()
     , 600)
     
     setTimeout(() ->

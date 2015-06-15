@@ -37,7 +37,7 @@ closeSpace = () ->
   
   setTimeout (->
     $('h1.logo').removeClass('hidden')
-    $('.menu.users').remove()
+#     $('.menu.users').remove()
     $('.menu.settings').removeClass('hidden')
   ), 500
   setTimeout (->
