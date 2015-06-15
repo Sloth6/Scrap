@@ -42,7 +42,6 @@ body {
             height: 100vh * $scaleMultiple;
             width:  100vw * $scaleMultiple;
             position: absolute;
-            background: orange;
             top:  -(100vh * $scaleMultiple) / 4;
             left: -(100vw * $scaleMultiple) / 4;
             -webkit-transform-origin: center center;
@@ -62,7 +61,6 @@ body {
                 text-align: center;
                 position: absolute;
                 overflow: scroll;
-                background: green;
                 cursor: -webkit-zoom-out;
                 height: 400vh * $scaleMultiple;
                 width:  100vw * $scaleMultiple;
