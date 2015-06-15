@@ -80,7 +80,7 @@ label {
 
 @mixin placeHolderOverride {
     color: $colorType;
-    opacity: 1;
+    opacity: .25;
     text-transform: none;
     
     &:hover {
