@@ -42,7 +42,7 @@ closeSpace = () ->
 
   setTimeout (->
     $('h1.logo').removeClass('hidden')
-#     $('.menu.users').remove()
+    $('.menu.users').remove()
     $('.menu.settings').removeClass('hidden')
     openSpace.find('.spaceName').text($('.headerSpaceName').text()).show()
     $('.headerSpaceName').hide()
