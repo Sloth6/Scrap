@@ -42,5 +42,5 @@ enterSpace = (spaceId, parent) ->
     
     setTimeout(() ->
       $('.users.menu').removeClass('hidden')
-      $('a.back').removeClass('hidden')
+      $('header > a.back').removeClass('hidden')
     , 700)

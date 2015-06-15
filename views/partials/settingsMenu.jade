@@ -1,19 +1,19 @@
 ul.menu.settings.right.hideFirst
-  li.hideOnOpenSubmenu= user.name
-  li.update.hideOnOpenSubmenu Update your info
+  li.first.hideOnOpenSubmenu= user.name
+  li.update.hideOnOpenSubmenu
+    a(href="#") Update your info
+  ul.submenu
+    li.hidden.closeButton
+      a(href="#") ‹ Back
+    li.hidden
+      form
+        li.inputText.hidden
+          input(type="text", name="user[email]", placeholder="new name")
+        li.inputText.hidden
+          input(type="password", name="user[email]", placeholder="new password")
+        li.inputText.hidden
+          input(type="email", name="user[email]", placeholder="new email address")
+        li.save.closeButton.hidden
+          input(type="button", value="save")
   li.logout.hideOnOpenSubmenu
     a.logout(href="/logout") Logout
-  li
-    ul.menu.submenu.changeUserInfo.right.hidden
-      li
-        label Update your account info
-      li
-        form
-          li
-            input(type="text", name="user[email]", placeholder="new name")
-          li
-            input(type="password", name="user[email]", placeholder="new password")
-          li
-            input(type="email", name="user[email]", placeholder="new email address")
-          li.save.closeButton
-            input(type="button", value="save")
