@@ -10,9 +10,12 @@ makeSpaceCreator = (elem) ->
     makeSpaceCreator addSpaceButton
 
     $.post '/s/new', { name: 'New Space' }, (spaceId) ->
-      enterSpace spaceId, elem
+      enterSpace spaceId, elem, () ->
+          console.log 'callback called'
+          $('.headerSpaceName').trigger 'click'
       elem.on 'click', () ->
         enterSpace spaceId, elem
+
 
   elem.on 'click', createNew
 

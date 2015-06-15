@@ -17,6 +17,9 @@ module.exports = (server) ->
   server.post '/s/new', (req, res) ->
     controllers.spaceController.newSpace req, res, errorHandler
 
+  server.post '/s/update', (req, res) ->
+    controllers.spaceController.updateSpace req, res, errorHandler
+
   server.get '/s/:spaceKey', (req, res) ->
     controllers.spaceController.spacePage req, res, errorHandler
 
