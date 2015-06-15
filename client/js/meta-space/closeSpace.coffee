@@ -1,16 +1,3 @@
-$ ->
-  history.pushState {name: "metaspace"}, "", "/"
-
-  window.onpopstate = (event) ->
-    page = event.state.name
-    if page is 'metaspace'
-      closeSpace()
-
-  $('.back').click (event) ->
-    event.preventDefault()
-    closeSpace()
-    history.back()
-
 closeSpace = () ->
   openSpace = $('.spacePreview.open')
   

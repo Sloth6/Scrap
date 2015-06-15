@@ -6,6 +6,7 @@ block scripts
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")  
   script(src="/js/headerMenu.js")
+  script(src="/js/meta-space/globals.js")
   script(src="/js/meta-space/enterSpace.js")
   script(src="/js/meta-space/closeSpace.js")
   script(src="/js/meta-space/newSpace.js")
@@ -30,6 +31,6 @@ block content
           New Space
       each space in user.spaces
         - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
-        div.spacePreview(data-spaceId = space.spaceKey, style=imageCss)
+        div.spacePreview(data-spaceId = space.spaceKey, style=imageCss, class= space.spaceKey)
           h1.spaceName
             span= space.name

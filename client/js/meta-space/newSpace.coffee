@@ -9,12 +9,13 @@ makeSpaceCreator = (elem) ->
     $('section.content').prepend addSpaceButton
     makeSpaceCreator addSpaceButton
 
-    $.post '/s/new', { name: 'New Space' }, (spaceId) ->
-      enterSpace spaceId, elem, () ->
-          console.log 'callback called'
+    $.post '/s/new', { name: 'New Space' }, (spaceKey) ->
+      history.pushState {name: "/s/#{spaceKey}"}, "", "/s/#{spaceKey}"
+      elem.addClass spaceKey
+      enterSpace spaceKey, elem, () ->
           $('.headerSpaceName').trigger 'click'
       elem.on 'click', () ->
-        enterSpace spaceId, elem
+        enterSpace spaceKey, elem
 
 
   elem.on 'click', createNew
