@@ -12,7 +12,7 @@ $ ->
   elements.click () ->
     enterSpace $(@).data().spaceid, $(@)
   
-enterSpace = (spaceKey, parent) ->
+enterSpace = (spaceKey, parent, callback) ->
   url = window.location+"r/"+spaceKey
   offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + parent.parent().width()/4  - (parent.width()  * .0635)
   offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + parent.parent().height()/4 - (parent.height() * .0635)
@@ -55,6 +55,7 @@ enterSpace = (spaceKey, parent) ->
 
       $('.headerSpaceName').show().text homeSpaceName.text()
 
+      callback() if callback
       $('.spaceForm').submit (e) ->
         e.preventDefault()
         newName = $(@).find(':input').val()
@@ -63,4 +64,6 @@ enterSpace = (spaceKey, parent) ->
         $('.headerSpaceName').show().text newName
         homeSpaceName.text newName
         $(@).hide()
+
+      
     , 700)

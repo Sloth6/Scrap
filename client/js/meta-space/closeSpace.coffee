@@ -14,6 +14,9 @@ $ ->
 closeSpace = () ->
   openSpace = $('.spacePreview.open')
   
+  if $('.spaceForm').is(":visible")
+    $('.spaceForm').trigger('submit')
+  
   # update the url
   bg = $('.spacePreview.open').css 'background-image'
   
@@ -26,15 +29,17 @@ closeSpace = () ->
   $('.container > header').append(window.userSettings)
   $('.menu.settings').addClass('hidden')
   
-  $('.metaspace').addClass('closed');
-  $('.metaspace').removeClass('open');
+  $('.metaspace').addClass('closed')
+  $('.metaspace').removeClass('open')
   $(".metaspace").css("transform", "translate3d(0px, 0px, 0px)");
   $(".metaspace > section.content").css("transform", "scale3d("+1.0/scaleMultiple+","+ 1.0/scaleMultiple+","+ 1.0+")")
   $(".spacePreview").not($(this)).removeClass("hidden")
-  $(".spacePreview").removeClass('open');
+  $(".spacePreview").removeClass('open')
   $('a.back').addClass('hidden')
   $('.menu.users').addClass('hidden')
-  
+
+
+
   setTimeout (->
     $('h1.logo').removeClass('hidden')
     $('.menu.users').remove()

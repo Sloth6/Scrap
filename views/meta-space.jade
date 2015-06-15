@@ -16,9 +16,10 @@ block content
       a Hotpot
     a(class="back hidden", href='/', title='Back to home') ‹
     
-    h1.headerSpaceName(hidden=true) 
+    h1.headerSpaceName(hidden=true)
+    //- textarea.spaceForm(class='spaceForm',placeholder='')
     form.spaceForm(action="/s/update", method="post", hidden=true)
-      input(type="text", name="spaceForm", placeholder="")
+      input(type="text", class="spaceForm", placeholder="")
 
     include partials/settingsMenu
     
