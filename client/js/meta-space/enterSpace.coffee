@@ -27,26 +27,26 @@ enterSpace = (spaceKey, parent, callback) ->
     event.stopPropagation()
   ).
   prependTo(parent).
-  ready () =>    
-    setTimeout(() =>
-      $('.home').show()
-      $(".spacePreview").not(parent).addClass("hidden")
-      parent.addClass("open")
-      $('.metaspace').addClass('open')
-      $('.metaspace').removeClass('closed')
-      $(".metaspace > section.content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
-      $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0)")
-      $('ul.menu.settings').addClass('hidden')
-      $('h1.logo').addClass('hidden')
-
-    , 500)
-    
-    setTimeout(() ->
-      $('.container > header').append($("iframe").contents().find('.users.menu'))
-#       window.userSettings.remove()
-    , 600)
-    
-    setTimeout(() ->
-      $('.users.menu').removeClass('hidden')
-      $('a.back').removeClass('hidden')
-    , 700)
+  load () ->
+    $('.home').show()
+    $(".spacePreview").not(parent).addClass("hidden")
+    parent.addClass("open")
+    $('.metaspace').addClass('open')
+    $('.metaspace').removeClass('closed')
+    $(".metaspace > section.content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
+    $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0)")
+    $('ul.menu.settings').addClass('hidden')
+    $('h1.logo').addClass('hidden')
+    $('.container > header').append($("iframe").contents().find('.users.menu'))
+    $('.users.menu').removeClass('hidden')
+    $('a.back').removeClass('hidden')
+    $('.headerSpaceName').show().text homeSpaceName.text()   
+    callback() if callback   
+    $('.spaceForm').submit (e) ->    
+      e.preventDefault()   
+      newName = $(@).find(':input').val()    
+      $.post '/s/update', { spaceKey, name: newName }    
+ 
+      $('.headerSpaceName').show().text newName    
+      homeSpaceName.text newName   
+      $(@).hide()
