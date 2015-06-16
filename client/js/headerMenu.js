@@ -10,7 +10,7 @@ $(document).ready(function() {
             console.log("cantopenMenu")
             return;
         } else {
-                        console.log("openMenu")
+            console.log("openMenu")
             toggleMenu("open")
         }
     });
@@ -41,10 +41,10 @@ $(document).ready(function() {
         } else {
             $(menu).removeClass("open");
             space.removeClass("obscured");
-            mask.remove()
+            mask.remove();
             inputIsFocused = false;
             subMenuIsOpen = false;
-            resetSubmenu()
+            resetSubmenu();
         }
     }
     
@@ -54,7 +54,6 @@ $(document).ready(function() {
     }
     
     // Settings menu
-    
     $("li.update").click(function() {
         inputIsFocused = true;
         subMenuIsOpen = true;

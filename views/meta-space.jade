@@ -2,10 +2,14 @@ extends layout
 
 block scripts
   include partials/baseScripts
+  script.
+    userId = parseInt("#{user.id}");
   script(src="/js/jquery/jquery.autogrowtextarea.min.js")
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")  
   script(src="/js/headerMenu.js")
+  script(src="/js/meta-space/settingsMenu.js")
+
   script(src="/js/meta-space/globals.js")
   script(src="/js/meta-space/enterSpace.js")
   script(src="/js/meta-space/closeSpace.js")

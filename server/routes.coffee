@@ -35,6 +35,9 @@ module.exports = (server) ->
   server.post '/register', (req, res) ->
     controllers.userController.newUser req, res, errorHandler
 
+  server.post '/updateUser', (req, res) ->
+    controllers.userController.updateUser req, res, errorHandler
+
   server.get '/sign_s3', (req, res) ->
     controllers.spaceController.uploadFile req, res, errorHandler
     

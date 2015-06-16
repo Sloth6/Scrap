@@ -1,5 +1,5 @@
 ul.menu.settings.right.hideFirst
-  li.hideOnOpenSubmenu= user.name
+  li.userName.hideOnOpenSubmenu= user.name
   li.update.hideOnOpenSubmenu Update your info
   li.logout.hideOnOpenSubmenu
     a.logout(href="/logout") Logout
@@ -10,10 +10,10 @@ ul.menu.settings.right.hideFirst
       li
         form
           li
-            input(type="text", name="user[email]", placeholder="new name")
+            input.name(type="text", name="user[email]", placeholder="new name")
           li
-            input(type="password", name="user[email]", placeholder="new password")
+            input.password(type="password", name="user[email]", placeholder="new password")
           li
-            input(type="email", name="user[email]", placeholder="new email address")
-          li.save.closeButton
+            input.email(type="email", name="user[email]", placeholder="new email address")
+          li.closeButton
             input(type="button", value="save")
