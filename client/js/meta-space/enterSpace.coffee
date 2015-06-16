@@ -37,11 +37,10 @@ enterSpace = (spaceKey, parent, callback) ->
 
     $(".content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
     $('ul.menu.settings').addClass('hidden')
-    
     $('h1.logo').addClass('hidden')
     $('.container > header').append($("iframe").contents().find('.users.menu'))
     $('.users.menu').removeClass('hidden')
-    $('a.back').removeClass('hidden')
+    $('header > a.back').removeClass('hidden')
 
     $('.headerSpaceName').show().text homeSpaceName.text()   
     callback() if callback   

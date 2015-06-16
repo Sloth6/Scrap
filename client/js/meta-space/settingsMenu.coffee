@@ -5,8 +5,8 @@ validate = (name, password, email) ->
   return true
 
 $ ->
-  menu = $('ul.menu.submenu')
-  saveButton = $("ul.menu.submenu li.closeButton")
+  menu = $('.menu.settings')
+  saveButton = menu.find(':button')
   saveButton.off 'click'
   saveButton.click () ->
     name = menu.find('.name').val()
@@ -17,7 +17,7 @@ $ ->
     if not validate(name, password, email)
       return
 
-    fail = () ->
+    done = () ->
       alert('Updated successfully.')
       $('.menu.settings .userName').text name
       $("li.hideOnOpenSubmenu").removeClass("hidden")
@@ -26,6 +26,6 @@ $ ->
     fail = () ->
       alert 'Ooops, there was an error.'
 
-    $.post('/updateUser', {userId, name, email}).done(fail).fail(fail)
+    $.post('/updateUser', {userId, name, email}).done(done).fail(fail)
 
 

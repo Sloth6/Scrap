@@ -41,28 +41,28 @@ $(document).ready(function() {
         } else {
             $(menu).removeClass("open");
             space.removeClass("obscured");
-            mask.remove();
-            inputIsFocused = false;
-            subMenuIsOpen = false;
-            resetSubmenu();
+            mask.remove()
+            resetSubmenu()
         }
     }
     
     function resetSubmenu() {
-        $("li.hideOnOpenSubmenu").removeClass("hidden") // reset hidden items
-        $("ul.menu.changeUserInfo").addClass("hidden") // collapse submenus
+        $("ul.submenu li").addClass("hidden")
+        $("li.hideOnOpenSubmenu").removeClass("hidden")
+        inputIsFocused = false;
+        subMenuIsOpen = false;
     }
     
     // Settings menu
     $("li.update").click(function() {
         inputIsFocused = true;
         subMenuIsOpen = true;
-        $("ul.menu.submenu").removeClass("hidden")
+        $("ul.submenu li.hidden").removeClass("hidden")
         $("li.hideOnOpenSubmenu").addClass("hidden")
         console.log("subMenuIsOpen")
     });
     
-    $("ul.menu.submenu li.closeButton").click(function() {
+    $("ul.menu li.closeButton").click(function() {
         resetSubmenu();
     });
 });
