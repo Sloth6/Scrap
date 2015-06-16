@@ -14,6 +14,11 @@ elementScale = (element) ->
   matrix = element.css('transform') or element.css('-webkit-transform')
   matrixToArray(matrix)[0]
 
+elementPosition = (element) ->
+  x = parseInt element.css('left')
+  y = parseInt element.css('top')
+  {x, y}
+
 dimension = (elem) ->
   scale = $('.content').css('scale')
   elemScale = elementScale elem
@@ -27,7 +32,6 @@ scaleControls = (control) ->
   newControlScale   = ((1 / spaceScale) * controlScale) * .75
   control.css         'transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
   control.css '-webkit-transform', 'scale3d(' + newControlScale + ',' + newControlScale + ', 1.0)'
-
 
 # Get all comments attached to an element in zindex order.
 getComments = (elem) ->

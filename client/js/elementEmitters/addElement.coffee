@@ -5,9 +5,7 @@ getUploadLocation = (names, onDrag) ->
     x = (mouse.x - $('.content').offset().left) / screenScale
     y = (mouse.y - $('.content').offset().top) / screenScale
   else
-    {top, left} = $('.addElementForm').position()
-    x = parseInt $('.addElementForm').css('left')
-    y = parseInt $('.addElementForm').css('top')
+    { x, y } = elementPosition $('.addElementForm')
 
   for name in names
     locations[name] = {x, y}
@@ -72,7 +70,7 @@ $ ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
-  window.oncontextmenu = () ->false
+  window.oncontextmenu = () -> false
 
   $(window).mousedown (event) ->
     if event.which is 3 #right mouse
@@ -87,6 +85,12 @@ $ ->
     # ensure the add element panel is not already open.
     if $('.addElementForm').length is 0
       addElement event, true
+    else
+      setTimeout (() ->
+        if $('input.urlInput').val() != ''
+          { x, y } = elementPosition $('.addElementForm')
+          emitElement x, y, $('input.urlInput').val()), 100
+
   
   # $(window).keypress (event) -> 
   #   if $('.addElementForm').length is 0
