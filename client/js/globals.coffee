@@ -38,6 +38,7 @@ getComments = (elem) ->
     []
 
 $ ->
+  window.socket = io.connect()
   $('.menu').mousedown (e) ->
     e.stopPropagation()
   $('.menu').mouseup (e) ->

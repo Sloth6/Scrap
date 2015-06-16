@@ -32,7 +32,15 @@ block content
           li.text.note.closed.hidden
             textarea.textInput
           li.button.hidden
-            input.fileUpload(type="file")
+            form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
+              input(type='hidden', name='key')
+              input(type='hidden', name='AWSAccessKeyId', value="AKIAJKJJR5OLTKWMMHSA")
+              input(type='hidden', name='acl', value='public-read')
+              input(type='hidden', name='policy')
+              input(type='hidden', name='signature')
+              input(type='hidden', name='success_action_status', value='201')
+              input(type='hidden', name='Content-Type')
+              input(type='file', class='file-input', name='file')
 
       each element in current_space.elements
         if element.z > maxZ

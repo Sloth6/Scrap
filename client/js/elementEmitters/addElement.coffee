@@ -1,7 +1,70 @@
+locations = {}
+getUploadLocation = (names, onDrag) ->
+  console.log names, onDrag
+  screenScale = $('.content').css 'scale'
+  if onDrag
+    x = (mouse.x - $('.content').offset().left) / screenScale
+    y = (mouse.y - $('.content').offset().top) / screenScale
+  else
+    {top, left} = $('.addElementForm').position()
+    x = parseInt $('.addElementForm').css('left')
+    y = parseInt $('.addElementForm').css('top')
+
+  for name in names
+    locations[name] = {x, y}
+
+fileuploadOptions = (onDrag) ->
+  console.log {onDrag}
+  multipart = false
+  url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
+  type: 'POST'
+  autoUpload: true
+  dataType: 'xml' # S3's XML response
+  add: (event, add_data) ->
+    getUploadLocation (file.name for file in add_data.originalFiles), onDrag
+    $.ajax "/sign_s3", {
+      type: 'GET'
+      dataType: 'json'
+      data:# Send filename to /signed for the signed response 
+        title: add_data.files[0].name
+        type: add_data.files[0].type
+        spaceKey: spaceKey
+      async: false
+      success: (success_data) ->
+        file_name = success_data.key.split('/').pop()
+        createLoadingElement locations[file_name], file_name.split('.')[0]
+        # Now that we have our data, we update the form so it contains all
+        # the needed data to sign the request
+        $('input[name=key]').val success_data.key
+        $('input[name=policy]').val success_data.policy
+        $('input[name=signature]').val success_data.signature
+        $('input[name=Content-Type]').val success_data.contentType
+    }
+    add_data.submit()
+
+  send: (e, data) ->
+    # Determine if this was a multiple upload
+    if data.originalFiles.length > 1
+      multipart = true
+
+  progress: (e, data)->
+    percent = Math.round((e.loaded / e.total) * 100)
+    console.log 'progress', percent
+
+  fail: (e, data) ->
+    console.log 'fail', e, data
+
+  success: (data) ->
+
+    # Find location value from XML response
+    content = decodeURIComponent $(data).find('Location').text()
+    file_name = content.split('/').pop()
+    { x, y } = locations[file_name]# getUploadLocation onDrag
+    emitElement x, y, content
+
 $ ->
-  window.socket = io.connect()
   window.elementForm = $('.addElementForm').remove()
-  mouse = { x: 0, y: 0 }
+  window.mouse = { x: 0, y: 0 }
   $(window).on 'dragover', (event) ->
     event = event.originalEvent
     mouse.x = event.clientX
@@ -32,64 +95,11 @@ $ ->
   #     addElement event, false
 
   # The options for s3-streamed file uploads, used later
-  fileuploadOptions = () ->
-    multipart = false
-    startData =
-      x: 0
-      y: 0
-      scale: 1
 
-    url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
-    type: 'POST'
-    autoUpload: true
-    dataType: 'xml' # S3's XML response
-    add: (event, add_data) ->
-      screenScale = $('.content').css 'scale'
-      startData.x = (mouse.x - $('.content').offset().left) / screenScale
-      startData.y = (mouse.y - $('.content').offset().top) / screenScale
-      startData.scale = screenScale
-
-      $.ajax "/sign_s3", {
-        type: 'GET'
-        dataType: 'json'
-        data:# Send filename to /signed for the signed response 
-          title: add_data.files[0].name
-          type: add_data.files[0].type
-          spaceKey: spaceKey
-        async: false
-        success: (success_data) ->
-          file_name = success_data.key.split('/').pop().split('.')[0]
-          createLoadingElement startData, file_name
-          # Now that we have our data, we update the form so it contains all
-          # the needed data to sign the request
-          $('input[name=key]').val success_data.key
-          $('input[name=policy]').val success_data.policy
-          $('input[name=signature]').val success_data.signature
-          $('input[name=Content-Type]').val success_data.contentType
-      }
-      add_data.submit()
-
-    send: (e, data) ->
-      # Determine if this was a multiple upload
-      if data.originalFiles.length > 1
-        multipart = true
-
-    progress: (e, data)->
-      percent = Math.round((e.loaded / e.total) * 100)
-      console.log 'progress', percent
-
-    fail: (e, data) ->
-      console.log 'fail', data
-
-    success: (data) ->
-      content = decodeURIComponent $(data).find('Location').text(); # Find location value from XML response
-      emitElement startData.x, startData.y, content
 
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
-    $('.drag-upload').fileupload fileuploadOptions()
-
-  # adding a new element
+    $('.drag-upload').fileupload fileuploadOptions(true)
 
 emitElement = (x, y, content) ->
   # Make sure to account for screen drag (totalDelta)
@@ -125,8 +135,8 @@ addElement = (event, createdByCntrl) ->
     .appendTo $('.content')
     .on 'click', (event) -> event.stopPropagation()
   # allow file uploads
-  # if not createdByCntrl
-  #   $('.direct-upload').fileupload fileuploadOptions x, y, null, screenScale
+  if not createdByCntrl
+    $('.direct-upload').fileupload fileuploadOptions(false)
 
   input.focus().autoGrow()
   
