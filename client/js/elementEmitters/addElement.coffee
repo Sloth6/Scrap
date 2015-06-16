@@ -89,7 +89,7 @@ $ ->
       setTimeout (() ->
         if $('input.urlInput').val() != ''
           { x, y } = elementPosition $('.addElementForm')
-          emitElement x, y, $('input.urlInput').val()), 100
+          emitElement x, y, $('input.urlInput').val()), 20
 
   
   # $(window).keypress (event) -> 

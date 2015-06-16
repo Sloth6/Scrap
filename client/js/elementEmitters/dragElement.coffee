@@ -2,7 +2,7 @@ draggableOptions = (socket) ->
   start: (event, ui) ->
     elem = $(this)
     screenScale = $('.content').css 'scale'
-    $(window).off 'mousemove'
+    $(window).off 'mousemove', onScreenDrag
     click.x = event.clientX
     click.y = event.clientY
     
