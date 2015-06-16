@@ -1,6 +1,5 @@
 locations = {}
 getUploadLocation = (names, onDrag) ->
-  console.log names, onDrag
   screenScale = $('.content').css 'scale'
   if onDrag
     x = (mouse.x - $('.content').offset().left) / screenScale
@@ -14,7 +13,6 @@ getUploadLocation = (names, onDrag) ->
     locations[name] = {x, y}
 
 fileuploadOptions = (onDrag) ->
-  console.log {onDrag}
   multipart = false
   url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
   type: 'POST'
@@ -79,19 +77,19 @@ $ ->
   $(window).mousedown (event) ->
     if event.which is 3 #right mouse
       event.preventDefault()
-      $('.add-element').remove()
+      $('.addElementForm').remove()
       addElement event, false
   
   $(window).on 'click', (event) ->
-    $('.add-element').remove()
+    $('.addElementForm').remove()
   
   $(window).bind 'paste', (event) ->
     # ensure the add element panel is not already open.
-    if $('.add-element').length is 0
+    if $('.addElementForm').length is 0
       addElement event, true
   
   # $(window).keypress (event) -> 
-  #   if $('.add-element').length is 0
+  #   if $('.addElementForm').length is 0
   #     addElement event, false
 
   # The options for s3-streamed file uploads, used later
