@@ -15,7 +15,7 @@ enterSpace = (spaceKey, parent, callback) ->
   offsetTop  = $(window).scrollTop() - parent.offset().top*2
 
   #Take the name from the home page view and hide it.
-  homeSpaceName = parent.find('.spaceName').hide()
+  
 
   $('<iframe />', {
     name: 'spaceFrame'
@@ -29,7 +29,7 @@ enterSpace = (spaceKey, parent, callback) ->
   prependTo(parent).
   load () ->
     $('.home').show()
-    $(".spacePreview").not(parent).addClass("hidden")
+    
     parent.addClass("open")
     $('.metaspace').
       addClass('open').
@@ -42,8 +42,14 @@ enterSpace = (spaceKey, parent, callback) ->
     $('.users.menu').removeClass('hidden')
     $('header > a.back').removeClass('hidden')
 
-    $('.headerSpaceName').show().text homeSpaceName.text()   
-    callback() if callback   
+     
+    setTimeout () ->
+      homeSpaceName = parent.find('.spaceName').hide()
+      $(".spacePreview").not(parent).addClass("hidden")
+      $('.headerSpaceName').show().text homeSpaceName.text()  
+    , 1000
+
+    callback() if callback 
     $('.spaceForm').submit (e) ->    
       e.preventDefault()   
       newName = $(@).find(':input').val()    
