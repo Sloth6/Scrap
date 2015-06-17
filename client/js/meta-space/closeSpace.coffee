@@ -16,15 +16,16 @@ closeSpace = () ->
   $('.container > header').append(window.userSettings)
   $('.menu.settings').addClass('hidden')
   
-  $('.metaspace')
-    .addClass('closed')
-    .removeClass('open')
-    .css("transform", "translate3d(0px, 0px, 0px)");
+  $('.metaspace').addClass('closed')
+  $('.metaspace').removeClass('open')
+  $(".metaspace").css("transform", "translate3d(0px, 0px, 0px)");
   $(".metaspace > section.content").css("transform", "scale3d("+1.0/scaleMultiple+","+ 1.0/scaleMultiple+","+ 1.0+")")
   $(".spacePreview").not($(this)).removeClass("hidden")
   $(".spacePreview").removeClass('open')
   $('a.back').addClass('hidden')
   $('.menu.users').addClass('hidden')
+
+
 
   setTimeout (->
     $('h1.logo').removeClass('hidden')
