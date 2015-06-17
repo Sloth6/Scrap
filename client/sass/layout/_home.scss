@@ -53,7 +53,7 @@ body {
                                     
             &.closed {
                 > section.content {
-//                     @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
+                     @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
                 }
             }
     
@@ -68,8 +68,8 @@ body {
 //                 top: -100vh * $scaleMultiple;
                 top: 0;
                 left: 0;
-                -webkit-transform-origin: center center;
-                        transform-origin: center center;
+                -webkit-transform-origin: top center;
+                        transform-origin: top center;
                 @include transition($openSpaceDuration $defaultCurve);
                 @include transition-property(transform,
                                      -webkit-transform,
