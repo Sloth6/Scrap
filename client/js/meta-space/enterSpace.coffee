@@ -1,6 +1,7 @@
 scaleMultiple = 2
 
 $ ->
+  # $('.metaspace').css("transform", "scale3d(0.5, 0.5, 1.0)")
   window.userSettings = $('ul.menu.right.settings')
   $('.spacePreview').not('.add').click () ->
     spaceKey = $(@).data().spaceid
@@ -9,12 +10,12 @@ $ ->
   
 enterSpace = (spaceKey, parent, callback) ->
   url = window.location.origin+"/r/"+spaceKey
-
-  offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + $('.content').width()/4  - (parent.width()  * .0635)
-  offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + $('.content').height()/4 - (parent.height() * .0635)
+  
+  offsetLeft = 0
+  offsetTop  = $(window).scrollTop() - parent.offset().top*2
 
   #Take the name from the home page view and hide it.
-  homeSpaceName = parent.find('.spaceName').hide()
+  
 
   $('<iframe />', {
     name: 'spaceFrame'
@@ -28,13 +29,12 @@ enterSpace = (spaceKey, parent, callback) ->
   prependTo(parent).
   load () ->
     $('.home').show()
-    $(".spacePreview").not(parent).addClass("hidden")
+    
     parent.addClass("open")
     $('.metaspace').
       addClass('open').
       removeClass('closed').
       css("transform", "scale3d(1.0, 1.0, 1.0)")
-
     $(".content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
     $('ul.menu.settings').addClass('hidden')
     $('h1.logo').addClass('hidden')
@@ -42,8 +42,14 @@ enterSpace = (spaceKey, parent, callback) ->
     $('.users.menu').removeClass('hidden')
     $('header > a.back').removeClass('hidden')
 
-    $('.headerSpaceName').show().text homeSpaceName.text()   
-    callback() if callback   
+     
+    setTimeout () ->
+      homeSpaceName = parent.find('.spaceName').hide()
+      $(".spacePreview").not(parent).addClass("hidden")
+      $('.headerSpaceName').show().text homeSpaceName.text()  
+    , 1000
+
+    callback() if callback 
     $('.spaceForm').submit (e) ->    
       e.preventDefault()   
       newName = $(@).find(':input').val()    

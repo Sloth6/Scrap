@@ -2,7 +2,6 @@ $scaleMultiple: 2;
 $openSpaceDuration: 1s;
 
 body {
-    overflow: auto;
     
     section.container {
         background-color: $colorBackground;
@@ -39,11 +38,12 @@ body {
         }
     
         section.space.metaspace {
-            height: 100vh * $scaleMultiple;
-            width:  100vw * $scaleMultiple;
-            position: absolute;
-            top:  -(100vh * $scaleMultiple) / 4;
-            left: -(100vw * $scaleMultiple) / 4;
+//             height: 100vh * $scaleMultiple;
+            width:  100vw;
+//             overflow: scroll;
+//             position: absolute;
+//             top:  -(100vh * $scaleMultiple) * $scaleMultiple;
+//             left: -(100vw * $scaleMultiple) / 4;
             -webkit-transform-origin: center center;
                     transform-origin: center center;
             @include transition($openSpaceDuration linear);
@@ -53,22 +53,23 @@ body {
                                     
             &.closed {
                 > section.content {
-                    @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
+                     @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
                 }
             }
     
             > section.content {
                 text-align: center;
-                position: absolute;
-                overflow: scroll;
+//                 position: absolute;
+//                 overflow: scroll;
                 cursor: -webkit-zoom-out;
-                height: 400vh * $scaleMultiple;
-                width:  100vw * $scaleMultiple;
-                padding-top: 150vh * $scaleMultiple;
-                top: -150vh * $scaleMultiple;
+//                 height: 400vh * $scaleMultiple;
+//                 width:  100vw * $scaleMultiple;
+//                 padding-top: 150vh * $scaleMultiple;
+//                 top: -100vh * $scaleMultiple;
+                top: 0;
                 left: 0;
-                -webkit-transform-origin: center center;
-                        transform-origin: center center;
+                -webkit-transform-origin: top center;
+                        transform-origin: top center;
                 @include transition($openSpaceDuration $defaultCurve);
                 @include transition-property(transform,
                                      -webkit-transform,
@@ -94,18 +95,20 @@ body {
                     z-index: 1;
                     border: $cardBorder;
                     border-width: $cardBorderWidth * $scaleMultiple;
-                    margin: $col/2 $col/2;
+                    margin-top:  -$cardBorderWidth * $scaleMultiple;
+                    margin-left: -$cardBorderWidth * $scaleMultiple;
+//                     margin: $col/2 $col/2;
                     @include transform(scale3d(1.0, 1.0, 1.0));
                     
                     &:last-of-type {
-                        margin-bottom: 900vh;
+//                         margin-bottom: 900vh;
                     }
                     
-                    &:hover {
+                    &:hover:not(.open) {
                         border-color: $colorAccent !important;
                                             -webkit-transform-origin: center center;
                         color: $colorAccent;
-                        @include transform(scale3d(1.125, 1.125, 1.0));
+//                         @include transform(scale3d(1.125, 1.125, 1.0));
 //                         @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
 
                         h1.spaceName span {
@@ -172,12 +175,11 @@ body {
                             @include transition-property(transform,
                                                  -webkit-transform,
                                                     -moz-transform);
-
                         }
                     }
     
                     &.open {
-                        @include transform(scale3d(1.0, 1.0, 1.0) translate3d(-$cardBorderWidth * $scaleMultiple, -$cardBorderWidth * $scaleMultiple, 0px));
+//                         @include transform(scale3d(1.0, 1.0, 1.0)/*  translate3d(-$cardBorderWidth * $scaleMultiple, -$cardBorderWidth * $scaleMultiple, 0px) */);
     //                     border-width: 0;
                         z-index: 2;
                         
