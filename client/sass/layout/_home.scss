@@ -44,17 +44,17 @@ body {
 //             position: absolute;
 //             top:  -(100vh * $scaleMultiple) * $scaleMultiple;
 //             left: -(100vw * $scaleMultiple) / 4;
-            -webkit-transform-origin: top center;
-                    transform-origin: top center;
+            -webkit-transform-origin: center center;
+                    transform-origin: center center;
             @include transition($openSpaceDuration linear);
             @include transition-property(transform,
                                  -webkit-transform,
                                     -moz-transform);
                                     
             &.closed {
-//                 > section.content {
-                    @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
-//                 }
+                > section.content {
+//                     @include transform(scale3d(1 / $scaleMultiple, 1 / $scaleMultiple, 1), 1.0);
+                }
             }
     
             > section.content {
