@@ -9,10 +9,20 @@ $ ->
   
 enterSpace = (spaceKey, parent, callback) ->
   url = window.location.origin+"/r/"+spaceKey
+  
+  scrollTop     = $(window).scrollTop()
+  elementOffsetTop     = parent.offset().top
+  distanceTop   = (elementOffsetTop - scrollTop)
 
-  offsetLeft = parseFloat -(parent.offset().left * scaleMultiple) + $('.content').width()/4  - (parent.width()  * .0635)
-  offsetTop  = parseFloat -(parent.offset().top  * scaleMultiple) + $('.content').height()/4 - (parent.height() * .0635)
+  scrollLeft     = $(window).scrollLeft()
+  elementOffsetLeft     = parent.offset().left
+  distanceLeft   = (elementOffsetLeft - scrollLeft)
 
+  offsetLeft = 0 # parseFloat -(distanceLeft + $('.metaspace').width())
+  offsetTop  = parseFloat -(distanceTop)
+
+  console.log offsetLeft
+  console.log offsetTop
   #Take the name from the home page view and hide it.
   homeSpaceName = parent.find('.spaceName').hide()
 
@@ -32,10 +42,10 @@ enterSpace = (spaceKey, parent, callback) ->
     parent.addClass("open")
     $('.metaspace').
       addClass('open').
-      removeClass('closed').
-      css("transform", "scale3d(1.0, 1.0, 1.0)")
-
-    $(".content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
+      removeClass('closed')
+#       css("transform", "scale3d(1.0, 1.0, 1.0)")
+#     $(".content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
+    $(".metaspace").css("transform", "scale3d(1.0, 1.0, 1.0) translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
     $('ul.menu.settings').addClass('hidden')
     $('h1.logo').addClass('hidden')
     $('.container > header').append($("iframe").contents().find('.users.menu'))
