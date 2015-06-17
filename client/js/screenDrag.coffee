@@ -12,11 +12,12 @@ onScreenDrag = (event) ->
 
 $ ->
   $(window).on 'mousedown', (event) ->
-    return unless $(event.target).hasClass('container')
     window.prev =
       x: event.clientX
       y: event.clientY
 
     $(this).off 'mouseup'
     $(window).on 'mousemove', onScreenDrag
-    $(window).on 'mouseup', -> $(this).off 'mousemove', onScreenDrag
+    $(window).on 'mouseup', ->
+      $(event.target).removeClass 'dragging'
+      $(this).off 'mousemove', onScreenDrag

@@ -8,19 +8,17 @@ script.
   users =  !{JSON.stringify(users)}
   names = !{JSON.stringify(names)}
 
-ul.users.menu.right.hideFirst
-  li
+ul.users.menu.right.hideFirst.hidden
+  li.first.visible
     a(href="#") Share
-  li
+  li.inputText.visible
     form.add-user
       label Share this space with someone
-      input(type="email", name="user[email]", placeholder="name@email.com")
+      input(type="email", name="user[email]", placeholder="email address")
       input(type="submit", style="visibility: hidden;display:none;")
-  li.heading Current members of this space
+  li.visible.heading Current members of this space
   each user in current_space.users
     name = user.name.split(' ')
     if user.name != null
-      li.user()
+      li.visible.user()
         span.name= name[0] + " " + name[1]
-  li
-    a.logout(href="/logout") Logout

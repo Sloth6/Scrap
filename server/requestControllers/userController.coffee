@@ -1,7 +1,19 @@
 models = require '../../models'
 spaceController = require './spaceController'
 module.exports =
-  
+  updateUser: (req, res) ->
+    { userId, name, email, password } = req.body
+    attributes = { userId }
+    attributes.name = name if name
+    attributes.email = email if email
+    attributes.password = password if password
+    models.User.find(where: { id: userId }).complete (err, user) ->
+      return res.send(400) unless user?
+      user.updateAttributes(attributes).complete (err) ->
+        console.log err
+        return res.send 400 if err?
+        return res.send 200
+
   # create a new user and default space, redirect to space
   newUser : (req, res, callback) ->
     { name, email, password } = req?.body
@@ -47,7 +59,7 @@ module.exports =
         # render first space on success
         if result
           req.session.currentUserId = user.id
-          res.send "/s/" + user.spaces[0].spaceKey
+          res.send "/"#"/s/" + user.spaces[0].spaceKey
           callback()
         else
           # res.status 400

@@ -97,8 +97,6 @@ $ ->
   #     addElement event, false
 
   # The options for s3-streamed file uploads, used later
-
-
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
     $('.drag-upload').fileupload fileuploadOptions(true)

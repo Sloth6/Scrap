@@ -1,27 +1,23 @@
+$headerPadding: $baseline/4 $gutter;
+
 .container > header {
     position: fixed;
-    z-index: 2;
+    z-index: 20;
     top: 0;
     left: 0;
     right: 0;
-    padding: $baseline/4 $gutter;
+    padding: $headerPadding;
     @include typeHeader;
     text-align: left;
     cursor: default;
+    text-transform: lowercase;
     
     a {
         border: 0;
-    }
-    
-    h1.spaceName {
-        display: none;
+        cursor: pointer;
     }
         
     ul.menu {
-        display: inline-block;
-        opacity: .75;
-        float: left;
-        width: 40vw;
         
         input {
             max-width: 100%;
@@ -29,19 +25,24 @@
         
         &.spaces {
             li a {
-                text-transform: capitalize;
+                text-transform: lowercase;
+            }
+        }
+        
+        &.settings {
+            a { 
+                &.logout:hover {
+                    @include hoverWarningAnimation;
+                }
             }
         }
         
         &.users {
-            float: right;
-            text-align: right;
-            position: relative;
             
             li {
                 
                 &.user {
-                    text-transform: capitalize;
+                    text-transform: lowercase;
                 }
                 
                 form {
@@ -51,13 +52,6 @@
                         text-transform: lowercase;
                         display: block;
                         margin-top: $leading/4;
-                    }
-                }
-                
-                a {
-                    
-                    &.logout:hover {
-                        @include hoverWarningAnimation;
                     }
                 }
             }
@@ -98,7 +92,7 @@
                     text-align: left;
                     
                     &#name {
-                        text-transform: capitalize;
+                        text-transform: lowercase;
                     }
                     
                     &[type=submit] {

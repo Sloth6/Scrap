@@ -3,7 +3,7 @@ indexElements = require '../indexElements'
 
 indexPage = (res) ->
   res.render 'index.jade',
-    title : 'Welcome to Scrap!'
+    title : 'Hotpot: Collect & Share Anything Instantly'
     description: ''
     author: 'scrap'
     colors: {}
@@ -24,7 +24,8 @@ module.exports =
         return callback err if err?
         return indexPage res unless user?
         req.session.currentUserId = user.id
-        res.redirect "/s/" + user.spaces[0].spaceKey
+        user.spaces.reverse()
+        res.render 'meta-space.jade', { user, title:'' }
         callback()
     else
       indexPage res

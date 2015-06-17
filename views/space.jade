@@ -4,9 +4,7 @@ block scripts
   include partials/spaceScripts
 
 block content
-  header 
-    include partials/spaceMenu
-    h1.spaceName= current_space.name
+  header
     include partials/userMenu
 
   form(enctype="multipart/form-data",class="drag-upload")

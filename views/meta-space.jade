@@ -1,0 +1,40 @@
+extends layout
+
+block scripts
+  include partials/baseScripts
+  script.
+    userId = parseInt("#{user.id}");
+  script(src="/js/jquery/jquery.autogrowtextarea.min.js")
+  script(src="/js/jquery/jquery.transit.min.js")
+  script(src="/js/jquery/jquery-mousewheel.min.js")  
+  script(src="/js/headerMenu.js")
+  script(src="/js/meta-space/settingsMenu.js")
+
+  script(src="/js/meta-space/globals.js")
+  script(src="/js/meta-space/enterSpace.js")
+  script(src="/js/meta-space/closeSpace.js")
+  script(src="/js/meta-space/newSpace.js")
+
+block content
+  header 
+    h1.logo
+      a Hotpot
+    a(class="back hidden", href='/', title='Back to home') ‹
+    
+    h1.headerSpaceName(hidden=true)
+    //- textarea.spaceForm(class='spaceForm',placeholder='')
+    form.spaceForm(action="/s/update", method="post", hidden=true)
+      input(type="text", class="spaceForm", placeholder="")
+
+    include partials/settingsMenu
+    
+  section.space.metaspace.closed  
+    section.content
+      div.spacePreview.add
+        h1.spaceName
+          New Space
+      each space in user.spaces
+        - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
+        div.spacePreview(data-spaceId = space.spaceKey, style=imageCss, class= space.spaceKey)
+          h1.spaceName
+            span= space.name

@@ -17,8 +17,14 @@ module.exports = (server) ->
   server.post '/s/new', (req, res) ->
     controllers.spaceController.newSpace req, res, errorHandler
 
+  server.post '/s/update', (req, res) ->
+    controllers.spaceController.updateSpace req, res, errorHandler
+
   server.get '/s/:spaceKey', (req, res) ->
-    controllers.spaceController.showSpace req, res, errorHandler
+    controllers.spaceController.spacePage req, res, errorHandler
+
+  server.get '/r/:spaceKey', (req, res) ->
+    controllers.spaceController.renderSpace req, res, errorHandler
 
   server.post '/login', (req, res) ->
     controllers.userController.login req, res, errorHandler
@@ -28,6 +34,9 @@ module.exports = (server) ->
 
   server.post '/register', (req, res) ->
     controllers.userController.newUser req, res, errorHandler
+
+  server.post '/updateUser', (req, res) ->
+    controllers.userController.updateUser req, res, errorHandler
 
   server.get '/sign_s3', (req, res) ->
     controllers.spaceController.uploadFile req, res, errorHandler

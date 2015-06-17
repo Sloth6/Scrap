@@ -8,26 +8,30 @@ section.container section.space {
         backface-visibility: hidden;
         background-color: transparent !important;
         line-height: 1.5em;
-        transform-origin: top left;
-        -webkit-transform-origin: top left;
+        transform-origin:           bottom right;
+        -webkit-transform-origin:   bottom right;
         @include typeHeader;
         
         // EVENTS
+        
+        &:hover, &.hover, &.dragging, &.ui-draggable-dragging/* , &.add-element, &.editing  */{
+            z-index: 9999999;
+
+            author {
+                opacity: 1;
+                @include transform(translate3d(0, -$leading * 1.575, 0));
+            }
+        }
         
         &:hover, &.hover {
             cursor: move;
             
             > .card {
                 @include cardHover;
-            }
-
-            author {
-                opacity: 1;
-                top: -$leading * 1.5;
-            }
-
-            .ui-resizable-handle {
-                opacity: .2;
+                
+//                 &.text {
+//                     background-color: $colorAccent;
+//                 }
             }
         }
 
@@ -50,73 +54,52 @@ section.container section.space {
 
         &.long {
             
-            p {
-//                 font-size: ($articleFontSize) * .5;
-//                 line-height: $leading;
-            }
-            
-            .card {
-                max-width: $articleWidth * .75;
-            }
-        }
+            .text {
+                p {
+                    @include typeBody;
+                }
                 
-/*
-        &.attached {
-        
-            .card {
-                
-                &:before {
-                    content: "•";
-                    font-size: .5em;
-                    position: absolute;
-                    top: $gutter/1.6666;
-                    left: $gutter/4;
-                    line-height: 0;
+                .card {
+                    max-width: $articleWidth * .75;
                 }
             }
         }
-    
-*/
-        
+                
         // NEW ELEMENT
+        
+        &.add-element, &.editing {
+            &:hover {
+                author {
+                    opacity: 0;
+                }
+            }
+
+            .card {
+                @include cardHover;
+                border-style: dashed !important;
+ 
+                &.text {
+                    color: $colorType;
+                    background-color: $colorCardBackground;
+                }
+            }            
+        }
         
         &.add-element{
             
             .card {
                 width: $articleWidth !important;
-                
+
                 .autogrow-textarea-mirror {
                     width: $articleWidth !important;
                 }
             }
+        }
+        
+        // EDITING 
+        
+        &.editing {
             
-/*
-            form {
-            
-                .fileInputWrapper {
-                    position: relative;
-                    display: block;
-                    @include smallCaps;
-                    overflow: hidden;
-                    font-size: .5em;
-                    
-                    &:after {
-                        content: "Upload a file";
-                        position: absolute;
-                        left: 0;
-                        width: 100%;
-                    }
-                    
-                    input[type="file"] {
-                        @include transform(scale($typeSizeMultiplier));
-                        opacity: 0;
-                        z-index: 2;
-                        position: relative;
-                        cursor: pointer;
-                    }
-                }
-            }
-*/
         }
         
         // CONTENTS
@@ -124,9 +107,9 @@ section.container section.space {
         textarea {
             width: 100%;
             height: $baseline;
-            @include typeHeader;
-            line-height: 1.5em;
-            margin-bottom: -$baseline*2.25 !important;
+            color: $colorType;
+            background-color: transparent;
+            letter-spacing: $typeBodyTracking;
         }
         
         author {
@@ -135,16 +118,22 @@ section.container section.space {
             position: absolute;
             display: block;
             color: $colorTypeLight;
-            background: $colorWashDark;
+            background: $colorAccent;
             margin-left: -$cardBorderWidth;
             text-indent: $cardBorderWidth;
             padding: $cardPadding;
             top: 0;
             left: 0;
             opacity: 0;
+            white-space: nowrap;
             z-index: -900;
+//             @include box-shadow($cardBoxShadowDimensions $colorAccent);
+            @include transform(translate3d(0,0,0));
             @include transition(.25s $defaultCurve);
-            @include transition-property(opacity, top);
+            @include transition-property(opacity,
+                                         transform,
+                                 -webkit-transform,
+                                    -moz-transform);
         }
         
         // CONTENT
@@ -152,7 +141,8 @@ section.container section.space {
         .card {
             position: relative;
             max-width: $articleWidth;
-            width: auto;
+                    transform-origin: bottom right;
+            -webkit-transform-origin: bottom right;
             @include transition(.125s $defaultCurve);
             @include transition-property(transform,
                                  -webkit-transform,
@@ -160,21 +150,31 @@ section.container section.space {
                                          box-shadow,
                                  -webkit-box-shadow,
                                     -moz-box-shadow,
-                                         background-color);
+                                         background-color,
+                                         color);
 
             &.text {
                 @include cardStyle;
-                @include typeBody;
-                width: auto;
+                @include typeHeader;
+//                 background: $colorType;
+//                 color: $colorCardBackground;
             }
 
             &.image {
                 width: $articleWidth;
                 border: $cardBorder;
+                border-color: transparent;
             }
             
             &.website {
                 border: $cardBorder;
+                                
+                &:hover {
+                    .text {
+                        border-top-color: $colorAccent !important;
+                        color: $colorAccent;
+                    }
+                }                
                 
                 .text {
                     position: relative;
@@ -184,8 +184,21 @@ section.container section.space {
                     border-top: $cardBorder;
                     
                     &:hover {
-                        @include hoverLinkAnimation;
-                        border-color: $colorType !important;
+//                         @include hoverLinkAnimation;
+                        background-color: $colorAccent;
+                        color: $colorTypeLight;
+                    }
+                    
+                    &:after {
+                        content: "›";
+                        font-size: $typeHeaderSize;
+                        font-weight: $fontWeightLight;
+                        position: absolute;
+                        display: block;
+                        height: 1em;
+                        margin-top: -.75em;
+                        top: 50%;
+                        right: $gutter/4;
                     }
 
                     .title p {
@@ -193,7 +206,7 @@ section.container section.space {
                     }
 
                     .url p {
-                        margin-top: $leading/3;
+                        margin-top: $leading/4;
                         @include typeBody;
                     }
                 }
@@ -210,27 +223,8 @@ section.container section.space {
 
             img {
                 width: 100%;
-                margin-bottom: -9pt;
+                margin-bottom: -9.5pt;
                 background-color: $colorCardBackground;
-            }
-        }
-        
-        .ui-resizable-handle {
-            z-index: 9999999;
-            right: 0;
-            bottom:0;
-            opacity: 0;
-            background-image: url('../images/elementResize.png');
-            background-size: 100% 100%;
-            background-position: top left;
-            @include transition(opacity .25s $defaultCurve);
-            transform-origin:           bottom right;
-            -webkit-transform-origin:   bottom right;
-            height: $gutter;
-            width: $gutter;
-            
-            &:hover {
-                opacity: .5;
             }
         }
     }

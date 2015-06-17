@@ -4,15 +4,12 @@ webPreviews = require '../modules/webPreviews.coffee'
 thumbnails = require '../modules/thumbnails.coffee'
 request = require 'request'
 s3 = require '../adapters/s3.coffee'
+spacePreviews = require '../modules/spacePreviews.coffee'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
   throw err if err
-  # console.log(data)
   element_jade = require('jade').compile data
-  # html = fn({name:'Oleg'});
-  # console.log(html);
-
 
 memCache = {}
 
@@ -49,6 +46,7 @@ module.exports =
           return callback err if err?
           element_html = encodeURIComponent(element_jade({element, names:{}}))
           sio.to(spaceKey).emit 'newElement', { element: element_html }
+          spacePreviews spaceKey
           return callback()
     
     newImage = (attributes) ->
@@ -128,9 +126,12 @@ module.exports =
     models.sequelize.query(query, null, null, { id })
       .complete (err, results) ->
         return callback err if err?
+        
+        spacePreviews spaceKey
+
         type = results[0].contentType
         content = results[0].content
-
+        
         if type in ['gif', 'image']
           s3.deleteImage { spaceKey, key: content, type }, (err) ->
             console.log err if err
@@ -166,6 +167,7 @@ module.exports =
           userId: data.userId
           final: true
         }
+        spacePreviews spaceKey
         callback()
     else
       userId = data.userId
