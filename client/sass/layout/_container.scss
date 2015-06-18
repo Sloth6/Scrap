@@ -1,9 +1,9 @@
 section.container {
-//     width:  10000vw;
-//     height: 10000vh;
+    width:  10000vw;
+    height: 10000vh;
 //     position: fixed;
     cursor: text;
-    
+    overflow: hidden;
     &.dragging {
         cursor: all-scroll;
     }

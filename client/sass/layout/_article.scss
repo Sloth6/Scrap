@@ -1,12 +1,9 @@
-$articleWidth: $col * 4;
-
 section.container section.space {
     
     article {
         color: $colorType;
         position: absolute;
         backface-visibility: hidden;
-        background-color: transparent !important;
         line-height: 1.5em;
         transform-origin:           bottom right;
         -webkit-transform-origin:   bottom right;

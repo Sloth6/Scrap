@@ -134,6 +134,8 @@ addElement = (event, createdByCntrl) ->
       left: "#{x}px"
     .appendTo $('.content')
     .on 'click', (event) -> event.stopPropagation()
+    
+  floatingMenuController(elementForm)
   # allow file uploads
   if not createdByCntrl
     $('.direct-upload').fileupload fileuploadOptions(false)
