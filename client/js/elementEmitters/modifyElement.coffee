@@ -44,5 +44,5 @@ $ ->
   socket = io.connect()
   makeModifiable $('article.text'), socket
   $(window).click (e) -> # If we click off the element while editing.
-    stopEditing() if $(event.target).hasClass('container')
+    stopEditing() if e.target is document.body
       

@@ -12,6 +12,7 @@ onScreenDrag = (event) ->
 
 $ ->
   $(window).on 'mousedown', (event) ->
+    return unless event.target is document.body
     window.prev =
       x: event.clientX
       y: event.clientY
