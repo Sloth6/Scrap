@@ -15,7 +15,7 @@ $ ->
     # cluster()
     scale = Math.min(screenFitScale(), 1/window.minScale)
     scale = if scale isnt 0 then scale else .5
-
+    # scale = 1.0
     centerX = window.innerWidth / 2 / scale
     centerY = window.innerHeight / 2 / scale
 
@@ -37,8 +37,6 @@ $ ->
   changeResolutions = () ->
     getSize = (e) ->
       s = content.css 'scale'
-      # x = Math.floor(parseInt(e.css('left')))
-      # y = Math.floor(parseInt(e.css('top')))
       { w, h } = dimension e
       return 'small' if w * s < 100
       return 'medium' if w * s < 400
@@ -46,14 +44,16 @@ $ ->
     
     switchImage = (img, key, size) ->
       root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'
-      url = "#{root}/#{spaceKey}/#{key}/#{size}.jpg"
-      img.attr 'src', url
+      # new images will not be stored in s3 with different sizes
+      # and shoudl not be resized.
+      if img.attr('src').indexOf(root) is 0
+        url = "#{root}/#{spaceKey}/#{key}/#{size}.jpg"
+        img.attr 'src', url
 
     $('.card.image').not('.animated,.gif').each () ->
       key = $(@).data('key')
-      if key
-        size = getSize $(@).parent()
-        switchImage $(@).children('img'), key, size
+      size = getSize $(@).parent()
+      switchImage $(@).children('img'), key, size
 
   fitToCenter()
   changeResolutions()
