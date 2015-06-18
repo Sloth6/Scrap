@@ -1,4 +1,8 @@
 closeSpace = () ->
+  $('.spaceFrame').remove()
+  $('.metaspace').show()
+  $(document.body).css('overflow', 'visible')
+
   openSpace = $('.spacePreview.open')
   
   if $('.spaceForm').is(":visible")
@@ -32,8 +36,4 @@ closeSpace = () ->
     $('.menu.settings').removeClass('hidden')
     openSpace.find('.spaceName').text($('.headerSpaceName').text()).show()
     $('.headerSpaceName').hide()
-
   ), 500
-  setTimeout (->
-    $('.spaceFrame').remove()
-  ), 1000
