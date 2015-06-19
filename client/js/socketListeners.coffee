@@ -21,8 +21,8 @@ $ ->
     html = decodeURIComponent data.element
     element = createNewElement html
     updateGlobals element
-    url = element.data('content').split('/').pop().split('.')[0]
-    $(".loading.#{url}").remove()
+    url = element.data('content').split('/').pop()
+    removeLoadingElement url
 
   socket.on 'removeElement', (data) ->
     id = data.id
@@ -30,8 +30,7 @@ $ ->
       $(this).remove()
 
   socket.on 'updateElement', (data) ->
-    if data.userId == window.userId
-      return
+    return if data.userId is window.userId
     element = data.element
     final = data.final
     id = element.id

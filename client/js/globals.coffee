@@ -41,9 +41,62 @@ getComments = (elem) ->
   else
     []
 
+emitElement = (x, y, content) ->
+  # Make sure to account for screen drag (totalDelta)
+  x = Math.round(x - totalDelta.x)
+  y = Math.round(y - totalDelta.y)
+  window.maxZ += 1
+  z = window.maxZ
+  content = encodeURIComponent content
+  if content != ''
+    data = { content, x, y, z, userId }
+    socket.emit 'newElement', data
+  $('.addElementForm').remove()
+
+
 $ ->
   window.socket = io.connect()
-  $('.menu').mousedown (e) ->
-    e.stopPropagation()
-  $('.menu').mouseup (e) ->
-    e.stopPropagation()
+  window.elementForm = $('.addElementForm').remove()
+  window.mouse = { x: 0, y: 0 }
+
+  $('.menu').mousedown (e) -> e.stopPropagation()
+  $('.menu').mouseup (e) -> e.stopPropagation()
+
+  $(window).on 'dragover', (event) ->
+    event = event.originalEvent
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+
+  $(window).on 'mousemove', (event) ->
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+
+  window.oncontextmenu = () -> false
+
+  $(window).mousedown (event) ->
+    if event.which is 3 #right mouse
+      event.preventDefault()
+      $('.addElementForm').remove()
+      addElement event, false
+  
+  $(window).on 'click', (event) ->
+    $('.addElementForm').remove()
+  
+  $(window).bind 'paste', (event) ->
+    # ensure the add element panel is not already open.
+    if $('.addElementForm').length is 0
+      addElement event, true
+    else
+      setTimeout (() ->
+        if $('input.urlInput').val() != ''
+          { x, y } = elementPosition $('.addElementForm')
+          emitElement x, y, $('input.urlInput').val()), 20
+
+  
+  # $(window).keypress (event) -> 
+  #   if $('.addElementForm').length is 0
+  #     addElement event, false
+
+  # Initialize file uploads by dragging
+  if $('.drag-upload').fileupload
+    $('.drag-upload').fileupload fileuploadOptions(true)

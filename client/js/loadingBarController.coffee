@@ -1,5 +1,10 @@
+# A global that maps 
+name_to_key = {}
+
 createLoadingElement = (position, name) ->
-  # console.log 'loading name', name
+  key = Math.random().toString(36).substring(7)
+  name_to_key[name] = key
+
   html = "<article class=loading>
             <div class='card'>
               <header data-scale=#{1}>
@@ -20,7 +25,9 @@ createLoadingElement = (position, name) ->
     'border-style': 'solid'
     'border-width': 2
   }).
-  addClass(name).
+  addClass(key).
   appendTo($('.content'))
-  # data({ content }).
-  
+
+removeLoadingElement = (name) ->
+  key = name_to_key[name]
+  $(".loading.#{key}").remove()
