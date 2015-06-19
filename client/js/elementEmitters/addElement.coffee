@@ -123,7 +123,7 @@ addElement = (event, createdByCntrl) ->
 
   input = elementForm.find('.textInput')
   input.off 'keyup'
-  elementForm.find('.textInput,.urlInput').val('')
+  # elementForm.find('.textInput,.urlInput').val('')
   # add the new element form if not createdByCntrl
   elementForm.
     css
@@ -135,7 +135,9 @@ addElement = (event, createdByCntrl) ->
     .appendTo $('.content')
     .on 'click', (event) -> event.stopPropagation()
     
-  floatingMenuController(elementForm)
+  floatingMenuController.reset elementForm
+  floatingMenuController.init elementForm
+
   # allow file uploads
   if not createdByCntrl
     $('.direct-upload').fileupload fileuploadOptions(false)
