@@ -1,4 +1,5 @@
 $menuWidth: 40vw;
+$articleWidth: $col * 4;
 
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
@@ -355,6 +356,78 @@ ul.menu {
     left: 0;
     background: transparent;
     z-index: 10;
+}
+
+.floatingMenu {
+    
+    ul {
+        
+        li {
+            @include transition(.5s $defaultCurve);
+            @include transition-property(width, height, font-weight, font-size, border-color, padding);
+            @include typeBody;
+            @include cardStyle;
+            background-color: $colorCardBackground;
+            padding: $cardPadding;
+            height: $leading;
+            margin-top: -$cardBorderWidth;
+            cursor: pointer;
+            
+            .label {
+                display: absolute;
+            }
+            
+            input {
+                cursor: auto;
+            }
+            
+/*
+            &:last-of-type {
+                border-bottom: $cardBorder;
+            }
+*/
+            
+            &.closed {
+                width: $col;
+                                     
+                &.hidden {
+//                     width: 0;
+                    height: 0;
+                    border-color: transparent;;
+                    padding: 0;
+                }
+           
+                input, textarea {
+                    display: none;
+                    opacity: 0;
+                    @include transition(.5s $defaultCurve);
+                    @include transition-property(opacity);
+                }
+            }
+            
+            &.open {
+                width: $articleWidth;
+                @include typeHeader;                
+                
+                &.tall {
+                    height: $leading * 4;
+                }
+                
+                input {
+                    opacity: 1;
+                }
+            }
+            
+            &.open, &.hidden {
+                .label {
+                    opacity: 0;
+                    left: -$col;
+                    @include transition(.5s $defaultCurve);
+                    @include transition-property(left, opacity);
+                }
+            }
+        }
+    }
 }
 
 textarea {

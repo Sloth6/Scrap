@@ -23,13 +23,16 @@ block content
   
     section.content
       
-      article.addElementForm
+      article.floatingMenu.addElementForm
         ul
-          li.text.url.closed.hidden
+          li.text.url.closed
+            span.label Add from the web
             input.urlInput(type="text")
-          li.text.note.closed.hidden
+          li.text.note.closed.tall
+            span.label Write a note
             textarea.textInput
-          li.button.hidden
+          li.button.closed
+            span.label Upload from your device
             form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
               input(type='hidden', name='key')
               input(type='hidden', name='AWSAccessKeyId', value="AKIAJKJJR5OLTKWMMHSA")
