@@ -11,8 +11,8 @@ space_timeouts = {}
 
 options =
 	windowSize:
-		width: 600
-		height: 400
+		width: 900
+		height: 600
 	streamType: 'jpg'
 	customCSS: ".form {
 								visibility:hidden;
@@ -20,12 +20,11 @@ options =
 	phantomConfig:
 		'load-images': 'true'
 
-
 module.exports = (spaceKey) ->
 	if space_timeouts[spaceKey]
 		space_timeouts[spaceKey]()
 	else
-		space_timeouts[spaceKey] = debounce 1000, () ->
+		space_timeouts[spaceKey] = debounce 4000, () ->
 			url = "http://localhost:9001/s/#{spaceKey}"
 			console.time('new webshot')
 			webshot url, options, (err, stream) ->

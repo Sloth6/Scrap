@@ -48,9 +48,10 @@ article(id=element.id, class= classes, style=posString+scaleString, data-content
           p!=element.content.split('/').pop()
 
       when 'video'
+        img
         video("controls")
           source(src=element.content)
-          | Your browser does not support the video tag
-
+          img(src=element.content+'.png')
+          
       default
         p!= element.content

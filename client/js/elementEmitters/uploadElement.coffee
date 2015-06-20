@@ -20,7 +20,9 @@ fileuploadOptions = (onDrag) ->
   autoUpload: true
   dataType: 'xml' # S3's XML response
   add: (event, add_data) ->
+    # videoHandler file for file in add_data.originalFiles
     getUploadLocation (file.name for file in add_data.originalFiles), onDrag
+
     $.ajax "/sign_s3", {
       type: 'GET'
       dataType: 'json'

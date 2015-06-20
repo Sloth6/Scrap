@@ -11,6 +11,7 @@ Stream = require('stream');
 
 module.exports = 
   putImage: ({ key, img, spaceKey, path, type }, callback) ->
+    console.log "uploading to ", "#{spaceKey}/#{key}/#{path}.#{type}"
     params =
       Bucket: Bucket
       Key: "#{spaceKey}/#{key}/#{path}.#{type}"
@@ -18,6 +19,8 @@ module.exports =
       Body: img
       ContentType: "image/#{type}"
     s3.putObject params, callback
+
+  # getImage: 
 
   delete: ({key}, cb) ->
     s3.deleteObject { Bucket, Key: key }, cb

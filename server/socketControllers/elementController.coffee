@@ -5,6 +5,7 @@ thumbnails = require '../modules/thumbnails.coffee'
 request = require 'request'
 s3 = require '../adapters/s3.coffee'
 spacePreviews = require '../modules/spacePreviews.coffee'
+videoScreenshot = require '../modules/videoScreenshot.coffee'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
@@ -96,6 +97,10 @@ module.exports =
           attributes.content = JSON.stringify pageData
         done attributes
     
+    newVideo = (attributes) ->
+      videoScreenshot attributes.content, (err) ->
+        return callback err if err?
+        done attributes
     # if data.content = '<loading>'
     #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
@@ -111,8 +116,8 @@ module.exports =
         newWebsite attributes
       else if contentType in ['image', 'gif']
         newImage attributes
-      # else if contentType is 'video'
-      #   newVideo attributes
+      else if contentType is 'video'
+        newVideo attributes
       else
         done attributes
 
