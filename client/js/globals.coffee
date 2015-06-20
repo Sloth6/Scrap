@@ -61,6 +61,8 @@ $ ->
   bindVideoControls $('article.video')
   bindFileControls $('article.file')
 
+  window.oncontextmenu = () -> false
+
   $('.menu').mousedown (e) -> e.stopPropagation()
   $('.menu').mouseup (e) -> e.stopPropagation()
 
@@ -73,17 +75,34 @@ $ ->
     mouse.x = event.clientX
     mouse.y = event.clientY
 
-  window.oncontextmenu = () -> false
-
   $(window).mousedown (event) ->
-    if event.which is 3 #right mouse
-      event.preventDefault()
+    $(@).data 'lastX', event.clientX
+    $(@).data 'lastY', event.clientY
+
+  $(window).mouseup (event) ->
+    return unless event.target is document.body
+    return if $(@).data('lastX') != event.clientX
+    return if $(@).data('lastY') != event.clientY
+    if $('.addElementForm').length
       $('.addElementForm').remove()
+    else
       addElement event, false
-  
-  $(window).on 'click', (event) ->
-    $('.addElementForm').remove()
-  
+
+  removeDraggingClass = (event) ->
+    $(event.target).removeClass 'dragging'
+    $(this).off 'mousemove', onScreenDrag
+
+  $(window).on 'mousedown', (event) ->
+    return unless event.target is document.body
+    window.prev =
+      x: event.clientX
+      y: event.clientY
+
+    $(this).off 'mouseup', removeDraggingClass
+    $(window).on 'mousemove', onScreenDrag
+    $(window).on 'mouseup', removeDraggingClass
+
+
   $(window).bind 'paste', (event) ->
     # ensure the add element panel is not already open.
     if $('.addElementForm').length is 0
