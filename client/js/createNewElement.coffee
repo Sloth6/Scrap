@@ -22,5 +22,8 @@ createNewElement = (element) ->
   makeDeletable newArticle  
   makeTextChild newArticle
   makeDraggable newArticle, socket
-  makeModifiable newArticle, socket
+  if contentType is 'text'
+    makeModifiable newArticle, socket
+  else if contentType is 'video'
+    bindVideoControls newArticle
   newArticle

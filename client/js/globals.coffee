@@ -57,6 +57,10 @@ $ ->
   window.socket = io.connect()
   window.elementForm = $('.addElementForm').remove()
   window.mouse = { x: 0, y: 0 }
+
+
+  bindVideoControls $('article.video')
+
   $('.menu').mousedown (e) -> e.stopPropagation()
   $('.menu').mouseup (e) -> e.stopPropagation()
 
