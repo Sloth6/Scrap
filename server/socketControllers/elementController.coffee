@@ -84,10 +84,9 @@ module.exports =
             return callback()
             
     newWebsite = (attributes) ->
-      # url = decodeURIComponent data.content
       webPreviews attributes.content, (err, pageData) ->
         if err?
-          attributes.content = JSON.stringify { 
+          attributes.content = JSON.stringify {
             title: url.match(/www.([a-z]*)/)[1]
             url: encodeURIComponent(url)
             description: ''
@@ -99,8 +98,8 @@ module.exports =
     
     newVideo = (attributes) ->
       videoScreenshot attributes.content, (err) ->
-        return callback err if err?
-        done attributes
+        console.log 'Error creating video screenshot', err if err
+      done attributes
     # if data.content = '<loading>'
     #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
