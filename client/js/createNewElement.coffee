@@ -11,19 +11,16 @@ createNewElement = (element) ->
   y = parseInt(top) + totalDelta.y
   newArticle.css({ top: y, left:x }).appendTo $('.content')
 
-  switch contentType
-    # when 'gif'
-      # createGif newArticle, content
-    when 'file'
-      makeDownloadable newArticle
-  
   socket = io.connect()
   
   makeDeletable newArticle  
-  makeTextChild newArticle
   makeDraggable newArticle, socket
   if contentType is 'text'
+    makeTextChild newArticle
     makeModifiable newArticle, socket
   else if contentType is 'video'
     bindVideoControls newArticle
+  else if contentType is 'file'
+    bindFileControls newArticle
+
   newArticle
