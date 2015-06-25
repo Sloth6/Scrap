@@ -1,0 +1,4 @@
+.card.soundcloud
+  header(style="-webkit-transform:scale3d(#{1/element.scale},#{1/element.scale},1.0); transform:scale3d(#{1/element.scale},#{1/element.scale},1.0);", data-scale="#{1/element.scale}")
+    author= nameMap[element.creatorId]
+  p!= element.content

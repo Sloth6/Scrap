@@ -13,6 +13,7 @@ require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (
   element_jade = require('jade').compile data
 
 memCache = {}
+hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
 
 getType = (s, cb) ->
   jar = request.jar()
@@ -22,22 +23,25 @@ getType = (s, cb) ->
     jar: jar
 
   request.head options, (err, res) ->
-    if err || res.statusCode != 200
+    if err || !res
       return cb 'text'
     contentType = res.headers['content-type']
-    console.log contentType
+    host = res.socket._httpMessage._headers.host
     return cb 'gif' if contentType.match /^image\/gif/
     return cb 'image' if contentType.match /^image\//
-    return cb 'website' if contentType.match /^text\/html/
     return cb 'video' if contentType.match /^video\//
+    if contentType.match /^text\/html/
+      return cb 'soundcloud' if host is 'soundcloud.com'
+      return cb 'website'
     return cb 'file'# if contentType.match /^application\//
-    
 
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, spaceKey, callback) =>
     data.content = decodeURIComponent data.content
-    console.log spaceKey, 'received content', data.content
+    console.log 'Received content:'
+    console.log "\tspaceKey: #{spaceKey}"
+    console.log "\tContent: #{data.content}"
 
     done = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
@@ -84,9 +88,10 @@ module.exports =
             return callback()
             
     newWebsite = (attributes) ->
-      webPreviews attributes.content, (err, pageData) ->
+      url = attributes.content
+      webPreviews url, (err, pageData) ->
         if err?
-          attributes.content = JSON.stringify {
+          attributes.content = JSON.stringify { 
             title: url.match(/www.([a-z]*)/)[1]
             url: encodeURIComponent(url)
             description: ''
@@ -100,9 +105,23 @@ module.exports =
       videoScreenshot attributes.content, (err) ->
         console.log 'Error creating video screenshot', err if err
       done attributes
+
+    newSoundcloud = (attributes) ->
+      options =
+        uri: "http://soundcloud.com/oembed"
+        method: 'POST'
+        json:
+          url: attributes.content
+      request options, (err, response, body) ->
+        if err or !body
+          console.log "Soundcloud err", err, body
+        attributes.content = body.html
+        done attributes
+
     # if data.content = '<loading>'
     #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
+      console.log "\tcontentType: #{contentType}"
       attributes =
         creatorId: data.userId
         contentType: contentType
@@ -117,6 +136,11 @@ module.exports =
         newImage attributes
       else if contentType is 'video'
         newVideo attributes
+<<<<<<< HEAD
+=======
+      else if contentType is 'soundcloud'
+        newSoundcloud attributes
+>>>>>>> soundcloud
       else
         done attributes
 
