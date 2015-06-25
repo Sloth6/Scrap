@@ -63,7 +63,7 @@ module.exports =
       , callback
 
   #when the space url is accessed
-  spacePage : (req, res) ->
+  showReadOnly : (req, res) ->
     showReadOnly = (space) ->
       res.render 'publicSpace.jade',
         title : "#{space.name} on Hotpot"
@@ -92,7 +92,7 @@ module.exports =
             showReadOnly space
 
   #when the meta-space loads a space in an iframe
-  renderSpace: (req, res) ->
+  showSpace: (req, res) ->
     currentUserId = req.session.currentUserId
     return res.send(400) unless currentUserId?
     models.Space.find(
@@ -113,6 +113,16 @@ module.exports =
           current_user: user
           users: users
           names: nameMap space
+
+  webPreview: (req, res) ->
+    models.Space.find(
+      where: { spaceKey: req.params.spaceKey }
+      include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
+    ).complete (err, space) ->
+      res.render 'previewSpace.jade',
+        title : "#{space.name} on Hotpot"
+        current_space: space
+        names: {}
 
   # update the space name and save it to the db
   updateSpace : (req, res) ->

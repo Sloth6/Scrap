@@ -21,4 +21,5 @@ floatingMenuController =
       .removeClass "hidden"
       .removeClass "open"
     menu.find('.label').show()
+    console.log menu.find $('.text input,textarea')
     menu.find $('.text input,textarea').val('')

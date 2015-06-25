@@ -1,0 +1,28 @@
+extends layout
+
+block scripts
+  include partials/spaceScripts
+
+block content
+  section.space
+    section.content
+      each element in current_space.elements
+        if element.z > maxZ
+          - maxZ = element.z
+
+        if (element.x + 30 * element.scale) > maxX
+          - maxX = (element.x + 30 * element.scale)
+
+        if element.x < minX
+          - minX = element.x
+
+        if element.y+30 > maxY
+          - maxY = element.y+30
+
+        if element.y < minY
+          - minY = element.y
+
+        if element.scale < minScale
+          - minScale = element.scale
+
+        include partials/element
