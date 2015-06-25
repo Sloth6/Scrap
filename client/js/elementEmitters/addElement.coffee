@@ -1,3 +1,16 @@
+emitElement = (x, y, content) ->
+  # Make sure to account for screen drag (totalDelta)
+  x = Math.round(x - totalDelta.x)
+  y = Math.round(y - totalDelta.y)
+  window.maxZ += 1
+  z = window.maxZ
+  content = encodeURIComponent content
+  if content != ''
+    data = { content, x, y, z, userId }
+    socket.emit 'newElement', data
+  $('.addElementForm').remove()
+
+
 addElement = (event, createdByCntrl) ->
   eventX = event.clientX || mouse.x
   eventY = event.clientY || mouse.y

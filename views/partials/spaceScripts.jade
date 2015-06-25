@@ -1,9 +1,14 @@
 include baseScripts
 script.
   spaceKey="#{current_space.spaceKey}";
-script(src="/js/globals.js")
+
+
 script(src='/js/jquery/jquery.fileupload.js')
 script(src='/socket.io/socket.io.js')
+
+
+script(src="/js/globals.js")
+script(src="/js/elementUtils.js")
 script(src="/js/spaceEmitters/addUserToSpace.js")
 script(src="/js/spaceEmitters/removeUserFromSpace.js")
 script(src="/js/spaceEmitters/updateSpaceName.js")
@@ -22,7 +27,7 @@ script(src="/js/screenDrag.js")
 script(src="/js/makeTextChild.js")
 script(src="/js/createNewElement.js")
 
-script(src="/js/gifControls.js")
+script(src="/js/elementControllers/bindGifControls.js")
 script(src="/js/elementControllers/bindVideoControls.js")
 script(src="/js/elementControllers/bindFileControls.js")
 

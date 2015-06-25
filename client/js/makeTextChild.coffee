@@ -1,3 +1,5 @@
+$ -> makeTextChild $('article.text')
+
 detach = (child) ->
   id = child.attr 'id'
   child.removeClass 'attached'
@@ -9,7 +11,7 @@ detach = (child) ->
     parent.data 'children', children
   child.data 'parent', null
 
-makeTextChild = (elem) ->
+makeTextChild = (elems) ->
   getCoords = (elem) ->
     $elem = $(elem)
     offset = $elem.offset()
@@ -51,8 +53,7 @@ makeTextChild = (elem) ->
     return true
 
   getAllCoords = () ->
-    # $(".content .card .image,.website").parent().get().map getCoords
-    $("article:not(.text)").get().map getCoords
+    
     
   getParent = (elem, others) -> 
     for b in others
@@ -62,19 +63,19 @@ makeTextChild = (elem) ->
   
   attach = (child, parent) ->
     child.addClass 'attached'
-    elem.data 'parent', parent.attr('id')
+    child.data 'parent', parent.attr('id')
     
     children = parent.data('children') or []
     children.push child.attr('id')
     parent.data 'children', children
 
-  
-  return unless elem.children().hasClass('text')
-  detach elem
-  parent = getParent getCoords(elem), getAllCoords()
-  attach(elem, parent) if parent 
+  parentsCoords = $("article").not('.text').get().map getCoords
+  elems.each () ->
+    elem = $(@)
+    detach elem
+    parent = getParent getCoords(elem), parentsCoords
+    attach(elem, parent) if parent
 
 
 $ ->
-  $('article.text').each () ->
-    makeTextChild $(this)
+  

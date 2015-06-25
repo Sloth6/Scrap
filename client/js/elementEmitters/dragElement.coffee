@@ -1,6 +1,10 @@
-draggableOptions = (socket) ->
+$ ->
+  makeDraggable $('.draggable')
+  
+draggableOptions = () ->
   start: (event, ui) ->
     elem = $(this)
+    window.isDragging = true
     screenScale = $('.content').css 'scale'
     $(window).off 'mousemove', onScreenDrag
     click.x = event.clientX
@@ -35,6 +39,7 @@ draggableOptions = (socket) ->
       socket.emit 'updateElement', { x, y, z, elementId: id, userId, final: false }
 
   stop: (event, ui) ->
+    window.isDragging = false
     elem = $(this)
     $(".delete.trash").removeClass("visible");
     for e in [elem].concat(getComments elem)
@@ -56,39 +61,31 @@ draggableOptions = (socket) ->
       e.data('oldZ', e.css('z-index'))
       makeTextChild e
 
-makeDraggable = (elements, socket) ->
+makeDraggable = (elements) ->
   elements.draggable draggableOptions socket
     # when we mouse over an element we want to bring it to the top temporarily
     # elements
     .on 'mouseover', ->
-      elem = $(this)
-      # console.log elem.attr('id'), elem.css 'zIndex'
-      for comment in [elem].concat(getComments elem)
-        # store its old z-index
-        comment.data 'oldZ', comment.css 'z-index'
-        comment.css 'z-index', window.maxZ + 1
-        comment.addClass 'hover'
-        window.maxZ += 1
+      for elem in [$(this)].concat(getComments $(this))
+        elem.addClass 'hover'
+        elem.data 'oldZ', elem.css 'z-index' # store its old z-index
+        bringToTop elem
 
     # if an item is clicked, we want to make the temporary z-index change
     # permanent.
     .on 'mousedown', ->
-      elem = $(this)
-      for comment in [elem].concat(getComments elem)
-        comment.addClass 'active'
-        window.maxZ += 1
-        comment.css 'z-index', window.maxZ
-        comment.data 'oldZ', comment.css 'z-index'
+      for elem in [$(this)].concat(getComments $(this))
+        elem.addClass 'active'
+        elem.data 'oldZ', elem.css('z-index')
 
+    # reset to old z index, this old zindex may be the current one if
+    # the element was clicked
     .on 'mouseout', ->
-      elem = $(this)
-      for comment in [elem].concat(getComments elem)
-        # reset to old z index, this old zindex may be the current one if
-        # the element was clicked
-        comment.css 'z-index', $(this).data 'oldZ'
-        comment.removeClass 'hover'
-        comment.removeClass 'active'
+      for elem in [$(this)].concat(getComments $(this))
+        elem.css 'z-index', elem.data 'oldZ'
+        elem.removeClass 'hover'
+        elem.removeClass 'active'
 
-$ ->
-  socket = io.connect()
-  makeDraggable $('.draggable'), socket
+
+
+
