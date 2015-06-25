@@ -59,7 +59,8 @@ draggableOptions = () ->
       window.maxZ += 1
       e.css('z-index', window.maxZ)
       e.data('oldZ', e.css('z-index'))
-      makeTextChild e
+      if e.hasClass 'text'
+        makeTextChild e
 
 makeDraggable = (elements) ->
   elements.draggable draggableOptions socket
