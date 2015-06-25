@@ -83,8 +83,13 @@ $ ->
     return unless event.target is document.body
     return if $(@).data('lastX') != event.clientX
     return if $(@).data('lastY') != event.clientY
-    if $('.addElementForm').length
+
+    if $('.editing').length
+      stopEditing()
+
+    else if $('.addElementForm').length
       $('.addElementForm').remove()
+
     else
       addElement event, false
 
@@ -93,11 +98,10 @@ $ ->
     $(this).off 'mousemove', onScreenDrag
 
   $(window).on 'mousedown', (event) ->
-    return unless event.target is document.body
     window.prev =
       x: event.clientX
       y: event.clientY
-
+    return unless event.target is document.body
     $(this).off 'mouseup', removeDraggingClass
     $(window).on 'mousemove', onScreenDrag
     $(window).on 'mouseup', removeDraggingClass
