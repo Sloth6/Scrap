@@ -9,13 +9,15 @@ closeSpace = () ->
     $('.spaceForm').trigger('submit')
   
   # update the url
-  bg = $('.spacePreview.open').css 'background-image'
-  
+  bg = $('.spacePreview').not('.hidden').css 'background-image'
+  console.log bg
   if bg
     # new spaces will  not have image
-    bg = bg.replace('url(','').replace(')','')
+    bg = bg.replace('url(','').replace(')','').split('?')[0]
+    console.log bg
     url = bg+'?'+(new Date().getTime())
-    $('.spacePreview.open').css 'background-image', 'url('+url+')'
+    console.log url
+    $('.spacePreview').not('.hidden').css 'background-image', 'url('+url+')'
   
   $('.container > header').append(window.userSettings)
   $('.menu.settings').addClass('hidden')
