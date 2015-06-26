@@ -15,6 +15,7 @@ options =
     height: 400
   streamType: 'jpg'
   errorIfStatusIsNot200: true
+  # renderDelay: 3000
   # customCSS: ".form {
   #               visibility:hidden;
   #             }"

@@ -50,6 +50,7 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           element_html = encodeURIComponent(element_jade({element, names:{}}))
+          console.log element_html
           sio.to(spaceKey).emit 'newElement', { element: element_html }
           spacePreviews spaceKey
           return callback()
@@ -136,11 +137,8 @@ module.exports =
         newImage attributes
       else if contentType is 'video'
         newVideo attributes
-<<<<<<< HEAD
-=======
       else if contentType is 'soundcloud'
         newSoundcloud attributes
->>>>>>> soundcloud
       else
         done attributes
 

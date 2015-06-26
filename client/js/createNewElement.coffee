@@ -14,6 +14,7 @@ createNewElement = (element) ->
   
   makeDeletable newArticle  
   makeDraggable newArticle, socket
+  
   if contentType is 'text'
     makeTextChild newArticle
     makeModifiable newArticle, socket
@@ -21,5 +22,7 @@ createNewElement = (element) ->
     bindVideoControls newArticle
   else if contentType is 'file'
     bindFileControls newArticle
+  else if contentType is 'soundcloud'
+    bindSoundCloudControls newArticle
 
   newArticle

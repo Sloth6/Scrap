@@ -10,6 +10,7 @@ $ ->
 
   bindVideoControls $('article.video')
   bindFileControls $('article.file')
+  bindSoundCloudControls $('article.soundcloud')
 
   window.oncontextmenu = () -> false
 

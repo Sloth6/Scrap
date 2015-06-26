@@ -51,6 +51,10 @@ article(id=element.id, class= classes, style=posString+scaleString, data-content
         video()
           source(src=element.content)
           img(src=element.content+'.png')
-          
+      
+      when 'soundcloud'
+        .iframeBlocker(style="position: absolute; top: 0; left: 0; width: 100%; height: 500px")
+        p!= element.content
+
       default
         p!= element.content
