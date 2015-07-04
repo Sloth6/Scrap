@@ -11,8 +11,8 @@ $ ->
 enterSpace = (spaceKey, parent, callback) ->
   url = window.location.origin+"/r/"+spaceKey
   
-  offsetLeft = 0
-  offsetTop  = $(window).scrollTop() - parent.offset().top*2
+  offsetLeft = 1 # pixel adjustment
+  offsetTop  = $(window).scrollTop() - parent.offset().top*2 - 5 # pixel adjustment
 
   #Take the name from the home page view and hide it.
   
