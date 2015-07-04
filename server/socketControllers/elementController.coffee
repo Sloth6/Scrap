@@ -50,7 +50,6 @@ module.exports =
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           element_html = encodeURIComponent(element_jade({element, names:{}}))
-          console.log element_html
           sio.to(spaceKey).emit 'newElement', { element: element_html }
           spacePreviews spaceKey
           return callback()
@@ -116,7 +115,12 @@ module.exports =
       request options, (err, response, body) ->
         if err or !body
           console.log "Soundcloud err", err, body
-        attributes.content = body.html
+        console.log body
+        attributes.content = JSON.stringify {
+          html: body.html
+          thumbnail: body.thumbnail_url
+          title: body.title
+        }
         done attributes
 
     # if data.content = '<loading>'

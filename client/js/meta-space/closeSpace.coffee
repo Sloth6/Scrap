@@ -14,9 +14,7 @@ closeSpace = () ->
   if bg
     # new spaces will  not have image
     bg = bg.replace('url(','').replace(')','').split('?')[0]
-    console.log bg
     url = bg+'?'+(new Date().getTime())
-    console.log url
     $('.spacePreview').not('.hidden').css 'background-image', 'url('+url+')'
   
   $('.container > header').append(window.userSettings)

@@ -15,18 +15,25 @@ options =
     height: 400
   streamType: 'jpg'
   errorIfStatusIsNot200: true
+  phantomConfig:
+    'web-security': 'no'
   # renderDelay: 3000
-  # customCSS: ".form {
-  #               visibility:hidden;
-  #             }"
-  # phantomConfig:
-  #   'load-images': 'true'
+  customCSS: ".form {
+                visibility:hidden;
+              }
+              .soundcloudThumbnail {
+                visibility:visible;
+              }
+              "
+  
+    # 'load-images': 'true'
+
 
 module.exports = (spaceKey) ->
   if space_timeouts[spaceKey]
     space_timeouts[spaceKey]()
   else
-    space_timeouts[spaceKey] = debounce 2000, () ->
+    space_timeouts[spaceKey] = debounce 10000, () ->
       url = "http://localhost:9001/webpreview/#{spaceKey}"
       console.log url
       console.time('new webshot')
