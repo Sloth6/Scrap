@@ -2,7 +2,11 @@ matrixToArray = (str) -> str.match(/(-?[0-9\.]+)/g)
 
 elementScale = (element) ->
   matrix = element.css('transform') or element.css('-webkit-transform')
-  matrixToArray(matrix)[0]
+  array = matrixToArray(matrix)
+  return array[0] if array?.length
+  console.log 'invalid elemnt passed to elementScale', element, console.trace()
+
+
 
 elementPosition = (element) ->
   x = parseInt element.css('left')
