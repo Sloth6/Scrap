@@ -157,12 +157,12 @@ body {
                         font-size: $typeHeaderSmallCapsSize * $scaleMultiple;
 
                         position: absolute;
-                        padding-top: $cardPaddingTop * $scaleMultiple;
                         cursor: default;
                         text-transform: lowercase;
-                        top: 0;
+                        top: $baseline / 2 * $scaleMultiple;
                         left: 50%;
                         margin-left: -50vw;
+                        padding-top: $cardBorderWidth * $scaleMultiple;
                         width: 100vw;
                         z-index: 200;
                         text-align: center;
@@ -197,7 +197,7 @@ body {
                         }
                         
                         h1.spaceName {
-                            @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(0px, 0px, 0px));
+                            @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(2.25pt, -20.25pt, 0px));
                             
                             span {
                                 @include transform(scale3d(1.0, 1.0, 1.0));
