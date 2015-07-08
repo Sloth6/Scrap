@@ -16,7 +16,8 @@ section.container section.space {
 
             author {
                 opacity: 1;
-                @include transform(translate3d(0, -$leading * 1.575, 0));
+                @include transform(translate3d(0, $leading *1.125, 0));
+                background-color: $colorAccent;
             }
         }
         
@@ -113,23 +114,23 @@ section.container section.space {
         
         author {
             @include typeBodySmallCaps;
+            font-style: normal;
             line-height: 1em;
             position: absolute;
             display: block;
             color: $colorTypeLight;
-            background: $colorAccent;
-            margin-left: -$cardBorderWidth;
-            text-indent: $cardBorderWidth;
-            padding: $cardPadding;
-            top: 0;
-            left: 0;
+            background-color: $colorType;
+            padding: $gutter/4;
+            bottom: 0;
+            right: 0;
             opacity: 0;
             white-space: nowrap;
             z-index: -900;
-//             @include box-shadow($cardBoxShadowDimensions $colorAccent);
+            @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
             @include transform(translate3d(0,0,0));
             @include transition(.25s $defaultCurve);
             @include transition-property(opacity,
+                                background-color,
                                          transform,
                                  -webkit-transform,
                                     -moz-transform);
@@ -150,6 +151,7 @@ section.container section.space {
                                  -webkit-box-shadow,
                                     -moz-box-shadow,
                                          background-color,
+                                         border-color,
                                          color);
 
             &.text {
@@ -203,8 +205,12 @@ section.container section.space {
                     }
 
                     .url p {
-//                         margin-top: $leading/4;
+                        margin-top: $leading*.75*1.14;
+                        margin-bottom: $leading/4;
                         @include typeBodySmallCaps;
+                        font-weight: $fontWeightBold;
+                        letter-spacing: 1pt;
+                        line-height: 1em;
                     }
                 }
 
