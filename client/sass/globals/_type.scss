@@ -39,6 +39,7 @@ $leading:           1.5em;
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
     font-weight:    $fontWeightExtraBold;
+    letter-spacing: .0625em;
 }
 
 @mixin typeHeaderSmallCaps {

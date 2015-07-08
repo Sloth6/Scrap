@@ -23,12 +23,6 @@ $headerPadding: $baseline/2 $gutter;
             max-width: 100%;
         }
         
-        &.spaces {
-            li a {
-                text-transform: lowercase;
-            }
-        }
-        
         &.settings {
             a { 
                 &.logout:hover {
@@ -42,17 +36,8 @@ $headerPadding: $baseline/2 $gutter;
             li {
                 
                 &.user {
-                    text-transform: lowercase;
-                }
-                
-                form {
-                                                
-                    label {
-                        @include typeBody;
-                        text-transform: lowercase;
-                        display: block;
-                        margin-top: $leading/4;
-                    }
+                    @include typeHeader;
+                    text-transform: none;
                 }
             }
         }
