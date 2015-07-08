@@ -1,2 +1,8 @@
 $headerHeight:          25vh;
-$cardPadding:           $gutter/2 $gutter $gutter/1.5 $gutter;
+
+$cardPaddingTop:        $gutter/2;
+$cardPaddingRight:      $gutter;
+$cardPaddingBottom:     $gutter/1.5;
+$cardPaddingLeft:       $gutter;
+
+$cardPadding:           $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;

@@ -1,26 +1,21 @@
 scaleMultiple = 2
 
 $ ->
+  # $('.metaspace').css("transform", "scale3d(0.5, 0.5, 1.0)")
   window.userSettings = $('ul.menu.right.settings')
   $('.spacePreview').not('.add').click () ->
     spaceKey = $(@).data().spaceid
     history.pushState {name: "/s/#{spaceKey}"}, "", "/s/#{spaceKey}"
     enterSpace spaceKey, $(@)
-
-scrollToSpace = (parent) ->
-  offsetLeft = 0
-  offsetTop  = $(window).scrollTop() - parent.offset().top*2
-
-  $('.metaspace').
-    addClass('open').
-    removeClass('closed').
-    css("transform", "scale3d(1.0, 1.0, 1.0)")
-  $(".content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
-
+  
 enterSpace = (spaceKey, parent, callback) ->
   url = window.location.origin+"/r/"+spaceKey
-  scrollToSpace parent
+  
+  offsetLeft = 1 # pixel adjustment
+  offsetTop  = $(window).scrollTop() - parent.offset().top*2 - 5 # pixel adjustment
+
   #Take the name from the home page view and hide it.
+  
 
   $('<iframe />', {
     name: 'spaceFrame'
@@ -31,28 +26,34 @@ enterSpace = (spaceKey, parent, callback) ->
     event.preventDefault()
     event.stopPropagation()
   ).
-  css({ width: '100vw', height: '100vh' }).
-  appendTo($('.container')).
+  prependTo(parent).
   load () ->
+    $('.home').show()
+    
+    parent.addClass("open")
+    $('.metaspace').
+      addClass('open').
+      removeClass('closed').
+      css("transform", "scale3d(1.0, 1.0, 1.0)")
+    $(".content").css("transform", "translate3d(" + offsetLeft + "px, " + offsetTop + "px, 0px)")
     $('ul.menu.settings').addClass('hidden')
     $('h1.logo').addClass('hidden')
     $('.container > header').append($("iframe").contents().find('.users.menu'))
     $('.users.menu').removeClass('hidden')
     $('header > a.back').removeClass('hidden')
 
-    setTimeout (() =>
-      $('.metaspace').hide()
-      $(document.body).css overflow: 'hidden'
+     
+    setTimeout () ->
       homeSpaceName = parent.find('.spaceName').hide()
       $(".spacePreview").not(parent).addClass("hidden")
-      $('.headerSpaceName').show().text homeSpaceName.text()        
-    ), 400
+      $('.headerSpaceName').show().text homeSpaceName.text()  
+    , 1000
 
     callback() if callback 
-    # $('.spaceForm').submit (e) ->    
-    #   e.preventDefault()   
-    #   newName = $(@).find(':input').val()    
-    #   $.post '/s/update', { spaceKey, name: newName }    
-    #   $('.headerSpaceName').show().text newName    
-    #   homeSpaceName.text newName   
-    #   $(@).hide()
+    $('.spaceForm').submit (e) ->    
+      e.preventDefault()   
+      newName = $(@).find(':input').val()    
+      $.post '/s/update', { spaceKey, name: newName }    
+      $('.headerSpaceName').show().text newName    
+      homeSpaceName.text newName   
+      $(@).hide()

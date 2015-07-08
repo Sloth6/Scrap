@@ -15,7 +15,18 @@ body {
                 
                 &.hidden {
                     margin-left: -$col;
+                    
                 }
+            }
+            
+            h1.headerSpaceName {
+                position: absolute;
+                top: 4pt;
+                width: 33.333333vw;
+                left: 50vw;
+                margin-left: -16.6666667vw;
+                padding-left: 1pt;
+                text-align: center;
             }
             
             a.back {
