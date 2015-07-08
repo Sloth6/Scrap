@@ -153,8 +153,9 @@ section.container section.space {
             &.text {
                 @include cardStyle;
                 @include typeHeader;
-//                 background: $colorType;
-//                 color: $colorCardBackground;
+                background: $colorType;
+                color: $colorCardBackground;
+                font-style: italic;
             }
 
             &.image {
@@ -164,11 +165,10 @@ section.container section.space {
             }
             
             &.website {
-                border: $cardBorder;
-                                
+                               
                 &:hover {
                     .text {
-                        border-top-color: $colorAccent !important;
+                        border-color: $colorAccent !important;
                         color: $colorAccent;
                     }
                 }                
@@ -177,8 +177,7 @@ section.container section.space {
                     position: relative;
                     z-index: 2;
                     @include cardStyle;
-                    border: 0;
-                    border-top: $cardBorder;
+                    border: $cardBorder;
                     
                     &:hover {
 //                         @include hoverLinkAnimation;
@@ -203,8 +202,8 @@ section.container section.space {
                     }
 
                     .url p {
-                        margin-top: $leading/4;
-                        @include typeBody;
+//                         margin-top: $leading/4;
+                        @include typeBodySmallCaps;
                     }
                 }
 
