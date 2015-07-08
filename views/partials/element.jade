@@ -54,22 +54,9 @@ article(id=element.id, class= classes, style=posString+scaleString, data-content
       
       when 'soundcloud'
         -var content = JSON.parse(element.content)
-        
-        //- a(href=content.thumbnail, target='_blank')
-        //-   .text
-        //-     .title
-        //-       p!=content.title
-              //- p!=content.domain
-        //- img(src=content.thumbnail, style="position: absolute;")
-        //-   .text
-        //-     .title
-        //-       p!=content.title
         .iframeBlocker(style="position: absolute; top: 0; left: 0; width: 100%; height: 500px")
-        //- div(style="position:absolute")
-        
-        .foo(style="position:absolute")
-          p!= content.html
-        img.soundcloudThumbnail(src=content.thumbnail, style="position:absolute;visibility:visible;")
+        p!= content.html
+        img.soundcloudThumbnail(src=content.thumbnail, style="position:absolute;visibility:hidden;")
 
       default
         p!= element.content
