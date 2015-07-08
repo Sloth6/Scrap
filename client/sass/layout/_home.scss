@@ -50,12 +50,8 @@ body {
         }
     
         section.space.metaspace {
-//             height: 100vh * $scaleMultiple;
+            height: 100vh;
             width:  100vw;
-//             overflow: scroll;
-//             position: absolute;
-//             top:  -(100vh * $scaleMultiple) * $scaleMultiple;
-//             left: -(100vw * $scaleMultiple) / 4;
             -webkit-transform-origin: center center;
                     transform-origin: center center;
             @include transition($openSpaceDuration linear);

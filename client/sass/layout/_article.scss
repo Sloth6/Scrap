@@ -65,6 +65,7 @@ section.container section.space {
         // NEW ELEMENT
         
         &.add-element, &.editing {
+            
             &:hover {
                 author {
                     opacity: 0;
@@ -106,7 +107,8 @@ section.container section.space {
             height: $baseline;
             color: $colorType;
             background-color: transparent;
-            letter-spacing: $typeBodyTracking;
+            @include typeHeader;
+            font-style: italic;
         }
         
         author {
@@ -156,12 +158,11 @@ section.container section.space {
                 background: $colorType;
                 color: $colorCardBackground;
                 font-style: italic;
+                border: 0;
             }
 
             &.image {
                 width: $articleWidth;
-                border: $cardBorder;
-                border-color: transparent;
             }
             
             &.website {
