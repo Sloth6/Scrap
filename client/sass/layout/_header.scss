@@ -1,4 +1,4 @@
-$headerPadding: $baseline/4 $gutter;
+$headerPadding: $baseline/2 $gutter;
 
 .container > header {
     position: fixed;
@@ -7,7 +7,7 @@ $headerPadding: $baseline/4 $gutter;
     left: 0;
     right: 0;
     padding: $headerPadding;
-    @include typeHeader;
+    @include typeHeaderSmallCaps;
     text-align: left;
     cursor: default;
     text-transform: lowercase;

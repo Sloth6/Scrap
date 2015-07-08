@@ -1,70 +1,50 @@
-/*
-$fontLight:         'Futura W01 Light', Futura;
-$fontLightItalic:   'FuturaW01-LightOblique', Futura;
-$fontRegular:       'Futura W01 Book', Futura;
-$fontItalic:        'Futura W01 Book Oblique', Futura;
-$fontMedium:        'Futura W01 Medium', Futura;
-$fontMediumItalic:  'FuturaW01-MediumOblique', Futura;
-$fontBold:          'Futura W01 Heavy', Futura;
-$fontBoldItalic:    'FuturaW01-HeavyOblique', Futura;
-*/
+$fontFamily:        'L Futura W01', 'Futura W04';
 
-$fontFamily:        'DIN Neuzeit Grotesk W01';
-/*
-$fontWeightLight:   100;
-$fontWeightRegular: 200;
-$fontWeightMedium:  300;
-$fontWeightDemi:    400;
-$fontWeightBold:    500;
-*/
-/*
-$fontWeightLight:   200;
-$fontWeightRegular: 400;
-$fontWeightMedium:  700;
-$fontWeightDemi:    700;
-$fontWeightBold:    800;
-*/
-$fontWeightLight:   200;
-$fontWeightRegular: 200;
-$fontWeightMedium:  400;
-$fontWeightDemi:    400;
-$fontWeightBold:    400;
+$fontWeightLight:       100;
+$fontWeightRegular:     200;
+$fontWeightMedium:      300;
+$fontWeightDemi:        400;
+$fontWeightBold:        500;
+$fontWeightExtraBold:   600;
 
 
 $typeBodySize:      12pt;
-$typeBodyTracking:  .09375em;
+$typeBodyTracking:  0;
 $typeHeaderSize:    24pt;
+$typeHeaderSmallCapsSize: $typeHeaderSize * .666;
 $leading:           1.5em;
 
 @mixin typeBody {
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightBold;
     line-height:    $leading;
     letter-spacing: $typeBodyTracking;
 }
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: .03125em;
+    font-weight:    $fontWeightBold;
+    letter-spacing: 0;
     line-height:    $leading;
 }
 
 @mixin smallCaps {
     font-size:      .666em;
-    letter-spacing: .1825em;
+    letter-spacing: .03125em;
     text-transform: uppercase !important;
 }
 
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
+    font-weight:    $fontWeightExtraBold;
 }
 
 @mixin typeHeaderSmallCaps {
     @include        smallCaps;
-    font-size:      $typeHeaderSize * .666;
+    font-size:      $typeHeaderSmallCapsSize;
+    font-weight:    $fontWeightExtraBold;
 }
 
 
