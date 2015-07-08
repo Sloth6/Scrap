@@ -372,58 +372,85 @@ ul.menu {
             height: $leading;
             margin-top: -$cardBorderWidth;
             cursor: pointer;
+            position: relative;
+            width: $col * 2;
             
             .label {
-                display: absolute;
+                @include transition(.5s $defaultCurve);
+                @include transition-property(left, opacity);
             }
             
-            input {
-                cursor: auto;
+            &:hover {
+                color: $colorAccent;
+                border-color: $colorAccent;
+                z-index: 100;
             }
             
-/*
-            &:last-of-type {
-                border-bottom: $cardBorder;
-            }
-*/
-            
-            &.closed {
-                width: $col;
-                                     
-                &.hidden {
-//                     width: 0;
-                    height: 0;
-                    border-color: transparent;;
-                    padding: 0;
-                }
-           
+            &.expandable {
                 input, textarea {
-                    display: none;
-                    opacity: 0;
+                    cursor: auto;
+                    position: absolute;
+                    border: 0;
+                    left: $cardPaddingLeft;
+                    top: $cardPaddingTop;
                     @include transition(.5s $defaultCurve);
                     @include transition-property(opacity);
                 }
-            }
-            
-            &.open {
-                width: $articleWidth;
-                @include typeHeader;                
                 
-                &.tall {
-                    height: $leading * 4;
+                &.closed {
+                    &.hidden {
+                        height: 0;
+                        border-color: transparent;;
+                        padding: 0;
+                    }
+               
+                    input, textarea {
+                        opacity: 0;
+                    }
                 }
                 
-                input {
-                    opacity: 1;
+                &.open {
+                    width: $articleWidth;
+                    height: $baseline * 2;
+                    
+                    .label {
+                        opacity: 0;
+                    }
+                    
+                    &.tall {
+                        height: $leading * 4;
+                    }
+                    
+                    input, textarea {
+                        @include typeHeader;
+                        opacity: 1;
+                    }
+                                    
+                    textarea {
+                        height: 100%;
+                        width: 100%;
+                    }
                 }
             }
             
-            &.open, &.hidden {
-                .label {
-                    opacity: 0;
-                    left: -$col;
-                    @include transition(.5s $defaultCurve);
-                    @include transition-property(left, opacity);
+            &.upload {
+                
+                form {
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    
+                    input {
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
                 }
             }
         }
