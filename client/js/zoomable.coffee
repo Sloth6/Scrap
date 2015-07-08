@@ -55,7 +55,7 @@ $ ->
       size = getSize $(@).parent()
       switchImage $(@).children('img'), key, size
 
-  fitToCenter()
+  # fitToCenter()
   changeResolutions()
 
   $('article header, article .resize').each () ->
