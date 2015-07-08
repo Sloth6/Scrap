@@ -1,16 +1,14 @@
 section.container {
-//    width:  10000vw;
-//    height: 10000vh;
 //     position: fixed;
     cursor: text;
-//    overflow: hidden;
+
     &.dragging {
         cursor: all-scroll;
     }
     
     section.space {
-        width:  100%;
-        height: 100%;
+        width:  10000%;
+        height: 10000%;
         @include transition(1.5s $defaultCurve);
         @include transition-property(opacity, -webkit-filter);
         
