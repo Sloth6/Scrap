@@ -8,10 +8,24 @@ Array.prototype.remove = (elem) ->
     @
 
 $ ->
-    console.log "hi"
     driftElements = $("section.index .drift")
+    
+    placeRandomly = (element) ->
+        if element.hasClass("top")
+            x =  Math.random()       * ($(window).width() - element.outerWidth())
+            y =  Math.random()/2     * ($(window).height() - element.outerHeight())
+        else if element.hasClass("bottom")
+            x =  Math.random()       * ($(window).width() - element.outerWidth())
+            y = (Math.random()/2+.5) * ($(window).height() - element.outerHeight())
+            
+        element.css { x, y }
         
     drift = (element) ->
+        element.css {
+            "-webkit-transition" : "30s linear",
+            "-moz-transition" : "30s linear",
+            "transition" : "30s linear"
+        }
         last_side = element.data('last_side')
         side = ['left', 'right', 'top', 'bottom'].remove(last_side).random()
         element.data('last_side', side)
@@ -43,9 +57,12 @@ $ ->
         #  Math.random() * $(window).height() / 2
 #         y = Math.random() * $(window).width()  / 2
         element.css { x, y }
-        
+            
     driftElements.each () ->
-        drift $(@)
+        placeRandomly $(@)
+        setTimeout (() =>
+            drift $(@)
+        )
         setInterval (() =>
             drift($(@))
         ), 30000

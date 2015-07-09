@@ -1,11 +1,12 @@
 $headerHeight:          25vh;
 
-$cardPaddingTop:        $gutter/4;
-$cardPaddingRight:      $gutter/2;
-$cardPaddingBottom:     $gutter/3;
-$cardPaddingLeft:       $gutter/2;
+$cardPaddingTop:        $gutter/2;
+$cardPaddingRight:      $gutter;
+$cardPaddingBottom:     $gutter/1.5;
+$cardPaddingLeft:       $gutter;
 
-$cardPadding:           $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
+$cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
+$cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
 
 $menuWidth: 40vw;
@@ -79,7 +80,7 @@ form {
     input {
         @include typeHeader;
         
-        &[type=submit] {
+        &[type=submit], &[type=button] {
             @include typeHeaderSmallCaps;
         }
     }
@@ -91,8 +92,9 @@ label {
 
 @mixin placeHolderOverride {
     color: $colorType;
-    opacity: .25;
-    text-transform: none;
+    opacity: 1;
+    font-style: italic;
+    text-transform: lowercase;
     
     &:hover {
         @include hoverAnimation;
@@ -118,7 +120,7 @@ input {
     @include resetInput;
     @include typeBody;
     color: $colorType;
-    border-bottom: .125em $colorType solid;
+    border-bottom: $cardBorderWidth $colorType solid;
         
     &:focus, &:hover {
         @include hoverAnimation;
@@ -252,8 +254,12 @@ ul.menu {
                 @include transform(translate3d(0, 0, 0))
             }
             
-            form, input {
-                text-align: right;
+            input {
+                text-align: left;
+                
+                &[type=button], &[type=submit] {
+                    text-align: right;
+                }
             }
             
             a {
@@ -296,8 +302,8 @@ ul.menu {
     }
     
     li {
+        margin-bottom: $gutter;
         position: relative;
-        height: $leading;
         @include transition(.5s $defaultCurve);
         @include transition-property(left, right, height, opacity, margin,
                                      transform,
@@ -306,10 +312,6 @@ ul.menu {
                                 
         &.heading {
             @include typeBodySmallCaps;
-        }
-        
-        &.inputText {
-            margin: $leading/2 0;
         }
         
         &.hidden {

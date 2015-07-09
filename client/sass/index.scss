@@ -71,8 +71,9 @@ section.index {
         left: 0;
         background: $colorCardBackground;
         border: $cardBorder;
-        padding: $cardPadding;
+        padding: $cardPaddingFat;
     }
+    
     
     .hover:hover {
         z-index: 1000;
@@ -81,10 +82,10 @@ section.index {
     }
     
     .drift {
-        @include transition(30s linear);
+//         @include transition(30s linear);
         @include transition-property(transform,
                              -webkit-transform,
-                                -moz-transform !important);
+                                -moz-transform);
         transform-origin:         top left;
         -webkit-transform-origin: top left;
     }
