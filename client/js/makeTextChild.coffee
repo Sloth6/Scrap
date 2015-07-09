@@ -69,7 +69,7 @@ makeTextChild = (elems) ->
     children.push child.attr('id')
     parent.data 'children', children
 
-  parentsCoords = $("article").not('.text').get().map getCoords
+  parentsCoords = $("article").not('.text').not('.floatingMenu').get().map getCoords
   elems.each () ->
     elem = $(@)
     detach elem

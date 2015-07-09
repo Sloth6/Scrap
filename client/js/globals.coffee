@@ -14,6 +14,7 @@ $ ->
 
   $('.menu').mousedown (e) -> e.stopPropagation()
   $('.menu').mouseup (e) -> e.stopPropagation()
+  
 
   $(window).on 'dragover', (event) ->
     event = event.originalEvent
@@ -50,6 +51,7 @@ $ ->
     window.prev =
       x: event.clientX
       y: event.clientY
+
     return unless event.target is document.body
     $(this).off 'mouseup', removeDraggingClass
     $(window).on 'mousemove', onScreenDrag

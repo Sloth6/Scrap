@@ -21,6 +21,7 @@ addElement = (event, createdByCntrl) ->
   input = elementForm.find('.textInput')
   input.off 'keyup'
   # add the new element form if not createdByCntrl
+  console.log 'here'
   elementForm.
     css
       scale: scale
@@ -29,11 +30,11 @@ addElement = (event, createdByCntrl) ->
       top: "#{y}px"
       left: "#{x}px"
     .appendTo $('.content')
+    .show()
     .on 'click', (event) -> event.stopPropagation()
-    
+
   floatingMenuController.reset elementForm
   floatingMenuController.init elementForm
-
   # allow file uploads
   if not createdByCntrl
     $('.direct-upload').fileupload fileuploadOptions(false)
