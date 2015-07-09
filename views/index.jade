@@ -1,34 +1,24 @@
 extends layout
-
 block scripts
   include partials/indexScripts
 
 block content
-  header.index
+  header
     .card.form
       include partials/registration
 
-  section.space
-  
-    section.content
-      
-      each element in elements
-        if element.z > maxZ
-          - maxZ = element.z
-
-        if (element.x + 30 * element.scale) > maxX
-          - maxX = (element.x + 30 * element.scale)
-
-        if element.x < minX
-          - minX = element.x
-
-        if element.y+30 > maxY
-          - maxY = element.y+30
-
-        if element.y < minY
-          - minY = element.y
-
-        if element.scale < minScale
-          - minScale = element.scale
-
-        include partials/element
+  section.index.blur
+    header
+      h1.hover Hotpot
+      h2.drift.hover.top Collect and share<br>anything for a project.
+    section.register.drift.hover.bottom
+      form(id="login")
+        li.name
+          input(id="name",type="text", name="user[name]", placeholder="Name")
+        li.mail
+          input(id="email",type="email", name="user[email]", placeholder="Mail")
+        li.password
+          input(id="password",type="password", name="user[password]", placeholder="Password")
+        li.submit
+          input.offset(type="submit", value="Sign up")
+    section.example

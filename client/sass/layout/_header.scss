@@ -41,12 +41,6 @@ $headerPadding: $baseline/2 $gutter;
                 }
             }
         }
-        
-        form {
-            label, input {
-                @include typeHeader;
-            }
-        }
     }
     
     // Public space

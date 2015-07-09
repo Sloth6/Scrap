@@ -1994,3 +1994,129 @@ body section.container section.space.metaspace > section.content div.spacePrevie
 .card.login form input {
   text-transform: lowercase;
 }
+
+@-webkit-keyframes drift {
+  0% {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -moz-transform: translate3d(200px, 100px, 0);
+    -ms-transform: translate3d(200px, 100px, 0);
+    -webkit-transform: translate3d(200px, 100px, 0);
+    transform: translate3d(200px, 100px, 0);
+  }
+  100% {
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* line 23, ../sass/index.scss */
+section.index {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -moz-transition-property: -webkit-filter, opacity;
+  -o-transition-property: -webkit-filter, opacity;
+  -webkit-transition-property: -webkit-filter, opacity;
+  transition-property: -webkit-filter, opacity;
+}
+/* line 32, ../sass/index.scss */
+section.index header {
+  height: 100vh;
+  width: 100vw;
+}
+/* line 35, ../sass/index.scss */
+section.index header h1 {
+  font-size: 22vw;
+  text-transform: uppercase;
+  width: 100vw;
+  top: 50%;
+  position: relative;
+  text-align: center;
+  letter-spacing: 0;
+  font-weight: 600;
+  color: #d0ff00;
+  -webkit-animation: hoverFlicker 20s infinite linear;
+  -moz-animation: hoverFlicker 20s infinite linear;
+  -o-animation: hoverFlicker 20s infinite linear;
+  animation: hoverFlicker 20s infinite linear;
+  /*
+      color: $colorAccent;
+      border-color: $colorAccent;
+  */
+  /*
+          -webkit-text-fill-color: white; 
+          -webkit-text-stroke-width: $cardBorderWidth;
+          -webkit-text-stroke-color: black;
+  */
+}
+/* line 53, ../sass/index.scss */
+section.index header h2 {
+  font-size: 5vw;
+  line-height: 1em;
+  border: 0;
+  padding: .25em .25em .5em .5em;
+  border: 6pt solid #000000;
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: intrinsic;
+  letter-spacing: -.015125em;
+}
+/* line 72, ../sass/index.scss */
+section.index section.register {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  border: 6pt solid #000000;
+  padding: 0.5rem 1rem 0.66667rem 1rem;
+}
+/* line 82, ../sass/index.scss */
+section.index .hover:hover {
+  z-index: 1000;
+  cursor: default;
+  -moz-box-shadow: 1rem 1rem 0 0 rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1rem 1rem 0 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 1rem 1rem 0 0 rgba(0, 0, 0, 0.75);
+}
+/* line 88, ../sass/index.scss */
+section.index .drift {
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
+  transition-property: transform, -webkit-transform, -moz-transform;
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+}
+/* line 99, ../sass/index.scss */
+section.index section.example {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: -100;
+  left: 0;
+}
+/* line 107, ../sass/index.scss */
+section.index section.example img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
