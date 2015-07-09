@@ -18,20 +18,26 @@ $ ->
         dist = Math.random()
         
         if element.hasClass("top")
-            console.log element
-
-        if side is 'left'
-            x = 0
-            y = dist * ($(window).height() - element.outerHeight())
-        else if side is 'right'
-            x = $(window).width() - element.outerWidth()
-            y = dist * ($(window).height() - element.outerHeight())
-        else if side is 'top'
-            y = 0
-            x = ($(window).width() - element.outerWidth()) * dist
-        else if side is 'bottom'
-            y = $(window).height() - element.outerHeight()
-            x = ($(window).width() - element.outerWidth()) * dist
+            if side is 'left'
+                x = 0
+                y = (dist / 2) * ($(window).height() - element.outerHeight())
+            else if side is 'right'
+                x = $(window).width() - element.outerWidth()
+                y = (dist / 2) * ($(window).height() - element.outerHeight())
+            else if side is 'top' or 'bottom' # always goes to top
+                y = 0
+                x = ($(window).width() - element.outerWidth()) * dist
+                
+        else if element.hasClass("bottom")
+            if side is 'left'
+                x = 0
+                y = ((dist / 2) + .5) * ($(window).height() - element.outerHeight())
+            else if side is 'right'
+                x = $(window).width() - element.outerWidth()
+                y = ((dist / 2) + .5) * ($(window).height() - element.outerHeight())
+            else if side is 'top' or 'bottom' # always goes to bottom
+                y = $(window).height() - element.outerHeight()
+                x = ($(window).width() - element.outerWidth()) * dist
             
             
         #  Math.random() * $(window).height() / 2
