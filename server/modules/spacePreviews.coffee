@@ -17,7 +17,6 @@ options =
   errorIfStatusIsNot200: true
   phantomConfig:
     'web-security': 'no'
-  # renderDelay: 3000
   customCSS: ".form {
                 visibility:hidden;
               }
@@ -25,11 +24,9 @@ options =
                 visibility:visible;
               }
               "
-  
-    # 'load-images': 'true'
-
 
 module.exports = (spaceKey) ->
+  return
   if space_timeouts[spaceKey]
     space_timeouts[spaceKey]()
   else

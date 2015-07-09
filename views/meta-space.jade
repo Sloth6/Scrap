@@ -35,7 +35,11 @@ block content
         h1.spaceName
           New Space
       each space in user.spaces
-        - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
-        div.spacePreview(data-spaceId = space.spaceKey, style=imageCss, class= space.spaceKey)
+        //- - imageCss = "background-image:url(https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"+space.spaceKey+"/screenshot.jpg);"
+        //- - imageCss = "width:600px;height:400px;"
+        div.spacePreview(data-spaceId = space.spaceKey, class= space.spaceKey)
           h1.spaceName
             span= space.name
+          //- div.spaceContainer("")
+          .iframeBlocker(style="position: absolute; top: 0; left: 0; width: 100%; height: 100%")
+          iframe(src='http://localhost:9001/r/'+space.spaceKey, style="width:100%;height:100%;")
