@@ -12,7 +12,7 @@ $ ->
   bindFileControls $('article.file')
   bindSoundCloudControls $('article.soundcloud')
 
-  window.oncontextmenu = () -> false
+#   window.oncontextmenu = () -> false
 
   $('.menu').mousedown (e) -> e.stopPropagation()
   $('.menu').mouseup (e) -> e.stopPropagation()

@@ -22,6 +22,10 @@
 
 section.index {
     height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
     @include transition(.25s $defaultCurve);
     @include transition-property(-webkit-filter, opacity);
 
@@ -83,10 +87,28 @@ section.index {
     
     .drift {
 //         @include transition(30s linear);
+//         @include transition-timing-function(cubic-bezier(0.77, 0, 0.175, 1));
+        @include transition-timing-function(linear);
         @include transition-property(transform,
                              -webkit-transform,
                                 -moz-transform);
         transform-origin:         top left;
         -webkit-transform-origin: top left;
+    }
+    
+    section.example {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        z-index: -100;
+        left: 0;
+        
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+//             @include transform(scale3d(.15,.15,1));
+        }
     }
 }

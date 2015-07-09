@@ -2018,6 +2018,10 @@ body section.container section.space.metaspace > section.content div.spacePrevie
 /* line 23, ../sass/index.scss */
 section.index {
   height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -2027,12 +2031,12 @@ section.index {
   -webkit-transition-property: -webkit-filter, opacity;
   transition-property: -webkit-filter, opacity;
 }
-/* line 28, ../sass/index.scss */
+/* line 32, ../sass/index.scss */
 section.index header {
   height: 100vh;
   width: 100vw;
 }
-/* line 31, ../sass/index.scss */
+/* line 35, ../sass/index.scss */
 section.index header h1 {
   font-size: 22vw;
   text-transform: uppercase;
@@ -2057,7 +2061,7 @@ section.index header h1 {
           -webkit-text-stroke-color: black;
   */
 }
-/* line 49, ../sass/index.scss */
+/* line 53, ../sass/index.scss */
 section.index header h2 {
   font-size: 5vw;
   line-height: 1em;
@@ -2071,7 +2075,7 @@ section.index header h2 {
   width: intrinsic;
   letter-spacing: -.015125em;
 }
-/* line 68, ../sass/index.scss */
+/* line 72, ../sass/index.scss */
 section.index section.register {
   position: absolute;
   top: 0;
@@ -2080,7 +2084,7 @@ section.index section.register {
   border: 6pt solid #000000;
   padding: 0.5rem 1rem 0.66667rem 1rem;
 }
-/* line 78, ../sass/index.scss */
+/* line 82, ../sass/index.scss */
 section.index .hover:hover {
   z-index: 1000;
   cursor: default;
@@ -2088,12 +2092,31 @@ section.index .hover:hover {
   -webkit-box-shadow: 1rem 1rem 0 0 rgba(0, 0, 0, 0.75);
   box-shadow: 1rem 1rem 0 0 rgba(0, 0, 0, 0.75);
 }
-/* line 84, ../sass/index.scss */
+/* line 88, ../sass/index.scss */
 section.index .drift {
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
   -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
   -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
   transform-origin: top left;
   -webkit-transform-origin: top left;
+}
+/* line 99, ../sass/index.scss */
+section.index section.example {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: -100;
+  left: 0;
+}
+/* line 107, ../sass/index.scss */
+section.index section.example img {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
