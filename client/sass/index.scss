@@ -1,0 +1,91 @@
+@import "screen.scss";
+
+@mixin driftKeyframes($toLeft, $toTop) {
+    0%   {
+        @include transform(translate3d(0,0,0));
+    }
+    50%  {
+        @include transform(translate3d($toLeft,$toTop,0));
+    }
+    100% {
+        @include transform(translate3d(0,0,0));
+    }
+}
+
+@mixin driftAnimation($toLeft, $toTop) {
+    @-webkit-keyframes drift {
+        @include driftKeyframes($toLeft, $toTop);
+    }
+}
+
+@include driftAnimation(200px, 100px);
+
+section.index {
+    height: 100vh;
+    @include transition(.25s $defaultCurve);
+    @include transition-property(-webkit-filter, opacity);
+
+    header {
+        height: 100vh;
+        width: 100vw;
+        h1 {
+            font-size: 22vw;
+            text-transform: uppercase;
+            width: 100vw;
+            top: 50%;
+            position: relative;
+            text-align: center;
+            letter-spacing: 0;
+            font-weight: $fontWeightExtraBold;
+            color: #d0ff00;
+            @include hoverAnimation;
+    /*
+            -webkit-text-fill-color: white; 
+            -webkit-text-stroke-width: $cardBorderWidth;
+            -webkit-text-stroke-color: black;
+    */
+        }
+        
+        h2 {
+            font-size: 5vw;
+            line-height: 1em;
+    //         width: 66vw;
+            border: 0;
+            padding: .25em .25em .5em .5em;
+            border: $cardBorder;
+            background: $colorCardBackground;
+    //         color: $colorCardBackground;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: intrinsic;
+            letter-spacing: -.015125em;
+    //         font-weight: $fontWeightExtraBold;
+    //         -webkit-animation: drift 100s infinite linear;
+        }
+    }
+    
+    section.register {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: $colorCardBackground;
+        border: $cardBorder;
+        padding: $cardPadding;
+    }
+    
+    .hover:hover {
+        z-index: 1000;
+        cursor: default;
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    }
+    
+    .drift {
+        @include transition(30s linear);
+        @include transition-property(transform,
+                             -webkit-transform,
+                                -moz-transform !important);
+        transform-origin:         top left;
+        -webkit-transform-origin: top left;
+    }
+}

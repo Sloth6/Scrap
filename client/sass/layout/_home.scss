@@ -103,8 +103,7 @@ body {
                     z-index: 1;
                     border: $cardBorder;
                     border-width: $cardBorderWidth * $scaleMultiple;
-                    margin-top:  -$cardBorderWidth * $scaleMultiple;
-                    margin-left: -$cardBorderWidth * $scaleMultiple;
+                    margin-bottom: $baseline;
 //                     margin: $col/2 $col/2;
                     @include transform(scale3d(1.0, 1.0, 1.0));
                     
@@ -116,7 +115,7 @@ body {
                         border-color: $colorAccent !important;
                                             -webkit-transform-origin: center center;
                         color: $colorAccent;
-//                         @include transform(scale3d(1.125, 1.125, 1.0));
+                        @include transform(scale3d($scaleMultiple/2, $scaleMultiple/2, 1.0));
 //                         @include box-shadow($gutter * $scaleMultiple $gutter * $scaleMultiple 0 $cardBoxShadowColor);
 
                         h1.spaceName span {

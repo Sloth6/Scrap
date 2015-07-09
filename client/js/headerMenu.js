@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var menu = $("ul.menu"),
-        space = $("section.space"),
+        space = $("section.blur"),
         mask = $("<div class='mask'></div>"),
         inputIsFocused = false,
         subMenuIsOpen = false;

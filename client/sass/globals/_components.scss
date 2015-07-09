@@ -70,6 +70,19 @@ a {
 
 form {
     position: relative;
+    
+    li {
+        list-style: none;
+        margin-top: $leading;
+    }
+    
+    input {
+        @include typeHeader;
+        
+        &[type=submit] {
+            @include typeHeaderSmallCaps;
+        }
+    }
 }
 
 label {
@@ -372,6 +385,7 @@ ul.menu {
 }
 
 .floatingMenu {
+//     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
     
     ul {
         

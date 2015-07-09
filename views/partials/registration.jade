@@ -1,19 +1,18 @@
 ul.menu.login.right.hideFirst
-  li Join/Login
+  li.first.visible Join/Login
   li
     input(type="checkbox", id="toggle-login")
     label(for="toggle-login") I already have an account
-  li 
-    form(id="login")
-      li.name
-        input(id="name",type="text", name="user[name]", placeholder="Name")
-      li.mail
-        input(id="email",type="email", name="user[email]", placeholder="Mail")
-      li.password
-        input(id="password",type="password", name="user[password]", placeholder="Password")
-      li.submit
-        input.offset(type="submit", value="Sign up")
-      li(id="errorField")
+  form(id="login")
+    li.name
+      input(id="name",type="text", name="user[name]", placeholder="Name")
+    li.mail
+      input(id="email",type="email", name="user[email]", placeholder="Mail")
+    li.password
+      input(id="password",type="password", name="user[password]", placeholder="Password")
+    li.submit
+      input.offset(type="submit", value="Sign up")
+    li(id="errorField")
 script.
   function onError(res) {
     $('#errorField').text(res.responseText);

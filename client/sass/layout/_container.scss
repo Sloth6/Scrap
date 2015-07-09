@@ -6,17 +6,19 @@ section.container {
         cursor: all-scroll;
     }
     
+    section.blur {
+        &.obscured {
+            opacity: .333;
+            -webkit-filter: blur(20px);
+        }
+    }
+    
     section.space {
         width:  10000%;
         height: 10000%;
         @include transition(1.5s $defaultCurve);
         @include transition-property(opacity, -webkit-filter);
         
-        &.obscured {
-            opacity: .333;
-            -webkit-filter: blur(20px);
-        }
-
         section.content {
             transform-origin: 0 0;
             -webkit-transform-origin: 0 0;
