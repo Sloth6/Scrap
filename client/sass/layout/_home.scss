@@ -20,8 +20,9 @@ body {
             }
             
             h1.headerSpaceName {
+                @include typeHeaderSmallCaps;
                 position: absolute;
-                top: 4pt;
+                top: 9pt;
                 width: 33.333333vw;
                 left: 50vw;
                 margin-left: -16.6666667vw;
@@ -49,12 +50,8 @@ body {
         }
     
         section.space.metaspace {
-//             height: 100vh * $scaleMultiple;
+            height: 100vh;
             width:  100vw;
-//             overflow: scroll;
-//             position: absolute;
-//             top:  -(100vh * $scaleMultiple) * $scaleMultiple;
-//             left: -(100vw * $scaleMultiple) / 4;
             -webkit-transform-origin: center center;
                     transform-origin: center center;
             @include transition($openSpaceDuration linear);
@@ -156,18 +153,19 @@ body {
                     }
 
                     h1.spaceName {
+                        @include typeHeaderSmallCaps;
+                        font-size: $typeHeaderSmallCapsSize * $scaleMultiple;
+
                         position: absolute;
-                        padding-top: ($gutter/4) * $scaleMultiple;
                         cursor: default;
                         text-transform: lowercase;
-                        top: 0;
+                        top: $baseline / 2 * $scaleMultiple;
                         left: 50%;
                         margin-left: -50vw;
+                        padding-top: $cardBorderWidth * $scaleMultiple;
                         width: 100vw;
                         z-index: 200;
                         text-align: center;
-                        @include typeHeader;
-                        font-size: $typeHeaderSize * $scaleMultiple;
                         @include transform(scale3d(1.0, 1.0, 1.0) translate3d(0px, 0px, 0px));
                         -webkit-transform-origin: top center;
                                 transform-origin: top center;
@@ -199,7 +197,7 @@ body {
                         }
                         
                         h1.spaceName {
-                            @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(0px, 0px, 0px));
+                            @include transform(scale3d(1/$scaleMultiple, 1/$scaleMultiple, 1.0) translate3d(2.25pt, -20.25pt, 0px));
                             
                             span {
                                 @include transform(scale3d(1.0, 1.0, 1.0));

@@ -1,4 +1,4 @@
-$headerPadding: $baseline/4 $gutter;
+$headerPadding: $baseline/2 $gutter;
 
 .container > header {
     position: fixed;
@@ -7,7 +7,7 @@ $headerPadding: $baseline/4 $gutter;
     left: 0;
     right: 0;
     padding: $headerPadding;
-    @include typeHeader;
+    @include typeHeaderSmallCaps;
     text-align: left;
     cursor: default;
     text-transform: lowercase;
@@ -23,12 +23,6 @@ $headerPadding: $baseline/4 $gutter;
             max-width: 100%;
         }
         
-        &.spaces {
-            li a {
-                text-transform: lowercase;
-            }
-        }
-        
         &.settings {
             a { 
                 &.logout:hover {
@@ -42,17 +36,8 @@ $headerPadding: $baseline/4 $gutter;
             li {
                 
                 &.user {
-                    text-transform: lowercase;
-                }
-                
-                form {
-                                                
-                    label {
-                        @include typeBody;
-                        text-transform: lowercase;
-                        display: block;
-                        margin-top: $leading/4;
-                    }
+                    @include typeHeader;
+                    text-transform: none;
                 }
             }
         }

@@ -9,7 +9,7 @@ $colorWashLightTrans40:     rgba(255,255,255,.4);
 $colorWashLightTrans20:     rgba(255,255,255,.2);
 
 $colorCardBackground:       $colorWashLight;
-$colorBackground:           #fffbf1;
+$colorBackground:           $colorWashLight;
 // $colorBackground:           $colorWashLight;
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;

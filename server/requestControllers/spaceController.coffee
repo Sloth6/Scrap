@@ -119,6 +119,8 @@ module.exports =
       where: { spaceKey: req.params.spaceKey }
       include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
     ).complete (err, space) ->
+      console.log err, space
+      return res.status(400).send('space not found') if err or !space
       res.render 'previewSpace.jade',
         title : "#{space.name} on Hotpot"
         current_space: space
