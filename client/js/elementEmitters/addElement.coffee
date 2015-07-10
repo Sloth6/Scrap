@@ -21,7 +21,6 @@ addElement = (event, createdByCntrl) ->
   input = elementForm.find('.textInput')
   input.off 'keyup'
   # add the new element form if not createdByCntrl
-  console.log 'here'
   elementForm.
     css
       scale: scale

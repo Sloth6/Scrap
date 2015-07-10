@@ -6,4 +6,15 @@ bindSoundCloudControls = (elems) ->
   elems.mouseup (e) ->
     return if $(@).data('lastX') != e.clientX
     return if $(@).data('lastY') != e.clientY
-    SC.Widget($(@).find('iframe')[0]).toggle()
+    img = $(@).find('img')
+    if img.length
+      iframe = $($(@).data('content').html)
+      iframe.load () -> 
+        widget = SC.Widget(@)
+        widget.bind SC.Widget.Events.READY, () -> widget.toggle()
+      iframe.insertAfter img
+      img.remove()
+
+    else
+      SC.Widget($(@).find('iframe')[0]).toggle()
+      

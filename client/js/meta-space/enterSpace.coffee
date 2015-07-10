@@ -31,6 +31,8 @@ enterSpace = (preview, iframe, spaceKey) ->
   $('header > a.back').removeClass('hidden')
 
   $(".menu,h1,a").bind "mousewheel", () -> return false
+  iframe[0].contentWindow.changeResolutions()
+
   setTimeout () ->
     homeSpaceName = preview.find('.spaceName').hide()
     $(".spacePreview").not(preview).addClass("hidden")

@@ -34,7 +34,7 @@ $ ->
 
     content.css { scale }
 
-  changeResolutions = () ->
+  window.changeResolutions = () ->
     getSize = (e) ->
       s = content.css 'scale'
       { w, h } = dimension e
@@ -56,7 +56,7 @@ $ ->
       switchImage $(@).children('img'), key, size
 
   fitToCenter()
-  changeResolutions()
+  # changeResolutions()
 
   $('article header, article .resize').each () ->
     scaleControls($(this))

@@ -4,17 +4,19 @@ images = require 'images'
 async = require 'async'
 
 sizes =
+  tiny: 40
   small: 100
   medium: 400
 
 module.exports = ({ url, spaceKey, key, contentType }, callback) ->
   request.get { url, encoding: null }, (err, res, body) ->
     if contentType is 'gif'
-      frame = images(body).encode "png"
-      uploads = [
-        ((cb) -> s3.putImage { key, spaceKey, img: frame, path: 'normal', type: 'png' }, cb)
-        ((cb) -> s3.putImage { key, spaceKey, img: body, path: 'normal', type: 'gif' }, cb)
-      ]
+      return callback()
+      # frame = images(body).encode "png"
+      # uploads = [
+      #   ((cb) -> s3.putImage { key, spaceKey, img: frame, path: 'normal', type: 'png' }, cb)
+      #   ((cb) -> s3.putImage { key, spaceKey, img: body, path: 'normal', type: 'gif' }, cb)
+      # ]
     else
       normal = images(body).encode("jpg", {quality: 100})
       medium = images(body).size(sizes.medium).encode("jpg", {quality: 100})
