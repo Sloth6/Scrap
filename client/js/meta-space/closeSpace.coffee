@@ -11,7 +11,6 @@ closeSpace = () ->
   # update the url  
   $('.container > header').append window.userSettings
   $('.menu.settings').addClass 'hidden'
-  
   $('.metaspace')
     .addClass 'closed'
     .removeClass 'open'
@@ -22,7 +21,6 @@ closeSpace = () ->
   $(".spacePreview").removeClass('open')
   $('a.back').addClass('hidden')
   $('.menu.users').addClass('hidden')
-
   setTimeout (->
     $('h1.logo').removeClass('hidden')
     $('.menu.users').remove()
