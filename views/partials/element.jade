@@ -57,7 +57,7 @@ article(id=element.id, class= classes, style=posString+scaleString, data-content
         .iframeBlocker(style="position: absolute; top: 0; left: 0; width: 100%; height: 500px")
         //- .iframeContainer(style:"display:none")
         //-   p!= content.html
-        img.soundcloudThumbnail(src=content.thumbnail)
+        img.soundcloudThumbnail(src=content.thumbnail, style="position: absolute; top: 0; left: 0;)
 
       default
         p!= element.content
