@@ -1,11 +1,12 @@
-$fontFamily:        'L Futura W01', 'Futura W04';
+/* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
+$fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
 
-$fontWeightLight:       100;
-$fontWeightRegular:     200;
-$fontWeightMedium:      300;
-$fontWeightDemi:        400;
-$fontWeightBold:        500;
-$fontWeightExtraBold:   600;
+$fontWeightLight:       300;
+$fontWeightRegular:     400;
+$fontWeightMedium:      500;
+$fontWeightDemi:        600;
+$fontWeightBold:        700;
+$fontWeightExtraBold:   800;
 
 
 $typeBodySize:      12pt;
@@ -38,14 +39,15 @@ $leading:           1.5em;
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
-    font-weight:    $fontWeightExtraBold;
+    font-weight:    $fontWeightBold;
     letter-spacing: .0625em;
 }
 
 @mixin typeHeaderSmallCaps {
-    @include        smallCaps;
-    font-size:      $typeHeaderSmallCapsSize;
-    font-weight:    $fontWeightExtraBold;
+    @include typeHeader;
+//     @include        smallCaps;
+//     font-size:      $typeHeaderSmallCapsSize;
+//     font-weight:    $fontWeightBold;
 }
 
 
