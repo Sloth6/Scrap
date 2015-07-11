@@ -14,13 +14,17 @@ closeSpace = () ->
   $('.metaspace')
     .addClass 'closed'
     .removeClass 'open'
-    .css "transform", "translate3d(0px, 0px, 0px)"
+    .css "transform", "translate(0px, 0px)"
 
-  $(".metaspace > section.content").css("transform", "scale3d("+1.0/scaleMultiple+","+ 1.0/scaleMultiple+","+ 1.0+")")
+  $(".content").css("transform", "scale("+(1.0/scaleMultiple)+","+ (1.0/scaleMultiple)+")")
   $(".spacePreview").not($(this)).removeClass("hidden")
   $(".spacePreview").removeClass('open')
   $('a.back').addClass('hidden')
   $('.menu.users').addClass('hidden')
+  
+  #  The chrome gods are angry, this sacrifical pixel pleases them
+  $(window).scrollTop($(window).scrollTop()+1)
+  
   setTimeout (->
     $('h1.logo').removeClass('hidden')
     $('.menu.users').remove()
