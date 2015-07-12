@@ -42,6 +42,8 @@ $ ->
     else
       addElement event, false
 
+  $(window).on 'mousewheel', scroll
+
   removeDraggingClass = (event) ->
     $(event.target).removeClass 'dragging'
     $(this).off 'mousemove', onScreenDrag
@@ -74,3 +76,4 @@ $ ->
   # Initialize file uploads by dragging
   if $('.drag-upload').fileupload
     $('.drag-upload').fileupload fileuploadOptions(true)
+  fitToCenter()
