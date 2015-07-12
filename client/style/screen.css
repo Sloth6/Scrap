@@ -574,21 +574,22 @@ body section.space section.content article.color9 div.card.text.comment, body se
     border-color: blue;
   }
 }
-/* line 59, ../sass/globals/_type.scss */
+/* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
+/* line 61, ../sass/globals/_type.scss */
 html {
-  font-family: "L Futura W01", "Futura W04";
+  font-family: "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.5em;
   letter-spacing: 0;
 }
-/* line 62, ../sass/globals/_type.scss */
+/* line 64, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 0.125em #000000 solid;
 }
-/* line 70, ../sass/globals/_type.scss */
+/* line 72, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 0.75rem;
 }
@@ -622,17 +623,16 @@ form li {
 /* line 80, ../sass/globals/_components.scss */
 form input {
   font-size: 24pt;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.5em;
 }
 /* line 83, ../sass/globals/_components.scss */
 form input[type=submit], form input[type=button] {
-  font-size: .666em;
-  letter-spacing: .03125em;
-  text-transform: uppercase !important;
-  font-size: 15.984pt;
-  font-weight: 600;
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5em;
 }
 
 /* line 89, ../sass/globals/_components.scss */
@@ -641,7 +641,7 @@ label {
   letter-spacing: .03125em;
   text-transform: uppercase !important;
   font-size: 7.992pt;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .0625em;
 }
 
@@ -728,9 +728,9 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "L Futura W01", "Futura W04";
+  font-family: "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.5em;
   letter-spacing: 0;
   color: #000000;
@@ -967,7 +967,7 @@ ul.menu li.heading {
   letter-spacing: .03125em;
   text-transform: uppercase !important;
   font-size: 7.992pt;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .0625em;
 }
 /* line 317, ../sass/globals/_components.scss */
@@ -1144,9 +1144,9 @@ ul.menu li:nth-of-type(20) {
   -o-transition-property: width, height, font-weight, font-size, border-color, padding;
   -webkit-transition-property: width, height, font-weight, font-size, border-color, padding;
   transition-property: width, height, font-weight, font-size, border-color, padding;
-  font-family: "L Futura W01", "Futura W04";
+  font-family: "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.5em;
   letter-spacing: 0;
   background-color: white;
@@ -1221,7 +1221,7 @@ ul.menu li:nth-of-type(20) {
 /* line 453, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open input, .floatingMenu ul li.expandable.open textarea {
   font-size: 24pt;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.5em;
   opacity: 1;
@@ -1257,9 +1257,9 @@ textarea {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "L Futura W01", "Futura W04";
+  font-family: "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.5em;
   letter-spacing: 0;
   width: 100%;
@@ -1280,11 +1280,10 @@ body {
   left: 0;
   right: 0;
   padding: 0.75rem 1rem;
-  font-size: .666em;
-  letter-spacing: .03125em;
-  text-transform: uppercase !important;
-  font-size: 15.984pt;
-  font-weight: 600;
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5em;
   text-align: left;
   cursor: default;
   text-transform: lowercase;
@@ -1312,7 +1311,7 @@ body {
 /* line 38, ../sass/layout/_header.scss */
 .container > header ul.menu.users li.user {
   font-size: 24pt;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.5em;
   text-transform: none;
@@ -1425,7 +1424,7 @@ section.container > .delete.trash {
 section.container > .delete.trash:after {
   content: "×";
   font-size: 96pt;
-  font-weight: 100;
+  font-weight: 300;
   position: absolute;
   width: 100%;
   text-align: center;
@@ -1465,7 +1464,7 @@ section.container section.space article {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   font-size: 24pt;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.5em;
 }
@@ -1524,9 +1523,9 @@ section.container section.space article.dragging > .card, section.container sect
 }
 /* line 56, ../sass/layout/_article.scss */
 section.container section.space article.long .text p {
-  font-family: "L Futura W01", "Futura W04";
+  font-family: "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.5em;
   letter-spacing: 0;
 }
@@ -1575,7 +1574,7 @@ section.container section.space article textarea {
   color: #000000;
   background-color: transparent;
   font-size: 24pt;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.5em;
   font-style: italic;
@@ -1586,7 +1585,7 @@ section.container section.space article author {
   letter-spacing: .03125em;
   text-transform: uppercase !important;
   font-size: 7.992pt;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .0625em;
   font-style: normal;
   line-height: 1em;
@@ -1639,7 +1638,7 @@ section.container section.space article .card.text {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   font-size: 24pt;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.5em;
   background: #000000;
@@ -1676,7 +1675,7 @@ section.container section.space article .card.website .text:hover {
 section.container section.space article .card.website .text:after {
   content: "›";
   font-size: 24pt;
-  font-weight: 100;
+  font-weight: 300;
   position: absolute;
   display: block;
   height: 1em;
@@ -1696,9 +1695,9 @@ section.container section.space article .card.website .text .url p {
   letter-spacing: .03125em;
   text-transform: uppercase !important;
   font-size: 7.992pt;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .0625em;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 1pt;
   line-height: 1em;
 }
@@ -1732,11 +1731,10 @@ body section.container > header h1.logo.hidden {
 }
 /* line 22, ../sass/layout/_home.scss */
 body section.container > header h1.headerSpaceName {
-  font-size: .666em;
-  letter-spacing: .03125em;
-  text-transform: uppercase !important;
-  font-size: 15.984pt;
-  font-weight: 600;
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5em;
   position: absolute;
   top: 9pt;
   width: 33.333333vw;
@@ -1862,7 +1860,7 @@ body section.container section.space.metaspace > section.content div.spacePrevie
 /* line 135, ../sass/layout/_home.scss */
 body section.container section.space.metaspace > section.content div.spacePreview.add:after {
   content: "+";
-  font-weight: 100;
+  font-weight: 300;
   font-size: 144pt;
   line-height: 1em;
   position: absolute;
@@ -1879,11 +1877,10 @@ body section.container section.space.metaspace > section.content div.spacePrevie
 }
 /* line 154, ../sass/layout/_home.scss */
 body section.container section.space.metaspace > section.content div.spacePreview h1.spaceName {
-  font-size: .666em;
-  letter-spacing: .03125em;
-  text-transform: uppercase !important;
-  font-size: 15.984pt;
-  font-weight: 600;
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5em;
   font-size: 31.968pt;
   position: absolute;
   cursor: default;
