@@ -22,7 +22,7 @@ section.container {
         section.content {
             transform-origin: 0 0;
             -webkit-transform-origin: 0 0;
-            @include transform(scale(1));
+            @include transform(scale(.25));
             position: relative;
             z-index: 1;
         }

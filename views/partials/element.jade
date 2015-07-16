@@ -1,34 +1,27 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
-- var classes = [ element.contentType, "draggable" ]
+- var classes = [ element.contentType, "draggable"]
 
-if element.contentType == 'text'
-  if element.content.length >= 50
-    - classes.push("long")
-  else
-    - classes.push("short")
-
-- var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
+- var posString = "position:absolute;top:"+0+"px;left:"+(j*elem_width)+"px;"
 - var scaleString = "-webkit-transform:scale3d(1.0,1.0,1.0); transform:scale3d(1.0,1.0},1.0);"
 
-article(id=element.id, class= classes, style=posString+scaleString, data-content=element.content, data-creatorid=element.creatorId, data-contenttype=element.contentType)
+article(id=element.id, class=classes, data-element=element, style= posString)
   .card(data-key=element.content, class=element.contentType)
-    if names[element.creatorId] != ""
-      author= names[element.creatorId]
+    //- if names[element.crfeatorId] != ""
+    //-   author= names[element.creatorId]
    
     case element.contentType
       when 'image'
         - if (typeof(original_url) !== 'undefined'){
           img(src= original_url)
         - } else {
-          img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')
+          img(src= root+collection.spaceKey+"/"+element.content+'/small.jpg')
         - }
 
       when 'gif'
-        //- img(src= root+current_space.spaceKey+"/"+element.content+'/normal.png')
         - if (typeof(original_url) !== 'undefined'){
           img(src= original_url)
         - } else {
-          img(src= root+current_space.spaceKey+"/"+element.content+'/normal.gif')
+          img(src= root+collection.spaceKey+"/"+element.content+'/normal.gif')
         - }
 
       when 'website'

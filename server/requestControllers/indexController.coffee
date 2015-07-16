@@ -1,5 +1,4 @@
 models = require '../../models'
-indexElements = require '../indexElements'
 
 indexPage = (res) ->
   res.render 'index.jade',
@@ -8,7 +7,6 @@ indexPage = (res) ->
     author: 'scrap'
     colors: {}
     names: { 1: "" }
-    elements: indexElements
     current_space:
       spaceKey: 'index'
     
@@ -19,13 +17,15 @@ module.exports =
       currentUserId = req.session.currentUserId
       models.User.find(
         where: { id: currentUserId }
-        include: [ models.Space ]
+        include: [ {model:models.Space, include:[models.Element]} ]
       ).complete (err, user) ->
         return callback err if err?
         return indexPage res unless user?
-        req.session.currentUserId = user.id
-        user.spaces.reverse()
-        res.render 'meta-space.jade', { user, title:'' }
+        req.session.currentUserId = user.id        
+        # user.spaces.reverse()
+        # res.send 200
+        res.render 'home.jade', {user, title: 'title'}
+        # res.render 'meta-space.jade', { user, title:'' }
         callback()
     else
       indexPage res

@@ -1,10 +1,10 @@
-- var creator = current_space.creator
-- var isCreator = current_user.id == creator.id
+- var creator = space.creator
+- var isCreator = user.id == creator.id
 
 script.
   creator="#{creator.name}";
-  username = "#{current_user.name}";
-  userId = "#{current_user.id}";
+  username = "#{user.name}";
+  userId = "#{user.id}";
   users =  !{JSON.stringify(users)}
   names = !{JSON.stringify(names)}
 
@@ -19,7 +19,7 @@ ul.users.menu.right.hideFirst.hidden
         input(type="submit", style="visibility: hidden;display:none;")
   section
     li.visible.heading Current members
-    each user in current_space.users
+    each user in space.users
       name = user.name.split(' ')
       if user.name != null
         li.visible.user()

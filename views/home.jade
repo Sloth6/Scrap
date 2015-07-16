@@ -1,0 +1,27 @@
+//- extends layout
+extends layout
+
+block scripts
+  script(src='/js/jquery/jquery.js')
+  script(src="/js/jquery/jquery-ui.min.js")
+  script(src="/js/jquery/jquery.transit.min.js")
+  script(src="/js/jquery/jquery-mousewheel.min.js")
+  script(src="/js/home/main.js")
+  //- include partials/spaceScripts
+
+
+block content
+  //- header
+    include partials/userMenu
+  section.space
+    section.content
+      -var elem_width = 400
+      -var elem_height = 700
+
+      -for (var i = 0; i < user.spaces.length; i++)
+        -var collection = user.spaces[i]
+        -var top = (i * elem_height)
+        .collection(style="top:"+top+"px;height:"+(elem_height)+"px;")
+          -for (var j = 0; j < collection.elements.length; j++)
+            -var element = collection.elements[j]
+            include partials/element

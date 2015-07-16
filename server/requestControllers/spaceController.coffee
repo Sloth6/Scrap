@@ -48,19 +48,7 @@ module.exports =
           return res.send 400 if err?
           space.setCreator(user).complete (err) ->
             return res.send 400 if err?
-            # if welcomeSpace
-            #   createWelcomePage space, (err) ->
-            #     return callback err if err?
-            #     res.redirect "/s/" + spaceKey
-            # else
-            #   res. redirect "/s/" + spaceKey
             res.status(200).send spaceKey
-
-    createWelcomePage = (space, callback) ->
-      async.each welcomeElements, (attributes, cb) ->
-        attributes.SpaceId = space.id
-        models.Element.create(attributes).complete cb
-      , callback
 
   #when the space url is accessed
   showReadOnly : (req, res) ->
@@ -113,19 +101,7 @@ module.exports =
           current_user: user
           users: users
           names: nameMap space
-
-  webPreview: (req, res) ->
-    models.Space.find(
-      where: { spaceKey: req.params.spaceKey }
-      include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
-    ).complete (err, space) ->
-      console.log err, space
-      return res.status(400).send('space not found') if err or !space
-      res.render 'previewSpace.jade',
-        title : "#{space.name} on Hotpot"
-        current_space: space
-        names: {}
-
+          
   # update the space name and save it to the db
   updateSpace : (req, res) ->
     { name, spaceKey } = req.body
