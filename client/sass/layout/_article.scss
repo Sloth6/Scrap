@@ -170,10 +170,20 @@ section.container section.space {
             
             &.website {
                 @include cardStyle;
+                width: $articleWidth;
                 padding-top: $cell * 2;
+                
+                &:hover {
+                    @include hoverLinkAnimation;
+                }
                 
                 a {
                     border: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
                 }
                                
                 .text {
