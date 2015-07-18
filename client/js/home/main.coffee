@@ -29,7 +29,7 @@ collection_scroll = (event) ->
   collection = $(@)
   event.preventDefault()
   return unless collection.hasClass 'open'
-
+  margin = -0.5
   delta = if event.deltaX is 0 then -event.deltaY else -event.deltaX
   scroll_position = collection.data('scroll_position') + delta
   scroll_position = Math.max -collection.data('maxX'), scroll_position
@@ -40,7 +40,7 @@ collection_scroll = (event) ->
   zIndex_right = collection.children().length
   i = 0
   collection.children().each () ->
-    x = $(@).data('scroll_offset') + scroll_position
+    x = $(@).data('scroll_offset') + scroll_position + margin
     x = Math.max x, 0
     x = Math.min x, $(window).width() - $(@).width()
     zIndex = if x+$(@).width()/2 < $(window).width() /2 then i else collection.children().length - i
@@ -62,15 +62,8 @@ collection_reset = () ->
     maxX = lastX
   $(@).data { maxX }
 
-      # console.log $(@).position().left,$(@).position().left + $(@).width() 
-    # $('img').map(function() { return $(this).width(); }).get()
-
-
-
 $ ->
-  history.pushState {name: "home"}, "", "/"
-
-  
+  history.pushState {name: "home"}, "", "/"  
   $('.collection').click collection_enter  
   $('.collection').each collection_reset
   $('.collection').on 'mousewheel', collection_scroll
