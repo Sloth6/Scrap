@@ -1,5 +1,5 @@
-/* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-$fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
+$fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif;
+/* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
 
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
@@ -9,25 +9,33 @@ $fontWeightBold:        700;
 $fontWeightExtraBold:   800;
 
 
+$typeSmallSize:     8pt;
 $typeBodySize:      12pt;
 $typeBodyTracking:  0;
 $typeHeaderSize:    24pt;
 $typeHeaderSmallCapsSize: $typeHeaderSize * .666;
-$leading:           1.5em;
+$leading:           $gutter * 2;
+
+@mixin typeSmall {
+    font-size:      $typeSmallSize;
+    font-weight:    $fontWeightMedium;
+    line-height:    $leading/2;
+    letter-spacing: .125em;
+}
 
 @mixin typeBody {
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
-    font-weight:    $fontWeightBold;
+    font-weight:    $fontWeightRegular;
     line-height:    $leading;
     letter-spacing: $typeBodyTracking;
 }
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightBold;
-    letter-spacing: 0;
-    line-height:    $leading;
+    font-weight:    $fontWeightLight;
+    letter-spacing: -.03125em;
+    line-height:    32pt;
 }
 
 @mixin smallCaps {
@@ -39,7 +47,7 @@ $leading:           1.5em;
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
-    font-weight:    $fontWeightBold;
+    font-weight:    $fontWeightRegular;
     letter-spacing: .0625em;
 }
 
@@ -60,6 +68,7 @@ $leading:           1.5em;
 
 html {
     @include typeBody;
+    font-variant-numeric: oldstyle-num;
         
     a {
         color: $colorType;

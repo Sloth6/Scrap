@@ -4,6 +4,7 @@ section.container section.space {
         color: $colorType;
         position: absolute;
         backface-visibility: hidden;
+        margin-right: -2pt;
         line-height: 1.5em;
         transform-origin:           bottom right;
         -webkit-transform-origin:   bottom right;
@@ -171,8 +172,8 @@ section.container section.space {
                                
                 &:hover {
                     .text {
-                        border-color: $colorAccent !important;
-                        color: $colorAccent;
+//                         border-color: $colorAccent !important;
+//                         color: $colorAccent;
                     }
                 }                
                 
@@ -184,10 +185,11 @@ section.container section.space {
                     
                     &:hover {
 //                         @include hoverLinkAnimation;
-                        background-color: $colorAccent;
-                        color: $colorTypeLight;
+//                         background-color: $colorAccent;
+//                         color: $colorTypeLight;
                     }
                     
+/*
                     &:after {
                         content: "›";
                         font-size: $typeHeaderSize;
@@ -199,6 +201,7 @@ section.container section.space {
                         top: 50%;
                         right: $gutter/4;
                     }
+*/
 
                     .title p {
                         line-height: 1.25em;
@@ -207,8 +210,7 @@ section.container section.space {
                     .url p {
                         margin-top: $leading*.75*1.14;
                         margin-bottom: $leading/4;
-                        @include typeBodySmallCaps;
-                        font-weight: $fontWeightBold;
+                        @include typeSmall;
                         letter-spacing: 1pt;
                         line-height: 1em;
                     }

@@ -40,7 +40,7 @@ $ ->
     lastX = 0
     collection.children().each () ->
       # console.log @, $(@).width()
-      margin = 5
+      margin = -.5
       $(@).css {x: lastX}
       # console.log @, lastX
       lastX += $(@).width() + margin

@@ -1,8 +1,8 @@
 $headerHeight:          25vh;
 
-$cardPaddingTop:        $gutter/2;
-$cardPaddingRight:      $gutter;
-$cardPaddingBottom:     $gutter/1.5;
+$cardPaddingTop:        $gutter;
+$cardPaddingRight:      $gutter/2;
+$cardPaddingBottom:     $gutter;
 $cardPaddingLeft:       $gutter;
 
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
@@ -15,10 +15,10 @@ $articleWidth: $col * 4;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           6pt;
+$cardBorderWidth:           .5pt;
 $cardBorder:                $cardBorderWidth solid $colorType;
 $cardBoxShadowDimensions:   $gutter $gutter 0 0;
-$cardBoxShadowColor:        rgba(0,0,0,.75);
+$cardBoxShadowColor:        rgba(0,0,0,1);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardStyle {
@@ -33,7 +33,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
     border-color: $colorAccent !important;
     color: $colorAccent;
-    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin);
+    @include transform(translate(-$gutter, -$gutter));
     * { 
         border-color: $colorAccent;
     }
@@ -41,7 +41,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardDrag {
     cursor: move;
-    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin rotate(1.5deg));
+    @include transform(translate(-$gutter, -$gutter));
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
 
