@@ -575,7 +575,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
-/* line 70, ../sass/globals/_type.scss */
+/* line 71, ../sass/globals/_type.scss */
 html {
   font-family: "L Futura W01", "Futura W04", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
@@ -584,13 +584,13 @@ html {
   letter-spacing: 0;
   font-variant-numeric: oldstyle-num;
 }
-/* line 74, ../sass/globals/_type.scss */
+/* line 75, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 0.125em #000000 solid;
 }
-/* line 82, ../sass/globals/_type.scss */
+/* line 83, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 8pt;
 }
