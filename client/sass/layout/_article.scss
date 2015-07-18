@@ -1,4 +1,38 @@
-section.container section.space {
+section.container section.space section.content{
+    
+    .collection.closed {
+        
+        article {
+            font-weight: $fontWeightMedium;
+//             font-size: $typeHeaderSize * 2;
+            letter-spacing: .03125em;
+//             @include typeBody;
+
+            .card {
+                &.text {
+                    font-weight: $fontWeightMedium;
+                }
+                &.website {
+                    header {
+                        position: relative;
+                        top: -$cell;
+                        
+                        .url {
+                            display: none;
+                        }
+                    }
+                    .description {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+    article, h1, .card {
+        @include transition(1s $defaultCurve);
+        @include transition-property(font-weight);
+    }
     
     article {
         color: $colorType;
@@ -157,15 +191,20 @@ section.container section.space {
 
             &.text {
                 @include cardStyle;
-                @include typeHeader;
-                background: $colorType;
-                color: $colorCardBackground;
+                background: $colorAccentLight;
+//                 color: $colorType;
                 font-style: italic;
-                border: 0;
+                border: $cardBorder;
+                width: $articleWidth;
+//                 padding-bottom: $broadMargin;
+                min-height: $articleMinHeight;
+                overflow: hidden;
             }
 
             &.image {
                 width: $articleWidth;
+                margin-left: $cardBorderWidth;
+//                 border-left: $cardBorder;
             }
             
             &.website {
@@ -195,11 +234,11 @@ section.container section.space {
 
                         h1 {
                             display: -webkit-box;
-                            -webkit-line-clamp: 3;
+                            -webkit-line-clamp: 4;
                             -webkit-box-orient: vertical; 
 //                             max-height: $typeHeaderLeading * 3; 
 //                             text-overflow: ellipsis;
-                            max-height: $typeHeaderLeading * 3;
+                            max-height: $typeHeaderLeading * 4;
                             overflow: hidden;
 //                             @include multiline-ellipsis($typeHeaderLeading * 3, $typeHeaderLeading, 1em);
                         }
@@ -211,7 +250,7 @@ section.container section.space {
                     }
 
                     .description {
-                        margin-top: $cell * 16;
+                        margin-top: ($broadMargin * 3);
                         margin-bottom: $cell/2;
                         @include typeSmall;
                     }

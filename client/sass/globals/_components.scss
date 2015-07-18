@@ -1,23 +1,24 @@
 $headerHeight:          25vh;
 
-$cardPaddingTop:        $gutter;
-$cardPaddingRight:      $gutter;
-$cardPaddingBottom:     $gutter;
-$cardPaddingLeft:       $gutter;
+$cardPaddingTop:        $cell * 2;
+$cardPaddingRight:      $cell;
+$cardPaddingBottom:     $cell;
+$cardPaddingLeft:       $cell;
 
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
 
 $menuWidth: 40vw;
-$articleWidth: $col * 3;
+$articleWidth: $col * 4;
+$articleMinHeight: $col * 3;
 
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           1pt;
+$cardBorderWidth:           .5pt;
 $cardBorder:                $cardBorderWidth solid $colorType;
-$cardBoxShadowDimensions:   $gutter $gutter 0 0;
+$cardBoxShadowDimensions:   $cell $cell 0 0;
 $cardBoxShadowColor:        rgba(0,0,0,1);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
@@ -31,7 +32,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardHover {
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-    @include transform(translate(-$gutter, -$gutter));
+    @include transform(translate(-$cell, -$cell));
     * { 
         border-color: $colorAccent;
     }
@@ -39,7 +40,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardDrag {
     cursor: move;
-    @include transform(translate(-$gutter, -$gutter));
+    @include transform(translate(-$cell, -$cell));
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
 
@@ -48,7 +49,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin buttonOffset {
     // position: relative;
-    // margin-left: -$gutter*1.5;
+    // margin-left: -$cell*1.5;
     // margin-top: -.666em;
     // left: 100%;
     // float: left;
@@ -63,7 +64,7 @@ a {
 .card {
     
     &.form {
-        padding-left: $gutter * 2 !important;
+        padding-left: $cell * 2 !important;
     }
 }
 
@@ -202,7 +203,7 @@ ul.menu {
     
     &.left {
         float: left;
-        left: $gutter;
+        left: $cell;
         
         li, &.open li.hidden {
 //             left: -50vw;
@@ -223,7 +224,7 @@ ul.menu {
                 @include transition(.25s $defaultCurve);
                                 
                 &:hover, &:active, &:focus {
-                    left: $gutter;
+                    left: $cell;
 //                     @include transform(translate3d(25.0, 0.0, 0.0));
                 }
             }
@@ -240,7 +241,7 @@ ul.menu {
     &.right {
         float: right;
         text-align: right;
-        right: $gutter;
+        right: $cell;
         
         li, &.open li.hidden {
 //             right: -50vw;
@@ -270,7 +271,7 @@ ul.menu {
                 @include transition(.25s $defaultCurve);
                 
                 &:hover, &:active, &:focus {
-                    right: $gutter;
+                    right: $cell;
 //                     @include transform(translate3d(-25.0, 0.0, 0.0));
                 }
             }
@@ -300,7 +301,7 @@ ul.menu {
     }
     
     li {
-        margin-bottom: $gutter;
+        margin-bottom: $cell;
         position: relative;
         @include transition(.5s $defaultCurve);
         @include transition-property(left, right, height, opacity, margin,

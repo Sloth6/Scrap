@@ -1,4 +1,5 @@
 detail_view_scale = 1.0
+scaleMultiple = 2
 
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
@@ -10,17 +11,20 @@ collection_close = () ->
   collection_reset.call $('.collection.open')
   $('.collection').show()
   $('.content').css {x: 0, y: 0, queue: false }
-  $('.content').css { scale: 1/4, queue: false }
-  $('.open').removeClass 'open'
+  $('.content').css { scale: 1/scaleMultiple, queue: false }
+  $('.collection.open').addClass 'closed'
+  $('.collection.open').removeClass 'open'
 
 collection_enter = (event) ->
   collection = $(@)
   return if collection.hasClass 'open'
   collection.addClass 'open'
+  collection.removeClass 'closed'
   collection_reset.call collection
   history.pushState {name: "derp"}, "", "/"
   $(window).scrollTop(0)
   $('.collection').not(@).hide()
+  $('.collection').not(@).addClass 'closed'
   offsetTop = -(collection.position().top*4) + $(window).height()/2 - collection.height()/2
   $('.content').css { scale: 1}, 1000, 'linear'
   $('.content').css {x: 0, y: offsetTop, queue: false }

@@ -83,125 +83,125 @@ article, article header {
   -webkit-perspective: 1000;
 }
 
-/* line 48, ../sass/globals/_color.scss */
+/* line 49, ../sass/globals/_color.scss */
 body section.space section.content article.color0 div.card.text.comment, body section.space section.content article.color0 header {
   background-color: rgba(255, 59, 48, 0.9);
 }
-/* line 52, ../sass/globals/_color.scss */
+/* line 53, ../sass/globals/_color.scss */
 body section.space section.content article.color1 div.card.text.comment, body section.space section.content article.color1 header {
   background-color: rgba(255, 149, 0, 0.9);
 }
-/* line 56, ../sass/globals/_color.scss */
+/* line 57, ../sass/globals/_color.scss */
 body section.space section.content article.color2 div.card.text.comment, body section.space section.content article.color2 header {
   background-color: rgba(255, 204, 0, 0.9);
 }
-/* line 60, ../sass/globals/_color.scss */
+/* line 61, ../sass/globals/_color.scss */
 body section.space section.content article.color3 div.card.text.comment, body section.space section.content article.color3 header {
   background-color: rgba(76, 217, 100, 0.9);
   color: #fffbf1;
 }
-/* line 65, ../sass/globals/_color.scss */
+/* line 66, ../sass/globals/_color.scss */
 body section.space section.content article.color4 div.card.text.comment, body section.space section.content article.color4 header {
   background-color: rgba(0, 122, 255, 0.9);
 }
-/* line 69, ../sass/globals/_color.scss */
+/* line 70, ../sass/globals/_color.scss */
 body section.space section.content article.color5 div.card.text.comment, body section.space section.content article.color5 header {
   background-color: rgba(255, 45, 85, 0.9);
 }
-/* line 73, ../sass/globals/_color.scss */
+/* line 74, ../sass/globals/_color.scss */
 body section.space section.content article.color6 div.card.text.comment, body section.space section.content article.color6 header {
   background-color: rgba(135, 252, 112, 0.9);
 }
-/* line 77, ../sass/globals/_color.scss */
+/* line 78, ../sass/globals/_color.scss */
 body section.space section.content article.color7 div.card.text.comment, body section.space section.content article.color7 header {
   background-color: rgba(255, 19, 0, 0.9);
 }
-/* line 81, ../sass/globals/_color.scss */
+/* line 82, ../sass/globals/_color.scss */
 body section.space section.content article.color8 div.card.text.comment, body section.space section.content article.color8 header {
   background-color: rgba(239, 77, 182, 0.9);
 }
-/* line 85, ../sass/globals/_color.scss */
+/* line 86, ../sass/globals/_color.scss */
 body section.space section.content article.color9 div.card.text.comment, body section.space section.content article.color9 header {
   background-color: rgba(82, 237, 199, 0.9);
 }
 
-/* line 93, ../sass/globals/_color.scss */
+/* line 94, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color0 {
   border-color: #ff3b30;
 }
-/* line 96, ../sass/globals/_color.scss */
+/* line 97, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color0.online {
   background-color: #ff3b30;
 }
-/* line 101, ../sass/globals/_color.scss */
+/* line 102, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color1 {
   border-color: #ff9500;
 }
-/* line 104, ../sass/globals/_color.scss */
+/* line 105, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color1.online {
   background-color: #ff9500;
 }
-/* line 109, ../sass/globals/_color.scss */
+/* line 110, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color2 {
   border-color: #ffcc00;
 }
-/* line 112, ../sass/globals/_color.scss */
+/* line 113, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color2.online {
   background-color: #ffcc00;
 }
-/* line 117, ../sass/globals/_color.scss */
+/* line 118, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color3 {
   border-color: #4cd964;
 }
-/* line 120, ../sass/globals/_color.scss */
+/* line 121, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color3.online {
   background-color: #4cd964;
 }
-/* line 125, ../sass/globals/_color.scss */
+/* line 126, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color4 {
   border-color: #007aff;
 }
-/* line 128, ../sass/globals/_color.scss */
+/* line 129, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color4.online {
   background-color: #007aff;
 }
-/* line 133, ../sass/globals/_color.scss */
+/* line 134, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color5 {
   border-color: #ff2d55;
 }
-/* line 136, ../sass/globals/_color.scss */
+/* line 137, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color5.online {
   background-color: #ff2d55;
 }
-/* line 141, ../sass/globals/_color.scss */
+/* line 142, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color6 {
   border-color: #87fc70;
 }
-/* line 144, ../sass/globals/_color.scss */
+/* line 145, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color6.online {
   background-color: #87fc70;
 }
-/* line 149, ../sass/globals/_color.scss */
+/* line 150, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color7 {
   border-color: #ff1300;
 }
-/* line 152, ../sass/globals/_color.scss */
+/* line 153, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color7.online {
   background-color: #ff1300;
 }
-/* line 157, ../sass/globals/_color.scss */
+/* line 158, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color8 {
   border-color: #ef4db6;
 }
-/* line 160, ../sass/globals/_color.scss */
+/* line 161, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color8.online {
   background-color: #ef4db6;
 }
-/* line 165, ../sass/globals/_color.scss */
+/* line 166, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color9 {
   border-color: #52edc7;
 }
-/* line 168, ../sass/globals/_color.scss */
+/* line 169, ../sass/globals/_color.scss */
 .container > header ul.users li.user.color9.online {
   background-color: #52edc7;
 }
@@ -595,7 +595,7 @@ html p + p {
   margin-top: 8pt;
 }
 
-/* line 58, ../sass/globals/_components.scss */
+/* line 59, ../sass/globals/_components.scss */
 a:hover, a:active, a:focus {
   -webkit-animation: hoverFlicker 20s infinite linear;
   -moz-animation: hoverFlicker 20s infinite linear;
@@ -607,36 +607,36 @@ a:hover, a:active, a:focus {
   */
 }
 
-/* line 65, ../sass/globals/_components.scss */
+/* line 66, ../sass/globals/_components.scss */
 .card.form {
   padding-left: 16pt !important;
 }
 
-/* line 70, ../sass/globals/_components.scss */
+/* line 71, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
-/* line 73, ../sass/globals/_components.scss */
+/* line 74, ../sass/globals/_components.scss */
 form li {
   list-style: none;
   margin-top: 16pt;
 }
-/* line 78, ../sass/globals/_components.scss */
+/* line 79, ../sass/globals/_components.scss */
 form input {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
 }
-/* line 81, ../sass/globals/_components.scss */
+/* line 82, ../sass/globals/_components.scss */
 form input[type=submit], form input[type=button] {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
 }
 
-/* line 87, ../sass/globals/_components.scss */
+/* line 88, ../sass/globals/_components.scss */
 label {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -646,14 +646,14 @@ label {
   letter-spacing: .0625em;
 }
 
-/* line 102, ../sass/globals/_components.scss */
+/* line 103, ../sass/globals/_components.scss */
 ::-webkit-input-placeholder {
   color: #000000;
   opacity: 1;
   font-style: italic;
   text-transform: lowercase;
 }
-/* line 97, ../sass/globals/_components.scss */
+/* line 98, ../sass/globals/_components.scss */
 ::-webkit-input-placeholder:hover {
   -webkit-animation: hoverFlicker 20s infinite linear;
   -moz-animation: hoverFlicker 20s infinite linear;
@@ -665,14 +665,14 @@ label {
   */
 }
 
-/* line 106, ../sass/globals/_components.scss */
+/* line 107, ../sass/globals/_components.scss */
 :-moz-placeholder {
   color: #000000;
   opacity: 1;
   font-style: italic;
   text-transform: lowercase;
 }
-/* line 97, ../sass/globals/_components.scss */
+/* line 98, ../sass/globals/_components.scss */
 :-moz-placeholder:hover {
   -webkit-animation: hoverFlicker 20s infinite linear;
   -moz-animation: hoverFlicker 20s infinite linear;
@@ -684,14 +684,14 @@ label {
   */
 }
 
-/* line 109, ../sass/globals/_components.scss */
+/* line 110, ../sass/globals/_components.scss */
 ::-moz-placeholder {
   color: #000000;
   opacity: 1;
   font-style: italic;
   text-transform: lowercase;
 }
-/* line 97, ../sass/globals/_components.scss */
+/* line 98, ../sass/globals/_components.scss */
 ::-moz-placeholder:hover {
   -webkit-animation: hoverFlicker 20s infinite linear;
   -moz-animation: hoverFlicker 20s infinite linear;
@@ -703,14 +703,14 @@ label {
   */
 }
 
-/* line 112, ../sass/globals/_components.scss */
+/* line 113, ../sass/globals/_components.scss */
 :-ms-input-placeholder {
   color: #000000;
   opacity: 1;
   font-style: italic;
   text-transform: lowercase;
 }
-/* line 97, ../sass/globals/_components.scss */
+/* line 98, ../sass/globals/_components.scss */
 :-ms-input-placeholder:hover {
   -webkit-animation: hoverFlicker 20s infinite linear;
   -moz-animation: hoverFlicker 20s infinite linear;
@@ -722,7 +722,7 @@ label {
   */
 }
 
-/* line 117, ../sass/globals/_components.scss */
+/* line 118, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -735,9 +735,9 @@ input {
   line-height: 16pt;
   letter-spacing: 0;
   color: #000000;
-  border-bottom: 1pt #000000 solid;
+  border-bottom: 0.5pt #000000 solid;
 }
-/* line 123, ../sass/globals/_components.scss */
+/* line 124, ../sass/globals/_components.scss */
 input:focus, input:hover {
   -webkit-animation: hoverFlicker 20s infinite linear;
   -moz-animation: hoverFlicker 20s infinite linear;
@@ -748,23 +748,23 @@ input:focus, input:hover {
       border-color: $colorAccent;
   */
 }
-/* line 132, ../sass/globals/_components.scss */
+/* line 133, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
 }
-/* line 137, ../sass/globals/_components.scss */
+/* line 138, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
-/* line 143, ../sass/globals/_components.scss */
+/* line 144, ../sass/globals/_components.scss */
 input[type=email] {
   text-transform: lowercase;
 }
 
-/* line 149, ../sass/globals/_components.scss */
+/* line 150, ../sass/globals/_components.scss */
 ul.menu {
   height: 32pt;
   position: absolute;
@@ -780,7 +780,7 @@ ul.menu {
   -webkit-transition-property: left, right;
   transition-property: left, right;
 }
-/* line 158, ../sass/globals/_components.scss */
+/* line 159, ../sass/globals/_components.scss */
 ul.menu.open {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
@@ -788,27 +788,27 @@ ul.menu.open {
   transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   width: 40vw;
 }
-/* line 164, ../sass/globals/_components.scss */
+/* line 165, ../sass/globals/_components.scss */
 ul.menu.open li a, ul.menu.open li form {
   position: relative;
 }
-/* line 174, ../sass/globals/_components.scss */
+/* line 175, ../sass/globals/_components.scss */
 ul.menu.hideFirst.right.open > li.first {
   right: -50vw;
 }
-/* line 179, ../sass/globals/_components.scss */
+/* line 180, ../sass/globals/_components.scss */
 ul.menu.hideFirst.right > li.first {
   right: 0;
 }
-/* line 186, ../sass/globals/_components.scss */
+/* line 187, ../sass/globals/_components.scss */
 ul.menu.hideFirst.left.open > li.first {
   left: -50vw;
 }
-/* line 191, ../sass/globals/_components.scss */
+/* line 192, ../sass/globals/_components.scss */
 ul.menu.hideFirst.left > li.first {
   left: 0;
 }
-/* line 196, ../sass/globals/_components.scss */
+/* line 197, ../sass/globals/_components.scss */
 ul.menu.hideFirst > li.first {
   position: absolute;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -820,26 +820,26 @@ ul.menu.hideFirst > li.first {
   -webkit-transition-property: right;
   transition-property: right;
 }
-/* line 203, ../sass/globals/_components.scss */
+/* line 204, ../sass/globals/_components.scss */
 ul.menu.left {
   float: left;
   left: 8pt;
 }
-/* line 207, ../sass/globals/_components.scss */
+/* line 208, ../sass/globals/_components.scss */
 ul.menu.left li, ul.menu.left.open li.hidden {
   -moz-transform: translate3d(-500px, 0, 0);
   -ms-transform: translate3d(-500px, 0, 0);
   -webkit-transform: translate3d(-500px, 0, 0);
   transform: translate3d(-500px, 0, 0);
 }
-/* line 211, ../sass/globals/_components.scss */
+/* line 212, ../sass/globals/_components.scss */
 ul.menu.left li.first, ul.menu.left.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 216, ../sass/globals/_components.scss */
+/* line 217, ../sass/globals/_components.scss */
 ul.menu.left li a, ul.menu.left.open li.hidden a {
   position: relative;
   left: 0;
@@ -852,46 +852,46 @@ ul.menu.left li a, ul.menu.left.open li.hidden a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 225, ../sass/globals/_components.scss */
+/* line 226, ../sass/globals/_components.scss */
 ul.menu.left li a:hover, ul.menu.left li a:active, ul.menu.left li a:focus, ul.menu.left.open li.hidden a:hover, ul.menu.left.open li.hidden a:active, ul.menu.left.open li.hidden a:focus {
   left: 8pt;
 }
-/* line 233, ../sass/globals/_components.scss */
+/* line 234, ../sass/globals/_components.scss */
 ul.menu.left.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 240, ../sass/globals/_components.scss */
+/* line 241, ../sass/globals/_components.scss */
 ul.menu.right {
   float: right;
   text-align: right;
   right: 8pt;
 }
-/* line 245, ../sass/globals/_components.scss */
+/* line 246, ../sass/globals/_components.scss */
 ul.menu.right li, ul.menu.right.open li.hidden {
   -moz-transform: translate3d(500px, 0, 0);
   -ms-transform: translate3d(500px, 0, 0);
   -webkit-transform: translate3d(500px, 0, 0);
   transform: translate3d(500px, 0, 0);
 }
-/* line 250, ../sass/globals/_components.scss */
+/* line 251, ../sass/globals/_components.scss */
 ul.menu.right li.first, ul.menu.right.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 255, ../sass/globals/_components.scss */
+/* line 256, ../sass/globals/_components.scss */
 ul.menu.right li input, ul.menu.right.open li.hidden input {
   text-align: left;
 }
-/* line 258, ../sass/globals/_components.scss */
+/* line 259, ../sass/globals/_components.scss */
 ul.menu.right li input[type=button], ul.menu.right li input[type=submit], ul.menu.right.open li.hidden input[type=button], ul.menu.right.open li.hidden input[type=submit] {
   text-align: right;
 }
-/* line 263, ../sass/globals/_components.scss */
+/* line 264, ../sass/globals/_components.scss */
 ul.menu.right li a, ul.menu.right.open li.hidden a {
   position: relative;
   right: 0;
@@ -904,30 +904,30 @@ ul.menu.right li a, ul.menu.right.open li.hidden a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 272, ../sass/globals/_components.scss */
+/* line 273, ../sass/globals/_components.scss */
 ul.menu.right li a:hover, ul.menu.right li a:active, ul.menu.right li a:focus, ul.menu.right.open li.hidden a:hover, ul.menu.right.open li.hidden a:active, ul.menu.right.open li.hidden a:focus {
   right: 8pt;
 }
-/* line 280, ../sass/globals/_components.scss */
+/* line 281, ../sass/globals/_components.scss */
 ul.menu.right.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 289, ../sass/globals/_components.scss */
+/* line 290, ../sass/globals/_components.scss */
 ul.menu.hidden.left {
   left: -60vw;
 }
-/* line 293, ../sass/globals/_components.scss */
+/* line 294, ../sass/globals/_components.scss */
 ul.menu.hidden.right {
   right: -60vw;
 }
-/* line 298, ../sass/globals/_components.scss */
+/* line 299, ../sass/globals/_components.scss */
 ul.menu section {
   padding-bottom: 16pt;
 }
-/* line 302, ../sass/globals/_components.scss */
+/* line 303, ../sass/globals/_components.scss */
 ul.menu li {
   margin-bottom: 8pt;
   position: relative;
@@ -962,7 +962,7 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-delay(.1s); }
   */
 }
-/* line 311, ../sass/globals/_components.scss */
+/* line 312, ../sass/globals/_components.scss */
 ul.menu li.heading {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -971,16 +971,16 @@ ul.menu li.heading {
   font-weight: 400;
   letter-spacing: .0625em;
 }
-/* line 315, ../sass/globals/_components.scss */
+/* line 316, ../sass/globals/_components.scss */
 ul.menu li.hidden {
   height: 0;
   margin: 0;
 }
-/* line 320, ../sass/globals/_components.scss */
+/* line 321, ../sass/globals/_components.scss */
 ul.menu li form {
   white-space: nowrap;
 }
-/* line 324, ../sass/globals/_components.scss */
+/* line 325, ../sass/globals/_components.scss */
 ul.menu li > a {
   display: block;
   width: 100%;
@@ -990,133 +990,133 @@ ul.menu li > a {
   -webkit-transition-property: left, right, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, transform, -webkit-transform, -moz-transform;
 }
-/* line 355, ../sass/globals/_components.scss */
+/* line 356, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 356, ../sass/globals/_components.scss */
+/* line 357, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 357, ../sass/globals/_components.scss */
+/* line 358, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 358, ../sass/globals/_components.scss */
+/* line 359, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 359, ../sass/globals/_components.scss */
+/* line 360, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
-/* line 360, ../sass/globals/_components.scss */
+/* line 361, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.6s;
   -o-transition-delay: 0.6s;
   -webkit-transition-delay: 0.6s;
   transition-delay: 0.6s;
 }
-/* line 361, ../sass/globals/_components.scss */
+/* line 362, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.7s;
   -o-transition-delay: 0.7s;
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-/* line 362, ../sass/globals/_components.scss */
+/* line 363, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.8s;
   -o-transition-delay: 0.8s;
   -webkit-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
-/* line 363, ../sass/globals/_components.scss */
+/* line 364, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.9s;
   -o-transition-delay: 0.9s;
   -webkit-transition-delay: 0.9s;
   transition-delay: 0.9s;
 }
-/* line 364, ../sass/globals/_components.scss */
+/* line 365, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 365, ../sass/globals/_components.scss */
+/* line 366, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.11s;
   -o-transition-delay: 0.11s;
   -webkit-transition-delay: 0.11s;
   transition-delay: 0.11s;
 }
-/* line 366, ../sass/globals/_components.scss */
+/* line 367, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.12s;
   -o-transition-delay: 0.12s;
   -webkit-transition-delay: 0.12s;
   transition-delay: 0.12s;
 }
-/* line 367, ../sass/globals/_components.scss */
+/* line 368, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.13s;
   -o-transition-delay: 0.13s;
   -webkit-transition-delay: 0.13s;
   transition-delay: 0.13s;
 }
-/* line 368, ../sass/globals/_components.scss */
+/* line 369, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.14s;
   -o-transition-delay: 0.14s;
   -webkit-transition-delay: 0.14s;
   transition-delay: 0.14s;
 }
-/* line 369, ../sass/globals/_components.scss */
+/* line 370, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 370, ../sass/globals/_components.scss */
+/* line 371, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.16s;
   -o-transition-delay: 0.16s;
   -webkit-transition-delay: 0.16s;
   transition-delay: 0.16s;
 }
-/* line 371, ../sass/globals/_components.scss */
+/* line 372, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.17s;
   -o-transition-delay: 0.17s;
   -webkit-transition-delay: 0.17s;
   transition-delay: 0.17s;
 }
-/* line 372, ../sass/globals/_components.scss */
+/* line 373, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.18s;
   -o-transition-delay: 0.18s;
   -webkit-transition-delay: 0.18s;
   transition-delay: 0.18s;
 }
-/* line 373, ../sass/globals/_components.scss */
+/* line 374, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 0.19s;
   -o-transition-delay: 0.19s;
@@ -1124,7 +1124,7 @@ ul.menu li:nth-of-type(20) {
   transition-delay: 0.19s;
 }
 
-/* line 377, ../sass/globals/_components.scss */
+/* line 378, ../sass/globals/_components.scss */
 .mask {
   height: 100vh;
   width: 100vw;
@@ -1135,7 +1135,7 @@ ul.menu li:nth-of-type(20) {
   z-index: 10;
 }
 
-/* line 392, ../sass/globals/_components.scss */
+/* line 393, ../sass/globals/_components.scss */
 .floatingMenu ul li {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1151,19 +1151,19 @@ ul.menu li:nth-of-type(20) {
   line-height: 16pt;
   letter-spacing: 0;
   background-color: white;
-  border: 1pt solid #000000;
-  padding: 4pt 4pt 4pt 4pt;
+  border: 0.5pt solid #000000;
+  padding: 8pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background-color: white;
-  padding: 4pt 4pt 4pt 4pt;
+  padding: 8pt 4pt 4pt 4pt;
   height: 16pt;
-  margin-top: -1pt;
+  margin-top: -0.5pt;
   cursor: pointer;
   position: relative;
   width: 128pt;
 }
-/* line 405, ../sass/globals/_components.scss */
+/* line 406, ../sass/globals/_components.scss */
 .floatingMenu ul li .label {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1174,19 +1174,19 @@ ul.menu li:nth-of-type(20) {
   -webkit-transition-property: left, opacity;
   transition-property: left, opacity;
 }
-/* line 410, ../sass/globals/_components.scss */
+/* line 411, ../sass/globals/_components.scss */
 .floatingMenu ul li:hover {
-  color: #ff2d00;
-  border-color: #ff2d00;
+  color: yellow;
+  border-color: yellow;
   z-index: 100;
 }
-/* line 417, ../sass/globals/_components.scss */
+/* line 418, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable input, .floatingMenu ul li.expandable textarea {
   cursor: auto;
   position: absolute;
   border: 0;
   left: 8pt;
-  top: 8pt;
+  top: 16pt;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1196,43 +1196,43 @@ ul.menu li:nth-of-type(20) {
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 428, ../sass/globals/_components.scss */
+/* line 429, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.closed.hidden {
   height: 0;
   border-color: transparent;
   padding: 0;
 }
-/* line 434, ../sass/globals/_components.scss */
+/* line 435, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.closed input, .floatingMenu ul li.expandable.closed textarea {
   opacity: 0;
 }
-/* line 439, ../sass/globals/_components.scss */
+/* line 440, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open {
-  width: 192pt;
+  width: 256pt;
   height: 32pt;
 }
-/* line 443, ../sass/globals/_components.scss */
+/* line 444, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open .label {
   opacity: 0;
 }
-/* line 447, ../sass/globals/_components.scss */
+/* line 448, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open.tall {
   height: 64pt;
 }
-/* line 451, ../sass/globals/_components.scss */
+/* line 452, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open input, .floatingMenu ul li.expandable.open textarea {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
   opacity: 1;
 }
-/* line 456, ../sass/globals/_components.scss */
+/* line 457, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open textarea {
   height: 100%;
   width: 100%;
 }
-/* line 465, ../sass/globals/_components.scss */
+/* line 466, ../sass/globals/_components.scss */
 .floatingMenu ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1240,7 +1240,7 @@ ul.menu li:nth-of-type(20) {
   left: 0;
   position: absolute;
 }
-/* line 472, ../sass/globals/_components.scss */
+/* line 473, ../sass/globals/_components.scss */
 .floatingMenu ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1251,7 +1251,7 @@ ul.menu li:nth-of-type(20) {
   cursor: pointer;
 }
 
-/* line 487, ../sass/globals/_components.scss */
+/* line 488, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -1284,7 +1284,7 @@ body {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
   text-align: left;
   cursor: default;
   text-transform: lowercase;
@@ -1314,7 +1314,7 @@ body {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
   text-transform: none;
 }
 /* line 50, ../sass/layout/_header.scss */
@@ -1390,10 +1390,18 @@ section.container section.space section.content {
   -ms-transform: scale(0.25);
   -webkit-transform: scale(0.25);
   transform: scale(0.25);
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
+  transition-property: transform, -webkit-transform, -moz-transform;
   position: relative;
   z-index: 1;
 }
-/* line 31, ../sass/layout/_container.scss */
+/* line 35, ../sass/layout/_container.scss */
 section.container > .delete.trash {
   z-index: 999;
   bottom: -32pt;
@@ -1421,7 +1429,7 @@ section.container > .delete.trash {
   -webkit-transform: scale3d(0.1, 0.1, 1);
   transform: scale3d(0.1, 0.1, 1);
 }
-/* line 47, ../sass/layout/_container.scss */
+/* line 51, ../sass/layout/_container.scss */
 section.container > .delete.trash:after {
   content: "×";
   font-size: 96pt;
@@ -1432,7 +1440,7 @@ section.container > .delete.trash:after {
   top: 0;
   left: 0;
 }
-/* line 58, ../sass/layout/_container.scss */
+/* line 62, ../sass/layout/_container.scss */
 section.container > .delete.trash.visible {
   bottom: 0;
   -moz-transform: scale3d(0.75, 0.75, 1);
@@ -1440,7 +1448,7 @@ section.container > .delete.trash.visible {
   -webkit-transform: scale3d(0.75, 0.75, 1);
   transform: scale3d(0.75, 0.75, 1);
 }
-/* line 63, ../sass/layout/_container.scss */
+/* line 67, ../sass/layout/_container.scss */
 section.container > .delete.trash.overlap {
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);
@@ -1456,8 +1464,41 @@ section.container > .delete.trash.overlap {
   */
 }
 
-/* line 3, ../sass/layout/_article.scss */
-section.container section.space article {
+/* line 5, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article {
+  font-weight: 500;
+  letter-spacing: .03125em;
+}
+/* line 12, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card.text {
+  font-weight: 500;
+}
+/* line 16, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card.website header {
+  position: relative;
+  top: -8pt;
+}
+/* line 20, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card.website header .url {
+  display: none;
+}
+/* line 24, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card.website .description {
+  display: none;
+}
+/* line 32, ../sass/layout/_article.scss */
+section.container section.space section.content article, section.container section.space section.content h1, section.container section.space section.content .card {
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -moz-transition-property: font-weight;
+  -o-transition-property: font-weight;
+  -webkit-transition-property: font-weight;
+  transition-property: font-weight;
+}
+/* line 37, ../sass/layout/_article.scss */
+section.container section.space section.content article {
   color: #000000;
   position: absolute;
   backface-visibility: hidden;
@@ -1468,27 +1509,27 @@ section.container section.space article {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
 }
-/* line 15, ../sass/layout/_article.scss */
-section.container section.space article:hover, section.container section.space article.hover, section.container section.space article.dragging, section.container section.space article.ui-draggable-dragging {
+/* line 49, ../sass/layout/_article.scss */
+section.container section.space section.content article:hover, section.container section.space section.content article.hover, section.container section.space section.content article.dragging, section.container section.space section.content article.ui-draggable-dragging {
   z-index: 9999999;
 }
-/* line 18, ../sass/layout/_article.scss */
-section.container section.space article:hover author, section.container section.space article.hover author, section.container section.space article.dragging author, section.container section.space article.ui-draggable-dragging author {
+/* line 52, ../sass/layout/_article.scss */
+section.container section.space section.content article:hover author, section.container section.space section.content article.hover author, section.container section.space section.content article.dragging author, section.container section.space section.content article.ui-draggable-dragging author {
   opacity: 1;
   -moz-transform: translate3d(0, 18pt, 0);
   -ms-transform: translate3d(0, 18pt, 0);
   -webkit-transform: translate3d(0, 18pt, 0);
   transform: translate3d(0, 18pt, 0);
-  background-color: #ff2d00;
+  background-color: yellow;
 }
-/* line 25, ../sass/layout/_article.scss */
-section.container section.space article:hover, section.container section.space article.hover {
+/* line 59, ../sass/layout/_article.scss */
+section.container section.space section.content article:hover, section.container section.space section.content article.hover {
   cursor: move;
 }
-/* line 28, ../sass/layout/_article.scss */
-section.container section.space article:hover > .card, section.container section.space article.hover > .card {
+/* line 62, ../sass/layout/_article.scss */
+section.container section.space section.content article:hover > .card, section.container section.space section.content article.hover > .card {
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
@@ -1497,21 +1538,21 @@ section.container section.space article:hover > .card, section.container section
   -webkit-transform: translate(-8pt, -8pt);
   transform: translate(-8pt, -8pt);
 }
-/* line 35, ../sass/globals/_components.scss */
-section.container section.space article:hover > .card *, section.container section.space article.hover > .card * {
-  border-color: #ff2d00;
+/* line 36, ../sass/globals/_components.scss */
+section.container section.space section.content article:hover > .card *, section.container section.space section.content article.hover > .card * {
+  border-color: yellow;
 }
-/* line 37, ../sass/layout/_article.scss */
-section.container section.space article.locked {
+/* line 71, ../sass/layout/_article.scss */
+section.container section.space section.content article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
-/* line 43, ../sass/layout/_article.scss */
-section.container section.space article.resizing .card .ui-resizable-handle {
+/* line 77, ../sass/layout/_article.scss */
+section.container section.space section.content article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 49, ../sass/layout/_article.scss */
-section.container section.space article.dragging > .card, section.container section.space article.ui-draggable-dragging > .card, section.container section.space article.active > .card, section.container section.space article:active > .card {
+/* line 83, ../sass/layout/_article.scss */
+section.container section.space section.content article.dragging > .card, section.container section.space section.content article.ui-draggable-dragging > .card, section.container section.space section.content article.active > .card, section.container section.space section.content article:active > .card {
   cursor: move;
   -moz-transform: translate(-8pt, -8pt);
   -ms-transform: translate(-8pt, -8pt);
@@ -1521,24 +1562,24 @@ section.container section.space article.dragging > .card, section.container sect
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
 }
-/* line 57, ../sass/layout/_article.scss */
-section.container section.space article.long .text p {
+/* line 91, ../sass/layout/_article.scss */
+section.container section.space section.content article.long .text p {
   font-family: "L Futura W01", "Futura W04", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
   letter-spacing: 0;
 }
-/* line 61, ../sass/layout/_article.scss */
-section.container section.space article.long .text .card {
-  max-width: 144pt;
+/* line 95, ../sass/layout/_article.scss */
+section.container section.space section.content article.long .text .card {
+  max-width: 192pt;
 }
-/* line 72, ../sass/layout/_article.scss */
-section.container section.space article.add-element:hover author, section.container section.space article.editing:hover author {
+/* line 106, ../sass/layout/_article.scss */
+section.container section.space section.content article.add-element:hover author, section.container section.space section.content article.editing:hover author {
   opacity: 0;
 }
-/* line 77, ../sass/layout/_article.scss */
-section.container section.space article.add-element .card, section.container section.space article.editing .card {
+/* line 111, ../sass/layout/_article.scss */
+section.container section.space section.content article.add-element .card, section.container section.space section.content article.editing .card {
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
@@ -1548,25 +1589,25 @@ section.container section.space article.add-element .card, section.container sec
   transform: translate(-8pt, -8pt);
   border-style: dashed !important;
 }
-/* line 35, ../sass/globals/_components.scss */
-section.container section.space article.add-element .card *, section.container section.space article.editing .card * {
-  border-color: #ff2d00;
+/* line 36, ../sass/globals/_components.scss */
+section.container section.space section.content article.add-element .card *, section.container section.space section.content article.editing .card * {
+  border-color: yellow;
 }
-/* line 81, ../sass/layout/_article.scss */
-section.container section.space article.add-element .card.text, section.container section.space article.editing .card.text {
+/* line 115, ../sass/layout/_article.scss */
+section.container section.space section.content article.add-element .card.text, section.container section.space section.content article.editing .card.text {
   color: #000000;
   background-color: white;
 }
-/* line 90, ../sass/layout/_article.scss */
-section.container section.space article.add-element .card {
-  width: 192pt !important;
+/* line 124, ../sass/layout/_article.scss */
+section.container section.space section.content article.add-element .card {
+  width: 256pt !important;
 }
-/* line 93, ../sass/layout/_article.scss */
-section.container section.space article.add-element .card .autogrow-textarea-mirror {
-  width: 192pt !important;
+/* line 127, ../sass/layout/_article.scss */
+section.container section.space section.content article.add-element .card .autogrow-textarea-mirror {
+  width: 256pt !important;
 }
-/* line 107, ../sass/layout/_article.scss */
-section.container section.space article textarea {
+/* line 141, ../sass/layout/_article.scss */
+section.container section.space section.content article textarea {
   width: 100%;
   height: 16pt;
   color: #000000;
@@ -1574,11 +1615,11 @@ section.container section.space article textarea {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
   font-style: italic;
 }
-/* line 116, ../sass/layout/_article.scss */
-section.container section.space article author {
+/* line 150, ../sass/layout/_article.scss */
+section.container section.space section.content article author {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
@@ -1613,10 +1654,10 @@ section.container section.space article author {
   -webkit-transition-property: opacity, background-color, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: opacity, background-color, transform, -webkit-transform, -moz-transform;
 }
-/* line 142, ../sass/layout/_article.scss */
-section.container section.space article .card {
+/* line 176, ../sass/layout/_article.scss */
+section.container section.space section.content article .card {
   position: relative;
-  max-width: 192pt;
+  max-width: 256pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -1628,38 +1669,37 @@ section.container section.space article .card {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
 }
-/* line 158, ../sass/layout/_article.scss */
-section.container section.space article .card.text {
+/* line 192, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.text {
   background-color: white;
-  border: 1pt solid #000000;
-  padding: 4pt 4pt 4pt 4pt;
+  border: 0.5pt solid #000000;
+  padding: 8pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
-  font-size: 24pt;
-  font-weight: 300;
-  letter-spacing: -.03125em;
-  line-height: 32pt;
-  background: #000000;
-  color: white;
+  background: #ffffdc;
   font-style: italic;
-  border: 0;
+  border: 0.5pt solid #000000;
+  width: 256pt;
+  min-height: 192pt;
+  overflow: hidden;
 }
-/* line 167, ../sass/layout/_article.scss */
-section.container section.space article .card.image {
-  width: 192pt;
+/* line 204, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.image {
+  width: 256pt;
+  margin-left: 0.5pt;
 }
-/* line 171, ../sass/layout/_article.scss */
-section.container section.space article .card.website {
+/* line 210, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website {
   background-color: white;
-  border: 1pt solid #000000;
-  padding: 4pt 4pt 4pt 4pt;
+  border: 0.5pt solid #000000;
+  padding: 8pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
-  width: 192pt;
+  width: 256pt;
   padding-top: 16pt;
 }
-/* line 176, ../sass/layout/_article.scss */
-section.container section.space article .card.website:hover {
+/* line 215, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
   -o-animation: hoverLinkFlicker 20s infinite linear;
@@ -1669,8 +1709,8 @@ section.container section.space article .card.website:hover {
       border-color: blue;
   */
 }
-/* line 180, ../sass/layout/_article.scss */
-section.container section.space article .card.website a {
+/* line 219, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website a {
   border: 0;
   position: absolute;
   top: 0;
@@ -1678,42 +1718,42 @@ section.container section.space article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 192, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text header {
+/* line 231, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website .text header {
   position: absolute;
   top: 8pt;
 }
-/* line 196, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text header h1 {
+/* line 235, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website .text header h1 {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  max-height: 96pt;
+  max-height: 5.33333em;
   overflow: hidden;
 }
-/* line 207, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text header .url {
+/* line 246, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: .125em;
 }
-/* line 213, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text .description {
-  margin-top: 128pt;
+/* line 252, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website .text .description {
+  margin-top: 144pt;
   margin-bottom: 4pt;
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: .125em;
 }
-/* line 220, ../sass/layout/_article.scss */
-section.container section.space article .card.website.image {
+/* line 259, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website.image {
   max-height: 384pt;
 }
-/* line 230, ../sass/layout/_article.scss */
-section.container section.space article .card img {
+/* line 269, ../sass/layout/_article.scss */
+section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -8pt;
   background-color: white;
@@ -1741,7 +1781,7 @@ body section.container > header h1.headerSpaceName {
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
   position: absolute;
   top: 9pt;
   width: 33.333333vw;
@@ -1831,8 +1871,8 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   background-color: white;
   cursor: pointer;
   z-index: 1;
-  border: 1pt solid #000000;
-  border-width: 2pt;
+  border: 0.5pt solid #000000;
+  border-width: 1pt;
   margin-bottom: 16pt;
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);
@@ -1841,9 +1881,9 @@ body section.container section.space.metaspace > section.content div.spacePrevie
 }
 /* line 114, ../sass/layout/_home.scss */
 body section.container section.space.metaspace > section.content div.spacePreview:hover:not(.open) {
-  border-color: #ff2d00 !important;
+  border-color: yellow !important;
   -webkit-transform-origin: center center;
-  color: #ff2d00;
+  color: yellow;
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);
   -webkit-transform: scale3d(1, 1, 1);
@@ -1887,7 +1927,7 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -.03125em;
-  line-height: 32pt;
+  line-height: 1.33333em;
   font-size: 31.968pt;
   position: absolute;
   cursor: default;
@@ -1895,7 +1935,7 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   top: 16pt;
   left: 50%;
   margin-left: -50vw;
-  padding-top: 2pt;
+  padding-top: 1pt;
   width: 100vw;
   z-index: 200;
   text-align: center;
@@ -1984,8 +2024,8 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   padding-left: 16pt !important;
   padding-bottom: 8pt !important;
   background-color: white;
-  border: 1pt solid #000000;
-  padding: 4pt 4pt 4pt 4pt;
+  border: 0.5pt solid #000000;
+  padding: 8pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   width: 128pt;
