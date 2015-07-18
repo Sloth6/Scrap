@@ -13,13 +13,14 @@ $typeSmallSize:     8pt;
 $typeBodySize:      12pt;
 $typeBodyTracking:  0;
 $typeHeaderSize:    24pt;
+$typeHeaderLeading: 32pt;
 $typeHeaderSmallCapsSize: $typeHeaderSize * .666;
-$leading:           $gutter * 2;
+$leading:           $cell * 2;
 
 @mixin typeSmall {
     font-size:      $typeSmallSize;
     font-weight:    $fontWeightMedium;
-    line-height:    $leading/2;
+    line-height:    12pt;
     letter-spacing: .125em;
 }
 
@@ -35,7 +36,7 @@ $leading:           $gutter * 2;
     font-size:      $typeHeaderSize;
     font-weight:    $fontWeightLight;
     letter-spacing: -.03125em;
-    line-height:    32pt;
+    line-height:    $typeHeaderLeading;
 }
 
 @mixin smallCaps {

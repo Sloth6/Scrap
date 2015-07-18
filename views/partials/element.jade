@@ -29,13 +29,13 @@ article(id=element.id, class=classes, data-element=element, style= posString)
       when 'website'
         -var content = JSON.parse(element.content)
         -var url = decodeURIComponent(content.url)
-        img(src=content.image)
         a(href=url, target='_blank')
           .text
-            .title
-              p!=content.title
-            .url
-              p!=content.domain
+            header
+              h1!=content.title
+              .url!=content.domain
+            .description!=content.description
+          img(src=content.image)
 
       when 'file'
         img(src="https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png", width=256)

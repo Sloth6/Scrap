@@ -575,7 +575,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
-/* line 69, ../sass/globals/_type.scss */
+/* line 70, ../sass/globals/_type.scss */
 html {
   font-family: "L Futura W01", "Futura W04", Futura, "Century Gothic", sans-serif;
   font-size: 12pt;
@@ -584,13 +584,13 @@ html {
   letter-spacing: 0;
   font-variant-numeric: oldstyle-num;
 }
-/* line 73, ../sass/globals/_type.scss */
+/* line 74, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 0.125em #000000 solid;
 }
-/* line 81, ../sass/globals/_type.scss */
+/* line 82, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 8pt;
 }
@@ -1152,11 +1152,11 @@ ul.menu li:nth-of-type(20) {
   letter-spacing: 0;
   background-color: white;
   border: 0.5pt solid #000000;
-  padding: 4pt 2pt 4pt 4pt;
+  padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background-color: white;
-  padding: 4pt 2pt 4pt 4pt;
+  padding: 4pt 4pt 4pt 4pt;
   height: 16pt;
   margin-top: -0.5pt;
   cursor: pointer;
@@ -1636,7 +1636,7 @@ section.container section.space article .card {
 section.container section.space article .card.text {
   background-color: white;
   border: 0.5pt solid #000000;
-  padding: 4pt 2pt 4pt 4pt;
+  padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   font-size: 24pt;
@@ -1652,53 +1652,57 @@ section.container section.space article .card.text {
 section.container section.space article .card.image {
   width: 256pt;
 }
-/* line 180, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text {
-  position: relative;
-  z-index: 2;
+/* line 171, ../sass/layout/_article.scss */
+section.container section.space article .card.website {
   background-color: white;
   border: 0.5pt solid #000000;
-  padding: 4pt 2pt 4pt 4pt;
+  padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
-  border: 0.5pt solid #000000;
-  /*
-                      &:after {
-                          content: "›";
-                          font-size: $typeHeaderSize;
-                          font-weight: $fontWeightLight;
-                          position: absolute;
-                          display: block;
-                          height: 1em;
-                          margin-top: -.75em;
-                          top: 50%;
-                          right: $gutter/4;
-                      }
-  */
+  padding-top: 16pt;
 }
-/* line 206, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text .title p {
-  line-height: 1.25em;
+/* line 175, ../sass/layout/_article.scss */
+section.container section.space article .card.website a {
+  border: 0;
 }
-/* line 210, ../sass/layout/_article.scss */
-section.container section.space article .card.website .text .url p {
-  margin-top: 13.68pt;
+/* line 182, ../sass/layout/_article.scss */
+section.container section.space article .card.website .text header {
+  position: absolute;
+  top: 8pt;
+}
+/* line 186, ../sass/layout/_article.scss */
+section.container section.space article .card.website .text header h1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-height: 96pt;
+  overflow: hidden;
+}
+/* line 197, ../sass/layout/_article.scss */
+section.container section.space article .card.website .text header .url {
+  margin-top: 4pt;
+  font-size: 8pt;
+  font-weight: 500;
+  line-height: 12pt;
+  letter-spacing: .125em;
+}
+/* line 203, ../sass/layout/_article.scss */
+section.container section.space article .card.website .text .description {
+  margin-top: 128pt;
   margin-bottom: 4pt;
   font-size: 8pt;
   font-weight: 500;
-  line-height: 8pt;
+  line-height: 12pt;
   letter-spacing: .125em;
-  letter-spacing: 1pt;
-  line-height: 1em;
 }
-/* line 219, ../sass/layout/_article.scss */
+/* line 210, ../sass/layout/_article.scss */
 section.container section.space article .card.website.image {
   max-height: 384pt;
 }
-/* line 229, ../sass/layout/_article.scss */
+/* line 220, ../sass/layout/_article.scss */
 section.container section.space article .card img {
   width: 100%;
-  margin-bottom: -9.5pt;
+  margin-bottom: -8pt;
   background-color: white;
 }
 
@@ -1968,7 +1972,7 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   padding-bottom: 8pt !important;
   background-color: white;
   border: 0.5pt solid #000000;
-  padding: 4pt 2pt 4pt 4pt;
+  padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   width: 128pt;
@@ -2069,7 +2073,7 @@ section.index section.register {
   left: 0;
   background: white;
   border: 0.5pt solid #000000;
-  padding: 8pt 4pt 8pt 8pt;
+  padding: 8pt 8pt 8pt 8pt;
 }
 /* line 82, ../sass/index.scss */
 section.index .hover:hover {

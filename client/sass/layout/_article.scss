@@ -169,50 +169,41 @@ section.container section.space {
             }
             
             &.website {
-                               
-                &:hover {
-                    .text {
-//                         border-color: $colorAccent !important;
-//                         color: $colorAccent;
-                    }
-                }                
+                @include cardStyle;
+                padding-top: $cell * 2;
                 
+                a {
+                    border: 0;
+                }
+                               
                 .text {
-                    position: relative;
-                    z-index: 2;
-                    @include cardStyle;
-                    border: $cardBorder;
+
                     
-                    &:hover {
-//                         @include hoverLinkAnimation;
-//                         background-color: $colorAccent;
-//                         color: $colorTypeLight;
-                    }
-                    
-/*
-                    &:after {
-                        content: "›";
-                        font-size: $typeHeaderSize;
-                        font-weight: $fontWeightLight;
+                    header {
                         position: absolute;
-                        display: block;
-                        height: 1em;
-                        margin-top: -.75em;
-                        top: 50%;
-                        right: $gutter/4;
-                    }
-*/
+                        top: $cell;
 
-                    .title p {
-                        line-height: 1.25em;
+                        h1 {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical; 
+//                             max-height: $typeHeaderLeading * 3; 
+//                             text-overflow: ellipsis;
+                            max-height: $typeHeaderLeading * 3;
+                            overflow: hidden;
+//                             @include multiline-ellipsis($typeHeaderLeading * 3, $typeHeaderLeading, 1em);
+                        }
+    
+                        .url {
+                            margin-top: $cell/2;
+                            @include typeSmall;
+                        }
                     }
 
-                    .url p {
-                        margin-top: $leading*.75*1.14;
-                        margin-bottom: $leading/4;
+                    .description {
+                        margin-top: $cell * 16;
+                        margin-bottom: $cell/2;
                         @include typeSmall;
-                        letter-spacing: 1pt;
-                        line-height: 1em;
                     }
                 }
 
@@ -228,7 +219,7 @@ section.container section.space {
 
             img {
                 width: 100%;
-                margin-bottom: -9.5pt;
+                margin-bottom: -$cell;
                 background-color: $colorCardBackground;
             }
         }
