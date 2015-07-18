@@ -1,8 +1,10 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
 - var classes = [ element.contentType, "draggable"]
 
-- var posString = "position:absolute;top:"+0+"px;left:"+(j*elem_width)+"px;"
+- var posString = "position:absolute;" // #top:"+0+"px;left:"+(j*elem_width)+"px;"
 - var scaleString = "-webkit-transform:scale3d(1.0,1.0,1.0); transform:scale3d(1.0,1.0},1.0);"
+  
+  //- = "transform:translate(1.0)"
 
 article(id=element.id, class=classes, data-element=element, style= posString)
   .card(data-key=element.content, class=element.contentType)
