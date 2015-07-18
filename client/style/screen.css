@@ -735,7 +735,7 @@ input {
   line-height: 16pt;
   letter-spacing: 0;
   color: #000000;
-  border-bottom: 0.5pt #000000 solid;
+  border-bottom: 1pt #000000 solid;
 }
 /* line 123, ../sass/globals/_components.scss */
 input:focus, input:hover {
@@ -1151,14 +1151,14 @@ ul.menu li:nth-of-type(20) {
   line-height: 16pt;
   letter-spacing: 0;
   background-color: white;
-  border: 0.5pt solid #000000;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background-color: white;
   padding: 4pt 4pt 4pt 4pt;
   height: 16pt;
-  margin-top: -0.5pt;
+  margin-top: -1pt;
   cursor: pointer;
   position: relative;
   width: 128pt;
@@ -1631,7 +1631,7 @@ section.container section.space article .card {
 /* line 158, ../sass/layout/_article.scss */
 section.container section.space article .card.text {
   background-color: white;
-  border: 0.5pt solid #000000;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1651,7 +1651,7 @@ section.container section.space article .card.image {
 /* line 171, ../sass/layout/_article.scss */
 section.container section.space article .card.website {
   background-color: white;
-  border: 0.5pt solid #000000;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1831,8 +1831,8 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   background-color: white;
   cursor: pointer;
   z-index: 1;
-  border: 0.5pt solid #000000;
-  border-width: 1pt;
+  border: 1pt solid #000000;
+  border-width: 2pt;
   margin-bottom: 16pt;
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);
@@ -1895,7 +1895,7 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   top: 16pt;
   left: 50%;
   margin-left: -50vw;
-  padding-top: 1pt;
+  padding-top: 2pt;
   width: 100vw;
   z-index: 200;
   text-align: center;
@@ -1984,7 +1984,7 @@ body section.container section.space.metaspace > section.content div.spacePrevie
   padding-left: 16pt !important;
   padding-bottom: 8pt !important;
   background-color: white;
-  border: 0.5pt solid #000000;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;

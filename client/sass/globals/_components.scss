@@ -15,7 +15,7 @@ $articleWidth: $col * 3;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           .5pt;
+$cardBorderWidth:           1pt;
 $cardBorder:                $cardBorderWidth solid $colorType;
 $cardBoxShadowDimensions:   $gutter $gutter 0 0;
 $cardBoxShadowColor:        rgba(0,0,0,1);
