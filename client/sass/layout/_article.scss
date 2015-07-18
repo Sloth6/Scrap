@@ -1,10 +1,12 @@
+$collectionOpenTransitionDuration: 1s;
+
 section.container section.space section.content{
     
     .collection.closed {
         
         article {
             font-weight: $fontWeightMedium;
-//             font-size: $typeHeaderSize * 2;
+            font-size: $typeHeaderSize * .85;
             letter-spacing: .03125em;
 //             @include typeBody;
 
@@ -14,15 +16,22 @@ section.container section.space section.content{
                 }
                 &.website {
                     header {
-                        position: relative;
-                        top: -$cell;
+//                         position: relative;
+//                         top: 0;
                         
                         .url {
-                            display: none;
+//                             display: none;
+                            opacity: 0;
                         }
                     }
                     .description {
-                        display: none;
+//                         display: none;
+//                         opacity: 0;
+//                         margin-top: -$broadMargin + $cell * 8;
+                    }
+                    
+                    img {
+                        margin-top: -$broadMargin * 2;
                     }
                 }
             }
@@ -30,7 +39,7 @@ section.container section.space section.content{
     }
     
     article, h1, .card {
-        @include transition(1s $defaultCurve);
+        @include transition($collectionOpenTransitionDuration $defaultCurve);
         @include transition-property(font-weight);
     }
     
@@ -230,7 +239,9 @@ section.container section.space section.content{
                     
                     header {
                         position: absolute;
-                        top: $cell;
+                        top: $cell/2;
+                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition-property(top);
 
                         h1 {
                             display: -webkit-box;
@@ -246,13 +257,24 @@ section.container section.space section.content{
                         .url {
                             margin-top: $cell/2;
                             @include typeSmall;
+                            @include transition($collectionOpenTransitionDuration $defaultCurve);
+                            @include transition-property(opacity);
                         }
                     }
 
                     .description {
                         margin-top: ($broadMargin * 3);
                         margin-bottom: $cell/2;
+                        opacity: 1;
                         @include typeSmall;
+                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition-property(opacity, margin-top);
+                    }
+                    
+                    img {
+                        margin-top: 0;
+                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition-property(margin-top);
                     }
                 }
 

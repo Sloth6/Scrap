@@ -1,6 +1,6 @@
 $headerHeight:          25vh;
 
-$cardPaddingTop:        $cell * 2;
+$cardPaddingTop:        $cell;
 $cardPaddingRight:      $cell;
 $cardPaddingBottom:     $cell;
 $cardPaddingLeft:       $cell;
@@ -16,7 +16,7 @@ $articleMinHeight: $col * 3;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           .5pt;
+$cardBorderWidth:           1pt;
 $cardBorder:                $cardBorderWidth solid $colorType;
 $cardBoxShadowDimensions:   $cell $cell 0 0;
 $cardBoxShadowColor:        rgba(0,0,0,1);
