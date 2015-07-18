@@ -1,38 +1,39 @@
 detail_view_scale = 1.0
-scaleMultiple = 2
+scaleMultiple = 2 # must be the same as in _container.scss
+old_top = 0
+
+
 
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
 
-
 collection_close = () ->
   history.pushState {name: "home"}, "", "/"
-  # $('.open').children().transition { x: 0 }, 300, 'linear'
   collection_reset.call $('.collection.open')
   $('.collection').show()
-  $('.content').css {x: 0, y: 0, queue: false }
-  $('.content').css { scale: 1/scaleMultiple, queue: false }
-  $('.collection.open').addClass 'closed'
-  $('.collection.open').removeClass 'open'
+  $('.translate-container').css { x: 0, y: old_top }
+  $('.scale-container').css { scale: 1/scaleMultiple }
+  $('.collection.open').addClass('closed').removeClass 'open'
 
 collection_enter = (event) ->
   collection = $(@)
   return if collection.hasClass 'open'
-  collection.addClass 'open'
-  collection.removeClass 'closed'
-  collection_reset.call collection
+  
   history.pushState {name: "derp"}, "", "/"
-  $(window).scrollTop(0)
+  collection.addClass('open').removeClass 'closed'
+  collection_reset.call collection
+  old_top = $('.translate-container').css 'y'
+
   $('.collection').not(@).hide()
   $('.collection').not(@).addClass 'closed'
-  offsetTop = -(collection.position().top*4) + $(window).height()/2 - collection.height()/2
-  $('.content').css { scale: 1}, 1000, 'linear'
-  $('.content').css {x: 0, y: offsetTop, queue: false }
+  offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
+  $('.scale-container').css { scale: 1, queue: false }
+  $('.translate-container').css {x: 0, y: offsetTop, queue: false }
   
 collection_scroll = (event) ->
   collection = $(@)
-  event.preventDefault()
   return unless collection.hasClass 'open'
+  event.preventDefault()
   margin = -0.5
   delta = if event.deltaX is 0 then -event.deltaY else -event.deltaX
   scroll_position = collection.data('scroll_position') + delta
@@ -66,11 +67,24 @@ collection_reset = () ->
     maxX = lastX
   $(@).data { maxX }
 
+master_scroll = (event) ->
+  return if $('.open').length
+  event.preventDefault()
+  # y_max = (collection_max_y/scaleMultiple), y
+  y = parseInt($('.translate-container').css('y')) + event.deltaY
+  y = Math.min y, 0
+  y = Math.max y, -collection_max_y/scaleMultiple
+  $('.translate-container').css { y }
+
 $ ->
+  # $('.collection').css({'background-color':'blue'})
   history.pushState {name: "home"}, "", "/"  
+  
   $('.collection').click collection_enter  
   $('.collection').each collection_reset
   $('.collection').on 'mousewheel', collection_scroll
+
+  $(window).on 'mousewheel', master_scroll
 
   # $( window ).resize collection_reset
 

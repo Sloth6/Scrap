@@ -1,4 +1,5 @@
-$scaleMultiple: 4;
+// must be the same as in main.coffee
+$scaleMultiple: 2;
 
 section.container {
 //     position: fixed;
@@ -21,17 +22,18 @@ section.container {
         @include transition(1.5s $defaultCurve);
         @include transition-property(opacity, -webkit-filter);
         
-        section.content {
-            transform-origin: 0 0;
-            -webkit-transform-origin: 0 0;
-            @include transform(scale(1/$scaleMultiple));
-            @include transition(1s $defaultCurve);
-            @include transition-property(transform,
-                                 -webkit-transform,
-                                    -moz-transform);
-            position: relative;
-            z-index: 1;
-        }
+
+    } 
+    .scale-container {
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        @include transform(scale(1/$scaleMultiple));
+        @include transition(1s $defaultCurve);
+        @include transition-property(transform,
+                             -webkit-transform,
+                                -moz-transform);
+        position: relative;
+        z-index: 1;
     }
     
     > .delete.trash {
