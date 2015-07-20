@@ -67,6 +67,9 @@ section.container section.space section.content{
         
         &:hover, &.hover {
             cursor: move;
+            cursor: -webkit-grab;
+            cursor: -moz-grab;;
+            cursor: grab;
             
             > .card {
                 @include cardHover;
@@ -89,6 +92,10 @@ section.container section.space section.content{
         }
 
         &.dragging, &.ui-draggable-dragging, &.active, &:active {
+            cursor: -webkit-grabbing;
+            cursor: -moz-grabbing;
+            cursor: grabbing;
+
             > .card {
                 @include cardDrag;
             }

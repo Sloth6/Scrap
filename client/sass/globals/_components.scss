@@ -10,7 +10,7 @@ $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $ca
 
 
 $menuWidth: 40vw;
-$articleWidth: $col * 4;
+$articleWidth: $col * 3;
 $articleMinHeight: $col * 3;
 
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
@@ -39,7 +39,6 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 }
 
 @mixin cardDrag {
-    cursor: move;
     @include transform(translate(-$cell, -$cell));
     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
