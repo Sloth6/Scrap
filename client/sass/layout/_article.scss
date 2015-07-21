@@ -6,8 +6,9 @@ section.container section.space section.content{
         
         article {
             font-weight: $fontWeightMedium;
-            font-size: $typeHeaderSize * .85;
-            letter-spacing: .03125em;
+            font-size: $typeHeaderSize;
+            line-height: 1.25em;
+            letter-spacing: .015125em;
 //             @include typeBody;
 
             .card {
@@ -18,6 +19,11 @@ section.container section.space section.content{
                     header {
 //                         position: relative;
 //                         top: 0;
+
+                        h1 {
+                            -webkit-line-clamp: 6;
+                            max-height: $typeHeaderLeading * 6;
+                        }
                         
                         .url {
 //                             display: none;
@@ -26,12 +32,12 @@ section.container section.space section.content{
                     }
                     .description {
 //                         display: none;
-//                         opacity: 0;
+                        opacity: 0;
 //                         margin-top: -$broadMargin + $cell * 8;
                     }
                     
                     img {
-                        margin-top: -$broadMargin * 2;
+                        margin-top: -$broadMargin/2;
                     }
                 }
             }

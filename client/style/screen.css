@@ -1467,22 +1467,32 @@ section.container > .delete.trash.overlap {
 /* line 7, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article {
   font-weight: 500;
-  font-size: 20.4pt;
-  letter-spacing: .03125em;
+  font-size: 24pt;
+  line-height: 1.25em;
+  letter-spacing: .015125em;
 }
-/* line 14, ../sass/layout/_article.scss */
+/* line 15, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.text {
   font-weight: 500;
 }
-/* line 22, ../sass/layout/_article.scss */
+/* line 23, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card.website header h1 {
+  -webkit-line-clamp: 6;
+  max-height: 6em;
+}
+/* line 28, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.website header .url {
   opacity: 0;
 }
 /* line 33, ../sass/layout/_article.scss */
-section.container section.space section.content .collection.closed article .card.website img {
-  margin-top: -96pt;
+section.container section.space section.content .collection.closed article .card.website .description {
+  opacity: 0;
 }
-/* line 41, ../sass/layout/_article.scss */
+/* line 39, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card.website img {
+  margin-top: -24pt;
+}
+/* line 47, ../sass/layout/_article.scss */
 section.container section.space section.content article, section.container section.space section.content h1, section.container section.space section.content .card {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1493,7 +1503,7 @@ section.container section.space section.content article, section.container secti
   -webkit-transition-property: font-weight;
   transition-property: font-weight;
 }
-/* line 46, ../sass/layout/_article.scss */
+/* line 52, ../sass/layout/_article.scss */
 section.container section.space section.content article {
   color: #000000;
   position: absolute;
@@ -1507,11 +1517,11 @@ section.container section.space section.content article {
   letter-spacing: -.03125em;
   line-height: 1em;
 }
-/* line 58, ../sass/layout/_article.scss */
+/* line 64, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover, section.container section.space section.content article.hover, section.container section.space section.content article.dragging, section.container section.space section.content article.ui-draggable-dragging {
   z-index: 9999999;
 }
-/* line 61, ../sass/layout/_article.scss */
+/* line 67, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover author, section.container section.space section.content article.hover author, section.container section.space section.content article.dragging author, section.container section.space section.content article.ui-draggable-dragging author {
   opacity: 1;
   -moz-transform: translate3d(0, 18pt, 0);
@@ -1520,14 +1530,14 @@ section.container section.space section.content article:hover author, section.co
   transform: translate3d(0, 18pt, 0);
   background-color: yellow;
 }
-/* line 68, ../sass/layout/_article.scss */
+/* line 74, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover, section.container section.space section.content article.hover {
   cursor: move;
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
 }
-/* line 74, ../sass/layout/_article.scss */
+/* line 80, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover > .card, section.container section.space section.content article.hover > .card {
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
@@ -1541,22 +1551,22 @@ section.container section.space section.content article:hover > .card, section.c
 section.container section.space section.content article:hover > .card *, section.container section.space section.content article.hover > .card * {
   border-color: yellow;
 }
-/* line 83, ../sass/layout/_article.scss */
+/* line 89, ../sass/layout/_article.scss */
 section.container section.space section.content article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
-/* line 89, ../sass/layout/_article.scss */
+/* line 95, ../sass/layout/_article.scss */
 section.container section.space section.content article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 94, ../sass/layout/_article.scss */
+/* line 100, ../sass/layout/_article.scss */
 section.container section.space section.content article.dragging, section.container section.space section.content article.ui-draggable-dragging, section.container section.space section.content article.active, section.container section.space section.content article:active {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing;
 }
-/* line 99, ../sass/layout/_article.scss */
+/* line 105, ../sass/layout/_article.scss */
 section.container section.space section.content article.dragging > .card, section.container section.space section.content article.ui-draggable-dragging > .card, section.container section.space section.content article.active > .card, section.container section.space section.content article:active > .card {
   -moz-transform: translate(-8pt, -8pt);
   -ms-transform: translate(-8pt, -8pt);
@@ -1566,7 +1576,7 @@ section.container section.space section.content article.dragging > .card, sectio
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
 }
-/* line 107, ../sass/layout/_article.scss */
+/* line 113, ../sass/layout/_article.scss */
 section.container section.space section.content article.long .text p {
   font-family: "Helvetica Neue";
   font-size: 12pt;
@@ -1574,19 +1584,19 @@ section.container section.space section.content article.long .text p {
   line-height: 16pt;
   letter-spacing: 0;
 }
-/* line 111, ../sass/layout/_article.scss */
+/* line 117, ../sass/layout/_article.scss */
 section.container section.space section.content article.long .text .card {
   max-width: 192pt;
 }
-/* line 117, ../sass/layout/_article.scss */
+/* line 123, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card {
   width: 256pt;
 }
-/* line 126, ../sass/layout/_article.scss */
+/* line 132, ../sass/layout/_article.scss */
 section.container section.space section.content article.add-element:hover author, section.container section.space section.content article.editing:hover author {
   opacity: 0;
 }
-/* line 131, ../sass/layout/_article.scss */
+/* line 137, ../sass/layout/_article.scss */
 section.container section.space section.content article.add-element .card, section.container section.space section.content article.editing .card {
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
@@ -1601,20 +1611,20 @@ section.container section.space section.content article.add-element .card, secti
 section.container section.space section.content article.add-element .card *, section.container section.space section.content article.editing .card * {
   border-color: yellow;
 }
-/* line 135, ../sass/layout/_article.scss */
+/* line 141, ../sass/layout/_article.scss */
 section.container section.space section.content article.add-element .card.text, section.container section.space section.content article.editing .card.text {
   color: #000000;
   background-color: white;
 }
-/* line 144, ../sass/layout/_article.scss */
+/* line 150, ../sass/layout/_article.scss */
 section.container section.space section.content article.add-element .card {
   width: 256pt !important;
 }
-/* line 147, ../sass/layout/_article.scss */
+/* line 153, ../sass/layout/_article.scss */
 section.container section.space section.content article.add-element .card .autogrow-textarea-mirror {
   width: 256pt !important;
 }
-/* line 161, ../sass/layout/_article.scss */
+/* line 167, ../sass/layout/_article.scss */
 section.container section.space section.content article textarea {
   width: 100%;
   height: 16pt;
@@ -1626,7 +1636,7 @@ section.container section.space section.content article textarea {
   line-height: 1em;
   font-style: italic;
 }
-/* line 170, ../sass/layout/_article.scss */
+/* line 176, ../sass/layout/_article.scss */
 section.container section.space section.content article author {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -1662,7 +1672,7 @@ section.container section.space section.content article author {
   -webkit-transition-property: opacity, background-color, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: opacity, background-color, transform, -webkit-transform, -moz-transform;
 }
-/* line 196, ../sass/layout/_article.scss */
+/* line 202, ../sass/layout/_article.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 256pt;
@@ -1677,7 +1687,7 @@ section.container section.space section.content article .card {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
 }
-/* line 212, ../sass/layout/_article.scss */
+/* line 218, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
   border: 1pt solid #cccccc;
@@ -1691,12 +1701,12 @@ section.container section.space section.content article .card.text {
   min-height: 192pt;
   overflow: hidden;
 }
-/* line 224, ../sass/layout/_article.scss */
+/* line 230, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.image {
   width: 256pt;
   margin-left: 1pt;
 }
-/* line 230, ../sass/layout/_article.scss */
+/* line 236, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
   border: 1pt solid #cccccc;
@@ -1706,7 +1716,7 @@ section.container section.space section.content article .card.website {
   width: 192pt;
   padding-top: 16pt;
 }
-/* line 235, ../sass/layout/_article.scss */
+/* line 241, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1717,7 +1727,7 @@ section.container section.space section.content article .card.website:hover {
       border-color: blue;
   */
 }
-/* line 239, ../sass/layout/_article.scss */
+/* line 245, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website a {
   border: 0;
   position: absolute;
@@ -1726,7 +1736,7 @@ section.container section.space section.content article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 251, ../sass/layout/_article.scss */
+/* line 257, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1739,7 +1749,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: top;
   transition-property: top;
 }
-/* line 257, ../sass/layout/_article.scss */
+/* line 263, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1747,7 +1757,7 @@ section.container section.space section.content article .card.website .text head
   max-height: 4em;
   overflow: hidden;
 }
-/* line 268, ../sass/layout/_article.scss */
+/* line 274, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   font-size: 8pt;
@@ -1763,7 +1773,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 276, ../sass/layout/_article.scss */
+/* line 282, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text .description {
   margin-top: 144pt;
   margin-bottom: 4pt;
@@ -1781,7 +1791,7 @@ section.container section.space section.content article .card.website .text .des
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 285, ../sass/layout/_article.scss */
+/* line 291, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1793,11 +1803,11 @@ section.container section.space section.content article .card.website .text img 
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 292, ../sass/layout/_article.scss */
+/* line 298, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website.image {
   max-height: 384pt;
 }
-/* line 302, ../sass/layout/_article.scss */
+/* line 308, ../sass/layout/_article.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
