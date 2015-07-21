@@ -575,7 +575,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
-/* line 72, ../sass/globals/_type.scss */
+/* line 76, ../sass/globals/_type.scss */
 html {
   font-family: "Helvetica Neue";
   font-size: 12pt;
@@ -584,13 +584,13 @@ html {
   letter-spacing: 0;
   font-variant-numeric: oldstyle-num;
 }
-/* line 76, ../sass/globals/_type.scss */
+/* line 80, ../sass/globals/_type.scss */
 html a {
   color: #000000;
   text-decoration: none;
   border-bottom: 0.125em #000000 solid;
 }
-/* line 84, ../sass/globals/_type.scss */
+/* line 88, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 8pt;
 }
@@ -624,14 +624,14 @@ form li {
 /* line 82, ../sass/globals/_components.scss */
 form input {
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
 }
 /* line 85, ../sass/globals/_components.scss */
 form input[type=submit], form input[type=button] {
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
 }
@@ -1222,7 +1222,7 @@ ul.menu li:nth-of-type(20) {
 /* line 455, ../sass/globals/_components.scss */
 .floatingMenu ul li.expandable.open input, .floatingMenu ul li.expandable.open textarea {
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
   opacity: 1;
@@ -1282,7 +1282,7 @@ body {
   right: 0;
   padding: 8pt 8pt;
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
   text-align: left;
@@ -1312,7 +1312,7 @@ body {
 /* line 38, ../sass/layout/_header.scss */
 .container > header ul.menu.users li.user {
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
   text-transform: none;
@@ -1513,7 +1513,7 @@ section.container section.space section.content article {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
 }
@@ -1631,7 +1631,7 @@ section.container section.space section.content article textarea {
   color: #000000;
   background-color: transparent;
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
   font-style: italic;
@@ -1756,8 +1756,11 @@ section.container section.space section.content article .card.website .text head
   -webkit-box-orient: vertical;
   max-height: 4em;
   overflow: hidden;
+  margin-left: -1pt;
+  padding-bottom: .125em;
+  margin-bottom: -.125em;
 }
-/* line 274, ../sass/layout/_article.scss */
+/* line 277, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   font-size: 8pt;
@@ -1773,7 +1776,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 282, ../sass/layout/_article.scss */
+/* line 285, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text .description {
   margin-top: 144pt;
   margin-bottom: 4pt;
@@ -1791,7 +1794,7 @@ section.container section.space section.content article .card.website .text .des
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 291, ../sass/layout/_article.scss */
+/* line 294, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1803,11 +1806,11 @@ section.container section.space section.content article .card.website .text img 
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 298, ../sass/layout/_article.scss */
+/* line 301, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website.image {
   max-height: 384pt;
 }
-/* line 308, ../sass/layout/_article.scss */
+/* line 311, ../sass/layout/_article.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
@@ -1834,7 +1837,7 @@ body section.container > header h1.logo.hidden {
 /* line 22, ../sass/layout/_home.scss */
 body section.container > header h1.headerSpaceName {
   font-size: 24pt;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -.03125em;
   line-height: 1em;
   position: absolute;

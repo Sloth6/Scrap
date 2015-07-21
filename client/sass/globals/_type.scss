@@ -16,8 +16,12 @@ $typeBodySize:      12pt;
 $typeBodyTracking:  0;
 $typeHeaderSize:    24pt;
 $typeHeaderLeading: 1em;
-$typeHeaderSmallCapsSize: $typeHeaderSize * .666;
+$typeHeaderSmallCapsSize:
+                    $typeHeaderSize * .666;
 $leading:           $cell * 2;
+
+$headerLeftMarginOffset:
+                    -1pt;
 
 @mixin typeSmall {
     font-size:      $typeSmallSize;
@@ -36,7 +40,7 @@ $leading:           $cell * 2;
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
     letter-spacing: -.03125em;
     line-height:    $typeHeaderLeading;
 }
