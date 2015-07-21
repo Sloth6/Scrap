@@ -66,8 +66,7 @@ section.container section.space section.content{
 
             author {
                 opacity: 1;
-                @include transform(translate3d(0, $leading *1.125, 0));
-                background-color: $colorAccent;
+                @include transform(translate3d(0, 0, 0));
             }
         }
         
@@ -174,21 +173,19 @@ section.container section.space section.content{
         }
         
         author {
-            @include typeBodySmallCaps;
+            @include typeSmall;
             font-style: normal;
             line-height: 1em;
             position: absolute;
             display: block;
-            color: $colorTypeLight;
-            background-color: $colorType;
-            padding: $gutter/4;
-            bottom: 0;
-            right: 0;
+            color: $colorType;
+            top: -$cell * 1.5;
+            right: -$cell/4;
             opacity: 0;
             white-space: nowrap;
             z-index: -900;
-            @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-            @include transform(translate3d(0,0,0));
+//             @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+            @include transform(translate3d(0,$cell*4,0));
             @include transition(.25s $defaultCurve);
             @include transition-property(opacity,
                                 background-color,
