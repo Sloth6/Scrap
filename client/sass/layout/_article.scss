@@ -297,7 +297,7 @@ section.container section.space section.content{
 
             img {
                 width: 100%;
-                margin-bottom: -$cell;
+                margin-bottom: -$cell/2;
                 background-color: $colorCardBackground;
             }
         }

@@ -60,7 +60,7 @@ collection_reset = () ->
   z = 0
   collection.children().each () ->
     # console.log $(@).width() if $(@).hasClass('soundcloud')
-    margin = -2
+    margin = -1
     $(@).css { x: lastX }
     $(@).data 'scroll_offset', lastX
     lastX += $(@).width() + margin

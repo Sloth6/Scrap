@@ -1,6 +1,7 @@
-$fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif;
+// $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif;
 /* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
 // $fontFamily:            'Neue Haas Unica W01';
+$fontFamily:            "Helvetica Neue";
 
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
@@ -14,15 +15,15 @@ $typeSmallSize:     8pt;
 $typeBodySize:      12pt;
 $typeBodyTracking:  0;
 $typeHeaderSize:    24pt;
-$typeHeaderLeading: 1.333333em;
+$typeHeaderLeading: 1em;
 $typeHeaderSmallCapsSize: $typeHeaderSize * .666;
 $leading:           $cell * 2;
 
 @mixin typeSmall {
     font-size:      $typeSmallSize;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightRegular;
     line-height:    12pt;
-    letter-spacing: .125em;
+    letter-spacing: 0.03125em;
 }
 
 @mixin typeBody {
@@ -35,7 +36,7 @@ $leading:           $cell * 2;
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightLight;
+    font-weight:    $fontWeightRegular;
     letter-spacing: -.03125em;
     line-height:    $typeHeaderLeading;
 }
