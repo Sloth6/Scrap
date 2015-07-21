@@ -113,6 +113,10 @@ section.container section.space section.content{
                 }
             }
         }
+        
+        &.soundcloud .card {
+            width: $articleWidth;
+        }
                 
         // NEW ELEMENT
         
@@ -225,7 +229,7 @@ section.container section.space section.content{
             
             &.website {
                 @include cardStyle;
-                width: $articleWidth;
+                width: $articleWidthNarrow;
                 padding-top: $cell * 2;
                 
                 &:hover {
