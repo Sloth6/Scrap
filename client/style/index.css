@@ -1796,7 +1796,7 @@ section.container section.space section.content article .card.website.image {
 /* line 298, ../sass/layout/_article.scss */
 section.container section.space section.content article .card img {
   width: 100%;
-  margin-bottom: -4pt;
+  margin-bottom: -2.66667pt;
   background-color: white;
 }
 
