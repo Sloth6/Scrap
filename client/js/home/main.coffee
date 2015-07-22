@@ -8,16 +8,34 @@ click = { x: 0, y: 0 }
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
 
+logistic = (x) ->
+  1/(1 + Math.pow(Math.E, -x))
 
 element_place = () ->
   element = $(@)
+  border = 300
+
   return if element.hasClass('dragging')
-  offset = $(@).data 'scroll_offset'
+  offset = element.data 'scroll_offset'
   collection_scroll = element.parent().data 'scroll_position'
   maxX = ($(window).width()  / scale )- element.width()
+
   x = offset + collection_scroll + margin
-  x = Math.max x, 0
-  x = Math.min x, maxX
+
+  start = ($(window).width() - border)
+
+  left_min = -element.width()
+  left_start = left_min + border
+
+  if x > start
+    percent = (x - start) / border
+    x = start + (logistic(percent)-0.5)*2 * border
+  else if x < left_start
+    percent = 1 - ((x - left_min)/ border)
+    x =  left_start - ((logistic(percent)-0.5)*2 * border)
+  # x = Math.max x, 0
+  # x = Math.min x, maxX
+
   element.css { x, y:0 }
 
 element_move = (x, delta = false) ->
@@ -28,8 +46,10 @@ element_move = (x, delta = false) ->
 
 scroll_collection_by_delta = (collection, delta) ->  
   scroll_position = collection.data('scroll_position') + delta
-  scroll_position = Math.max scroll_position, -collection.data('maxX')+ $(window).width()
-  scroll_position = Math.min scroll_position, 0
+
+  scroll_position = Math.min scroll_position, $(window).width()/2 - collection.children().first().width()/2
+  scroll_position = Math.max scroll_position, -collection.data('maxX') + $(window).width()/2 + collection.children().last().width()/2
+
   collection.data 'scroll_position', scroll_position
   collection.children().each element_place
 
@@ -89,6 +109,7 @@ collection_realign_elements = () ->
   $(@).data { maxX }
 
 collection_init = () ->
+  # $(@).children(":not(:first)").remove();
   $(@).data 'scroll_position', 0
   collection_realign_elements.call @
 
