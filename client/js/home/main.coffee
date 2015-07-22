@@ -174,11 +174,11 @@ $ ->
 
     drag: (event, ui) ->
 
-      zoom = $('.scale-container').css 'scale'
+      # zoom = $('.scale-container').css 'scale'
       original = ui.originalPosition
       ui.position = {
-        left: (event.clientX - click.x + original.left) / zoom
-        top:  (event.clientY - click.y + original.top) / zoom
+        left: (event.clientX - click.x + original.left) / scale
+        top:  (event.clientY - click.y + original.top) / scale
       }
     stop: (event, ui) ->
       element = $(@)
@@ -205,9 +205,8 @@ $ ->
   $('.collection').on 'mousewheel', collection_scroll_wheel
   
   $('.collection').on 'mousemove', (event) ->
-    scale = $('.scale-container').css('scale')
-    mouse.x = event.clientX# / scale
-    mouse.y = event.clientY# / scale
+    mouse.x = event.clientX / scale
+    mouse.y = event.clientY / scale
 
   $(window).on 'mousewheel', master_scroll
   
