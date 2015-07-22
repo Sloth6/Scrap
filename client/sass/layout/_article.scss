@@ -6,8 +6,9 @@ section.container section.space section.content{
         
         article {
             font-weight: $fontWeightMedium;
-            font-size: $typeHeaderSize * .85;
-            letter-spacing: .03125em;
+            font-size: $typeHeaderSize;
+            line-height: 1.25em;
+            letter-spacing: .015125em;
 //             @include typeBody;
 
             .card {
@@ -18,6 +19,11 @@ section.container section.space section.content{
                     header {
 //                         position: relative;
 //                         top: 0;
+
+                        h1 {
+                            -webkit-line-clamp: 6;
+                            max-height: $typeHeaderLeading * 6;
+                        }
                         
                         .url {
 //                             display: none;
@@ -26,12 +32,12 @@ section.container section.space section.content{
                     }
                     .description {
 //                         display: none;
-//                         opacity: 0;
+                        opacity: 0;
 //                         margin-top: -$broadMargin + $cell * 8;
                     }
                     
                     img {
-                        margin-top: -$broadMargin * 2;
+                        margin-top: -$broadMargin/2;
                     }
                 }
             }
@@ -60,13 +66,15 @@ section.container section.space section.content{
 
             author {
                 opacity: 1;
-                @include transform(translate3d(0, $leading *1.125, 0));
-                background-color: $colorAccent;
+//                 @include transform(translate3d(0, 0, 0));
             }
         }
         
         &:hover, &.hover {
             cursor: move;
+            cursor: -webkit-grab;
+            cursor: -moz-grab;;
+            cursor: grab;
             
             > .card {
                 @include cardHover;
@@ -89,6 +97,10 @@ section.container section.space section.content{
         }
 
         &.dragging, &.ui-draggable-dragging, &.active, &:active {
+            cursor: -webkit-grabbing;
+            cursor: -moz-grabbing;
+            cursor: grabbing;
+
             > .card {
                 @include cardDrag;
             }
@@ -105,6 +117,10 @@ section.container section.space section.content{
                     max-width: $articleWidth * .75;
                 }
             }
+        }
+        
+        &.soundcloud .card {
+            width: $articleWidth;
         }
                 
         // NEW ELEMENT
@@ -157,27 +173,21 @@ section.container section.space section.content{
         }
         
         author {
-            @include typeBodySmallCaps;
+            @include typeSmall;
             font-style: normal;
             line-height: 1em;
             position: absolute;
             display: block;
-            color: $colorTypeLight;
-            background-color: $colorType;
-            padding: $gutter/4;
-            bottom: 0;
-            right: 0;
+            color: $colorType;
+            top: -$cell * 1.5;
+            right: -$cell/4;
             opacity: 0;
             white-space: nowrap;
             z-index: -900;
-            @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-            @include transform(translate3d(0,0,0));
+//             @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+//             @include transform(translate3d(0,$cell*4,0));
             @include transition(.25s $defaultCurve);
-            @include transition-property(opacity,
-                                background-color,
-                                         transform,
-                                 -webkit-transform,
-                                    -moz-transform);
+            @include transition-property(opacity);
         }
         
         // CONTENT
@@ -218,7 +228,7 @@ section.container section.space section.content{
             
             &.website {
                 @include cardStyle;
-                width: $articleWidth;
+                width: $articleWidthNarrow;
                 padding-top: $cell * 2;
                 
                 &:hover {
@@ -251,6 +261,9 @@ section.container section.space section.content{
 //                             text-overflow: ellipsis;
                             max-height: $typeHeaderLeading * 4;
                             overflow: hidden;
+                            margin-left: $headerLeftMarginOffset;
+                            padding-bottom: .125em;
+                            margin-bottom: -.125em;
 //                             @include multiline-ellipsis($typeHeaderLeading * 3, $typeHeaderLeading, 1em);
                         }
     
@@ -290,7 +303,7 @@ section.container section.space section.content{
 
             img {
                 width: 100%;
-                margin-bottom: -$cell;
+                margin-bottom: -$cell/3;
                 background-color: $colorCardBackground;
             }
         }

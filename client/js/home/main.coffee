@@ -83,6 +83,7 @@ collection_realign_elements = () ->
       element_place.call @
       lastX += $(@).width() + margin
       maxX = lastX
+
   $(@).data { maxX }
 
 collection_init = () ->
