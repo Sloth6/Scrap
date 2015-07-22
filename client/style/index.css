@@ -1371,8 +1371,6 @@ section.container section.blur.obscured {
 }
 /* line 19, ../sass/layout/_container.scss */
 section.container section.space {
-  width: 10000%;
-  height: 10000%;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
@@ -1382,7 +1380,7 @@ section.container section.space {
   -webkit-transition-property: opacity, -webkit-filter;
   transition-property: opacity, -webkit-filter;
 }
-/* line 27, ../sass/layout/_container.scss */
+/* line 25, ../sass/layout/_container.scss */
 section.container .scale-container {
   transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
@@ -1401,7 +1399,7 @@ section.container .scale-container {
   position: relative;
   z-index: 1;
 }
-/* line 39, ../sass/layout/_container.scss */
+/* line 37, ../sass/layout/_container.scss */
 section.container > .delete.trash {
   z-index: 999;
   bottom: -32pt;
@@ -1429,7 +1427,7 @@ section.container > .delete.trash {
   -webkit-transform: scale3d(0.1, 0.1, 1);
   transform: scale3d(0.1, 0.1, 1);
 }
-/* line 55, ../sass/layout/_container.scss */
+/* line 53, ../sass/layout/_container.scss */
 section.container > .delete.trash:after {
   content: "×";
   font-size: 96pt;
@@ -1440,7 +1438,7 @@ section.container > .delete.trash:after {
   top: 0;
   left: 0;
 }
-/* line 66, ../sass/layout/_container.scss */
+/* line 64, ../sass/layout/_container.scss */
 section.container > .delete.trash.visible {
   bottom: 0;
   -moz-transform: scale3d(0.75, 0.75, 1);
@@ -1448,7 +1446,7 @@ section.container > .delete.trash.visible {
   -webkit-transform: scale3d(0.75, 0.75, 1);
   transform: scale3d(0.75, 0.75, 1);
 }
-/* line 71, ../sass/layout/_container.scss */
+/* line 69, ../sass/layout/_container.scss */
 section.container > .delete.trash.overlap {
   -moz-transform: scale3d(1, 1, 1);
   -ms-transform: scale3d(1, 1, 1);

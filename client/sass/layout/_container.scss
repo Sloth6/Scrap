@@ -17,8 +17,6 @@ section.container {
     }
     
     section.space {
-        width:  10000%;
-        height: 10000%;
         @include transition(1.5s $defaultCurve);
         @include transition-property(opacity, -webkit-filter);
         
