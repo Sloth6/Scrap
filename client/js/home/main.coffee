@@ -213,6 +213,11 @@ $ ->
   history.pushState { name: "home" }, "", "/"  
   
   $('.element').draggable draggableOptions
+  $('.element').mouseover( () ->
+    $(@).data 'oldZIndex', $(@).css('zIndex')
+    $(@).css 'zIndex', $(@).siblings().length + 1
+  ).mouseout () ->
+    $(@).css 'zIndex', $(@).data('oldZIndex')
 
   $('.collection').click collection_enter  
   $('.collection').each collection_init
@@ -223,6 +228,7 @@ $ ->
     mouse.y = event.clientY / scale
 
   $(window).on 'mousewheel', master_scroll
+
   
   window.onpopstate = (event) ->
     return unless event.state?
