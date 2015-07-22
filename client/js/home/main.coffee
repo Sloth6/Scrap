@@ -139,9 +139,9 @@ placeHolder_under_mouse = (event) ->
   return
 
 $ ->
-  border = $(window).width()/4
-  min_speed = 10
-  max_speed = 30
+  border = $(window).width()/3
+  min_speed = 0
+  max_speed = 120
   fun = ()  ->
     
     if mouse.x <= border
