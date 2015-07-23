@@ -1,15 +1,16 @@
 extends layout
 block scripts
-  include partials/indexScripts
+  script(src="/js/jquery/jquery.js")
+  script(src="/js/home/headerMenu.js")
 
 block content
-  header
+  header.tempForm
     .card.form
       include partials/registration
   section.index
     header
       h1 Hotpot
-      h2 Collect and share<br>anything for a project.
+      h2 Keep everything for your<br>project in one place.
       ul.form
         li Sign Up
         li Log In
@@ -18,6 +19,7 @@ block content
         header
           h1 Hotpot is for Archaeology
         section.collection
+          // here be examples
       section.example
         header
           h1 Hotpot is for Baking

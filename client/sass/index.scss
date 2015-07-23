@@ -8,13 +8,18 @@
 @mixin indexCardH1 {
     @include indexCard;
     @include typeHeader1;
-    padding: 0 $cell*1.5 $cell*2 $cell*.5;
+    padding: 0 $cell*1.5 $broadMargin/2 $cell*.5;
 }
 
 @mixin indexCardH2 {
     @include indexCard;
     @include typeHeader2;
-    padding: 0 $cell $cell*1.5 $cell*.5;
+    padding: 0 $cell $broadMargin/2 $cell*.5;
+}
+
+header.tempForm {
+    z-index: 999999 !important;
+    position: fixed;
 }
 
 section.index {
