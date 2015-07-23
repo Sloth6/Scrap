@@ -1,11 +1,6 @@
-- var creator = space.creator
-- var isCreator = user.id == creator.id
-
 script.
-  creator="#{creator.name}";
-  username = "#{user.name}";
-  userId = "#{user.id}";
-  users =  !{JSON.stringify(users)}
+  user = !{user}
+  users = !{JSON.stringify(users)}
   names = !{JSON.stringify(names)}
 
 ul.users.menu.right.hideFirst.hidden
