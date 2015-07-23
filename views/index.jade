@@ -1,6 +1,6 @@
 extends layout
-block scripts
-  include partials/indexScripts
+//- block scripts
+  //- include partials/indexScripts
 
 block content
   header
@@ -13,28 +13,39 @@ block content
       ul.form
         li Sign Up
         li Log In
-    section
-      section.example
-        header
-          h1 Hotpot is for Archaeology
-        section.collection
-      section.example
-        header
-          h1 Hotpot is for Baking
-        section.collection
-      section.example
-        header
-          h1 Hotpot is for Creperies
-        section.collection
-      section.example
-        header
-          h1 Hotpot is for Dolphin Training
-        section.collection
-      section.example
-        header
-          h1 Hotpot is for Entymology
-        section.collection
-      section.example
-        header
-          h1 Hotpot is for Faberge Egg Collecting
-        section.collection
+    
+    section.space
+      section.content
+    
+        -var collection_height = 700
+        -for (var i = 0; i < collections.length; i++)
+          -var collection = collections[i]
+          -var top = (i * collection_height)
+          section.example
+            header
+              h1!=collection.name
+            .collection(style="top:"+top+"px;height:"+(collection_height)+"px;")
+              -for (var j = 0; j < collection.elements.length; j++)
+                -var element = collection.elements[j]
+                include partials/element
+
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Baking
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Creperies
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Dolphin Training
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Entymology
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Faberge Egg Collecting
+      //-   section.collection

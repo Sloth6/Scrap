@@ -1,0 +1,19 @@
+article.floatingMenu.addElementForm
+  ul
+    li.text.url.closed.expandable
+      span.label Add from the web
+      input.urlInput(type="text", placeholder="Paste a URL")
+    li.text.note.closed.tall.expandable
+      span.label Write a note
+      textarea.textInput(placeholder="Write a note")
+    li.button.closed.upload
+      span.label Upload a file
+      form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
+        input(type='hidden', name='key')
+        input(type='hidden', name='AWSAccessKeyId', value="AKIAJKJJR5OLTKWMMHSA")
+        input(type='hidden', name='acl', value='public-read')
+        input(type='hidden', name='policy')
+        input(type='hidden', name='signature')
+        input(type='hidden', name='success_action_status', value='201')
+        input(type='hidden', name='Content-Type')
+        input(type='file', class='file-input', name='file')
