@@ -47,7 +47,7 @@ section.index {
             }
         }
     }
-    header {
+    > header {
         h1 {
             @include indexCardH1;
         }
@@ -57,9 +57,12 @@ section.index {
         }
     }
     
-    section.example {        
+    section.example {
+        > header h1 {
+            @include indexCardH1;
+        }      
         &:nth-child(1) {
-            header {
+            > header {
                 h1 {
                     background-color: #d8ffe9;
                 }
@@ -67,7 +70,7 @@ section.index {
         }
         
         &:nth-child(2) {
-            header {
+            > header {
                 h1 {
                     background-color: #d9fdff;
                 }
@@ -75,7 +78,7 @@ section.index {
         }
         
         &:nth-child(3) {
-            header {
+            > header {
                 h1 {
                     background-color: #ffead9;
                 }
@@ -83,7 +86,7 @@ section.index {
         }
         
         &:nth-child(4) {
-            header {
+            > header {
                 h1 {
                     background-color: #ffd9f0;
                 }
@@ -91,7 +94,7 @@ section.index {
         }
                 
         &:nth-child(5) {
-            header {
+            > header {
                 h1 {
                     background-color: #d9e5ff;
                 }

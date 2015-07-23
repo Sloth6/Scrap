@@ -1911,7 +1911,7 @@ section.index > header ul.form li {
   padding-bottom: 24pt;
 }
 /* line 51, ../sass/index.scss */
-section.index header h1 {
+section.index > header h1 {
   background-color: white;
   border: 1pt solid #cccccc;
   padding: 4pt 4pt 4pt 4pt;
@@ -1925,7 +1925,7 @@ section.index header h1 {
   padding: 0 12pt 24pt 4pt;
 }
 /* line 55, ../sass/index.scss */
-section.index header h2 {
+section.index > header h2 {
   background-color: white;
   border: 1pt solid #cccccc;
   padding: 4pt 4pt 4pt 4pt;
@@ -1938,23 +1938,37 @@ section.index header h2 {
   line-height: 1em;
   padding: 0 8pt 24pt 4pt;
 }
-/* line 63, ../sass/index.scss */
-section.index section.example:nth-child(1) header h1 {
+/* line 61, ../sass/index.scss */
+section.index section.example > header h1 {
+  background-color: white;
+  border: 1pt solid #cccccc;
+  padding: 4pt 4pt 4pt 4pt;
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
+  width: intrinsic;
+  font-size: 72pt;
+  font-weight: 500;
+  letter-spacing: -.0625em;
+  line-height: 1em;
+  padding: 0 12pt 24pt 4pt;
+}
+/* line 66, ../sass/index.scss */
+section.index section.example:nth-child(1) > header h1 {
   background-color: #d8ffe9;
 }
-/* line 71, ../sass/index.scss */
-section.index section.example:nth-child(2) header h1 {
+/* line 74, ../sass/index.scss */
+section.index section.example:nth-child(2) > header h1 {
   background-color: #d9fdff;
 }
-/* line 79, ../sass/index.scss */
-section.index section.example:nth-child(3) header h1 {
+/* line 82, ../sass/index.scss */
+section.index section.example:nth-child(3) > header h1 {
   background-color: #ffead9;
 }
-/* line 87, ../sass/index.scss */
-section.index section.example:nth-child(4) header h1 {
+/* line 90, ../sass/index.scss */
+section.index section.example:nth-child(4) > header h1 {
   background-color: #ffd9f0;
 }
-/* line 95, ../sass/index.scss */
-section.index section.example:nth-child(5) header h1 {
+/* line 98, ../sass/index.scss */
+section.index section.example:nth-child(5) > header h1 {
   background-color: #d9e5ff;
 }
