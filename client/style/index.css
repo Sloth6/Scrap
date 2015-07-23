@@ -1872,24 +1872,30 @@ body section.container > header a.back:hover {
   text-transform: lowercase;
 }
 
-/* line 22, ../sass/index.scss */
+/* line 20, ../sass/index.scss */
+header.tempForm {
+  z-index: 999999 !important;
+  position: fixed;
+}
+
+/* line 27, ../sass/index.scss */
 section.index > header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 }
-/* line 28, ../sass/index.scss */
+/* line 33, ../sass/index.scss */
 section.index > header h1 {
   display: none;
 }
-/* line 32, ../sass/index.scss */
+/* line 37, ../sass/index.scss */
 section.index > header ul.form {
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 36, ../sass/index.scss */
+/* line 41, ../sass/index.scss */
 section.index > header ul.form li {
   font-size: 36pt;
   font-weight: 500;
@@ -1904,7 +1910,7 @@ section.index > header ul.form li {
   padding: 4pt 4pt 4pt 4pt;
   padding-bottom: 24pt;
 }
-/* line 46, ../sass/index.scss */
+/* line 51, ../sass/index.scss */
 section.index header h1 {
   background-color: white;
   border: 1pt solid #cccccc;
@@ -1916,9 +1922,9 @@ section.index header h1 {
   font-weight: 500;
   letter-spacing: -.0625em;
   line-height: 1em;
-  padding: 0 12pt 16pt 4pt;
+  padding: 0 12pt 24pt 4pt;
 }
-/* line 50, ../sass/index.scss */
+/* line 55, ../sass/index.scss */
 section.index header h2 {
   background-color: white;
   border: 1pt solid #cccccc;
@@ -1930,25 +1936,25 @@ section.index header h2 {
   font-weight: 500;
   letter-spacing: -.04em;
   line-height: 1em;
-  padding: 0 8pt 12pt 4pt;
+  padding: 0 8pt 24pt 4pt;
 }
-/* line 58, ../sass/index.scss */
+/* line 63, ../sass/index.scss */
 section.index section.example:nth-child(1) header h1 {
   background-color: #d8ffe9;
 }
-/* line 66, ../sass/index.scss */
+/* line 71, ../sass/index.scss */
 section.index section.example:nth-child(2) header h1 {
   background-color: #d9fdff;
 }
-/* line 74, ../sass/index.scss */
+/* line 79, ../sass/index.scss */
 section.index section.example:nth-child(3) header h1 {
   background-color: #ffead9;
 }
-/* line 82, ../sass/index.scss */
+/* line 87, ../sass/index.scss */
 section.index section.example:nth-child(4) header h1 {
   background-color: #ffd9f0;
 }
-/* line 90, ../sass/index.scss */
+/* line 95, ../sass/index.scss */
 section.index section.example:nth-child(5) header h1 {
   background-color: #d9e5ff;
 }
