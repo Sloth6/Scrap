@@ -1,7 +1,7 @@
 derp = { contentType: 'text', content: 'Derp'}
 module.exports = [
   {
-    name: "Hotpot is for Archaeology"
+    name: "Hotpot Is for Archaeology"
     elements: [
       {
         contentType: 'website'
@@ -48,52 +48,52 @@ module.exports = [
       }
     ]
   },{
-    name: "Hotpot is for Baking"
+    name: "Hotpot Is for Baking"
     elements: [ derp, derp, derp, derp, derp, derp]
   },
   {
-    name: "Hotpot is for Creperies"
+    name: "Hotpot Is for Creperies"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for levitating the pentagon"
+    name: "Hotpot Is for levitating the pentagon"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for cupcakes"
+    name: "Hotpot Is for cupcakes"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for lamps"
+    name: "Hotpot Is for lamps"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for Baking"
+    name: "Hotpot Is for Baking"
     elements: [ derp, derp, derp, derp, derp, derp]
   },
   {
-    name: "Hotpot is for Creperies"
+    name: "Hotpot Is for Creperies"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for levitating the pentagon"
+    name: "Hotpot Is for levitating the pentagon"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for cupcakes"
+    name: "Hotpot Is for cupcakes"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for lamps"
+    name: "Hotpot Is for lamps"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for Baking"
+    name: "Hotpot Is for Baking"
     elements: [ derp, derp, derp, derp, derp, derp]
   },
   {
-    name: "Hotpot is for Creperies"
+    name: "Hotpot Is for Creperies"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for levitating the pentagon"
+    name: "Hotpot Is for levitating the pentagon"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for cupcakes"
+    name: "Hotpot Is for cupcakes"
     elements: [ derp, derp, derp, derp, derp, derp]
   },{
-    name: "Hotpot is for lamps"
+    name: "Hotpot Is for lamps"
     elements: [ derp, derp, derp, derp, derp, derp]
   }
 ]

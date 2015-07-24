@@ -4,7 +4,7 @@ old_scroll = $(window).scrollTop()
 
 collection_place = (scroll_delta) ->
   logistic = (x) ->
-    1/(1 + Math.pow(Math.E, -x*.3))
+    1/(1 + Math.pow(Math.E, -x*.244))
 
   collection = $(@)
   border = 200
@@ -31,7 +31,7 @@ $ ->
   # $('.collection')
   # $( '.collection:not(:first)' ).remove();
   # window.resizeTo($(window).width(),10000)
-  $(document.body).css height: 20000
+  $(document.body).css height: 12000
   $('.collection:first').css('margin-top', headerHeight - 1.5)
   $('.collection').each () -> 
     collection_init.call $(@)
