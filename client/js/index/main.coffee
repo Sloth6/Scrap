@@ -2,13 +2,12 @@ scale = 0.5
 margin = -0.5
 old_scroll = $(window).scrollTop()
 
-
 collection_place = (scroll_delta) ->
   logistic = (x) ->
-    1/(1 + Math.pow(Math.E, -x*.2))
+    1/(1 + Math.pow(Math.E, -x*.3))
 
   collection = $(@)
-  border = 250
+  border = 200
 
   y =  - $(window).scrollTop() + collection.data('offset')
   start = $(window).height() - border
@@ -28,10 +27,12 @@ collection_place = (scroll_delta) ->
   collection.css { x:0 , y }
 
 $ ->
+  headerHeight = $('.index > header').height()
   # $('.collection')
   # $( '.collection:not(:first)' ).remove();
   # window.resizeTo($(window).width(),10000)
-  $(document.body).css height: 5000
+  $(document.body).css height: 20000
+  $('.collection:first').css('margin-top', headerHeight - 1.5)
   $('.collection').each () -> 
     collection_init.call $(@)
     collection_place.call $(@)

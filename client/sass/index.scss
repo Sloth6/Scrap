@@ -29,6 +29,7 @@ section.index {
         top: 0;
         left: 0;
         right: 0;
+        z-index: 100;
         
         h1 {
             display: none;
@@ -58,47 +59,54 @@ section.index {
     }
     
     section.example {
+        position: relative;
+        z-index: -1;
+        
         header.collectionTitle > h1 {
             @include indexCardH1;
-        }      
-        &:nth-child(1) {
-            > header {
-                h1 {
-                    background-color: #d8ffe9;
-                }
-            }
-        }
+        }    
         
-        &:nth-child(2) {
-            > header {
-                h1 {
-                    background-color: #d9fdff;
+        section.collection {
+            &:nth-child(1) {
+//                 margin-top: $broadMargin * 3;
+                > header {
+                    h1 {
+                        background-color: #d8ffe9;
+                    }
                 }
             }
-        }
-        
-        &:nth-child(3) {
-            > header {
-                h1 {
-                    background-color: #ffead9;
+            
+            &:nth-child(2) {
+                > header {
+                    h1 {
+                        background-color: #d9fdff;
+                    }
                 }
             }
-        }
-        
-        &:nth-child(4) {
-            > header {
-                h1 {
-                    background-color: #ffd9f0;
+            
+            &:nth-child(3) {
+                > header {
+                    h1 {
+                        background-color: #ffead9;
+                    }
                 }
             }
-        }
-                
-        &:nth-child(5) {
-            > header {
-                h1 {
-                    background-color: #d9e5ff;
+            
+            &:nth-child(4) {
+                > header {
+                    h1 {
+                        background-color: #ffd9f0;
+                    }
                 }
             }
-        }
+                    
+            &:nth-child(5) {
+                > header {
+                    h1 {
+                        background-color: #d9e5ff;
+                    }
+                }
+            }
+        }  
     }
 }
