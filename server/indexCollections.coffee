@@ -1,3 +1,4 @@
+derp = { contentType: 'text', content: 'Derp'}
 module.exports = [
   {
     name: "Hotpot is for Archaeology"
@@ -27,19 +28,19 @@ module.exports = [
     ]
   },{
     name: "Hotpot is for Baking"
-    elements: [
-      {
-        contentType: 'text'
-        content: 'Derp'
-      }
-    ]
-  },{
+    elements: [ derp, derp, derp, derp, derp, derp]
+  },
+  {
     name: "Hotpot is for Creperies"
-    elements: [
-      {
-        contentType: 'text'
-        content: 'Derp'
-      }
-    ]
+    elements: [ derp, derp, derp, derp, derp, derp]
+  },{
+    name: "Hotpot is for levitating the pentagon"
+    elements: [ derp, derp, derp, derp, derp, derp]
+  },{
+    name: "Hotpot is for cupcakes"
+    elements: [ derp, derp, derp, derp, derp, derp]
+  },{
+    name: "Hotpot is for lamps"
+    elements: [ derp, derp, derp, derp, derp, derp]
   }
 ]

@@ -58,7 +58,7 @@ section.index {
     }
     
     section.example {
-        > header h1 {
+        header.collectionTitle > h1 {
             @include indexCardH1;
         }      
         &:nth-child(1) {

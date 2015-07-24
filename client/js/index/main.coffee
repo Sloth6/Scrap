@@ -1,54 +1,43 @@
 scale = 0.5
 margin = -0.5
+old_scroll = $(window).scrollTop()
 
-logistic = (x) ->
-  1/(1 + Math.pow(Math.E, -x))
 
-element_place = () ->
-  element = $(@)
-  border = 300
+collection_place = (scroll_delta) ->
+  logistic = (x) ->
+    1/(1 + Math.pow(Math.E, -x*.2))
 
-  return if element.hasClass('dragging')
-  offset = element.data 'scroll_offset'
-  collection_scroll = element.parent().data 'scroll_position'
-  maxX = ($(window).width()  / scale )- element.width()
-
-  x = offset + collection_scroll + margin
-
-  start = ($(window).width() - border)
-
-  left_min = -element.width()
-  left_start = left_min + border
-
-  if x > start
-    percent = (x - start) / border
-    x = start + (logistic(percent)-0.5)*2 * border
-  else if x < left_start
-    percent = 1 - ((x - left_min)/ border)
-    x =  left_start - ((logistic(percent)-0.5)*2 * border)
-  # x = Math.max x, 0
-  # x = Math.min x, maxX
-
-  element.css { x, y:0 }
-
-collection_realign_elements = () ->
   collection = $(@)
-  lastX = 0
-  maxX = -Infinity
-  zIndex = collection.children().length
-  collection.children().each () ->
-    if not $(@).hasClass 'dragging'
-      $(@).data 'scroll_offset', lastX
-      $(@).css {zIndex: zIndex--}
-      element_place.call @
-      lastX += $(@).width() + margin
-      maxX = lastX
+  border = 250
 
-  $(@).data { maxX }
+  y =  - $(window).scrollTop() + collection.data('offset')
+  start = $(window).height() - border
+  top_min = -collection.height()
+  top_start = top_min + border
 
-collection_init = () ->
-  $(@).data 'scroll_position', 0
-  collection_realign_elements.call @
+
+
+  if y > start
+    percent = (y - start) / border
+    y = start + (logistic(percent)-0.5)*2 * border
+  else if y < top_start
+    percent = 1 - ((y - top_min)/ border)
+    y =  top_start - ((logistic(percent)-0.5)*2 * border)
+  else
+    scroll_collection_by_delta $(@), -scroll_delta
+  collection.css { x:0 , y }
 
 $ ->
-  $('.collection').each collection_init
+  # $('.collection')
+  # $( '.collection:not(:first)' ).remove();
+  # window.resizeTo($(window).width(),10000)
+  $(document.body).css height: 5000
+  $('.collection').each () -> 
+    collection_init.call $(@)
+    collection_place.call $(@)
+  
+  $(window).scroll (event) ->
+    scroll_delta = $(window).scrollTop() - old_scroll
+    old_scroll = $(window).scrollTop()
+    $('.collection').each () ->
+      collection_place.call @, scroll_delta

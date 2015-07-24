@@ -5,6 +5,11 @@ block scripts
   script(src="/js/jquery/jquery-ui.min.js")
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")
+  
+  script(src="/js/collection.js")
+  script(src="/js/element.js")
+
+
   script(src="/js/index/main.js")
   script(src="/js/home/headerMenu.js")
   script(src="/js/home/settingsMenu.js")
@@ -22,17 +27,17 @@ block content
         li Sign Up
         li Log In
     
-    section.space
+    section.space.example
       section.content
     
-        -var collection_height = 700
+        -var collection_height = 800
         -for (var i = 0; i < collections.length; i++)
           -var collection = collections[i]
           -var top = (i * collection_height)
-          section.example
-            header
+          section.collection(style="position:fixed;height:"+collection_height+"px;", data-offset=top)
+            header.collectionTitle
               h1!=collection.name
-            .collection(style="top:"+top+"px;height:"+(collection_height)+"px;")
+            .elements
               -for (var j = 0; j < collection.elements.length; j++)
                 -var element = collection.elements[j]
                 include partials/element

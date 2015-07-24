@@ -6,9 +6,10 @@
   -var collection = collections[i]
   -var top = (i * elem_height)
   .collection(style="top:"+top+"px;height:"+(elem_height)+"px;")
-    -for (var j = 0; j < collection.elements.length; j++)
-      -var element = collection.elements[j]
-      include partials/element
+  	.elements
+	    -for (var j = 0; j < collection.elements.length; j++)
+	      -var element = collection.elements[j]
+	      include partials/element
 
 script.
   collection_max_y="#{top}";
