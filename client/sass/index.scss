@@ -17,6 +17,13 @@
     padding: 0 $cell $broadMargin/2 $cell*.5;
 }
 
+@mixin indexCardH3 {
+    @include indexCard;
+    @include typeHeader3;
+    padding: $cardPadding;
+    padding-bottom: $broadMargin/2;
+}
+
 header.tempForm {
     z-index: 999999 !important;
     position: fixed;
@@ -40,11 +47,8 @@ section.index {
             top: 0;
             right: 0;
             li {
-                @include typeHeader3;
-                @include cardStyle;
                 display: inline-block;
-                padding: $cardPadding;
-                padding-bottom: $broadMargin/2;
+                @include indexCardH3;
             }
         }
     }
@@ -54,7 +58,7 @@ section.index {
         }
         
         h2 {
-            @include indexCardH2;
+            @include indexCardH3;
         }
     }
     

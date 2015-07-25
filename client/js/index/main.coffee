@@ -7,7 +7,7 @@ collection_place = (scroll_delta) ->
     1/(1 + Math.pow(Math.E, -x*.244))
 
   collection = $(@)
-  border = 200
+  border = 150
 
   y =  - $(window).scrollTop() + collection.data('offset')
   start = $(window).height() - border

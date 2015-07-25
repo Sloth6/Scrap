@@ -1872,13 +1872,13 @@ body section.container > header a.back:hover {
   text-transform: lowercase;
 }
 
-/* line 20, ../sass/index.scss */
+/* line 27, ../sass/index.scss */
 header.tempForm {
   z-index: 999999 !important;
   position: fixed;
 }
 
-/* line 27, ../sass/index.scss */
+/* line 34, ../sass/index.scss */
 section.index > header {
   position: fixed;
   top: 0;
@@ -1886,20 +1886,21 @@ section.index > header {
   right: 0;
   z-index: 100;
 }
-/* line 34, ../sass/index.scss */
+/* line 41, ../sass/index.scss */
 section.index > header h1 {
   display: none;
 }
-/* line 38, ../sass/index.scss */
+/* line 45, ../sass/index.scss */
 section.index > header ul.form {
   position: absolute;
   top: 0;
   right: 0;
 }
-/* line 42, ../sass/index.scss */
+/* line 49, ../sass/index.scss */
 section.index > header ul.form li {
+  display: inline-block;
   font-size: 36pt;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -.04em;
   line-height: 1em;
   background-color: white;
@@ -1907,11 +1908,11 @@ section.index > header ul.form li {
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
-  display: inline-block;
+  width: intrinsic;
   padding: 4pt 4pt 4pt 4pt;
   padding-bottom: 24pt;
 }
-/* line 52, ../sass/index.scss */
+/* line 56, ../sass/index.scss */
 section.index > header h1 {
   background-color: white;
   border: 1pt solid #cccccc;
@@ -1920,31 +1921,32 @@ section.index > header h1 {
   -webkit-transform-origin: bottom right;
   width: intrinsic;
   font-size: 72pt;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -.0625em;
   line-height: 1em;
   padding: 0 12pt 24pt 4pt;
 }
-/* line 56, ../sass/index.scss */
+/* line 60, ../sass/index.scss */
 section.index > header h2 {
+  font-size: 36pt;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  line-height: 1em;
   background-color: white;
   border: 1pt solid #cccccc;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   width: intrinsic;
-  font-size: 48pt;
-  font-weight: 500;
-  letter-spacing: -.04em;
-  line-height: 1em;
-  padding: 0 8pt 24pt 4pt;
+  padding: 4pt 4pt 4pt 4pt;
+  padding-bottom: 24pt;
 }
-/* line 61, ../sass/index.scss */
+/* line 65, ../sass/index.scss */
 section.index section.example {
   position: relative;
   z-index: -1;
 }
-/* line 65, ../sass/index.scss */
+/* line 69, ../sass/index.scss */
 section.index section.example header.collectionTitle > h1 {
   background-color: white;
   border: 1pt solid #cccccc;
@@ -1953,28 +1955,28 @@ section.index section.example header.collectionTitle > h1 {
   -webkit-transform-origin: bottom right;
   width: intrinsic;
   font-size: 72pt;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -.0625em;
   line-height: 1em;
   padding: 0 12pt 24pt 4pt;
 }
-/* line 73, ../sass/index.scss */
+/* line 77, ../sass/index.scss */
 section.index section.example section.collection:nth-child(1) > header h1 {
   background-color: #d8ffe9;
 }
-/* line 81, ../sass/index.scss */
+/* line 85, ../sass/index.scss */
 section.index section.example section.collection:nth-child(2) > header h1 {
   background-color: #d9fdff;
 }
-/* line 89, ../sass/index.scss */
+/* line 93, ../sass/index.scss */
 section.index section.example section.collection:nth-child(3) > header h1 {
   background-color: #ffead9;
 }
-/* line 97, ../sass/index.scss */
+/* line 101, ../sass/index.scss */
 section.index section.example section.collection:nth-child(4) > header h1 {
   background-color: #ffd9f0;
 }
-/* line 105, ../sass/index.scss */
+/* line 109, ../sass/index.scss */
 section.index section.example section.collection:nth-child(5) > header h1 {
   background-color: #d9e5ff;
 }

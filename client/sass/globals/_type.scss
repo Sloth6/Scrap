@@ -47,21 +47,21 @@ $headerLeftMarginOffset:
 
 @mixin typeHeader1 {
     font-size:      72pt;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightRegular;
     letter-spacing: -.0625em;
     line-height:    1em;
 }
 
 @mixin typeHeader2 {
     font-size:      48pt;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightRegular;
     letter-spacing: -.04em;
     line-height:    1em;
 }
 
 @mixin typeHeader3 {
     font-size:      36pt;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightRegular;
     letter-spacing: -.04em;
     line-height:    1em;
 }
