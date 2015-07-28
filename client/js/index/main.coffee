@@ -14,8 +14,6 @@ collection_place = (scroll_delta) ->
   top_min = -collection.height()
   top_start = top_min + border
 
-
-
   if y > start
     percent = (y - start) / border
     y = start + (logistic(percent)-0.5)*2 * border
@@ -42,3 +40,8 @@ $ ->
     old_scroll = $(window).scrollTop()
     $('.collection').each () ->
       collection_place.call @, scroll_delta
+  
+  $('.signUpLogInForms li.form').on('click', () ->
+    $(@).addClass('open')
+    $('.signUpLogInForms li.form').not($(@)).removeClass('open')
+  )
