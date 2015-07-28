@@ -1,4 +1,5 @@
 models = require '../../models'
+indexCollections = require '../indexCollections'
 
 indexPage = (res) ->
   res.render 'index.jade',
@@ -7,6 +8,7 @@ indexPage = (res) ->
     author: 'scrap'
     colors: {}
     names: { 1: "" }
+    collections: indexCollections
     current_space:
       spaceKey: 'index'
     
@@ -24,6 +26,7 @@ module.exports =
         req.session.currentUserId = user.id        
         # user.spaces.reverse()
         # res.send 200
+        console.log JSON.stringify(user.space)
         res.render 'home.jade', {user, title: 'title'}
         # res.render 'meta-space.jade', { user, title:'' }
         callback()

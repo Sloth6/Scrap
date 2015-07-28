@@ -1,24 +1,66 @@
 extends layout
+
 block scripts
-  include partials/indexScripts
+  script(src='/js/jquery/jquery.js')
+  script(src="/js/jquery/jquery-ui.min.js")
+  script(src="/js/jquery/jquery.transit.min.js")
+  script(src="/js/jquery/jquery-mousewheel.min.js")
+  
+  script(src="/js/collection.js")
+  script(src="/js/element.js")
+
+
+  script(src="/js/index/main.js")
+  script(src="/js/home/headerMenu.js")
+  script(src="/js/home/settingsMenu.js")
+
 
 block content
-  header
+  header.tempForm
     .card.form
       include partials/registration
-
-  section.index.blur
+  section.index
     header
-      h1.hover Hotpot
-      h2.drift.hover.top Collect and share<br>anything for a project.
-    section.register.drift.hover.bottom
-      form(id="login")
-        li.name
-          input(id="name",type="text", name="user[name]", placeholder="Name")
-        li.mail
-          input(id="email",type="email", name="user[email]", placeholder="Mail")
-        li.password
-          input(id="password",type="password", name="user[password]", placeholder="Password")
-        li.submit
-          input.offset(type="submit", value="Sign up")
-    section.example
+      h1 Hotpot
+      h2 Keep everything for your<br>project in one place.
+      ul.form
+        li Sign Up
+        li Log In
+    
+    section.space.example
+      section.content
+    
+        -var collection_height = 800
+        -for (var i = 0; i < collections.length; i++)
+          -var collection = collections[i]
+          -var top = (i * collection_height)
+          section.collection(style="position:fixed;height:"+collection_height+"px;", data-offset=top)
+            header.collectionTitle
+              h1!=collection.name
+            .elements
+              -for (var j = 0; j < collection.elements.length; j++)
+                -var element = collection.elements[j]
+                include partials/element
+        script.
+          collection_max_y="#{top}";
+
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Baking
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Creperies
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Dolphin Training
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Entymology
+      //-   section.collection
+      //- section.example
+      //-   header
+      //-     h1 Hotpot is for Faberge Egg Collecting
+      //-   section.collection

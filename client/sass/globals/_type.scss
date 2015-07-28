@@ -45,6 +45,27 @@ $headerLeftMarginOffset:
     line-height:    $typeHeaderLeading;
 }
 
+@mixin typeHeader1 {
+    font-size:      72pt;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.0625em;
+    line-height:    1em;
+}
+
+@mixin typeHeader2 {
+    font-size:      48pt;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.04em;
+    line-height:    1em;
+}
+
+@mixin typeHeader3 {
+    font-size:      36pt;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.04em;
+    line-height:    1em;
+}
+
 @mixin smallCaps {
     font-size:      .666em;
     letter-spacing: .03125em;

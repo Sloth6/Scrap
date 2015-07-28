@@ -5,6 +5,10 @@ block scripts
   script(src="/js/jquery/jquery-ui.min.js")
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")
+  
+  script(src="/js/collection.js")
+  script(src="/js/element.js")
+
   script(src="/js/home/main.js")
   script(src="/js/home/headerMenu.js")
   script(src="/js/home/settingsMenu.js")
@@ -18,16 +22,5 @@ block content
     section.content
       .translate-container
         .scale-container
-          -var elem_width = 400
-          -var elem_height = 700
-
-          -var i = 0
-          -for (var i = 0; i < user.spaces.length; i++)
-            -var collection = user.spaces[i]
-            -var top = (i * elem_height)
-            .collection(style="top:"+top+"px;height:"+(elem_height)+"px;")
-              -for (var j = 0; j < collection.elements.length; j++)
-                -var element = collection.elements[j]
-                include partials/element
-          script.
-            collection_max_y="#{top}";
+          - var collections = user.spaces
+          include partials/collections
