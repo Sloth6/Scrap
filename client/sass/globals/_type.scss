@@ -33,9 +33,9 @@ $headerLeftMarginOffset:
 @mixin typeBody {
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
     line-height:    $leading;
-    letter-spacing: $typeBodyTracking;
+    letter-spacing: 0;
 }
 
 @mixin typeHeader {
