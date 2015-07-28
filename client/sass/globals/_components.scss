@@ -8,13 +8,12 @@ $cardPaddingLeft:       $cell;
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
-
-$menuWidth: 40vw;
-
 $articleWidthNarrow:    $col * 3;
 $articleWidth:          $col * 4;
 $articleWidthWide:      $col * 5;
 $articleMinHeight:      $col * 3;
+
+$menuWidth: $articleWidth;
 
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
@@ -151,17 +150,26 @@ input {
 }
 
 ul.menu {
-    height: $baseline * 2;
     position: absolute;
     display: inline-block;
-    width: $menuWidth/2;
     white-space: nowrap;
+    padding: $cardPadding;
+    width: $articleWidthNarrow;
+    border: $cardBorder;
+    border-color: transparent;
+    top: -$cardBorderWidth;
+    @include typeBody;
     @include transition(1s $defaultCurve);
-    @include transition-property(left, right);
+    @include transition-property(left, right, background, border, width);
+    
+    &.wide {
+        width: $articleWidthWide;
+    }
     
     &.open {
+        background: $colorCardBackground;
+        border-color: $cardBorderColor;
         @include transition(2s $defaultCurve);
-        width: $menuWidth;
         
         li {
             
@@ -173,40 +181,46 @@ ul.menu {
     
     &.hideFirst {
         
-        &.right {
+        > li.first {
+            position: absolute;
+            @include transition(1s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
+        }
+        
+        &.right {            
             &.open {
                 > li.first {
-                    right: -50vw;
+                    @include transform(translate3d(500.0px, 0.0, 0.0));
+                    opacity: 0;
                 }
             }
         
             > li.first {
-                right: 0;
+                right: $cardPaddingRight;
+                @include transform(translate3d(0.0, 0.0, 0.0));
             }
         }
         
         &.left {
             &.open {
                 > li.first {
-                    left: -50vw;
+                    @include transform(translate3d(-500.0px, 0.0, 0.0));
+                    opacity: 0;
                 }
             }
 
             > li.first {
-                left: 0;
+                left: $cardPaddingRight;
+                @include transform(translate3d(-500.0px, 0.0, 0.0));
             }
-        }
-        
-        > li.first {
-            position: absolute;
-            @include transition(1s $defaultCurve);
-            @include transition-property(right);
         }
     }
     
     &.left {
         float: left;
-        left: $cell;
+        left: -$cardBorderWidth;
         
         li, &.open li.hidden {
 //             left: -50vw;
@@ -220,15 +234,10 @@ ul.menu {
             a {
                 position: relative;
                 left: 0;
-/*
-                display: inline-block;
-                @include transform(translate3d(0.0, 0.0, 0.0));
-*/
                 @include transition(.25s $defaultCurve);
                                 
                 &:hover, &:active, &:focus {
                     left: $cell;
-//                     @include transform(translate3d(25.0, 0.0, 0.0));
                 }
             }
         }
@@ -242,17 +251,12 @@ ul.menu {
     }
     
     &.right {
-        float: right;
-        text-align: right;
-        right: $cell;
+        right: -$cardBorderWidth;
         
         li, &.open li.hidden {
-//             right: -50vw;
-//             right: 0;
             @include transform(translate3d(500.0px, 0.0, 0.0));
             
             &.first {
-//                 right: 0;
                 @include transform(translate3d(0, 0, 0))
             }
             
@@ -267,22 +271,16 @@ ul.menu {
             a {
                 position: relative;
                 right: 0;
-/*
-                display: inline-block;
-                @include transform(translate3d(0.0, 0.0, 0.0));
-*/
                 @include transition(.25s $defaultCurve);
                 
                 &:hover, &:active, &:focus {
                     right: $cell;
-//                     @include transform(translate3d(-25.0, 0.0, 0.0));
                 }
             }
         }
         
         &.open {
             li {
-//                 right: 0;
                 @include transform(translate3d(0, 0, 0))
             }
         }
@@ -319,10 +317,20 @@ ul.menu {
         &.hidden {
             height: 0;
             margin: 0;
+            opacity: 0;
+        }
+        
+        &.backButton {
         }
         
         form {
             white-space: nowrap;
+        }
+        
+        input {
+            width: 100%;
+            @include transition(.5s $defaultCurve);
+            @include transition-property(width);
         }
         
         > a {

@@ -1,114 +1,116 @@
 @import "screen.scss";
 
-@mixin driftKeyframes($toLeft, $toTop) {
-    0%   {
-        @include transform(translate3d(0,0,0));
-    }
-    50%  {
-        @include transform(translate3d($toLeft,$toTop,0));
-    }
-    100% {
-        @include transform(translate3d(0,0,0));
-    }
+@mixin indexCard {
+    @include cardStyle;
+    width: intrinsic;
 }
 
-@mixin driftAnimation($toLeft, $toTop) {
-    @-webkit-keyframes drift {
-        @include driftKeyframes($toLeft, $toTop);
-    }
+@mixin indexCardH1 {
+    @include indexCard;
+    @include typeHeader1;
+    padding: 0 $cell*1.5 $broadMargin/2 $cell*.5;
 }
 
-@include driftAnimation(200px, 100px);
+@mixin indexCardH2 {
+    @include indexCard;
+    @include typeHeader2;
+    padding: 0 $cell $broadMargin/2 $cell*.5;
+}
+
+@mixin indexCardH3 {
+    @include indexCard;
+    @include typeHeader3;
+    padding: $cardPadding;
+    padding-bottom: $broadMargin/2;
+}
+
+header.tempForm {
+    z-index: 999999 !important;
+    position: fixed;
+}
 
 section.index {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    @include transition(.25s $defaultCurve);
-    @include transition-property(-webkit-filter, opacity);
-
-    header {
-        height: 100vh;
-        width: 100vw;
+    
+    > header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        
         h1 {
-            font-size: 22vw;
-            text-transform: uppercase;
-            width: 100vw;
-            top: 50%;
-            position: relative;
-            text-align: center;
-            letter-spacing: 0;
-            font-weight: $fontWeightExtraBold;
-            color: #d0ff00;
-            @include hoverAnimation;
-    /*
-            -webkit-text-fill-color: white; 
-            -webkit-text-stroke-width: $cardBorderWidth;
-            -webkit-text-stroke-color: black;
-    */
+            display: none;
+        }
+        
+        ul.form {
+            position: absolute;
+            top: 0;
+            right: 0;
+            li {
+                display: inline-block;
+                @include indexCardH3;
+            }
+        }
+    }
+    > header {
+        h1 {
+            @include indexCardH1;
         }
         
         h2 {
-            font-size: 5vw;
-            line-height: 1em;
-    //         width: 66vw;
-            border: 0;
-            padding: .25em .25em .5em .5em;
-            border: $cardBorder;
-            background: $colorCardBackground;
-    //         color: $colorCardBackground;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: intrinsic;
-            letter-spacing: -.015125em;
-    //         font-weight: $fontWeightExtraBold;
-    //         -webkit-animation: drift 100s infinite linear;
+            @include indexCardH3;
         }
-    }
-    
-    section.register {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: $colorCardBackground;
-        border: $cardBorder;
-        padding: $cardPaddingFat;
-    }
-    
-    
-    .hover:hover {
-        z-index: 1000;
-        cursor: default;
-        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-    }
-    
-    .drift {
-//         @include transition(30s linear);
-//         @include transition-timing-function(cubic-bezier(0.77, 0, 0.175, 1));
-        @include transition-timing-function(linear);
-        @include transition-property(transform,
-                             -webkit-transform,
-                                -moz-transform);
-        transform-origin:         top left;
-        -webkit-transform-origin: top left;
     }
     
     section.example {
-        position: absolute;
-        height: 100vh;
-        width: 100vw;
-        top: 0;
-        z-index: -100;
-        left: 0;
+        position: relative;
+        z-index: -1;
         
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-//             @include transform(scale3d(.15,.15,1));
-        }
+        header.collectionTitle > h1 {
+            @include indexCardH1;
+        }    
+        
+        section.collection {
+            &:nth-child(1) {
+//                 margin-top: $broadMargin * 3;
+                > header {
+                    h1 {
+                        background-color: #d8ffe9;
+                    }
+                }
+            }
+            
+            &:nth-child(2) {
+                > header {
+                    h1 {
+                        background-color: #d9fdff;
+                    }
+                }
+            }
+            
+            &:nth-child(3) {
+                > header {
+                    h1 {
+                        background-color: #ffead9;
+                    }
+                }
+            }
+            
+            &:nth-child(4) {
+                > header {
+                    h1 {
+                        background-color: #ffd9f0;
+                    }
+                }
+            }
+                    
+            &:nth-child(5) {
+                > header {
+                    h1 {
+                        background-color: #d9e5ff;
+                    }
+                }
+            }
+        }  
     }
 }
