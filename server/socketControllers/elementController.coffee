@@ -123,8 +123,6 @@ module.exports =
         }
         done attributes
 
-    # if data.content = '<loading>'
-    #   return sio.to(spaceKey).emit 'newElement', { element }
     getType data.content, (contentType) ->
       console.log "\tcontentType: #{contentType}"
       attributes =
@@ -150,6 +148,12 @@ module.exports =
   removeElement : (sio, socket, data, spaceKey, callback) =>
     id = data.elementId
 
+    # Post.destroy({
+    #   where: {
+    #     status: 'inactive'
+    #   }
+    # })
+
     query = "DELETE FROM \"Elements\" WHERE \"id\"=:id returning \"contentType\", content"
 
     elementShell = models.Element.build()
@@ -173,38 +177,15 @@ module.exports =
         callback()
 
   updateElement : (sio, socket, data, spaceKey, callback) =>
-    # console.log data
     data.id = +data.elementId
-    data.final = JSON.parse(data.final or 'false')
     query = "UPDATE \"Elements\" SET"
-    query += " \"x\"=:x," if data.x?
-    query += " \"y\"=:y," if data.y?
-    query += " \"z\"=:z," if data.z?
-    # query += " \"scale\"=:scale" if data.scale?
     query += " \"content\"=:content" if data.content?
     # remove the trailing comma if necessary
     query = query.slice(0,query.length - 1) if query[query.length - 1] is ","
     query += " WHERE \"id\"=:id RETURNING *"
 
     # new element to be filled in by update
-    # console.log data.final
-    if data.final
-      element = models.Element.build()
-      models.sequelize.query(query, element, null, data).complete (err, result) ->
-        return callback err if err?
-        sio.to("#{spaceKey}").emit 'updateElement', {
-          element: result
-          userId: data.userId
-          final: true
-        }
-        spacePreviews spaceKey
-        callback()
-    else
-      userId = data.userId
-      element = { id: data.id }
-      element.x = parseInt data.x if data.x
-      element.y = parseInt data.y if data.y
-      element.z = parseInt data.z if data.z
-      # element.scale = parseFloat data.scale if data.scale
-      element.content = data.content if data.content
+    element = models.Element.build()
+    models.sequelize.query(query, element, null, data).complete (err, result) ->
+      return callback err if err?
       sio.to("#{spaceKey}").emit 'updateElement', { element, userId: data.userId }

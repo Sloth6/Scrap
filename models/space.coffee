@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) ->
       type: DataTypes.DATE
       allowNull: false
       defaultValue: DataTypes.NOW
+    elementOrder:
+      type: DataTypes.ARRAY(DataTypes.Integer)
+      allowNull: false
+      defaultValue: []
+
   }, {
     classMethods:
       associate: (models) ->
