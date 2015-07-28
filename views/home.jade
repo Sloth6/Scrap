@@ -5,14 +5,25 @@ block scripts
   script(src="/js/jquery/jquery-ui.min.js")
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")
+  script(src='/socket.io/socket.io.js')
+
   script(src="/js/home/main.js")
   script(src="/js/home/headerMenu.js")
   script(src="/js/home/settingsMenu.js")
+  script(src="/js/home/addElementController.js")
 
+  script(src="/js/createNewElement.js")
+  //- script(src="/js/elementEmitters/addElement.js")
+  script(src="/js/elementEmitters/deleteElement.js")
+  script(src="/js/elementEmitters/dragElement.js")
+  script.
+    var userName = "!{user.name}"
+    var userId = "!{user.id}"
 
 block content
   header
     include partials/settingsMenu
+
   
   section.space
     section.content
@@ -25,7 +36,8 @@ block content
           -for (var i = 0; i < user.spaces.length; i++)
             -var collection = user.spaces[i]
             -var top = (i * elem_height)
-            .collection(style="top:"+top+"px;height:"+(elem_height)+"px;")
+            include partials/addElementForm
+            .collection(style="top:"+top+"px;height:"+(elem_height)+"px;", data-spacekey=collection.spaceKey)
               -for (var j = 0; j < collection.elements.length; j++)
                 -var element = collection.elements[j]
                 include partials/element

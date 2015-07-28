@@ -205,7 +205,7 @@ draggableOptions =
     drag_placeholder.remove()    
     collection_realign_elements.call element.parent()
 $ ->
-
+  window.socket = io.connect()
   window.drag_placeholder = $('<div>').
     css({ width: 200, height: 200, 'border-width':2, 'border-style':'solid', position:'absolute' }).
     addClass('placeHolder')

@@ -1,9 +1,4 @@
 emitElement = (x, y, content) ->
-  # Make sure to account for screen drag (totalDelta)
-  x = Math.round(x - totalDelta.x)
-  y = Math.round(y - totalDelta.y)
-  window.maxZ += 1
-  z = window.maxZ
   content = encodeURIComponent content
   if content != ''
     data = { content, x, y, z, userId }
@@ -11,7 +6,7 @@ emitElement = (x, y, content) ->
   $('.addElementForm').remove()
 
 
-addElement = (event, createdByCntrl) ->
+addElement = (event) ->
   eventX = event.clientX || mouse.x
   eventY = event.clientY || mouse.y
   scale = 1 / $('.content').css('scale')
