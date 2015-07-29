@@ -771,7 +771,7 @@ ul.menu {
   white-space: nowrap;
   padding: 4pt 4pt 4pt 4pt;
   width: 192pt;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   border-color: transparent;
   top: -1pt;
   font-family: "Helvetica Neue";
@@ -795,7 +795,7 @@ ul.menu.wide {
 /* line 169, ../sass/globals/_components.scss */
 ul.menu.open {
   background: white;
-  border-color: #cccccc;
+  border-color: #000000;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
@@ -1183,7 +1183,7 @@ ul.menu li:nth-of-type(20) {
   line-height: 16pt;
   letter-spacing: 0;
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1703,13 +1703,13 @@ section.container section.space section.content article .card {
 /* line 211, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background: #ffffdc;
   font-style: italic;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   width: 256pt;
   min-height: 192pt;
   overflow: hidden;
@@ -1722,7 +1722,7 @@ section.container section.space section.content article .card.image {
 /* line 229, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1888,7 +1888,7 @@ body section.container > header a.back:hover {
   padding-left: 16pt !important;
   padding-bottom: 8pt !important;
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;

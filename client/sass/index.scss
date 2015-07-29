@@ -43,6 +43,7 @@ section.index {
             right: 0;
             
             li.form {
+                cursor: pointer;
                 @include indexCardH3;
                 vertical-align: top;
                 position: relative;
@@ -52,6 +53,13 @@ section.index {
                 height: 1em;
                 @include transition(1s $defaultCurve);
                 @include transition-property(height, width);
+                
+                &.closed:hover {
+                    background-color: $colorType;
+                    color: $colorCardBackground;
+                    border-color: $colorType;
+                    border-collapse: collapse;
+                }
                 
                 &.open {
                     width: $col * 4;

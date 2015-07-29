@@ -771,7 +771,7 @@ ul.menu {
   white-space: nowrap;
   padding: 4pt 4pt 4pt 4pt;
   width: 192pt;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   border-color: transparent;
   top: -1pt;
   font-family: "Helvetica Neue";
@@ -795,7 +795,7 @@ ul.menu.wide {
 /* line 169, ../sass/globals/_components.scss */
 ul.menu.open {
   background: white;
-  border-color: #cccccc;
+  border-color: #000000;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 2s;
@@ -1183,7 +1183,7 @@ ul.menu li:nth-of-type(20) {
   line-height: 16pt;
   letter-spacing: 0;
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1703,13 +1703,13 @@ section.container section.space section.content article .card {
 /* line 211, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background: #ffffdc;
   font-style: italic;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   width: 256pt;
   min-height: 192pt;
   overflow: hidden;
@@ -1722,7 +1722,7 @@ section.container section.space section.content article .card.image {
 /* line 229, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1888,7 +1888,7 @@ body section.container > header a.back:hover {
   padding-left: 16pt !important;
   padding-bottom: 8pt !important;
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1923,8 +1923,9 @@ section.index > header ul.signUpLogInForms {
 }
 /* line 45, ../sass/index.scss */
 section.index > header ul.signUpLogInForms li.form {
+  cursor: pointer;
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1950,15 +1951,22 @@ section.index > header ul.signUpLogInForms li.form {
   -webkit-transition-property: height, width;
   transition-property: height, width;
 }
-/* line 56, ../sass/index.scss */
+/* line 57, ../sass/index.scss */
+section.index > header ul.signUpLogInForms li.form.closed:hover {
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
+  border-collapse: collapse;
+}
+/* line 64, ../sass/index.scss */
 section.index > header ul.signUpLogInForms li.form.open {
   width: 256pt;
   height: 256pt;
 }
-/* line 64, ../sass/index.scss */
+/* line 72, ../sass/index.scss */
 section.index > header h1 {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1969,10 +1977,10 @@ section.index > header h1 {
   line-height: 1em;
   padding: 0 12pt 24pt 4pt;
 }
-/* line 68, ../sass/index.scss */
+/* line 76, ../sass/index.scss */
 section.index > header h2 {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1984,15 +1992,15 @@ section.index > header h2 {
   padding: 4pt 4pt 4pt 4pt;
   padding-bottom: 24pt;
 }
-/* line 73, ../sass/index.scss */
+/* line 81, ../sass/index.scss */
 section.index section.example {
   position: relative;
   z-index: -1;
 }
-/* line 77, ../sass/index.scss */
+/* line 85, ../sass/index.scss */
 section.index section.example header.collectionTitle > h1 {
   background-color: white;
-  border: 1pt solid #cccccc;
+  border: 1pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -2003,23 +2011,23 @@ section.index section.example header.collectionTitle > h1 {
   line-height: 1em;
   padding: 0 12pt 24pt 4pt;
 }
-/* line 84, ../sass/index.scss */
+/* line 92, ../sass/index.scss */
 section.index section.example section.collection:nth-child(1) > header h1 {
   background-color: #d8ffe9;
 }
-/* line 92, ../sass/index.scss */
+/* line 100, ../sass/index.scss */
 section.index section.example section.collection:nth-child(2) > header h1 {
   background-color: #d9fdff;
 }
-/* line 100, ../sass/index.scss */
+/* line 108, ../sass/index.scss */
 section.index section.example section.collection:nth-child(3) > header h1 {
   background-color: #ffead9;
 }
-/* line 108, ../sass/index.scss */
+/* line 116, ../sass/index.scss */
 section.index section.example section.collection:nth-child(4) > header h1 {
   background-color: #ffd9f0;
 }
-/* line 116, ../sass/index.scss */
+/* line 124, ../sass/index.scss */
 section.index section.example section.collection:nth-child(5) > header h1 {
   background-color: #d9e5ff;
 }

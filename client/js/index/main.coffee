@@ -42,6 +42,6 @@ $ ->
       collection_place.call @, scroll_delta
   
   $('.signUpLogInForms li.form').on('click', () ->
-    $(@).addClass('open')
-    $('.signUpLogInForms li.form').not($(@)).removeClass('open')
+    $(@).addClass('open').removeClass('closed')
+    $('.signUpLogInForms li.form').not($(@)).removeClass('open').addClass('closed')
   )
