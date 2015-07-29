@@ -37,11 +37,14 @@ getType = (s, cb) ->
 
 module.exports =
   # create a new element and save it to db
-  newElement : (sio, socket, data, spaceKey, callback) =>
+  newElement : (sio, socket, data, callback) =>
+    spaceKey = data.spacekey
     data.content = decodeURIComponent data.content
+    userId = socket.handshake.session.userId
     console.log 'Received content:'
+    console.log "\tuserId: #{userId}"
     console.log "\tspaceKey: #{spaceKey}"
-    console.log "\tContent: #{data.content}"
+    console.log "\tcontent: #{data.content}"
 
     done = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
@@ -49,10 +52,9 @@ module.exports =
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
-          element_html = encodeURIComponent(element_jade({element, names:{}}))
-          sio.to(spaceKey).emit 'newElement', { element: element_html }
-          spacePreviews spaceKey
-          return callback()
+          html = encodeURIComponent(element_jade({element, names:{}}))
+          sio.to(spaceKey).emit 'newElement', { html, spaceKey }
+          # return callback()
     
     newImage = (attributes) ->
       models.Space.find(where: { spaceKey }).complete (err, space) =>
@@ -126,13 +128,9 @@ module.exports =
     getType data.content, (contentType) ->
       console.log "\tcontentType: #{contentType}"
       attributes =
-        creatorId: data.userId
+        creatorId: userId
         contentType: contentType
         content: data.content
-        x: data.x
-        y: data.y
-        z: data.z
-        scale: 1.0#data.scale
       if contentType is 'website'
         newWebsite attributes
       else if contentType in ['image', 'gif']
@@ -145,9 +143,9 @@ module.exports =
         done attributes
 
   # delete the element
-  removeElement : (sio, socket, data, spaceKey, callback) =>
+  removeElement : (sio, socket, data, callback) =>
     id = data.elementId
-
+    spaceKey = data.spacekey
     # Post.destroy({
     #   where: {
     #     status: 'inactive'
@@ -176,7 +174,8 @@ module.exports =
         sio.to(spaceKey).emit 'removeElement', { id }
         callback()
 
-  updateElement : (sio, socket, data, spaceKey, callback) =>
+  updateElement : (sio, socket, data, callback) =>
+    spaceKey = data.spaceKey
     data.id = +data.elementId
     query = "UPDATE \"Elements\" SET"
     query += " \"content\"=:content" if data.content?

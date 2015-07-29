@@ -9,16 +9,24 @@ $ ->
     $("a[href='/s/#{spaceKey}']").text(name)
 
   socket.on 'newElement', (data) ->
-    html = decodeURIComponent data.element
-    element = createNewElement html
-    updateGlobals element
-    url = element.data('content').split('/').pop()
-    removeLoadingElement url
+    { html, spaceKey } = data
+    element = $(decodeURIComponent(html))
+    $(".collection.#{spaceKey} .elements").prepend element
+    collection_init.call $(".collection.#{spaceKey}")
+    # switch contentType
+    #   when 'text'
+    #     makeModifiable element, socket
+    #   when 'video'
+    #     bindVideoControls element
+    #   when 'file'
+    #     bindFileControls element
+    #   when 'soundcloud'
+    #     bindSoundCloudControls element
 
   socket.on 'removeElement', (data) ->
     id = data.id
     $("\##{id}").fadeOut -> 
-      $(this).remove()
+      $(@).remove()
 
   socket.on 'updateElement', (data) ->
     return if data.userId is window.userId

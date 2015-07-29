@@ -6,8 +6,8 @@ toTitleCase = (str) ->
 
 
 module.exports =
-  reorderElements: (sio, socket, data, spaceKey) ->
-    { spaceKey, elementOrder } = data
+  reorderElements: (sio, socket, data) ->
+    { spacekey, elementOrder } = data
     console.log spaceKey, elementOrder
     models.Space.find({ where: {spaceKey} }).then (space) ->
       if space

@@ -19,16 +19,17 @@ module.exports =
       currentUserId = req.session.currentUserId
       models.User.find(
         where: { id: currentUserId }
-        include: [ {model:models.Space, include:[models.Element]} ]
+        include: [ {model:models.Space, include:[model:models.Element]} ]
       ).complete (err, user) ->
         return callback err if err?
         return indexPage res unless user?
         req.session.currentUserId = user.id        
-        # user.spaces.reverse()
-        # res.send 200
+        
+        for space in user.spaces
+          space.elements.reverse()
+
         console.log JSON.stringify(user.space)
         res.render 'home.jade', {user, title: 'title'}
-        # res.render 'meta-space.jade', { user, title:'' }
         callback()
     else
       indexPage res

@@ -4,12 +4,24 @@ var express = require('express')
     , app = express()
     , server = require('http').createServer(app)
     , io = require('socket.io')(server)
+    , sharedsession = require("express-socket.io-session")
     , port = (process.env.PORT || 9001)
     , db = require('./models')
     , coffeeMiddleware = require('coffee-middleware')
     , SequelizeStore = require('connect-session-sequelize')(express.session.Store);
-//Setup Express
-server.listen(port);
+
+// session = express.session({
+//     secret: "club_sexdungeon",
+//     store: new SequelizeStore({
+//         db: db.sequelize
+//     })
+// })
+
+var session = require("express-session")({
+    secret: "club_sexdungeon",
+    resave: true,
+    saveUninitialized: true
+})
 
 app.configure(function(){
     app.set('views', __dirname + '/views');
@@ -18,12 +30,7 @@ app.configure(function(){
     app.use(express.static(__dirname + '/client'));
     app.use(express.bodyParser());
     app.use(express.cookieParser());
-    app.use(express.session({
-        secret: "club_sexdungeon",
-        store: new SequelizeStore({
-            db: db.sequelize
-        })
-    }));
+    app.use(session);
     
     app.use(coffeeMiddleware({
         src: __dirname + '/client',
@@ -35,6 +42,8 @@ app.configure(function(){
     }));
 });
 
+io.use(sharedsession(session));
+
 db.sequelize.sync({ force: false }).complete(function(err) {
     if (err) {
         throw err[0];
@@ -44,3 +53,5 @@ db.sequelize.sync({ force: false }).complete(function(err) {
         console.log('Listening on port:' + port );
     }
 });
+
+server.listen(port);

@@ -5,7 +5,7 @@
 -for (var i = 0; i < collections.length; i++)
   -var collection = collections[i]
   -var top = (i * elem_height)
-  .collection(style="top:"+top+"px;height:"+(elem_height)+"px;")
+  .collection(style="top:"+top+"px;height:"+(elem_height)+"px;", class =collection.spaceKey,  data-spacekey=collection.spaceKey)
     include addElementForm
     .elements
       -for (var j = 0; j < collection.elements.length; j++)

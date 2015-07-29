@@ -4,7 +4,7 @@
 - var posString = "position:absolute;" // #top:"+0+"px;left:"+(j*elem_width)+"px;"  
   //- = "transform:translate(1.0)"
 
-article(id=element.id, class=classes, data-element=element, style= posString)
+article(id=element.id, class=classes, data-contenttype=element.contentType, data-creatorid=element.creatorId, style= posString)
   .card(data-key=element.content, class=element.contentType)
     //- if names[element.crfeatorId] != ""
     //-   author= names[element.creatorId]
