@@ -67,7 +67,7 @@ $ ->
 
   history.pushState { name: "home" }, "", "/"  
   
-  $('.element').draggable draggableOptions
+  # $('.element').draggable draggableOptions
   $('.element').mouseover( () ->
     $(@).data 'oldZIndex', $(@).css('zIndex')
     $(@).css 'zIndex', $(@).siblings().length + 1

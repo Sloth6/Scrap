@@ -12,15 +12,15 @@ article(id=element.id, class=classes, data-contenttype=element.contentType, data
    
     case element.contentType
       when 'image'
-        - if (typeof(element.original_url) !== 'undefined'){
-          img(src= element.original_url)
+        - if (typeof(original_url) !== 'undefined'){
+          img(src= original_url)
         - } else { 
           img(src= root+collection.spaceKey+"/"+element.content+'/small.jpg')
         - }
 
       when 'gif'
-        - if (typeof(element.original_url) !== 'undefined'){
-          img(src= element.original_url)
+        - if (typeof(original_url) !== 'undefined'){
+          img(src= original_url)
         - } else {
           img(src= root+collection.spaceKey+"/"+element.content+'/normal.gif')
         - }

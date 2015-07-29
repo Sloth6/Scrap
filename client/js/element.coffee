@@ -12,14 +12,14 @@ element_place = () ->
 
   x = offset + collection_scroll + margin
 
-  start = ($(window).width() - border)
+  right_start = ($(window).width() - border) / scale
 
   left_min = -element.width()
   left_start = left_min + border
 
-  if x > start
-    percent = (x - start) / border
-    x = start + (logistic(percent)-0.5)*2 * border
+  if x > right_start
+    percent = (x - right_start) / border
+    x = right_start + (logistic(percent)-0.5)*2 * border
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x =  left_start - ((logistic(percent)-0.5)*2 * border)

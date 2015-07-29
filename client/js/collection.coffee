@@ -29,7 +29,7 @@ collection_close = () ->
   $('.collection').show()
   $('.translate-container').css { x: 0, y: old_top }
   $('.scale-container').css { scale: 1/scaleMultiple }
-  scale = 1/scaleMultiple
+  window.scale = 1/scaleMultiple
   collection.addClass('closed').removeClass 'open'
 
   collection_init.call collection
@@ -48,7 +48,7 @@ collection_enter = (event) ->
   offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
   
   $('.scale-container').css { scale: 1, queue: false }
-  scale = 1
+  window.scale = 1
   $('.translate-container').css {x: 0, y: offsetTop, queue: false}
 
   collection_init.call collection

@@ -69,6 +69,7 @@ module.exports =
           return callback err if err?
 
           element.content = original_url
+          # console.log {original_url}
           element_html = encodeURIComponent(element_jade({
             element: element
             names: {}
