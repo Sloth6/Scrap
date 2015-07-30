@@ -4,6 +4,7 @@ $ ->
     mask = $('<div class=\'mask\'></div>')
     inputIsFocused = false
     subMenuIsOpen = false
+    canCloseMenu = false
 
     toggleMenu = (to) ->
         if to == 'open'
@@ -12,34 +13,37 @@ $ ->
             $('section.container').prepend mask
             $('.mask').click ->
                 toggleMenu 'close'
-        else
+        else # close
             $(menu).removeClass 'open'
             space.removeClass 'obscured'
             mask.remove()
             resetSubmenu()
+            canCloseMenu = false
 
     resetSubmenu = ->
         $('ul.submenu li').addClass 'hidden'
         $('li.hideOnOpenSubmenu').removeClass 'hidden'
         menu.removeClass('wide')
+        menu.removeClass('paddingBottom')
         inputIsFocused = false
         subMenuIsOpen = false
 
-    menu.mouseenter ->
+    menu.children("li:first-child").mouseenter ->
         if inputIsFocused or subMenuIsOpen
-            console.log 'cantopenMenu'
-
+            return
         else
-            console.log 'openMenu'
             toggleMenu 'open'
+            setTimeout(()->
+                canCloseMenu = true
+            , 500)
 
     menu.mouseleave ->
         # if no inputs are focused and no submenus are open
         if inputIsFocused or subMenuIsOpen
             return
         else
-            console.log 'closeMenu'
-            toggleMenu 'close'
+            if canCloseMenu
+                toggleMenu 'close'
 
     menu.find('input').focus ->
         inputIsFocused = true
@@ -51,7 +55,7 @@ $ ->
         subMenuIsOpen = true
         $('ul.submenu li.hidden').removeClass 'hidden'
         $('li.hideOnOpenSubmenu').addClass 'hidden'
-        menu.addClass('wide')
+        menu.addClass('wide paddingBottom')
         console.log 'subMenuIsOpen'
 
     $('ul.menu li.backButton').click ->

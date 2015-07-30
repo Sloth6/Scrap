@@ -12,7 +12,7 @@ section.container {
     section.blur {
         &.obscured {
             opacity: .333;
-            -webkit-filter: blur(20px);
+            -webkit-filter: blur(40px);
         }
     }
     

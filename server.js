@@ -46,7 +46,7 @@ io.use(sharedsession(session));
 
 db.sequelize.sync({ force: false }).complete(function(err) {
     if (err) {
-        throw err[0];
+        throw err;
     } else {
         require('./server/socketListeners')(io);
         require('./server/routes')(app);

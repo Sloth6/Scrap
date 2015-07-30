@@ -5,15 +5,14 @@ ul.menu.settings.right.hideFirst
   ul.submenu
     li.hidden.backButton
       a(href="#") ‹ Back
-    li.hidden
-      form
-        li.inputText.hidden
-          input.name(type="text", name="user[email]", placeholder="new name")
-        li.inputText.hidden
-          input.password(type="password", name="user[email]", placeholder="new password")
-        li.inputText.hidden
-          input.email(type="email", name="user[email]", placeholder="new email address")
-        li.save.closeButton.hidden
-          input(type="button", value="save")
+    form
+      li.input.inputText.hidden
+        input.name(type="text", name="user[email]", placeholder="new name")
+      li.input.inputText.hidden
+        input.password(type="password", name="user[email]", placeholder="new password")
+      li.input.inputText.hidden
+        input.email(type="email", name="user[email]", placeholder="new email address")
+      li.input.submit.save.closeButton.hidden
+        input(type="button", value="save")
   li.logout.hideOnOpenSubmenu
     a.logout(href="/logout") Logout
