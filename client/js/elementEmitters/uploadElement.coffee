@@ -3,6 +3,7 @@ formatName = (name) ->
 
 fileuploadOptions = (collection, spaceKey) ->
   multipart = false
+
   url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
   type: 'POST'
   autoUpload: true
@@ -18,12 +19,13 @@ fileuploadOptions = (collection, spaceKey) ->
         spaceKey: spaceKey
       async: false
       success: (success_data) ->
+        console.log success_data.path
         # file_name = formatName(success_data.key)
         # createLoadingElement locations[file_name], file_name
 
         # Now that we have our data, we update the form so it contains all
         # the needed data to sign the request
-        $('input[name=key]').val success_data.key
+        $('input[name=key]').val success_data.path
         $('input[name=policy]').val success_data.policy
         $('input[name=signature]').val success_data.signature
         $('input[name=Content-Type]').val success_data.contentType

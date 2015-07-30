@@ -13,3 +13,6 @@ bindVideoControls = (elems) ->
     return if $(@).data('lastX') != e.clientX
     return if $(@).data('lastY') != e.clientY
     if @paused then @play() else @pause()
+
+$ ->
+  bindVideoControls $('.element.video')

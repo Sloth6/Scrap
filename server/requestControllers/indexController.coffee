@@ -26,9 +26,13 @@ module.exports =
         req.session.currentUserId = user.id        
         
         for space in user.spaces
-          space.elements.reverse()
+          space.elements.sort (a, b) ->
+            return 1 if a.createdAt < a.createdAt
+            return -1 if a.createdAt > b.createdAt
+            return 0
+          # if space.elements.length
+          #   console.log space.elements.map (e) -> e.id
 
-        console.log JSON.stringify(user.space)
         res.render 'home.jade', {user, title: 'title'}
         callback()
     else

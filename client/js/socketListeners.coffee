@@ -13,15 +13,15 @@ $ ->
     element = $(decodeURIComponent(html))
     $(".collection.#{spaceKey} .elements").prepend element
     collection_init.call $(".collection.#{spaceKey}")
-    # switch contentType
-    #   when 'text'
-    #     makeModifiable element, socket
-    #   when 'video'
-    #     bindVideoControls element
-    #   when 'file'
-    #     bindFileControls element
-    #   when 'soundcloud'
-    #     bindSoundCloudControls element
+    switch element.data('contenttype')
+      when 'text'
+        makeModifiable element
+      when 'video'
+        bindVideoControls element
+      when 'file'
+        bindFileControls element
+      when 'soundcloud'
+        bindSoundCloudControls element
 
   socket.on 'removeElement', (data) ->
     id = data.id

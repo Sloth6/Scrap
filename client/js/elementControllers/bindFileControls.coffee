@@ -12,3 +12,6 @@ bindFileControls = (elems) ->
     link.download = name
     link.href = uri
     link.click()
+
+$ ->
+  bindFileControls $('.element.file')

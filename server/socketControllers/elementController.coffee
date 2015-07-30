@@ -70,78 +70,6 @@ module.exports =
       else
         done null, attributes
 
-    # newImage = (attributes) ->
-    #   models.Space.find(where: { spaceKey }).complete (err, space) =>
-    #     return callback err if err?
-        
-    #     key = Math.random().toString(36).slice(2)
-    #     original_url = data.content
-    #     attributes.content = key
-    #     attributes.SpaceId = space.id
-
-    #     models.Element.create(attributes).complete (err, element) =>
-    #       return callback err if err?
-
-    #       element.content = original_url
-    #       # console.log {original_url}
-    #       element_html = encodeURIComponent(element_jade({
-    #         element: element
-    #         names: {}
-    #         current_space: space.id
-    #         original_url
-    #       }))
-          
-    #       sio.to(spaceKey).emit 'newElement', { element: element_html }
-
-    #       options =
-    #         url: original_url
-    #         contentType: element.contentType
-    #         spaceKey: spaceKey
-    #         key: key
-
-    #       thumbnails options, (err) -> 
-    #         return callback err if err?
-    #         attributes.content = key
-    #         return callback()
-            
-    # newWebsite = (attributes) ->
-    #   url = attributes.content
-    #   webPreviews url, (err, pageData) ->
-    #     if err?
-    #       attributes.content = JSON.stringify { 
-    #         title: url.match(/www.([a-z]*)/)[1]
-    #         url: encodeURIComponent(url)
-    #         description: ''
-    #       }
-    #     else
-    #       pageData.url = encodeURIComponent pageData.url
-    #       attributes.content = JSON.stringify pageData
-    #     done attributes
-    
-    # newVideo = (attributes) ->
-    #   videoScreenshot attributes.content, (err) ->
-    #     console.log 'Error creating video screenshot', err if err
-    #   done attributes
-
-    # newSoundcloud = (attributes) ->
-    #   options =
-    #     uri: "http://soundcloud.com/oembed"
-    #     method: 'POST'
-    #     json:
-    #       url: attributes.content
-    #   request options, (err, response, body) ->
-    #     if err or !body
-    #       console.log "Soundcloud err", err, body
-    #     console.log body
-    #     attributes.content = JSON.stringify {
-    #       html: body.html
-    #       thumbnail: body.thumbnail_url
-    #       title: body.title
-    #     }
-    #     done attributes
-
-
-
   # delete the element
   removeElement : (sio, socket, data, callback) =>
     id = data.elementId
@@ -176,10 +104,11 @@ module.exports =
   updateElement : (sio, socket, data, callback) =>
     spaceKey = data.spaceKey
     data.id = +data.elementId
+
     query = "UPDATE \"Elements\" SET"
     query += " \"content\"=:content" if data.content?
     # remove the trailing comma if necessary
-    query = query.slice(0,query.length - 1) if query[query.length - 1] is ","
+    # query = query.slice(0,query.length - 1) if query[query.length - 1] is ","
     query += " WHERE \"id\"=:id RETURNING *"
 
     # new element to be filled in by update

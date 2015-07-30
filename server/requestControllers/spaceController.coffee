@@ -198,7 +198,7 @@ module.exports =
     res.json {
       policy: base64policy
       signature: signature
-      key: (spaceKey + "/" + file_key + "/" + title)
+      path: (spaceKey + "/" + file_key + "/" + title)
       success_action_redirect: "/"
       contentType: type
     }
