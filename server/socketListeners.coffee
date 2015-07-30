@@ -7,7 +7,7 @@ validator = require 'validator'
 models = require '../models'
 clean = (data) ->
   for k, v of data
-    data[k] = (validator.escape v).replace /\n/g, '<br>'
+    data[k] = (validator.escape v)#.replace /\n/g, '<br>'
   data
 
 module.exports = (io)->

@@ -8,7 +8,8 @@ makeModifiable = (elems) ->
 
     form.bind 'input propertychange', () ->
       clearTimeout timeout if timeout
-      content = @value
+      content = @value.replace(/<br>/g, '\n')
+      console.log content
       timeout = setTimeout (() ->
         socket.emit 'updateElement', { spaceKey, userId, elementId, content }
       ), 1000
