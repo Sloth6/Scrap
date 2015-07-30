@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) ->
       allowNull: false
       defaultValue: DataTypes.NOW
     elementOrder:
-      type: DataTypes.ARRAY(DataTypes.Integer)
+      type: DataTypes.ARRAY(DataTypes.INTEGER)
       allowNull: false
-      defaultValue: []
+      defaultValue: '{}'
 
   }, {
     classMethods:
