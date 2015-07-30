@@ -1,19 +1,7 @@
-locations = {}
-
 formatName = (name) ->
   name.split('/').pop().replace(/\s/g, '+')
 
-getUploadLocation = (names, onDrag) ->
-  if onDrag
-    x = (mouse.x - $('.content').offset().left) / $('.content').css('scale')
-    y = (mouse.y - $('.content').offset().top) / $('.content').css('scale')
-  else
-    { x, y } = elementPosition $('.addElementForm')
-
-  for name in names
-    locations[formatName(name)] = { x, y }
-
-fileuploadOptions = (onDrag) ->
+fileuploadOptions = (collection, spaceKey) ->
   multipart = false
   url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
   type: 'POST'
@@ -21,8 +9,6 @@ fileuploadOptions = (onDrag) ->
   dataType: 'xml' # S3's XML response
   add: (event, add_data) ->
     # videoHandler file for file in add_data.originalFiles
-    getUploadLocation (file.name for file in add_data.originalFiles), onDrag
-
     $.ajax "/sign_s3", {
       type: 'GET'
       dataType: 'json'
@@ -32,8 +18,9 @@ fileuploadOptions = (onDrag) ->
         spaceKey: spaceKey
       async: false
       success: (success_data) ->
-        file_name = formatName(success_data.key)
-        createLoadingElement locations[file_name], file_name
+        # file_name = formatName(success_data.key)
+        # createLoadingElement locations[file_name], file_name
+
         # Now that we have our data, we update the form so it contains all
         # the needed data to sign the request
         $('input[name=key]').val success_data.key
@@ -58,6 +45,6 @@ fileuploadOptions = (onDrag) ->
   success: (data) ->
     # Find location value from XML response
     content = decodeURIComponent $(data).find('Location').text()
-    file_name = content.split('/').pop()
-    { x, y } = locations[file_name]
-    emitElement x, y, content
+    # file_name = content.split('/').pop()
+    # { x, y } = locations[file_name]
+    emitNewElement content, spaceKey

@@ -23,11 +23,14 @@ element_place = () ->
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x =  left_start - ((logistic(percent)-0.5)*2 * border)
-    
+  
+  # if animate
+  #   element.animate { x, y:0 }, 200
+  # else  
   element.css { x, y:0 }
 
-element_move = (x, delta = false) ->
+element_move = (x, animate = false) ->
   element = $(@)
   offset = element.data 'scroll_offset'
   element.data 'scroll_offset', offset + x
-  element_place.call @
+  element_place.call @, animate

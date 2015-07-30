@@ -2,18 +2,24 @@ models = require '../../../models'
 thumbnails = require '../../modules/thumbnails.coffee'
 
 module.exports = (spaceKey, attributes, callback) ->
-  options =
+  original_url = attributes.content
+  delete attributes.content
+  attributes.content = JSON.stringify { original_url, key: null }
+  callback null, attributes
+
+
+  imageKey = Math.random().toString(36).slice(2)
+  thumbnailOptions =
     url: attributes.content
-    contentType: attributes.contentType
-    spaceKey: spaceKey
-    copy = true
+    # contentType: attributes.contentType
+    path: "#{spaceKey}/#{imageKey}"
+    copy: true
 
-  s3_prefix = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'
-  
-  if attributes.content.indexOf(s3_prefix) is 0
-    options.copy = false
+  # s3_prefix = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'
+  # if attributes.content.indexOf(s3_prefix) is 0
+  #   options.copy = false
 
-  thumbnails options, (err, key) ->
-    return callback err if err?
-    attributes.content = key
-    return callback null, attributes
+  # thumbnails thumbnailOptions, (err, key) ->
+  #   return console.log 'Err:'+err if err?
+  #   models.
+  #   attributes.content = key

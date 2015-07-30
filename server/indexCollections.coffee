@@ -23,7 +23,9 @@ module.exports = [
         }
       }, {
         contentType: 'image'
-        original_url: "http://www.culinaryschools.org/images/sushi-chef-schools.jpg"
+        content: JSON.stringify {
+          original_url: "http://www.culinaryschools.org/images/sushi-chef-schools.jpg"
+        }
       },{
         contentType: 'website'
         content: JSON.stringify {
@@ -44,7 +46,9 @@ module.exports = [
         }
       }, {
         contentType: 'image'
-        original_url: "http://www.culinaryschools.org/images/sushi-chef-schools.jpg"
+        content: JSON.stringify {
+          original_url: "http://www.culinaryschools.org/images/sushi-chef-schools.jpg"
+        }
       }
     ]
   },{

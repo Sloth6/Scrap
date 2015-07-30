@@ -4,25 +4,27 @@
 - var posString = "position:absolute;" // #top:"+0+"px;left:"+(j*elem_width)+"px;"  
   //- = "transform:translate(1.0)"
 
-article(id=element.id, class=classes, data-contenttype=element.contentType, data-creatorid=element.creatorId, style= posString)
-  .card(data-key=element.content, class=element.contentType)
-    //- if names[element.crfeatorId] != ""
+article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
+  .card(class=element.contentType)
+    //- if names[element.creatorId] != ""
     //-   author= names[element.creatorId]
     author Sem Adipiscing
    
     case element.contentType
       when 'image'
-        - if (typeof(original_url) !== 'undefined'){
-          img(src= original_url)
+        - var content = JSON.parse(element.content)
+        - if (typeof(content.original_url) !== 'undefined'){
+          img(src= content.original_url)
         - } else { 
-          img(src= root+collection.spaceKey+"/"+element.content+'/small.jpg')
+          img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
         - }
 
       when 'gif'
-        - if (typeof(original_url) !== 'undefined'){
-          img(src= original_url)
+        -var content = JSON.parse(element.content)
+        - if (typeof(content.original_url) !== 'undefined'){
+          img(src= content.original_url)
         - } else {
-          img(src= root+collection.spaceKey+"/"+element.content+'/normal.gif')
+          img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
         - }
 
       when 'website'

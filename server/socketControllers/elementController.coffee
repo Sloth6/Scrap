@@ -1,19 +1,19 @@
 models   = require '../../models'
 async    = require 'async'
-webPreviews = require '../modules/webPreviews.coffee'
-thumbnails = require '../modules/thumbnails.coffee'
-request = require 'request'
 s3 = require '../adapters/s3.coffee'
-spacePreviews = require '../modules/spacePreviews.coffee'
-videoScreenshot = require '../modules/videoScreenshot.coffee'
+request = require 'request'
+
+# webPreviews = require '../modules/webPreviews.coffee'
+# thumbnails = require '../modules/thumbnails.coffee'
+# videoScreenshot = require '../modules/videoScreenshot.coffee'
+
+newElements = require './newElements'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
   throw err if err
   element_jade = require('jade').compile data
 
-memCache = {}
-hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
 
 getType = (s, cb) ->
   jar = request.jar()
@@ -46,102 +46,101 @@ module.exports =
     console.log "\tspaceKey: #{spaceKey}"
     console.log "\tcontent: #{data.content}"
 
-    done = (attributes) ->
+    done = (err, attributes) ->
+      return callback err if err
       models.Space.find(where: { spaceKey }).complete (err, space) =>
         return callback err if err?
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           html = encodeURIComponent(element_jade({element, names:{}}))
+          console.log 'emitting new element', element.content, spaceKey
           sio.to(spaceKey).emit 'newElement', { html, spaceKey }
-          # return callback()
+          return callback null
     
-    newImage = (attributes) ->
-      models.Space.find(where: { spaceKey }).complete (err, space) =>
-        return callback err if err?
-        
-        key = Math.random().toString(36).slice(2)
-        original_url = data.content
-        attributes.content = key
-        attributes.SpaceId = space.id
-
-        models.Element.create(attributes).complete (err, element) =>
-          return callback err if err?
-
-          element.content = original_url
-          # console.log {original_url}
-          element_html = encodeURIComponent(element_jade({
-            element: element
-            names: {}
-            current_space: space.id
-            original_url
-          }))
-          
-          sio.to(spaceKey).emit 'newElement', { element: element_html }
-
-          options =
-            url: original_url
-            contentType: element.contentType
-            spaceKey: spaceKey
-            key: key
-
-          thumbnails options, (err) -> 
-            return callback err if err?
-            attributes.content = key
-            return callback()
-            
-    newWebsite = (attributes) ->
-      url = attributes.content
-      webPreviews url, (err, pageData) ->
-        if err?
-          attributes.content = JSON.stringify { 
-            title: url.match(/www.([a-z]*)/)[1]
-            url: encodeURIComponent(url)
-            description: ''
-          }
-        else
-          pageData.url = encodeURIComponent pageData.url
-          attributes.content = JSON.stringify pageData
-        done attributes
-    
-    newVideo = (attributes) ->
-      videoScreenshot attributes.content, (err) ->
-        console.log 'Error creating video screenshot', err if err
-      done attributes
-
-    newSoundcloud = (attributes) ->
-      options =
-        uri: "http://soundcloud.com/oembed"
-        method: 'POST'
-        json:
-          url: attributes.content
-      request options, (err, response, body) ->
-        if err or !body
-          console.log "Soundcloud err", err, body
-        console.log body
-        attributes.content = JSON.stringify {
-          html: body.html
-          thumbnail: body.thumbnail_url
-          title: body.title
-        }
-        done attributes
-
     getType data.content, (contentType) ->
       console.log "\tcontentType: #{contentType}"
       attributes =
         creatorId: userId
         contentType: contentType
         content: data.content
-      if contentType is 'website'
-        newWebsite attributes
-      else if contentType in ['image', 'gif']
-        newImage attributes
-      else if contentType is 'video'
-        newVideo attributes
-      else if contentType is 'soundcloud'
-        newSoundcloud attributes
+
+      if contentType of newElements
+        newElements[contentType] spaceKey, attributes, done
       else
-        done attributes
+        done null, attributes
+
+    # newImage = (attributes) ->
+    #   models.Space.find(where: { spaceKey }).complete (err, space) =>
+    #     return callback err if err?
+        
+    #     key = Math.random().toString(36).slice(2)
+    #     original_url = data.content
+    #     attributes.content = key
+    #     attributes.SpaceId = space.id
+
+    #     models.Element.create(attributes).complete (err, element) =>
+    #       return callback err if err?
+
+    #       element.content = original_url
+    #       # console.log {original_url}
+    #       element_html = encodeURIComponent(element_jade({
+    #         element: element
+    #         names: {}
+    #         current_space: space.id
+    #         original_url
+    #       }))
+          
+    #       sio.to(spaceKey).emit 'newElement', { element: element_html }
+
+    #       options =
+    #         url: original_url
+    #         contentType: element.contentType
+    #         spaceKey: spaceKey
+    #         key: key
+
+    #       thumbnails options, (err) -> 
+    #         return callback err if err?
+    #         attributes.content = key
+    #         return callback()
+            
+    # newWebsite = (attributes) ->
+    #   url = attributes.content
+    #   webPreviews url, (err, pageData) ->
+    #     if err?
+    #       attributes.content = JSON.stringify { 
+    #         title: url.match(/www.([a-z]*)/)[1]
+    #         url: encodeURIComponent(url)
+    #         description: ''
+    #       }
+    #     else
+    #       pageData.url = encodeURIComponent pageData.url
+    #       attributes.content = JSON.stringify pageData
+    #     done attributes
+    
+    # newVideo = (attributes) ->
+    #   videoScreenshot attributes.content, (err) ->
+    #     console.log 'Error creating video screenshot', err if err
+    #   done attributes
+
+    # newSoundcloud = (attributes) ->
+    #   options =
+    #     uri: "http://soundcloud.com/oembed"
+    #     method: 'POST'
+    #     json:
+    #       url: attributes.content
+    #   request options, (err, response, body) ->
+    #     if err or !body
+    #       console.log "Soundcloud err", err, body
+    #     console.log body
+    #     attributes.content = JSON.stringify {
+    #       html: body.html
+    #       thumbnail: body.thumbnail_url
+    #       title: body.title
+    #     }
+    #     done attributes
+
+
 
   # delete the element
   removeElement : (sio, socket, data, callback) =>
@@ -160,7 +159,6 @@ module.exports =
       .complete (err, results) ->
         return callback err if err?
         
-        spacePreviews spaceKey
 
         type = results[0].contentType
         content = results[0].content

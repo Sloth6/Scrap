@@ -1,9 +1,3 @@
-emit = (content, spacekey) ->
-  content = encodeURIComponent(content)
-  if content != ''
-    console.log "emiting '#{content}' to #{spacekey}"
-    socket.emit 'newElement', { content, userId, spacekey }
-
 addElementController =
   #  Open closed menu items
   init: (menu) ->
@@ -13,13 +7,13 @@ addElementController =
 
     menu.find('input').bind "paste", () ->
       setTimeout (() =>
-        emit $(@).val(), spacekey
+        emitNewElement $(@).val(), spacekey
         addElementController.reset menu
       ), 20
 
     input.on 'keyup', (event) ->
       if event.keyCode is 13 and not event.shiftKey # on enter (not shift + enter)
-        emit input.val(), spacekey
+        emitNewElement input.val(), spacekey
         addElementController.reset menu
 
     menu.find("li.closed").not("hidden").mouseenter () ->

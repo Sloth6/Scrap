@@ -4,6 +4,7 @@ module.exports = (spaceKey, attributes, callback) ->
   url = attributes.content
   webPreviews url, (err, pageData) ->
     if err?
+      console.log "did not find webpreview for #{url}"
       attributes.content = JSON.stringify { 
         title: url.match(/www.([a-z]*)/)[1]
         url: encodeURIComponent(url)

@@ -37,8 +37,8 @@ collection_close = () ->
 collection_enter = (event) ->
   collection = $(@)
   return if collection.hasClass 'open'
-  
-  history.pushState {name: "derp"}, "", "/"
+  spacekey = collection.data 'spacekey'
+  history.pushState {name: "derp"}, "", "/#{spacekey}"
   collection.addClass('open').removeClass 'closed'
   
   old_top = $('.translate-container').css 'y'
