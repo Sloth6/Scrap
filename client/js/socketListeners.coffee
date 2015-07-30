@@ -28,11 +28,7 @@ $ ->
     $("\##{id}").fadeOut -> 
       $(@).remove()
 
-  socket.on 'updateElement', (data) ->
+  socket.on 'updateElement', ({ spaceKey, userId, elementId, content }) ->
     return if data.userId is window.userId
-    element = data.element
-    final = data.final
-    id = element.id
-    elem = $("\##{id}")
-    if element.content
-      elem.children('.card.text.comment').children('p').html element.content
+    elem = $("\##{elementId}")
+    elem.children('.card.text.comment').children('p').html element.content

@@ -72,6 +72,7 @@ module.exports =
 
   # delete the element
   removeElement : (sio, socket, data, callback) =>
+    userId = socket.handshake.session.currentUserId
     id = data.elementId
     spaceKey = data.spacekey
     # Post.destroy({
@@ -102,17 +103,10 @@ module.exports =
         callback()
 
   updateElement : (sio, socket, data, callback) =>
-    spaceKey = data.spaceKey
-    data.id = +data.elementId
-
-    query = "UPDATE \"Elements\" SET"
-    query += " \"content\"=:content" if data.content?
-    # remove the trailing comma if necessary
-    # query = query.slice(0,query.length - 1) if query[query.length - 1] is ","
-    query += " WHERE \"id\"=:id RETURNING *"
-
-    # new element to be filled in by update
-    element = models.Element.build()
-    models.sequelize.query(query, element, null, data).complete (err, result) ->
-      return callback err if err?
-      sio.to("#{spaceKey}").emit 'updateElement', { element, userId: data.userId }
+    userId = socket.handshake.session.currentUserId
+    { spaceKey, content, elementId } = data
+    id = +elementId
+    models.Element.update({content}, {id}).complete (err) ->
+      return callback err if err
+      data.userId = userId
+      sio.to("#{spaceKey}").emit 'updateElement', data

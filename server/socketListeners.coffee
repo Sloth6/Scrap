@@ -28,7 +28,7 @@ module.exports = (io)->
 
       console.log "user #{userId} joined #{user.spaces.length} collections"
 
-      socket.on 'newElement',   (data) -> elementController.newElement io, socket, data, errorHandler
+      socket.on 'newElement',   (data) -> elementController.newElement io, socket, clean(data), errorHandler
       socket.on 'removeElement', (data) -> elementController.removeElement io, socket, clean(data), errorHandler
       socket.on 'updateElement', (data) -> elementController.updateElement io, socket, clean(data), errorHandler
       socket.on 'reorderElements', (data) -> elementController.reorderElements io, socket, clean(data), errorHandler
