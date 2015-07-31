@@ -21,10 +21,12 @@ addElementController =
     menu.find('a.submit').click (event) ->
       emitNewElement input.val(), spacekey
       addElementController.reset menu
+      addElementController.close menu
+      event.stopPropagation()   
 
     menu.find('a.cancel').click (event) ->
+      addElementController.reset menu
       addElementController.close menu
-      event.preventDefault()
       event.stopPropagation()
 
     menu.find("li.closed").not("hidden").mouseenter () ->
@@ -35,9 +37,6 @@ addElementController =
         .addClass "closed"
         .removeClass "open"
       $(@).find('input:text, textarea').focus()
-
-
- 
 
 
   close: (menu) ->
