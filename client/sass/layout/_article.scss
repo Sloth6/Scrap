@@ -105,16 +105,21 @@ section.container section.space section.content{
                 @include cardDrag;
             }
         }
-
-        &.long {
-            
-            .text {
-                p {
-                    @include typeBody;
-                }
+        
+        &.text {
+            &.short {
+                @include typeHeader;
                 
-                .card {
-                    max-width: $articleWidth * .75;
+                p, textarea {
+                    @include typeHeader;
+                }
+            }
+            
+            &.long {
+                @include typeBody;
+                
+                p, textarea {
+                    @include typeBody;
                 }
             }
         }
@@ -166,10 +171,6 @@ section.container section.space section.content{
         textarea {
             width: 100%;
             height: $baseline;
-            color: $colorType;
-            background-color: transparent;
-            @include typeHeader;
-            font-style: italic;
         }
         
         author {
