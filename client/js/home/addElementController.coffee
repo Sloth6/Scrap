@@ -32,7 +32,7 @@ addElementController =
       .addClass "closed"
       .removeClass "hidden"
       .removeClass "open"
-    menu.find $('.text input,textarea').val('')
+    menu.find('.text input,textarea').val('')
 
 $ ->
   $('.addElementForm').each () ->
