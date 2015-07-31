@@ -27,6 +27,7 @@ collection_close = () ->
   history.pushState {name: "home"}, "", "/"
   
   $('.collection').show()
+  $(".menu.settings").show()
   $('.translate-container').css { x: 0, y: old_top }
   $('.scale-container').css { scale: 1/scaleMultiple }
   window.scale = 1/scaleMultiple
@@ -40,7 +41,7 @@ collection_enter = (event) ->
   spacekey = collection.data 'spacekey'
   history.pushState {name: "derp"}, "", "/#{spacekey}"
   collection.addClass('open').removeClass 'closed'
-  
+  $(".menu.settings").hide()
   old_top = $('.translate-container').css 'y'
 
   $('.collection').not(@).hide()
