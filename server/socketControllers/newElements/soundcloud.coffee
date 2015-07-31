@@ -9,9 +9,5 @@ module.exports = (spaceKey, attributes, callback) ->
       url: attributes.content
   request options, (err, response, body) ->
     return callback "Soundcloud err", err if err or !body
-    attributes.content = JSON.stringify {
-      html: body.html
-      thumbnail: body.thumbnail_url
-      title: body.title
-    }
+    attributes.content = JSON.stringify body
     callback null, attributes

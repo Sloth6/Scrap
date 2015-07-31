@@ -19,6 +19,7 @@ bindSoundCloudControls = (elems) ->
       
       iframe.insertBefore img
       img.hide()
+      $(@).find('header').hide()
 
 $ ->
   bindSoundCloudControls $('.element.soundcloud')

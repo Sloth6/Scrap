@@ -50,14 +50,19 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
       
       when 'soundcloud'
         -var content = JSON.parse(element.content)
+        //- title, description, thumbnail_url, html, author_name, author_url
+        img.soundcloudThumbnail(src=content.thumbnail_url)
+        header
+          h1.title!=content.title
+          .artist!=content.author_name
+          .detail
+            .source soundcloud
+        //- .description!=content.description
         //- .iframeBlocker(style="positidon: absolute; top: 0; left: 0; width: 100%; height: 500px")
-        //- .iframeContainer(style:"display:none")
-        //-   p!= content.html
-        img.soundcloudThumbnail(src=content.thumbnail)
 
       when 'text'
         //- textarea.modify(name='content', style='height:300px')!=element.content
-        .editable(contentEditable="true")
+        .editable(contentEditable="true", designmode="on")
           !{element.content}
       default
-        
+        p!=element.content
