@@ -104,10 +104,16 @@ html {
         border-bottom: .125em $colorType solid;
         
         &.warning {
-            color: $colorAlert;
+//             color: $colorAlert;
             
             &:hover {
                 @include hoverWarningAnimation;
+            }
+        }
+        
+        &.confirm {
+            &:hover {
+                @include hoverLinkAnimation;
             }
         }
     }

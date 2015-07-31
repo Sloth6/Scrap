@@ -590,10 +590,6 @@ html a {
   text-decoration: none;
   border-bottom: 0.125em #000000 solid;
 }
-/* line 106, ../sass/globals/_type.scss */
-html a.warning {
-  color: #ff0000;
-}
 /* line 109, ../sass/globals/_type.scss */
 html a.warning:hover {
   -webkit-animation: hoverWarningFlicker 20s infinite linear;
@@ -605,7 +601,18 @@ html a.warning:hover {
       border-color: $colorAccent;
   */
 }
-/* line 117, ../sass/globals/_type.scss */
+/* line 115, ../sass/globals/_type.scss */
+html a.confirm:hover {
+  -webkit-animation: hoverLinkFlicker 20s infinite linear;
+  -moz-animation: hoverLinkFlicker 20s infinite linear;
+  -o-animation: hoverLinkFlicker 20s infinite linear;
+  animation: hoverLinkFlicker 20s infinite linear;
+  /*
+      color: blue;
+      border-color: blue;
+  */
+}
+/* line 123, ../sass/globals/_type.scss */
 html p + p {
   margin-top: 8pt;
 }
@@ -1846,13 +1853,12 @@ section.container section.space section.content article.addElementForm ul li.upl
   font-weight: 500;
   line-height: 16pt;
   letter-spacing: 0;
-  position: absolute;
-  bottom: -16pt;
-  left: 0;
+  position: relative;
+  display: inline-block;
   height: 16pt;
   width: intrinsic;
 }
-/* line 364, ../sass/layout/_article.scss */
+/* line 363, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1860,7 +1866,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   left: 0;
   position: absolute;
 }
-/* line 371, ../sass/layout/_article.scss */
+/* line 370, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1870,16 +1876,16 @@ section.container section.space section.content article.addElementForm ul li.upl
   opacity: 0;
   cursor: pointer;
 }
-/* line 383, ../sass/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cancel {
-  position: absolute;
+/* line 382, ../sass/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul li.done {
+  position: relative;
+  display: inline-block;
   height: 16pt;
-  bottom: -16pt;
-  right: 0;
+  float: right;
   width: intrinsic;
 }
-/* line 390, ../sass/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cancel a.warning {
+/* line 389, ../sass/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul li.done a {
   font-family: -apple-system, "Helvetica Neue";
   font-size: 12pt;
   font-weight: 500;
@@ -1889,6 +1895,7 @@ section.container section.space section.content article.addElementForm ul li.can
   top: -8pt;
   border: 0;
   padding: 0;
+  margin-left: 8pt;
 }
 
 /* line 6, ../sass/layout/_home.scss */

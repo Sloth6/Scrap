@@ -355,9 +355,8 @@ section.container section.space section.content{
                     
                     &.upload {
                         @include typeBody;
-                        position: absolute;
-                        bottom: -$cell * 2;
-                        left: 0;
+                        position: relative;
+                        display: inline-block;
                         height: $leading;
                         width: intrinsic;
                         
@@ -380,19 +379,20 @@ section.container section.space section.content{
                         }
                     }
                     
-                    &.cancel {
-                        position: absolute;
+                    &.done {
+                        position: relative;
+                        display: inline-block;
                         height: $leading;
-                        bottom: -$cell * 2;
-                        right: 0;
+                        float: right;
                         width: intrinsic;
 
-                        a.warning {
+                        a {
                             @include typeBody;
                             position: relative;
                             top: -$cell;
                             border: 0;
                             padding: 0;
+                            margin-left: $cell;
                         }
                     }
                 }

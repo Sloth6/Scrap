@@ -14,7 +14,7 @@ addElementController =
       $(@).removeClass 'closed'
 
     
-    menu.find('.cancel a').click (event) ->
+    menu.find('a.cancel').click (event) ->
       event.preventDefault()
       console.log($(@))
       menu.removeClass 'open'
@@ -27,16 +27,16 @@ addElementController =
       ), 500
       event.stopPropagation()
 
-    menu.find('input').bind "paste", () ->
+    menu.find('a.submit').click (event) ->
+        emitNewElement input.val(), spacekey
+        addElementController.reset menu
+
+    menu.find('textarea').bind "paste", () ->
       setTimeout (() =>
         emitNewElement $(@).val(), spacekey
         addElementController.reset menu
       ), 20
 
-    input.on 'keyup', (event) ->
-      if event.keyCode is 13 and not event.shiftKey # on enter (not shift + enter)
-        emitNewElement input.val(), spacekey
-        addElementController.reset menu
 
     menu.find("li.closed").not("hidden").mouseenter () ->
       $(@)
