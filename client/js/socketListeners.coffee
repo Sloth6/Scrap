@@ -13,6 +13,7 @@ $ ->
     element = $(decodeURIComponent(html))
     $(".collection.#{spaceKey} .elements").prepend element
     collection_init.call $(".collection.#{spaceKey}")
+    checkForNewCollection()
     switch element.data('contenttype')
       when 'text'
         makeModifiable element

@@ -81,9 +81,13 @@ $ ->
     $(@).css 'zIndex', $(@).data('oldZIndex')
 
   $('.collection').each collection_init
-  
  
   $(window).on 'mousewheel', master_scroll
+
+  $(window).on 'mousemove', (event) ->
+    mouse.x = event.clientX / scale
+    mouse.y = event.clientY / scale
+
   window.onpopstate = (event) ->
     return unless event.state?
     page = event.state.name

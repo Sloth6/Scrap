@@ -1,7 +1,7 @@
 models = require '../../models'
 spaceController = require './spaceController'
 module.exports =
-  updateUser: (req, res) ->
+  updateUser: (req, res, app)  ->
     { userId, name, email, password } = req.body
     attributes = { userId }
     attributes.name = name if name
@@ -15,7 +15,7 @@ module.exports =
         return res.send 200
 
   # create a new user and default space, redirect to space
-  newUser : (req, res, callback) ->
+  newUser : (req, res, app, callback) ->
     { name, email, password } = req?.body
     attributes = { name, email, password }
 
@@ -39,12 +39,12 @@ module.exports =
       done = (user) ->
         req.session.currentUserId = user.id
         req.body.space =
-          name: "Welcome"
+          name: "New Collection"
           welcomeSpace: true
-        spaceController.newSpace req, res, callback
+        spaceController.newSpace req, res, app, callback
 
   # verify login creds, redirect to first space
-  login : (req, res, callback) ->
+  login : (req, res, app, callback) ->
     email = req.body.email
     password = req.body.password
 
@@ -65,7 +65,7 @@ module.exports =
           # res.status 400
           return res.status(400).send 'Incorrect password.'
 
-  logout : (req, res, callback) ->
+  logout : (req, res, app, callback) ->
     req.session.destroy (err) ->
       return callback err if err?
       res.redirect "/"

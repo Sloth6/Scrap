@@ -19,7 +19,7 @@ indexPage = (res) ->
       spaceKey: 'index'
 
 module.exports =
-  index: (req, res, callback) ->
+  index: (req, res, app, callback) ->
     if req.session.currentUserId?
       currentUserId = req.session.currentUserId
       models.User.find(

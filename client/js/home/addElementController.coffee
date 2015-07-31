@@ -1,7 +1,6 @@
 addElementController =
   #  Open closed menu items
   init: (menu) ->
-    console.trace()
     spacekey = menu.parent().data 'spacekey'
     input = menu.find('.textInput')
     
@@ -13,30 +12,20 @@ addElementController =
       $(@).addClass 'open'
       $(@).removeClass 'closed'
 
-    
-    menu.find('a.cancel').click (event) ->
-      event.preventDefault()
-      console.log($(@))
-      menu.removeClass 'open'
-      menu.addClass 'closed'
-      setTimeout (() =>
-        menu.css({
-          "transition-duration": ".25s",
-          "-webkit-transition-duration": ".25s"
-        })
-      ), 500
-      event.stopPropagation()
-
-    menu.find('a.submit').click (event) ->
-        emitNewElement input.val(), spacekey
-        addElementController.reset menu
-
     menu.find('textarea').bind "paste", () ->
       setTimeout (() =>
         emitNewElement $(@).val(), spacekey
         addElementController.reset menu
       ), 20
 
+    menu.find('a.submit').click (event) ->
+      emitNewElement input.val(), spacekey
+      addElementController.reset menu
+
+    menu.find('a.cancel').click (event) ->
+      addElementController.close menu
+      event.preventDefault()
+      event.stopPropagation()
 
     menu.find("li.closed").not("hidden").mouseenter () ->
       $(@)
@@ -45,9 +34,21 @@ addElementController =
       menu.find("li").not($(@))
         .addClass "closed"
         .removeClass "open"
-
       $(@).find('input:text, textarea').focus()
-      
+
+
+ 
+
+
+  close: (menu) ->
+    menu.removeClass('open').addClass 'closed'
+    setTimeout (() =>
+      menu.css({
+        "transition-duration": ".25s",
+        "-webkit-transition-duration": ".25s"
+      })
+    ), 500
+
 
   reset: (menu) ->
     menu.find "li.expandable"

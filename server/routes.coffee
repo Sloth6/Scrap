@@ -12,37 +12,37 @@ fs.readdirSync(__dirname + '/requestControllers').forEach (fileName) ->
 
 module.exports = (app) ->
   app.get '/', (req,res) ->
-    controllers.indexController.index req, res, errorHandler
+    controllers.indexController.index req, res, app, errorHandler
 
   app.post '/s/new', (req, res) ->
     controllers.spaceController.newSpace req, res, app, errorHandler
 
   app.post '/s/update', (req, res) ->
-    controllers.spaceController.updateSpace req, res, errorHandler
+    controllers.spaceController.updateSpace req, res, app, errorHandler
 
   app.get '/s/:spaceKey', (req, res) ->
-    controllers.spaceController.showReadOnly req, res, errorHandler
+    controllers.spaceController.showReadOnly req, res, app, errorHandler
 
   app.get '/r/:spaceKey', (req, res) ->
-    controllers.spaceController.showSpace req, res, errorHandler
+    controllers.spaceController.showSpace req, res, app, errorHandler
 
   app.get '/webpreview/:spaceKey', (req, res) ->
-    controllers.spaceController.webPreview req, res, errorHandler
+    controllers.spaceController.webPreview req, res, app, errorHandler
 
   app.post '/login', (req, res) ->
-    controllers.userController.login req, res, errorHandler
+    controllers.userController.login req, res, app, errorHandler
 
   app.get '/logout', (req, res) ->
-    controllers.userController.logout req, res, errorHandler
+    controllers.userController.logout req, res, app, errorHandler
 
   app.post '/register', (req, res) ->
-    controllers.userController.newUser req, res, errorHandler
+    controllers.userController.newUser req, res, app, errorHandler
 
   app.post '/updateUser', (req, res) ->
-    controllers.userController.updateUser req, res, errorHandler
+    controllers.userController.updateUser req, res, app, errorHandler
 
   app.get '/sign_s3', (req, res) ->
-    controllers.spaceController.uploadFile req, res, errorHandler
+    controllers.spaceController.uploadFile req, res, app, errorHandler
     
   app.get '/500', (req, res) ->
     throw new Error 'This is a 500 Error'

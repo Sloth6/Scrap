@@ -88,14 +88,10 @@ collection_init = () ->
 
   $(@).on 'mousewheel', collection_scroll_wheel
   
-  $(@).click collection_enter
-
-  $(@).on 'mousemove', (event) ->
-    mouse.x = event.clientX / scale
-    mouse.y = event.clientY / scale
-
-  form = $(@).find('.direct-upload')
-  form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
+  if not $(@).hasClass('fake')
+    $(@).click collection_enter
+    form = $(@).find('.direct-upload')
+    form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
 
 # put element a before b
 collection_insert_before = (a, b) ->

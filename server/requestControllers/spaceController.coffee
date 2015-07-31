@@ -37,7 +37,7 @@ module.exports =
   # create a new space and redirect to it
   newSpace : (req, res, app, onErr) ->
     spaceKey = uuid.v4().split('-')[0]
-    { name, welcomeSpace } = req.body
+    { name, welcomeSpace } = req.body.space
     currentUserId = req.session.currentUserId
     
     models.User.find(
@@ -58,7 +58,7 @@ module.exports =
               # console.log html
               res.status(200).send html
 
-  addUserToSpace : (req, res) ->
+  addUserToSpace : (req, res, app, callback) ->
     { email, name } = data
     name = toTitleCase name
 
@@ -111,7 +111,7 @@ module.exports =
   #           # sio.to(spaceKey).emit 'removeUserFromSpace', { id }
   #           # callback()
 
-  uploadFile : (req, res, callback) ->
+  uploadFile : (req, res, app, callback) ->
     { type, title, spaceKey } = req.query
     title = title or 'undefined'
     console.log title, type, spaceKey

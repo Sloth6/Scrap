@@ -32,7 +32,7 @@ block content
         -for (var i = 0; i < collections.length; i++)
           -var collection = collections[i]
           -var top = (i * collection_height)
-          section.collection(style="position:fixed;height:"+collection_height+"px;", data-offset=top)
+          section.collection.fake(style="position:fixed;height:"+collection_height+"px;", data-offset=top)
             header.collectionTitle
               h1!=collection.name
             .elements
