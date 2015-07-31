@@ -1,9 +1,4 @@
-script.
-  user = !{user}
-  users = !{JSON.stringify(users)}
-  names = !{JSON.stringify(names)}
-
-ul.users.menu.right.hideFirst.hidden
+ul.users.menu.right
   li.first.visible
     a(href="#") Share
   section
@@ -14,8 +9,13 @@ ul.users.menu.right.hideFirst.hidden
         input(type="submit", style="visibility: hidden;display:none;")
   section
     li.visible.heading Current members
-    each user in space.users
+    each user in collection.users
       name = user.name.split(' ')
-      if user.name != null
-        li.visible.user()
-          span.name= name[0] + " " + name[1]
+      li.visible.user()
+        span.name= name[0] + " " + name[1]
+    //- each userId, data in collection.userMap
+      //- p!=data.name/
+      //- name = data.name.split(' ')
+      //- if user.name != null
+        //- li.visible.user()
+        //-   span.name= name[0] + " " + name[1]

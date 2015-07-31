@@ -6,6 +6,8 @@
   -var collection = collections[i]
   -var top = (i * elem_height)
   .collection(style="top:"+top+"px;height:"+(elem_height)+"px;", class =collection.spaceKey,  data-spacekey=collection.spaceKey)
+    h1!=collection.name
+    include userMenu
     include addElementForm
     .elements
       -for (var j = 0; j < collection.elements.length; j++)
