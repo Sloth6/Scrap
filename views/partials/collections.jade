@@ -2,17 +2,11 @@
 -var elem_height = 700
 
 -var i = 0
--for (var i = 0; i < collections.length; i++)
-  -var collection = collections[i]
-  -var top = (i * elem_height)
-  .collection(style="top:"+top+"px;height:"+(elem_height)+"px;", class =collection.spaceKey,  data-spacekey=collection.spaceKey)
-    h1!=collection.name
-    include userMenu
-    include addElementForm
-    .elements
-      -for (var j = 0; j < collection.elements.length; j++)
-        -var element = collection.elements[j]
-        include element
+.collections
+  -for (var i = 0; i < collections.length; i++)
+    -var collection = collections[i]
+    -var top = (i * elem_height)
+    include collection
 
 script.
   collection_max_y="#{top}";

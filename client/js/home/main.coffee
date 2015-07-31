@@ -80,20 +80,10 @@ $ ->
   ).mouseout () ->
     $(@).css 'zIndex', $(@).data('oldZIndex')
 
-  $('.collection').click collection_enter  
   $('.collection').each collection_init
-  $('.collection').on 'mousewheel', collection_scroll_wheel
   
-  $('.collection').on 'mousemove', (event) ->
-    mouse.x = event.clientX / scale
-    mouse.y = event.clientY / scale
-
+ 
   $(window).on 'mousewheel', master_scroll
-
-  $('.collection').each () ->
-    form = $(@).find('.direct-upload')
-    form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
-  
   window.onpopstate = (event) ->
     return unless event.state?
     page = event.state.name

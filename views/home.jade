@@ -16,6 +16,7 @@ block scripts
   script(src="/js/home/headerMenu.js")
   script(src="/js/home/settingsMenu.js")
   script(src="/js/home/addElementController.js")
+  script(src="/js/home/addCollectionController.js")
 
   script(src="/js/createNewElement.js")
   script(src="/js/socketListeners.js")
@@ -47,3 +48,4 @@ block content
         .scale-container
           - var collections = user.spaces
           include partials/collections
+          .addCollectionButton(style='height:200px;width:200px;background-color:red;')

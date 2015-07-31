@@ -83,9 +83,19 @@ collection_realign_elements = () ->
   $(@).data { maxX }
 
 collection_init = () ->
-  # $(@).children(":not(:first)").remove();
   $(@).data 'scroll_position', 0
   collection_realign_elements.call @
+
+  $(@).on 'mousewheel', collection_scroll_wheel
+  
+  $(@).click collection_enter
+
+  $(@).on 'mousemove', (event) ->
+    mouse.x = event.clientX / scale
+    mouse.y = event.clientY / scale
+
+  form = $(@).find('.direct-upload')
+  form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
 
 # put element a before b
 collection_insert_before = (a, b) ->
