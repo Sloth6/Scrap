@@ -31,4 +31,4 @@ $ ->
   socket.on 'updateElement', ({ spaceKey, userId, elementId, content }) ->
     return if data.userId is window.userId
     elem = $("\##{elementId}")
-    elem.children('.card.text.comment').children('p').html element.content
+    elem.find('.editable').innerHTML element.content

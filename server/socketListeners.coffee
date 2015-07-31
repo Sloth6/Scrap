@@ -30,7 +30,7 @@ module.exports = (io)->
 
       socket.on 'newElement',   (data) -> elementController.newElement io, socket, clean(data), errorHandler
       socket.on 'removeElement', (data) -> elementController.removeElement io, socket, clean(data), errorHandler
-      socket.on 'updateElement', (data) -> elementController.updateElement io, socket, clean(data), errorHandler
+      socket.on 'updateElement', (data) -> elementController.updateElement io, socket, data, errorHandler
       socket.on 'reorderElements', (data) -> elementController.reorderElements io, socket, clean(data), errorHandler
       # socket.on 'updateSpace', (data) -> spaceController.updateSpace io, socket, clean(data), errorHandler
       socket.on 'addUserToSpace', (data) -> spaceController.addUserToSpace io, socket, clean(data), errorHandler

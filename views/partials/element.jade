@@ -56,7 +56,8 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
         img.soundcloudThumbnail(src=content.thumbnail)
 
       when 'text'
-        textarea.modify(name='content', style='height:300px')!=element.content
-
+        //- textarea.modify(name='content', style='height:300px')!=element.content
+        .editable(contentEditable="true")
+          !{element.content}
       default
-        p!= element.content
+        
