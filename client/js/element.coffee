@@ -3,7 +3,7 @@ logistic = (x) ->
 
 element_place = () ->
   element = $(@)
-  border = 300
+  border = $(window).width() / 6
 
   return if element.hasClass('dragging')
   offset = element.data 'scroll_offset'
