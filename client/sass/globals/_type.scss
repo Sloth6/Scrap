@@ -102,6 +102,14 @@ html {
         color: $colorType;
         text-decoration: none;
         border-bottom: .125em $colorType solid;
+        
+        &.warning {
+            color: $colorAlert;
+            
+            &:hover {
+                @include hoverWarningAnimation;
+            }
+        }
     }
     
     p {

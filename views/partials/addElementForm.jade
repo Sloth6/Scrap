@@ -1,11 +1,8 @@
-article.floatingMenu.addElementForm
+article.addElementForm.closed
   ul
-    li.text.url.closed.expandable
-      span.label Add from the web
-      input.urlInput(type="text", placeholder="Paste a URL")
     li.text.note.closed.tall.expandable
-      span.label Write a note
-      textarea.textInput(placeholder="Write a note")
+      span.label Write a note or paste a link
+      textarea.textInput(placeholder="Write a note or paste a link")
     li.button.closed.upload
       span.label Upload a file
       form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
@@ -17,3 +14,5 @@ article.floatingMenu.addElementForm
         input(type='hidden', name='success_action_status', value='201')
         input(type='hidden', name='Content-Type')
         input(type='file', class='file-input', name='file')
+    li.cancel
+      a.warning(href='#') Cancel
