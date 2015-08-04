@@ -79,7 +79,14 @@ $ ->
     $(@).css 'zIndex', $(@).siblings().length + 1
   ).mouseout () ->
     $(@).css 'zIndex', $(@).data('oldZIndex')
+  
+  editable = document.getElementById('editable');
 
+  editable = $('.editable')
+  editable.on 'blur', () ->
+    #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
+    $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
+    
   $('.collection').each collection_init
  
   $(window).on 'mousewheel', master_scroll
