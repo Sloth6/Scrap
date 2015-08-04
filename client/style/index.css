@@ -575,9 +575,10 @@ body section.space section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
+/* $fontFamily:            -apple-system, "Helvetica Neue"; */
 /* line 97, ../sass/globals/_type.scss */
 html {
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
@@ -751,7 +752,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
@@ -795,7 +796,7 @@ ul.menu {
   border-color: transparent;
   width: 0;
   top: -1pt;
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
@@ -1212,7 +1213,7 @@ textarea {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
@@ -1548,7 +1549,7 @@ section.container section.space section.content article.text.short {
 }
 /* line 117, ../sass/layout/_article.scss */
 section.container section.space section.content article.text.long {
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
@@ -1871,7 +1872,7 @@ section.container section.space section.content article.addElementForm ul li.tex
 }
 /* line 370, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload {
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
@@ -1909,7 +1910,7 @@ section.container section.space section.content article.addElementForm ul li.don
 }
 /* line 403, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done a {
-  font-family: -apple-system, "Helvetica Neue";
+  font-family: "Neue Haas Unica W01";
   font-size: 12pt;
   font-weight: 500;
   line-height: 16pt;
