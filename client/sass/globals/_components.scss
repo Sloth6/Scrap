@@ -35,7 +35,9 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 }
 
 @mixin cardHover {
-    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    .card {
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    }
     @include transform(translate(-$cell, -$cell));
     * { 
         border-color: $colorAccent;
@@ -43,8 +45,10 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 }
 
 @mixin cardDrag {
+    .card {
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    }
     @include transform(translate(-$cell, -$cell));
-    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
 }
 
 @mixin button {

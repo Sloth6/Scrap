@@ -1,6 +1,6 @@
 // $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif;
 /* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
-$fontFamily:            'Neue Haas Unica W01';
+$fontFamily:            'Neue Haas Unica W01', "Helvetica Neue";
 /* $fontFamily:            -apple-system, "Helvetica Neue"; */
 
 $fontWeightLight:       300;
@@ -94,14 +94,19 @@ $headerLeftMarginOffset:
     line-height: $leading;
 }
 
+@mixin linkReset {
+    color: $colorType;
+    text-decoration: none;
+    border: 0;
+}
+
 html {
     @include typeBody;
     font-variant-numeric: oldstyle-num;
         
     a {
-        color: $colorType;
-        text-decoration: none;
-        border-bottom: .125em $colorType solid;
+        @include linkReset;
+//         border-bottom: .125em $colorType solid;
         
         &.warning {
 //             color: $colorAlert;

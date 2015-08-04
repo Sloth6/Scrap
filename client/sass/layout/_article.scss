@@ -55,22 +55,28 @@ section.container section.space section.content{
         
         // EVENTS
         
-        &:hover, &.hover, &.dragging, &.ui-draggable-dragging/* , &.add-element, &.editing  */{
-            z-index: 9999999;
-
-            author {
-                opacity: 1;
-            }
-        }
-        
         &:hover, &.hover {
             cursor: move;
             cursor: -webkit-grab;
             cursor: -moz-grab;;
             cursor: grab;
             
-            > .card {
+            .elementControls {
+                opacity: 1;
+            }
+
+            > .content {
                 @include cardHover;
+            }
+        }
+
+        &.dragging, &.ui-draggable-dragging, &.active, &:active {
+            cursor: -webkit-grabbing;
+            cursor: -moz-grabbing;
+            cursor: grabbing;
+
+            > .content {
+                @include cardDrag;
             }
         }
         
@@ -84,15 +90,52 @@ section.container section.space section.content{
                 opacity: .5;
             }
         }
-
-        &.dragging, &.ui-draggable-dragging, &.active, &:active {
-            cursor: -webkit-grabbing;
-            cursor: -moz-grabbing;
-            cursor: grabbing;
-
-            > .card {
-                @include cardDrag;
+                
+        // CONTENTS
+        
+        .elementControls {
+            @include transition(.25s $defaultCurve);
+            @include transition-property(opacity);
+            opacity: 0; 
+            position: relative;
+            z-index: -900;
+            font-style: normal;
+            color: $colorType;
+            
+            .elementDeleteButton, author {
+                @include typeSmall;
+                @include linkReset;
+                position: absolute;
+                display: block;
+                bottom: 0;
             }
+            
+            .elementDeleteButton {
+                left: 0;
+            }
+            
+            author {
+                right:  0;
+                white-space: nowrap;
+            }
+        }
+        
+        // CONTENT
+        
+        > .content {
+            position: relative;
+                    transform-origin: bottom right;
+            -webkit-transform-origin: bottom right;
+            @include transition(.125s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform,
+                                         box-shadow,
+                                 -webkit-box-shadow,
+                                    -moz-box-shadow,
+                                         background-color,
+                                         border-color,
+                                         color);
         }
         
         &.text {
@@ -140,50 +183,11 @@ section.container section.space section.content{
                 }
             }
         }
-        
-        // EDITING 
-        
-        &.editing {
-            
-        }
-        
-        // CONTENTS
-        
-        author {
-            @include typeSmall;
-            font-style: normal;
-            line-height: 1em;
-            position: absolute;
-            display: block;
-            color: $colorType;
-            top: -$cell * 1.5;
-            right: -$cell/4;
-            opacity: 0;
-            white-space: nowrap;
-            z-index: -900;
-//             @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-//             @include transform(translate3d(0,$cell*4,0));
-            @include transition(.25s $defaultCurve);
-            @include transition-property(opacity);
-        }
-        
-        // CONTENT
+
         
         .card {
             position: relative;
             max-width: $articleWidth;
-                    transform-origin: bottom right;
-            -webkit-transform-origin: bottom right;
-            @include transition(.125s $defaultCurve);
-            @include transition-property(transform,
-                                 -webkit-transform,
-                                    -moz-transform,
-                                         box-shadow,
-                                 -webkit-box-shadow,
-                                    -moz-box-shadow,
-                                         background-color,
-                                         border-color,
-                                         color);
 
             &.text {
                 @include cardStyle;

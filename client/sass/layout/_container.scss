@@ -16,11 +16,13 @@ section.container {
         width: 100vw;
         > header {
             h1.collectionName {
-                @include typeHeader;
-                padding: $cardPadding;
-                border: $cardBorder;
-                width: intrinsic;
-                height: $col;
+                a {
+                    @include typeHeader;
+                    padding: $cardPadding;
+                    border: $cardBorder;
+                    width: intrinsic;
+                    height: $col;
+                }
             }
         }
         
