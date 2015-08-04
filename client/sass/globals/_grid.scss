@@ -1,6 +1,7 @@
 $cell:				8pt;
 $gutter:            $cell;
 $col:               $cell * 8; // 64pt
-$broadMargin:       $cell * 6;
+$broadMargin:       $cell * 6; // 48pt
+$midMargin:         $cell * 3; // 24pt
 
 $baseline:          16pt;

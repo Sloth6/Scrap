@@ -53,10 +53,11 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
         //- title, description, thumbnail_url, html, author_name, author_url
         img.soundcloudThumbnail(src=content.thumbnail_url)
         header
-          h1.title!=content.title
-          .artist!=content.author_name
+          .top
+              h1.title!=content.title
+              .artist!=content.author_name
           .detail
-            .source soundcloud
+            .source SoundCloud
         //- .description!=content.description
         //- .iframeBlocker(style="positidon: absolute; top: 0; left: 0; width: 100%; height: 500px")
 
