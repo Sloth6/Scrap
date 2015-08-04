@@ -187,12 +187,10 @@ section.container section.space section.content{
 
             &.text {
                 @include cardStyle;
-                background: $colorAccentLight;
-//                 color: $colorType;
+                background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
                 font-style: italic;
                 border: $cardBorder;
                 width: $articleWidth;
-//                 padding-bottom: $broadMargin;
                 min-height: $articleMinHeight;
                 overflow: hidden;
             }

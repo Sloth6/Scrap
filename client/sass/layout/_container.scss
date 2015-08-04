@@ -4,9 +4,11 @@ $scaleMultiple: 2;
 section.container {
         
     section.blur {
+        @include transition(-webkit-filter 1s $defaultCurve);
+        
         &.obscured {
             opacity: .333;
-            -webkit-filter: blur(40px);
+            -webkit-filter: blur(10px);
         }
     }
     
