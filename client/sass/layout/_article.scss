@@ -279,14 +279,14 @@ section.container section.space section.content{
         }
         
         &.addElementForm {
+            position: absolute;
             top: 0;
             left: 0;
-            height: $col;
-            width: $col;
-            border-radius: $col;
+            height: $col/2;
+            width: $col/2;
+            border-radius: $col/2;
             border: $cardBorder;
             border-style: dashed;
-            padding: $cardPadding;
             background-color: $colorCardBackground;
             background-image: url('/images/add.png');
             background-size: 24.5px 24.5px;
@@ -301,8 +301,14 @@ section.container section.space section.content{
             &.closed {
                 &:hover {
                     @include transition-duration(.25s);
-                    @include transform(translate3d($cell, $cell, 0));
-                    @include box-shadow($cardBoxShadow);
+//                 height: $col/2 + $cell * 2;
+//                 width: $col/2 + $cell * 2;
+//                 border-radius: $col/2 + $cell * 2;
+                    padding: $cell;
+                    margin-left: -$cell;
+                    margin-top: -$cell;                    
+//                     @include transform(translate3d($cell, $cell, 0));
+//                     @include box-shadow($cardBoxShadow);
                 }
             }
                         
@@ -315,6 +321,7 @@ section.container section.space section.content{
                 overflow: hidden;
                 background-image: none;
                 cursor: auto;
+                padding: $cardPadding;
                 
                 &:hover {
                     @include transition-duration(1s);

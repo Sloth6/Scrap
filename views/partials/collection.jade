@@ -2,8 +2,9 @@
 -var elem_height = 700
 -var style = "top:"+top+"px;height:"+(elem_height)+"px;width:200vw;"
 .collection(style=style, class =collection.spaceKey,  data-spacekey=collection.spaceKey)
-  h1!=collection.name
-  //- include userMenu
+  header
+    h1.collectionName!=collection.name
+    //- include userMenu
   include addElementForm
   .elements
     -for (var j = 0; j < collection.elements.length; j++)

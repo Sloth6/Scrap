@@ -2,13 +2,7 @@
 $scaleMultiple: 2;
 
 section.container {
-//     position: fixed;
-    cursor: text;
-
-    &.dragging {
-        cursor: all-scroll;
-    }
-    
+        
     section.blur {
         &.obscured {
             opacity: .333;
@@ -16,12 +10,25 @@ section.container {
         }
     }
     
-    section.space {
-        @include transition(1.5s $defaultCurve);
-        @include transition-property(opacity, -webkit-filter);
+    .collection {
+        width: 100vw;
+        > header {
+            h1.collectionName {
+                @include typeHeader;
+                padding: $cardPadding;
+                border: $cardBorder;
+                width: intrinsic;
+                height: $col;
+            }
+        }
         
-
-    } 
+        > .collectionContent {
+            position: relative;
+            top: -$cardBorderWidth;
+//             height: 90%; // TODO: better value
+        }
+    }
+    
     .scale-container {
         transform-origin: 0 0;
         -webkit-transform-origin: 0 0;
