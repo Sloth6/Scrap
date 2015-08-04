@@ -88,9 +88,12 @@ $ ->
     $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
     
   $('.collection').each collection_init
- 
-  $(window).on 'mousewheel', master_scroll
+  
 
+  $(window).on 'mousewheel', master_scroll
+  $(window).scroll () ->
+    $('.collection.open .element').each element_place
+    
   $(window).on 'mousemove', (event) ->
     mouse.x = event.clientX / scale
     mouse.y = event.clientY / scale

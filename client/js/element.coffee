@@ -7,13 +7,13 @@ element_place = () ->
 
   return if element.hasClass('dragging')
   offset = element.data 'scroll_offset'
-  collection_scroll = element.parent().parent().data 'scroll_position'
+  # collection_scroll = element.parent().parent().data 'scroll_position'
   maxX = ($(window).width()  / scale )- element.width()
 
-  x = offset + collection_scroll + margin
+  # x = offset + collection_scroll + margin
+  x = offset - $(window).scrollLeft() + margin
 
   right_start = ($(window).width() - border) / scale
-
   left_min = -element.width()
   left_start = left_min + border
 

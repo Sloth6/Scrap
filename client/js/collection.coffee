@@ -34,6 +34,7 @@ collection_close = () ->
   collection.addClass('closed').removeClass 'open'
 
   collection_init.call collection
+  
 
 collection_enter = (event) ->
   collection = $(@)
@@ -46,20 +47,16 @@ collection_enter = (event) ->
 
   $('.collection').not(@).hide()
   $('.collection').not(@).addClass 'closed'
-  offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
+  # offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
   
   $('.scale-container').css { scale: 1, queue: false }
   window.scale = 1
-  $('.translate-container').css {x: 0, y: offsetTop, queue: false}
+  $('.translate-container').css {x: 0, y: 0, queue: false}
+
+  width = collection_children.call(@).length * 400
+  $(document.body).css {width}
 
   collection_init.call collection
-
-collection_scroll_wheel = (event) ->
-  collection = $(@)
-  event.preventDefault()
-  return unless collection.hasClass 'open'
-  delta = if event.deltaX is 0 then -event.deltaY else -event.deltaX
-  scroll_collection_by_delta(collection, delta)
 
 collection_children = () ->
   $(@).children('.elements').children()
@@ -83,11 +80,9 @@ collection_realign_elements = () ->
   $(@).data { maxX }
 
 collection_init = () ->
-  $(@).data 'scroll_position', 0
+  $(window).scrollLeft 0
   collection_realign_elements.call @
 
-  $(@).on 'mousewheel', collection_scroll_wheel
-  
   if not $(@).hasClass('fake')
     $(@).click collection_enter
     form = $(@).find('.direct-upload')
