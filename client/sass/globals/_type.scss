@@ -25,7 +25,7 @@ $headerLeftMarginOffset:
 
 @mixin typeSmall {
     font-size:      $typeSmallSize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
     line-height:    12pt;
     letter-spacing: 0.03125em;
 }
@@ -40,8 +40,8 @@ $headerLeftMarginOffset:
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightMedium;
-    letter-spacing: -.03125em;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.046874em;
     line-height:    $typeHeaderLeading;
 }
 
