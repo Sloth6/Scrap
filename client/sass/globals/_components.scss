@@ -62,11 +62,36 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     // float: left;
 }
 
+@mixin invertHover {
+    background-color: $colorType;
+    color: $colorCardBackground;
+}
+
 a {
+    @include linkReset;
+/*
     &:hover, &:active, &:focus {
         @include hoverAnimation;
     }
+*/
+//         border-bottom: .125em $colorType solid;
+    
+    &.warning {
+//             color: $colorAlert;
+        
+        &:hover {
+            @include hoverWarningAnimation;
+        }
+    }
+    
+    &.confirm {
+        &:hover {
+            @include hoverLinkAnimation;
+        }
+    }
 }
+    
+
 
 .card {
     

@@ -19,9 +19,22 @@ section.container {
                 a {
                     @include typeHeader;
                     padding: $cardPadding;
+                    padding-left: $cell;
                     border: $cardBorder;
                     width: intrinsic;
-                    height: $col;
+                    height: $typeHeaderLeading * 3;
+                    display: block;
+                    
+                    &:hover {
+                        @include invertHover;
+                    }
+                    &:before {
+                        content: "‹";
+                        position: absolute;
+                        top: $typeHeaderLeading;
+                        left: $cell/4;
+                        display: block;
+                    }
                 }
             }
         }
