@@ -2,9 +2,16 @@
 $scaleMultiple: 2;
 
 section.container {
+    
+    > header {
+        position: relative;
+        z-index: 20;
+    }
         
-    section.blur {
+    .blur {
         @include transition(-webkit-filter 1s $defaultCurve);
+        position: fixed;
+        z-index: 10;
         
         &.obscured {
             opacity: .333;
@@ -14,7 +21,11 @@ section.container {
     
     .collection {
         width: 100vw;
+        z-index: 1;
         > header {
+            width: 100vw;
+            position: relative;
+            
             h1.collectionName {
                 a {
                     @include typeHeader;
@@ -56,43 +67,5 @@ section.container {
                                 -moz-transform);
         position: relative;
         z-index: 1;
-    }
-    
-    > .delete.trash {
-        $trashSize: $col * .5;
-        z-index:    999;
-        bottom:-$trashSize;
-        right: 50%;
-        margin-left: -$trashSize / 2;
-        height: $trashSize;
-        width:  $trashSize;
-        position:   fixed;
-        color: $colorType;
-        text-align: center;
-        @include transition-timing-function($defaultCurve);
-        @include transition-duration(.5s);
-        @include transition-property(bottom, transform, -webkit-transform);
-        @include transform(scale3d(0.1, 0.1, 1.0));
-        
-        &:after {
-            content: "×";
-            font-size: $typeHeaderSize * 4;
-            font-weight: $fontWeightLight;
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            top: 0;
-            left: 0;
-        }
-        
-        &.visible {
-            bottom: 0;
-            @include transform(scale3d(.75, .75, 1.0));            
-        }
-        
-        &.overlap {
-            @include transform(scale3d(1.0, 1.0, 1.0));
-            @include hoverWarningAnimation;
-        }  
     }
 }
