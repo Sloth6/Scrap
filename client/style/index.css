@@ -1622,11 +1622,9 @@ section.container section.space section.content article .card.text {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
-  font-style: italic;
   border: 1pt solid #000000;
   width: 256pt;
   min-height: 192pt;
-  overflow: hidden;
 }
 /* line 203, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.image {

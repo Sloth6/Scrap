@@ -193,11 +193,10 @@ section.container section.space section.content{
             &.text {
                 @include cardStyle;
                 background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
-                font-style: italic;
+//                 font-family: "Comic Sans MS";
                 border: $cardBorder;
                 width: $articleWidth;
                 min-height: $articleMinHeight;
-                overflow: hidden;
             }
 
             &.image {
