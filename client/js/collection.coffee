@@ -32,7 +32,7 @@ collection_close = () ->
   $('.scale-container').css { scale: 1/scaleMultiple }
   window.scale = 1/scaleMultiple
   collection.addClass('closed').removeClass 'open'
-
+  document.title = 'Hotpot'
   collection_init.call collection
   
 
@@ -57,6 +57,7 @@ collection_enter = (event) ->
   $(document.body).css {width}
 
   collection_init.call collection
+  document.title = collection.data 'name'
 
 collection_children = () ->
   $(@).children('.elements').children()

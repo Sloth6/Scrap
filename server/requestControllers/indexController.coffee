@@ -12,7 +12,7 @@ nameMap = (users) ->
 
 indexPage = (res) ->
   res.render 'index.jade',
-    title : 'Hotpot: Collect & Share Anything Instantly'
+    title : 'Hotpot · Keep Everything for Your Project in One Place'
     description: ''
     author: 'scrap'
     names: { 1: "" }
@@ -41,7 +41,7 @@ module.exports =
             return -1 if a.createdAt > b.createdAt
             return 0
 
-        res.render 'home.jade', { user, title: 'title' }
+        res.render 'home.jade', { user, title: 'Hotpot' }
         callback()
     else
       indexPage res

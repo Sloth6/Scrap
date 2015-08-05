@@ -1,6 +1,7 @@
 extends layout
 
 block scripts
+  title= title
   script(src='/js/jquery/jquery.js')
   script(src="/js/jquery/jquery-ui.min.js")
   script(src="/js/jquery/jquery.transit.min.js")
@@ -13,8 +14,7 @@ block scripts
   script(src="/js/index/main.js")
   script(src="/js/home/headerMenu.js")
   script(src="/js/home/settingsMenu.js")
-
-
+  
 block content
   section.index
     header
