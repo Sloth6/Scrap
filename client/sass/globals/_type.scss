@@ -104,25 +104,6 @@ html {
     @include typeBody;
     font-variant-numeric: oldstyle-num;
         
-    a {
-        @include linkReset;
-//         border-bottom: .125em $colorType solid;
-        
-        &.warning {
-//             color: $colorAlert;
-            
-            &:hover {
-                @include hoverWarningAnimation;
-            }
-        }
-        
-        &.confirm {
-            &:hover {
-                @include hoverLinkAnimation;
-            }
-        }
-    }
-    
     p {
     
       & + p {

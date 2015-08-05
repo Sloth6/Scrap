@@ -7,7 +7,7 @@
       a(href='#')!=collection.name
     include userMenu
   include addElementForm
-  .elements
+  .elements.blur.blurThisCollection
     -for (var j = 0; j < collection.elements.length; j++)
       -var element = collection.elements[j]
       include element
