@@ -35,6 +35,15 @@ getType = (s, cb) ->
       return cb 'website'
     return cb 'file'# if contentType.match /^application\//
 
+nameMap = (users) ->
+  map = {}
+  for {name, id, email} in users
+    # split = name.split(' ')
+    # first = split[0]
+    # last = if split.length > 1 then split[1] else ''
+    map[id] = {name, email}
+  map
+
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, callback) =>
@@ -48,12 +57,13 @@ module.exports =
 
     done = (err, attributes) ->
       return callback err if err
-      models.Space.find(where: { spaceKey }).complete (err, space) =>
+      models.Space.find({ where: { spaceKey }, include: models.User }).complete (err, space) =>
         return callback err if err?
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
-          html = encodeURIComponent(element_jade({element, names:{}}))
+          space.nameMap = nameMap space.users
+          html = encodeURIComponent(element_jade({element, collection: space}))
           console.log 'emitting new element', element.content, spaceKey
           sio.to(spaceKey).emit 'newElement', { html, spaceKey }
           return callback null

@@ -4,6 +4,9 @@ indexCollections = require '../indexCollections'
 nameMap = (users) ->
   map = {}
   for {name, id, email} in users
+    # split = name.split(' ')
+    # first = split[0]
+    # last = if split.length > 1 then split[1] else ''
     map[id] = {name, email}
   map
 
@@ -12,7 +15,6 @@ indexPage = (res) ->
     title : 'Hotpot: Collect & Share Anything Instantly'
     description: ''
     author: 'scrap'
-    colors: {}
     names: { 1: "" }
     collections: indexCollections
     current_space:
@@ -31,14 +33,13 @@ module.exports =
         req.session.currentUserId = user.id        
         
         for space in user.spaces
-          space.userMap = nameMap space.users
-          # console.log space.userMap
+          space.nameMap = nameMap space.users
+          # console.log space.nameMap
+
           space.elements.sort (a, b) ->
             return 1 if a.createdAt < a.createdAt
             return -1 if a.createdAt > b.createdAt
             return 0
-          # if space.elements.length
-          #   console.log space.elements.map (e) -> e.id
 
         res.render 'home.jade', { user, title: 'title' }
         callback()

@@ -5,7 +5,7 @@
   header
     h1.collectionName
       a(href='#')!=collection.name
-    //- include userMenu
+    include userMenu
   include addElementForm
   .elements
     -for (var j = 0; j < collection.elements.length; j++)

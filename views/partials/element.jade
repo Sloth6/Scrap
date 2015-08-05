@@ -7,7 +7,13 @@
 article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
   .content
     .elementControls
-      author Sem Adipiscing
+      - if (typeof(collection.nameMap) !== "undefined") {
+        author= collection.nameMap[element.creatorId].name
+      - }
+      //- - } else {
+      //- author= ''
+      //- - }
+        
       a.elementDeleteButton.warning(href='#') Delete
     .card(class=element.contentType)
       //- if names[element.creatorId] != ""
