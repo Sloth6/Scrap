@@ -191,7 +191,7 @@ ul.menu {
     display: inline-block;
     white-space: nowrap;
     border: $cardBorder;
-    border-color: transparent;
+    background-color: $colorCardBackground;
     width: 0;
     top: -$cardBorderWidth;
     @include typeBody;

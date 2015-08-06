@@ -1,5 +1,5 @@
 detail_view_scale = 1.0
-scaleMultiple = 2 # must be the same as in _container.scss
+scaleMultiple = 4 # must be the same as in _container.scss
 old_top = 0
 mouse = { x: null, y: null }
 margin = -0.5

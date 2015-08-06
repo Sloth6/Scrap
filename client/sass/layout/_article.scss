@@ -164,10 +164,11 @@ section.container section.space section.content{
         
         &.soundcloud .card {
             width: $articleWidth;
+            padding: 0;
             
             header {
-                @include cardStyle;
                 border-top: 0;
+                padding: $cardPadding;
                 
                 h1 {
                 }
