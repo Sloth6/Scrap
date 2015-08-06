@@ -277,15 +277,6 @@ ul.menu {
                 @include transform(translate3d(0, 0, 0))
             }
                         
-            a {
-                position: relative;
-                left: 0;
-                @include transition(.25s $defaultCurve);
-                                
-                &:hover, &:active, &:focus {
-                    left: $cell;
-                }
-            }
         }
         
         &.open {
@@ -302,7 +293,13 @@ ul.menu {
             @include transform(translate3d(500.0px, 0.0, 0.0));
             
             &.first {
-                @include transform(translate3d(0, 0, 0))
+                @include transform(translate3d(0, 0, 0));
+                
+                a {
+                    &:hover {
+                        left: -$cell;
+                    }
+                }
             }
             
             input {
@@ -313,15 +310,6 @@ ul.menu {
                 }
             }
             
-            a {
-                position: relative;
-                right: 0;
-                @include transition(.25s $defaultCurve);
-                
-                &:hover, &:active, &:focus {
-                    left: $cell;
-                }
-            }
         }
         
         &.open {
@@ -385,6 +373,16 @@ ul.menu {
             width: 100%;
             @include transition(.5s $defaultCurve);
             @include transition-property(width);
+        }
+        
+        a {
+            position: relative;
+            left: 0;
+            @include transition(.25s $defaultCurve);
+                            
+            &:hover, &:active, &:focus {
+                left: $cell;
+            }
         }
         
         > a {
