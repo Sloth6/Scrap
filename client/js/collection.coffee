@@ -37,7 +37,7 @@ collection_close = () ->
   collection_init.call collection
   setTimeout(() ->
     $('header.main').css 'z-index', 30 # Place collection beneath header for smooth animation
-  , 0)
+  , 1000)
   setTimeout(() ->
     $('header .topLeftButton').removeClass 'backHomeButton'
     $('header .topLeftButton').addClass 'logoButton'
