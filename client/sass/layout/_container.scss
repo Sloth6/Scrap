@@ -6,7 +6,10 @@ $logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
 section.container {
     
     header.main {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left:0;
+        width:100vw;
         z-index: 40;
         
         .topLeftButton {
@@ -78,6 +81,7 @@ section.container {
     }
     
     .collection {
+        margin-top: 108px;
         width: 100vw;
         z-index: 1;
         

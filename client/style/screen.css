@@ -634,7 +634,7 @@ a.confirm:hover {
 /* line 96, ../sass/globals/_components.scss */
 .card {
   background-color: white;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -774,7 +774,7 @@ input {
   line-height: 16pt;
   letter-spacing: 0;
   color: #000000;
-  border-bottom: 1pt #000000 solid;
+  border-bottom: 0.5pt #000000 solid;
 }
 /* line 163, ../sass/globals/_components.scss */
 input:focus, input:hover {
@@ -808,11 +808,11 @@ ul.menu {
   position: absolute;
   display: inline-block;
   white-space: nowrap;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   border-color: transparent;
   background-color: transparent;
   width: 0;
-  top: -1pt;
+  top: -0.5pt;
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
   font-weight: 400;
@@ -899,7 +899,7 @@ ul.menu.hideFirst.left > li.first {
 /* line 269, ../sass/globals/_components.scss */
 ul.menu.left {
   float: left;
-  left: -1pt;
+  left: -0.5pt;
 }
 /* line 273, ../sass/globals/_components.scss */
 ul.menu.left li, ul.menu.left.open li.hidden {
@@ -924,7 +924,7 @@ ul.menu.left.open li {
 }
 /* line 289, ../sass/globals/_components.scss */
 ul.menu.right {
-  right: -1pt;
+  right: -0.5pt;
 }
 /* line 292, ../sass/globals/_components.scss */
 ul.menu.right li, ul.menu.right.open li.hidden {
@@ -1322,15 +1322,18 @@ body {
 */
 /* line 8, ../sass/layout/_container.scss */
 section.container header.main {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   z-index: 40;
 }
-/* line 12, ../sass/layout/_container.scss */
+/* line 15, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton {
   width: 75.68pt;
   white-space: nowrap;
   overflow: hidden;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1344,11 +1347,11 @@ section.container header.main .topLeftButton {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 23, ../sass/layout/_container.scss */
+/* line 26, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton:hover {
   background-color: black;
 }
-/* line 27, ../sass/layout/_container.scss */
+/* line 30, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton a {
   border: 0;
   display: inline-block;
@@ -1366,39 +1369,39 @@ section.container header.main .topLeftButton a {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 37, ../sass/layout/_container.scss */
+/* line 40, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton a.back {
   border-left: 0;
   width: 16pt;
   text-align: center;
 }
-/* line 43, ../sass/layout/_container.scss */
+/* line 46, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton a.logo {
   width: 75.68pt;
   border-right: 0;
 }
-/* line 51, ../sass/layout/_container.scss */
+/* line 54, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton.logoButton a {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 58, ../sass/layout/_container.scss */
+/* line 61, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton.backHomeButton {
   -moz-transform: translate3d(-43.68pt, 0, 0);
   -ms-transform: translate3d(-43.68pt, 0, 0);
   -webkit-transform: translate3d(-43.68pt, 0, 0);
   transform: translate3d(-43.68pt, 0, 0);
 }
-/* line 61, ../sass/layout/_container.scss */
+/* line 64, ../sass/layout/_container.scss */
 section.container header.main .topLeftButton.backHomeButton a {
   -moz-transform: translate3d(-39.11111pt, 0, 0);
   -ms-transform: translate3d(-39.11111pt, 0, 0);
   -webkit-transform: translate3d(-39.11111pt, 0, 0);
   transform: translate3d(-39.11111pt, 0, 0);
 }
-/* line 69, ../sass/layout/_container.scss */
+/* line 72, ../sass/layout/_container.scss */
 section.container .blur {
   -moz-transition: -webkit-filter 1s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: -webkit-filter 1s cubic-bezier(0.19, 1, 0.22, 1);
@@ -1407,30 +1410,31 @@ section.container .blur {
   position: fixed;
   z-index: 10;
 }
-/* line 74, ../sass/layout/_container.scss */
+/* line 77, ../sass/layout/_container.scss */
 section.container .blur.obscured {
   opacity: .333;
   -webkit-filter: blur(10px);
 }
-/* line 80, ../sass/layout/_container.scss */
+/* line 83, ../sass/layout/_container.scss */
 section.container .collection {
+  margin-top: 108px;
   width: 100vw;
   z-index: 1;
 }
-/* line 86, ../sass/layout/_container.scss */
+/* line 90, ../sass/layout/_container.scss */
 section.container .collection.open > header h1.collectionName {
-  -moz-transform: translate3d(31pt, 0, 0);
-  -ms-transform: translate3d(31pt, 0, 0);
-  -webkit-transform: translate3d(31pt, 0, 0);
-  transform: translate3d(31pt, 0, 0);
+  -moz-transform: translate3d(31.5pt, 0, 0);
+  -ms-transform: translate3d(31.5pt, 0, 0);
+  -webkit-transform: translate3d(31.5pt, 0, 0);
+  transform: translate3d(31.5pt, 0, 0);
 }
-/* line 93, ../sass/layout/_container.scss */
+/* line 97, ../sass/layout/_container.scss */
 section.container .collection > header {
   position: relative;
   width: 100vw;
   z-index: 20;
 }
-/* line 98, ../sass/layout/_container.scss */
+/* line 102, ../sass/layout/_container.scss */
 section.container .collection > header h1.collectionName {
   display: block;
   -moz-transform: translate3d(0, 0, 0);
@@ -1446,7 +1450,7 @@ section.container .collection > header h1.collectionName {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 107, ../sass/layout/_container.scss */
+/* line 111, ../sass/layout/_container.scss */
 section.container .collection > header h1.collectionName a {
   width: intrinsic;
   display: block;
@@ -1460,18 +1464,18 @@ section.container .collection > header h1.collectionName a {
                       }
   */
 }
-/* line 111, ../sass/layout/_container.scss */
+/* line 115, ../sass/layout/_container.scss */
 section.container .collection > header h1.collectionName a:hover {
   background-color: #000000;
   color: white;
 }
-/* line 127, ../sass/layout/_container.scss */
+/* line 131, ../sass/layout/_container.scss */
 section.container .collection > .elements {
   z-index: 10;
   position: relative;
-  top: -1pt;
+  top: -0.5pt;
 }
-/* line 135, ../sass/layout/_container.scss */
+/* line 139, ../sass/layout/_container.scss */
 section.container .elements {
   -webkit-transform-origin: 0 0;
   -moz-transform: scale(0.25);
@@ -1504,28 +1508,32 @@ section.container section.space section.content .collection.closed article {
   line-height: 1.25em;
   letter-spacing: .015125em;
 }
-/* line 14, ../sass/layout/_article.scss */
+/* line 13, ../sass/layout/_article.scss */
+section.container section.space section.content .collection.closed article .card {
+  border-width: 2pt;
+}
+/* line 16, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.text {
   font-weight: 500;
 }
-/* line 20, ../sass/layout/_article.scss */
+/* line 22, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.website header h1 {
   -webkit-line-clamp: 6;
   max-height: 6em;
 }
-/* line 25, ../sass/layout/_article.scss */
+/* line 27, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.website header .url {
   opacity: 0;
 }
-/* line 29, ../sass/layout/_article.scss */
+/* line 31, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.website .description {
   opacity: 0;
 }
-/* line 33, ../sass/layout/_article.scss */
+/* line 35, ../sass/layout/_article.scss */
 section.container section.space section.content .collection.closed article .card.website img {
   margin-top: -24pt;
 }
-/* line 48, ../sass/layout/_article.scss */
+/* line 50, ../sass/layout/_article.scss */
 section.container section.space section.content article {
   color: #000000;
   position: absolute;
@@ -1539,18 +1547,18 @@ section.container section.space section.content article {
   letter-spacing: -.046874em;
   line-height: 1em;
 }
-/* line 60, ../sass/layout/_article.scss */
+/* line 62, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover, section.container section.space section.content article.hover {
   cursor: move;
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
 }
-/* line 66, ../sass/layout/_article.scss */
+/* line 68, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover .elementControls, section.container section.space section.content article.hover .elementControls {
   opacity: 1;
 }
-/* line 70, ../sass/layout/_article.scss */
+/* line 72, ../sass/layout/_article.scss */
 section.container section.space section.content article:hover > .content, section.container section.space section.content article.hover > .content {
   -moz-transform: translate(-8pt, -8pt);
   -ms-transform: translate(-8pt, -8pt);
@@ -1559,21 +1567,21 @@ section.container section.space section.content article:hover > .content, sectio
 }
 /* line 38, ../sass/globals/_components.scss */
 section.container section.space section.content article:hover > .content .card, section.container section.space section.content article.hover > .content .card {
-  -moz-box-shadow: 8pt 8pt 8pt 0 black;
-  -webkit-box-shadow: 8pt 8pt 8pt 0 black;
-  box-shadow: 8pt 8pt 8pt 0 black;
+  -moz-box-shadow: 8pt 8pt 0 0 black;
+  -webkit-box-shadow: 8pt 8pt 0 0 black;
+  box-shadow: 8pt 8pt 0 0 black;
 }
 /* line 42, ../sass/globals/_components.scss */
 section.container section.space section.content article:hover > .content *, section.container section.space section.content article.hover > .content * {
   border-color: yellow;
 }
-/* line 75, ../sass/layout/_article.scss */
+/* line 77, ../sass/layout/_article.scss */
 section.container section.space section.content article.dragging, section.container section.space section.content article.ui-draggable-dragging, section.container section.space section.content article.active, section.container section.space section.content article:active {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing;
 }
-/* line 80, ../sass/layout/_article.scss */
+/* line 82, ../sass/layout/_article.scss */
 section.container section.space section.content article.dragging > .content, section.container section.space section.content article.ui-draggable-dragging > .content, section.container section.space section.content article.active > .content, section.container section.space section.content article:active > .content {
   -moz-transform: translate(-8pt, -8pt);
   -ms-transform: translate(-8pt, -8pt);
@@ -1582,20 +1590,20 @@ section.container section.space section.content article.dragging > .content, sec
 }
 /* line 48, ../sass/globals/_components.scss */
 section.container section.space section.content article.dragging > .content .card, section.container section.space section.content article.ui-draggable-dragging > .content .card, section.container section.space section.content article.active > .content .card, section.container section.space section.content article:active > .content .card {
-  -moz-box-shadow: 8pt 8pt 8pt 0 black;
-  -webkit-box-shadow: 8pt 8pt 8pt 0 black;
-  box-shadow: 8pt 8pt 8pt 0 black;
+  -moz-box-shadow: 8pt 8pt 0 0 black;
+  -webkit-box-shadow: 8pt 8pt 0 0 black;
+  box-shadow: 8pt 8pt 0 0 black;
 }
-/* line 85, ../sass/layout/_article.scss */
+/* line 87, ../sass/layout/_article.scss */
 section.container section.space section.content article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
-/* line 91, ../sass/layout/_article.scss */
+/* line 93, ../sass/layout/_article.scss */
 section.container section.space section.content article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 98, ../sass/layout/_article.scss */
+/* line 100, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1611,7 +1619,7 @@ section.container section.space section.content article .elementControls {
   font-style: normal;
   color: #000000;
 }
-/* line 107, ../sass/layout/_article.scss */
+/* line 109, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls .elementDeleteButton, section.container section.space section.content article .elementControls author {
   font-size: 8pt;
   font-weight: 400;
@@ -1624,16 +1632,16 @@ section.container section.space section.content article .elementControls .elemen
   display: block;
   bottom: 0;
 }
-/* line 115, ../sass/layout/_article.scss */
+/* line 117, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls .elementDeleteButton {
   left: 0;
 }
-/* line 119, ../sass/layout/_article.scss */
+/* line 121, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls author {
   right: 0;
   white-space: nowrap;
 }
-/* line 127, ../sass/layout/_article.scss */
+/* line 129, ../sass/layout/_article.scss */
 section.container section.space section.content article > .content {
   position: relative;
   transform-origin: bottom right;
@@ -1647,30 +1655,30 @@ section.container section.space section.content article > .content {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
 }
-/* line 143, ../sass/layout/_article.scss */
+/* line 145, ../sass/layout/_article.scss */
 section.container section.space section.content article.text {
   font-style: normal;
 }
-/* line 146, ../sass/layout/_article.scss */
+/* line 148, ../sass/layout/_article.scss */
 section.container section.space section.content article.text * {
   outline: none;
 }
-/* line 150, ../sass/layout/_article.scss */
+/* line 152, ../sass/layout/_article.scss */
 section.container section.space section.content article.text em {
   font-style: italic;
 }
-/* line 154, ../sass/layout/_article.scss */
+/* line 156, ../sass/layout/_article.scss */
 section.container section.space section.content article.text strong {
   font-weight: 700;
 }
-/* line 158, ../sass/layout/_article.scss */
+/* line 160, ../sass/layout/_article.scss */
 section.container section.space section.content article.text.short {
   font-size: 24pt;
   font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
 }
-/* line 162, ../sass/layout/_article.scss */
+/* line 164, ../sass/layout/_article.scss */
 section.container section.space section.content article.text.long {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -1678,17 +1686,17 @@ section.container section.space section.content article.text.long {
   line-height: 16pt;
   letter-spacing: 0;
 }
-/* line 167, ../sass/layout/_article.scss */
+/* line 169, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card {
   width: 256pt;
   padding: 0;
 }
-/* line 171, ../sass/layout/_article.scss */
+/* line 173, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 178, ../sass/layout/_article.scss */
+/* line 180, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card header .artist {
   font-size: 8pt;
   font-weight: 400;
@@ -1696,7 +1704,7 @@ section.container section.space section.content article.soundcloud .card header 
   letter-spacing: 0.03125em;
   margin-top: 4pt;
 }
-/* line 183, ../sass/layout/_article.scss */
+/* line 185, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card header .detail {
   margin-top: 24pt;
   font-size: 8pt;
@@ -1704,40 +1712,40 @@ section.container section.space section.content article.soundcloud .card header 
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 191, ../sass/layout/_article.scss */
+/* line 193, ../sass/layout/_article.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 256pt;
   overflow: hidden;
 }
-/* line 196, ../sass/layout/_article.scss */
+/* line 200, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   width: 256pt;
   min-height: 192pt;
 }
-/* line 205, ../sass/layout/_article.scss */
+/* line 209, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.image {
   width: 256pt;
-  margin-left: 1pt;
+  margin-left: 0.5pt;
 }
-/* line 211, ../sass/layout/_article.scss */
+/* line 215, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   width: 192pt;
   padding-top: 16pt;
 }
-/* line 216, ../sass/layout/_article.scss */
+/* line 220, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1748,7 +1756,7 @@ section.container section.space section.content article .card.website:hover {
       border-color: blue;
   */
 }
-/* line 220, ../sass/layout/_article.scss */
+/* line 224, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website a {
   border: 0;
   position: absolute;
@@ -1757,7 +1765,7 @@ section.container section.space section.content article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 232, ../sass/layout/_article.scss */
+/* line 236, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1770,7 +1778,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: top;
   transition-property: top;
 }
-/* line 238, ../sass/layout/_article.scss */
+/* line 242, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1781,7 +1789,7 @@ section.container section.space section.content article .card.website .text head
   padding-bottom: .125em;
   margin-bottom: -.125em;
 }
-/* line 252, ../sass/layout/_article.scss */
+/* line 256, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   font-size: 8pt;
@@ -1797,7 +1805,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 260, ../sass/layout/_article.scss */
+/* line 264, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text .description {
   margin-top: 144pt;
   margin-bottom: 4pt;
@@ -1815,7 +1823,7 @@ section.container section.space section.content article .card.website .text .des
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 269, ../sass/layout/_article.scss */
+/* line 273, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1827,17 +1835,17 @@ section.container section.space section.content article .card.website .text img 
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 276, ../sass/layout/_article.scss */
+/* line 280, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website.image {
   max-height: 384pt;
 }
-/* line 286, ../sass/layout/_article.scss */
+/* line 290, ../sass/layout/_article.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
-/* line 293, ../sass/layout/_article.scss */
+/* line 297, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm {
   position: absolute;
   top: 0;
@@ -1845,7 +1853,7 @@ section.container section.space section.content article.addElementForm {
   height: 32pt;
   width: 32pt;
   border-radius: 32pt;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   border-style: dashed;
   background-color: white;
   background-image: url("/images/add.png");
@@ -1867,7 +1875,7 @@ section.container section.space section.content article.addElementForm {
   -webkit-transition-property: border-radius, background-image, height, width, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: border-radius, background-image, height, width, transform, -webkit-transform, -moz-transform;
 }
-/* line 314, ../sass/layout/_article.scss */
+/* line 318, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.closed:hover {
   -moz-transition-duration: 0.25s;
   -o-transition-duration: 0.25s;
@@ -1877,7 +1885,7 @@ section.container section.space section.content article.addElementForm.closed:ho
   margin-left: -8pt;
   margin-top: -8pt;
 }
-/* line 327, ../sass/layout/_article.scss */
+/* line 331, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.open {
   -moz-transition-duration: 1s;
   -o-transition-duration: 1s;
@@ -1895,14 +1903,14 @@ section.container section.space section.content article.addElementForm.open {
   cursor: auto;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 338, ../sass/layout/_article.scss */
+/* line 342, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.open:hover {
   -moz-transition-duration: 1s;
   -o-transition-duration: 1s;
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
 }
-/* line 342, ../sass/layout/_article.scss */
+/* line 346, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.open ul {
   opacity: 1;
   -moz-transform: scale3d(1, 1, 1);
@@ -1914,7 +1922,7 @@ section.container section.space section.content article.addElementForm.open ul {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
 }
-/* line 349, ../sass/layout/_article.scss */
+/* line 353, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   opacity: 0;
   transform-origin: top left;
@@ -1932,21 +1940,21 @@ section.container section.space section.content article.addElementForm ul {
   -webkit-transition-property: opacity, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: opacity, transform, -webkit-transform, -moz-transform;
 }
-/* line 357, ../sass/layout/_article.scss */
+/* line 361, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
-/* line 360, ../sass/layout/_article.scss */
+/* line 364, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 304pt;
   position: relative;
 }
-/* line 365, ../sass/layout/_article.scss */
+/* line 369, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
-/* line 369, ../sass/layout/_article.scss */
+/* line 373, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 500;
@@ -1954,7 +1962,7 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 1em;
   height: 100%;
 }
-/* line 375, ../sass/layout/_article.scss */
+/* line 379, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -1966,7 +1974,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   height: 16pt;
   width: intrinsic;
 }
-/* line 382, ../sass/layout/_article.scss */
+/* line 386, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1974,7 +1982,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   left: 0;
   position: absolute;
 }
-/* line 389, ../sass/layout/_article.scss */
+/* line 393, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1984,7 +1992,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   opacity: 0;
   cursor: pointer;
 }
-/* line 401, ../sass/layout/_article.scss */
+/* line 405, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done {
   position: relative;
   display: inline-block;
@@ -1992,7 +2000,7 @@ section.container section.space section.content article.addElementForm ul li.don
   float: right;
   width: intrinsic;
 }
-/* line 408, ../sass/layout/_article.scss */
+/* line 412, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done a {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -2049,7 +2057,7 @@ body {
   padding-left: 16pt !important;
   padding-bottom: 8pt !important;
   background-color: white;
-  border: 1pt solid #000000;
+  border: 0.5pt solid #000000;
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;

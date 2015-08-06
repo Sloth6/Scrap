@@ -11,6 +11,8 @@ section.container section.space section.content{
             letter-spacing: .015125em;
 
             .card {
+                border-width: $cardBorderWidth * $scaleMultiple;
+                
                 &.text {
                     font-weight: $fontWeightMedium;
                 }
@@ -192,6 +194,8 @@ section.container section.space section.content{
             position: relative;
             max-width: $articleWidth;
             overflow: hidden;
+//             @include transition($collectionOpenTransitionDuration linear);
+//             @include transition-property(border-width);
 
             &.text {
                 @include cardStyle;

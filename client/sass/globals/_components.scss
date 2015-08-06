@@ -19,10 +19,10 @@ $menuItemHeight: $leading;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           1pt;
+$cardBorderWidth:           .5pt;
 $cardBorderColor:           $colorType;
 $cardBorder:                $cardBorderWidth solid $cardBorderColor;
-$cardBoxShadowDimensions:   $cell $cell $cell 0;
+$cardBoxShadowDimensions:   $cell $cell 0 0;
 $cardBoxShadowColor:        rgba(0,0,0,1);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
