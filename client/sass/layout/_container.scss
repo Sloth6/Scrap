@@ -84,16 +84,15 @@ section.container {
 //             height: 90%; // TODO: better value
         }
     }
-    
-    .scale-container {
-        transform-origin: 0 0;
+    .collections {
+        margin-top: 109px;
+    }
+    .elements {        
         -webkit-transform-origin: 0 0;
         @include transform(scale(1/$scaleMultiple));
         @include transition(1s $defaultCurve);
         @include transition-property(transform,
                              -webkit-transform,
                                 -moz-transform);
-        position: relative;
-        z-index: 1;
     }
 }

@@ -31,7 +31,7 @@ collection_close = () ->
   $('.collection header.collectionHeader').removeClass 'open'
   $(".menu.settings").removeClass 'hidden'
   $('.translate-container').css { x: 0, y: old_top }
-  $('.scale-container').css { scale: 1/scaleMultiple }
+  $('.elements').css { scale: 1/scaleMultiple }
   window.scale = 1/scaleMultiple
   collection.addClass('closed').removeClass 'open'
   document.title = 'Hotpot'
@@ -53,9 +53,9 @@ collection_enter = (event) ->
   $('.collection').not(@).addClass 'closed'
   # offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
   
-  $('.scale-container').css { scale: 1, queue: false }
+  $('.elements').css { scale: 1, queue: false }
   window.scale = 1
-  $('.translate-container').css {x: 0, y: 0, queue: false}
+  $('.translate-container').css {x: 0, y: 0, queue: false}, 1000
 
   width = collection_children.call(@).length * 400
   $(document.body).css {width}

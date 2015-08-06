@@ -14,6 +14,7 @@ master_scroll = (event) ->
   y = parseInt($('.translate-container').css('y')) + event.deltaY
   y = Math.min y, 0
   y = Math.max y, -collection_max_y/scaleMultiple
+  # y += 109
   $('.translate-container').css { y }
 
 emitNewElement = (content, spacekey) ->
@@ -80,6 +81,7 @@ $ ->
   ).mouseout () ->
     $(@).css 'zIndex', $(@).data('oldZIndex')
   
+  # $('.elements').css({ transformOrigin: 'top left' })
   editable = document.getElementById('editable');
 
   editable = $('.editable')

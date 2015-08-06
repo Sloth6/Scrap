@@ -47,7 +47,7 @@ block content
   section.space.blur.blurAllCollections
     section.content(style="position:fixed;")
       .translate-container
-        .scale-container
-          - var collections = user.spaces
-          include partials/collections
-          //- .addCollectionButton(style='height:200px;width:200px;background-color:red;')
+        //- .scale-container
+        - var collections = user.spaces
+        include partials/collections
+        //- .addCollectionButton(style='height:200px;width:200px;background-color:red;')
