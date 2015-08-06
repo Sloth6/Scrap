@@ -31,7 +31,7 @@ collection_close = () ->
   $('header .topLeftButton').addClass 'logoButton'
   $('.collection header.collectionHeader').removeClass 'open'
   $(".menu.settings").removeClass 'hidden'
-  $('.translate-container').transition { x: 0, y: old_top }, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
+  $('.translate-container').transition { x: 0, y: old_top, delay: 1000 }, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
   $('.elements').css { scale: 1/scaleMultiple }
   window.scale = 1/scaleMultiple
   collection.addClass('closed').removeClass 'open'
@@ -39,7 +39,7 @@ collection_close = () ->
   collection_init.call collection
   setTimeout(() ->
     $('header.main').css 'z-index', 30 # Place collection beneath header for smooth animation
-  , 1000)
+  , 2000)
   
   
 
