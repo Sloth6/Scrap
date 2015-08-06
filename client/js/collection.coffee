@@ -57,7 +57,7 @@ collection_enter = (event) ->
   $(document.body).css {width}
 
   collection_init.call collection
-  document.title = collection.data 'name'
+  document.title = "#{collection.data('name')} · Hotpot"
 
 collection_children = () ->
   $(@).children('.elements').children()

@@ -26,7 +26,9 @@ module.exports =
       currentUserId = req.session.currentUserId
       models.User.find(
         where: { id: currentUserId }
-        include: [ {model:models.Space, include:[model:models.Element, models.User]} ]
+        include: [ {
+          model:models.Space, include:[ model:models.Element, models.User ]
+        } ]
       ).complete (err, user) ->
         return callback err if err?
         return indexPage res unless user?
@@ -34,12 +36,8 @@ module.exports =
         
         for space in user.spaces
           space.nameMap = nameMap space.users
-          # console.log space.nameMap
-
           space.elements.sort (a, b) ->
-            return 1 if a.createdAt < a.createdAt
-            return -1 if a.createdAt > b.createdAt
-            return 0
+            new Date(b.createdAt) - new Date(a.createdAt)
 
         res.render 'home.jade', { user, title: 'Hotpot' }
         callback()
