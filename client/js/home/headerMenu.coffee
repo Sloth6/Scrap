@@ -11,8 +11,10 @@ $ ->
             if to == 'open'
                 menu.addClass 'open'
                 $blur.addClass 'obscured'
-                $('section.container').prepend mask
-                $('.mask').click ->
+#                 $blur.prepend mask
+                $('html').click ->
+                    zIndex = 99999# if (menu.hasClass('users')) then 40 else 40
+                    $(@).css 'z-index', zIndex
                     toggleMenu 'close'
             else # close
                 menu.removeClass 'open'
@@ -20,6 +22,9 @@ $ ->
                 mask.remove()
                 resetSubmenu()
                 canCloseMenu = false
+                
+        menu.click ->
+            event.stopPropagation();
     
         resetSubmenu = ->
             menu.find($('ul.submenu li')).addClass 'hidden'
@@ -29,7 +34,7 @@ $ ->
             inputIsFocused = false
             subMenuIsOpen = false
         
-        menu.children("li:first-child").mouseenter ->
+        menu.children("li:first-child").click ->
             if inputIsFocused or subMenuIsOpen
                 return
             else
@@ -39,6 +44,7 @@ $ ->
                 , 500)
     
         menu.mouseleave ->
+            return
             # if no inputs are focused and no submenus are open
             if inputIsFocused or subMenuIsOpen
                 return

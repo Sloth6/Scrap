@@ -45,7 +45,7 @@ section.container {
         &.open {
             > header {
                 h1.collectionName {
-                    @include transform(translate3d($cell*4, 0, 0));
+                    @include transform(translate3d($cell*4+1, 0, 0));
                 }
             }
         }
@@ -56,6 +56,12 @@ section.container {
             z-index: 20;
             
             h1.collectionName {
+                display: block;
+                @include transform(translate3d(0, 0, 0));
+                @include transition(1s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
 
                 a {
                     width: intrinsic;

@@ -38,10 +38,12 @@ section.container section.space section.content{
         }
     }
     
+/*
     article, h1, .card {
         @include transition($collectionOpenTransitionDuration $defaultCurve);
         @include transition-property(font-weight);
     }
+*/
     
     article {
         color: $colorType;
