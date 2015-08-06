@@ -39,10 +39,10 @@ block scripts
 
 block content
   header.main
-    h1.logo
-      a.card.headerCard.invertHover.headerType(href='#')
-        span.back ‹
-        span.name Hotpot
+    .topLeftButton.logoButton
+      a.back.card.headerCard.invertHover.headerType(href='#') ‹
+      a.logo.card.headerCard.invertHover.headerType(href='#')
+        h1.logo Hotpot
     include partials/settingsMenu
   section.space.blur.blurAllCollections
     section.content(style="position:fixed;")
