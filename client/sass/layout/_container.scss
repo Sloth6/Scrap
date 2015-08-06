@@ -48,11 +48,21 @@ section.container {
     .collection {
         width: 100vw;
         z-index: 1;
+        
+        &.open {
+            > header {
+                h1.collectionName {
+                    @include transform(translate3d($cell*4, 0, 0));
+                }
+            }
+        }
+        
         > header {
-            width: 100vw;
             position: relative;
+            width: 100vw;
             
             h1.collectionName {
+
                 a {
                     width: intrinsic;
                     display: block;

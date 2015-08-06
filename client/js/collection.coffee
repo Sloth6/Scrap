@@ -28,6 +28,7 @@ collection_close = () ->
   
   $('.collection').show()
   $('header h1.logo a').removeClass 'backHome'
+  $('.collection header.collectionHeader').removeClass 'open'
   $(".menu.settings").removeClass 'hidden'
   $('.translate-container').css { x: 0, y: old_top }
   $('.scale-container').css { scale: 1/scaleMultiple }
@@ -44,6 +45,7 @@ collection_enter = (event) ->
   history.pushState {name: "derp"}, "", "/#{spacekey}"
   collection.addClass('open').removeClass 'closed'
   $('header h1.logo a').addClass 'backHome'
+  $('.collection header.collectionHeader').addClass 'open'
   $(".menu.settings").addClass 'hidden'
   old_top = $('.translate-container').css 'y'
 
