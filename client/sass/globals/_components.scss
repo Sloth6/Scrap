@@ -94,9 +94,17 @@ a {
 
 
 .card {
+    @include cardStyle;
+    display: block;
     
-    &.form {
-        padding-left: $cell * 2 !important;
+    &.headerCard {
+        height: $typeHeaderLeading * 3;
+    }
+}
+
+.invertHover {
+    &:hover {
+        @include invertHover;
     }
 }
 

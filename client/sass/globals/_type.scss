@@ -103,6 +103,10 @@ $headerLeftMarginOffset:
 html {
     @include typeBody;
     font-variant-numeric: oldstyle-num;
+    
+    .headerType {
+        @include typeHeader;
+    }
         
     p {
     

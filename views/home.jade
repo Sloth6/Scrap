@@ -38,10 +38,12 @@ block scripts
     var userId = +"!{user.id}"
 
 block content
-  header
+  header.main
+    h1.logo
+      a.card.headerCard.invertHover.headerType(href='#')
+        span.back ‹
+        span.name Hotpot
     include partials/settingsMenu
-
-  
   section.space.blur.blurAllCollections
     section.content(style="position:fixed;")
       .translate-container

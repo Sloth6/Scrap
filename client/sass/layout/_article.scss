@@ -301,7 +301,7 @@ section.container section.space section.content{
             background-size: 24.5px 24.5px;
             background-position: center center;
             background-repeat: no-repeat;
-            z-index: 9999999;
+            z-index: 999999999999;
             cursor: pointer;
             @include transform(translate3d($cell*2, $cell*2, 0));
             @include transition(.25s $defaultCurve);
