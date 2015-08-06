@@ -1,6 +1,7 @@
 // must be the same as in main.coffee
 $scaleMultiple: 4;
-$backButtonWidth: ($col / 4) + $cardPaddingLeft + $cardBorderWidth;
+$backButtonWidth: ($col/4) + $cardPaddingLeft + $cell;
+$logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
 
 section.container {
     
@@ -9,35 +10,58 @@ section.container {
         z-index: 40;
         
         .topLeftButton {
+            width: $col * 1.1825;
+            white-space: nowrap;
+            overflow: hidden;
+            border: $cardBorder;
             @include transition(1s $defaultCurve);
-                @include transition-delay(0);
+            @include transform(translate3d(0, 0, 0));
             @include transition-property(transform,
                                  -webkit-transform,
                                     -moz-transform);
+                                    
+            &:hover {
+                background-color: black;
+            }
 
             a {
+                border: 0;
                 display: inline-block;
                 vertical-align: top;
+                @include transition(1s $defaultCurve);
+                @include transition-delay(0);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
                                         
                 &.back {
-                    border-right: 0;
+                    border-left: 0;
                     width: $col/4;
                     text-align: center;
                 }
                 
                 &.logo {
-                    border-left: 0;
+                    width: $col*1.1825;
+                    border-right: 0;
                 }
                                         
             }
             
             &.logoButton {
-                @include transform(translate3d(-$backButtonWidth, 0, 0));
+                a {
+                    
+                @include transform(translate3d(0, 0, 0));
+                }
+
             }
 
-            &.backHomeButton {
-                @include transition-delay(1s);
-                @include transform(translate3d(0, 0, 0));
+            &.backHomeButton { 
+                @include transform(translate3d(-$col*1.1825 + $backButtonWidth, 0, 0));
+                
+                a{
+                    @include transform(translate3d(-$backButtonWidth - $cell/1.125, 0, 0));
+    //                 @include transition-delay(1s);
+                }
             }
         }
     }
@@ -60,8 +84,8 @@ section.container {
         &.open {
             > header {
                 h1.collectionName {
-                    @include transition-delay(1s);
-                    @include transform(translate3d($backButtonWidth, 0, 0));
+//                     @include transition-delay(1s);
+                    @include transform(translate3d($backButtonWidth - $cardBorderWidth, 0, 0));
                 }
             }
         }
@@ -78,7 +102,7 @@ section.container {
                 @include transition-property(transform,
                                      -webkit-transform,
                                         -moz-transform);
-                @include transition-delay(0);
+//                 @include transition-delay(0);
 
                 a {
                     width: intrinsic;

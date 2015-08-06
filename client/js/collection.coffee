@@ -27,11 +27,9 @@ collection_close = () ->
   history.pushState {name: "home"}, "", "/"
   
   $('.collection').show()
-  $('header .topLeftButton').removeClass 'backHomeButton'
-  $('header .topLeftButton').addClass 'logoButton'
   $('.collection header.collectionHeader').removeClass 'open'
   $(".menu.settings").removeClass 'hidden'
-  $('.translate-container').transition { x: 0, y: old_top, delay: 1000 }, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
+  $('.translate-container').transition { x: 0, y: old_top }, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
   $('.elements').css { scale: 1/scaleMultiple }
   window.scale = 1/scaleMultiple
   collection.addClass('closed').removeClass 'open'
@@ -39,7 +37,11 @@ collection_close = () ->
   collection_init.call collection
   setTimeout(() ->
     $('header.main').css 'z-index', 30 # Place collection beneath header for smooth animation
-  , 2000)
+  , 0)
+  setTimeout(() ->
+    $('header .topLeftButton').removeClass 'backHomeButton'
+    $('header .topLeftButton').addClass 'logoButton'
+  , 0)
   
   
 
@@ -59,7 +61,7 @@ collection_enter = (event) ->
   # offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
   $('.elements').css { scale: 1, queue: false }
   window.scale = 1
-  $('.translate-container').transition {x: 0, y: -$('header.main .topLeftButton').height(), queue: false}, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
+  $('.translate-container').transition {x: 0, y: -$('header.main .topLeftButton').height() - 2, queue: false}, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
   $('header.main').css 'z-index', -50 # Place collection above header for smooth animation
   console.log -$('header.main h1.topLeftButton a').height()
   old_top = $('.translate-container').css 'y'
