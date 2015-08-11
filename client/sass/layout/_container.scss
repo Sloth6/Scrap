@@ -69,6 +69,7 @@ section.container {
         }
     }
         
+        
     .blur {
         @include transition(-webkit-filter 1s $defaultCurve);
         position: fixed;
