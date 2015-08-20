@@ -27,15 +27,24 @@ collection_close = () ->
   history.pushState {name: "home"}, "", "/"
   
   $('.collection').show()
-  $('header h1.logo a').removeClass 'backHome'
   $('.collection header.collectionHeader').removeClass 'open'
-  # $(".menu.settings").removeClass 'hidden'
-  $('.translate-container').css { x: 0, y: old_top }
+
+  $(".menu.settings").removeClass 'hidden'
+  $('.translate-container').transition { x: 0, y: old_top }, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
+
   $('.elements').css { scale: 1/scaleMultiple }
   window.scale = 1/scaleMultiple
   collection.addClass('closed').removeClass 'open'
   document.title = 'Hotpot'
   collection_init.call collection
+  setTimeout(() ->
+    $('header.main').css 'z-index', 30 # Place collection beneath header for smooth animation
+  , 1000)
+  setTimeout(() ->
+    $('header .topLeftButton').removeClass 'backHomeButton'
+    $('header .topLeftButton').addClass 'logoButton'
+  , 0)
+  
   
 
 collection_enter = (event) ->
@@ -44,18 +53,22 @@ collection_enter = (event) ->
   spacekey = collection.data 'spacekey'
   history.pushState {name: "derp"}, "", "/#{spacekey}"
   collection.addClass('open').removeClass 'closed'
-  $('header h1.logo a').addClass 'backHome'
+  $('header .topLeftButton').addClass 'backHomeButton'
+  $('header .topLeftButton').removeClass 'logoButton'
   $('.collection header.collectionHeader').addClass 'open'
-  # $(".menu.settings").addClass 'hidden'
+
   old_top = $('.translate-container').css 'y'
+  $(".menu.settings").addClass 'hidden'
 
   $('.collection').not(@).hide()
   $('.collection').not(@).addClass 'closed'
   # offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
-  
   $('.elements').css { scale: 1, queue: false }
   window.scale = 1
-  $('.translate-container').css {x: 0, y: 0, queue: false}, 1000
+  $('.translate-container').transition {x: 0, y: -$('header.main .topLeftButton').height() - 2, queue: false}, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
+  $('header.main').css 'z-index', -50 # Place collection above header for smooth animation
+  console.log -$('header.main h1.topLeftButton a').height()
+  old_top = $('.translate-container').css 'y'
 
   width = collection_children.call(@).length * 400
   $(document.body).css {width}

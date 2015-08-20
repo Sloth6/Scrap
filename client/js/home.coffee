@@ -14,7 +14,7 @@ master_scroll = (event) ->
   y = parseInt($('.translate-container').css('y')) + event.deltaY
   y = Math.min y, 0
   y = Math.max y, -collection_max_y/scaleMultiple
-  # y += 109
+#   y += 109
   $('.translate-container').css { y }
 
 $ ->

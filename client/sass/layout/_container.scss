@@ -1,31 +1,74 @@
 // must be the same as in main.coffee
 $scaleMultiple: 4;
+$backButtonWidth: ($col/4) + $cardPaddingLeft + $cell;
+$logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
 
 section.container {
     
     header.main {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left:0;
+        width:100vw;
         z-index: 40;
         
-        h1.logo a {
-            position: relative;
-            width: $col;
+        .topLeftButton {
+            width: $col * 1.1825;
+            white-space: nowrap;
             overflow: hidden;
-            @include transition(all 2s $defaultCurve);
-            @include transition-property(margin-left, margin-right, text-indent, width);
-            text-indent: -$cell;
-                        
-            .back {
-                margin-left: -$cell * 2;
-                margin-right: $cell * 2;
+            border: $cardBorder;
+            @include transition(1s $defaultCurve);
+            @include transform(translate3d(0, 0, 0));
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
+                                    
+            &:hover {
+                background-color: black;
             }
-                        
-            &.backHome {
-                text-indent: $cell * 3;
-                width: $cell * 3;
+
+            a {
+                border: 0;
+                display: inline-block;
+                vertical-align: top;
+                @include transition(1s $defaultCurve);
+                @include transition-delay(0);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+                                        
+                &.back {
+                    border-left: 0;
+                    width: $col/4;
+                    text-align: center;
+                }
+                
+                &.logo {
+                    width: $col*1.1825;
+                    border-right: 0;
+                }
+                                        
+            }
+            
+            &.logoButton {
+                a {
+                    
+                @include transform(translate3d(0, 0, 0));
+                }
+
+            }
+
+            &.backHomeButton { 
+                @include transform(translate3d(-$col*1.1825 + $backButtonWidth, 0, 0));
+                
+                a{
+                    @include transform(translate3d(-$backButtonWidth - $cell/1.125, 0, 0));
+    //                 @include transition-delay(1s);
+                }
             }
         }
     }
+        
         
     .blur {
         @include transition(-webkit-filter 1s $defaultCurve);
@@ -39,13 +82,15 @@ section.container {
     }
     
     .collection {
+        margin-top: 108px;
         width: 100vw;
         z-index: 1;
         
         &.open {
             > header {
                 h1.collectionName {
-                    @include transform(translate3d($cell*4, 0, 0));
+//                     @include transition-delay(1s);
+                    @include transform(translate3d($backButtonWidth - $cardBorderWidth, 0, 0));
                 }
             }
         }
@@ -56,6 +101,13 @@ section.container {
             z-index: 20;
             
             h1.collectionName {
+                display: block;
+                @include transform(translate3d(0, 0, 0));
+                @include transition(1s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+//                 @include transition-delay(0);
 
                 a {
                     width: intrinsic;
@@ -84,9 +136,7 @@ section.container {
 //             height: 90%; // TODO: better value
         }
     }
-    .collections {
-        margin-top: 109px;
-    }
+
     .elements {        
         -webkit-transform-origin: 0 0;
         @include transform(scale(1/$scaleMultiple));

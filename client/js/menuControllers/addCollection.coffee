@@ -2,9 +2,11 @@
   # $('.addCollectionButton').click () ->
 
 addCollection = () ->
-  name = 'New Space' + $('.collection').length
+  name = 'New Collection'
+#   name = 'New Space' + $('.collection').length
   post = $.post '/s/new', {space:{ name }}, (dom) ->
     collection = $(dom)
+    collection.addClass "addNewCollection"
     top = $('.collection').length * collection.height()
     collection.css { top }
     $('.collections').append collection

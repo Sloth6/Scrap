@@ -1,3 +1,4 @@
+/*
 $scaleMultiple: 2;
 $openSpaceDuration: 1s;
 
@@ -29,26 +30,9 @@ body {
                 padding-left: 1pt;
                 text-align: center;
             }
-            
-            a.back {
-                font-size: $typeHeaderSize * 1.5;
-                padding: 1em;
-                position: relative;
-                top: -.125em;
-                left: -1em;
-                margin-left: 0;
-                @include transition(margin-left $openSpaceDuration $defaultCurve);
-
-                &.hidden, &.hidden:hover {
-                    margin-left: -$col;
-                }
-                
-                &:hover {
-                    margin-left: $gutter;
-                }
-            }
         }
     
         
     }    
 }
+*/
