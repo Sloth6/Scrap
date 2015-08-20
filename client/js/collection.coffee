@@ -44,8 +44,6 @@ collection_close = () ->
     $('header .topLeftButton').removeClass 'backHomeButton'
     $('header .topLeftButton').addClass 'logoButton'
   , 0)
-  
-  
 
 collection_enter = (event) ->
   collection = $(@)
@@ -77,7 +75,7 @@ collection_enter = (event) ->
   document.title = "#{collection.data('name')} · Hotpot"
 
 collection_children = () ->
-  $(@).children('.elements').children()
+  $(@).children('.elements').children().not('.addElementForm')
 
 # call once the dom inside the collection changes and positions need to be 
 # recalculated

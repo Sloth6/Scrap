@@ -69,13 +69,8 @@ $ ->
   history.pushState { name: "home" }, "", "/"  
   
   # $('.element').draggable draggableOptions
-  $('.element').mouseover( () ->
-    $(@).data 'oldZIndex', $(@).css('zIndex')
-    $(@).css 'zIndex', $(@).siblings().length + 1
-  ).mouseout () ->
-    $(@).css 'zIndex', $(@).data('oldZIndex')
-  
   # $('.elements').css({ transformOrigin: 'top left' })
+  
   editable = document.getElementById('editable');
 
   editable = $('.editable')
