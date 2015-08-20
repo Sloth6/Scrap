@@ -58,7 +58,7 @@ module.exports =
     done = (err, attributes) ->
       return callback err if err
       models.Space.find({ where: { spaceKey }, include: models.User }).complete (err, space) =>
-        return callback err if err?
+        return callback err if err? or !space
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
