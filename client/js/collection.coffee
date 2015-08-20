@@ -61,7 +61,7 @@ collection_enter = (event) ->
   $('.collection').not(@).hide()
   $('.collection').not(@).addClass 'closed'
   # offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
-  $('.elements').css { scale: 1, queue: false }
+  $('.elements').css { scale: 1, zIndex: 50, queue: false }
   window.scale = 1
   $('.translate-container').transition {x: 0, y: -$('header.main .topLeftButton').height() - 2, queue: false}, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
   $('header.main').css 'z-index', -50 # Place collection above header for smooth animation

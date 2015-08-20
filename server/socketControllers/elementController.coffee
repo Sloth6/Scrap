@@ -84,7 +84,8 @@ module.exports =
   removeElement : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
     id = data.elementId
-    spaceKey = data.spacekey
+    spaceKey = data.spaceKey
+
     # Post.destroy({
     #   where: {
     #     status: 'inactive'
@@ -97,18 +98,18 @@ module.exports =
     models.sequelize.query(query, null, null, { id })
       .complete (err, results) ->
         return callback err if err?
+        console.log results
         
 
         type = results[0].contentType
         content = results[0].content
         
-        if type in ['gif', 'image']
-          s3.deleteImage { spaceKey, key: content, type }, (err) ->
-            console.log err if err
-        if type in ['file', 'video']
-          s3.delete {key: content}, (err) ->
-            console.log err if err
-          
+        # if type in ['gif', 'image']
+        #   s3.deleteImage { spaceKey, key: content, type }, (err) ->
+        #     console.log err if err
+        # if type in ['file', 'video']
+        #   s3.delete {key: content}, (err) ->
+        #     console.log err if err
         sio.to(spaceKey).emit 'removeElement', { id }
         callback()
 

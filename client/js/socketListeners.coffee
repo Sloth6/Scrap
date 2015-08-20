@@ -25,9 +25,16 @@ $ ->
         bindSoundCloudControls element
 
   socket.on 'removeElement', (data) ->
-    id = data.id
-    $("\##{id}").fadeOut -> 
-      $(@).remove()
+    console.log 'removeElement', data
+
+    
+    
+    elem = $("\##{data.id}")
+    collection = element_collection.call elem
+    $("\##{data.id}").fadeOut -> 
+      elem.remove()
+      collection_realign_elements.call collection
+      
 
   socket.on 'updateElement', ({ spaceKey, userId, elementId, content }) ->
     return if data.userId is window.userId

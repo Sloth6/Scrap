@@ -1,6 +1,9 @@
 logistic = (x) ->
   1/(1 + Math.pow(Math.E, -x))
 
+element_collection = () ->
+  $(@).parent().parent()
+
 element_place = () ->
   element = $(@)
   border = $(window).width() / 6
