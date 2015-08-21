@@ -1,8 +1,7 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
 - var classes = [ element.contentType, "element"]
 
-- var posString = "position:absolute;" // #top:"+0+"px;left:"+(j*elem_width)+"px;"  
-  //- = "transform:translate(1.0)"
+- var posString = "position:absolute;"
 
 article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
   .content

@@ -12,15 +12,7 @@ placeHolder_under_mouse = (event) ->
     collection_insert_after.call @, drag_placeholder, element
   true
 
-scroll_collection_by_delta = (collection, delta) -> 
-  children = collection_children.call collection
-  scroll_position = collection.data('scroll_position') + delta
 
-  scroll_position = Math.min scroll_position, $(window).width()/2 - children.first().width()/2
-  scroll_position = Math.max scroll_position, -collection.data('maxX') + $(window).width()/2 + children.last().width()/2
-
-  collection.data 'scroll_position', scroll_position
-  children.each element_place
 
 collection_close = () ->
   collection = $('.collection.open')
@@ -79,30 +71,6 @@ collection_children = () ->
 
 # call once the dom inside the collection changes and positions need to be 
 # recalculated
-collection_realign_elements = () ->
-  collection = $(@)
-  lastX = 0
-  maxX = -Infinity
-  children = collection_children.call @
-  zIndex = children.length
-  children.each () ->
-    if not $(@).hasClass 'dragging'
-      $(@).data 'scroll_offset', lastX
-      $(@).css {zIndex: zIndex--}
-      element_place.call @
-      lastX += $(@).width() + margin
-      maxX = lastX
-
-  $(@).data { maxX }
-
-collection_init = () ->
-  $(window).scrollLeft 0
-  collection_realign_elements.call @
-
-  if not $(@).hasClass('fake')
-    $(@).click collection_enter
-    form = $(@).find('.direct-upload')
-    form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
 
 # put element a before b
 collection_insert_before = (a, b) ->

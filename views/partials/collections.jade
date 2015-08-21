@@ -1,12 +1,7 @@
--var elem_width = 400
--var elem_height = 700
-
--var i = 0
-.collections
-  -for (var i = 0; i < collections.length; i++)
-    -var collection = collections[i]
-    -var top = (i * elem_height)
-    include collection
-
-script.
-  collection_max_y="#{top}";
+.collections.cardContainer.open
+  .cards
+    -for (var j = 0; j < collections.length; j++)
+      -var collection = collections[j]
+      -var styeStr = "position:absolute;width:600px;height:400px;background-color:red;"
+      article.card.cover(class=collection.spaceKey)
+        h1!=collection.name
