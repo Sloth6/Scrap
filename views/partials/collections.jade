@@ -4,4 +4,6 @@
       -var collection = collections[j]
       -var styeStr = "position:absolute;width:600px;height:400px;background-color:red;"
       article.card.cover(class=collection.spaceKey)
-        h1!=collection.name
+        .cardContainer.closed
+          .cards
+            h1!=collection.name  
