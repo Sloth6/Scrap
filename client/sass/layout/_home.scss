@@ -1,12 +1,16 @@
 body {
 	.card.cover {
-		width: $articleWidth;
-		height: $articleWidthWide;
+		width: $col * 4;
+		height: $col * 6;
+/*
+		width: 33vw;
+		height: 100vh;
+*/
 
 		h1 {
     		position: absolute;
-    		height: $typeHeaderLeading * 3;
-    		bottom: $typeHeaderLeading;
+    		height: $typeHeaderLeading * 4;
+    		bottom: 0;
 		}
 		
 		ul.users {

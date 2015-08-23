@@ -1,3 +1,5 @@
+openCollectionCurve = [20, 10]
+
 randomColor = ->
   letters = '0123456789ABCDEF'.split('')
   color = '#'
@@ -38,9 +40,13 @@ $ ->
     mouse.x = event.clientX
     mouse.y = event.clientY
     
-  $('.cover').css({
-      backgroundColor : randomColor
-  })
+  $('.cover').each( () ->
+      $(@).css({
+          backgroundColor : randomColor,
+          rotate : (Math.random() * 4) + (Math.random() * -4)
+      })
+  )
+  
   # open a collection
   $('.cover').click () ->
     return if $(@).hasClass 'open'
@@ -51,6 +57,13 @@ $ ->
 
     $('.open').removeClass 'open'
     cover.addClass 'open'
+    
+    $(@).velocity({
+        rotateY : 0
+    }, {
+        duration : 1000,
+        easing : openCollectionCurve
+    })
 
     # window.oldWidth = $(window.document).width()
     # window.oldScroll = $(window).scrollLeft()
