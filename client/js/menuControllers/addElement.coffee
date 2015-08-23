@@ -19,41 +19,30 @@ addElementController =
       ), 20
 
     menu.find('a.submit').click (event) ->
+      # console.log 'ere'
       emitNewElement input.val(), spacekey
       addElementController.reset menu
-      addElementController.close menu
-      event.stopPropagation()   
+      event.preventDefault()
 
     menu.find('a.cancel').click (event) ->
       addElementController.reset menu
-      addElementController.close menu
-      event.stopPropagation()
-
-    menu.find("li.closed").not("hidden").mouseenter () ->
-      $(@)
-        .removeClass "closed"
-        .addClass "open"
-      menu.find("li").not($(@))
-        .addClass "closed"
-        .removeClass "open"
-      $(@).find('input:text, textarea').focus()
-
+      event.preventDefault()
 
   close: (menu) ->
-    menu.removeClass('open').addClass 'closed'
-    setTimeout (() =>
-      menu.css({
-        "transition-duration": ".25s",
-        "-webkit-transition-duration": ".25s"
-      })
-    ), 500
+    # menu.removeClass('open').addClass 'closed'
+    # setTimeout (() =>
+    #   menu.css({
+    #     "transition-duration": ".25s",
+    #     "-webkit-transition-duration": ".25s"
+    #   })
+    # ), 500
 
 
   reset: (menu) ->
-    menu.find "li.expandable"
-      .addClass "closed"
-      .removeClass "hidden"
-      .removeClass "open"
+    # menu.find "li.expandable"
+    #   .addClass "closed"
+    #   .removeClass "hidden"
+    #   .removeClass "open"
     menu.find('.text input,textarea').val('')
 
 $ ->

@@ -5,7 +5,6 @@
       header
         h1.collectionTitle!=collection.name
         h1!=collection.elements.length
-
         ul.users
           li.user!=user.name
           //- li.user.add
@@ -16,3 +15,4 @@
         -for (var j = 0; j < collection.elements.length; j++)
           -var element = collection.elements[j]
           include element
+        include addElementForm

@@ -61,6 +61,7 @@ $ ->
     card_container.realign.call $('.slidingContainer'), animateOptions
 
   window.onpopstate = (event) ->
+    console.log 'onpopstate'
     return unless $('.open').length
 
     cover = $('.open')
@@ -87,8 +88,5 @@ $ ->
     # $(window.document).css 'width', window.oldWidth
     
     
-    animateOptions =
-      duration: 1000
-      opacity: 1.0
-    card_container.realign.call $('.slidingContainer'), animateOptions
+    card_container.realign.call $('.slidingContainer')
     # setTimeout (() ->$(window).scrollLeft window.oldScroll) , 10

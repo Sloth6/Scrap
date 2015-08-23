@@ -11,18 +11,19 @@ $ ->
   socket.on 'newElement', (data) ->
     { html, spaceKey } = data
     element = $(decodeURIComponent(html))
-    $(".collection.#{spaceKey} .elements").prepend element
-    collection_init.call $(".collection.#{spaceKey}")
-    checkForNewCollection()
-    switch element.data('contenttype')
-      when 'text'
-        makeModifiable element
-      when 'video'
-        bindVideoControls element
-      when 'file'
-        bindFileControls element
-      when 'soundcloud'
-        bindSoundCloudControls element
+    console.log 'new element', element
+    if $(".#{spaceKey}.cover").hasClass 'open'
+      element.insertBefore $(".#{spaceKey}.addElementForm")
+      card_container.realign.call $('.slidingContainer')
+      switch element.data('contenttype')
+        when 'text'
+          makeModifiable element
+        when 'video'
+          bindVideoControls element
+        when 'file'
+          bindFileControls element
+        when 'soundcloud'
+          bindSoundCloudControls element
 
   socket.on 'removeElement', (data) ->
     console.log 'removeElement', data
