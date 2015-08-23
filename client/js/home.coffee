@@ -114,4 +114,5 @@ $ ->
     
     
     card_container.realign.call $('.slidingContainer')
+    content.zIndex 0
     # setTimeout (() ->$(window).scrollLeft window.oldScroll) , 10
