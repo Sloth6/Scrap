@@ -1,3 +1,12 @@
+randomColor = ->
+  letters = '0123456789ABCDEF'.split('')
+  color = '#'
+  i = 0
+  while i < 6
+    color += letters[Math.floor(Math.random() * 16)]
+    i++
+  color
+  
 mouse = { x: null, y: null }
 click = { x: null, y: null }
 
@@ -28,7 +37,10 @@ $ ->
   $(window).on 'mousemove', (event) ->
     mouse.x = event.clientX
     mouse.y = event.clientY
-
+    
+  $('.cover').css({
+      backgroundColor : randomColor
+  })
   # open a collection
   $('.cover').click () ->
     return if $(@).hasClass 'open'

@@ -1,6 +1,16 @@
 body {
 	.card.cover {
-		width: $articleWidthWide;
+		width: $articleWidth;
 		height: $articleWidthWide;
+
+		h1 {
+    		position: absolute;
+    		height: $typeHeaderLeading * 3;
+    		bottom: $typeHeaderLeading;
+		}
+		
+		ul.users {
+    		@include typeSmall;
+		}
 	}
 }
