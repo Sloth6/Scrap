@@ -2,8 +2,8 @@
   -for (var i = 0; i < collections.length; i++)
     -var collection = collections[i]
     .cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
-      header
-        h1.collectionTitle!=collection.name
+      header.card.cover
+        h1.collectionTitle.headerType!=collection.name
         h1!=collection.elements.length
 
         ul.users
