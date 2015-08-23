@@ -5,11 +5,15 @@ card_container =
     $(@).children('.sliding')
     # $(@).find('.sliddingdingContainer,.slidding')
 
-  realign: (animateOptions = null) ->
+  realign: () ->
     children = card_container.children.call @
     lastX = 0
     maxX  = -Infinity
     zIndex = children.length
+
+    animateOptions =
+      duration: 1000
+      opacity: 1.0
 
     children.each () ->
       $(@).data 'scroll_offset', lastX
@@ -21,7 +25,7 @@ card_container =
       maxX = lastX
 
     window.dontScroll = true
-    $(document.body).css { width: maxX }
+    $(document.body).css { width: maxX+100 }
     $(@).data { maxX }
 
   init: () ->
@@ -29,18 +33,6 @@ card_container =
     # form = $(@).find('.direct-upload')
     # form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
 
-  open: () ->
-
-    # width = content.
-    # spacekey = collection.data 'spacekey'
-
-    # id = setInterval (() -> card_container.realign.call $('.collections')), 20
-    # $(@).animate {width: "200vw"}, 1000, () ->
-    #   clearInterval id
-
-      # card_container.realign.call $('.collections')
-    # history.pushState {name: ""}, "", "/#{spacekey}"
-    # collection.addClass('open').removeClass 'closed'
 
   scroll: () ->
     children = card_container.children.call @
