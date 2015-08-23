@@ -1,9 +1,18 @@
-.collections.cardContainer.open
-  .cards
-    -for (var j = 0; j < collections.length; j++)
-      -var collection = collections[j]
-      -var styeStr = "position:absolute;width:600px;height:400px;background-color:red;"
-      article.card.cover(class=collection.spaceKey)
-        .cardContainer.closed
-          .cards
-            h1!=collection.name  
+.slidingContainer
+  -for (var i = 0; i < collections.length; i++)
+    -var collection = collections[i]
+    .cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
+      header
+        h1.collectionTitle!=collection.name
+        h1!=collection.elements.length
+
+        ul.users
+          li.user!=user.name
+          //- li.user.add
+            //- form
+              //- input(type="text")
+              //- input(type="submit")
+      .collectionContent(style="display:none;")
+        -for (var j = 0; j < collection.elements.length; j++)
+          -var element = collection.elements[j]
+          include element

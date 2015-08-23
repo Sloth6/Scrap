@@ -1,5 +1,5 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
-- var classes = [ element.contentType, "element"]
+- var classes = [ element.contentType, "element", "sliding"]
 
 - var posString = "position:absolute;"
 
@@ -8,11 +8,7 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
     .elementControls
       - if (typeof(collection.nameMap) !== "undefined") {
         author= collection.nameMap[element.creatorId].name
-      - }
-      //- - } else {
-      //- author= ''
-      //- - }
-        
+      - }    
       a.elementDeleteButton.warning(href='#') Delete
     .card(class=element.contentType)
       //- if names[element.creatorId] != ""

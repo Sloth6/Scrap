@@ -1,5 +1,14 @@
 $collectionOpenTransitionDuration: 1s;
 
+.slidingContainer {
+    position: absolute;
+}
+
+.sliding {
+    position: absolute;
+    min-width: 200px;
+}
+
 section.container section.space section.content{
     
     .collection.closed {

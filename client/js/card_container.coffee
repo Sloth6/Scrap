@@ -2,37 +2,46 @@ margin = -0.5
 
 card_container =
   children: () ->
-    $(@).find('.card').not('.addElementForm')
+    $(@).children()
+    # $(@).find('.sliddingdingContainer,.slidding')
 
-  realign: () ->
+  realign: (animateOptions = null) ->
     children = card_container.children.call @
     lastX = 0
     maxX  = -Infinity
     zIndex = children.length
+
     children.each () ->
       $(@).data 'scroll_offset', lastX
       $(@).css { zIndex: zIndex-- }
-      card.place.call @
-      lastX += $(@).width() + margin
-      maxX  = lastX
+      card.place.call @, animateOptions
+      width = $(@).width() * $(@).is(":visible")
+      lastX += width + margin
+      
+      maxX = lastX
 
+    window.dontScroll = true
+    $(document.body).css { width: maxX }
     $(@).data { maxX }
 
   init: () ->
-    # $(window).scrollLeft 0
     card_container.realign.call @
+    # form = $(@).find('.direct-upload')
+    # form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
 
-    # if not $(@).hasClass('fake')
-    #   $(@).click collection_enter
-    #   form = $(@).find('.direct-upload')
-    #   form.fileupload fileuploadOptions $(@), $(@).data('spacekey')
+  open: () ->
+
+    # width = content.
+    # spacekey = collection.data 'spacekey'
+
+    # id = setInterval (() -> card_container.realign.call $('.collections')), 20
+    # $(@).animate {width: "200vw"}, 1000, () ->
+    #   clearInterval id
+
+      # card_container.realign.call $('.collections')
+    # history.pushState {name: ""}, "", "/#{spacekey}"
+    # collection.addClass('open').removeClass 'closed'
+
   scroll: () ->
     children = card_container.children.call @
-    children.each card.place
-    # scroll_position = collection.data('scroll_position') + delta
-
-    # scroll_position = Math.min scroll_position, $(window).width()/2 - children.first().width()/2
-    # scroll_position = Math.max scroll_position, -collection.data('maxX') + $(window).width()/2 + children.last().width()/2
-
-    # collection.data 'scroll_position', scroll_position
-    # children.each element_place
+    children.each () -> card.place.call @
