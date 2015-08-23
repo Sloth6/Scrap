@@ -1,12 +1,11 @@
 .slidingContainer
   -for (var i = 0; i < collections.length; i++)
     -var collection = collections[i]
-    .cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
-      header
-        h1.collectionTitle!=collection.name
-        h1!=collection.elements.length
-        ul.users
-          li.user!=user.name
+    header.cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
+      h1.collectionTitle!=collection.name
+      h1!=collection.elements.length
+      ul.users
+        li.user!=user.name
           //- li.user.add
             //- form
               //- input(type="text")

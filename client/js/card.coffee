@@ -27,6 +27,7 @@ card =
     if animateOptions
       $(@).velocity {
         properties:
+          translateZ: 0
           translateX: x
           # opacity: animateOptions.opacity
         options:
@@ -38,6 +39,7 @@ card =
     else
       $(@).velocity {
         properties:
+          translateZ: 0
           translateX: x
         options:
           queue: false 
