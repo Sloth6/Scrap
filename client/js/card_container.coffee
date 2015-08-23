@@ -2,7 +2,7 @@ margin = -0.5
 
 card_container =
   children: () ->
-    $(@).children()
+    $(@).children('.sliding')
     # $(@).find('.sliddingdingContainer,.slidding')
 
   realign: (animateOptions = null) ->

@@ -35,7 +35,8 @@ $ ->
 
     cover = $(@)
     spacekey = cover.data('spacekey')
-    
+    history.pushState { name: "home" }, "", "/#{spacekey}"
+
     $('.open').removeClass 'open'
     cover.addClass 'open'
 
@@ -46,6 +47,7 @@ $ ->
     cover.siblings().hide()
 
     content = cover.children('.collectionContent').children()
+    content.addClass 'sliding'
     content.addClass spacekey
     content.insertAfter $(@)
     
@@ -62,19 +64,31 @@ $ ->
     return unless $('.open').length
 
     cover = $('.open')
-    cover.removeClass 'open'
-
     spacekey = cover.data 'spacekey'
     
-    content = $(".#{spacekey}").not(".cover")
+    cover.removeClass 'open'
 
-    content.appendTo cover.children(".collectionContent")
+    # elements to remove
+    content = $(".#{spacekey}").not(".cover")
+    content.removeClass 'sliding'
+    content.velocity
+      properties:
+        translateX: x(cover), opacity:0
+      options:
+        duration:1000
+        easing: [500, 100]
+        complete: () ->
+          content.appendTo cover.children(".collectionContent")
+          # cover.children(".collectionContent").hide()
+
+    
 
     cover.siblings().show()
     # $(window.document).css 'width', window.oldWidth
-    # $(window).scrollLeft window.oldScroll
+    
     
     animateOptions =
       duration: 1000
       opacity: 1.0
     card_container.realign.call $('.slidingContainer'), animateOptions
+    # setTimeout (() ->$(window).scrollLeft window.oldScroll) , 10

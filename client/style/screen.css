@@ -2024,44 +2024,12 @@ section.container section.space section.content article.addElementForm ul li.don
   margin-left: 8pt;
 }
 
-/*
-$scaleMultiple: 2;
-$openSpaceDuration: 1s;
-
-body {
-    
-    section.container {
-        background-color: $colorBackground;
-        
-        > header {
-            
-            h1.logo {
-                position: fixed;
-                margin-left: 0;
-                @include transition(margin-left $openSpaceDuration $defaultCurve);
-                
-                &.hidden {
-                    margin-left: -$col;
-                    
-                }
-            }
-            
-            h1.headerSpaceName {
-                @include typeHeaderSmallCaps;
-                position: absolute;
-                top: 9pt;
-                width: 33.333333vw;
-                left: 50vw;
-                margin-left: -16.6666667vw;
-                padding-left: 1pt;
-                text-align: center;
-            }
-        }
-    
-        
-    }    
+/* line 2, ../sass/layout/_home.scss */
+body .card.cover {
+  width: 320pt;
+  height: 320pt;
 }
-*/
+
 /* line 1, ../sass/layout/_login.scss */
 .card.login {
   padding-left: 16pt !important;
