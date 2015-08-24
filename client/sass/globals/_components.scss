@@ -36,12 +36,15 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardHover {
     .card {
-        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+        @include box-shadow($cardBoxShadowDimensions white);
     }
+    -webkit-filter: invert(1);
     @include transform(translate(-$cell, -$cell));
+/*
     * { 
         border-color: $colorAccent;
     }
+*/
 }
 
 @mixin cardDrag {
