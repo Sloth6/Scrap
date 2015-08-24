@@ -34,8 +34,8 @@ card =
           translateZ: 0
           translateX: x + 400
           scale: cardScale
-          translateY: 100 # Math.random() * 100 + 100
-          rotateZ: (Math.random() * 4) + (Math.random() * -4)
+          translateY: Math.random() * 200 + 50
+          rotateZ: ((Math.random() * 8) + (Math.random() * -8))
           # opacity: animateOptions.opacity
         options:
           duration: 1000

@@ -1,4 +1,4 @@
-margin = 20
+margin = 50
 
 card_container =
   children: () ->

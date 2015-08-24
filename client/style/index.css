@@ -588,7 +588,7 @@ html {
 /* line 107, ../sass/globals/_type.scss */
 html .headerType {
   font-size: 24pt;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
 }
@@ -663,14 +663,14 @@ form li {
 /* line 122, ../sass/globals/_components.scss */
 form input {
   font-size: 24pt;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
 }
 /* line 125, ../sass/globals/_components.scss */
 form input[type=submit], form input[type=button] {
   font-size: 24pt;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
 }
@@ -1555,7 +1555,7 @@ section.container section.space section.content article {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   font-size: 24pt;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
 }
@@ -1687,7 +1687,7 @@ section.container section.space section.content article.text strong {
 /* line 169, ../sass/layout/_article.scss */
 section.container section.space section.content article.text.short {
   font-size: 24pt;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
 }
@@ -1970,7 +1970,7 @@ section.container section.space section.content article.addElementForm ul li.tex
 /* line 382, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.046874em;
   line-height: 1em;
   height: 100%;

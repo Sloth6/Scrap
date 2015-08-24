@@ -1,4 +1,5 @@
 openCollectionCurve = [20, 10]
+openCollectionDuration = 2000
 
 randomColor = ->
   letters = '0123456789ABCDEF'.split('')
@@ -44,6 +45,7 @@ $ ->
   $('.cover').each( () ->
       $(@).css({
           backgroundColor : randomColor,
+          backgroundImage : 'http://lorempixel.com/200/300',
           rotate : (Math.random() * 4) + (Math.random() * -4),
           y: 200
       })
@@ -65,7 +67,7 @@ $ ->
     $(@).velocity({
         rotateY : 0
     }, {
-        duration : 1000,
+        duration : openCollectionDuration,
         easing : openCollectionCurve
     })
 
@@ -84,7 +86,7 @@ $ ->
       properties:
         opacity:1
       options:
-        duration: 1000
+        duration: openCollectionDuration
         easing: [500, 100]
 
     card_container.realign.call $('.slidingContainer')
@@ -116,7 +118,7 @@ $ ->
       properties:
         opacity:0
       options:
-        duration: 1000
+        duration: openCollectionDuration
         easing: [500, 100]
         complete: () ->
           collectionContent.hide()
