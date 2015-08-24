@@ -44,7 +44,8 @@ $ ->
   $('.cover').each( () ->
       $(@).css({
           backgroundColor : randomColor,
-          rotate : (Math.random() * 4) + (Math.random() * -4)
+          rotate : (Math.random() * 4) + (Math.random() * -4),
+          y: 200
       })
   )
   

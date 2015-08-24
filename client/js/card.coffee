@@ -4,7 +4,7 @@ logistic = (x) ->
 card =
   place: (animateOptions = null) ->
     # console.log @
-    border = $(window).width() / 8
+    border = $(window).width() / 6
 
     # return if card.hasClass('dragging')
     offset = $(@).data 'scroll_offset'
