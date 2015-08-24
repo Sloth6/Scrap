@@ -23,12 +23,19 @@ card =
       percent = 1 - ((x - left_min)/ border)
       x =  left_start - ((logistic(percent)-0.5)*2 * border)
     
+    percentAcross = x / $(window).width()
+    cardScale = 1 - (percentAcross * .1)
+    console.log percentAcross
+    
     # console.log animateOptions
-    if animateOptions
+    if animateOptions # opening or closing
       $(@).velocity {
         properties:
           translateZ: 0
-          translateX: x
+          translateX: x + 400
+          scale: cardScale
+          translateY: 100 # Math.random() * 100 + 100
+          rotateZ: (Math.random() * 4) + (Math.random() * -4)
           # opacity: animateOptions.opacity
         options:
           duration: 1000
@@ -36,11 +43,13 @@ card =
           easing: [500, 100]
           complete: animateOptions.complete or (() ->)
       }
-    else
+    else # scrolling
       $(@).velocity {
         properties:
           translateZ: 0
           translateX: x
+#           translateY: Math.random() * 20 + 200
+          scale: cardScale
         options:
           queue: false 
           duration: 0

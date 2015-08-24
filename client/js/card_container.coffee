@@ -1,4 +1,4 @@
-margin = 12
+margin = 20
 
 card_container =
   children: () ->
@@ -26,7 +26,7 @@ card_container =
       maxX = lastX
 
     window.dontScroll = true
-    $(document.body).css { width: maxX+100 }
+    $(document.body).css { width: maxX }
     $(@).data { maxX }
 
   init: () ->

@@ -6,6 +6,8 @@ $collectionOpenTransitionDuration: 1s;
 
 .sliding {
     position: absolute;
+    transform-origin: center center;
+    -webkit-transform-origin: center center;
 }
 
 section.container section.space section.content{
