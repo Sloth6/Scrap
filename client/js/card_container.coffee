@@ -2,13 +2,14 @@ margin = -0.5
 
 card_container =
   children: () ->
-    $(@).children('.sliding')
-    # $(@).find('.sliddingdingContainer,.slidding')
+    $(@).find('.sliding').filter () ->
+      collection = $(@).parent().parent()
+      $(@).hasClass('cover') or collection.hasClass('open') or collection.hasClass('closing')
 
   realign: () ->
     children = card_container.children.call @
-    lastX = 0
-    maxX  = -Infinity
+    lastX  = 0
+    maxX   = -Infinity
     zIndex = children.length
 
     animateOptions =
@@ -19,7 +20,7 @@ card_container =
       $(@).data 'scroll_offset', lastX
       $(@).css { zIndex: zIndex-- }
       card.place.call @, animateOptions
-      width = $(@).width() * $(@).is(":visible")
+      width = if $(@).hasClass('collapsing') then 0 else $(@).width() * $(@).is(":visible")
       lastX += width + margin
       
       maxX = lastX

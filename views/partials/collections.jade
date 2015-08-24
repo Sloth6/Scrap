@@ -1,16 +1,17 @@
 .slidingContainer
   -for (var i = 0; i < collections.length; i++)
     -var collection = collections[i]
-    header.cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
-      h1.collectionTitle!=collection.name
-      h1!=collection.elements.length
-      ul.users
-        li.user!=user.name
-        //- li.user.add
-            //- form
-              //- input(type="text")
-              //- input(type="submit")
-      .collectionContent(style="display:none;position:absolute;")
+    .collection2.closed
+      header.cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
+        h1.collectionTitle!=collection.name
+        h1!=collection.elements.length
+        ul.users
+          li.user!=user.name
+          //- li.user.add
+              //- form
+                //- input(type="text")
+                //- input(type="submit")
+      .collectionContent(class=collection.spaceKey, style="display:none;")
         -for (var j = 0; j < collection.elements.length; j++)
           -var element = collection.elements[j]
           include element
