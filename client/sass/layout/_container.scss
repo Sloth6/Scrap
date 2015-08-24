@@ -117,7 +117,7 @@ section.container {
                     &:hover {
                         @include invertHover;
                     }
-/*
+
                     &:before {
                         content: "‹";
                         position: absolute;
@@ -125,7 +125,7 @@ section.container {
                         left: $cell/4;
                         display: block;
                     }
-*/
+
                 }
             }
         }
