@@ -15,6 +15,7 @@ Array.min = (array) -> Math.min.apply Math, array
 
 x = ($) ->
   currTrans = $.css('transform').split(/[()]/)[1]
+  console.log currTrans
   currTrans.split(',')[4]
 
 $ ->
@@ -46,60 +47,67 @@ $ ->
     return if $(@).hasClass 'open'
 
     cover = $(@)
+    collection = cover.parent()
+    collectionContent = collection.children '.collectionContent'
+
     spacekey = cover.data('spacekey')
     history.pushState { name: "home" }, "", "/#{spacekey}"
 
     $('.open').removeClass 'open'
-    cover.addClass 'open'
+    collection.removeClass('closed').addClass 'open'
 
     # window.oldWidth = $(window.document).width()
     # window.oldScroll = $(window).scrollLeft()
     
     $(window).scrollLeft 0
-    cover.siblings().hide()
-
-    content = cover.children('.collectionContent').children()
-    content.addClass 'sliding'
-    content.addClass spacekey
-    content.insertAfter $(@)
+    collection.siblings().hide()
+    collectionContent.show()
     
-    content.velocity {translateX: x(cover), opacity:0}, {duration:0 }
-    content.velocity {opacity: 1}, {duration:1000 }
+    collectionContent.css 'opacity', 0
 
-    animateOptions =
-      duration: 1000
-      opacity: 1.0
+    collectionContent.velocity
+      properties:
+        opacity:1
+      options:
+        duration: 1000
+        easing: [500, 100]
 
-    card_container.realign.call $('.slidingContainer'), animateOptions
+    card_container.realign.call $('.slidingContainer')
 
   window.onpopstate = (event) ->
     console.log 'onpopstate'
     return unless $('.open').length
 
-    cover = $('.open')
+    collection = $('.open')
+    cover = collection.children '.cover'
+    collectionContent = collection.children '.collectionContent'
     spacekey = cover.data 'spacekey'
     
-    cover.removeClass 'open'
-
+    collection.removeClass('open').addClass 'closing'
+    
+    collection.siblings().show()
+    
     # elements to remove
-    content = $(".#{spacekey}").not(".cover")
-    content.removeClass 'sliding'
-    content.velocity
+    collectionContent.children().css 'zIndex', 0
+
+    collectionContent.children().addClass 'collapsing'
+    cover.addClass 'collapsing'
+
+    padding = $('<div>').addClass('padding').addClass('sliding').css('width', $('.cover').width())
+    collectionContent.append padding
+
+
+    collectionContent.velocity
       properties:
-        translateX: x(cover), opacity:0
+        opacity:0
       options:
-        duration:1000
+        duration: 1000
         easing: [500, 100]
         complete: () ->
-          content.appendTo cover.children(".collectionContent")
-          # cover.children(".collectionContent").hide()
-
-    
-
-    cover.siblings().show()
-    # $(window.document).css 'width', window.oldWidth
-    
+          collectionContent.hide()
+          collectionContent.css 'opacity', 1
+          collectionContent.children().removeClass 'collapsing'
+          cover.removeClass 'collapsing'
+          padding.remove()
     
     card_container.realign.call $('.slidingContainer')
-    content.zIndex 0
-    # setTimeout (() ->$(window).scrollLeft window.oldScroll) , 10
