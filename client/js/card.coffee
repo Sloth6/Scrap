@@ -24,7 +24,7 @@ card =
             x = left_start - ((logistic(percent)-0.5)*2 * border)
         
         percentAcross = x / $(window).width()
-        cardScale = 1 - (percentAcross * .1)
+        cardScale = 1 - ((1 - percentAcross) * .1)
         console.log percentAcross
         
         # console.log animateOptions
@@ -35,7 +35,7 @@ card =
                     translateX: x
                     scale: cardScale
                     translateY: Math.random() * 200 + 50
-                    rotateZ: ((Math.random() * 8) + (Math.random() * -8))
+                    rotateZ: (Math.random() * 8) + (Math.random() * -8)
                     # opacity: animateOptions.opacity
                 options:
                     duration: 1000

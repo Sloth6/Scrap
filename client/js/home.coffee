@@ -1,3 +1,4 @@
+defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [500, 100]
 openCollectionDuration  = 2000
 
@@ -48,6 +49,22 @@ $ ->
         })
     )
     
+    $('.cover, article').mouseenter () ->
+        $(@).velocity({
+                rotateZ : 0
+        }, {
+                duration : 250,
+                easing : defaultCurve
+        })
+    
+    $('.cover, article').mouseleave () ->
+        $(@).velocity({
+                rotateZ : (Math.random() * 8) + (Math.random() * -8)
+        }, {
+                duration : 250,
+                easing : defaultCurve
+        })
+    
     # open a collection
     $('.cover').click () ->
         return if $(@).hasClass 'open'
@@ -55,18 +72,27 @@ $ ->
         cover = $(@)
         collection = cover.parent()
         collectionContent = collection.children '.collectionContent'
+        $elements = collectionContent.children 'article'
 
         spacekey = cover.data('spacekey')
         history.pushState { name: "home" }, "", "/#{spacekey}"
 
         $('.open').removeClass 'open'
         
-        $(@).velocity({
-                rotateY : 0
-        }, {
-                duration : openCollectionDuration,
-                easing : openCollectionCurve
-        })
+#         $(@).velocity({
+#                 rotateZ : 0
+#         }, {
+#                 duration : openCollectionDuration,
+#                 easing : openCollectionCurve
+#         })
+
+#         $elements.velocity({
+#                 rotateZ : 0
+#                 translateY : 0;
+#         }, {
+#                 duration : openCollectionDuration,
+#                 easing : openCollectionCurve
+#         })
 
         collection.removeClass('closed').addClass 'open'
 
@@ -127,9 +153,9 @@ $ ->
         elements.velocity
             properties:
                 translateZ: 0
+                translateY: 0
+                translateX: 0
                 rotateZ:    0
-                y:          0
-                x:          0
             options:
                 duration:   openCollectionDuration
                 easing:     openCollectionCurve
