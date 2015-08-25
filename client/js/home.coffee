@@ -109,7 +109,7 @@ $ ->
             properties:
                 opacity:1
             options:
-                duration: openCollectionDuration
+                duration: openCollectionDuration / 2
                 easing: openCollectionCurve
 
         card_container.realign.call $('.slidingContainer')
