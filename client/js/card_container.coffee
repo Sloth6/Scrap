@@ -1,4 +1,4 @@
-margin = 10
+margin = 50
 
 card_container =
   children: () ->
@@ -18,7 +18,7 @@ card_container =
 
     children.each () ->
       $(@).data 'scroll_offset', lastX
-      $(@).css { zIndex: zIndex-- }
+      $(@).css { zIndex: zIndex++ }
       card.place.call @, animateOptions
       width = if $(@).hasClass('collapsing') then 0 else $(@).width() * $(@).is(":visible")
       lastX += width + margin
