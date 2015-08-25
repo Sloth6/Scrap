@@ -49,7 +49,7 @@ card =
           translateZ: 0
           translateX: x
 #           translateY: Math.random() * 20 + 200
-          scale: cardScale
+#           scale: cardScale
         options:
           queue: false 
           duration: 0

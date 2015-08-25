@@ -42,12 +42,9 @@ $ ->
     mouse.x = event.clientX
     mouse.y = event.clientY
     
-  $('.cover').each( () ->
+  $('header.cover .card').each( () ->
       $(@).css({
-          backgroundColor : randomColor,
-          backgroundImage : 'http://lorempixel.com/200/300',
-          rotate : (Math.random() * 4) + (Math.random() * -4),
-          y: 200
+          backgroundColor : randomColor
       })
   )
   

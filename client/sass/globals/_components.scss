@@ -32,19 +32,22 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     padding: $cardPadding;
             transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
+    @include transition(.125s $defaultCurve);
+    @include transition-property(transform,
+                         -webkit-transform,
+                            -moz-transform,
+                                 box-shadow,
+                         -webkit-box-shadow,
+                            -moz-box-shadow,
+                                 background-color,
+                                 border-color,
+                                 color);
+
 }
 
 @mixin cardHover {
-    .card {
-        @include box-shadow($cardBoxShadowDimensions white);
-    }
-    -webkit-filter: invert(1);
+    @include box-shadow($cardBoxShadowDimensions white);
     @include transform(translate(-$cell, -$cell));
-/*
-    * { 
-        border-color: $colorAccent;
-    }
-*/
 }
 
 @mixin cardDrag {
@@ -57,30 +60,25 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 @mixin button {
 }
 
-@mixin buttonOffset {
-    // position: relative;
-    // margin-left: -$cell*1.5;
-    // margin-top: -.666em;
-    // left: 100%;
-    // float: left;
+@mixin blackHover {
+    background-color: $colorType !important;
+    color: $colorCardBackground !important;
+    border-color: $colorCardBackground;
+    
+    &.cardHover:hover {
+        @include box-shadow($cardBoxShadowDimensions black);
+    }
 }
 
 @mixin invertHover {
-    background-color: $colorType;
-    color: $colorCardBackground;
+    -webkit-filter: invert(1);
 }
 
 a {
     @include linkReset;
-/*
-    &:hover, &:active, &:focus {
-        @include hoverAnimation;
-    }
-*/
-//         border-bottom: .125em $colorType solid;
-    
+
     &.warning {
-//             color: $colorAlert;
+        color: $colorAlert;
         
         &:hover {
             @include hoverWarningAnimation;
@@ -93,9 +91,19 @@ a {
         }
     }
 }
+
+.invertHover {
+    &:hover {
+        @include invertHover;
+    }
+}
+
+.blackHover {
+    &:hover {
+        @include blackHover;
+    }
+}
     
-
-
 .card {
     @include cardStyle;
     display: block;
@@ -105,10 +113,12 @@ a {
     }
 }
 
-.invertHover {
-    &:hover {
-        @include invertHover;
-    }
+.cardHover:hover {
+    @include cardHover;
+}
+
+.cardDrag.dragging {
+    @include cardHover;
 }
 
 form {
@@ -169,7 +179,6 @@ input {
     
     &.offset {
         @include button;
-        @include buttonOffset;
     }
     
     &[type=submit], &[type=button] {

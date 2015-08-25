@@ -3,6 +3,15 @@ $scaleMultiple: 4;
 $backButtonWidth: ($col/4) + $cardPaddingLeft + $cell;
 $logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
 
+
+.slidingContainer {
+    position: absolute;
+}
+
+.sliding {
+    position: absolute;
+}
+
 section.container {
     
     header.main {

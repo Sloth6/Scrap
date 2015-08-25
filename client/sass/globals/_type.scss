@@ -1,7 +1,7 @@
-// $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif;
-/* $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif; */
+/* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
+// $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
 $fontFamily:            'Neue Haas Unica W01', "Helvetica Neue";
-/* $fontFamily:            -apple-system, "Helvetica Neue"; */
+// $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
 
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
@@ -14,35 +14,44 @@ $leading:           		$cell * 2;
 
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
-$typeBodyTracking:  		0;
 $typeHeaderSize:    		24pt;
-$typeHeaderLeading: 		1em;
+$typeTitleSize:    		54pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
 
+$typeHeaderLeading: 		24pt;
+$typeTitleLeading:      48pt;
+
 $headerLeftMarginOffset:
                     -1pt;
+@mixin typeTitle {
+/*     font-family:    "AGaramondPro", "helvetica"; */
+    font-size:      $typeTitleSize;
+    font-weight:    $fontWeightLight;
+    letter-spacing: -(1em / 16);
+    line-height:    $typeTitleLeading;
+}
 
-@mixin typeSmall {
-    font-size:      $typeSmallSize;
-    font-weight:    $fontWeightMedium;
-    line-height:    12pt;
-    letter-spacing: 0.03125em;
+@mixin typeHeader {
+    font-size:      $typeHeaderSize;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -(1em / 24);
+    line-height:    $typeHeaderLeading;
 }
 
 @mixin typeBody {
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightRegular;
     line-height:    $leading;
-    letter-spacing: 0;
+    letter-spacing: (1em/16);
 }
 
-@mixin typeHeader {
-    font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightMedium;
-    letter-spacing: -.046874em;
-    line-height:    $typeHeaderLeading;
+@mixin typeSmall {
+    font-size:      $typeSmallSize;
+    font-weight:    $fontWeightRegular;
+    line-height:    12pt;
+    letter-spacing: (1em/16);
 }
 
 @mixin typeHeader1 {
@@ -81,9 +90,6 @@ $headerLeftMarginOffset:
 
 @mixin typeHeaderSmallCaps {
     @include typeHeader;
-//     @include        smallCaps;
-//     font-size:      $typeHeaderSmallCapsSize;
-//     font-weight:    $fontWeightBold;
 }
 
 
@@ -106,6 +112,14 @@ html {
     
     .headerType {
         @include typeHeader;
+    }
+    
+    .titleType {
+        @include typeTitle;
+    }
+    
+    .smallType {
+        @include typeSmall;
     }
         
     p {

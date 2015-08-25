@@ -1,21 +1,36 @@
 body {
-	header.card.cover {
-		width: $col * 4;
-		height: $col * 6;
-		
-/*
-		width: 50vw;
-		height: 100vh;
-*/
-
-		h1 {
-    		position: absolute;
-    		height: $typeHeaderLeading * 4;
-    		bottom: 0;
-		}
-		
-		ul.users {
-    		@include typeSmall;
-		}
+	header.cover {
+    	
+        .card {
+            position: relative;
+        		width: $col * 4;
+        		height: $col * 6;
+        		cursor: pointer;
+        		
+        		&:hover {
+            		ul.users, .elementCount {
+                		opacity: 1;
+            		}
+        		}
+        
+        		h1 {
+                position: absolute;
+                height: $typeTitleLeading * 3;
+                bottom: $cell;
+        		}
+        		
+        		.elementCount {
+            		position: absolute;
+            		top: 0;
+            		right: 0;
+            		opacity: 0;
+        		}
+        		
+        		ul.users {
+        		    opacity: 0;
+            		@include typeSmall;
+            		@include transition(opacity .25s $defaultCurve);
+        		}
+        	}
 	}
 }
