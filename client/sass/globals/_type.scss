@@ -10,15 +10,15 @@ $fontWeightDemi:        600;
 $fontWeightBold:        700;
 $fontWeightExtraBold:   800;
 
+$leading:           		$cell * 2;
 
-$typeSmallSize:     8pt;
-$typeBodySize:      12pt;
-$typeBodyTracking:  0;
-$typeHeaderSize:    24pt;
-$typeHeaderLeading: 1em;
+$typeSmallSize:     		8pt;
+$typeBodySize:      		12pt;
+$typeBodyTracking:  		0;
+$typeHeaderSize:    		24pt;
+$typeHeaderLeading: 		1em;
 $typeHeaderSmallCapsSize:
-                    $typeHeaderSize * .666;
-$leading:           $cell * 2;
+                    		$typeHeaderSize * .666;
 
 $headerLeftMarginOffset:
                     -1pt;

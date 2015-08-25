@@ -304,68 +304,30 @@ section.container section.space section.content{
         }
         
         &.addElementForm {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: $col/2;
-            width: $col/2;
-            border-radius: $col/2;
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             height: $col/2;
+//             width: $col/2;
+//             border-radius: $col/2;
+//             width: $articleWidth;
+            height: $articleWidthWide;
             border: $cardBorder;
             border-style: dashed;
-            background-color: $colorCardBackground;
-            background-image: url('/images/add.png');
-            background-size: 24.5px 24.5px;
-            background-position: center center;
-            background-repeat: no-repeat;
             z-index: 999999999999;
+            padding: $cardPadding;
             cursor: pointer;
             @include transform(translate3d($cell*2, $cell*2, 0));
             @include transition(.25s $defaultCurve);
             @include transition-property(border-radius, background-image, height, width, transform, -webkit-transform, -moz-transform);
             
-            &.closed {
-                &:hover {
-                    @include transition-duration(.25s);
-//                 height: $col/2 + $cell * 2;
-//                 width: $col/2 + $cell * 2;
-//                 border-radius: $col/2 + $cell * 2;
-                    padding: $cell;
-                    margin-left: -$cell;
-                    margin-top: -$cell;                    
-//                     @include transform(translate3d($cell, $cell, 0));
-//                     @include box-shadow($cardBoxShadow);
-                }
-            }
+            overflow: hidden;
                         
-            &.open {
-                @include transition-duration(1s);
-                @include transform(translate3d(0, 0, 0));
-                border-radius: 0;
-                width: $articleWidth;
-                height: $articleWidthWide;
-                overflow: hidden;
-                background-image: none;
-                cursor: auto;
-                padding: $cardPadding;
                 
-                &:hover {
-                    @include transition-duration(1s);
-                }
-                
-                ul {
-                    opacity: 1;
-                    @include transform(scale3d(1,1,1));
-                    @include transition(1s $defaultCurve);
-                }
-            }
-                        
             ul {
-                opacity: 0;
+                opacity: 1;
                 transform-origin: top left;
                 -webkit-transform-origin: top left;
-                @include transform(scale3d(.25, .25, 0));
-                @include transition(.5s $defaultCurve);
-                @include transition-property(opacity, transform, -webkit-transform, -moz-transform);
                 
                 li {
                     vertical-align: top;

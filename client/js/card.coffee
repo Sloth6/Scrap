@@ -32,7 +32,7 @@ card =
       $(@).velocity {
         properties:
           translateZ: 0
-          translateX: x + 400
+          translateX: x
           scale: cardScale
           translateY: Math.random() * 200 + 50
           rotateZ: ((Math.random() * 8) + (Math.random() * -8))
