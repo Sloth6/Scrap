@@ -25,6 +25,9 @@ card_container =
       maxX = lastX
 
     $(document.body).css { width: maxX }
+    $("body").css("overflow", "hidden")
+    setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
+    
     $(@).data { maxX }
    
   realign_dont_scale: (animate) ->

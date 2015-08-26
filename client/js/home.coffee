@@ -1,6 +1,6 @@
 defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [500, 100]
-openCollectionDuration  = 3000
+openCollectionDuration  = 1000
 margin = 0
 
 mouse = { x: null, y: null }
@@ -63,6 +63,7 @@ open = (cover) ->
   
   elements.css { x: xTransform(cover) }
 
+
   cover.velocity
     properties:
       translateX: [- cover.width() + 50,  cover_position]
@@ -86,6 +87,7 @@ close = (cover) ->
   elements = collectionContent.children 'article'
   spacekey = cover.data 'spacekey'
   
+  # 
   cover.addClass 'sliding'
 
   collection.removeClass('open').addClass 'closed'
@@ -99,6 +101,8 @@ close = (cover) ->
   $(document.body).css width: window.pastState.docWidth
   card_container.realign_dont_scale.call $('.slidingContainer')
 
+  $("body").css("overflow", "hidden")
+  setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
 
   collection.siblings().velocity
     properties:
@@ -106,10 +110,7 @@ close = (cover) ->
     options:
       duration:   openCollectionDuration
       easing:     openCollectionCurve
-  # card_container.realign.call $('.slidingContainer')
 
-  # collectionContent.children().addClass 'collapsing'
-  # cover.addClass 'collapsing'
 
   # padding = $('<div>').addClass('padding').addClass('sliding').css('width', $('.cover').width())
   # collectionContent.append padding
@@ -167,10 +168,11 @@ $ ->
   card_container.realign.call $('.slidingContainer'), false
   
   $(window).scroll (event) ->
-    if window.dontScroll is true
-      window.dontScroll = false
-    else
-      card_container.scroll.call $('.slidingContainer')
+    # if $('.velocity-animating').length
+    #   console.log 'true'
+    #   event.preventDefault()
+    #   return false
+    card_container.scroll.call $('.slidingContainer')
 
   $(window).mousewheel (event) ->
     if Math.abs(event.deltaY) > 2
