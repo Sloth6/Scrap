@@ -13,7 +13,8 @@
                                   //- input(type="text")
                                   //- input(type="submit")
           .collectionContent(class=collection.spaceKey, style="display:none;")
+              include addElementForm
               -for (var j = 0; j < collection.elements.length; j++)
                   -var element = collection.elements[j]
                   include element
-              include addElementForm
+              
