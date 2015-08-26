@@ -12,22 +12,31 @@ card_container =
     maxX   = -Infinity
     zIndex = children.length
 
+    # console.log 'realigning',window.oldScroll, $(window).scrollLeft()
     animateOptions =
       duration: 1000
       opacity: 1.0
 
     children.each () ->
       $(@).data 'scroll_offset', lastX
-      $(@).css { zIndex: zIndex++ }
+      collection = $(@).parent().parent()
+      $(@).css { zIndex: zIndex-- }
       card.place.call @, animateOptions
-      width = if $(@).hasClass('collapsing') then 0 else $(@).width() * $(@).is(":visible")
+      width = $(@).width()
+      # if $(@).is(":visible") or !
+      if collection.hasClass('closing')
+        width = 0
       lastX += width + margin
       
       maxX = lastX
 
     window.dontScroll = true
     $(document.body).css { width: maxX }
+
     $(@).data { maxX }
+
+    # children.each () ->
+      
 
   init: () ->
     card_container.realign.call @
@@ -37,4 +46,6 @@ card_container =
 
   scroll: () ->
     children = card_container.children.call @
-    children.each () -> card.place.call @
+    children.each () ->
+      if $(@).is(":visible")
+        card.place.call @
