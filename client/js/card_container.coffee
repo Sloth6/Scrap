@@ -1,4 +1,4 @@
-margin = 50
+margin = 0
 
 card_container =
   children: () ->
@@ -13,7 +13,7 @@ card_container =
     zIndex = children.length
 
     animateOptions =
-      duration: 1000
+      duration: openCollectionDuration
       opacity: 1.0
 
     children.each () ->

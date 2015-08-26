@@ -1,6 +1,6 @@
 defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [500, 100]
-openCollectionDuration  = 2000
+openCollectionDuration  = 6000
 
 randomColor = ->
     letters = '0123456789ABCDEF'.split('')
@@ -141,7 +141,7 @@ $ ->
                 translateZ: 0
                 opacity:    0
             options:
-                duration:   openCollectionDuration / 2
+                duration:   openCollectionDuration
                 easing:     openCollectionCurve
                 complete: () ->
                     collectionContent.hide()

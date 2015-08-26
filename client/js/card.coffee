@@ -4,7 +4,7 @@ logistic = (x) ->
 card =
     place: (animateOptions = null) ->
         # console.log @
-        border = $(window).width() / 6
+        border = $(window).width() / 4
 
         # return if card.hasClass('dragging')
         offset = $(@).data 'scroll_offset'
@@ -38,7 +38,7 @@ card =
                     rotateZ: (Math.random() * 8) + (Math.random() * -8)
                     # opacity: animateOptions.opacity
                 options:
-                    duration: 1000
+                    duration: openCollectionDuration
                     queue: false
                     easing: [500, 100]
                     complete: animateOptions.complete or (() ->)
@@ -48,7 +48,7 @@ card =
                 properties:
                     translateZ: 0
                     translateX: x
-                    scale: cardScale
+#                     scale: cardScale
                 options:
                     queue: false 
                     duration: 0
