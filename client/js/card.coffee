@@ -40,13 +40,4 @@ card =
           easing: [500, 100]
       }
     else # scrolling
-      # $(@).velocity {
-      #   properties:
-      #     # translateZ: 0
-      #     translateX: x
-      #     # scale: cardScale
-      #   options:
-      #     queue: false 
-      #     duration: 0
-      # }
       $(@).css { x }

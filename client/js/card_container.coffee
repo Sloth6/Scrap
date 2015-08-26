@@ -1,5 +1,3 @@
-
-# children_cache = null
 card_container =
   children: () ->
     children = $(@).find('.sliding').filter () ->

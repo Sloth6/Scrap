@@ -594,7 +594,7 @@ html .headerType {
 /* line 117, ../sass/globals/_type.scss */
 html .titleType {
   /*     font-family:    "AGaramondPro", "helvetica"; */
-  font-size: 54pt;
+  font-size: 52pt;
   font-weight: 300;
   letter-spacing: -0.0625em;
   line-height: 48pt;
@@ -1973,7 +1973,7 @@ body header.cover .card:hover ul.users, body header.cover .card:hover .elementCo
 /* line 16, ../sass/layout/_home.scss */
 body header.cover .card h1 {
   position: absolute;
-  height: 144pt;
+  height: 192pt;
   bottom: 8pt;
 }
 /* line 22, ../sass/layout/_home.scss */
@@ -1990,6 +1990,7 @@ body header.cover .card ul.users {
   font-weight: 400;
   line-height: 12pt;
   letter-spacing: 0.0625em;
+  font-weight: 500;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);

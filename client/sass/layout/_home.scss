@@ -15,7 +15,7 @@ body {
         
         		h1 {
                 position: absolute;
-                height: $typeTitleLeading * 3;
+                height: $typeTitleLeading * 4;
                 bottom: $cell;
         		}
         		
@@ -29,6 +29,7 @@ body {
         		ul.users {
         		    opacity: 0;
             		@include typeSmall;
+            		font-weight: $fontWeightMedium;
             		@include transition(opacity .25s $defaultCurve);
         		}
         	}
