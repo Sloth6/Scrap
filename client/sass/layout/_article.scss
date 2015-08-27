@@ -23,10 +23,6 @@ section.container section.space section.content{
             .elementControls {
                 opacity: 1;
             }
-
-            > .content .card {
-                @include cardHover;
-            }
         }
 
         &.dragging, &.ui-draggable-dragging, &.active, &:active {
