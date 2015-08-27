@@ -32,6 +32,10 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     padding: $cardPadding;
             transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
+
+}
+
+@mixin cardHover {
     @include transition(.125s $defaultCurve);
     @include transition-property(transform,
                          -webkit-transform,
@@ -42,12 +46,14 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
                                  background-color,
                                  border-color,
                                  color);
-
-}
-
-@mixin cardHover {
-    @include box-shadow($cardBoxShadowDimensions white);
-    @include transform(translate(-$cell, -$cell));
+                                 
+    &:hover {
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+        @include transform(translate(-$cell, -$cell));
+        &.invertHover {
+            @include box-shadow($cardBoxShadowDimensions white);
+        }
+    }
 }
 
 @mixin cardDrag {
@@ -113,7 +119,7 @@ a {
     }
 }
 
-.cardHover:hover {
+.cardHover {
     @include cardHover;
 }
 

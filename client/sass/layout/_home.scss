@@ -6,17 +6,26 @@ body {
         		width: $col * 4;
         		height: $col * 6;
         		cursor: pointer;
+//             text-align: center;
         		        		
         		&:hover {
             		ul.users, .elementCount {
                 		opacity: 1;
             		}
+            		
+            		h1 {
+                    -webkit-text-stroke: $cardBorderWidth $colorCardBackground;
+                    -webkit-text-fill-color: $colorType;
+            		}
         		}
         
         		h1 {
-                position: absolute;
-                height: $typeTitleLeading * 4;
-                bottom: $cell;
+//                 position: absolute;
+//                 top: $col * 4;
+//                 margin-top: $col/2;
+                margin-right: $cardPaddingRight/2;
+                -webkit-text-stroke: $cardBorderWidth $colorType;
+                -webkit-text-fill-color: $colorCardBackground;
         		}
         		
         		.elementCount {
@@ -27,6 +36,9 @@ body {
         		}
         		
         		ul.users {
+//             		text-align: left;
+                position: absolute;
+                bottom: 0;
         		    opacity: 0;
             		@include typeSmall;
             		font-weight: $fontWeightMedium;

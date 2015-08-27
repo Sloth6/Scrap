@@ -4,7 +4,7 @@
 - var posString = "position:absolute;"
 
 article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
-  .content.invertHover
+  .content.cardHover.invertHover
     .elementControls
       - if (typeof(collection.nameMap) !== "undefined") {
         author= collection.nameMap[element.creatorId].name

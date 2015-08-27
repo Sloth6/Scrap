@@ -13,7 +13,7 @@ randomColor = ->
   color = '#'
   i = 0
   while i < 6
-    color += letters[Math.floor(Math.random() * 16)]
+    color += letters[Math.floor(((Math.random() / 2) + .5) * 16)]
     i++
   color
 
