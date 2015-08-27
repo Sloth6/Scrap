@@ -114,7 +114,7 @@ collectionRealign = (animate) ->
     lastX += width + margin
     
     maxX = lastX
-
+  
   $(document.body).css { width: maxX }
   $("body").css("overflow", "hidden")
   setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration

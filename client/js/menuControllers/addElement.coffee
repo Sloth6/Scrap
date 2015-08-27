@@ -1,6 +1,7 @@
 addElementController =
   #  Open closed menu items
   init: (menu) ->
+    
     spacekey = menu.parent().parent().data 'spacekey'
     input = menu.find('.textInput')
     
@@ -19,7 +20,6 @@ addElementController =
       ), 20
 
     menu.find('a.submit').click (event) ->
-      # console.log 'ere'
       emitNewElement input.val(), spacekey
       addElementController.reset menu
       event.preventDefault()

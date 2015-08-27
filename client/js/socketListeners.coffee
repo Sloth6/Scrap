@@ -12,9 +12,11 @@ $ ->
     { html, spaceKey } = data
     element = $(decodeURIComponent(html))
     console.log 'new element', element
-    if $(".#{spaceKey}.cover").hasClass 'open'
-      element.insertAfter $(".#{spaceKey}.addElementForm")
-      card_container.realign.call $('.slidingContainer')
+    if $(".#{spaceKey}.collection").hasClass 'open'
+      element.insertAfter $(".#{spaceKey}.collection").find('.addElementForm')
+      element.css 'x', xTransform(element)
+      collectionRealign.call $('.slidingContainer')
+
       switch element.data('contenttype')
         when 'text'
           makeModifiable element

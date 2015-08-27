@@ -1,7 +1,7 @@
 .slidingContainer
   -for (var i = 0; i < 8; i++) // collections.length
     -var collection = collections[i]
-    .collection.closed
+    .collection.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
       header.cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
         .card.cardHover
           h1.collectionTitle.titleType!=collection.name
