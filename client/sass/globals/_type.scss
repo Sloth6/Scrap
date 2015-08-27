@@ -27,7 +27,7 @@ $headerLeftMarginOffset:
 @mixin typeTitle {
 /*     font-family:    "AGaramondPro", "helvetica"; */
     font-size:      $typeTitleSize;
-    font-weight:    $fontWeightLight;
+    font-weight:    $fontWeightRegular;
     letter-spacing: -(1em / 16);
     line-height:    $typeTitleLeading;
 }
