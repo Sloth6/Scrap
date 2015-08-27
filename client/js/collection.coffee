@@ -1,92 +1,211 @@
 
-placeHolder_under_mouse = (event) ->
-  collection = $(@)
-  element = collection_children.call(@).first()
-  # Get the element that the mouse is over
-  while mouse.x > (parseInt(element.css('x')) + element.width())
-    element = element.next()
+collectionOpen = (cover) ->
+  collection = cover.parent()
+  collectionContent = collection.children '.collectionContent'
+  elements = collectionContent.children 'article'
+  spacekey = cover.data 'spacekey'
+  cover.removeClass 'sliding'
+  cover.css { 'position': 'absolute', 'zIndex': 999}
 
-  if mouse.x < parseInt(element.css('x'))+ element.width()/2
-    collection_insert_before.call @, drag_placeholder, element
-  else 
-    collection_insert_after.call @, drag_placeholder, element
-  true
+  history.pushState { name: "home" }, "", "/#{spacekey}"
 
+  # Close anything else thats open
+  $('.open').removeClass 'open'
+  collection.removeClass('closed').addClass 'open'
 
+  # Remember where we were
+  window.pastState.scrollLeft = $(window).scrollLeft()
+  window.pastState.docWidth   = $(window.document).width()
 
-collection_close = () ->
-  collection = $('.collection.open')
-  history.pushState {name: "home"}, "", "/"
+  cover_position = xTransform(cover)
+
+  $(window).scrollLeft 0
+  collection.siblings().hide()
+
+  collectionContent.show()
   
-  $('.collection').show()
-  $('.collection header.collectionHeader').removeClass 'open'
+  elements.css { x: xTransform(cover) }
 
-  $(".menu.settings").removeClass 'hidden'
-  $('.translate-container').transition { x: 0, y: old_top }, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
 
-  $('.elements').css { scale: 1/scaleMultiple }
-  window.scale = 1/scaleMultiple
-  collection.addClass('closed').removeClass 'open'
-  document.title = 'Hotpot'
-  collection_init.call collection
-  setTimeout(() ->
-    $('header.main').css 'z-index', 30 # Place collection beneath header for smooth animation
-  , 1000)
-  setTimeout(() ->
-    $('header .topLeftButton').removeClass 'backHomeButton'
-    $('header .topLeftButton').addClass 'logoButton'
-  , 0)
+  cover.velocity
+    properties:
+      translateX: [- cover.width() + 50,  cover_position]
+    options:
+      duration: openCollectionDuration
+      queue: false
+      easing:openCollectionCurve
 
-collection_enter = (event) ->
-  collection = $(@)
-  return if collection.hasClass 'open'
-  spacekey = collection.data 'spacekey'
-  history.pushState {name: "derp"}, "", "/#{spacekey}"
-  collection.addClass('open').removeClass 'closed'
-  $('header .topLeftButton').addClass 'backHomeButton'
-  $('header .topLeftButton').removeClass 'logoButton'
-  $('.collection header.collectionHeader').addClass 'open'
+  collectionContent.velocity
+    properties:
+      opacity: [1, 0]
+    options:
+      duration: openCollectionDuration
+      easing: openCollectionCurve
 
-  old_top = $('.translate-container').css 'y'
-  $(".menu.settings").addClass 'hidden'
+  collectionRealign.call $('.slidingContainer')
 
-  $('.collection').not(@).hide()
-  $('.collection').not(@).addClass 'closed'
-  # offsetTop = -(collection.position().top*scaleMultiple) + $(window).height()/2 - collection.height()/2
-  $('.elements').css { scale: 1, zIndex: 50, queue: false }
-  window.scale = 1
-  $('.translate-container').transition {x: 0, y: -$('header.main .topLeftButton').height() - 2, queue: false}, 1000, 'cubic-bezier(0.19, 1, 0.22, 1)'
-  $('header.main').css 'z-index', -50 # Place collection above header for smooth animation
-  console.log -$('header.main h1.topLeftButton a').height()
-  old_top = $('.translate-container').css 'y'
+collectionClose = (cover) ->
+  collection = cover.parent()
+  collectionContent = collection.children '.collectionContent'
+  elements = collectionContent.children 'article'
+  spacekey = cover.data 'spacekey'
+  
+  # 
+  cover.addClass 'sliding'
 
-  width = collection_children.call(@).length * 400
-  $(document.body).css {width}
+  collection.removeClass('open').addClass 'closed'
+  collection.siblings().show()
+  
+  # elements to remove
+  collectionContent.children().css 'zIndex', 0
+  collectionContent.hide()
 
-  collection_init.call collection
-  document.title = "#{collection.data('name')} · Hotpot"
+  $(window).scrollLeft window.pastState.scrollLeft
+  $(document.body).css width: window.pastState.docWidth
+  collectionRealignDontScale.call $('.slidingContainer')
 
-collection_children = () ->
-  $(@).children('.elements').children().not('.addElementForm')
+  $("body").css("overflow", "hidden")
+  setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
 
-# call once the dom inside the collection changes and positions need to be 
-# recalculated
+  collection.siblings().velocity
+    properties:
+      opacity: [1, 0]
+    options:
+      duration:   openCollectionDuration
+      easing:     openCollectionCurve
 
-# put element a before b
-collection_insert_before = (a, b) ->
-  collection = $(@)
-  a.insertBefore b
-  if a.parent() is b.parent()
-    collection_realign_elements.call a.parent().parent()
-  else
-    collection_realign_elements.call a.parent().parent()
-    collection_realign_elements.call b.parent().parent()
+  # $(@).velocity({
+  #         rotateZ : 0
+  # }, {
+  #         duration : openCollectionDuration,
+  #         easing : openCollectionCurve
+  # })
 
-collection_insert_after = (a, b) ->
-  collection = $(@)
-  a.insertAfter b
-  if a.parent() is b.parent()
-    collection_realign_elements.call a.parent().parent()
-  else
-    collection_realign_elements.call a.parent().parent()
-    collection_realign_elements.call b.parent().parent()
+  # $elements.velocity({
+  #         rotateZ : 0
+  #         translateY : 0;
+  # }, {
+  #         duration : openCollectionDuration,
+  #         easing : openCollectionCurve
+  # })
+
+collectionChildren = () ->
+  children = $(@).find('.sliding').filter () ->
+    collection = $(@).parent().parent()
+    $(@).hasClass('cover') or collection.hasClass('open') or collection.hasClass('closing')
+
+collectionOfElement = () ->
+  $(@).parent().parent()
+
+collectionRealign = (animate) ->
+  children = collectionChildren.call @
+  lastX  = 0
+  maxX   = -Infinity
+  zIndex = children.length
+
+  children.each () ->
+    $(@).data 'scroll_offset', lastX
+    collection = $(@).parent().parent()
+    $(@).css { zIndex: zIndex-- }
+    slidingPlace.call @, animate
+    width = $(@).width()
+    if collection.hasClass('closing')
+      width = 0
+    lastX += width + margin
+    
+    maxX = lastX
+
+  $(document.body).css { width: maxX }
+  $("body").css("overflow", "hidden")
+  setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
+  
+  $(@).data { maxX }
+ 
+collectionRealignDontScale = (animate) ->
+  children = collectionChildren.call @
+  lastX  = 0
+  maxX   = -Infinity
+  zIndex = children.length
+
+  children.each () ->
+    $(@).data 'scroll_offset', lastX
+    collection = $(@).parent().parent()
+    $(@).css { zIndex: zIndex-- }
+    slidingPlace.call @, animate
+    width = $(@).width()
+    if collection.hasClass('closing')
+      width = 0
+    lastX += width + margin
+    maxX = lastX
+
+  $(@).data { maxX }
+ 
+collectionScroll = () ->
+  collectionChildren.call(@).each () ->
+    # if $(@).is(":visible")
+    slidingPlace.call @, false
+
+  # padding = $('<div>').addClass('padding').addClass('sliding').css('width', $('.cover').width())
+  # collectionContent.append padding
+
+  
+  # collectionContent.css 'opacity', 1
+
+  # collectionContent.velocity
+  #   properties:
+  #     translateZ: 0
+  #     opacity:    0
+  #   options:
+  #     duration:   openCollectionDuration
+  #     easing:     openCollectionCurve
+  #     complete: () ->
+  #       collectionContent.hide()
+  #       collectionContent.css 'opacity', 1
+  #       collectionContent.children().removeClass 'collapsing'
+  #       cover.removeClass 'collapsing'
+  #       padding.remove()
+
+  # elements.velocity
+  #   properties:
+  #     translateZ: 0
+  #     translateY: 0
+  #     translateX: 0
+  #     rotateZ:    0
+  #   options:
+  #     duration:   openCollectionDuration
+  #     easing:     openCollectionCurve
+  
+
+#  Old scrolling code
+
+# placeHolder_under_mouse = (event) ->
+#   collection = $(@)
+#   element = collection_children.call(@).first()
+#   # Get the element that the mouse is over
+#   while mouse.x > (parseInt(element.css('x')) + element.width())
+#     element = element.next()
+
+#   if mouse.x < parseInt(element.css('x'))+ element.width()/2
+#     collection_insert_before.call @, drag_placeholder, element
+#   else 
+#     collection_insert_after.call @, drag_placeholder, element
+#   true
+
+# # put element a before b
+# collection_insert_before = (a, b) ->
+#   collection = $(@)
+#   a.insertBefore b
+#   if a.parent() is b.parent()
+#     collection_realign_elements.call a.parent().parent()
+#   else
+#     collection_realign_elements.call a.parent().parent()
+#     collection_realign_elements.call b.parent().parent()
+
+# collection_insert_after = (a, b) ->
+#   collection = $(@)
+#   a.insertAfter b
+#   if a.parent() is b.parent()
+#     collection_realign_elements.call a.parent().parent()
+#   else
+#     collection_realign_elements.call a.parent().parent()
+#     collection_realign_elements.call b.parent().parent()

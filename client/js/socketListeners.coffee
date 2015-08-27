@@ -13,7 +13,7 @@ $ ->
     element = $(decodeURIComponent(html))
     console.log 'new element', element
     if $(".#{spaceKey}.cover").hasClass 'open'
-      element.insertBefore $(".#{spaceKey}.addElementForm")
+      element.insertAfter $(".#{spaceKey}.addElementForm")
       card_container.realign.call $('.slidingContainer')
       switch element.data('contenttype')
         when 'text'
@@ -27,11 +27,8 @@ $ ->
 
   socket.on 'removeElement', (data) ->
     console.log 'removeElement', data
-
-    
-    
     elem = $("\##{data.id}")
-    collection = element_collection.call elem
+    collection = collectionOfElement.call elem
     $("\##{data.id}").fadeOut -> 
       elem.remove()
       collection_realign_elements.call collection
