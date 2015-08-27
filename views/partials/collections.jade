@@ -14,10 +14,10 @@
             li.user Cursus Sollicitudin
             li.user Ipsum Etiam
             li.user!=user.name
-            //- li.user.add
-                //- form
-                  //- input(type="text")
-                  //- input(type="submit")
+            li.user.add
+              form
+                input(type="text")
+                input(type="submit")
       .collectionContent(class=collection.spaceKey, style="display:none;")
         include addElementForm
         -for (var j = 0; j < collection.elements.length; j++)

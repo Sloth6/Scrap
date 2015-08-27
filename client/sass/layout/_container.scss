@@ -90,6 +90,10 @@ section.container {
         }
     }
     
+    section.content {
+        margin-top: $col;
+    }
+    
 /*
     .collection {
         margin-top: 108px;

@@ -48,7 +48,9 @@ block content
   //-       h1.logo Hotpot
   //-     a.back.card.headerCard.invertHover.headerType(href='#') ‹
   //-   include partials/settingsMenu
-  section.space.blur.blurAllCollections
-    section.content(style="position:fixed;")
+  section.space
+    header.main
+      include partials/settingsMenu.jade
+    section.blur.blurAllCollections.content(style="position:fixed;")
       - var collections = user.spaces
       include partials/collections
