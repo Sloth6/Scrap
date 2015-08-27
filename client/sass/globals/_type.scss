@@ -44,7 +44,7 @@ $headerLeftMarginOffset:
     font-size:      $typeBodySize;
     font-weight:    $fontWeightRegular;
     line-height:    $leading;
-    letter-spacing: (1em/16);
+    letter-spacing: (1em/32);
 }
 
 @mixin typeSmall {

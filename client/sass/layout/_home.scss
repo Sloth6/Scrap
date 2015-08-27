@@ -6,6 +6,7 @@ body {
         		width: $col * 4;
         		height: $col * 6;
         		cursor: pointer;
+        		overflow: hidden;
 //             text-align: center;
         		        		
         		&:hover {
@@ -35,11 +36,10 @@ body {
             		opacity: 0;
         		}
         		
-        		ul.users {
+        		ul.menu.users {
 //             		text-align: left;
                 position: absolute;
                 bottom: 0;
-        		    opacity: 0;
             		@include typeSmall;
             		font-weight: $fontWeightMedium;
             		@include transition(opacity .25s $defaultCurve);
