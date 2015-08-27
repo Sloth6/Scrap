@@ -23,6 +23,8 @@ collectionOpen = (cover) ->
   
   elements.css { x: xTransform(cover) }
 
+  collectionJumble elements
+  
   # cover.velocity
   #   properties:
   #     translateX: [- cover.width() + edgeWidth,  xTransform(cover)]
@@ -96,6 +98,11 @@ collectionChildren = () ->
 
 collectionOfElement = () ->
   $(@).parent().parent()
+
+collectionJumble = (elements) ->
+  elements.each () ->
+    $(@).data('translateY', Math.random() * 200 + 50)
+    $(@).data('rotateZ', (Math.random() * 8) + (Math.random() * -8))
 
 collectionRealign = (animate) ->
   children = collectionChildren.call @

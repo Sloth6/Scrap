@@ -49,6 +49,11 @@ $ ->
     return if $(@).hasClass 'open'
     collectionOpen $(@)
 
+  $('.cover').each () ->
+    $(@).data('translateY', 0)
+    $(@).data('rotateZ', 0)
+
+
   $('.sliding').mouseover( () ->
     return unless $(@).hasClass('sliding')
     $(@).data 'oldZIndex', $(@).css('zIndex')

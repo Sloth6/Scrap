@@ -18,23 +18,31 @@ transformX = (x, e) ->
 
 slidingPlace = (animate = true) ->
   rawX = $(@).data('scroll_offset') - $(window).scrollLeft() + margin
-  x = transformX rawX, $(@)
+  translateX = transformX rawX, $(@)
 
-  percentAcross = x / $(window).width()
+  percentAcross = translateX / $(window).width()
   cardScale = 1 - ((1 - percentAcross) * .1)
   
   animateOptions =
     properties:
       translateZ: 0
-      translateX: [x, xTransform($(@))]
-      # scale: cardScale
-      # translateY: Math.random() * 200 + 50
-      # rotateZ: (Math.random() * 8) + (Math.random() * -8)
-      # opacity: animate.opacity
+      translateX: [translateX, xTransform($(@))]
+      scale: cardScale
+      translateY: $(@).data('translateY')
+      rotateZ: $(@).data('rotateZ')
     options:
       duration: openCollectionDuration
       queue: false
       easing: [500, 100]
 
   # opening or closing
-  if animate then $(@).velocity animateOptions else $(@).css { x }
+  if animate
+    $(@).velocity animateOptions
+  else
+    # console.log 
+    $(@).css {
+      x: translateX
+      y: $(@).data('translateY')
+      rotate3d: "0,0,1,#{$(@).data('rotateZ')}deg"
+      # rotateZ: 
+    }
