@@ -16,6 +16,23 @@ getTranslateX = (x, e) ->
     x = left_start - ((logistic(percent)-0.5)*2 * border)
   x
 
+# $ ->
+#   border = sliderBorder()
+#   $(window).mousemove (event) ->
+#     x = event.pageX
+percentToBorder = (x) -> 
+  right_start = $(window).width() - border
+  left_start = border
+  
+  if x > right_start
+    percent = (x - right_start) / border
+  else if x < left_start
+    percent = 1- (x/ border)
+  else
+    percent = 0
+
+  percent
+
 sliderJumble = () ->
   $(@).data
     'translateY': Math.random() * 100 + 50
@@ -26,6 +43,8 @@ slidingPlace = (animate = true) ->
   translateX = getTranslateX rawX, $(@)
 
   percentAcross = translateX / $(window).width()
+
+  # percentToBorder()
   # cardScale = 1 - ((1 - percentAcross) * .1)
   
   animateOptions =
