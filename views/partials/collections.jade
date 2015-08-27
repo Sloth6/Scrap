@@ -1,5 +1,5 @@
 .slidingContainer
-  -for (var i = 0; i < 8; i++) // collections.length
+  -for (var i = 0; i < collections.length; i++) // collections.length
     -var collection = collections[i]
     .collection.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
       header.cover.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
