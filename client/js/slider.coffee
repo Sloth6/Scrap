@@ -4,7 +4,7 @@ transformX = (x, e) ->
   border = sliderBorder()
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
-  left_min = - e.width()
+  left_min = - e.width() + edgeWidth
   left_start = left_min + border
 
   if x > right_start

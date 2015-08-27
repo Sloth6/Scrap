@@ -3,6 +3,7 @@ openCollectionCurve     = [500, 100]
 openCollectionDuration  = 1000
 margin = 0
 sliderBorder = () -> $(window).width() / 6
+edgeWidth = 32
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
@@ -49,9 +50,11 @@ $ ->
     collectionOpen $(@)
 
   $('.sliding').mouseover( () ->
+    return unless $(@).hasClass('.sliding')
     $(@).data 'oldZIndex', $(@).css('zIndex')
     $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
   ).mouseout () ->
+    return unless $(@).hasClass('.sliding')
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
 
   # Close a collection on page back

@@ -5,7 +5,11 @@ collectionOpen = (cover) ->
   elements = collectionContent.children 'article'
   spacekey = cover.data 'spacekey'
   cover.removeClass 'sliding'
-  cover.css { 'position': 'absolute', 'zIndex': 999}
+  cover.css { 'position': 'absolute', 'z-index': 999 }
+  cover_position = xTransform(cover)
+  console.log cover.zIndex()
+  
+  
 
   history.pushState { name: "home" }, "", "/#{spacekey}"
 
@@ -17,7 +21,7 @@ collectionOpen = (cover) ->
   window.pastState.scrollLeft = $(window).scrollLeft()
   window.pastState.docWidth   = $(window.document).width()
 
-  cover_position = xTransform(cover)
+  
 
   $(window).scrollLeft 0
   collection.siblings().hide()
@@ -26,14 +30,15 @@ collectionOpen = (cover) ->
   
   elements.css { x: xTransform(cover) }
 
-
   cover.velocity
     properties:
-      translateX: [- cover.width() + 50,  cover_position]
+      translateX: [- cover.width() + edgeWidth,  cover_position]
     options:
       duration: openCollectionDuration
       queue: false
       easing:openCollectionCurve
+      complete: () ->
+        cover.addClass 'atEdge'
 
   collectionContent.velocity
     properties:
@@ -52,6 +57,7 @@ collectionClose = (cover) ->
   
   # 
   cover.addClass 'sliding'
+  cover.removeClass 'atEdge'
 
   collection.removeClass('open').addClass 'closed'
   collection.siblings().show()
@@ -100,7 +106,7 @@ collectionOfElement = () ->
 
 collectionRealign = (animate) ->
   children = collectionChildren.call @
-  lastX  = 0
+  lastX  = edgeWidth
   maxX   = -Infinity
   zIndex = children.length
 
@@ -124,7 +130,7 @@ collectionRealign = (animate) ->
  
 collectionRealignDontScale = (animate) ->
   children = collectionChildren.call @
-  lastX  = 0
+  lastX  = edgeWidth
   maxX   = -Infinity
   zIndex = children.length
 
