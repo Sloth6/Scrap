@@ -13,7 +13,7 @@ collectionOpen = (cover) ->
   $('.open').removeClass 'open'
   collection.removeClass('closed').addClass 'open'
 
-  # Remember where we were
+  # Remember where we were  
   window.pastState.scrollLeft = $(window).scrollLeft()
   window.pastState.docWidth   = $(window.document).width()
 
@@ -60,12 +60,13 @@ collectionClose = (cover) ->
   collectionContent.children().css 'zIndex', 0
   collectionContent.hide()
 
-  $(window).scrollLeft window.pastState.scrollLeft
+  console.log 'setting scroll to:', window.pastState.scrollLeft
   $(document.body).css width: window.pastState.docWidth
+  $(window).scrollLeft window.pastState.scrollLeft
   collectionRealignDontScale.call $('.slidingContainer')
-
-  $("body").css("overflow", "hidden")
-  setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
+  console.log $(window).scrollLeft()
+  # $("body").css("overflow", "hidden")
+  # setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
 
   collection.siblings().velocity
     properties:

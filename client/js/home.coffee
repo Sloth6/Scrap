@@ -48,9 +48,9 @@ $ ->
     return if $(@).hasClass 'open'
     collectionOpen $(@)
 
-  $('.element').mouseover( () ->
+  $('.sliding').mouseover( () ->
     $(@).data 'oldZIndex', $(@).css('zIndex')
-    $(@).css 'zIndex', $(@).siblings().length + 1
+    $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
   ).mouseout () ->
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
 
