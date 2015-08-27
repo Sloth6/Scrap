@@ -4,15 +4,11 @@ collectionOpen = (cover) ->
   collectionContent = collection.children '.collectionContent'
   elements = collectionContent.children 'article'
   spacekey = cover.data 'spacekey'
-  cover.removeClass 'sliding'
-  cover.css { 'position': 'absolute', 'z-index': 999 }
-  cover_position = xTransform(cover)
-  console.log cover.zIndex()
-  
-  
-
   history.pushState { name: "home" }, "", "/#{spacekey}"
 
+  # cover.removeClass 'sliding'
+  # cover.css { 'position': 'absolute', 'z-index': 999 }
+  
   # Close anything else thats open
   $('.open').removeClass 'open'
   collection.removeClass('closed').addClass 'open'
@@ -20,25 +16,22 @@ collectionOpen = (cover) ->
   # Remember where we were  
   window.pastState.scrollLeft = $(window).scrollLeft()
   window.pastState.docWidth   = $(window.document).width()
-
-  
-
   $(window).scrollLeft 0
-  collection.siblings().hide()
 
+  collection.siblings().hide()
   collectionContent.show()
   
   elements.css { x: xTransform(cover) }
 
-  cover.velocity
-    properties:
-      translateX: [- cover.width() + edgeWidth,  cover_position]
-    options:
-      duration: openCollectionDuration
-      queue: false
-      easing:openCollectionCurve
-      complete: () ->
-        cover.addClass 'atEdge'
+  # cover.velocity
+  #   properties:
+  #     translateX: [- cover.width() + edgeWidth,  xTransform(cover)]
+  #   options:
+  #     duration: openCollectionDuration
+  #     queue: false
+  #     easing:openCollectionCurve
+  #     complete: () ->
+  #       cover.addClass 'atEdge'
 
   collectionContent.velocity
     properties:
@@ -106,7 +99,7 @@ collectionOfElement = () ->
 
 collectionRealign = (animate) ->
   children = collectionChildren.call @
-  lastX  = edgeWidth
+  lastX  = 0#edgeWidth
   maxX   = -Infinity
   zIndex = children.length
 
@@ -114,6 +107,7 @@ collectionRealign = (animate) ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
     $(@).css { zIndex: zIndex-- }
+    $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
     width = $(@).width()
     if collection.hasClass('closing')
@@ -130,7 +124,7 @@ collectionRealign = (animate) ->
  
 collectionRealignDontScale = (animate) ->
   children = collectionChildren.call @
-  lastX  = edgeWidth
+  lastX  = 0#edgeWidth
   maxX   = -Infinity
   zIndex = children.length
 
@@ -149,8 +143,9 @@ collectionRealignDontScale = (animate) ->
  
 collectionScroll = () ->
   collectionChildren.call(@).each () ->
-    # if $(@).is(":visible")
     slidingPlace.call @, false
+    # if $(@).hasClass('cover') and $(@).css('x') < edgeWidth
+    #   # console.log 'on edgeWidth'
 
   # padding = $('<div>').addClass('padding').addClass('sliding').css('width', $('.cover').width())
   # collectionContent.append padding

@@ -50,11 +50,11 @@ $ ->
     collectionOpen $(@)
 
   $('.sliding').mouseover( () ->
-    return unless $(@).hasClass('.sliding')
+    return unless $(@).hasClass('sliding')
     $(@).data 'oldZIndex', $(@).css('zIndex')
     $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
   ).mouseout () ->
-    return unless $(@).hasClass('.sliding')
+    return unless $(@).hasClass('sliding')
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
 
   # Close a collection on page back
