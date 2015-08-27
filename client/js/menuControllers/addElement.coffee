@@ -5,14 +5,6 @@ addElementController =
     spacekey = menu.parent().parent().data 'spacekey'
     input = menu.find('.textInput')
     
-    menu.click (event) ->
-      $(@).css({
-          "transition-duration": "1s",
-          "-webkit-transition-duration": "1s"
-      })
-      $(@).addClass 'open'
-      $(@).removeClass 'closed'
-
     menu.find('textarea').bind "paste", () ->
       setTimeout (() =>
         emitNewElement $(@).val(), spacekey
