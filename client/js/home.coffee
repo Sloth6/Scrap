@@ -1,9 +1,9 @@
 defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [500, 100]
 openCollectionDuration  = 1000
-margin = 0
+margin = 5
 sliderBorder = () -> $(window).width() / 6
-edgeWidth = 32
+edgeWidth = 30
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
@@ -49,10 +49,11 @@ $ ->
     return if $(@).hasClass 'open'
     collectionOpen $(@)
 
-  $('.cover').each () ->
-    $(@).data('translateY', 0)
-    $(@).data('rotateZ', 0)
-
+  # $('.sliding').not('.cover').each sliderJumble
+# 
+  # $('.cover').each () ->
+  #   $(@).data('translateY', 0)
+  #   $(@).data('rotateZ', 0)
 
   $('.sliding').mouseover( () ->
     return unless $(@).hasClass('sliding')

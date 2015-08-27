@@ -22,8 +22,7 @@ collectionOpen = (cover) ->
   collectionContent.show()
   
   elements.css { x: xTransform(cover) }
-
-  collectionJumble elements
+  # elements.each sliderJumble 
   
   # cover.velocity
   #   properties:
@@ -99,11 +98,6 @@ collectionChildren = () ->
 collectionOfElement = () ->
   $(@).parent().parent()
 
-collectionJumble = (elements) ->
-  elements.each () ->
-    $(@).data('translateY', Math.random() * 200 + 50)
-    $(@).data('rotateZ', (Math.random() * 8) + (Math.random() * -8))
-
 collectionRealign = (animate) ->
   children = collectionChildren.call @
   lastX  = 0#edgeWidth
@@ -139,6 +133,7 @@ collectionRealignDontScale = (animate) ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
     $(@).css { zIndex: zIndex-- }
+    $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
     width = $(@).width()
     if collection.hasClass('closing')

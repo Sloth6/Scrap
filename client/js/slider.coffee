@@ -1,6 +1,6 @@
 logistic = (x) -> 1/(1 + Math.pow(Math.E, -x))
 
-transformX = (x, e) ->  
+getTranslateX = (x, e) ->  
   border = sliderBorder()
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
@@ -16,18 +16,23 @@ transformX = (x, e) ->
     x = left_start - ((logistic(percent)-0.5)*2 * border)
   x
 
+sliderJumble = () ->
+  $(@).data
+    'translateY': Math.random() * 100 + 50
+    'rotateZ': Math.random() * 4 + (Math.random() * -4)
+
 slidingPlace = (animate = true) ->
   rawX = $(@).data('scroll_offset') - $(window).scrollLeft() + margin
-  translateX = transformX rawX, $(@)
+  translateX = getTranslateX rawX, $(@)
 
   percentAcross = translateX / $(window).width()
-  cardScale = 1 - ((1 - percentAcross) * .1)
+  # cardScale = 1 - ((1 - percentAcross) * .1)
   
   animateOptions =
     properties:
       translateZ: 0
       translateX: [translateX, xTransform($(@))]
-      scale: cardScale
+      # scale: cardScale
       translateY: $(@).data('translateY')
       rotateZ: $(@).data('rotateZ')
     options:
@@ -39,10 +44,9 @@ slidingPlace = (animate = true) ->
   if animate
     $(@).velocity animateOptions
   else
-    # console.log 
-    $(@).css {
-      x: translateX
-      y: $(@).data('translateY')
-      rotate3d: "0,0,1,#{$(@).data('rotateZ')}deg"
-      # rotateZ: 
-    }
+    options = {x: translateX}
+    options.y = $(@).data('translateY') if $(@).data('translateY') 
+    options.rotate3d = "0,0,1,#{$(@).data('rotateZ')}deg" if $(@).data('rotateZ')
+    $(@).css options
+      
+
