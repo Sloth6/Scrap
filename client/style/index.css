@@ -595,8 +595,8 @@ html .headerType {
 html .titleType {
   /*     font-family:    "AGaramondPro", "helvetica"; */
   font-size: 52pt;
-  font-weight: 400;
-  letter-spacing: -0.0625em;
+  font-weight: 700;
+  letter-spacing: -0.04167em;
   line-height: 48pt;
 }
 /* line 121, ../sass/globals/_type.scss */
@@ -1960,32 +1960,31 @@ section.container section.space section.content article.addElementForm {
   height: 320pt;
   border: 1pt solid #000000;
   border-style: dashed;
-  z-index: 999999999999;
   padding: 4pt 4pt 4pt 4pt;
   cursor: pointer;
   overflow: hidden;
 }
-/* line 252, ../sass/layout/_article.scss */
+/* line 251, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   opacity: 1;
   transform-origin: top left;
   -webkit-transform-origin: top left;
 }
-/* line 257, ../sass/layout/_article.scss */
+/* line 256, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
-/* line 260, ../sass/layout/_article.scss */
+/* line 259, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 304pt;
   position: relative;
 }
-/* line 265, ../sass/layout/_article.scss */
+/* line 264, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
-/* line 269, ../sass/layout/_article.scss */
+/* line 268, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 400;
@@ -1993,7 +1992,7 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 24pt;
   height: 100%;
 }
-/* line 275, ../sass/layout/_article.scss */
+/* line 274, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -2005,7 +2004,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   height: 16pt;
   width: intrinsic;
 }
-/* line 282, ../sass/layout/_article.scss */
+/* line 281, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form {
   height: 100%;
   width: 100%;
@@ -2013,7 +2012,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   left: 0;
   position: absolute;
 }
-/* line 289, ../sass/layout/_article.scss */
+/* line 288, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2023,7 +2022,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   opacity: 0;
   cursor: pointer;
 }
-/* line 301, ../sass/layout/_article.scss */
+/* line 300, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done {
   position: relative;
   display: inline-block;
@@ -2031,7 +2030,7 @@ section.container section.space section.content article.addElementForm ul li.don
   float: right;
   width: intrinsic;
 }
-/* line 308, ../sass/layout/_article.scss */
+/* line 307, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done a {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -2050,32 +2049,36 @@ body header.cover .card {
   position: relative;
   width: 256pt;
   height: 384pt;
+  /*
+              width:  50vw;
+              height: 87.5vh;
+  */
   cursor: pointer;
   overflow: hidden;
 }
-/* line 13, ../sass/layout/_home.scss */
+/* line 17, ../sass/layout/_home.scss */
 body header.cover .card:hover ul.users, body header.cover .card:hover .elementCount {
   opacity: 1;
 }
-/* line 17, ../sass/layout/_home.scss */
+/* line 21, ../sass/layout/_home.scss */
 body header.cover .card:hover h1 {
   -webkit-text-stroke: 1pt white;
   -webkit-text-fill-color: #000000;
 }
-/* line 23, ../sass/layout/_home.scss */
+/* line 27, ../sass/layout/_home.scss */
 body header.cover .card h1 {
   margin-right: 4pt;
   -webkit-text-stroke: 1pt #000000;
   -webkit-text-fill-color: white;
 }
-/* line 32, ../sass/layout/_home.scss */
+/* line 36, ../sass/layout/_home.scss */
 body header.cover .card .elementCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
-/* line 39, ../sass/layout/_home.scss */
+/* line 43, ../sass/layout/_home.scss */
 body header.cover .card ul.menu.users {
   position: absolute;
   bottom: 0;
