@@ -49,7 +49,7 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
           header
             - name = element.content.split('/').pop()
             h1.title=name.split('.')[0]
-            p.extension=name.split('.')[1]
+            p.extension.bodyType.smallCaps=name.split('.')[1]
           ul.cardActions
             li.right
               a.download.confirm(href='#') Download

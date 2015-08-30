@@ -146,10 +146,6 @@ section.container section.space section.content{
                     h1 {
                         word-wrap: break-word;
                     }
-                    
-                    .extension {
-                        @include typeBodySmallCaps;
-                    }
                 }
                 
             }

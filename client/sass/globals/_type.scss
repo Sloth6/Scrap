@@ -117,6 +117,14 @@ html {
     @include typeBody;
     font-variant-numeric: oldstyle-num;
     
+    .bodyType {
+        @include typeBody;
+                
+        &.smallCaps {
+          @include typeBodySmallCaps;
+        }
+    }
+    
     .headerType {
         @include typeHeader;
     }
