@@ -10,7 +10,44 @@ addUser = (email, spaceKey) ->
 
   # socket.emit 'addUserToSpace', { email, spaceKey }
 
+stopEditing = (cover, title) ->
+  spaceKey = cover.data 'spacekey'
+  title.
+    attr('contenteditable', false).
+    removeClass('editingTitle')
+  name = title.text()
+  $.post '/updateSpaceName', {spaceKey, name}, () ->
+    console.log 'success'
+
 $ ->
+  # Open a collection on click
+  $('.cover').click () ->
+    if $(@).hasClass 'open'
+      $(window).scrollLeft 0
+      collectionRealign.call $('.slidingContainer')
+    else if !$(@).hasClass('editingTitle')
+      collectionOpen $(@)
+      
+  $('.cover').each () ->
+    cover  = $(@)
+    rename = cover.find('.rename')
+    title  = cover.find('.collectionTitle')
+    
+    rename.click (event) ->
+      event.stopPropagation()
+
+      cover.
+        addClass('hover').
+        addClass('editingTitle')
+      title.
+        attr('contenteditable', true).
+        focus()
+
+      title.blur () -> stopEditing cover, title
+      cover.keypress (e) ->
+        if e.which == 13
+          stopEditing cover, title  
+          false
   
   # dont open collection on clicking user field
   $('.addUser input[name="user[email]"]').click (event) ->
