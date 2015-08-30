@@ -1,5 +1,5 @@
 ul.menu.headerMenu.settings.right.hideFirst.slideIn
-  li.first.hideOnOpenSubmenu.userName= user.name
+  li.first.hideOnOpenSubmenu.userName • • •
   li.update.hideOnOpenSubmenu
     a(href="#") Update your info
   ul.submenu
@@ -16,4 +16,4 @@ ul.menu.headerMenu.settings.right.hideFirst.slideIn
         input(type="submit", value="save")
 
   li.logout.hideOnOpenSubmenu
-    a.logout(href="/logout") Logout
+    a.logout(href="/logout")!="Log out " + user.name 
