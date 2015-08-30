@@ -4,8 +4,10 @@
     .collection.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
       header.cover.slider.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
         .card.cardHover
-          h1.collectionTitle.titleType!=collection.name
-          .elementCount.smallType!=collection.elements.length
+          section.title
+            h1.collectionTitle.titleType!=collection.name
+            p.rename
+              a.smallCaps.smallType.confirm Rename
           ul.users.menu.slideIn.left
             li.user Cursus Sollicitudin
             li.user Ipsum Etiam
@@ -24,4 +26,3 @@
         -for (var j = 0; j < collection.elements.length; j++)
           -var element = collection.elements[j]
           include element
-        

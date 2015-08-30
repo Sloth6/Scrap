@@ -9,20 +9,45 @@ body {
           		overflow: hidden;
         		        		
         		&:hover {
-            		ul.users, .elementCount {
+            		ul.users {
                 		opacity: 1;
             		}
             		
-            		h1 {
-                  -webkit-text-stroke: $cardBorderWidth $colorCardBackground;
-                  -webkit-text-fill-color: $colorType;
+            		section.title {
+                		h1 {
+                      -webkit-text-fill-color: $colorType;
+                      -webkit-text-stroke: $cardBorderWidth $colorType;
+                		}
             		}
+            		
         		}
+        		
+        		section.title {
+            		
+            		&:hover {
+                		.rename {
+                    		opacity: 1;
+                		}
+            		}
         
-        		h1 {
-              margin-right: $cardPaddingRight/2;
-              -webkit-text-stroke: $cardBorderWidth $colorType;
-              -webkit-text-fill-color: $colorCardBackground;
+            		h1 {
+                		margin-top: -.0625em;
+                		margin-left: -.03125em;
+                    margin-right: $cardPaddingRight/2;
+                    -webkit-text-stroke: 1px $colorType;
+                    -webkit-text-fill-color: transparent;
+            		}
+
+                .rename {
+                    opacity: 0;
+                    
+                    a {
+                        display: inline-block;
+                        padding: $cell * 2 $cell * 2 $cell * 2 $cell; // Larger click area
+                        margin-left: -$cell;
+                        margin-top: -$cell;
+                    }
+                }
         		}
         		
         		.elementCount {
