@@ -54,10 +54,10 @@ slidingPlace = (animate = true) ->
       # scale: cardScale
       translateY: $(@).data('translateY')
       rotateZ: $(@).data('rotateZ')
-    options:
-      duration: openCollectionDuration
-      queue: false
-      easing: [500, 100]
+    # options:
+    #   duration: openCollectionDuration
+    #   queue: false
+    #   easing: [500, 100]
 
   # opening or closing
   if animate

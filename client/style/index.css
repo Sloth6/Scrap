@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,45 +21,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -1489,7 +1489,7 @@ body {
 }
 
 /* line 11, ../sass/layout/_container.scss */
-.sliding {
+.slider {
   position: absolute;
 }
 
@@ -1960,32 +1960,31 @@ section.container section.space section.content article.addElementForm {
   height: 320pt;
   border: 1pt solid #000000;
   border-style: dashed;
-  z-index: 999999999999;
   padding: 4pt 4pt 4pt 4pt;
   cursor: pointer;
   overflow: hidden;
 }
-/* line 252, ../sass/layout/_article.scss */
+/* line 251, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   opacity: 1;
   transform-origin: top left;
   -webkit-transform-origin: top left;
 }
-/* line 257, ../sass/layout/_article.scss */
+/* line 256, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
-/* line 260, ../sass/layout/_article.scss */
+/* line 259, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 304pt;
   position: relative;
 }
-/* line 265, ../sass/layout/_article.scss */
+/* line 264, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
-/* line 269, ../sass/layout/_article.scss */
+/* line 268, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 400;
@@ -1993,7 +1992,7 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 24pt;
   height: 100%;
 }
-/* line 275, ../sass/layout/_article.scss */
+/* line 274, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -2005,7 +2004,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   height: 16pt;
   width: intrinsic;
 }
-/* line 282, ../sass/layout/_article.scss */
+/* line 281, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form {
   height: 100%;
   width: 100%;
@@ -2013,7 +2012,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   left: 0;
   position: absolute;
 }
-/* line 289, ../sass/layout/_article.scss */
+/* line 288, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2023,7 +2022,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   opacity: 0;
   cursor: pointer;
 }
-/* line 301, ../sass/layout/_article.scss */
+/* line 300, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done {
   position: relative;
   display: inline-block;
@@ -2031,7 +2030,7 @@ section.container section.space section.content article.addElementForm ul li.don
   float: right;
   width: intrinsic;
 }
-/* line 308, ../sass/layout/_article.scss */
+/* line 307, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done a {
   font-family: "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;

@@ -16,7 +16,7 @@ $ ->
     if $(".#{spaceKey}.collection").hasClass 'open'
       element.insertAfter $(".#{spaceKey}.collection").find('.addElementForm')
       element.css 'x', xTransform(element)
-      sliderJumble.call element
+      # sliderJumble.call element
       collectionRealign.call $('.slidingContainer')
 
       switch element.data('contenttype')

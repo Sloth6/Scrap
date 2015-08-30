@@ -20,6 +20,9 @@ randomColor = ->
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
 
+xForceFeedSelf = () ->
+  xTransform $(@)
+
 xTransform = ($) ->
   transform = $.css('transform')
   new WebKitCSSMatrix(transform).e
@@ -34,6 +37,10 @@ $ ->
   
   collectionRealign.call $('.slidingContainer'), false
   
+  $.Velocity.defaults.duration = openCollectionDuration
+  $.Velocity.defaults.easing = openCollectionCurve
+  $.Velocity.defaults.queue = false
+
   # Main scroll event
   $(window).scroll (event) ->
     collectionScroll.call $('.slidingContainer')

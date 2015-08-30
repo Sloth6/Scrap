@@ -2,13 +2,13 @@
 collectionOpen = (cover) ->
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
-  elements = collectionContent.children 'article'
+  elements = collectionContent.children '.slider'
   spacekey = cover.data 'spacekey'
   history.pushState { name: "home" }, "", "/#{spacekey}"
 
-  # cover.removeClass 'sliding'
-  # cover.css { 'position': 'absolute', 'z-index': 999 }
-  
+  prevSliding = collection.prevAll().find('.cover.sliding').removeClass 'sliding'
+  nextSliding = collection.nextAll().find('.cover.sliding').removeClass 'sliding'
+
   # Close anything else thats open
   $('.open').removeClass 'open'
   collection.removeClass('closed').addClass 'open'
@@ -18,82 +18,68 @@ collectionOpen = (cover) ->
   window.pastState.docWidth   = $(window.document).width()
   $(window).scrollLeft 0
 
-  collection.siblings().hide()
-  collectionContent.show()
-  
-  elements.css { x: xTransform(cover) }
-  # elements.each sliderJumble 
-  
-  # cover.velocity
-  #   properties:
-  #     translateX: [- cover.width() + edgeWidth,  xTransform(cover)]
-  #   options:
-  #     duration: openCollectionDuration
-  #     queue: false
-  #     easing:openCollectionCurve
-  #     complete: () ->
-  #       cover.addClass 'atEdge'
-
-  collectionContent.velocity
+  nextSliding.velocity
     properties:
-      opacity: [1, 0]
-    options:
-      duration: openCollectionDuration
-      easing: openCollectionCurve
+      translateX: [$(window).width(), xForceFeedSelf ]
+
+  prevSliding.velocity
+    properties:
+      translateX: [ ( () -> -$(@).width() ), xForceFeedSelf ]
+
+  # add elements in collection to list of sliding elements.
+  elements.
+    addClass('sliding').
+    css({ x: xTransform(cover) })
+
+  collectionContent.
+    show().
+    velocity
+      properties:
+        opacity: [1, 0]
 
   collectionRealign.call $('.slidingContainer')
 
 collectionClose = (cover) ->
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
-  elements = collectionContent.children 'article'
+  elements = collectionContent.children '.slider'
   spacekey = cover.data 'spacekey'
   
-  # 
-  cover.addClass 'sliding'
-  cover.removeClass 'atEdge'
+
+  prevSliding = collection.prevAll().find('.cover.slider').addClass 'sliding'
+  nextSliding = collection.nextAll().find('.cover.slider').addClass 'sliding'
 
   collection.removeClass('open').addClass 'closed'
-  collection.siblings().show()
+  # collection.siblings().show()
   
   # elements to remove
   collectionContent.children().css 'zIndex', 0
-  collectionContent.hide()
 
-  console.log 'setting scroll to:', window.pastState.scrollLeft
+  elements.
+    removeClass('sliding')
+    # css({ x: xTransform(cover) })
+
+  collectionContent.
+    show().
+    velocity
+      properties:
+        opacity: [0, 1]
+
   $(document.body).css width: window.pastState.docWidth
   $(window).scrollLeft window.pastState.scrollLeft
   collectionRealignDontScale.call $('.slidingContainer')
-  console.log $(window).scrollLeft()
-  # $("body").css("overflow", "hidden")
-  # setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
+  $("body").css("overflow", "hidden")
+  setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
 
-  collection.siblings().velocity
-    properties:
-      opacity: [1, 0]
-    options:
-      duration:   openCollectionDuration
-      easing:     openCollectionCurve
 
-  # $(@).velocity({
-  #         rotateZ : 0
-  # }, {
-  #         duration : openCollectionDuration,
-  #         easing : openCollectionCurve
-  # })
-
-  # $elements.velocity({
-  #         rotateZ : 0
-  #         translateY : 0;
-  # }, {
-  #         duration : openCollectionDuration,
-  #         easing : openCollectionCurve
-  # })
+  collectionRealign.call $('.slidingContainer')
 
 collectionChildren = () ->
-  children = $(@).find('.sliding').filter () ->
-    collection = $(@).parent().parent()
-    $(@).hasClass('cover') or collection.hasClass('open') or collection.hasClass('closing')
+  children = $(@).find('.sliding')
+  children
+  # .filter () ->
+  #   collection = $(@).parent().parent()
+  #   $(@).hasClass('cover') or collection.hasClass('open') or collection.hasClass('closing')
 
 collectionOfElement = () ->
   $(@).parent().parent()
@@ -144,41 +130,12 @@ collectionRealignDontScale = (animate) ->
   $(@).data { maxX }
  
 collectionScroll = () ->
-  collectionChildren.call(@).each () ->
+  children = collectionChildren.call(@)
+  children.each () ->
     slidingPlace.call @, false
     # if $(@).hasClass('cover') and $(@).css('x') < edgeWidth
     #   # console.log 'on edgeWidth'
 
-  # padding = $('<div>').addClass('padding').addClass('sliding').css('width', $('.cover').width())
-  # collectionContent.append padding
-
-  
-  # collectionContent.css 'opacity', 1
-
-  # collectionContent.velocity
-  #   properties:
-  #     translateZ: 0
-  #     opacity:    0
-  #   options:
-  #     duration:   openCollectionDuration
-  #     easing:     openCollectionCurve
-  #     complete: () ->
-  #       collectionContent.hide()
-  #       collectionContent.css 'opacity', 1
-  #       collectionContent.children().removeClass 'collapsing'
-  #       cover.removeClass 'collapsing'
-  #       padding.remove()
-
-  # elements.velocity
-  #   properties:
-  #     translateZ: 0
-  #     translateY: 0
-  #     translateX: 0
-  #     rotateZ:    0
-  #   options:
-  #     duration:   openCollectionDuration
-  #     easing:     openCollectionCurve
-  
 
 #  Old scrolling code
 
