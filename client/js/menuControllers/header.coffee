@@ -1,7 +1,7 @@
 $ ->
     $('ul.menu').each () ->
-        $menu    = $(@)
-        $blur   = if ($menu.hasClass('users')) then $('.blur.blurThisCollection') else $('.blur.blurAllCollections')
+        $menu   = $(@)
+        # $blur   = if ($menu.hasClass('users')) then $('.blur.blurThisCollection') else $('.blur.blurAllCollections')
         inputIsFocused  = false
         subMenuIsOpen   = false
         canCloseMenu    = false
@@ -9,12 +9,12 @@ $ ->
         toggleMenu = (to) ->
             if to == 'open'
                 $menu.addClass 'open'
-                $blur.addClass 'obscured'
+                # $blur.addClass 'obscured'
                 $('html').click ->
                     toggleMenu 'close'
             else # close
                 $menu.removeClass 'open'
-                $blur.removeClass 'obscured'
+                # $blur.removeClass 'obscured'
                 resetSubmenu()
                 canCloseMenu = false
                 
@@ -58,7 +58,7 @@ $ ->
             $('ul.submenu li.hidden').removeClass 'hidden'
             $('li.hideOnOpenSubmenu').addClass 'hidden'
             $menu.addClass('wide paddingBottom')
-            $console.log 'subMenuIsOpen'
+            console.log 'subMenuIsOpen'
     
         $menu.find($('.backButton')).click ->
             resetSubmenu()
