@@ -27,11 +27,13 @@ getType = (s, cb) ->
       return cb 'text'
     contentType = res.headers['content-type']
     host = res.socket._httpMessage._headers.host
+    console.log host
     return cb 'gif' if contentType.match /^image\/gif/
     return cb 'image' if contentType.match /^image\//
     return cb 'video' if contentType.match /^video\//
     if contentType.match /^text\/html/
       return cb 'soundcloud' if host is 'soundcloud.com'
+      return cb 'youtube' if host is 'www.youtube.com'
       return cb 'website'
     return cb 'file'# if contentType.match /^application\//
 
