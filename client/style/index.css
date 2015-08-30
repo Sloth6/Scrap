@@ -2074,8 +2074,8 @@ body header.cover .card section.title:hover .rename {
 }
 /* line 33, ../sass/layout/_home.scss */
 body header.cover .card section.title h1 {
-  margin-top: -.125em;
-  margin-left: -.0625em;
+  margin-top: -.0625em;
+  margin-left: -.03125em;
   margin-right: 4pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
@@ -2086,18 +2086,20 @@ body header.cover .card section.title .rename {
 }
 /* line 44, ../sass/layout/_home.scss */
 body header.cover .card section.title .rename a {
+  display: block;
   padding: 8pt;
+  padding-top: 16pt;
   margin-left: -8pt;
   margin-top: -8pt;
 }
-/* line 52, ../sass/layout/_home.scss */
+/* line 54, ../sass/layout/_home.scss */
 body header.cover .card .elementCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
-/* line 59, ../sass/layout/_home.scss */
+/* line 61, ../sass/layout/_home.scss */
 body header.cover .card ul.users {
   position: absolute;
   width: 50%;
@@ -2111,20 +2113,20 @@ body header.cover .card ul.users {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 66, ../sass/layout/_home.scss */
+/* line 68, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add {
   width: 100%;
 }
-/* line 69, ../sass/layout/_home.scss */
+/* line 71, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add label {
   display: block;
 }
-/* line 73, ../sass/layout/_home.scss */
+/* line 75, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
-/* line 78, ../sass/layout/_home.scss */
+/* line 80, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
