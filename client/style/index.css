@@ -2078,11 +2078,11 @@ body header.cover .card {
   overflow: hidden;
 }
 /* line 12, ../sass/layout/_home.scss */
-body header.cover .card:hover ul.users {
+body header.cover .card:hover ul.users, body header.cover .card.hover ul.users {
   opacity: 1;
 }
 /* line 17, ../sass/layout/_home.scss */
-body header.cover .card:hover section.title h1 {
+body header.cover .card:hover section.title h1, body header.cover .card.hover section.title h1 {
   -webkit-text-fill-color: #000000;
   -webkit-text-stroke: 1pt #000000;
 }
@@ -2148,6 +2148,7 @@ body header.cover .card ul.users li.add input[type=email] {
 body header.cover .card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
+  text-align: right;
   right: -24pt;
   width: 24pt;
 }

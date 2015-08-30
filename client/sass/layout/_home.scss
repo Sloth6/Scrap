@@ -8,7 +8,7 @@ body {
           		cursor: pointer;
           		overflow: hidden;
         		        		
-        		&:hover {
+        		&:hover, &.hover {
             		ul.users {
                 		opacity: 1;
             		}
@@ -80,6 +80,7 @@ body {
                 		input[type=submit] {
                     		position: absolute;
                     		top: 0;
+                    		text-align: right;
                     		right: -$cell * 3;
                     		width: $cell * 3;
                 		}
