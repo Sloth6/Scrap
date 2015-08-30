@@ -172,6 +172,7 @@ input {
     color: $colorType;
     border-bottom: $cardBorderWidth $colorType solid;
     max-width: 100%;
+    border-radius: 0;
         
     &:focus, &:hover {
         @include hoverAnimation;
