@@ -12,6 +12,7 @@ collectionOpen = (cover) ->
   # Close anything else thats open
   $('.open').removeClass 'open'
   collection.removeClass('closed').addClass 'open'
+  cover.addClass 'open'
 
   # Remember where we were  
   window.pastState.scrollLeft = $(window).scrollLeft()
@@ -45,19 +46,15 @@ collectionClose = (cover) ->
   elements = collectionContent.children '.slider'
   spacekey = cover.data 'spacekey'
   
-
   prevSliding = collection.prevAll().find('.cover.slider').addClass 'sliding'
   nextSliding = collection.nextAll().find('.cover.slider').addClass 'sliding'
 
   collection.removeClass('open').addClass 'closed'
-  # collection.siblings().show()
-  
+  cover.removeClass('open')
   # elements to remove
   collectionContent.children().css 'zIndex', 0
 
-  elements.
-    removeClass('sliding')
-    # css({ x: xTransform(cover) })
+  elements.removeClass('sliding')
 
   collectionContent.
     show().
@@ -89,11 +86,15 @@ collectionRealign = (animate) ->
   lastX  = 0#edgeWidth
   maxX   = -Infinity
   zIndex = children.length
-
+  
   children.each () ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
-    $(@).css { zIndex: zIndex-- }
+    
+    if $(@).hasClass 'open'
+      $(@).css { zIndex: (children.length*3) }
+    else
+      $(@).css { zIndex: zIndex-- }
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
     width = $(@).width()
@@ -118,7 +119,10 @@ collectionRealignDontScale = (animate) ->
   children.each () ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
-    $(@).css { zIndex: zIndex-- }
+    if $(@).hasClass 'open'
+      $(@).css { zIndex: (children.length*3) }
+    else
+      $(@).css { zIndex: zIndex-- }
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
     width = $(@).width()

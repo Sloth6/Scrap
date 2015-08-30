@@ -6,7 +6,7 @@
         .card.cardHover
           h1.collectionTitle.titleType!=collection.name
           .elementCount.smallType!=collection.elements.length
-          ul.users.slideIn.left.menu
+          ul.users
             li.user Cursus Sollicitudin
             li.user Ipsum Etiam
             li.user Cursus Sollicitudin
@@ -16,11 +16,11 @@
             li.user!=user.name
             li.user.add
               form
-                input(type="text")
-                input(type="submit")
+                input(type="email", placeholder="email")
+                input(type="submit", value="→")
+                label.smallType.smallCaps Send this notebook to someone
       .collectionContent(class=collection.spaceKey, style="display:none;")
-        include addElementForm
         -for (var j = 0; j < collection.elements.length; j++)
           -var element = collection.elements[j]
           include element
-        
+        include addElementForm

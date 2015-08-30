@@ -20,15 +20,15 @@ $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
 
 $typeHeaderLeading: 		24pt;
-$typeTitleLeading:      48pt;
+$typeTitleLeading:    48pt;
 
 $headerLeftMarginOffset:
                     -1pt;
 @mixin typeTitle {
 /*     font-family:    "AGaramondPro", "helvetica"; */
     font-size:      $typeTitleSize;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: -(1em / 16);
+    font-weight:    $fontWeightBold;
+    letter-spacing: -(1em / 24);
     line-height:    $typeTitleLeading;
 }
 
@@ -44,7 +44,7 @@ $headerLeftMarginOffset:
     font-size:      $typeBodySize;
     font-weight:    $fontWeightRegular;
     line-height:    $leading;
-    letter-spacing: (1em/32);
+    letter-spacing: 0;
 }
 
 @mixin typeSmall {
@@ -84,8 +84,15 @@ $headerLeftMarginOffset:
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
     letter-spacing: .0625em;
+}
+
+@mixin typeSmallSmallCaps {
+    @include        smallCaps;
+    font-size:      $typeSmallSize * .75;
+    font-weight:    $fontWeightMedium;
+    letter-spacing: .125em;
 }
 
 @mixin typeHeaderSmallCaps {
@@ -120,6 +127,10 @@ html {
     
     .smallType {
         @include typeSmall;
+        
+        &.smallCaps {
+          @include typeSmallSmallCaps;
+        }
     }
         
     p {
