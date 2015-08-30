@@ -14,9 +14,13 @@ $ ->
     console.log 'new element', element
     
     if $(".#{spaceKey}.collection").hasClass 'open'
-      element.insertAfter $(".#{spaceKey}.collection").find('.addElementForm')
-      element.css 'x', xTransform(element)
-      # sliderJumble.call element
+      
+      element.
+        insertAfter($(".#{spaceKey}.collection").find('.addElementForm')).
+        css('x', xTransform(element)).
+        addClass('sliding')
+
+      sliderJumble.call element
       collectionRealign.call $('.slidingContainer')
 
       switch element.data('contenttype')

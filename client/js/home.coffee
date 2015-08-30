@@ -53,21 +53,30 @@ $ ->
 
   # Open a collection on click
   $('.cover').click () ->
-    return if $(@).hasClass 'open'
-    collectionOpen $(@)
+    if $(@).hasClass 'open'
+      $(window).scrollLeft 0
+      collectionRealign.call $('.slidingContainer')
+    else
+      collectionOpen $(@)
 
-  $('.sliding').each sliderJumble
+  $('.slider').each sliderJumble
 # 
   # $('.cover').each () ->
   #   $(@).data('translateY', 0)
   #   $(@).data('rotateZ', 0)
 
-  $('.sliding').mouseover( () ->
+  $('.slider').mouseover( () ->
     return unless $(@).hasClass('sliding')
+    x = xTransform($(@))
+    return if x < edgeWidth or (x > $(window).width - edgeWidth)
+
     $(@).data 'oldZIndex', $(@).css('zIndex')
     $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
   ).mouseout () ->
-    return unless $(@).hasClass('sliding')
+    # return unless $(@).hasClass('sliding')
+    # x = xTransform($(@))
+    # return if x < edgeWidth or (x > $(window).width - edgeWidth)
+
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
 
   # Close a collection on page back
