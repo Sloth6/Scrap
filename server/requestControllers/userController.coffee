@@ -59,6 +59,8 @@ module.exports =
         # render first space on success
         if result
           req.session.currentUserId = user.id
+          req.session.userName = user.name
+          req.session.userEmail = user.email
           res.send "/"#"/s/" + user.spaces[0].spaceKey
           callback()
         else

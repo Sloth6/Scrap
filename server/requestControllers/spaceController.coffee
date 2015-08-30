@@ -7,7 +7,7 @@ async = require 'async'
 welcomeElements = require '../welcomeElements'
 mail = require '../adapters/nodemailer'
 request = require 'request'
-cheerio = require 'cheerio'
+domain = require('../config.json').domain
 
 toTitleCase = (str) -> 
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
@@ -59,20 +59,21 @@ module.exports =
               res.status(200).send html
 
   addUserToSpace : (req, res, app, callback) ->
-    { email, name } = data
-    name = toTitleCase name
+    { email, spaceKey } = req.body
+    userName = req.session.userName
+    console.log "#{userName} invited #{email} to #{spaceKey}"
 
     models.Space.find( where: { spaceKey }).complete (err, space) ->
       return callback err if err?
       models.User.find( where: { email }).complete (err, user) ->
         return callback err if err?
 
-        hostUrl = "http://54.86.238.114:9001/"
-        spaceNameWithLink = "<a href=\"#{hostUrl}s/#{spaceKey}\">#{space.name}</a>"
-        subject = "#{name} invited you to #{space.name} on Scrap."
+        spaceNameWithLink = "<a href=\"#{domain}s/#{spaceKey}\">#{space.name}</a>"
+        subject = "#{userName} invited you to #{space.name} on Scrap."
+        
         html = "<h1>View #{spaceNameWithLink} on Scrap.</h1>
             <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
-            <p><a href=\"#{hostUrl}\">Scrap</a> is a simple visual organization tool.</p>"
+            <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
 
         mail.send {
           to: email
@@ -80,6 +81,7 @@ module.exports =
           text: html
           html: html
         }
+
         if user?
           add user, space
         else # no user
@@ -90,13 +92,11 @@ module.exports =
     add = (user, space) ->
       space.hasUser(user).complete (err, hasUser) ->
         # make sure we don't add the user twice
-        if not hasUser
-          space.addUser(user).complete (err) ->
-            return callback err if err?
-            sio.to(spaceKey).emit 'addUserToSpace', { name: user.name }
-            callback()
-        else
-          callback()
+        return res.send 200 if hasUser
+        space.addUser(user).complete (err) ->
+          return callback err if err?
+          res.send 200
+          
 
   # removeUserFromSpace : (req, res) ->
   #   id = data.id

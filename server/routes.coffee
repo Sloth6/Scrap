@@ -20,14 +20,14 @@ module.exports = (app) ->
   app.post '/s/update', (req, res) ->
     controllers.spaceController.updateSpace req, res, app, errorHandler
 
-  app.get '/s/:spaceKey', (req, res) ->
-    controllers.spaceController.showReadOnly req, res, app, errorHandler
+  app.post '/addUserToSpace', (req, res) ->
+    controllers.spaceController.addUserToSpace req, res, app, errorHandler
 
-  app.get '/r/:spaceKey', (req, res) ->
-    controllers.spaceController.showSpace req, res, app, errorHandler
+  # app.get '/s/:spaceKey', (req, res) ->
+  #   controllers.spaceController.showReadOnly req, res, app, errorHandler
 
-  app.get '/webpreview/:spaceKey', (req, res) ->
-    controllers.spaceController.webPreview req, res, app, errorHandler
+  # app.get '/r/:spaceKey', (req, res) ->
+  #   controllers.spaceController.showSpace req, res, app, errorHandler
 
   app.post '/login', (req, res) ->
     controllers.userController.login req, res, app, errorHandler
