@@ -1,0 +1,33 @@
+ul.right
+  form(id="signUp")
+    li.name
+      input(id="name",type="text", name="user[name]", placeholder="Name")
+    li.mail
+      input(id="email",type="email", name="user[email]", placeholder="Mail")
+    li.password
+      input(id="password",type="password", name="user[password]", placeholder="Password")
+    li.submit
+      input.offset(type="submit", value="Sign up")
+    li(id="errorField")
+script.
+  function onError(res) {
+    $('#signUp errorField').text(res.responseText);
+  }
+  
+  $("#signUp").submit(function(e) {
+    e.preventDefault();
+    var url = '/register';
+    var fields = {
+      email: $('#signUp #email').val(),
+      password: $('#signUp #password').val(),
+      name: $('#signUp #name').val()
+    }
+    if (!validateName(fields.name)) {
+      $('#signUp #errorField').text("Please enter a full name.");
+      return;
+    }
+    $.post(url, fields).error(onError).success(function(path){
+      location.pathname = path;
+    });
+
+  });

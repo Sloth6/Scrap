@@ -10,44 +10,44 @@ fs.readdirSync(__dirname + '/requestControllers').forEach (fileName) ->
     pathName = path.join __dirname, '/requestControllers', controllerName
     controllers[controllerName] = require(pathName)
 
-module.exports = (server) ->
-  server.get '/', (req,res) ->
-    controllers.indexController.index req, res, errorHandler
+module.exports = (app) ->
+  app.get '/', (req,res) ->
+    controllers.indexController.index req, res, app, errorHandler
 
-  server.post '/s/new', (req, res) ->
-    controllers.spaceController.newSpace req, res, errorHandler
+  app.post '/s/new', (req, res) ->
+    controllers.spaceController.newSpace req, res, app, errorHandler
 
-  server.post '/s/update', (req, res) ->
-    controllers.spaceController.updateSpace req, res, errorHandler
+  app.post '/s/update', (req, res) ->
+    controllers.spaceController.updateSpace req, res, app, errorHandler
 
-  server.get '/s/:spaceKey', (req, res) ->
-    controllers.spaceController.showReadOnly req, res, errorHandler
+  app.post '/addUserToSpace', (req, res) ->
+    controllers.spaceController.addUserToSpace req, res, app, errorHandler
 
-  server.get '/r/:spaceKey', (req, res) ->
-    controllers.spaceController.showSpace req, res, errorHandler
+  # app.get '/s/:spaceKey', (req, res) ->
+  #   controllers.spaceController.showReadOnly req, res, app, errorHandler
 
-  server.get '/webpreview/:spaceKey', (req, res) ->
-    controllers.spaceController.webPreview req, res, errorHandler
+  # app.get '/r/:spaceKey', (req, res) ->
+  #   controllers.spaceController.showSpace req, res, app, errorHandler
 
-  server.post '/login', (req, res) ->
-    controllers.userController.login req, res, errorHandler
+  app.post '/login', (req, res) ->
+    controllers.userController.login req, res, app, errorHandler
 
-  server.get '/logout', (req, res) ->
-    controllers.userController.logout req, res, errorHandler
+  app.get '/logout', (req, res) ->
+    controllers.userController.logout req, res, app, errorHandler
 
-  server.post '/register', (req, res) ->
-    controllers.userController.newUser req, res, errorHandler
+  app.post '/register', (req, res) ->
+    controllers.userController.newUser req, res, app, errorHandler
 
-  server.post '/updateUser', (req, res) ->
-    controllers.userController.updateUser req, res, errorHandler
+  app.post '/updateUser', (req, res) ->
+    controllers.userController.updateUser req, res, app, errorHandler
 
-  server.get '/sign_s3', (req, res) ->
-    controllers.spaceController.uploadFile req, res, errorHandler
+  app.get '/sign_s3', (req, res) ->
+    controllers.spaceController.uploadFile req, res, app, errorHandler
     
-  server.get '/500', (req, res) ->
+  app.get '/500', (req, res) ->
     throw new Error 'This is a 500 Error'
 
-  server.get '/*', (req, res) ->
+  app.get '/*', (req, res) ->
     res.redirect '/'
     # res.status 404
     # res.render '404', { url: req.url }

@@ -1,24 +1,43 @@
 extends layout
+
 block scripts
-  include partials/indexScripts
+  title= title
+  script(src='/js/jquery/jquery.js')
+  script(src="/js/jquery/jquery-ui.min.js")
+  script(src="/js/jquery/jquery.transit.min.js")
+  script(src="/js/jquery/jquery-mousewheel.min.js")
+  
+  //- script(src="/js/collection.js")
+  //- script(src="/js/element.js")
+
+
+  script(src="/js/index.js")
+  script(src="/js/menuControllers/header.js")
+  //- script(src="/js/menuControllers/settings.js")
 
 block content
-  header
-    .card.form
-      include partials/registration
-
-  section.index.blur
+  section.index
     header
-      h1.hover Hotpot
-      h2.drift.hover.top Collect and share<br>anything for a project.
-    section.register.drift.hover.bottom
-      form(id="login")
-        li.name
-          input(id="name",type="text", name="user[name]", placeholder="Name")
-        li.mail
-          input(id="email",type="email", name="user[email]", placeholder="Mail")
-        li.password
-          input(id="password",type="password", name="user[password]", placeholder="Password")
-        li.submit
-          input.offset(type="submit", value="Sign up")
-    section.example
+      h1 Hotpot
+      h2 Keep everything for your<br>project in one place.
+      ul.form.signUpLogInForms
+        li.form.closed Sign Up
+          include partials/signUp
+        li.form.closed Log In
+          include partials/logIn
+    section.space.example
+      section.content
+    
+        //- -var collection_height = 800
+        //- -for (var i = 0; i < collections.length; i++)
+        //-   -var collection = collections[i]
+        //-   -var top = (i * collection_height)
+        //-   section.collection.fake(style="position:fixed;height:"+collection_height+"px;", data-offset=top)
+        //-     header.collectionTitle
+        //-       h1!=collection.name
+        //-     .elements
+        //-       -for (var j = 0; j < collection.elements.length; j++)
+        //-         -var element = collection.elements[j]
+        //-         include partials/element
+        //- script.
+        //-   collection_max_y="#{top}";

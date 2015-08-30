@@ -1,4 +1,4 @@
-$headerPadding: $baseline/2 $gutter;
+/*
 
 .container > header {
     position: fixed;
@@ -6,7 +6,7 @@ $headerPadding: $baseline/2 $gutter;
     top: 0;
     left: 0;
     right: 0;
-    padding: $headerPadding;
+    background: red;
     @include typeHeaderSmallCaps;
     text-align: left;
     cursor: default;
@@ -82,3 +82,4 @@ $headerPadding: $baseline/2 $gutter;
         }
     }
 }
+*/

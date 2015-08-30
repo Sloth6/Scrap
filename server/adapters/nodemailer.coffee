@@ -17,7 +17,7 @@ module.exports =
         console.log "Failed to send email:"+err
         callback err
       else 
-        'Message sent'
+        console.log 'Email sent'
         callback null
 
 # mailOptions =

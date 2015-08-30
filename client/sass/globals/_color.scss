@@ -1,5 +1,5 @@
 $colorWashDark:             #000000;
-$colorWashMedium:           #aaaaaa;
+$colorWashMedium:           #cccccc;
 $colorWashMediumLight:      #fafafa;
 $colorWashMediumLightTrans: rgba(248,248,248,.925);
 $colorWashLight:            white;
@@ -10,13 +10,13 @@ $colorWashLightTrans20:     rgba(255,255,255,.2);
 
 $colorCardBackground:       $colorWashLight;
 $colorBackground:           $colorWashLight;
-// $colorBackground:           $colorWashLight;
 $colorCardBackgroundDark:   #333;
 $colorTypeLight:            white;
 
 $colorType:                 #000000;
 $colorAlert:                #ff0000;
-$colorAccent:               #ff2d00;
+$colorAccent:               rgba(255,255,0,1);
+$colorAccentLight:          rgba(255,255,220,1);
 
 // SPOT COLORS
 

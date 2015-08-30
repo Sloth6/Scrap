@@ -1,24 +1,29 @@
 $headerHeight:          25vh;
 
-$cardPaddingTop:        $gutter/2;
-$cardPaddingRight:      $gutter;
-$cardPaddingBottom:     $gutter/1.5;
-$cardPaddingLeft:       $gutter;
+$cardPaddingTop:        $cell;
+$cardPaddingRight:      $cell;
+$cardPaddingBottom:     $cell;
+$cardPaddingLeft:       $cell;
 
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
+$articleWidthNarrow:    $col * 3;
+$articleWidth:          $col * 4;
+$articleWidthWide:      $col * 5;
+$articleMinHeight:      $col * 3;
 
-$menuWidth: 40vw;
-$articleWidth: $col * 4;
+$menuWidth: $articleWidth;
+$menuItemHeight: $leading;
 
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           6pt;
-$cardBorder:                $cardBorderWidth solid $colorType;
-$cardBoxShadowDimensions:   $gutter $gutter 0 0;
-$cardBoxShadowColor:        rgba(0,0,0,.75);
+$cardBorderWidth:           1pt;
+$cardBorderColor:           $colorType;
+$cardBorder:                $cardBorderWidth solid $cardBorderColor;
+$cardBoxShadowDimensions:   $cell $cell 0 0;
+$cardBoxShadowColor:        rgba(0,0,0,1);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardStyle {
@@ -27,47 +32,109 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     padding: $cardPadding;
             transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
+
 }
 
 @mixin cardHover {
-    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-    border-color: $colorAccent !important;
-    color: $colorAccent;
-    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin);
-    * { 
-        border-color: $colorAccent;
+    @include transition(.125s $defaultCurve);
+    @include transition-property(transform,
+                         -webkit-transform,
+                            -moz-transform,
+                                 box-shadow,
+                         -webkit-box-shadow,
+                            -moz-box-shadow,
+                                 background-color,
+                                 border-color,
+                                 color);
+                                 
+    &:hover {
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+        @include transform(translate(-$cell, -$cell));
+        &.invertHover {
+            @include box-shadow($cardBoxShadowDimensions white);
+        }
     }
 }
 
 @mixin cardDrag {
-    cursor: move;
-    @include transform(translate(-$gutter, -$gutter) $cardHoverScaleMin rotate(1.5deg));
-    @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    .card {
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+    }
+    @include transform(translate(-$cell, -$cell));
 }
 
 @mixin button {
 }
 
-@mixin buttonOffset {
-    // position: relative;
-    // margin-left: -$gutter*1.5;
-    // margin-top: -.666em;
-    // left: 100%;
-    // float: left;
+@mixin blackHover {
+    background-color: $colorType !important;
+    color: $colorCardBackground !important;
+    border-color: $colorCardBackground;
+    
+    &.cardHover:hover {
+        @include box-shadow($cardBoxShadowDimensions black);
+    }
+}
+
+@mixin invertHover {
+    -webkit-filter: invert(1);
 }
 
 a {
-    &:hover, &:active, &:focus {
-        @include hoverAnimation;
+    @include linkReset;
+
+    &.warning {
+        color: $colorAlert;
+        
+        &:hover {
+            @include hoverWarningAnimation;
+        }
+    }
+    
+    &.confirm {
+        &:hover {
+            @include hoverLinkAnimation;
+        }
     }
 }
 
-.card {
-    
-    &.form {
-        padding-left: $gutter * 2 !important;
+.invertHover {
+    &:hover {
+        @include invertHover;
     }
 }
+
+.blackHover {
+    &:hover {
+        @include blackHover;
+    }
+}
+    
+.card {
+    @include cardStyle;
+    display: block;
+    
+    &.headerCard {
+        height: $typeHeaderLeading * 3;
+    }
+}
+
+.cardHover {
+    @include cardHover;
+}
+
+.cardDrag.dragging {
+    @include cardHover;
+}
+
+.cardActions {
+    position: absolute;
+    bottom: $cardPaddingBottom/2;
+    left: $cardPaddingLeft/2;
+    @include typeBody;
+}
+
+// FORMS
 
 form {
     position: relative;
@@ -77,13 +144,6 @@ form {
         margin-top: $leading;
     }
     
-    input {
-        @include typeHeader;
-        
-        &[type=submit], &[type=button] {
-            @include typeHeaderSmallCaps;
-        }
-    }
 }
 
 label {
@@ -115,12 +175,13 @@ label {
     @include placeHolderOverride;
 }
 
-
 input {
     @include resetInput;
     @include typeBody;
     color: $colorType;
     border-bottom: $cardBorderWidth $colorType solid;
+    max-width: 100%;
+    border-radius: 0;
         
     &:focus, &:hover {
         @include hoverAnimation;
@@ -128,12 +189,12 @@ input {
     
     &.offset {
         @include button;
-        @include buttonOffset;
     }
     
     &[type=submit], &[type=button] {
         border: 0;
         cursor: pointer;
+        text-align: left;
     }
     
     &[type=checkbox] {
@@ -148,110 +209,45 @@ input {
     
 }
 
-ul.menu {
-    height: $baseline * 2;
-    position: absolute;
-    display: inline-block;
-    width: $menuWidth/2;
-    white-space: nowrap;
-    @include transition(1s $defaultCurve);
-    @include transition-property(left, right);
-    
+.slideIn {
+    li {
+        opacity: 0;
+    }
     &.open {
-        @include transition(2s $defaultCurve);
-        width: $menuWidth;
-        
         li {
+            opacity: 1;
             
-            a, form {
-                position: relative;
-            }
         }
     }
-    
-    &.hideFirst {
-        
-        &.right {
-            &.open {
-                > li.first {
-                    right: -50vw;
-                }
-            }
-        
-            > li.first {
-                right: 0;
-            }
-        }
-        
-        &.left {
-            &.open {
-                > li.first {
-                    left: -50vw;
-                }
-            }
-
-            > li.first {
-                left: 0;
-            }
-        }
-        
-        > li.first {
-            position: absolute;
-            @include transition(1s $defaultCurve);
-            @include transition-property(right);
-        }
-    }
-    
     &.left {
-        float: left;
-        left: $gutter;
-        
         li, &.open li.hidden {
-//             left: -50vw;
-            @include transform(translate3d(-500.0px, 0.0, 0.0));
+            @include transform(translate3d(-$col * 2, 0.0, 0.0));
             
             &.first {
-//                 left: 0;
                 @include transform(translate3d(0, 0, 0))
             }
                         
-            a {
-                position: relative;
-                left: 0;
-/*
-                display: inline-block;
-                @include transform(translate3d(0.0, 0.0, 0.0));
-*/
-                @include transition(.25s $defaultCurve);
-                                
-                &:hover, &:active, &:focus {
-                    left: $gutter;
-//                     @include transform(translate3d(25.0, 0.0, 0.0));
-                }
-            }
         }
         
         &.open {
             li {
-//                 left: 0;
                 @include transform(translate3d(0, 0, 0))
             }
         }    
     }
     
     &.right {
-        float: right;
-        text-align: right;
-        right: $gutter;
-        
         li, &.open li.hidden {
-//             right: -50vw;
-//             right: 0;
-            @include transform(translate3d(500.0px, 0.0, 0.0));
+            @include transform(translate3d($col * 2, 0.0, 0.0));
             
             &.first {
-//                 right: 0;
-                @include transform(translate3d(0, 0, 0))
+                @include transform(translate3d(0, 0, 0));
+                
+                a {
+                    &:hover {
+                        left: -$cell;
+                    }
+                }
             }
             
             input {
@@ -262,28 +258,77 @@ ul.menu {
                 }
             }
             
-            a {
-                position: relative;
-                right: 0;
-/*
-                display: inline-block;
-                @include transform(translate3d(0.0, 0.0, 0.0));
-*/
-                @include transition(.25s $defaultCurve);
-                
-                &:hover, &:active, &:focus {
-                    right: $gutter;
-//                     @include transform(translate3d(-25.0, 0.0, 0.0));
-                }
-            }
         }
         
         &.open {
             li {
-//                 right: 0;
                 @include transform(translate3d(0, 0, 0))
             }
         }
+    }
+    &.hideFirst {
+        
+        > li {
+
+            &.first {
+            position: absolute;
+            @include transition(1s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
+            }
+        }
+        
+        &.right {            
+            &.open {
+                > li.first {
+                    @include transform(translate3d($col * 2, 0.0, 0.0));
+                    opacity: 0;
+                }
+            }
+        
+            > li.first {
+                right: $cardPaddingRight;
+                @include transform(translate3d(0.0, 0.0, 0.0));
+            }
+        }
+        
+        &.left {
+            &.open {
+                > li.first {
+                    @include transform(translate3d(-$col * 2, 0.0, 0.0));
+                    opacity: 0;
+                }
+            }
+
+            > li.first {
+                left: $cardPaddingRight;
+                @include transform(translate3d(-$col * 2, 0.0, 0.0));
+            }
+        }
+    }
+}
+
+ul.headerMenu {
+    position: absolute;
+    display: inline-block;
+    white-space: nowrap;
+    border: $cardBorder;
+    border-color: transparent;
+    background-color: transparent;
+    width: 0;
+    top: -$cardBorderWidth;
+    @include typeBody;
+    @include transition(1s $defaultCurve);
+    @include transition-property(left, right, background, border, width, padding);
+        
+    &.left {
+        float: left;
+        left: -$cardBorderWidth;
+    }
+    
+    &.right {
+        right: -$cardBorderWidth;
     }
     
     &.hidden {
@@ -297,19 +342,54 @@ ul.menu {
         }
     }
     
+    &.open {
+        background: $colorCardBackground;
+        border-color: $cardBorderColor;
+        width: $articleWidthNarrow;
+        padding: $cardPadding;
+        
+        &.wide {
+            width: $articleWidthWide;
+        }
+        
+         &.paddingBottom{
+            padding-bottom: $broadMargin;
+        }
+        
+        li {
+            height: $menuItemHeight;
+            margin-bottom: $cell;
+            
+            a, form {
+                position: relative;
+            }
+        }
+    }
+    
+    li {
+        height: 0;
+        margin-bottom: 0;
+    }
+}
+
+ul.menu {
+    
     section { 
         padding-bottom: $leading;
     }
     
     li {
-        margin-bottom: $gutter;
         position: relative;
         @include transition(.5s $defaultCurve);
-        @include transition-property(left, right, height, opacity, margin,
+        @include transition-property(left, right, height, opacity, margin-bottom,
                                      transform,
                              -webkit-transform,
                                 -moz-transform);
                                 
+        &.inputText {
+            margin-bottom: $leading * 2;
+        }
+                                        
         &.heading {
             @include typeBodySmallCaps;
         }
@@ -317,10 +397,30 @@ ul.menu {
         &.hidden {
             height: 0;
             margin: 0;
+            opacity: 0;
+        }
+          
+        &.first {
+            opacity: 1;
+            height: $menuItemHeight;
+            cursor: pointer;
+            margin-top: $cell/2;
         }
         
-        form {
-            white-space: nowrap;
+        input {
+            width: 100%;
+            @include transition(.5s $defaultCurve);
+            @include transition-property(width);
+        }
+        
+        a {
+            position: relative;
+            left: 0;
+            @include transition(.25s $defaultCurve);
+                            
+            &:hover, &:active, &:focus {
+                left: $cell;
+            }
         }
         
         > a {
@@ -354,6 +454,7 @@ ul.menu {
         &:nth-of-type(20) { @include transition-delay(.1s); }
 */
         
+/*
         &:nth-of-type(2)  { @include transition-delay(.1s); }
         &:nth-of-type(3)  { @include transition-delay(.2s); }
         &:nth-of-type(4)  { @include transition-delay(.3s); }
@@ -373,6 +474,74 @@ ul.menu {
         &:nth-of-type(18) { @include transition-delay(.17s); }
         &:nth-of-type(19) { @include transition-delay(.18s); }
         &:nth-of-type(20) { @include transition-delay(.19s); }
+*/
+
+/*
+        &:nth-of-type(1)  { @include transition-delay(.05s); }
+        &:nth-of-type(2)  { @include transition-delay(.1s); }
+        &:nth-of-type(3)  { @include transition-delay(.15s); }
+        &:nth-of-type(4)  { @include transition-delay(.2s); }
+        &:nth-of-type(5)  { @include transition-delay(.25s); }
+        &:nth-of-type(6)  { @include transition-delay(.3s); }
+        &:nth-of-type(7)  { @include transition-delay(.35s); }
+        &:nth-of-type(8)  { @include transition-delay(.4s); }
+        &:nth-of-type(9)  { @include transition-delay(.45s); }
+        &:nth-of-type(10) { @include transition-delay(.5s); }
+        &:nth-of-type(11) { @include transition-delay(.55s); }
+        &:nth-of-type(12) { @include transition-delay(.6s); }
+        &:nth-of-type(13) { @include transition-delay(.65s); }
+        &:nth-of-type(14) { @include transition-delay(.7s); }
+        &:nth-of-type(15) { @include transition-delay(.75s); }
+        &:nth-of-type(16) { @include transition-delay(.8s); }
+        &:nth-of-type(17) { @include transition-delay(.85s); }
+        &:nth-of-type(18) { @include transition-delay(.9s); }
+        &:nth-of-type(19) { @include transition-delay(.95s); }
+        &:nth-of-type(20) { @include transition-delay(1.0s); }
+*/
+
+        &:nth-of-type(1)  { @include transition-delay(.0s); }
+        &:nth-of-type(2)  { @include transition-delay(.025s); }
+        &:nth-of-type(3)  { @include transition-delay(.05s); }
+        &:nth-of-type(4)  { @include transition-delay(.075s); }
+        &:nth-of-type(5)  { @include transition-delay(.1s); }
+        &:nth-of-type(6)  { @include transition-delay(.125s); }
+        &:nth-of-type(7)  { @include transition-delay(.15s); }
+        &:nth-of-type(8)  { @include transition-delay(.175s); }
+        &:nth-of-type(9)  { @include transition-delay(.2s); }
+        &:nth-of-type(10) { @include transition-delay(.225s); }
+        &:nth-of-type(11) { @include transition-delay(.25s); }
+        &:nth-of-type(12) { @include transition-delay(.275s); }
+        &:nth-of-type(13) { @include transition-delay(.3s); }
+        &:nth-of-type(14) { @include transition-delay(.325s); }
+        &:nth-of-type(15) { @include transition-delay(.35s); }
+        &:nth-of-type(16) { @include transition-delay(.375s); }
+        &:nth-of-type(17) { @include transition-delay(.4s); }
+        &:nth-of-type(18) { @include transition-delay(.425s); }
+        &:nth-of-type(19) { @include transition-delay(.45s); }
+        &:nth-of-type(20) { @include transition-delay(.475s); }
+
+
+/*
+        &:nth-of-type(2)  { @include transition-duration(.1s); }
+        &:nth-of-type(3)  { @include transition-duration(.2s); }
+        &:nth-of-type(4)  { @include transition-duration(.3s); }
+        &:nth-of-type(5)  { @include transition-duration(.4s); }
+        &:nth-of-type(6)  { @include transition-duration(.5s); }
+        &:nth-of-type(7)  { @include transition-duration(.6s); }
+        &:nth-of-type(8)  { @include transition-duration(.7s); }
+        &:nth-of-type(9)  { @include transition-duration(.8s); }
+        &:nth-of-type(10) { @include transition-duration(.9s); }
+        &:nth-of-type(11) { @include transition-duration(1.0s); }
+        &:nth-of-type(12) { @include transition-duration(1.1s); }
+        &:nth-of-type(13) { @include transition-duration(1.2s); }
+        &:nth-of-type(14) { @include transition-duration(1.3s); }
+        &:nth-of-type(15) { @include transition-duration(1.4s); }
+        &:nth-of-type(16) { @include transition-duration(1.5s); }
+        &:nth-of-type(17) { @include transition-duration(1.6s); }
+        &:nth-of-type(18) { @include transition-duration(1.7s); }
+        &:nth-of-type(19) { @include transition-duration(1.8s); }
+        &:nth-of-type(20) { @include transition-duration(1.9s); }
+*/
     }
 }
 
@@ -383,108 +552,8 @@ ul.menu {
     top: 0;
     left: 0;
     background: transparent;
-    z-index: 10;
 }
 
-.floatingMenu {
-//     @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-    
-    ul {
-        
-        li {
-            @include transition(.5s $defaultCurve);
-            @include transition-property(width, height, font-weight, font-size, border-color, padding);
-            @include typeBody;
-            @include cardStyle;
-            background-color: $colorCardBackground;
-            padding: $cardPadding;
-            height: $leading;
-            margin-top: -$cardBorderWidth;
-            cursor: pointer;
-            position: relative;
-            width: $col * 2;
-            
-            .label {
-                @include transition(.5s $defaultCurve);
-                @include transition-property(left, opacity);
-            }
-            
-            &:hover {
-                color: $colorAccent;
-                border-color: $colorAccent;
-                z-index: 100;
-            }
-            
-            &.expandable {
-                input, textarea {
-                    cursor: auto;
-                    position: absolute;
-                    border: 0;
-                    left: $cardPaddingLeft;
-                    top: $cardPaddingTop;
-                    @include transition(.5s $defaultCurve);
-                    @include transition-property(opacity);
-                }
-                
-                &.closed {
-                    &.hidden {
-                        height: 0;
-                        border-color: transparent;;
-                        padding: 0;
-                    }
-               
-                    input, textarea {
-                        opacity: 0;
-                    }
-                }
-                
-                &.open {
-                    width: $articleWidth;
-                    height: $baseline * 2;
-                    
-                    .label {
-                        opacity: 0;
-                    }
-                    
-                    &.tall {
-                        height: $leading * 4;
-                    }
-                    
-                    input, textarea {
-                        @include typeHeader;
-                        opacity: 1;
-                    }
-                                    
-                    textarea {
-                        height: 100%;
-                        width: 100%;
-                    }
-                }
-            }
-            
-            &.upload {
-                
-                form {
-                    height: 100%;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
-                    position: absolute;
-                    
-                    input {
-                        height: 100%;
-                        width: 100%;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        opacity: 0;
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-    }
-}
 
 textarea {
   @include resetInput;

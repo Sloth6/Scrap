@@ -1,63 +1,81 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
-- var classes = [ element.contentType, "draggable" ]
+- var classes = [ element.contentType, "element", "slider", collection.spaceKey]
 
-if element.contentType == 'text'
-  if element.content.length >= 50
-    - classes.push("long")
-  else
-    - classes.push("short")
+- var posString = "position:absolute;"
 
-- var posString = "top:"+element.y +"px;left:"+element.x+"px;z-index:"+element.z+";"
-- var scaleString = "-webkit-transform:scale3d(1.0,1.0,1.0); transform:scale3d(1.0,1.0},1.0);"
-
-article(id=element.id, class= classes, style=posString+scaleString, data-content=element.content, data-creatorid=element.creatorId, data-contenttype=element.contentType)
-  .card(data-key=element.content, class=element.contentType)
-    if names[element.creatorId] != ""
-      author= names[element.creatorId]
-   
+article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
+  .content.cardHover.invertHover
+    .elementControls
+      - if (typeof(collection.nameMap) !== "undefined") {
+        author= collection.nameMap[element.creatorId].name
+      - }    
+      a.elementDeleteButton.warning(href='#') Delete
     case element.contentType
-      when 'image'
-        - if (typeof(original_url) !== 'undefined'){
-          img(src= original_url)
-        - } else {
-          img(src= root+current_space.spaceKey+"/"+element.content+'/small.jpg')
-        - }
-
-      when 'gif'
-        //- img(src= root+current_space.spaceKey+"/"+element.content+'/normal.png')
-        - if (typeof(original_url) !== 'undefined'){
-          img(src= original_url)
-        - } else {
-          img(src= root+current_space.spaceKey+"/"+element.content+'/normal.gif')
-        - }
-
-      when 'website'
-        -var content = JSON.parse(element.content)
-        -var url = decodeURIComponent(content.url)
-        img(src=content.image)
-        a(href=url, target='_blank')
-          .text
-            .title
-              p!=content.title
-            .url
-              p!=content.domain
-
       when 'file'
-        img(src="https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png", width=256)
-        .title
-          p!=element.content.split('/').pop()
+        .decorative.fold
+    .card(class=element.contentType)
+      //- if names[element.creatorId] != ""
+      //-   author= names[element.creatorId]
+     
+      case element.contentType
+        when 'image'
+          - var content = JSON.parse(element.content)
+          - if (typeof(content.original_url) !== 'undefined'){
+            img(src= content.original_url)
+          - } else { 
+            img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
+          - }
+  
+        when 'gif'
+          -var content = JSON.parse(element.content)
+          - if (typeof(content.original_url) !== 'undefined'){
+            img(src= content.original_url)
+          - } else {
+            img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
+          - }
+  
+        when 'website'
+          -var content = JSON.parse(element.content)
+          -var url = decodeURIComponent(content.url)
+          .text
+            header
+              h1!=content.title
+              .url!=content.domain
+            .description!=content.description
+          img(src=content.image)
+          a(href=url, target='_blank', title='Go to ' + content.title)
+  
+        when 'file'
+          header
+            - name = element.content.split('/').pop()
+            //- - extension = name.pop()
+            h1.title=name.split('.')[0]
+            p.extension=name.split('.').pop()
+          ul.cardActions
+            li.right
+              a.download.confirm(href='#') Download
 
-      when 'video'
-        video()
-          source(src=element.content)
-          img(src=element.content+'.png')
-      
-      when 'soundcloud'
-        -var content = JSON.parse(element.content)
-        .iframeBlocker(style="position: absolute; top: 0; left: 0; width: 100%; height: 500px")
-        //- .iframeContainer(style:"display:none")
-        //-   p!= content.html
-        img.soundcloudThumbnail(src=content.thumbnail, style="position: absolute; top: 0; left: 0;)
-
-      default
-        p!= element.content
+        when 'video'
+          video()
+            source(src=element.content)
+            img(src=element.content+'.png')
+        
+        when 'soundcloud'
+          -var content = JSON.parse(element.content)
+          //- title, description, thumbnail_url, html, author_name, author_url
+          img.soundcloudThumbnail(src=content.thumbnail_url)
+          header
+            .top
+                h1.title!=content.title
+                .artist!=content.author_name
+            .detail
+              .source SoundCloud
+          //- .description!=content.description
+          //- .iframeBlocker(style="positidon: absolute; top: 0; left: 0; width: 100%; height: 500px")
+  
+        when 'text'
+          //- textarea.modify(name='content', style='height:300px')!=element.content
+          .editable(contentEditable="true", designmode="on")
+            !{element.content}
+        default
+          p!=element.content

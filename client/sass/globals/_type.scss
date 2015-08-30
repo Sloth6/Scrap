@@ -1,5 +1,7 @@
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-$fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
+// $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
+$fontFamily:            'Neue Haas Unica W01', "Helvetica Neue";
+// $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
 
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
@@ -8,26 +10,69 @@ $fontWeightDemi:        600;
 $fontWeightBold:        700;
 $fontWeightExtraBold:   800;
 
+$leading:           		$cell * 2;
 
-$typeBodySize:      12pt;
-$typeBodyTracking:  0;
-$typeHeaderSize:    24pt;
-$typeHeaderSmallCapsSize: $typeHeaderSize * .666;
-$leading:           1.5em;
+$typeSmallSize:     		8pt;
+$typeBodySize:      		12pt;
+$typeHeaderSize:    		24pt;
+$typeTitleSize:    		52pt;
+$typeHeaderSmallCapsSize:
+                    		$typeHeaderSize * .666;
 
-@mixin typeBody {
-    font-family:    $fontFamily;
-    font-size:      $typeBodySize;
+$typeHeaderLeading: 		24pt;
+$typeTitleLeading:    48pt;
+
+$headerLeftMarginOffset:
+                    -1pt;
+@mixin typeTitle {
+/*     font-family:    "AGaramondPro", "helvetica"; */
+    font-size:      $typeTitleSize;
     font-weight:    $fontWeightBold;
-    line-height:    $leading;
-    letter-spacing: $typeBodyTracking;
+    letter-spacing: -(1em / 24);
+    line-height:    $typeTitleLeading;
 }
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightBold;
-    letter-spacing: 0;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -(1em / 24);
+    line-height:    $typeHeaderLeading;
+}
+
+@mixin typeBody {
+    font-family:    $fontFamily;
+    font-size:      $typeBodySize;
+    font-weight:    $fontWeightRegular;
     line-height:    $leading;
+    letter-spacing: 0;
+}
+
+@mixin typeSmall {
+    font-size:      $typeSmallSize;
+    font-weight:    $fontWeightRegular;
+    line-height:    12pt;
+    letter-spacing: (1em/16);
+}
+
+@mixin typeHeader1 {
+    font-size:      72pt;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.0625em;
+    line-height:    1em;
+}
+
+@mixin typeHeader2 {
+    font-size:      48pt;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.04em;
+    line-height:    1em;
+}
+
+@mixin typeHeader3 {
+    font-size:      36pt;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: -.04em;
+    line-height:    1em;
 }
 
 @mixin smallCaps {
@@ -39,15 +84,19 @@ $leading:           1.5em;
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
-    font-weight:    $fontWeightBold;
+    font-weight:    $fontWeightMedium;
     letter-spacing: .0625em;
+}
+
+@mixin typeSmallSmallCaps {
+    @include        smallCaps;
+    font-size:      $typeSmallSize * .75;
+    font-weight:    $fontWeightMedium;
+    letter-spacing: .125em;
 }
 
 @mixin typeHeaderSmallCaps {
     @include typeHeader;
-//     @include        smallCaps;
-//     font-size:      $typeHeaderSmallCapsSize;
-//     font-weight:    $fontWeightBold;
 }
 
 
@@ -58,15 +107,40 @@ $leading:           1.5em;
     line-height: $leading;
 }
 
+@mixin linkReset {
+    color: $colorType;
+    text-decoration: none;
+    border: 0;
+}
+
 html {
     @include typeBody;
-        
-    a {
-        color: $colorType;
-        text-decoration: none;
-        border-bottom: .125em $colorType solid;
+    font-variant-numeric: oldstyle-num;
+    
+    .bodyType {
+        @include typeBody;
+                
+        &.smallCaps {
+          @include typeBodySmallCaps;
+        }
     }
     
+    .headerType {
+        @include typeHeader;
+    }
+    
+    .titleType {
+        @include typeTitle;
+    }
+    
+    .smallType {
+        @include typeSmall;
+        
+        &.smallCaps {
+          @include typeSmallSmallCaps;
+        }
+    }
+        
     p {
     
       & + p {

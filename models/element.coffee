@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) ->
   Element = sequelize.define 'Element', {
     contentType:
-      type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud'
+      type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud', 'mp3', 'youtube'
       allowNull: false
     content:
       type: DataTypes.TEXT
@@ -12,18 +12,6 @@ module.exports = (sequelize, DataTypes) ->
     caption:
       type: DataTypes.TEXT
       allowNull: true
-    x:
-      type: DataTypes.INTEGER
-      allowNull: false
-    y:
-      type: DataTypes.INTEGER
-      allowNull: false
-    z:
-      type: DataTypes.INTEGER
-      allowNull: false
-    scale:
-      type: DataTypes.FLOAT
-      allowNull: false
   }, {
     classMethods:
       associate: (models) ->

@@ -5,15 +5,19 @@ mime = require('mime')
 moment = require('moment')
 async = require 'async'
 welcomeElements = require '../welcomeElements'
-
 mail = require '../adapters/nodemailer'
+request = require 'request'
+domain = require('../config.json').domain
 
 toTitleCase = (str) -> 
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
 
+# collection_jade = null
+# require('fs').readFile __dirname+'/../../views/partials/collection.jade', 'utf8', (err, data) ->
+#   console.log err, data
+#   # throw err if err
+#   collection_jade = require('jade').compile data
 
-request = require 'request'
-cheerio = require 'cheerio'
 
 config = 
   aws_key:  "AKIAJKJJR5OLTKWMMHSA" #AWS Key
@@ -31,131 +35,45 @@ nameMap = (space) ->
 
 module.exports =
   # create a new space and redirect to it
-  newSpace : (req, res, callback) ->
+  newSpace : (req, res, app, onErr) ->
     spaceKey = uuid.v4().split('-')[0]
-    { name, welcomeSpace } = req.body
+    { name, welcomeSpace } = req.body.space
     currentUserId = req.session.currentUserId
     
     models.User.find(
       where: { id: currentUserId }
       include: [ models.Space ]
     ).complete (err, user) ->
-      return res.send 400 if err?
-      attributes = { name, spaceKey, publicRead:true }
+      return onErr err, res if err?
+      attributes = { name, spaceKey, publicRead: false }
       models.Space.create( attributes ).complete (err, space) ->
-        return res.send 400 if err?
+        return onErr err, res if err?
         space.addUser(user).complete (err) ->
-          return res.send 400 if err?
+          return onErr err, res if err?
           space.setCreator(user).complete (err) ->
-            return res.send 400 if err?
-            # if welcomeSpace
-            #   createWelcomePage space, (err) ->
-            #     return callback err if err?
-            #     res.redirect "/s/" + spaceKey
-            # else
-            #   res. redirect "/s/" + spaceKey
-            res.status(200).send spaceKey
+            return onErr err, res if err?
+            space.elements = []
+            app.render 'partials/collection', { top:0, collection:space}, (err, html) ->
+              return onErr err, res if err?
+              # console.log html
+              res.status(200).send html
 
-    createWelcomePage = (space, callback) ->
-      async.each welcomeElements, (attributes, cb) ->
-        attributes.SpaceId = space.id
-        models.Element.create(attributes).complete cb
-      , callback
-
-  #when the space url is accessed
-  showReadOnly : (req, res) ->
-    showReadOnly = (space) ->
-      res.render 'publicSpace.jade',
-        title : "#{space.name} on Hotpot"
-        current_space: space
-        names: nameMap space
-
-    currentUserId = req.session.currentUserId
-    models.Space.find(
-      where: { spaceKey: req.params.spaceKey }
-      include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
-    ).complete (err, space) ->
-      return res.redirect '/' unless space?
-      return showReadOnly space unless currentUserId?
-
-      models.User.find(
-        where: { id: currentUserId }
-        include: [ models.Space ]
-      ).complete (err, user) ->
-        return callback err if err?
-        space.hasUser(user).complete (err, hasAccess) ->
-          return callback err if err?
-          # if the user was invited to the space
-          if hasAccess
-            res.redirect "/"#?key=#{space.spaceId}"
-          else #or if they just got the link
-            showReadOnly space
-
-  #when the meta-space loads a space in an iframe
-  showSpace: (req, res) ->
-    currentUserId = req.session.currentUserId
-    return res.send(400) unless currentUserId?
-    models.Space.find(
-      where: { spaceKey: req.params.spaceKey }
-      include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
-    ).complete (err, space) ->
-      # If the space does not exist
-      return res.send(404) unless space
-      models.User.find(
-        where: { id: currentUserId }
-        include: [ models.Space ]
-      ).complete (err, user) ->
-        return res.send 400 if err
-        users = (space.users.map (u) -> { name: u.name, id: u.id, email: u.email })
-        res.render 'space.jade',
-          title : "#{space.name} on Hotpot"
-          current_space: space
-          current_user: user
-          users: users
-          names: nameMap space
-
-  webPreview: (req, res) ->
-    models.Space.find(
-      where: { spaceKey: req.params.spaceKey }
-      include: [ models.Element, models.User, { model: models.User, as: 'Creator' } ]
-    ).complete (err, space) ->
-      console.log err, space
-      return res.status(400).send('space not found') if err or !space
-      res.render 'previewSpace.jade',
-        title : "#{space.name} on Hotpot"
-        current_space: space
-        names: {}
-
-  # update the space name and save it to the db
-  updateSpace : (req, res) ->
-    { name, spaceKey } = req.body
-
-    query = "UPDATE \"Spaces\" SET"
-    query += " \"name\"=:name"
-    query += " WHERE \"spaceKey\"=:spaceKey RETURNING *"
-
-    # new space to be filled in by update
-    space = models.Space.build()
-    
-    models.sequelize.query(query, space, null, { name, spaceKey }).complete (err) ->
-      return res.send 400 if err?
-      return res.send 200
-
-  addUserToSpace : (req, res) ->
-    { email, name } = data
-    name = toTitleCase name
+  addUserToSpace : (req, res, app, callback) ->
+    { email, spaceKey } = req.body
+    userName = req.session.userName
+    console.log "#{userName} invited #{email} to #{spaceKey}"
 
     models.Space.find( where: { spaceKey }).complete (err, space) ->
       return callback err if err?
       models.User.find( where: { email }).complete (err, user) ->
         return callback err if err?
 
-        hostUrl = "http://54.86.238.114:9001/"
-        spaceNameWithLink = "<a href=\"#{hostUrl}s/#{spaceKey}\">#{space.name}</a>"
-        subject = "#{name} invited you to #{space.name} on Scrap."
+        spaceNameWithLink = "<a href=\"#{domain}s/#{spaceKey}\">#{space.name}</a>"
+        subject = "#{userName} invited you to #{space.name} on Scrap."
+        
         html = "<h1>View #{spaceNameWithLink} on Scrap.</h1>
             <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
-            <p><a href=\"#{hostUrl}\">Scrap</a> is a simple visual organization tool.</p>"
+            <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
 
         mail.send {
           to: email
@@ -163,6 +81,7 @@ module.exports =
           text: html
           html: html
         }
+
         if user?
           add user, space
         else # no user
@@ -173,13 +92,11 @@ module.exports =
     add = (user, space) ->
       space.hasUser(user).complete (err, hasUser) ->
         # make sure we don't add the user twice
-        if not hasUser
-          space.addUser(user).complete (err) ->
-            return callback err if err?
-            sio.to(spaceKey).emit 'addUserToSpace', { name: user.name }
-            callback()
-        else
-          callback()
+        return res.send 200 if hasUser
+        space.addUser(user).complete (err) ->
+          return callback err if err?
+          res.send 200
+          
 
   # removeUserFromSpace : (req, res) ->
   #   id = data.id
@@ -194,7 +111,7 @@ module.exports =
   #           # sio.to(spaceKey).emit 'removeUserFromSpace', { id }
   #           # callback()
 
-  uploadFile : (req, res, callback) ->
+  uploadFile : (req, res, app, callback) ->
     { type, title, spaceKey } = req.query
     title = title or 'undefined'
     console.log title, type, spaceKey
@@ -222,7 +139,7 @@ module.exports =
     res.json {
       policy: base64policy
       signature: signature
-      key: (spaceKey + "/" + file_key + "/" + title)
+      path: (spaceKey + "/" + file_key + "/" + title)
       success_action_redirect: "/"
       contentType: type
     }

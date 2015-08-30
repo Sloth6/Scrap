@@ -1,68 +1,105 @@
-section.container {
-//     position: fixed;
-    cursor: text;
+// must be the same as in main.coffee
+$scaleMultiple: 4;
+$backButtonWidth: ($col/4) + $cardPaddingLeft + $cell;
+$logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
 
-    &.dragging {
-        cursor: all-scroll;
-    }
+
+.slidingContainer {
+    position: absolute;
+}
+
+.slider {
+    position: absolute;
+}
+
+section.container {
     
-    section.blur {
+    header.main {
+        position: fixed;
+        top: 0;
+        left:0;
+        width:100vw;
+        z-index: 40;
+        
+        .topLeftButton {
+            width: $col * 1.1825;
+            white-space: nowrap;
+            overflow: hidden;
+            border: $cardBorder;
+            @include transition(1s $defaultCurve);
+            @include transform(translate3d(0, 0, 0));
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
+                                    
+            &:hover {
+                background-color: black;
+            }
+
+            a {
+                border: 0;
+                display: inline-block;
+                vertical-align: top;
+                @include transition(1s $defaultCurve);
+                @include transition-delay(0);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+                                        
+                &.back {
+                    border-left: 0;
+                    width: $col/4;
+                    text-align: center;
+                }
+                
+                &.logo {
+                    width: $col*1.1825;
+                    border-right: 0;
+                }
+                                        
+            }
+            
+            &.logoButton {
+                a {
+                    
+                @include transform(translate3d(0, 0, 0));
+                }
+
+            }
+
+            &.backHomeButton { 
+                @include transform(translate3d(-$col*1.1825 + $backButtonWidth, 0, 0));
+                
+                a{
+                    @include transform(translate3d(-$backButtonWidth - $cell/1.125, 0, 0));
+    //                 @include transition-delay(1s);
+                }
+            }
+        }
+    }
+        
+        
+    .blur {
+        @include transition(-webkit-filter 1s $defaultCurve);
+        position: fixed;
+        z-index: 10;
+        
         &.obscured {
             opacity: .333;
-            -webkit-filter: blur(20px);
+            -webkit-filter: blur(10px);
         }
     }
     
-    section.space {
-        width:  10000%;
-        height: 10000%;
-        @include transition(1.5s $defaultCurve);
-        @include transition-property(opacity, -webkit-filter);
-        
-        section.content {
-            transform-origin: 0 0;
-            -webkit-transform-origin: 0 0;
-            @include transform(scale(1));
-            position: relative;
-            z-index: 1;
-        }
+    section.content {
+        margin-top: $col;
     }
     
-    > .delete.trash {
-        $trashSize: $col * .5;
-        z-index:    999;
-        bottom:-$trashSize;
-        right: 50%;
-        margin-left: -$trashSize / 2;
-        height: $trashSize;
-        width:  $trashSize;
-        position:   fixed;
-        color: $colorType;
-        text-align: center;
-        @include transition-timing-function($defaultCurve);
-        @include transition-duration(.5s);
-        @include transition-property(bottom, transform, -webkit-transform);
-        @include transform(scale3d(0.1, 0.1, 1.0));
-        
-        &:after {
-            content: "×";
-            font-size: $typeHeaderSize * 4;
-            font-weight: $fontWeightLight;
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            top: 0;
-            left: 0;
-        }
-        
-        &.visible {
-            bottom: 0;
-            @include transform(scale3d(.75, .75, 1.0));            
-        }
-        
-        &.overlap {
-            @include transform(scale3d(1.0, 1.0, 1.0));
-            @include hoverWarningAnimation;
-        }  
+    .elements {        
+        -webkit-transform-origin: 0 0;
+        @include transform(scale(1/$scaleMultiple));
+        @include transition(1s $defaultCurve);
+        @include transition-property(transform,
+                             -webkit-transform,
+                                -moz-transform);
     }
 }

@@ -7,7 +7,7 @@ extractTitle = ($) ->
   return title if title? 
 
   title = $("title").text()
-  return title if title? 
+  return title if title?
   return null
 
 extractImage = ($) ->
