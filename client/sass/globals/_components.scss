@@ -127,6 +127,15 @@ a {
     @include cardHover;
 }
 
+.cardActions {
+    position: absolute;
+    bottom: $cardPaddingBottom/2;
+    left: $cardPaddingLeft/2;
+    @include typeBody;
+}
+
+// FORMS
+
 form {
     position: relative;
     
