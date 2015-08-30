@@ -2,9 +2,11 @@ logistic = (x) -> 1/(1 + Math.pow(Math.E, -x))
 
 getTranslateX = (x, e) ->  
   border = sliderBorder()
+  myEdgeWidth = if e.hasClass('cover') then edgeWidth/2 else edgeWidth
+
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
-  left_min = - e.width() + edgeWidth
+  left_min = - e.width() + myEdgeWidth
   left_start = left_min + border
 
   if x > right_start
@@ -16,10 +18,13 @@ getTranslateX = (x, e) ->
     x = left_start - ((logistic(percent)-0.5)*2 * border)
   x
 
-percentToBorder = (x, e, border) -> 
+percentToBorder = (x, e, border) ->
+  myEdgeWidth = if e.hasClass('cover') then edgeWidth/2 else edgeWidth
+
+
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
-  left_min = - e.width() + edgeWidth
+  left_min = - e.width() + myEdgeWidth
   left_start = left_min + border
 
   if x > right_start
@@ -38,12 +43,17 @@ sliderJumble = () ->
     'scale': 1
 
 slidingPlace = (animate = true) ->
-# Recalculated on scroll
+  # Recalculated on scroll
   rawX = $(@).data('scroll_offset') - $(window).scrollLeft() + margin
   translateX = getTranslateX rawX, $(@)
-# Prevent stack from shifting to right when growing
+  
+  # Prevent stack from shifting to right when growing
   translateX += .0025 * rawX
   
+  if translateX + $(@).width() < edgeWidth or translateX > $(window).width() - edgeWidth
+     $(@).addClass 'onEdge'
+  else
+    $(@).removeClass 'onEdge'
   
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)
   percentFromBorder = percentToBorder((translateX), $(@), sliderBorder())
@@ -53,20 +63,20 @@ slidingPlace = (animate = true) ->
   if rawX < sliderBorder()
     scale = 1 - (rawX * .00001)
   rotateZ = $(@).data('rotateZ') * percentFromCenter
-# On open/close or load
-  animateOptions =
-    properties:
-      translateZ: 0
-      translateX: [translateX, xTransform($(@))]
-      scale: scale
-      translateY: translateY
-      rotateZ: $(@).data('rotateZ') * percentFromBorder
-
-# On open/close or load
+  
+  # On open/close or load
   if animate
+    animateOptions =
+      properties:
+        translateZ: 0
+        translateX: [translateX, xTransform($(@))]
+        scale: scale
+        translateY: translateY
+        rotateZ: $(@).data('rotateZ') * percentFromBorder
+
     $(@).velocity animateOptions
     
-# On Scroll
+  # On Scroll
   else
     options = {x: translateX}
     options.y = translateY if translateY?
