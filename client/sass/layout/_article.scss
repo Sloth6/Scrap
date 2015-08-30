@@ -106,6 +106,33 @@ section.container section.space section.content{
             }
         }
         
+        &.image, &.youtube {
+            width: intrinsic;
+            
+            .content {
+                
+                .card {
+                    width: intrinsic;
+                    padding: 0px;
+                    background-color: $cardBorderColor;
+                    
+                    iframe {
+                        margin: -2px -1px -4px -2px;
+                    }
+                }
+            }
+        }
+        
+        &.youtube {
+            
+            .content {
+                
+                .card {
+                    max-width: $articleWidthVideo;
+                }
+            }
+        }
+        
         &.file .content {
             $foldWidth: 48px;
             padding-right: $foldWidth;
@@ -278,13 +305,6 @@ section.container section.space section.content{
         }
         
         &.addElementForm {
-//             position: absolute;
-//             top: 0;
-//             left: 0;
-//             height: $col/2;
-//             width: $col/2;
-//             border-radius: $col/2;
-//             width: $articleWidth;
             height: $articleWidthWide;
             border: $cardBorder;
             border-style: dashed;
@@ -292,7 +312,6 @@ section.container section.space section.content{
             cursor: pointer;
             overflow: hidden;
                         
-                
             ul {
                 opacity: 1;
                 transform-origin: top left;
