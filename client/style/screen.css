@@ -2072,7 +2072,7 @@ body header.cover .card .elementCount {
   opacity: 0;
 }
 /* line 35, ../sass/layout/_home.scss */
-body header.cover .card ul.menu.users {
+body header.cover .card ul.users {
   position: absolute;
   width: 50%;
   bottom: 0;
@@ -2086,20 +2086,20 @@ body header.cover .card ul.menu.users {
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
 /* line 42, ../sass/layout/_home.scss */
-body header.cover .card ul.menu.users li.add {
+body header.cover .card ul.users li.add {
   width: 100%;
 }
 /* line 45, ../sass/layout/_home.scss */
-body header.cover .card ul.menu.users li.add label {
+body header.cover .card ul.users li.add label {
   display: block;
 }
 /* line 49, ../sass/layout/_home.scss */
-body header.cover .card ul.menu.users li.add input[type=email] {
+body header.cover .card ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
 /* line 54, ../sass/layout/_home.scss */
-body header.cover .card ul.menu.users li.add input[type=submit] {
+body header.cover .card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
   right: -24pt;
