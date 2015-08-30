@@ -106,6 +106,55 @@ section.container section.space section.content{
             }
         }
         
+        &.file .content {
+            $foldWidth: 48px;
+            padding-right: $foldWidth;
+            height: $articleWidth;
+            width: $articleWidthNarrow;
+            position: relative;
+            
+            .decorative.fold {
+                z-index: 10;
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: $foldWidth;
+                background: url('/images/fileCorner.png') no-repeat top right;
+                background-size: $foldWidth $foldWidth;
+                
+                &:after {
+                    content: " ";
+                    left: -$cardBorderWidth;
+                    right: 0;
+                    top: $foldWidth;
+                    position: absolute;
+                    height: $articleWidth - $foldWidth + $cell + $cardBorderWidth;
+                    width: $foldWidth;
+                    background: white;
+                    border: $cardBorder;
+                    border-left: 0;
+                    border-top: 0;
+                }
+            }
+            
+            .card {
+                height: 100%;
+                border-right: 0;
+                
+                header {
+                    h1 {
+                        word-wrap: break-word;
+                    }
+                    
+                    .extension {
+                        @include typeBodySmallCaps;
+                    }
+                }
+                
+            }
+        }
+        
         &.soundcloud .card {
             width: $articleWidth;
             padding: 0;
