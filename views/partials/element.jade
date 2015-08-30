@@ -70,9 +70,11 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
                 .artist!=content.author_name
             .detail
               .source SoundCloud
-          //- .description!=content.description
-          //- .iframeBlocker(style="positidon: absolute; top: 0; left: 0; width: 100%; height: 500px")
-  
+        
+        when 'youtube'
+          - url = "//www.youtube.com/embed/"+ element.content
+          iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
+
         when 'text'
           //- textarea.modify(name='content', style='height:300px')!=element.content
           .editable(contentEditable="true", designmode="on")
