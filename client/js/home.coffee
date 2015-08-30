@@ -51,13 +51,6 @@ $ ->
       $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
       event.preventDefault()
 
-  # Open a collection on click
-  $('.cover').click () ->
-    if $(@).hasClass 'open'
-      $(window).scrollLeft 0
-      collectionRealign.call $('.slidingContainer')
-    else
-      collectionOpen $(@)
 
   $('.slider').each sliderJumble
 

@@ -23,6 +23,9 @@ module.exports = (app) ->
   app.post '/addUserToSpace', (req, res) ->
     controllers.spaceController.addUserToSpace req, res, app, errorHandler
 
+  app.post '/updateSpaceName', (req, res) ->
+    controllers.spaceController.updateSpaceName req, res, app, errorHandler
+
   # app.get '/s/:spaceKey', (req, res) ->
   #   controllers.spaceController.showReadOnly req, res, app, errorHandler
 

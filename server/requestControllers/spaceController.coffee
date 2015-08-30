@@ -97,7 +97,13 @@ module.exports =
           return callback err if err?
           res.send 200
           
-
+  updateSpaceName: (req, res, app, callback) ->
+    { spaceKey, name } = req.body
+    console.log "changing name of #{spaceKey} to #{name}"
+    models.Space.update({ name }, { spaceKey }).complete (err) ->
+      return callback err if err
+      res.send 200
+      # sio.to("#{spaceKey}").emit 'updateElement', data
   # removeUserFromSpace : (req, res) ->
   #   id = data.id
 
