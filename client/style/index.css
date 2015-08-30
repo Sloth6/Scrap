@@ -2086,20 +2086,19 @@ body header.cover .card section.title .rename {
 }
 /* line 44, ../sass/layout/_home.scss */
 body header.cover .card section.title .rename a {
-  display: block;
-  padding: 8pt;
-  padding-top: 16pt;
+  display: inline-block;
+  padding: 16pt 16pt 16pt 8pt;
   margin-left: -8pt;
   margin-top: -8pt;
 }
-/* line 54, ../sass/layout/_home.scss */
+/* line 53, ../sass/layout/_home.scss */
 body header.cover .card .elementCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
-/* line 61, ../sass/layout/_home.scss */
+/* line 60, ../sass/layout/_home.scss */
 body header.cover .card ul.users {
   position: absolute;
   width: 50%;
@@ -2113,20 +2112,20 @@ body header.cover .card ul.users {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 68, ../sass/layout/_home.scss */
+/* line 67, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add {
   width: 100%;
 }
-/* line 71, ../sass/layout/_home.scss */
+/* line 70, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add label {
   display: block;
 }
-/* line 75, ../sass/layout/_home.scss */
+/* line 74, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
-/* line 80, ../sass/layout/_home.scss */
+/* line 79, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
