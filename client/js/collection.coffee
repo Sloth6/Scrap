@@ -1,5 +1,6 @@
 
 collectionOpen = (cover) ->
+  console.trace()
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
   elements = collectionContent.children '.slider'

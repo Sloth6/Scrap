@@ -7,4 +7,4 @@ makeDeletable = (elem) ->
   elem.find('.elementDeleteButton').click () -> onDelete elem
 
 $ ->
-  $('.element').each () -> makeDeletable($(@))
+  $('.slider').each () -> makeDeletable($(@))
