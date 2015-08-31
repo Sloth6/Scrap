@@ -8,15 +8,17 @@ loadElements = (spacekey, callback) ->
 
 
 collectionOpen = (cover) ->
-
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
   spacekey = cover.data 'spacekey'
   
   return if cover.hasClass 'open'
+
   loadElements spacekey, (elements) ->
     collectionContent.append elements
-    sliderInit elements
+    sliderInit elements    
+    addElementController.init collectionContent.find('.addElementForm')
+
     prevSliding = collection.prevAll().find('.cover.sliding').removeClass 'sliding'
     nextSliding = collection.nextAll().find('.cover.sliding').removeClass 'sliding'
 
