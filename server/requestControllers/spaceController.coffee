@@ -104,6 +104,15 @@ module.exports =
       return callback err if err
       res.send 200
       # sio.to("#{spaceKey}").emit 'updateElement', data
+  
+  collectionContent: (req, res, app, callback) ->
+    { spaceKey } = req.params
+    models.Space.find({ where: { spaceKey }, include:[ model:models.Element]}).complete (err, space) ->
+      return callback err if err?
+      app.render 'partials/collectionContent', { collection:space}, (err, html) ->
+        return callback err if err?
+        res.status(200).send html
+
   # removeUserFromSpace : (req, res) ->
   #   id = data.id
 

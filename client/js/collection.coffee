@@ -1,47 +1,58 @@
+cache = {}
+loadElements = (spacekey, callback) ->
+  return callback cache[spacekey] if cache[spacekey]
+  $.get "/collectionContent/#{spacekey}", (data) ->
+    console.log "got collection from #{spacekey}"
+    cache[spacekey] = $(data)
+    callback cache[spacekey]
+
 
 collectionOpen = (cover) ->
+
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
-  elements = collectionContent.children '.slider'
   spacekey = cover.data 'spacekey'
+  
+  loadElements spacekey, (elements) ->
+    collectionContent.append elements
+    sliderInit elements
+    prevSliding = collection.prevAll().find('.cover.sliding').removeClass 'sliding'
+    nextSliding = collection.nextAll().find('.cover.sliding').removeClass 'sliding'
 
-  prevSliding = collection.prevAll().find('.cover.sliding').removeClass 'sliding'
-  nextSliding = collection.nextAll().find('.cover.sliding').removeClass 'sliding'
+    # Close anything else thats open
+    $('.open').removeClass 'open'
+    collection.removeClass('closed').addClass 'open'
+    cover.addClass 'open'
 
-  # Close anything else thats open
-  $('.open').removeClass 'open'
-  collection.removeClass('closed').addClass 'open'
-  cover.addClass 'open'
+    # Remember where we were  
+    window.pastState.scrollLeft = $(window).scrollLeft()
+    window.pastState.docWidth   = $(window.document).width()
+    $(window).scrollLeft 0
 
-  # Remember where we were  
-  window.pastState.scrollLeft = $(window).scrollLeft()
-  window.pastState.docWidth   = $(window.document).width()
-  $(window).scrollLeft 0
-
-  nextSliding.velocity
-    properties:
-      translateX: [$(window).width(), xForceFeedSelf ]
-    options:
-      complete: () -> nextSliding.hide()
-
-  prevSliding.velocity
-    properties:
-      translateX: [ ( () -> -$(@).width() ), xForceFeedSelf ]
-    options:
-      complete: () -> prevSliding.hide()
-
-  # add elements in collection to list of sliding elements.
-  elements.
-    addClass('sliding').
-    css({ x: xTransform(cover) })
-
-  collectionContent.
-    show().
-    velocity
+    nextSliding.velocity
       properties:
-        opacity: [1, 0]
+        translateX: [$(window).width(), xForceFeedSelf ]
+      options:
+        complete: () -> nextSliding.hide()
 
-  collectionRealign.call $('.slidingContainer')
+    prevSliding.velocity
+      properties:
+        translateX: [ ( () -> -$(@).width() ), xForceFeedSelf ]
+      options:
+        complete: () -> prevSliding.hide()
+
+    # add elements in collection to list of sliding elements.
+    elements.
+      addClass('sliding').
+      css({ x: xTransform(cover) })
+
+    collectionContent.
+      show().
+      velocity
+        properties:
+          opacity: [1, 0]
+
+    collectionRealign.call $('.slidingContainer')
 
 collectionClose = (cover) ->
   collection = cover.parent()
@@ -53,6 +64,7 @@ collectionClose = (cover) ->
 
   collection.removeClass('open').addClass 'closed'
   cover.removeClass('open')
+  
   # elements to remove
   collectionContent.children().css 'zIndex', 0
 
@@ -63,6 +75,8 @@ collectionClose = (cover) ->
     velocity
       properties:
         opacity: [0, 1]
+      options:
+        complete: () -> elements.remove()
 
   $(document.body).css width: window.pastState.docWidth
   $(window).scrollLeft window.pastState.scrollLeft

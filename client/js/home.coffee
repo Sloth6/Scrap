@@ -51,18 +51,7 @@ $ ->
       $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
       event.preventDefault()
 
-
-  $('.slider').each sliderJumble
-
-  $('.slider').mouseover( () ->
-    return unless $(@).hasClass('sliding')
-    x = xTransform($(@))
-    return if x < edgeWidth or (x > $(window).width - edgeWidth)
-
-    $(@).data 'oldZIndex', $(@).css('zIndex')
-    $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
-  ).mouseout () ->
-    $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
+  sliderInit $('.slider')
 
   # Close a collection on page back
   window.onpopstate = (event) ->
