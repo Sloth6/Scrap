@@ -37,6 +37,7 @@ body {
                     -webkit-text-stroke: 1px $colorType;
                     -webkit-text-fill-color: transparent;
                     outline: 0;
+                    word-wrap: break-word;
             		}
 
                 .rename {
