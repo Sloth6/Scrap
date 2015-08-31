@@ -1,11 +1,9 @@
 
 collectionOpen = (cover) ->
-  console.trace()
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
   elements = collectionContent.children '.slider'
   spacekey = cover.data 'spacekey'
-  history.pushState { name: "home" }, "", "/#{spacekey}"
 
   prevSliding = collection.prevAll().find('.cover.sliding').removeClass 'sliding'
   nextSliding = collection.nextAll().find('.cover.sliding').removeClass 'sliding'
@@ -46,7 +44,6 @@ collectionOpen = (cover) ->
   collectionRealign.call $('.slidingContainer')
 
 collectionClose = (cover) ->
-  console.trace()
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
   elements = collectionContent.children '.slider'

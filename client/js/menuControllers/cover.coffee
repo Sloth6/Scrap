@@ -30,6 +30,8 @@ $ ->
       $(window).scrollLeft 0
       collectionRealign.call $('.slidingContainer')
     else if !$(@).hasClass('editingTitle')
+      spaceKey = $(@).data 'spacekey'
+      history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
       collectionOpen $(@)
       
   $('.cover').each () ->

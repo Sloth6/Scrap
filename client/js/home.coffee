@@ -66,10 +66,13 @@ $ ->
 
   # Close a collection on page back
   window.onpopstate = (event) ->
-    console.log 'onpopstate'
-    return unless $('.open').length
-    cover = $('.open').children '.cover'
-    collectionClose cover
+    if event.state.name is 'home'
+      return unless $('.cover.open').length
+      collectionClose $('.cover.open')
+    else
+      spaceKey = event.state.name
+      return unless $(".cover.#{spaceKey}").length
+      collectionOpen $(".cover.#{spaceKey}")
 
   $('header.cover .card').each () ->
     $(@).css { backgroundColor : randomColor }
