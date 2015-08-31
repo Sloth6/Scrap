@@ -3,7 +3,8 @@ article.addElementForm.open.slider.card
     li.text.note.closed.tall.expandable
       span.label Write a note or paste a link
       textarea.textInput(placeholder="Write a note or paste a link")
-    li.button.closed.upload
+    li.cardButtons
+    li.button.closed.upload.bodyType.smallCaps
       span.label Upload a file
       form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
         input(type='hidden', name='key')
@@ -15,5 +16,5 @@ article.addElementForm.open.slider.card
         input(type='hidden', name='Content-Type')
         input(type='file', class='file-input', name='file')
     li.done.cardActions
-      a.cancel.warning(href='#') Discard
-      a.submit.confirm(href='#') Save
+      a.cancel.bodyType.smallCaps.warning(href='#') Discard
+      a.submit.bodyType.smallCaps.confirm(href='#') Save

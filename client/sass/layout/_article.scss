@@ -200,7 +200,6 @@ section.container section.space section.content{
                 }
             }
         }
-
         
         .card {
             position: relative;
@@ -311,11 +310,35 @@ section.container section.space section.content{
             padding: $cardPadding;
             cursor: pointer;
             overflow: hidden;
+            
+            // Compact view
+            &.atEdge {
+                &:after {
+                    content: "+";
+                    position: absolute;
+                    top: 0;
+                    right: $cell;
+                }
+                
+                ul {
+                    display: none;
+                }
+            }
+            
+            &.typing {
+                ul li {
+                    &.upload {
+                        opacity: 0;
+                    }
+                    
+                    &.done {
+                        opacity: 1;
+                    }
+                }
+            }
                         
             ul {
                 opacity: 1;
-                transform-origin: top left;
-                -webkit-transform-origin: top left;
                 
                 li {
                     vertical-align: top;
@@ -336,7 +359,7 @@ section.container section.space section.content{
                     }
                     
                     &.upload {
-                        @include typeBody;
+                        opacity: 1;
                         position: relative;
                         display: inline-block;
                         height: $leading;
@@ -362,6 +385,7 @@ section.container section.space section.content{
                     }
                     
                     &.done {
+                        opacity: 0;
                         position: relative;
                         display: inline-block;
                         height: $leading;
@@ -369,9 +393,6 @@ section.container section.space section.content{
                         width: intrinsic;
 
                         a {
-                            @include typeBody;
-                            position: relative;
-                            top: -$cell;
                             border: 0;
                             padding: 0;
                             margin-left: $cell;

@@ -77,5 +77,5 @@ $ ->
     if $(".cover.#{spaceKey}").length
       collectionOpen $(".cover.#{spaceKey}")
 
-  $('header.cover .card').each () ->
+  $('header.cover .card.colored').each () ->
     $(@).css { backgroundColor : randomColor }

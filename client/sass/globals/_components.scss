@@ -49,7 +49,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
                                  border-color,
                                  color);
                                  
-    &:hover {
+    &:hover, &.hover {
         @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
         @include transform(translate(-$cell, -$cell));
         &.invertHover {
@@ -59,10 +59,6 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 }
 
 @mixin cardDrag {
-    .card {
-        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-    }
-    @include transform(translate(-$cell, -$cell));
 }
 
 @mixin button {
@@ -119,6 +115,7 @@ a {
     &.headerCard {
         height: $typeHeaderLeading * 3;
     }
+    
 }
 
 .cardHover {
@@ -129,6 +126,11 @@ a {
     @include cardHover;
 }
 
+.card.editing {
+    border-style: dashed !important;
+    background-color: $colorCardBackground !important;
+}
+
 .cardActions {
     position: absolute;
     bottom: $cardPaddingBottom/2;
@@ -136,7 +138,7 @@ a {
     @include typeBody;
 }
 
-// FORMS
+// Forms
 
 form {
     position: relative;
