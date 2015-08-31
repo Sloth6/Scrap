@@ -2,9 +2,9 @@ $ ->
   bindCardHover()
 
 bindCardHover = () ->
-  $cards = $('.card')
-  $cards.mouseenter( () ->
-    $(@).addClass 'hover'
+  $cardContainers = $('header.cover, .collection article')
+  $cardContainers.mouseenter( () ->
+    $(@).find('.card').addClass 'hover'
   ).mouseleave( () ->
-    $(@).removeClass 'hover'
+    $(@).find('.card').removeClass 'hover'
   )
