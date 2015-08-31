@@ -47,7 +47,7 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
             - name = element.content.split('/').pop()
             //- - extension = name.pop()
             h1.title=name.split('.')[0]
-            p.extension=name.split('.').pop()
+            p.extension.smallCaps.bodyType=name.split('.').pop()
           ul.cardActions
             li.right
               a.download.confirm(href='#') Download

@@ -16,11 +16,17 @@ stopEditing = (cover) ->
   card   = cover.children('.card')
   spaceKey = cover.data 'spacekey'
   rename   = cover.find('.rename')
+  userMenu = card.find('ul.menu')
 
-  cover.removeClass 'hover'
   cover.removeClass 'editing'
   cover.addClass 'colored'
   card.removeClass 'editing'
+  card.removeClass 'hover'
+  rename.css('opacity', '0')
+  
+  # Make user menu accessible after renaming
+  userMenu.addClass 'canOpen'
+#   userMenu.css('display', 'block')
 
   rename.children('a').text 'Rename'
 
@@ -33,11 +39,20 @@ startEditing = (cover) ->
   card   = cover.children('.card')
   spaceKey = cover.data 'spacekey'
   rename   = cover.find('.rename')
+  userMenu = card.find('ul.menu')
 
-  cover.addClass 'hover'
   cover.addClass 'editing'
   cover.removeClass 'colored'
   card.addClass 'editing'
+  card.addClass 'hover'
+  rename.css('opacity', '1')
+    
+  # Make user menu inaccessible during renaming
+  userMenu.removeClass 'canOpen'
+  userMenu.removeClass 'open'
+#   setTimeout( () ->
+#     userMenu.css('display', 'none')
+#   , 1000)
 
   rename.children('a').text 'Save'
   title.attr('contenteditable', true).focus()
@@ -95,7 +110,8 @@ $ ->
   $('.cover ul.menu').each () ->
     $menu = $(@)
     $cover = $menu.parent().parent('.cover')
+
     $cover.mouseenter () ->
-      $menu.addClass 'open'
+      $menu.addClass 'open' if $menu.hasClass 'canOpen'
     $cover.mouseleave () ->
-      $menu.removeClass 'open'
+      $menu.removeClass 'open' if $menu.hasClass 'canOpen'

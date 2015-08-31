@@ -113,9 +113,27 @@ $headerLeftMarginOffset:
     border: 0;
 }
 
+@mixin typeOutlineClear {
+    -webkit-text-stroke: 1px $colorType;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin typeOutlineFillBlack {
+    -webkit-text-fill-color: $colorType;
+    -webkit-text-stroke: $cardBorderWidth $colorType;
+}
+
 html {
     @include typeBody;
     font-variant-numeric: oldstyle-num;
+    
+    .typeTitle {
+        @include typeTitle;
+    }
+    
+    .headerType {
+        @include typeHeader;
+    }
     
     .bodyType {
         @include typeBody;
@@ -125,20 +143,20 @@ html {
         }
     }
     
-    .headerType {
-        @include typeHeader;
-    }
-    
-    .titleType {
-        @include typeTitle;
-    }
-    
     .smallType {
         @include typeSmall;
         
         &.smallCaps {
           @include typeSmallSmallCaps;
         }
+    }
+    
+    .typeWeightBold {
+        font-weight: $fontWeightBold;
+    }
+    
+    .typeOutlineClear {
+        @include typeOutlineClear;
     }
         
     p {

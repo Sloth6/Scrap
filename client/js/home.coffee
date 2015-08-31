@@ -1,9 +1,9 @@
 defaultCurve            = 'easeOutExpo'
-openCollectionCurve     = [20, 10]
+openCollectionCurve     = [20, 15]
 openCollectionDuration  = 1000
 margin = 50
 sliderBorder = () -> $(window).width() / 4
-edgeWidth = 64
+edgeWidth = 96
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
@@ -66,5 +66,5 @@ $ ->
     if $(".cover.#{spaceKey}").length
       collectionOpen $(".cover.#{spaceKey}")
 
-  $('header.cover .card').each () ->
+  $('header.cover .card.colored').each () ->
     $(@).css { backgroundColor : randomColor }

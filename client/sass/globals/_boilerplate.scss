@@ -2,8 +2,23 @@
 @import "compass/css3";
 
 html {
-  height:100%;
-  text-rendering: optimizeLegibility;
+    height: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    *[contentEditable=true] {
+        -webkit-touch-callout:  text;
+        -webkit-user-select:    text;
+        -khtml-user-select:     text;
+        -moz-user-select:       text;
+        -ms-user-select:        text;
+        user-select:            text;
+    }
 }
 
 @mixin resetInput {
@@ -14,17 +29,9 @@ html {
   background: transparent;
 }
 
-// Fix anti-aliasing issues in Webkit
-
-article, article header {
-  -webkit-transition: translate3d(0,0,0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-}
-
 @mixin multiline-ellipsis($height, $lineheight, $ellipsiswidth) {
 
-$ellipsiswidth: 3em !default;
+    $ellipsiswidth: 3em !default;
 
 	.ellipsis {
 		overflow: hidden;
