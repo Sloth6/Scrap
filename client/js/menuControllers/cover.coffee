@@ -22,7 +22,7 @@ stopEditing = (cover) ->
   cover.addClass 'colored'
   card.removeClass 'editing'
   card.removeClass 'hover'
-  rename.css('opacity', '0')
+  rename.css('opacity', '')
   
   # Make user menu accessible after renaming
   userMenu.addClass 'canOpen'
@@ -79,7 +79,7 @@ $ ->
   $('.cover').each () ->
     cover  = $(@)
     rename = cover.find('.rename')
-    rename.click (event) ->
+    rename.find('a').click (event) ->
       event.stopPropagation()
       if cover.hasClass('editing') then stopEditing cover else startEditing cover
   
