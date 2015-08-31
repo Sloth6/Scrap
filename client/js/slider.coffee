@@ -45,6 +45,7 @@ sliderInit = (elems) ->
   bindCardHover()
   showAddElementForm()
   elems.each sliderJumble
+  makeDraggable elems
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')
     x = xTransform($(@))

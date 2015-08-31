@@ -64,17 +64,19 @@ startEditing = (cover) ->
       stopEditing cover, title
       false
 
+coverClick = () ->
+  return if $(@).hasClass 'dragging'
+  if $(@).hasClass 'open'
+    $(window).scrollLeft 0
+    collectionRealign.call $('.slidingContainer')
+  else if !$(@).hasClass('editing')
+    spaceKey = $(@).data 'spacekey'
+    history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
+    collectionOpen $(@)
 
 $ ->
   # Open a collection on click
-  $('.cover').click () ->
-    if $(@).hasClass 'open'
-      $(window).scrollLeft 0
-      collectionRealign.call $('.slidingContainer')
-    else if !$(@).hasClass('editing')
-      spaceKey = $(@).data 'spacekey'
-      history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
-      collectionOpen $(@)
+  $('.cover').click coverClick
       
   $('.cover').each () ->
     cover  = $(@)

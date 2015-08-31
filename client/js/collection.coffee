@@ -135,20 +135,25 @@ collectionScroll = () ->
   children.each () ->
     slidingPlace.call @, false
 
-#  Old scrolling code
+collectionElemAfterMouse = (event) ->
+  collection = $('.slidingContainer')
+  children = collectionChildren.call collection
+  # Get the element that the mouse is over
+  i = 0
+  for html in children
+    child = $(html)
+    if event.screenX < (parseInt(child.css('x')) + child.width()/2)
+      return child
 
-# placeHolder_under_mouse = (event) ->
-#   collection = $(@)
-#   element = collection_children.call(@).first()
-#   # Get the element that the mouse is over
-#   while mouse.x > (parseInt(element.css('x')) + element.width())
-#     element = element.next()
+  # console.log child
 
-#   if mouse.x < parseInt(element.css('x'))+ element.width()/2
-#     collection_insert_before.call @, drag_placeholder, element
-#   else 
-#     collection_insert_after.call @, drag_placeholder, element
-#   true
+
+
+  # if mouse.x < parseInt(element.css('x'))+ element.width()/2
+  #   collection_insert_before.call @, drag_placeholder, element
+  # else 
+  #   collection_insert_after.call @, drag_placeholder, element
+  # true
 
 # # put element a before b
 # collection_insert_before = (a, b) ->
