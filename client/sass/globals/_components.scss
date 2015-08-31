@@ -157,10 +157,6 @@ label {
     opacity: 1;
     font-style: italic;
     text-transform: lowercase;
-    
-    &:hover {
-        @include hoverAnimation;
-    }
 }
 
 ::-webkit-input-placeholder {
@@ -185,10 +181,6 @@ input {
     max-width: 100%;
     border-radius: 0;
         
-    &:focus, &:hover {
-        @include hoverAnimation;
-    }
-    
     &.offset {
         @include button;
     }
