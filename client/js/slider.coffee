@@ -52,8 +52,16 @@ slidingPlace = (animate = true) ->
   
   if translateX + $(@).width() < edgeWidth or translateX > $(window).width() - edgeWidth
      $(@).addClass 'onEdge'
+     if $(@).hasClass 'cover'
+        h1 = $(@).find 'h1.collectionTitle'
+        h1.addClass 'bodyType typeBody typeWeightBold'
+        h1.removeClass 'typeTitle'
   else
     $(@).removeClass 'onEdge'
+    if $(@).addClass 'cover'
+      h1 = $(@).find 'h1.collectionTitle'
+      h1.removeClass 'bodyType typeBody typeWeightBold'
+      h1.addClass 'typeTitle'
   
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)
   percentFromBorder = percentToBorder((translateX), $(@), sliderBorder())
