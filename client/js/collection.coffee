@@ -74,18 +74,14 @@ collectionClose = (cover) ->
   collectionRealign.call $('.slidingContainer')
 
 collectionChildren = () ->
-  children = $(@).find('.sliding')
-  children
-  # .filter () ->
-  #   collection = $(@).parent().parent()
-  #   $(@).hasClass('cover') or collection.hasClass('open') or collection.hasClass('closing')
+  $(@).find('.sliding')
 
 collectionOfElement = () ->
   $(@).parent().parent()
 
-collectionRealign = (animate) ->
+realign = (animate) ->
   children = collectionChildren.call @
-  lastX  = 0#edgeWidth
+  lastX  = 0#$(window).width()/2 - children.first().width()/2
   maxX   = -Infinity
   zIndex = children.length
   
@@ -97,51 +93,31 @@ collectionRealign = (animate) ->
       $(@).css { zIndex: (children.length*3) }
     else
       $(@).css { zIndex: zIndex-- }
+
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
     width = $(@).width()
     if collection.hasClass('closing')
       width = 0
     lastX += width + margin
-    
-    maxX = lastX
   
-  $(document.body).css { width: maxX }
+  maxX = lastX - children.last().width()/2
+  $(@).data { maxX }
+  maxX
+
+collectionRealign = (animate) ->
+  maxX = realign.call @, animate
+  $(document.body).css { width: maxX + $(window).width()/2}
   $("body").css("overflow", "hidden")
   setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
-  
-  $(@).data { maxX }
- 
+
 collectionRealignDontScale = (animate) ->
-  children = collectionChildren.call @
-  lastX  = 0#edgeWidth
-  maxX   = -Infinity
-  zIndex = children.length
-
-  children.each () ->
-    $(@).data 'scroll_offset', lastX
-    collection = $(@).parent().parent()
-    if $(@).hasClass 'open'
-      $(@).css { zIndex: (children.length*3) }
-    else
-      $(@).css { zIndex: zIndex-- }
-    $(@).removeData 'oldZIndex'
-    slidingPlace.call @, animate
-    width = $(@).width()
-    if collection.hasClass('closing')
-      width = 0
-    lastX += width + margin
-    maxX = lastX
-
-  $(@).data { maxX }
+  realign.call @, animate
  
 collectionScroll = () ->
   children = collectionChildren.call(@)
   children.each () ->
     slidingPlace.call @, false
-    # if $(@).hasClass('cover') and $(@).css('x') < edgeWidth
-    #   # console.log 'on edgeWidth'
-
 
 #  Old scrolling code
 

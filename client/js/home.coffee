@@ -66,12 +66,15 @@ $ ->
 
   # Close a collection on page back
   window.onpopstate = (event) ->
-    if event.state.name is 'home'
-      return unless $('.cover.open').length
+    # event.state.name will either be 'home' or a spaceKey
+    spaceKey = event.state.name
+
+    # always close any open collection first
+    if  $('.cover.open').length
       collectionClose $('.cover.open')
-    else
-      spaceKey = event.state.name
-      return unless $(".cover.#{spaceKey}").length
+    
+    # equivlant to if spaceKey != home and spacekey cover exists
+    if $(".cover.#{spaceKey}").length
       collectionOpen $(".cover.#{spaceKey}")
 
   $('header.cover .card').each () ->
