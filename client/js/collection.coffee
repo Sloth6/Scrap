@@ -13,6 +13,7 @@ collectionOpen = (cover) ->
   collectionContent = collection.children '.collectionContent'
   spacekey = cover.data 'spacekey'
   
+  return if cover.hasClass 'open'
   loadElements spacekey, (elements) ->
     collectionContent.append elements
     sliderInit elements
@@ -61,13 +62,9 @@ collectionClose = (cover) ->
   spacekey = cover.data 'spacekey'
   
   collection.siblings().find('.cover.slider').addClass('sliding').show()
-
-  collection.removeClass('open').addClass 'closed'
-  cover.removeClass('open')
   
   # elements to remove
   collectionContent.children().css 'zIndex', 0
-
   elements.removeClass('sliding')
 
   collectionContent.
@@ -76,7 +73,10 @@ collectionClose = (cover) ->
       properties:
         opacity: [0, 1]
       options:
-        complete: () -> elements.remove()
+        complete: () ->
+          collection.removeClass('open').addClass 'closed'
+          cover.removeClass('open')
+          elements.remove()
 
   $(document.body).css width: window.pastState.docWidth
   $(window).scrollLeft window.pastState.scrollLeft
