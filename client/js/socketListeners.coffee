@@ -35,12 +35,10 @@ $ ->
 
   socket.on 'removeElement', (data) ->
     console.log 'removeElement', data
-    elem = $("\##{data.id}")
-    collection = collectionOfElement.call elem
-    $("\##{data.id}").fadeOut -> 
+    elem = $("\##{data.id}")    
+    elem.fadeOut -> 
       elem.remove()
-      collection_realign_elements.call collection
-      
+      collectionRealign.call $('.slidingContainer')
 
   socket.on 'updateElement', ({ spaceKey, userId, elementId, content }) ->
     return if data.userId is window.userId

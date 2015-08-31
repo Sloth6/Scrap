@@ -66,6 +66,7 @@ $ ->
 
   # Close a collection on page back
   window.onpopstate = (event) ->
+    console.log 'onpopstate'
     return unless $('.open').length
     cover = $('.open').children '.cover'
     collectionClose cover

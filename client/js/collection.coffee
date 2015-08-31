@@ -22,10 +22,14 @@ collectionOpen = (cover) ->
   nextSliding.velocity
     properties:
       translateX: [$(window).width(), xForceFeedSelf ]
+    options:
+      complete: () -> nextSliding.hide()
 
   prevSliding.velocity
     properties:
       translateX: [ ( () -> -$(@).width() ), xForceFeedSelf ]
+    options:
+      complete: () -> prevSliding.hide()
 
   # add elements in collection to list of sliding elements.
   elements.
@@ -41,13 +45,13 @@ collectionOpen = (cover) ->
   collectionRealign.call $('.slidingContainer')
 
 collectionClose = (cover) ->
+  console.trace()
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
   elements = collectionContent.children '.slider'
   spacekey = cover.data 'spacekey'
   
-  prevSliding = collection.prevAll().find('.cover.slider').addClass 'sliding'
-  nextSliding = collection.nextAll().find('.cover.slider').addClass 'sliding'
+  collection.siblings().find('.cover.slider').addClass('sliding').show()
 
   collection.removeClass('open').addClass 'closed'
   cover.removeClass('open')
