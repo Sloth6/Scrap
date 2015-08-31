@@ -42,6 +42,18 @@ sliderJumble = () ->
     'rotateZ': Math.random() * 4 + (Math.random() * -4)
     'scale': 1
 
+sliderInit = (elems) ->
+  elems.each sliderJumble
+  elems.mouseover( () ->
+    return unless $(@).hasClass('sliding')
+    x = xTransform($(@))
+    return if x < edgeWidth or (x > $(window).width - edgeWidth)
+    $(@).data 'oldZIndex', $(@).css('zIndex')
+    $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
+  ).mouseout () ->
+    $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
+
+
 slidingPlace = (animate = true) ->
   # Recalculated on scroll
   rawX = $(@).data('scroll_offset') - $(window).scrollLeft() + margin
