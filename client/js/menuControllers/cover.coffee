@@ -10,18 +10,45 @@ addUser = (email, spaceKey) ->
 
   # socket.emit 'addUserToSpace', { email, spaceKey }
 
-stopEditing = (cover, title) ->
-  return unless cover.hasClass('editingTitle')
+stopEditing = (cover) ->
+  return unless cover.hasClass('editing')
+  title  = cover.find('.collectionTitle')
+  card   = cover.children('.card')
   spaceKey = cover.data 'spacekey'
   rename   = cover.find('.rename')
 
   cover.removeClass 'hover'
-  cover.removeClass 'editingTitle'
+  cover.removeClass 'editing'
+  cover.addClass 'colored'
+  card.removeClass 'editing'
+
   rename.children('a').text 'Rename'
 
   title.attr 'contenteditable', false
   $.post '/updateSpaceName', { spaceKey, name: title.text() }, () ->
     console.log 'name updated successfully'
+
+startEditing = (cover) ->
+  title  = cover.find('.collectionTitle')
+  card   = cover.children('.card')
+  spaceKey = cover.data 'spacekey'
+  rename   = cover.find('.rename')
+
+  cover.addClass 'hover'
+  cover.addClass 'editing'
+  cover.removeClass 'colored'
+  card.addClass 'editing'
+
+  rename.children('a').text 'Save'
+  title.attr('contenteditable', true).focus()
+  # title.blur () ->
+  #   console.log 'blur'
+  #   stopEditing cover, title
+  cover.keypress (e) ->
+    if e.which == 13
+      stopEditing cover, title
+      false
+
 
 $ ->
   # Open a collection on click
@@ -29,7 +56,7 @@ $ ->
     if $(@).hasClass 'open'
       $(window).scrollLeft 0
       collectionRealign.call $('.slidingContainer')
-    else if !$(@).hasClass('editingTitle')
+    else if !$(@).hasClass('editing')
       spaceKey = $(@).data 'spacekey'
       history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
       collectionOpen $(@)
@@ -37,24 +64,9 @@ $ ->
   $('.cover').each () ->
     cover  = $(@)
     rename = cover.find('.rename')
-    title  = cover.find('.collectionTitle')
-
     rename.click (event) ->
       event.stopPropagation()
-      if cover.hasClass('editingTitle')
-        stopEditing cover, title
-      else
-        cover.addClass 'hover'
-        cover.addClass 'editingTitle'
-        rename.children('a').text 'Save'
-        title.attr('contenteditable', true).focus()
-        # title.blur () ->
-        #   console.log 'blur'
-        #   stopEditing cover, title
-        cover.keypress (e) ->
-          if e.which == 13
-            stopEditing cover, title
-            false
+      if cover.hasClass('editing') then stopEditing cover else startEditing cover
   
   # dont open collection on clicking user field
   $('.addUser input[name="user[email]"]').click (event) ->
