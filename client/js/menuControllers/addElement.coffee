@@ -1,9 +1,8 @@
 addElementController =
   #  Open closed menu items
   init: (menu) ->
-    
     spacekey = menu.parent().parent().data 'spacekey'
-    input = menu.find('.textInput')
+    input    = menu.find '.textInput'
     
     menu.find('textarea').bind "paste", () ->
       setTimeout (() =>
@@ -20,21 +19,7 @@ addElementController =
       addElementController.reset menu
       event.preventDefault()
 
-  close: (menu) ->
-    # menu.removeClass('open').addClass 'closed'
-    # setTimeout (() =>
-    #   menu.css({
-    #     "transition-duration": ".25s",
-    #     "-webkit-transition-duration": ".25s"
-    #   })
-    # ), 500
-
-
   reset: (menu) ->
-    # menu.find "li.expandable"
-    #   .addClass "closed"
-    #   .removeClass "hidden"
-    #   .removeClass "open"
     menu.find('.text input,textarea').val('')
 
 $ ->
