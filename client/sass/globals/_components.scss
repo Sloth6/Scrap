@@ -49,7 +49,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
                                  border-color,
                                  color);
                                  
-    &:hover, &.hover {
+    &.hover {
         @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
         @include transform(translate(-$cell, -$cell));
         &.invertHover {
@@ -69,7 +69,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     color: $colorCardBackground !important;
     border-color: $colorCardBackground;
     
-    &.cardHover:hover {
+    &.cardHover.hover {
         @include box-shadow($cardBoxShadowDimensions black);
     }
 }

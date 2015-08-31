@@ -60,15 +60,19 @@ slidingPlace = (animate = true) ->
   translateX = getTranslateX rawX, $(@)
   
   # Prevent stack from shifting to right when growing
-  translateX += .0025 * rawX
+  translateX += .001825 * rawX
   
+  # If slider is at edge
   if translateX + $(@).width() < edgeWidth or translateX > $(window).width() - edgeWidth
      $(@).addClass 'onEdge'
+     $(@).find('.card').removeClass 'cardHover'
      # Make edge of card visible on open collections
      if $(@).hasClass 'cover'
        $(@).addClass 'peek' if $(@).hasClass 'open'
+  # Not at edge
   else
     $(@).removeClass 'onEdge'
+    $(@).find('.card').addClass 'cardHover'
     if $(@).hasClass 'cover'
       $(@).removeClass 'peek' if $(@).hasClass 'open'
   

@@ -305,6 +305,7 @@ section.container section.space section.content{
         
         &.addElementForm {
             height: $articleWidthWide;
+            width: $articleWidth;
             border: $cardBorder;
             border-style: dashed;
             padding: $cardPadding;
@@ -312,17 +313,35 @@ section.container section.space section.content{
             overflow: hidden;
             
             // Compact view
-            &.atEdge {
+            &.onEdge {
+                
                 &:after {
-                    content: "+";
-                    position: absolute;
-                    top: 0;
-                    right: $cell;
+                		@include transform(translate(0px, 0px));
                 }
                 
                 ul {
-                    display: none;
+                		@include transform(translate(-128px, 0px));
                 }
+            }
+            
+            // Plus sign for compact view
+            &:after {
+                content: "";
+                height: 24px;
+                width: 24px;
+                font-weight: $fontWeightLight;
+                background: url('/images/add.png') no-repeat;
+                background-size: cover;
+                position: absolute;
+                top: $cell;
+                right: $cell;
+                transform-origin:           center center;
+                -webkit-transform-origin:   center center;
+            		@include transform(translate(36px, 0px));
+                @include transition(.5s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
             }
             
             &.typing {
@@ -338,7 +357,11 @@ section.container section.space section.content{
             }
                         
             ul {
-                opacity: 1;
+            		@include transform(translate(0px, 0px));
+                @include transition(.5s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
                 
                 li {
                     vertical-align: top;
