@@ -3,10 +3,8 @@ thumbnails = require '../../modules/thumbnails.coffee'
 
 module.exports = (spaceKey, attributes, callback) ->
   original_url = attributes.content
-  delete attributes.content
   attributes.content = JSON.stringify { original_url, key: null }
-  callback null, attributes
-
+  return callback null, attributes
 
   imageKey = Math.random().toString(36).slice(2)
   thumbnailOptions =
