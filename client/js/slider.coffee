@@ -43,6 +43,7 @@ sliderJumble = () ->
     'scale': 1
 
 sliderInit = (elems) ->
+  bindCardHover()
   elems.each sliderJumble
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')

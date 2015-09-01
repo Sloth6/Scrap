@@ -44,6 +44,7 @@ $ ->
   # Main scroll event
   $(window).scroll (event) ->
     collectionScroll.call $('.slidingContainer')
+    $('.hover').removeClass 'hover'
 
   # Enable the user to scroll vertically and map it to horizontal scroll
   $(window).mousewheel (event) ->

@@ -34,7 +34,6 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     padding: $cardPadding;
             transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
-
 }
 
 @mixin cardHover {
@@ -110,12 +109,7 @@ a {
     
 .card {
     @include cardStyle;
-    display: block;
-    
-    &.headerCard {
-        height: $typeHeaderLeading * 3;
-    }
-    
+    display: block;    
 }
 
 .cardHover {
