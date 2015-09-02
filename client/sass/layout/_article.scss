@@ -1,4 +1,5 @@
 $collectionOpenTransitionDuration: 1s;
+$hideImageWhiteBorder: -2px -1px -4px -2px;
 
 section.container section.space section.content{
         
@@ -106,7 +107,24 @@ section.container section.space section.content{
             }
         }
         
-        &.image, &.youtube {
+        &.image {
+            
+            .content {
+                
+                .card {
+                    padding: 0px;
+                    width: $articleWidth;
+                    max-height: $articleWidthWide;
+                    overflow: hidden;
+                    
+                    img {
+                        margin: $hideImageWhiteBorder;
+                    }
+                }
+            }
+        }
+        
+        &.youtube {
             width: intrinsic;
             
             .content {
@@ -117,7 +135,7 @@ section.container section.space section.content{
                     background-color: $cardBorderColor;
                     
                     iframe {
-                        margin: -2px -1px -4px -2px;
+                        margin: $hideImageWhiteBorder;
                     }
                 }
             }
@@ -214,12 +232,6 @@ section.container section.space section.content{
                 width: $articleWidth;
                 min-height: $articleMinHeight;
             }
-
-            &.image {
-                width: $articleWidth;
-                margin-left: $cardBorderWidth;
-//                 border-left: $cardBorder;
-            }
             
             &.website {
                 @include cardStyle;
@@ -285,10 +297,6 @@ section.container section.space section.content{
                         @include transition-property(margin-top);
                     }
                 }
-
-                &.image {
-                    max-height: $baseline * 24;
-                }
             }
 
             
@@ -313,7 +321,7 @@ section.container section.space section.content{
             overflow: hidden;
             
             // Compact view
-            &.onEdge {
+            &.peek {
                 
                 &:after {
                 		@include transform(translate(0px, 0px));
@@ -333,8 +341,8 @@ section.container section.space section.content{
                 background: url('/images/add.png') no-repeat;
                 background-size: cover;
                 position: absolute;
-                top: $cell;
-                right: $cell;
+                top:    $cell*.75;
+                right:  $cell*.75;
                 transform-origin:           center center;
                 -webkit-transform-origin:   center center;
             		@include transform(translate(36px, 0px));
