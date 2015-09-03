@@ -9,19 +9,22 @@ section.index {
         opacity: 0;
     }
     
-    header {
-        
-        h1, h2 {
+    header, section.tagline {
             width: $articleWidth;
             height: $articleWidthWide;
-        }
-        
-        ul {
+    }
             
+    section.forms {
+        ul {
             li.card {
                 width: $articleWidthNarrow;
                 padding-bottom: $broadMargin;
             }
         }
+    }        
+    
+    section.description {
+        width: $articleWidthNarrow;
+        padding-bottom: $broadMargin;
     }
 }

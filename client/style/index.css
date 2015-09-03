@@ -2137,13 +2137,18 @@ section.index .card {
   -webkit-transform-origin: center center;
   opacity: 0;
 }
-/* line 14, ../sass/index.scss */
-section.index header h1, section.index header h2 {
+/* line 12, ../sass/index.scss */
+section.index header, section.index section.tagline {
   width: 256pt;
   height: 320pt;
 }
-/* line 21, ../sass/index.scss */
-section.index header ul li.card {
+/* line 19, ../sass/index.scss */
+section.index section.forms ul li.card {
+  width: 192pt;
+  padding-bottom: 48pt;
+}
+/* line 26, ../sass/index.scss */
+section.index section.description {
   width: 192pt;
   padding-bottom: 48pt;
 }

@@ -17,27 +17,15 @@ block scripts
 
 block content
   section.index
-    header
-      h1.card.typeTitle.typeOutlineClear.cardHover Hotpot
-      h2.card.typeTitle.typeOutlineClear.cardHover Keep everything for your<br>project in one place.
-      ul.form.signUpLogInForms
+    header.card.cover.cardHover.left
+      h1.typeTitle.typeOutlineClear Hotpot
+    section.tagline.card.cover.cardHover.right
+      h2.typeTitle.typeOutlineClear Keep everything for your project in one place.
+    section.forms
+      ul.signUpLogInForms
         li.form.closed.card Sign Up
           include partials/signUp
         li.form.closed.card Log In
           include partials/logIn
-    section.space.example
-      section.content
-    
-        //- -var collection_height = 800
-        //- -for (var i = 0; i < collections.length; i++)
-        //-   -var collection = collections[i]
-        //-   -var top = (i * collection_height)
-        //-   section.collection.fake(style="position:fixed;height:"+collection_height+"px;", data-offset=top)
-        //-     header.collectionTitle
-        //-       h1!=collection.name
-        //-     .elements
-        //-       -for (var j = 0; j < collection.elements.length; j++)
-        //-         -var element = collection.elements[j]
-        //-         include partials/element
-        //- script.
-        //-   collection_max_y="#{top}";
+    section.description.card.cardHover
+      p.headerType Donec sed odio dui. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
