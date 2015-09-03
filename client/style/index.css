@@ -2143,6 +2143,10 @@ section.index .card {
   -webkit-transform-origin: center center;
   opacity: 0;
 }
+/* line 14, ../sass/index.scss */
+section.index .card:hover {
+  z-index: 100;
+}
 @media screen and (max-width: 640px) {
   /* line 8, ../sass/index.scss */
   section.index .card {
@@ -2150,28 +2154,28 @@ section.index .card {
     text-align: left;
   }
 }
-/* line 20, ../sass/index.scss */
+/* line 24, ../sass/index.scss */
 section.index .cover {
   width: 256pt;
   height: 320pt;
 }
 @media screen and (max-width: 640px) {
-  /* line 20, ../sass/index.scss */
+  /* line 24, ../sass/index.scss */
   section.index .cover {
     width: 90%;
     max-width: 256pt;
   }
-  /* line 28, ../sass/index.scss */
+  /* line 32, ../sass/index.scss */
   section.index .cover.title {
     margin-top: 64pt;
   }
 }
-/* line 34, ../sass/index.scss */
+/* line 38, ../sass/index.scss */
 section.index section.form {
   width: 192pt;
   padding-bottom: 48pt;
 }
-/* line 39, ../sass/index.scss */
+/* line 43, ../sass/index.scss */
 section.index section.description {
   width: 192pt;
   padding-bottom: 48pt;

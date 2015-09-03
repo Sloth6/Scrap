@@ -11,6 +11,10 @@ section.index {
         -webkit-transform-origin: center center;
         opacity: 0;
         
+        &:hover {
+            z-index: 100;
+        }
+        
         @media screen and (max-width: 640px) {
             position: relative;
             text-align: left;

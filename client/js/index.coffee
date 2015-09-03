@@ -63,7 +63,20 @@ $ ->
     
     delay++
   )
-
+  
+  $cards.mouseenter(() ->
+    $(@).velocity
+      properties:
+        translateZ: 0
+        translateX: '+='+((Math.random() * 10) + (Math.random() * -10))
+        translateY: '+='+((Math.random() * 10) + (Math.random() * -10))
+        rotateZ: '+='+((Math.random() * 10) + (Math.random() * -10))
+      options:
+        easing: [20, 10]
+        duration: 1500
+  )
+    
+    
   console.log "Hello World"
   $('.signUpLogInForms li.form').on 'click', () ->
     $(@).addClass('open').removeClass('closed')
