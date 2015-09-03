@@ -108,7 +108,7 @@ realign = (animate) ->
     if $(@).hasClass 'open'
       $(@).css { zIndex: (children.length*3) }
     else
-      $(@).css { zIndex: zIndex-- }
+      $(@).css { zIndex: zIndex-- } # Card stack order
 
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate

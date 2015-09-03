@@ -1979,13 +1979,20 @@ section.container section.space section.content article.addElementForm ul li.don
 }
 
 /* line 9, ../sass/layout/_home.scss */
+body header.cover.peek.open .card section.title h1 {
+  -moz-transform: translate(-128px, 0px);
+  -ms-transform: translate(-128px, 0px);
+  -webkit-transform: translate(-128px, 0px);
+  transform: translate(-128px, 0px);
+}
+/* line 13, ../sass/layout/_home.scss */
 body header.cover.peek.open .card section.title h2 {
   -moz-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
-/* line 16, ../sass/layout/_home.scss */
+/* line 20, ../sass/layout/_home.scss */
 body header.cover .card {
   position: relative;
   width: 256pt;
@@ -1993,36 +2000,40 @@ body header.cover .card {
   cursor: pointer;
   overflow: hidden;
 }
-/* line 24, ../sass/layout/_home.scss */
+/* line 28, ../sass/layout/_home.scss */
 body header.cover .card.hover ul.users {
   opacity: 1;
 }
-/* line 30, ../sass/layout/_home.scss */
+/* line 34, ../sass/layout/_home.scss */
 body header.cover .card.hover section.title h1.typeTitle {
   -webkit-text-fill-color: #000000;
   -webkit-text-stroke: 1pt #000000;
 }
-/* line 41, ../sass/layout/_home.scss */
+/* line 45, ../sass/layout/_home.scss */
 body header.cover .card section.title:hover .rename {
   opacity: 1;
 }
-/* line 46, ../sass/layout/_home.scss */
+/* line 50, ../sass/layout/_home.scss */
 body header.cover .card section.title h1 {
   margin-top: -.1em;
   margin-left: -.03125em;
   margin-right: 4pt;
   outline: 0;
   word-wrap: break-word;
+  -moz-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  -moz-transition-property: -webkit-text-fill-color, -webkit-text-stroke, color;
-  -o-transition-property: -webkit-text-fill-color, -webkit-text-stroke, color;
-  -webkit-transition-property: -webkit-text-fill-color, -webkit-text-stroke, color;
-  transition-property: -webkit-text-fill-color, -webkit-text-stroke, color;
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
+  transition-property: transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
 }
-/* line 60, ../sass/layout/_home.scss */
+/* line 68, ../sass/layout/_home.scss */
 body header.cover .card section.title h2 {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -2045,25 +2056,25 @@ body header.cover .card section.title h2 {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 76, ../sass/layout/_home.scss */
+/* line 84, ../sass/layout/_home.scss */
 body header.cover .card section.title .rename {
   opacity: 0;
 }
-/* line 79, ../sass/layout/_home.scss */
+/* line 87, ../sass/layout/_home.scss */
 body header.cover .card section.title .rename a {
   display: inline-block;
   padding: 16pt 16pt 16pt 8pt;
   margin-left: -8pt;
   margin-top: -8pt;
 }
-/* line 88, ../sass/layout/_home.scss */
+/* line 96, ../sass/layout/_home.scss */
 body header.cover .card .elementCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
-/* line 95, ../sass/layout/_home.scss */
+/* line 103, ../sass/layout/_home.scss */
 body header.cover .card ul.users {
   position: absolute;
   width: 50%;
@@ -2077,20 +2088,20 @@ body header.cover .card ul.users {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 102, ../sass/layout/_home.scss */
+/* line 110, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add {
   width: 100%;
 }
-/* line 105, ../sass/layout/_home.scss */
+/* line 113, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add label {
   display: block;
 }
-/* line 109, ../sass/layout/_home.scss */
+/* line 117, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
-/* line 114, ../sass/layout/_home.scss */
+/* line 122, ../sass/layout/_home.scss */
 body header.cover .card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;

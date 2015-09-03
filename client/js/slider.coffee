@@ -21,7 +21,6 @@ getTranslateX = (x, e) ->
 percentToBorder = (x, e, border) ->
   myEdgeWidth = if e.hasClass('cover') then edgeWidth/2 else edgeWidth
 
-
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
   left_min = - e.width() + myEdgeWidth
@@ -44,6 +43,7 @@ sliderJumble = () ->
 
 sliderInit = (elems) ->
   bindCardHover()
+  showAddElementForm()
   elems.each sliderJumble
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')
@@ -70,11 +70,15 @@ slidingPlace = (animate = true) ->
      # Make edge of card visible on open collections
      if $(@).hasClass 'cover'
        $(@).addClass 'peek' if $(@).hasClass 'open'
+     if $(@).hasClass 'addElementForm' 
+       $(@).addClass 'peek'
   # Not at edge
   else
     $(@).removeClass 'onEdge'
     $(@).find('.card').addClass 'cardHover'
-    if $(@).hasClass 'cover'
+    if $(@).hasClass 'cover' or $(@).hasClass 'addElementForm' 
+      $(@).removeClass 'peek' if $(@).hasClass 'open'
+    if $(@).hasClass 'addElementForm' 
       $(@).removeClass 'peek' if $(@).hasClass 'open'
   
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)

@@ -10,7 +10,7 @@ block scripts
   //- script(src="/js/collection.js")
   //- script(src="/js/element.js")
 
-
+  script(src="/js/lib/velocity.min.js")
   script(src="/js/index.js")
   script(src="/js/menuControllers/header.js")
   //- script(src="/js/menuControllers/settings.js")
@@ -18,12 +18,12 @@ block scripts
 block content
   section.index
     header
-      h1 Hotpot
-      h2 Keep everything for your<br>project in one place.
+      h1.card.typeTitle.typeOutlineClear.cardHover Hotpot
+      h2.card.typeTitle.typeOutlineClear.cardHover Keep everything for your<br>project in one place.
       ul.form.signUpLogInForms
-        li.form.closed Sign Up
+        li.form.closed.card Sign Up
           include partials/signUp
-        li.form.closed Log In
+        li.form.closed.card Log In
           include partials/logIn
     section.space.example
       section.content
