@@ -17,15 +17,11 @@ block scripts
 
 block content
   section.index
-    header.card.cover.cardHover.left
+    header.card.cover.cardHover.left.colored.title
       h1.typeTitle.typeOutlineClear Hotpot
     section.tagline.card.cover.cardHover.right
       h2.typeTitle.typeOutlineClear Keep everything for your project in one place.
-    section.forms
-      ul.signUpLogInForms
-        li.form.closed.card Sign Up
-          include partials/signUp
-        li.form.closed.card Log In
-          include partials/logIn
+    section.form.closed.card.left
+      include partials/signUp
     section.description.card.cardHover
-      p.headerType Donec sed odio dui. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+      p Donec sed odio dui. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.

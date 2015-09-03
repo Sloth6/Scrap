@@ -1,26 +1,39 @@
 @import "screen.scss";
 
 section.index {
+    @media screen and (max-width: 640px) {
+        text-align: center;
+    }
     
     .card {
         position: absolute;
                 transform-origin: center center;
         -webkit-transform-origin: center center;
         opacity: 0;
+        
+        @media screen and (max-width: 640px) {
+            position: relative;
+            text-align: left;
+        }
     }
     
-    header, section.tagline {
-            width: $articleWidth;
-            height: $articleWidthWide;
-    }
+    .cover {
+        width: $articleWidth;
+        height: $articleWidthWide;
+        
+        @media screen and (max-width: 640px) {
+            width: 90%;
+            max-width: $articleWidth;
             
-    section.forms {
-        ul {
-            li.card {
-                width: $articleWidthNarrow;
-                padding-bottom: $broadMargin;
+            &.title {
+                margin-top: $col;
             }
         }
+    }
+            
+    section.form {
+        width: $articleWidthNarrow;
+        padding-bottom: $broadMargin;
     }        
     
     section.description {
