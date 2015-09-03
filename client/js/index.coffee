@@ -19,13 +19,16 @@ $ ->
     
       # Set X
       if $(@).hasClass 'left'
-        translateX = Math.random() * 100
+        translateX = ($(window).width() / 2) - ($(@).width() + (Math.random() * 100))
       else
-        translateX = ($(window).width() / 2) - (Math.random() * 100)
-        
+        translateX = ($(window).width() / 2) + (Math.random() * 100)
+
       # Set Y
       verticallyCentered = ($(window).height() / 2) - ($(@).height() / 2)
-      translateY = verticallyCentered * (Math.random() * 2)
+      if $(@).hasClass 'top'
+        translateY = (verticallyCentered / 2) * (Math.random() + .25)
+      else
+        translateY = verticallyCentered + 100 + (Math.random() * 100)
       
       # Set rotation
       rotateZ = (Math.random() * 40) + (Math.random() * -40)
