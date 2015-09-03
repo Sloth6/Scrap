@@ -6,6 +6,10 @@ body {
     	    &.peek.open {
         	    .card {
             		section.title {
+                		h1 {
+                    		@include transform(translate(-128px, 0px));
+                		}
+                		
                 		h2 {
                     		@include transform(rotate(270deg));
                 		}
@@ -49,11 +53,15 @@ body {
                     margin-right: $cardPaddingRight/2;
                     outline: 0;
                     word-wrap: break-word;
+                		@include transform(translate(0px, 0px));
                     @include transition(.25s $defaultCurve);
                     @include transition-property(
+                                transform,
+                        -webkit-transform,
+                           -moz-transform,
                         -webkit-text-fill-color,
                         -webkit-text-stroke,
-                        color
+                                color
                     );
             		}
             		

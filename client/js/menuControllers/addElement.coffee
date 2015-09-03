@@ -21,8 +21,21 @@ addElementController =
 
   reset: (menu) ->
     menu.find('.text input,textarea').val('')
+    
+showAddElementForm = () ->
+  $('.addElementForm.peek').each () ->
+    $(@).mouseenter(() ->
+      console.log 'HIHIHI ' + $(@)
+      $(@).velocity(
+        properties:
+          translateX: 800
+        options:
+          easing: defaultCurve
+          duration: 1000
+      )
+    )
 
 $ ->
   $('.addElementForm').each () ->
     addElementController.init $(@)
-
+  showAddElementForm()

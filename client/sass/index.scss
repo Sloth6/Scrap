@@ -1,131 +1,47 @@
 @import "screen.scss";
 
-@mixin indexCard {
-    @include cardStyle;
-    width: intrinsic;
-}
-
-@mixin indexCardH1 {
-    @include indexCard;
-    @include typeHeader1;
-    padding: 0 $cell*1.5 $broadMargin/2 $cell*.5;
-}
-
-@mixin indexCardH2 {
-    @include indexCard;
-    @include typeHeader2;
-    padding: 0 $cell $broadMargin/2 $cell*.5;
-}
-
-@mixin indexCardH3 {
-    @include indexCard;
-    @include typeHeader3;
-    padding: $cardPadding;
-    padding-bottom: $broadMargin/2;
-}
-
 section.index {
-    
-    > header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        
-        h1 {
-            display: none;
-        }
-        
-        ul.signUpLogInForms {
-            position: absolute;
-            top: 0;
-            right: 0;
-            
-            li.form {
-                cursor: pointer;
-                @include indexCardH3;
-                vertical-align: top;
-                position: relative;
-                overflow: hidden;
-                display: inline-block;
-                width: $col *2;
-                height: 1em;
-                @include transition(1s $defaultCurve);
-                @include transition-property(height, width);
-                
-                &.closed:hover {
-                    background-color: $colorType;
-                    color: $colorCardBackground;
-                    border-color: $colorType;
-                    border-collapse: collapse;
-                }
-                
-                &.open {
-                    width: $col * 4;
-                    height: $col * 4;
-                }
-            }
-        }
+    @media screen and (max-width: 640px) {
+        text-align: center;
     }
-    > header {
-        h1 {
-            @include indexCardH1;
+    
+    .card {
+        position: absolute;
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
+        opacity: 0;
+        
+        &:hover {
+            z-index: 100;
         }
         
-        h2 {
-            @include indexCardH3;
+        @media screen and (max-width: 640px) {
+            position: relative;
+            text-align: left;
         }
     }
     
-    section.example {
-        position: relative;
-        z-index: -1;
+    .cover {
+        width: $articleWidth;
+        height: $articleWidthWide;
         
-        header.collectionTitle > h1 {
-            @include indexCardH1;
-        }    
-        
-        section.collection {
-            &:nth-child(1) {
-                > header {
-                    h1 {
-                        background-color: #d8ffe9;
-                    }
-                }
-            }
+        @media screen and (max-width: 640px) {
+            width: 90%;
+            max-width: $articleWidth;
             
-            &:nth-child(2) {
-                > header {
-                    h1 {
-                        background-color: #d9fdff;
-                    }
-                }
+            &.title {
+                margin-top: $col;
             }
+        }
+    }
             
-            &:nth-child(3) {
-                > header {
-                    h1 {
-                        background-color: #ffead9;
-                    }
-                }
-            }
-            
-            &:nth-child(4) {
-                > header {
-                    h1 {
-                        background-color: #ffd9f0;
-                    }
-                }
-            }
-                    
-            &:nth-child(5) {
-                > header {
-                    h1 {
-                        background-color: #d9e5ff;
-                    }
-                }
-            }
-        }  
+    section.form {
+        width: $articleWidthNarrow;
+        padding-bottom: $broadMargin;
+    }        
+    
+    section.description {
+        width: $articleWidthNarrow;
+        padding-bottom: $broadMargin;
     }
 }
