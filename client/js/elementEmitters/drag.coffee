@@ -3,52 +3,83 @@ offsetX = 0
 offsetY = 0
 padding = null
 lastn = null
+# ging, 10
 
-$ ->
-  padding = $('<div>').addClass('slider sliding padding').css 'width', 200
-
-mouseup = (event) ->
-  $(window).off 'mousemove', mousemove
-  $(window).off 'mouseup', mouseup
-  setTimeout stopDragging, 10
-
-mousemove = (event) ->
+drag = (event, draggingElement) ->
+  # console.log 'dragging'
   x = event.screenX - offsetX
   y = event.screenY - offsetY
-  dragging.css { x, y }
+  draggingElement.css { x, y }
   clearTimeout lastn if lastn?
   lastn = setTimeout (() ->
-    padding.insertBefore collectionElemAfterMouse(event)
+    afterMouse = collectionElemAfterMouse(event)
+    if afterMouse
+      padding.insertBefore collectionElemAfterMouse(event)
+    else
+      $('.slidingContainer').append padding
     collectionRealign.call $('.slidingContainer'), false
     lastn = null
-  ), 15
+  ), 10
 
-stopDragging = () ->
-  dragging.removeClass 'dragging'
-  dragging.addClass 'sliding'
-  dragging.css 'zIndex', dragging.data('oldZIndex')
-  offsetX = 0
-  offsetY = 0
-  dragging.insertAfter padding
+
+
+stopDragging = (elem) ->
+  console.log 'stopDragging', elem
+  elem.removeClass 'dragging'
+  elem.addClass 'sliding'
+  elem.css 'zIndex', elem.data('oldZIndex')
+  elem.insertAfter padding
   padding.remove()
-  dragging = null
-  collectionRealign.call $('.slidingContainer')
-  
+  collectionRealign.call $('.slidingContainer'), true
 
+startDragging = (elem) ->
+  console.log 'startDragging', elem
+  elem.addClass 'dragging'
+  elem.removeClass 'sliding'
+  elem.data 'oldZIndex', elem.zIndex()
+  elem.zIndex 9999
+  padding.width elem.width()
 
-startDragging = (event) ->
-  dragging = $(@)
-  dragging.addClass 'dragging'
-  dragging.removeClass 'sliding'
-
-  dragging.data 'oldZIndex', $(@).css('zIndex')
-  dragging.zIndex 9999
-  padding.width dragging.width()
-  offsetX = event.screenX - parseInt(dragging.css('x'))
-  offsetY = event.screenY - parseInt(dragging.css('y'))
-  $(window).mousemove mousemove
-  $(window).mouseup mouseup
 
 makeDraggable = (elements) ->
-  console.log elements
-  elements.mousedown startDragging
+  elements.mousedown (event) ->
+    mousedownElement = $(@)
+    draggingElement  = null
+    windowWidth = $(window).width()
+    border = sliderBorder()
+    offsetX = event.screenX - parseInt(mousedownElement.css('x'))
+    offsetY = event.screenY - parseInt(mousedownElement.css('y'))
+    scrollInterval = null
+
+    $(window).mousemove (event) ->
+      if draggingElement == null
+        draggingElement = mousedownElement
+        startDragging draggingElement
+        $(window).mouseup () ->
+          $(window).off 'mousemove'
+          $(window).off 'mouseup'
+          setTimeout (() -> stopDragging(draggingElement)), 10      
+      
+      drag event, draggingElement
+
+      if event.screenX < border and scrollInterval == null
+        console.log 'starting setInterval'
+        # padding.remove()
+        scrollInterval = setInterval (() -> 
+          $(window).scrollLeft($(window).scrollLeft() - 15)
+        ), 5
+      else if event.screenX > (windowWidth - border) and scrollInterval == null
+        console.log 'starting setInterval'
+        # padding.remove()
+        scrollInterval = setInterval (() -> 
+          $(window).scrollLeft($(window).scrollLeft() + 15)
+        ), 5
+      else if scrollInterval
+        console.log 'ending setInterval'
+        clearInterval scrollInterval
+        scrollInterval = null
+        
+    
+
+$ ->
+  window.padding = $('<div>').addClass('slider sliding padding').css 'width', 200

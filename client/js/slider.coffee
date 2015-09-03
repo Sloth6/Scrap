@@ -93,15 +93,17 @@ slidingPlace = (animate = true) ->
   
   # On open/close or load
   if animate
-    animateOptions =
-      properties:
-        translateZ: 0
-        translateX: [translateX, xTransform($(@))]
-        scale: scale
-        translateY: translateY
-        rotateZ: $(@).data('rotateZ') * percentFromBorder
+    oldX = xTransform($(@))
+    if Math.abs(translateX - oldX) > 1
+      animateOptions =
+        properties:
+          translateZ: 0
+          translateX: [translateX, oldX]
+          scale: scale
+          translateY: [translateY, yTransform($(@))]
+          rotateZ: $(@).data('rotateZ') * percentFromBorder
 
-    $(@).velocity animateOptions
+      $(@).velocity animateOptions
     
   # On Scroll
   else

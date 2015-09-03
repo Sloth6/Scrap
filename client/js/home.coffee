@@ -23,12 +23,12 @@ Array.min = (array) -> Math.min.apply Math, array
 xForceFeedSelf = () ->
   xTransform $(@)
 
-xTransform = ($) ->
-  transform = $.css('transform')
+xTransform = (elem) ->
+  transform = elem.css('transform')
   new WebKitCSSMatrix(transform).e
 
-yTransform = ($) ->
-  transform = $.css('transform')
+yTransform = (elem) ->
+  transform = elem.css('transform')
   new WebKitCSSMatrix(transform).f
 
 $ ->
