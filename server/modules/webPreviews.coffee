@@ -1,13 +1,19 @@
 request = require 'request'
 cheerio = require 'cheerio'
-url = require 'url'
+urlUtil = require 'url'
 
 extractTitle = ($) ->
   title = $('meta[property="og:title"]').attr('content')
-  return title if title? 
-
+  if title?
+    console.log 'Got title from meta tag:', title
+    return title
+  
   title = $("title").text()
-  return title if title?
+  if title?
+    console.log 'Got title from title:', title
+    return title 
+  
+  console.log 'Did not find a title'
   return null
 
 extractImage = ($) ->
@@ -40,19 +46,9 @@ extractDescription = ($) ->
 extractUrl = ($) ->
   $('meta[property="og:url"]').attr('content')
 
-extractDomain = (url) ->
-  reg =  new RegExp("^(?:([^:/?#.]+):)?(?://)?(([^:/?#]*)(?::(\\d*))?)((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[\\?#]|$)))*/?)?([^?#/]*))?(?:\\?([^#]*))?(?:#(.*))?")
-  parts = reg.exec url
-  if parts[2]
-    parts[2].split('www.')[1]
-  else
-    console.log 'failed to extract domain', url
-    url
-  # http://www.gamasutra.com/view/feature/1419/designing_for_motivation.php?print=1
-
 formatImageUrl = (domain, src) ->
   return null unless src?
-  url.resolve domain, src
+  urlUtil.resolve domain, src
 
 module.exports = (url, callback) ->
   jar = request.jar()
@@ -65,16 +61,14 @@ module.exports = (url, callback) ->
 
   request options, (error, response, body) ->
     if error or response.statusCode isnt 200
-      # console.log 'Error in getting html for preview', response.statusCode,{error, body}
       callback error or response.statusCode
     else
       $ = cheerio.load body
       url = extractUrl($) or url
-      domain = extractDomain url
       metadata =
         title: extractTitle($)
         image: formatImageUrl(url, extractImage($))
         url: url
         description: extractDescription($)
-        domain: domain
+        domain: urlUtil.parse(url).hostname.replace('www.', '')
       callback null, metadata
