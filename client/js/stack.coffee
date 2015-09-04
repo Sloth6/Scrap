@@ -75,14 +75,14 @@ $ ->
     delay++
   )
   
-  $cards.mouseenter(() ->
-    $(@).velocity
-      properties:
-        translateZ: 0
-        translateX: '+='+((Math.random() * 10) + (Math.random() * -10))
-        translateY: '+='+((Math.random() * 10) + (Math.random() * -10))
-        rotateZ: '+='+((Math.random() * 10) + (Math.random() * -10))
-      options:
-        easing: [20, 10]
-        duration: 1500
-  )
+#   $cards.mouseenter(() ->
+#     $(@).velocity
+#       properties:
+#         translateZ: 0
+#         translateX: '+='+((Math.random() * 10) + (Math.random() * -10))
+#         translateY: '+='+((Math.random() * 10) + (Math.random() * -10))
+#         rotateZ: '+='+((Math.random() * 10) + (Math.random() * -10))
+#       options:
+#         easing: [20, 10]
+#         duration: 1500
+#   )
