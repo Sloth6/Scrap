@@ -14,6 +14,9 @@ module.exports = (app) ->
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 
+  app.get '/readonly', (req,res) ->
+    controllers.readOnlyController.index req, res, app, errorHandler
+
   app.post '/s/new', (req, res) ->
     controllers.spaceController.newSpace req, res, app, errorHandler
 
