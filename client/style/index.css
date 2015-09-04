@@ -2132,51 +2132,76 @@ body header.cover .card ul.users li.add input[type=submit] {
 
 @media screen and (max-width: 640px) {
   /* line 3, ../sass/index.scss */
-  section.index {
+  section.page {
     text-align: center;
+    margin-top: 64pt;
   }
 }
-/* line 8, ../sass/index.scss */
-section.index .card {
+/* line 9, ../sass/index.scss */
+section.page .animateIn {
   position: absolute;
   transform-origin: center center;
   -webkit-transform-origin: center center;
   opacity: 0;
 }
-/* line 14, ../sass/index.scss */
-section.index .card:hover {
+/* line 16, ../sass/index.scss */
+section.page .card {
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+}
+/* line 20, ../sass/index.scss */
+section.page .card:hover {
   z-index: 100;
 }
 @media screen and (max-width: 640px) {
-  /* line 8, ../sass/index.scss */
-  section.index .card {
+  /* line 16, ../sass/index.scss */
+  section.page .card {
     position: relative;
     text-align: left;
   }
 }
-/* line 24, ../sass/index.scss */
-section.index .cover {
+/* line 29, ../sass/index.scss */
+section.page .card.small {
+  width: 192pt;
+  padding-bottom: 48pt;
+}
+/* line 34, ../sass/index.scss */
+section.page .card.cover {
   width: 256pt;
   height: 320pt;
 }
 @media screen and (max-width: 640px) {
-  /* line 24, ../sass/index.scss */
-  section.index .cover {
+  /* line 34, ../sass/index.scss */
+  section.page .card.cover {
     width: 90%;
     max-width: 256pt;
   }
-  /* line 32, ../sass/index.scss */
-  section.index .cover.title {
-    margin-top: 64pt;
-  }
 }
-/* line 38, ../sass/index.scss */
-section.index section.form {
-  width: 192pt;
-  padding-bottom: 48pt;
+
+/* line 50, ../sass/index.scss */
+section.readOnly header.card {
+  z-index: 10;
+  position: relative;
+  opacity: 1;
 }
-/* line 43, ../sass/index.scss */
-section.index section.description {
-  width: 192pt;
-  padding-bottom: 48pt;
+/* line 55, ../sass/index.scss */
+section.readOnly header.card section.form {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+}
+/* line 62, ../sass/index.scss */
+section.readOnly .card {
+  position: absolute;
+  top: 0;
+}
+/* line 65, ../sass/index.scss */
+section.readOnly .card.blank {
+  z-index: 0;
+}
+/* line 69, ../sass/index.scss */
+section.readOnly .card.logo {
+  border: 0;
+  background: transparent;
+  padding: 0;
 }

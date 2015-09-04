@@ -11,11 +11,22 @@ block scripts
   //- script(src="/js/element.js")
 
   script(src="/js/lib/velocity.min.js")
-  script(src="/js/index.js")
+  script(src="/js/stack.js")
+  script(src="/js/readOnly.js")
   script(src="/js/menuControllers/header.js")
   //- script(src="/js/menuControllers/settings.js")
 
 block content
-  section.index
-    header.card.cover.cardHover.left.colored.title.top
-      h1.typeTitle.typeOutlineClear HI
+  section.readOnly.page
+    .collection.animateIn.center
+      header.card.cover.cardHover.colored.title.left
+        h1.typeTitle.typeOutlineClear Space name
+        section.form
+          include partials/logIn
+      section.card.small.right.hidden.logo
+        h1.typeTitle.typeOutlineClear Scrap
+      section.intro.card.small.hidden.right
+        p Joel shared Psychology paper with you on Scrap, a simple way to collect and organize stuff. Join Scrap or log in to view and edit it.
+      .card.blank.cover.hidden.left
+      .card.blank.cover.hidden.left
+      .card.blank.cover.hidden.left
