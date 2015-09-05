@@ -1558,11 +1558,14 @@ section.container section.space section.content article .elementControls {
   -webkit-transition-property: opacity;
   transition-property: opacity;
   opacity: 0;
-  position: relative;
+  top: -20px;
+  left: 0;
+  position: absolute;
+  z-index: 5000;
   font-style: normal;
   color: #000000;
 }
-/* line 60, ../sass/layout/_article.scss */
+/* line 63, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls .elementDeleteButton, section.container section.space section.content article .elementControls author {
   font-size: 8pt;
   font-weight: 400;
@@ -1575,45 +1578,45 @@ section.container section.space section.content article .elementControls .elemen
   display: block;
   bottom: 0;
 }
-/* line 68, ../sass/layout/_article.scss */
+/* line 71, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls .elementDeleteButton {
   left: 0;
 }
-/* line 72, ../sass/layout/_article.scss */
+/* line 75, ../sass/layout/_article.scss */
 section.container section.space section.content article .elementControls author {
   right: 0;
   white-space: nowrap;
 }
-/* line 80, ../sass/layout/_article.scss */
+/* line 83, ../sass/layout/_article.scss */
 section.container section.space section.content article > .content {
   position: relative;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
 }
-/* line 86, ../sass/layout/_article.scss */
+/* line 89, ../sass/layout/_article.scss */
 section.container section.space section.content article.text {
   font-style: normal;
 }
-/* line 89, ../sass/layout/_article.scss */
+/* line 92, ../sass/layout/_article.scss */
 section.container section.space section.content article.text * {
   outline: none;
 }
-/* line 93, ../sass/layout/_article.scss */
+/* line 96, ../sass/layout/_article.scss */
 section.container section.space section.content article.text em {
   font-style: italic;
 }
-/* line 97, ../sass/layout/_article.scss */
+/* line 100, ../sass/layout/_article.scss */
 section.container section.space section.content article.text strong {
   font-weight: 700;
 }
-/* line 101, ../sass/layout/_article.scss */
+/* line 104, ../sass/layout/_article.scss */
 section.container section.space section.content article.text.short {
   font-size: 24pt;
   font-weight: 400;
   letter-spacing: -0.04167em;
   line-height: 24pt;
 }
-/* line 105, ../sass/layout/_article.scss */
+/* line 108, ../sass/layout/_article.scss */
 section.container section.space section.content article.text.long {
   font-family: -apple-system, "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -1621,43 +1624,43 @@ section.container section.space section.content article.text.long {
   line-height: 16pt;
   letter-spacing: 0;
 }
-/* line 114, ../sass/layout/_article.scss */
+/* line 117, ../sass/layout/_article.scss */
 section.container section.space section.content article.image .content .card {
   padding: 0px;
   width: 256pt;
   max-height: 320pt;
   overflow: hidden;
 }
-/* line 120, ../sass/layout/_article.scss */
+/* line 123, ../sass/layout/_article.scss */
 section.container section.space section.content article.image .content .card img {
   margin: -2px -1px -4px -2px;
 }
-/* line 127, ../sass/layout/_article.scss */
+/* line 130, ../sass/layout/_article.scss */
 section.container section.space section.content article.youtube {
   width: intrinsic;
 }
-/* line 132, ../sass/layout/_article.scss */
+/* line 135, ../sass/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card {
   width: intrinsic;
   padding: 0px;
   background-color: #000000;
 }
-/* line 137, ../sass/layout/_article.scss */
+/* line 140, ../sass/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 148, ../sass/layout/_article.scss */
+/* line 151, ../sass/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card {
   max-width: 1536pt;
 }
-/* line 154, ../sass/layout/_article.scss */
+/* line 157, ../sass/layout/_article.scss */
 section.container section.space section.content article.file .content {
   padding-right: 48px;
   height: 256pt;
   width: 192pt;
   position: relative;
 }
-/* line 161, ../sass/layout/_article.scss */
+/* line 164, ../sass/layout/_article.scss */
 section.container section.space section.content article.file .content .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1668,7 +1671,7 @@ section.container section.space section.content article.file .content .decorativ
   background: url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 171, ../sass/layout/_article.scss */
+/* line 174, ../sass/layout/_article.scss */
 section.container section.space section.content article.file .content .decorative.fold:after {
   content: " ";
   left: -1pt;
@@ -1682,26 +1685,26 @@ section.container section.space section.content article.file .content .decorativ
   border-left: 0;
   border-top: 0;
 }
-/* line 186, ../sass/layout/_article.scss */
+/* line 189, ../sass/layout/_article.scss */
 section.container section.space section.content article.file .content .card {
   height: 100%;
   border-right: 0;
 }
-/* line 191, ../sass/layout/_article.scss */
+/* line 194, ../sass/layout/_article.scss */
 section.container section.space section.content article.file .content .card header h1 {
   word-wrap: break-word;
 }
-/* line 199, ../sass/layout/_article.scss */
+/* line 202, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card {
   width: 256pt;
   padding: 0;
 }
-/* line 203, ../sass/layout/_article.scss */
+/* line 206, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 210, ../sass/layout/_article.scss */
+/* line 213, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card header .artist {
   font-size: 8pt;
   font-weight: 400;
@@ -1709,7 +1712,7 @@ section.container section.space section.content article.soundcloud .card header 
   letter-spacing: 0.0625em;
   margin-top: 4pt;
 }
-/* line 215, ../sass/layout/_article.scss */
+/* line 218, ../sass/layout/_article.scss */
 section.container section.space section.content article.soundcloud .card header .detail {
   margin-top: 24pt;
   font-size: 8pt;
@@ -1717,13 +1720,13 @@ section.container section.space section.content article.soundcloud .card header 
   line-height: 12pt;
   letter-spacing: 0.0625em;
 }
-/* line 222, ../sass/layout/_article.scss */
+/* line 225, ../sass/layout/_article.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 256pt;
   overflow: hidden;
 }
-/* line 227, ../sass/layout/_article.scss */
+/* line 230, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
   border: 1pt solid #000000;
@@ -1735,7 +1738,7 @@ section.container section.space section.content article .card.text {
   width: 256pt;
   min-height: 192pt;
 }
-/* line 236, ../sass/layout/_article.scss */
+/* line 239, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
   border: 1pt solid #000000;
@@ -1745,7 +1748,7 @@ section.container section.space section.content article .card.website {
   width: 192pt;
   padding-top: 16pt;
 }
-/* line 241, ../sass/layout/_article.scss */
+/* line 244, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1756,7 +1759,7 @@ section.container section.space section.content article .card.website:hover {
       border-color: blue;
   */
 }
-/* line 245, ../sass/layout/_article.scss */
+/* line 248, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website a {
   border: 0;
   position: absolute;
@@ -1765,7 +1768,7 @@ section.container section.space section.content article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 257, ../sass/layout/_article.scss */
+/* line 260, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1778,7 +1781,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: top;
   transition-property: top;
 }
-/* line 263, ../sass/layout/_article.scss */
+/* line 266, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1789,7 +1792,7 @@ section.container section.space section.content article .card.website .text head
   padding-bottom: .125em;
   margin-bottom: -.125em;
 }
-/* line 277, ../sass/layout/_article.scss */
+/* line 280, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   font-size: 8pt;
@@ -1805,7 +1808,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 285, ../sass/layout/_article.scss */
+/* line 288, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text .description {
   margin-top: 144pt;
   margin-bottom: 4pt;
@@ -1823,7 +1826,7 @@ section.container section.space section.content article .card.website .text .des
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 294, ../sass/layout/_article.scss */
+/* line 297, ../sass/layout/_article.scss */
 section.container section.space section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1835,13 +1838,13 @@ section.container section.space section.content article .card.website .text img 
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 307, ../sass/layout/_article.scss */
+/* line 310, ../sass/layout/_article.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
-/* line 314, ../sass/layout/_article.scss */
+/* line 317, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm {
   height: 320pt;
   width: 256pt;
@@ -1851,21 +1854,21 @@ section.container section.space section.content article.addElementForm {
   cursor: pointer;
   overflow: hidden;
 }
-/* line 326, ../sass/layout/_article.scss */
+/* line 329, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 330, ../sass/layout/_article.scss */
+/* line 333, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek ul {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
-/* line 336, ../sass/layout/_article.scss */
+/* line 339, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm:after {
   content: "";
   height: 24px;
@@ -1891,15 +1894,15 @@ section.container section.space section.content article.addElementForm:after {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 357, ../sass/layout/_article.scss */
+/* line 360, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.upload {
   opacity: 0;
 }
-/* line 361, ../sass/layout/_article.scss */
+/* line 364, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.done {
   opacity: 1;
 }
-/* line 367, ../sass/layout/_article.scss */
+/* line 370, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -1914,21 +1917,21 @@ section.container section.space section.content article.addElementForm ul {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 374, ../sass/layout/_article.scss */
+/* line 377, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
-/* line 377, ../sass/layout/_article.scss */
+/* line 380, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 304pt;
   position: relative;
 }
-/* line 382, ../sass/layout/_article.scss */
+/* line 385, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
-/* line 386, ../sass/layout/_article.scss */
+/* line 389, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 400;
@@ -1936,7 +1939,7 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 24pt;
   height: 100%;
 }
-/* line 392, ../sass/layout/_article.scss */
+/* line 395, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload {
   opacity: 1;
   position: relative;
@@ -1944,7 +1947,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   height: 16pt;
   width: intrinsic;
 }
-/* line 399, ../sass/layout/_article.scss */
+/* line 402, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1952,7 +1955,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   left: 0;
   position: absolute;
 }
-/* line 406, ../sass/layout/_article.scss */
+/* line 409, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1962,7 +1965,7 @@ section.container section.space section.content article.addElementForm ul li.upl
   opacity: 0;
   cursor: pointer;
 }
-/* line 418, ../sass/layout/_article.scss */
+/* line 421, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done {
   opacity: 0;
   position: relative;
@@ -1971,7 +1974,7 @@ section.container section.space section.content article.addElementForm ul li.don
   float: right;
   width: intrinsic;
 }
-/* line 426, ../sass/layout/_article.scss */
+/* line 429, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done a {
   border: 0;
   padding: 0;

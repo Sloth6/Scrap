@@ -5,6 +5,6 @@ onDelete = (elem) ->
 
 makeDeletable = (elem) ->
   elem.find('.elementDeleteButton').click () -> onDelete elem
-
+  console.log elem
 $ ->
   $('.slider').each () -> makeDeletable($(@))
