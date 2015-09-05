@@ -33,6 +33,11 @@ nameMap = (space) ->
     map[user.id] = user.name
   map
 
+
+
+# models.Space.find({ where: { spaceKey:'c751793f' }, include:[ {model:models.Element, raw:true}] }).complete (err, space) ->  
+#   orderElements space
+
 module.exports =
   # create a new space and redirect to it
   newSpace : (req, res, app, onErr) ->
@@ -107,9 +112,13 @@ module.exports =
   
   collectionContent: (req, res, app, callback) ->
     { spaceKey } = req.params
-    models.Space.find({ where: { spaceKey }, include:[ model:models.Element]}).complete (err, space) ->
+    models.Space.find({ where: { spaceKey }, include:[ model:models.Element] }).complete (err, space) ->
       return callback err if err?
-      app.render 'partials/collectionContent', { collection:space}, (err, html) ->
+      { elements, elementOrder } = space
+      elements.sort (a, b) ->
+        if elementOrder.indexOf(a.id) > elementOrder.indexOf(b.id) then 1 else -1
+      
+      app.render 'partials/collectionContent', { collection: space }, (err, html) ->
         return callback err if err?
         res.status(200).send html
 

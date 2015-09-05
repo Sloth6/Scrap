@@ -63,7 +63,14 @@ module.exports =
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
+          console.log space.elementOrder
+          space.elementOrder.unshift(element.id)
+          console.log space.elementOrder
+          space.save()#then
+          # models.Element.update({content}, {id}).complete (err) ->
+
           space.nameMap = nameMap space.users
+
           html = encodeURIComponent(element_jade({element, collection: space}))
           console.log 'emitting new element', element.content, spaceKey
           sio.to(spaceKey).emit 'newElement', { html, spaceKey }

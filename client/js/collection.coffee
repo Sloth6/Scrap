@@ -6,26 +6,27 @@ loadElements = (spacekey, callback) ->
     cache[spacekey] = $(data)
     callback cache[spacekey]
 
-
 collectionOpen = (cover) ->
   collection = cover.parent()
   collectionContent = collection.children '.collectionContent'
   spacekey = cover.data 'spacekey'
-  
+  window.openSpace = spacekey  
   return if cover.hasClass 'open'
 
   loadElements spacekey, (elements) ->
     collectionContent.append elements
-    sliderInit elements    
-    addElementController.init collectionContent.find('.addElementForm')
-
+    addElementController.init collectionContent.children('.addElementForm')
+    sliderInit elements
     prevSliding = collection.prevAll().find('.cover.sliding').removeClass 'sliding'
     nextSliding = collection.nextAll().find('.cover.sliding').removeClass 'sliding'
 
     # Close anything else thats open
     $('.open').removeClass 'open'
     collection.removeClass('closed').addClass 'open'
-    cover.addClass 'open'
+    
+    cover.
+      addClass('open').
+      removeClass('draggable')
 
     # Remember where we were  
     window.pastState.scrollLeft = $(window).scrollLeft()
@@ -77,7 +78,7 @@ collectionClose = (cover) ->
       options:
         complete: () ->
           collection.removeClass('open').addClass 'closed'
-          cover.removeClass('open')
+          cover.removeClass('open').addClass('draggable')
           elements.remove()
 
   $(document.body).css width: window.pastState.docWidth
@@ -92,16 +93,21 @@ collectionClose = (cover) ->
 collectionChildren = () ->
   $(@).find('.sliding')
 
+collectionContent = () ->
+  $(@).find('.sliding.element')
+
 collectionOfElement = () ->
   $(@).parent().parent()
 
 realign = (animate) ->
+  console.log 'realign'
   children = collectionChildren.call @
   lastX  = 0#$(window).width()/2 - children.first().width()/2
   maxX   = -Infinity
   zIndex = children.length
   
   children.each () ->
+
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
     

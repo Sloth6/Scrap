@@ -1514,8 +1514,8 @@ section.container section.space section.content article {
   backface-visibility: hidden;
   margin-right: -2pt;
   line-height: 1.5em;
-  transform-origin: bottom right;
-  -webkit-transform-origin: bottom right;
+  transform-origin: center;
+  -webkit-transform-origin: center;
   font-size: 24pt;
   font-weight: 400;
   letter-spacing: -0.04167em;
@@ -1538,6 +1538,22 @@ section.container section.space section.content article.dragging, section.contai
   cursor: -moz-grabbing;
   cursor: grabbing;
 }
+<<<<<<< HEAD
+=======
+/* line 34, ../sass/layout/_article.scss */
+section.container section.space section.content article.dragging > .content .card, section.container section.space section.content article.ui-draggable-dragging > .content .card, section.container section.space section.content article.active > .content .card, section.container section.space section.content article:active > .content .card {
+  -moz-transform: translate(-8pt, -8pt);
+  -ms-transform: translate(-8pt, -8pt);
+  -webkit-transform: translate(-8pt, -8pt);
+  transform: translate(-8pt, -8pt);
+}
+/* line 62, ../sass/globals/_components.scss */
+section.container section.space section.content article.dragging > .content .card .card, section.container section.space section.content article.ui-draggable-dragging > .content .card .card, section.container section.space section.content article.active > .content .card .card, section.container section.space section.content article:active > .content .card .card {
+  -moz-box-shadow: 8pt 8pt 0 0 black;
+  -webkit-box-shadow: 8pt 8pt 0 0 black;
+  box-shadow: 8pt 8pt 0 0 black;
+}
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 /* line 39, ../sass/layout/_article.scss */
 section.container section.space section.content article.locked {
   opacity: .25;
@@ -1621,6 +1637,7 @@ section.container section.space section.content article.text.long {
   line-height: 16pt;
   letter-spacing: 0;
 }
+<<<<<<< HEAD
 /* line 114, ../sass/layout/_article.scss */
 section.container section.space section.content article.image .content .card {
   padding: 0px;
@@ -1638,10 +1655,19 @@ section.container section.space section.content article.youtube {
 }
 /* line 132, ../sass/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card {
+=======
+/* line 110, ../sass/layout/_article.scss */
+section.container section.space section.content article.image, section.container section.space section.content article.youtube {
+  width: intrinsic;
+}
+/* line 115, ../sass/layout/_article.scss */
+section.container section.space section.content article.image .content .card, section.container section.space section.content article.youtube .content .card {
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
   width: intrinsic;
   padding: 0px;
   background-color: #000000;
 }
+<<<<<<< HEAD
 /* line 137, ../sass/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
@@ -1651,13 +1677,28 @@ section.container section.space section.content article.youtube .content .card {
   max-width: 1536pt;
 }
 /* line 154, ../sass/layout/_article.scss */
+=======
+/* line 120, ../sass/layout/_article.scss */
+section.container section.space section.content article.image .content .card iframe, section.container section.space section.content article.youtube .content .card iframe {
+  margin: -2px -1px -4px -2px;
+}
+/* line 131, ../sass/layout/_article.scss */
+section.container section.space section.content article.youtube .content .card {
+  max-width: 1536pt;
+}
+/* line 137, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.file .content {
   padding-right: 48px;
   height: 256pt;
   width: 192pt;
   position: relative;
 }
+<<<<<<< HEAD
 /* line 161, ../sass/layout/_article.scss */
+=======
+/* line 144, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.file .content .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1668,7 +1709,11 @@ section.container section.space section.content article.file .content .decorativ
   background: url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
+<<<<<<< HEAD
 /* line 171, ../sass/layout/_article.scss */
+=======
+/* line 154, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.file .content .decorative.fold:after {
   content: " ";
   left: -1pt;
@@ -1682,26 +1727,46 @@ section.container section.space section.content article.file .content .decorativ
   border-left: 0;
   border-top: 0;
 }
+<<<<<<< HEAD
 /* line 186, ../sass/layout/_article.scss */
+=======
+/* line 169, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.file .content .card {
   height: 100%;
   border-right: 0;
 }
+<<<<<<< HEAD
 /* line 191, ../sass/layout/_article.scss */
 section.container section.space section.content article.file .content .card header h1 {
   word-wrap: break-word;
 }
 /* line 199, ../sass/layout/_article.scss */
+=======
+/* line 174, ../sass/layout/_article.scss */
+section.container section.space section.content article.file .content .card header h1 {
+  word-wrap: break-word;
+}
+/* line 182, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.soundcloud .card {
   width: 256pt;
   padding: 0;
 }
+<<<<<<< HEAD
 /* line 203, ../sass/layout/_article.scss */
+=======
+/* line 186, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.soundcloud .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
+<<<<<<< HEAD
 /* line 210, ../sass/layout/_article.scss */
+=======
+/* line 193, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.soundcloud .card header .artist {
   font-size: 8pt;
   font-weight: 400;
@@ -1709,7 +1774,11 @@ section.container section.space section.content article.soundcloud .card header 
   letter-spacing: 0.0625em;
   margin-top: 4pt;
 }
+<<<<<<< HEAD
 /* line 215, ../sass/layout/_article.scss */
+=======
+/* line 198, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.soundcloud .card header .detail {
   margin-top: 24pt;
   font-size: 8pt;
@@ -1717,13 +1786,21 @@ section.container section.space section.content article.soundcloud .card header 
   line-height: 12pt;
   letter-spacing: 0.0625em;
 }
+<<<<<<< HEAD
 /* line 222, ../sass/layout/_article.scss */
+=======
+/* line 206, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card {
   position: relative;
   max-width: 256pt;
   overflow: hidden;
 }
+<<<<<<< HEAD
 /* line 227, ../sass/layout/_article.scss */
+=======
+/* line 211, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.text {
   background-color: white;
   border: 1pt solid #000000;
@@ -1735,7 +1812,16 @@ section.container section.space section.content article .card.text {
   width: 256pt;
   min-height: 192pt;
 }
+<<<<<<< HEAD
 /* line 236, ../sass/layout/_article.scss */
+=======
+/* line 220, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.image {
+  width: 256pt;
+  margin-left: 1pt;
+}
+/* line 226, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website {
   background-color: white;
   border: 1pt solid #000000;
@@ -1745,7 +1831,11 @@ section.container section.space section.content article .card.website {
   width: 192pt;
   padding-top: 16pt;
 }
+<<<<<<< HEAD
 /* line 241, ../sass/layout/_article.scss */
+=======
+/* line 231, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1756,7 +1846,11 @@ section.container section.space section.content article .card.website:hover {
       border-color: blue;
   */
 }
+<<<<<<< HEAD
 /* line 245, ../sass/layout/_article.scss */
+=======
+/* line 235, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website a {
   border: 0;
   position: absolute;
@@ -1765,7 +1859,11 @@ section.container section.space section.content article .card.website a {
   right: 0;
   bottom: 0;
 }
+<<<<<<< HEAD
 /* line 257, ../sass/layout/_article.scss */
+=======
+/* line 247, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1778,7 +1876,11 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: top;
   transition-property: top;
 }
+<<<<<<< HEAD
 /* line 263, ../sass/layout/_article.scss */
+=======
+/* line 253, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1789,7 +1891,11 @@ section.container section.space section.content article .card.website .text head
   padding-bottom: .125em;
   margin-bottom: -.125em;
 }
+<<<<<<< HEAD
 /* line 277, ../sass/layout/_article.scss */
+=======
+/* line 267, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   font-size: 8pt;
@@ -1805,7 +1911,11 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
+<<<<<<< HEAD
 /* line 285, ../sass/layout/_article.scss */
+=======
+/* line 275, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website .text .description {
   margin-top: 144pt;
   margin-bottom: 4pt;
@@ -1823,7 +1933,11 @@ section.container section.space section.content article .card.website .text .des
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
+<<<<<<< HEAD
 /* line 294, ../sass/layout/_article.scss */
+=======
+/* line 284, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1835,13 +1949,25 @@ section.container section.space section.content article .card.website .text img 
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
+<<<<<<< HEAD
 /* line 307, ../sass/layout/_article.scss */
+=======
+/* line 291, ../sass/layout/_article.scss */
+section.container section.space section.content article .card.website.image {
+  max-height: 384pt;
+}
+/* line 301, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
+<<<<<<< HEAD
 /* line 314, ../sass/layout/_article.scss */
+=======
+/* line 308, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm {
   height: 320pt;
   width: 256pt;
@@ -1851,6 +1977,7 @@ section.container section.space section.content article.addElementForm {
   cursor: pointer;
   overflow: hidden;
 }
+<<<<<<< HEAD
 /* line 326, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek:after {
   -moz-transform: translate(0px, 0px);
@@ -1897,8 +2024,13 @@ section.container section.space section.content article.addElementForm.typing ul
 }
 /* line 361, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.done {
+=======
+/* line 316, ../sass/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul {
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
   opacity: 1;
 }
+<<<<<<< HEAD
 /* line 367, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   -moz-transform: translate(0px, 0px);
@@ -1919,16 +2051,31 @@ section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
 /* line 377, ../sass/layout/_article.scss */
+=======
+/* line 321, ../sass/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul li {
+  vertical-align: top;
+}
+/* line 324, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 304pt;
   position: relative;
 }
+<<<<<<< HEAD
 /* line 382, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
 /* line 386, ../sass/layout/_article.scss */
+=======
+/* line 329, ../sass/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul li.text span.label {
+  display: none;
+}
+/* line 333, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 400;
@@ -1936,7 +2083,11 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 24pt;
   height: 100%;
 }
+<<<<<<< HEAD
 /* line 392, ../sass/layout/_article.scss */
+=======
+/* line 339, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.upload {
   opacity: 1;
   position: relative;
@@ -1944,7 +2095,11 @@ section.container section.space section.content article.addElementForm ul li.upl
   height: 16pt;
   width: intrinsic;
 }
+<<<<<<< HEAD
 /* line 399, ../sass/layout/_article.scss */
+=======
+/* line 346, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1952,7 +2107,11 @@ section.container section.space section.content article.addElementForm ul li.upl
   left: 0;
   position: absolute;
 }
+<<<<<<< HEAD
 /* line 406, ../sass/layout/_article.scss */
+=======
+/* line 353, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1962,7 +2121,11 @@ section.container section.space section.content article.addElementForm ul li.upl
   opacity: 0;
   cursor: pointer;
 }
+<<<<<<< HEAD
 /* line 418, ../sass/layout/_article.scss */
+=======
+/* line 365, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.done {
   opacity: 0;
   position: relative;
@@ -1971,7 +2134,11 @@ section.container section.space section.content article.addElementForm ul li.don
   float: right;
   width: intrinsic;
 }
+<<<<<<< HEAD
 /* line 426, ../sass/layout/_article.scss */
+=======
+/* line 372, ../sass/layout/_article.scss */
+>>>>>>> dragging is persistant on server. drag on edge to scroll collection. elements shrink to center on drag. other refactor
 section.container section.space section.content article.addElementForm ul li.done a {
   border: 0;
   padding: 0;

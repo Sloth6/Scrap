@@ -7,14 +7,10 @@ toTitleCase = (str) ->
 
 module.exports =
   reorderElements: (sio, socket, data) ->
-    { spacekey, elementOrder } = data
-    console.log spaceKey, elementOrder
-    models.Space.find({ where: {spaceKey} }).then (space) ->
-      if space
-        console.log space.name
-        console.log space.elementOrder
-        # space.updateAttributes {
-        #   name: 'foobar2'
-        # }
-
-# module.exports.reorderElements()
+    { spaceKey, elementOrder } = data
+    elementOrder = JSON.parse elementOrder
+    console.log elementOrder
+    models.Space.update({elementOrder}, {spaceKey}).complete (err) ->
+      console.log err
+      # console.log space.name
+      # console.log space.elementOrder

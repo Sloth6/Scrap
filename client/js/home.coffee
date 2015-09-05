@@ -33,6 +33,8 @@ yTransform = (elem) ->
 
 $ ->
   window.socket = io.connect()
+  window.openSpace = "home"
+
   history.pushState { name: "home" }, "", "/"
   
   collectionRealign.call $('.slidingContainer'), false
@@ -58,7 +60,7 @@ $ ->
   window.onpopstate = (event) ->
     # event.state.name will either be 'home' or a spaceKey
     spaceKey = event.state.name
-
+    window.openSpace = spaceKey
     # always close any open collection first
     if  $('.cover.open').length
       collectionClose $('.cover.open')

@@ -1,7 +1,8 @@
 addElementController =
   #  Open closed menu items
   init: (menu) ->
-    spacekey = menu.parent().parent().data 'spacekey'
+    
+    spacekey = menu.data 'spacekey'
     input    = menu.find '.textInput'
     
     menu.find('textarea').bind "paste", () ->

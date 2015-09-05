@@ -9,8 +9,9 @@ section.container section.space section.content{
         backface-visibility: hidden;
         margin-right: -2pt;
         line-height: 1.5em;
-        transform-origin:           bottom right;
-        -webkit-transform-origin:   bottom right;
+        transform-origin:           center;
+        -webkit-transform-origin:   center;
+
         @include typeHeader;
         
         // EVENTS
