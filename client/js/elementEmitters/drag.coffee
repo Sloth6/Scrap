@@ -1,6 +1,4 @@
 dragging = null
-offsetX = 0
-offsetY = 0
 padding = null
 lastn = null
 oldAfterMouse = null
@@ -11,24 +9,23 @@ draggingOnEdgeSpeed = .1
 draggingScale = 0.5
 
 drag = (event, draggingElement) ->
-  # console.log 'dragging'
   border = sliderBorder()
   x = event.clientX - draggingElement.width()/2
   y = event.clientY - draggingElement.height()/2
-  # console.log x, y
   draggingElement.css { x }
   
   clearTimeout lastn if lastn?
-  
   if draggingOnBorder is false
     lastn = setTimeout (() ->
-      newAfterMouse = collectionElemAfterMouse(event)
+      # get the element to insert the dragging element in front of
+      newAfterMouse = collectionElemAfterMouse event
+      # if there is one
       if newAfterMouse
-        if (oldAfterMouse == null) or (newAfterMouse[0] != oldAfterMouse[0])
-          padding.insertBefore collectionElemAfterMouse(event)
+        if (oldAfterMouse == null) or (newAfterMouse[0] != oldAfterMouse[0]) and newAfterMouse[0] != padding[0]
+          padding.insertBefore newAfterMouse
           oldAfterMouse = newAfterMouse
           collectionRealignDontScale.call $('.slidingContainer'), false
-      else
+      else # Is the last element in collection
         $('.slidingContainer').append padding
         collectionRealignDontScale.call $('.slidingContainer'), false
       lastn = null
@@ -48,7 +45,8 @@ drag = (event, draggingElement) ->
   if speed 
     draggingOnBorder = true
     scrollInterval = setInterval (() ->
-      $(window).scrollLeft($(window).scrollLeft() + speed)
+      if $('.velocity-animating').length == 0
+        $(window).scrollLeft($(window).scrollLeft() + speed)
     ), 5
 
 stopDragging = (elem) ->
@@ -97,9 +95,6 @@ makeDraggable = (elements) ->
     mousedownElement = $(@)
     draggingElement  = null
     
-    offsetX = event.clientX - parseInt(mousedownElement.css('x'))
-    offsetY = event.clientY - parseInt(mousedownElement.css('y'))
-
     $(window).mousemove (event) ->
       if draggingElement == null
         draggingElement = mousedownElement
@@ -111,10 +106,6 @@ makeDraggable = (elements) ->
       $(window).off 'mouseup'
       if draggingElement != null
         setTimeout (() -> stopDragging(draggingElement)), 10      
-      
 
 $ ->
-  # $(document.body).mousemove (event) ->
-  #   console.log event.clientX, event.clientY
-  window.padding = $('<div>').addClass('slider sliding padding').css 'width', 200
- 
+  window.padding = $('<div>').addClass('slider sliding padding').css 'width', 200 

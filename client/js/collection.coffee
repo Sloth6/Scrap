@@ -143,7 +143,7 @@ collectionScroll = () ->
 
 collectionElemAfterMouse = (event) ->
   collection = $('.slidingContainer')
-  children = collectionChildren.call collection
+  children = collectionContent.call collection
   # Get the element that the mouse is over
   i = 0
   for html in children
