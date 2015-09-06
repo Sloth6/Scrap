@@ -13,9 +13,10 @@ draggingScale = 0.5
 drag = (event, draggingElement) ->
   # console.log 'dragging'
   border = sliderBorder()
-  x = event.screenX - offsetX
-  y = event.screenY - offsetY
-  draggingElement.css { x, y }
+  x = event.clientX - draggingElement.width()/2
+  y = event.clientY - draggingElement.height()/2
+  # console.log x, y
+  draggingElement.css { x }
   
   clearTimeout lastn if lastn?
   
@@ -51,34 +52,40 @@ drag = (event, draggingElement) ->
     ), 5
 
 stopDragging = (elem) ->
-  console.log 'stopDragging', elem[0]
+  # console.log 'stopDragging', elem[0]
   elem.
     removeClass('dragging').
     addClass('sliding').
     css('zIndex', elem.data('oldZIndex'))
   
-  elem.insertAfter(padding) if padding?
-
-  padding.remove()
-  collectionRealign.call $('.slidingContainer'), true
-  content = collectionContent.call $('.slidingContainer')
-  elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
-  socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
+  # if the padding is actually in the dom
+  if $('.slidingContainer').find('.padding').length
+    elem.insertAfter(padding)
+    padding.remove()
+    collectionRealign.call $('.slidingContainer'), true
+    content = collectionContent.call $('.slidingContainer')
+    elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
+    socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
 
 startDragging = (elem) ->
-  console.log 'startDragging', elem[0]
+  # console.log 'startDragging', elem[0]
   elem.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
     css { 'scale': draggingScale, 'z-index': 999 }
 
-  # console.log elem.zIndex()
+  console.log elem.zIndex()
   # setInterval (() -> console.log elem.zIndex()), 100
   padding.width elem.width()
 
 
 makeDraggable = (elements) ->
+  # console.log elements.find('a')
+  elements.find('a,img,iframe').bind 'dragstart', () ->
+    console.log $(@)
+    return false
+
   elements.mousedown (event) ->
     return unless event.which is 1 # only work for left click
     return unless $(@).hasClass 'draggable'
@@ -86,8 +93,8 @@ makeDraggable = (elements) ->
     mousedownElement = $(@)
     draggingElement  = null
     
-    offsetX = event.screenX - parseInt(mousedownElement.css('x'))
-    offsetY = event.screenY - parseInt(mousedownElement.css('y'))
+    offsetX = event.clientX - parseInt(mousedownElement.css('x'))
+    offsetY = event.clientY - parseInt(mousedownElement.css('y'))
 
     $(window).mousemove (event) ->
       if draggingElement == null
@@ -103,5 +110,7 @@ makeDraggable = (elements) ->
       
 
 $ ->
+  # $(document.body).mousemove (event) ->
+  #   console.log event.clientX, event.clientY
   window.padding = $('<div>').addClass('slider sliding padding').css 'width', 200
  

@@ -33,7 +33,6 @@ percentToBorder = (x, e, border) ->
   else
     percent = 0
   percent
-  
 
 sliderJumble = () ->
   $(@).data
@@ -46,15 +45,27 @@ sliderInit = (elems) ->
   showAddElementForm()
   elems.each sliderJumble
   makeDraggable elems
+
+  elems.each () ->
+    switch $(@).data('contenttype')
+      when 'text'
+        makeModifiable $(@)
+      when 'video'
+        bindVideoControls $(@)
+      when 'file'
+        bindFileControls $(@)
+      when 'soundcloud'
+        bindSoundCloudControls $(@)
+
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')
     x = xTransform($(@))
     return if x < edgeWidth or (x > $(window).width - edgeWidth)
+    return if $(@).hasClass 'dragging'
     $(@).data 'oldZIndex', $(@).css('zIndex')
     $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
   ).mouseout () ->
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
-
 
 slidingPlace = (animate = true) ->
   # Recalculated on scroll

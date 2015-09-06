@@ -70,6 +70,7 @@ article(id=element.id, class=classes, style= posString, data-contenttype=element
         
         when 'youtube'
           - url = "//www.youtube.com/embed/"+ element.content
+          .iframeBlocker(style="position:absolute;width:100%;height:100%;")
           iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
 
         when 'text'

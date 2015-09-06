@@ -20,19 +20,9 @@ $ ->
         css('x', xTransform(element)).
         addClass('sliding')
 
-      sliderJumble.call element
+      sliderInit element
       collectionRealign.call $('.slidingContainer')
-
-      switch element.data('contenttype')
-        when 'text'
-          makeModifiable element
-        when 'video'
-          bindVideoControls element
-        when 'file'
-          bindFileControls element
-        when 'soundcloud'
-          bindSoundCloudControls element
-
+      
   socket.on 'removeElement', (data) ->
     console.log 'removeElement', data
     elem = $("\##{data.id}")    
