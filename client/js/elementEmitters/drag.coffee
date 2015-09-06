@@ -58,6 +58,12 @@ stopDragging = (elem) ->
     addClass('sliding').
     css('zIndex', elem.data('oldZIndex'))
   
+  # sometime scrolling fails to end
+  if scrollInterval
+    clearInterval scrollInterval
+    draggingOnBorder = false
+    scrollInterval = null
+
   # if the padding is actually in the dom
   if $('.slidingContainer').find('.padding').length
     elem.insertAfter(padding)
@@ -75,9 +81,7 @@ startDragging = (elem) ->
     data('oldZIndex', elem.zIndex()).
     css { 'scale': draggingScale, 'z-index': 999 }
 
-  console.log elem.zIndex()
-  # setInterval (() -> console.log elem.zIndex()), 100
-  padding.width elem.width()
+  padding.width elem.width()/2
 
 
 makeDraggable = (elements) ->
