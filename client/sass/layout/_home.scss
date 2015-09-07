@@ -1,10 +1,32 @@
 $coverHeight:  $col * 6;
+@mixin coverBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+	background-size: cover;
+    mix-blend-mode: multiply;
+	-webkit-filter: brightness(2) contrast(20) grayscale(1);
+	// Disabled transition because of flickering bug in Chrome
+// 	@include transition(.25s $defaultCurve);
+// 	@include transition-property(opacity, -webkit-filter);
+}
 
+@mixin coverBackgroundDull {
+	opacity: .125;
+// 	  mix-blend-mode: screen;
+	-webkit-filter: brightness(1) contrast(20) grayscale(1) invert(1);
+}
 body {
 	header.cover {
     	
     	    &.peek.open {
         	    .card {
+            	    .background {
+                	    @include coverBackgroundDull;
+            	    }
             		section.title {
                 		h1 {
                     		@include transform(translate(-128px, 0px));
@@ -23,6 +45,8 @@ body {
       		height: $coverHeight;
       		cursor: pointer;
       		overflow: hidden;
+      		border-radius: $cell/2;
+      		border-radius: 0 $cell $cell 0;
         		        		
         		&.hover {
             		ul.users {
@@ -36,6 +60,14 @@ body {
                 		}
             		}
             		
+            		.background {
+                		@include coverBackgroundDull;
+            		}
+            		
+        		}
+        		
+        		.background {
+            		@include coverBackground;
         		}
         		
         		section.title {

@@ -119,8 +119,8 @@ $headerLeftMarginOffset:
 }
 
 @mixin typeOutlineFillBlack {
-    -webkit-text-fill-color: $colorType;
-    -webkit-text-stroke: $cardBorderWidth $colorType;
+    -webkit-text-fill-color: $colorType !important;
+    -webkit-text-stroke: 1px $colorType;
 }
 
 html {
@@ -153,6 +153,10 @@ html {
     
     .typeWeightBold {
         font-weight: $fontWeightBold;
+    }
+    
+    .typeWeightExtraBold {
+        font-weight: $fontWeightExtraBold;
     }
     
     .typeOutlineClear {

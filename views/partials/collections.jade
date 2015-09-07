@@ -4,6 +4,8 @@
     .collection.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
       header.cover.slider.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
         .card.cardHover.colored
+          - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
+          .background(style='background-image: url("' + image + '");')
           section.title
             h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
             h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name

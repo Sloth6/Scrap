@@ -69,5 +69,7 @@ $ ->
     if $(".cover.#{spaceKey}").length
       collectionOpen $(".cover.#{spaceKey}")
 
-  $('header.cover .card.colored').each () ->
-    $(@).css { backgroundColor : randomColor }
+  $('header.cover').each () ->
+    backgroundColor = randomColor()
+    $(@).find('.card.colored').css { backgroundColor : backgroundColor }
+    $(@).find('.typeOutlineClear').css { '-webkit-text-fill-color' : backgroundColor }
