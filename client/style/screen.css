@@ -1988,7 +1988,7 @@ section.container section.space section.content article.addElementForm ul li.don
 /* line 27, ../sass/layout/_home.scss */
 body header.cover.peek.open .card .background {
   opacity: .125;
-  -webkit-filter: brightness(1) contrast(5) grayscale(1) invert(1);
+  -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
 /* line 31, ../sass/layout/_home.scss */
 body header.cover.peek.open .card section.title h1 {
@@ -2026,7 +2026,7 @@ body header.cover .card.hover section.title h1.typeTitle {
 /* line 63, ../sass/layout/_home.scss */
 body header.cover .card.hover .background {
   opacity: .125;
-  -webkit-filter: brightness(1) contrast(5) grayscale(1) invert(1);
+  -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
 /* line 69, ../sass/layout/_home.scss */
 body header.cover .card .background {
@@ -2038,7 +2038,7 @@ body header.cover .card .background {
   opacity: 1;
   background-size: cover;
   mix-blend-mode: multiply;
-  -webkit-filter: brightness(2) contrast(5) grayscale(1);
+  -webkit-filter: brightness(2) contrast(1) grayscale(1);
 }
 /* line 77, ../sass/layout/_home.scss */
 body header.cover .card section.title:hover .rename {
