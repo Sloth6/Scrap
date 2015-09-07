@@ -1,0 +1,18 @@
+.slidingContainer
+  .collection.root.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
+    header.root.cover.slider.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
+      .card.cardHover.colored
+        section.title
+          h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
+          h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
+          p.rename
+            a.smallCaps.smallType.confirm Rename
+        ul.users.menu.slideIn.left.canOpen
+          li.user!=user.name
+          li.user.add
+            form.addUser(data-spacekey=collection.spaceKey)
+              input(type="email", name="user[email]", placeholder="email")
+              input(type="submit", value="→")
+              label.smallType.smallCaps Send this notebook to someone
+    .collectionContent(class=collection.spaceKey, style="display:none;")
+      //- include collectionContent

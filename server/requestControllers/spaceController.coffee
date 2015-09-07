@@ -39,30 +39,6 @@ nameMap = (space) ->
 #   orderElements space
 
 module.exports =
-  # create a new space and redirect to it
-  newSpace : (req, res, app, onErr) ->
-    spaceKey = uuid.v4().split('-')[0]
-    { name, welcomeSpace } = req.body.space
-    currentUserId = req.session.currentUserId
-    
-    models.User.find(
-      where: { id: currentUserId }
-      include: [ models.Space ]
-    ).complete (err, user) ->
-      return onErr err, res if err?
-      attributes = { name, spaceKey, publicRead: false }
-      models.Space.create( attributes ).complete (err, space) ->
-        return onErr err, res if err?
-        space.addUser(user).complete (err) ->
-          return onErr err, res if err?
-          space.setCreator(user).complete (err) ->
-            return onErr err, res if err?
-            space.elements = []
-            app.render 'partials/collection', { top:0, collection:space}, (err, html) ->
-              return onErr err, res if err?
-              # console.log html
-              res.status(200).send html
-
   addUserToSpace : (req, res, app, callback) ->
     { email, spaceKey } = req.body
     userName = req.session.userName

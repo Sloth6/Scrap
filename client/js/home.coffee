@@ -43,6 +43,7 @@ $ ->
   $.Velocity.defaults.easing = openCollectionCurve
   $.Velocity.defaults.queue = false
 
+  collectionOpen $('.cover.root')
   # Main scroll event
   $(window).scroll (event) ->
     collectionScroll.call $('.slidingContainer')

@@ -1,5 +1,7 @@
 models = require '../../models'
 spaceController = require './spaceController'
+newSpace = require '../newSpace'
+
 module.exports =
   updateUser: (req, res, app)  ->
     { userId, name, email, password } = req.body
@@ -38,10 +40,18 @@ module.exports =
             done user
       done = (user) ->
         req.session.currentUserId = user.id
-        req.body.space =
-          name: "New Collection"
-          welcomeSpace: true
-        spaceController.newSpace req, res, app, callback
+        # create the users root space
+        firstSpaceOptions =
+          userId: user.id
+          spaceName: user.name
+          root: true
+        newSpace firstSpaceOptions, (err) ->
+          return callback err if err?
+          req.session.currentUserId = user.id
+          req.session.userName = user.name
+          req.session.userEmail = user.email
+          res.send "/"
+          # res.render 'home.jade', { user, title: 'Hotpot' }
 
   # verify login creds, redirect to first space
   login : (req, res, app, callback) ->

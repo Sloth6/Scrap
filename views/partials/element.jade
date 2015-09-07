@@ -1,81 +1,98 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
 - var classes = [ element.contentType, "element", "slider", "draggable", collection.spaceKey]
-
 - var posString = "position:absolute;"
 
-article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
-  .content
-    .elementControls
-      - if (typeof(collection.nameMap) !== "undefined") {
-        author= collection.nameMap[element.creatorId].name
-      - }    
-      a.elementDeleteButton.warning Delete
-    case element.contentType
-      when 'file'
-        .decorative.fold
-    .card.cardHover(class=element.contentType)
+if element.contentType == 'cover'
+  -var content = JSON.parse(element.content)
+  header.cover.slider.sliding(data-spacekey=content.spaceKey, data-name=content.name, class=content.spaceKey)
+    .card.cardHover.colored
+      section.title
+        h1.collectionTitle.typeTitle.typeOutlineClear!=content.name
+        h2.peekTitle.bodyType.typeBody.typeWeightBold!=content.name
+        p.rename
+          a.smallCaps.smallType.confirm Rename
+      ul.users.menu.slideIn.left.canOpen
+        li.user!=user.name
+        li.user.add
+          form.addUser(data-spacekey=collection.spaceKey)
+            input(type="email", name="user[email]", placeholder="email")
+            input(type="submit", value="→")
+            label.smallType.smallCaps Send this notebook to someone
+  .collectionContent(class=collection.spaceKey, style="display:none;")
+else
+  article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
+    .content
+      .elementControls
+        - if (typeof(collection.nameMap) !== "undefined") {
+          author= collection.nameMap[element.creatorId].name
+        - }    
+        a.elementDeleteButton.warning Delete
       case element.contentType
-        when 'image'
-          - var content = JSON.parse(element.content)
-          - if (typeof(content.original_url) !== 'undefined'){
-            img(src= content.original_url)
-          - } else { 
-            img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
-          - }
-  
-        when 'gif'
-          -var content = JSON.parse(element.content)
-          - if (typeof(content.original_url) !== 'undefined'){
-            img(src= content.original_url)
-          - } else {
-            img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
-          - }
-  
-        when 'website'
-          -var content = JSON.parse(element.content)
-          -var url = decodeURIComponent(content.url)
-          .text
-            header
-              h1!=content.title
-              .url!=content.domain
-            .description!=content.description
-          img(src=content.image)
-          a(href=url, target='_blank', title='Go to ' + content.title)
-  
         when 'file'
-          header
-            - name = element.content.split('/').pop()
-            //- - extension = name.pop()
-            h1.title=name.split('.')[0]
-            p.extension.smallCaps.bodyType=name.split('.').pop()
-          ul.cardActions
-            li.right
-              a.download.confirm(href='#') Download
+          .decorative.fold
+      .card.cardHover(class=element.contentType)
+        case element.contentType
+          when 'image'
+            - var content = JSON.parse(element.content)
+            - if (typeof(content.original_url) !== 'undefined'){
+              img(src= content.original_url)
+            - } else { 
+              img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
+            - }
+    
+          when 'gif'
+            -var content = JSON.parse(element.content)
+            - if (typeof(content.original_url) !== 'undefined'){
+              img(src= content.original_url)
+            - } else {
+              img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
+            - }
+    
+          when 'website'
+            -var content = JSON.parse(element.content)
+            -var url = decodeURIComponent(content.url)
+            .text
+              header
+                h1!=content.title
+                .url!=content.domain
+              .description!=content.description
+            img(src=content.image)
+            a(href=url, target='_blank', title='Go to ' + content.title)
+    
+          when 'file'
+            header
+              - name = element.content.split('/').pop()
+              //- - extension = name.pop()
+              h1.title=name.split('.')[0]
+              p.extension.smallCaps.bodyType=name.split('.').pop()
+            ul.cardActions
+              li.right
+                a.download.confirm(href='#') Download
 
-        when 'video'
-          video()
-            source(src=element.content)
-            img(src=element.content+'.png')
-        
-        when 'soundcloud'
-          -var content = JSON.parse(element.content)
-          //- title, description, thumbnail_url, html, author_name, author_url
-          img.soundcloudThumbnail(src=content.thumbnail_url)
-          header
-            .top
-                h1.title!=content.title
-                .artist!=content.author_name
-            .detail
-              .source SoundCloud
-        
-        when 'youtube'
-          - url = "//www.youtube.com/embed/"+ element.content
-          .iframeBlocker(style="position:absolute;width:100%;height:100%;")
-          iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
+          when 'video'
+            video()
+              source(src=element.content)
+              img(src=element.content+'.png')
+          
+          when 'soundcloud'
+            -var content = JSON.parse(element.content)
+            //- title, description, thumbnail_url, html, author_name, author_url
+            img.soundcloudThumbnail(src=content.thumbnail_url)
+            header
+              .top
+                  h1.title!=content.title
+                  .artist!=content.author_name
+              .detail
+                .source SoundCloud
+          
+          when 'youtube'
+            - url = "//www.youtube.com/embed/"+ element.content
+            .iframeBlocker(style="position:absolute;width:100%;height:100%;")
+            iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
 
-        when 'text'
-          //- textarea.modify(name='content', style='height:300px')!=element.content
-          .editable(contentEditable="true", designmode="on")
-            !{element.content}
-        default
-          p!=element.content
+          when 'text'
+            //- textarea.modify(name='content', style='height:300px')!=element.content
+            .editable(contentEditable="true", designmode="on")
+              !{element.content}
+          default
+            p!=element.content
