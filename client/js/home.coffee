@@ -34,10 +34,11 @@ yTransform = (elem) ->
 $ ->
   window.socket = io.connect()
   window.openSpace = "home"
-
   history.pushState { name: "home" }, "", "/"
+
+  window.container = $('.slidingContainer')
   
-  collectionRealign.call $('.slidingContainer'), false
+  collectionRealign { animate: false }
   
   $.Velocity.defaults.duration = openCollectionDuration
   $.Velocity.defaults.easing = openCollectionCurve
@@ -60,15 +61,14 @@ $ ->
   # Close a collection on page back
   window.onpopstate = (event) ->
     # event.state.name will either be 'home' or a spaceKey
-    spaceKey = event.state.name
-    window.openSpace = spaceKey
+    # spaceKey = event.state.name
+    # window.openSpace = spaceKey    
     # always close any open collection first
-    if  $('.cover.open').length
+    if $('.cover.open').length
       collectionClose $('.cover.open')
     
     # equivlant to if spaceKey != home and spacekey cover exists
-    if $(".cover.#{spaceKey}").length
-      collectionOpen $(".cover.#{spaceKey}")
+    # if $(".cover.#{spaceKey}").length
+    #   collectionOpen $(".cover.#{spaceKey}")
 
-  $('header.cover .card.colored').each () ->
-    $(@).css { backgroundColor : randomColor }
+  

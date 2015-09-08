@@ -45,7 +45,6 @@ sliderInit = (elems) ->
   showAddElementForm()
   elems.each sliderJumble
   makeDraggable elems
-
   elems.each () ->
     switch $(@).data('contenttype')
       when 'text'
@@ -56,6 +55,10 @@ sliderInit = (elems) ->
         bindFileControls $(@)
       when 'soundcloud'
         bindSoundCloudControls $(@)
+      when 'cover'
+        bindCoverControls $(@)
+      when 'addElementForm'
+        addElementController.init $(@)
 
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')

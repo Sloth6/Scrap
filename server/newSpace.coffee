@@ -17,4 +17,4 @@ module.exports = ({ userId, spaceName, root }, callback) ->
         return callback err if err?
         space.setCreator(user).complete (err) ->
           return callback err if err?
-          callback null
+          callback null, space

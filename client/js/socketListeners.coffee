@@ -23,6 +23,21 @@ $ ->
       sliderInit element
       collectionRealign.call $('.slidingContainer')
       
+  socket.on 'newCollection', (data) ->
+    { draggedId, draggedOverId, coverHTML } = data
+    dragged = $("##{data.draggedId}")
+    draggedOver = $("##{data.draggedOverId}")
+    cover = $(decodeURIComponent(data.coverHTML))
+
+    cover.insertAfter draggedOver
+    cover.css {x: xTransform(draggedOver)}
+    draggedOver.remove()
+    dragged.remove()
+    $("##{draggedOverId}").remove()
+    sliderInit cover
+    collectionRealign.call $('.slidingContainer')
+
+
   socket.on 'removeElement', (data) ->
     console.log 'removeElement', data
     elem = $("\##{data.id}")    

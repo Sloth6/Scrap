@@ -4,7 +4,8 @@
 
 if element.contentType == 'cover'
   -var content = JSON.parse(element.content)
-  header.cover.slider.sliding(data-spacekey=content.spaceKey, data-name=content.name, class=content.spaceKey)
+  //- .collection.closed(data-spacekey=content.spaceKey, class=content.spaceKey)
+  article.element.cover.closed.slider.sliding(id=element.id, data-contenttype='cover', data-spacekey=content.spaceKey, data-name=content.name, class=content.spaceKey)
     .card.cardHover.colored
       section.title
         h1.collectionTitle.typeTitle.typeOutlineClear!=content.name
@@ -12,13 +13,13 @@ if element.contentType == 'cover'
         p.rename
           a.smallCaps.smallType.confirm Rename
       ul.users.menu.slideIn.left.canOpen
-        li.user!=user.name
+        //- li.user!=user.name
         li.user.add
           form.addUser(data-spacekey=collection.spaceKey)
             input(type="email", name="user[email]", placeholder="email")
             input(type="submit", value="→")
             label.smallType.smallCaps Send this notebook to someone
-  .collectionContent(class=collection.spaceKey, style="display:none;")
+    //- .collectionContent(class=collection.spaceKey, style="display:none;")
 else
   article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
     .content

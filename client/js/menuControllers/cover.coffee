@@ -74,11 +74,9 @@ coverClick = () ->
     history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
     collectionOpen $(@)
 
-$ ->
-  # Open a collection on click
-  $('.cover').click coverClick
-      
-  $('.cover').each () ->
+bindCoverControls = (covers) ->
+  covers.click coverClick
+  covers.each () ->
     cover  = $(@)
     rename = cover.find('.rename')
     rename.find('a').click (event) ->
@@ -86,15 +84,15 @@ $ ->
       if cover.hasClass('editing') then stopEditing cover else startEditing cover
   
   # dont open collection on clicking user field
-  $('.addUser input[name="user[email]"]').click (event) ->
+  covers.find('.addUser input[name="user[email]"]').click (event) ->
     event.stopPropagation()
 
   # dont open collection on submit
-  $('.addUser input:submit').click (event) ->
+  covers.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
 
   # submit on enter
-  $('.addUser').on 'submit', (event) ->
+  covers.find('.addUser').on 'submit', (event) ->
     event.preventDefault()
     spaceKey = $(@).data 'spacekey'
     input = $('input[name="user[email]"]', @)
@@ -109,7 +107,10 @@ $ ->
       textField.html 'An invite has been sent'
       addUser email, spaceKey
 
-  $('.cover ul.menu').each () ->
+  $('.cover .card.colored').each () ->
+    $(@).css { backgroundColor : randomColor }
+
+  covers.find('ul.menu').each () ->
     $menu = $(@)
     $cover = $menu.parent().parent('.cover')
 
@@ -117,3 +118,6 @@ $ ->
       $menu.addClass 'open' if $menu.hasClass 'canOpen'
     $cover.mouseleave () ->
       $menu.removeClass 'open' if $menu.hasClass 'canOpen'
+$ ->
+  bindCoverControls $('.cover')
+      
