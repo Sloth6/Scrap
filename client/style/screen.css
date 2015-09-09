@@ -1,4 +1,4 @@
-/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -1982,21 +1982,21 @@ section.container section.space section.content article.addElementForm ul li.don
 }
 
 /* line 9, ../sass/layout/_home.scss */
-body header.cover.peek.open .card section.title h1 {
+body article.cover.peek.open .card section.title h1 {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
 /* line 13, ../sass/layout/_home.scss */
-body header.cover.peek.open .card section.title h2 {
+body article.cover.peek.open .card section.title h2 {
   -moz-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 /* line 20, ../sass/layout/_home.scss */
-body header.cover .card {
+body article.cover .card {
   position: relative;
   width: 256pt;
   height: 384pt;
@@ -2004,20 +2004,20 @@ body header.cover .card {
   overflow: hidden;
 }
 /* line 28, ../sass/layout/_home.scss */
-body header.cover .card.hover ul.users {
+body article.cover .card.hover ul.users {
   opacity: 1;
 }
 /* line 34, ../sass/layout/_home.scss */
-body header.cover .card.hover section.title h1.typeTitle {
+body article.cover .card.hover section.title h1.typeTitle {
   -webkit-text-fill-color: #000000;
   -webkit-text-stroke: 1pt #000000;
 }
 /* line 45, ../sass/layout/_home.scss */
-body header.cover .card section.title:hover .rename {
+body article.cover .card section.title:hover .rename {
   opacity: 1;
 }
 /* line 50, ../sass/layout/_home.scss */
-body header.cover .card section.title h1 {
+body article.cover .card section.title h1 {
   margin-top: -.1em;
   margin-left: -.03125em;
   margin-right: 4pt;
@@ -2037,7 +2037,7 @@ body header.cover .card section.title h1 {
   transition-property: transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
 }
 /* line 68, ../sass/layout/_home.scss */
-body header.cover .card section.title h2 {
+body article.cover .card section.title h2 {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   width: 384pt;
@@ -2060,25 +2060,25 @@ body header.cover .card section.title h2 {
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 84, ../sass/layout/_home.scss */
-body header.cover .card section.title .rename {
+body article.cover .card section.title .rename {
   opacity: 0;
 }
 /* line 87, ../sass/layout/_home.scss */
-body header.cover .card section.title .rename a {
+body article.cover .card section.title .rename a {
   display: inline-block;
   padding: 16pt 16pt 16pt 8pt;
   margin-left: -8pt;
   margin-top: -8pt;
 }
 /* line 96, ../sass/layout/_home.scss */
-body header.cover .card .elementCount {
+body article.cover .card .elementCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
 /* line 103, ../sass/layout/_home.scss */
-body header.cover .card ul.users {
+body article.cover .card ul.users {
   position: absolute;
   width: 50%;
   bottom: 0;
@@ -2092,20 +2092,20 @@ body header.cover .card ul.users {
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
 /* line 110, ../sass/layout/_home.scss */
-body header.cover .card ul.users li.add {
+body article.cover .card ul.users li.add {
   width: 100%;
 }
 /* line 113, ../sass/layout/_home.scss */
-body header.cover .card ul.users li.add label {
+body article.cover .card ul.users li.add label {
   display: block;
 }
 /* line 117, ../sass/layout/_home.scss */
-body header.cover .card ul.users li.add input[type=email] {
+body article.cover .card ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
 /* line 122, ../sass/layout/_home.scss */
-body header.cover .card ul.users li.add input[type=submit] {
+body article.cover .card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
   text-align: right;
