@@ -5,6 +5,18 @@ addElementController =
     spacekey = menu.data 'spacekey'
     input    = menu.find '.textInput'
     
+    menu.find('textarea').on('focus', () ->
+      menu.find('.done').removeClass 'invisible'
+      menu.find('.upload').hide()
+    )
+
+    menu.find('textarea').on('blur', () ->
+    # Blur with empty text area
+      if $(@).val() == ''
+        menu.find('.done').addClass 'invisible'
+        menu.find('.upload').show()
+    )
+    
     menu.find('textarea').bind "paste", () ->
       setTimeout (() =>
         emitNewElement $(@).val(), spacekey
@@ -26,7 +38,6 @@ addElementController =
 showAddElementForm = () ->
   $('.addElementForm.peek').each () ->
     $(@).mouseenter(() ->
-      console.log 'HIHIHI ' + $(@)
       $(@).velocity(
         properties:
           translateX: 800

@@ -132,6 +132,12 @@ a {
     @include typeBody;
 }
 
+// Globals
+
+.invisible {
+    opacity: 0;
+}
+
 // Forms
 
 form {
