@@ -784,16 +784,21 @@ a.confirm:hover {
 }
 
 /* line 137, ../sass/globals/_components.scss */
+.invisible {
+  opacity: 0;
+}
+
+/* line 143, ../sass/globals/_components.scss */
 form {
   position: relative;
 }
-/* line 140, ../sass/globals/_components.scss */
+/* line 146, ../sass/globals/_components.scss */
 form li {
   list-style: none;
   margin-top: 16pt;
 }
 
-/* line 147, ../sass/globals/_components.scss */
+/* line 153, ../sass/globals/_components.scss */
 label {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -803,7 +808,7 @@ label {
   letter-spacing: .0625em;
 }
 
-/* line 158, ../sass/globals/_components.scss */
+/* line 164, ../sass/globals/_components.scss */
 ::-webkit-input-placeholder {
   color: #000000;
   opacity: 1;
@@ -811,7 +816,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 162, ../sass/globals/_components.scss */
+/* line 168, ../sass/globals/_components.scss */
 :-moz-placeholder {
   color: #000000;
   opacity: 1;
@@ -819,7 +824,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 165, ../sass/globals/_components.scss */
+/* line 171, ../sass/globals/_components.scss */
 ::-moz-placeholder {
   color: #000000;
   opacity: 1;
@@ -827,7 +832,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 168, ../sass/globals/_components.scss */
+/* line 174, ../sass/globals/_components.scss */
 :-ms-input-placeholder {
   color: #000000;
   opacity: 1;
@@ -835,7 +840,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 172, ../sass/globals/_components.scss */
+/* line 178, ../sass/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -852,86 +857,86 @@ input {
   max-width: 100%;
   border-radius: 0;
 }
-/* line 184, ../sass/globals/_components.scss */
+/* line 190, ../sass/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
   text-align: left;
 }
-/* line 190, ../sass/globals/_components.scss */
+/* line 196, ../sass/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
-/* line 196, ../sass/globals/_components.scss */
+/* line 202, ../sass/globals/_components.scss */
 input[type=email] {
   text-transform: lowercase;
 }
 
-/* line 203, ../sass/globals/_components.scss */
+/* line 209, ../sass/globals/_components.scss */
 .slideIn li {
   opacity: 0;
 }
-/* line 207, ../sass/globals/_components.scss */
+/* line 213, ../sass/globals/_components.scss */
 .slideIn.open li {
   opacity: 1;
 }
-/* line 213, ../sass/globals/_components.scss */
+/* line 219, ../sass/globals/_components.scss */
 .slideIn.left li, .slideIn.left.open li.hidden {
   -moz-transform: translate3d(-128pt, 0, 0);
   -ms-transform: translate3d(-128pt, 0, 0);
   -webkit-transform: translate3d(-128pt, 0, 0);
   transform: translate3d(-128pt, 0, 0);
 }
-/* line 216, ../sass/globals/_components.scss */
+/* line 222, ../sass/globals/_components.scss */
 .slideIn.left li.first, .slideIn.left.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 223, ../sass/globals/_components.scss */
+/* line 229, ../sass/globals/_components.scss */
 .slideIn.left.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 230, ../sass/globals/_components.scss */
+/* line 236, ../sass/globals/_components.scss */
 .slideIn.right li, .slideIn.right.open li.hidden {
   -moz-transform: translate3d(128pt, 0, 0);
   -ms-transform: translate3d(128pt, 0, 0);
   -webkit-transform: translate3d(128pt, 0, 0);
   transform: translate3d(128pt, 0, 0);
 }
-/* line 233, ../sass/globals/_components.scss */
+/* line 239, ../sass/globals/_components.scss */
 .slideIn.right li.first, .slideIn.right.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 237, ../sass/globals/_components.scss */
+/* line 243, ../sass/globals/_components.scss */
 .slideIn.right li.first a:hover, .slideIn.right.open li.hidden.first a:hover {
   left: -8pt;
 }
-/* line 243, ../sass/globals/_components.scss */
+/* line 249, ../sass/globals/_components.scss */
 .slideIn.right li input, .slideIn.right.open li.hidden input {
   text-align: left;
 }
-/* line 246, ../sass/globals/_components.scss */
+/* line 252, ../sass/globals/_components.scss */
 .slideIn.right li input[type=button], .slideIn.right li input[type=submit], .slideIn.right.open li.hidden input[type=button], .slideIn.right.open li.hidden input[type=submit] {
   text-align: right;
 }
-/* line 254, ../sass/globals/_components.scss */
+/* line 260, ../sass/globals/_components.scss */
 .slideIn.right.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 263, ../sass/globals/_components.scss */
+/* line 269, ../sass/globals/_components.scss */
 .slideIn.hideFirst > li.first {
   position: absolute;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -943,7 +948,7 @@ input[type=email] {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 274, ../sass/globals/_components.scss */
+/* line 280, ../sass/globals/_components.scss */
 .slideIn.hideFirst.right.open > li.first {
   -moz-transform: translate3d(128pt, 0, 0);
   -ms-transform: translate3d(128pt, 0, 0);
@@ -951,7 +956,7 @@ input[type=email] {
   transform: translate3d(128pt, 0, 0);
   opacity: 0;
 }
-/* line 280, ../sass/globals/_components.scss */
+/* line 286, ../sass/globals/_components.scss */
 .slideIn.hideFirst.right > li.first {
   right: 8pt;
   -moz-transform: translate3d(0, 0, 0);
@@ -959,7 +964,7 @@ input[type=email] {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 288, ../sass/globals/_components.scss */
+/* line 294, ../sass/globals/_components.scss */
 .slideIn.hideFirst.left.open > li.first {
   -moz-transform: translate3d(-128pt, 0, 0);
   -ms-transform: translate3d(-128pt, 0, 0);
@@ -967,7 +972,7 @@ input[type=email] {
   transform: translate3d(-128pt, 0, 0);
   opacity: 0;
 }
-/* line 294, ../sass/globals/_components.scss */
+/* line 300, ../sass/globals/_components.scss */
 .slideIn.hideFirst.left > li.first {
   left: 8pt;
   -moz-transform: translate3d(-128pt, 0, 0);
@@ -976,7 +981,7 @@ input[type=email] {
   transform: translate3d(-128pt, 0, 0);
 }
 
-/* line 302, ../sass/globals/_components.scss */
+/* line 308, ../sass/globals/_components.scss */
 ul.headerMenu {
   position: absolute;
   display: inline-block;
@@ -1000,58 +1005,58 @@ ul.headerMenu {
   -webkit-transition-property: left, right, background, border, width, padding;
   transition-property: left, right, background, border, width, padding;
 }
-/* line 315, ../sass/globals/_components.scss */
+/* line 321, ../sass/globals/_components.scss */
 ul.headerMenu.left {
   float: left;
   left: -1pt;
 }
-/* line 320, ../sass/globals/_components.scss */
+/* line 326, ../sass/globals/_components.scss */
 ul.headerMenu.right {
   right: -1pt;
 }
-/* line 326, ../sass/globals/_components.scss */
+/* line 332, ../sass/globals/_components.scss */
 ul.headerMenu.hidden.left {
   left: -384pt;
 }
-/* line 330, ../sass/globals/_components.scss */
+/* line 336, ../sass/globals/_components.scss */
 ul.headerMenu.hidden.right {
   right: -384pt;
 }
-/* line 335, ../sass/globals/_components.scss */
+/* line 341, ../sass/globals/_components.scss */
 ul.headerMenu.open {
   background: white;
   border-color: #000000;
   width: 192pt;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 341, ../sass/globals/_components.scss */
+/* line 347, ../sass/globals/_components.scss */
 ul.headerMenu.open.wide {
   width: 320pt;
 }
-/* line 345, ../sass/globals/_components.scss */
+/* line 351, ../sass/globals/_components.scss */
 ul.headerMenu.open.paddingBottom {
   padding-bottom: 48pt;
 }
-/* line 349, ../sass/globals/_components.scss */
+/* line 355, ../sass/globals/_components.scss */
 ul.headerMenu.open li {
   height: 16pt;
   margin-bottom: 8pt;
 }
-/* line 353, ../sass/globals/_components.scss */
+/* line 359, ../sass/globals/_components.scss */
 ul.headerMenu.open li a, ul.headerMenu.open li form {
   position: relative;
 }
-/* line 359, ../sass/globals/_components.scss */
+/* line 365, ../sass/globals/_components.scss */
 ul.headerMenu li {
   height: 0;
   margin-bottom: 0;
 }
 
-/* line 367, ../sass/globals/_components.scss */
+/* line 373, ../sass/globals/_components.scss */
 ul.menu section {
   padding-bottom: 16pt;
 }
-/* line 371, ../sass/globals/_components.scss */
+/* line 377, ../sass/globals/_components.scss */
 ul.menu li {
   position: relative;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1149,11 +1154,11 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-duration(1.9s); }
   */
 }
-/* line 379, ../sass/globals/_components.scss */
+/* line 385, ../sass/globals/_components.scss */
 ul.menu li.inputText {
   margin-bottom: 32pt;
 }
-/* line 383, ../sass/globals/_components.scss */
+/* line 389, ../sass/globals/_components.scss */
 ul.menu li.heading {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -1162,20 +1167,20 @@ ul.menu li.heading {
   font-weight: 500;
   letter-spacing: .0625em;
 }
-/* line 387, ../sass/globals/_components.scss */
+/* line 393, ../sass/globals/_components.scss */
 ul.menu li.hidden {
   height: 0;
   margin: 0;
   opacity: 0;
 }
-/* line 393, ../sass/globals/_components.scss */
+/* line 399, ../sass/globals/_components.scss */
 ul.menu li.first {
   opacity: 1;
   height: 16pt;
   cursor: pointer;
   margin-top: 4pt;
 }
-/* line 400, ../sass/globals/_components.scss */
+/* line 406, ../sass/globals/_components.scss */
 ul.menu li input {
   width: 100%;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1187,7 +1192,7 @@ ul.menu li input {
   -webkit-transition-property: width;
   transition-property: width;
 }
-/* line 406, ../sass/globals/_components.scss */
+/* line 412, ../sass/globals/_components.scss */
 ul.menu li a {
   position: relative;
   left: 0;
@@ -1196,11 +1201,11 @@ ul.menu li a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 411, ../sass/globals/_components.scss */
+/* line 417, ../sass/globals/_components.scss */
 ul.menu li a:hover, ul.menu li a:active, ul.menu li a:focus {
   left: 8pt;
 }
-/* line 416, ../sass/globals/_components.scss */
+/* line 422, ../sass/globals/_components.scss */
 ul.menu li > a {
   display: block;
   width: 100%;
@@ -1210,140 +1215,140 @@ ul.menu li > a {
   -webkit-transition-property: left, right, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, transform, -webkit-transform, -moz-transform;
 }
-/* line 492, ../sass/globals/_components.scss */
+/* line 498, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(1) {
   -moz-transition-delay: 0s;
   -o-transition-delay: 0s;
   -webkit-transition-delay: 0s;
   transition-delay: 0s;
 }
-/* line 493, ../sass/globals/_components.scss */
+/* line 499, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.025s;
   -o-transition-delay: 0.025s;
   -webkit-transition-delay: 0.025s;
   transition-delay: 0.025s;
 }
-/* line 494, ../sass/globals/_components.scss */
+/* line 500, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.05s;
   -o-transition-delay: 0.05s;
   -webkit-transition-delay: 0.05s;
   transition-delay: 0.05s;
 }
-/* line 495, ../sass/globals/_components.scss */
+/* line 501, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.075s;
   -o-transition-delay: 0.075s;
   -webkit-transition-delay: 0.075s;
   transition-delay: 0.075s;
 }
-/* line 496, ../sass/globals/_components.scss */
+/* line 502, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 497, ../sass/globals/_components.scss */
+/* line 503, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.125s;
   -o-transition-delay: 0.125s;
   -webkit-transition-delay: 0.125s;
   transition-delay: 0.125s;
 }
-/* line 498, ../sass/globals/_components.scss */
+/* line 504, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 499, ../sass/globals/_components.scss */
+/* line 505, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.175s;
   -o-transition-delay: 0.175s;
   -webkit-transition-delay: 0.175s;
   transition-delay: 0.175s;
 }
-/* line 500, ../sass/globals/_components.scss */
+/* line 506, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 501, ../sass/globals/_components.scss */
+/* line 507, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.225s;
   -o-transition-delay: 0.225s;
   -webkit-transition-delay: 0.225s;
   transition-delay: 0.225s;
 }
-/* line 502, ../sass/globals/_components.scss */
+/* line 508, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.25s;
   -o-transition-delay: 0.25s;
   -webkit-transition-delay: 0.25s;
   transition-delay: 0.25s;
 }
-/* line 503, ../sass/globals/_components.scss */
+/* line 509, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.275s;
   -o-transition-delay: 0.275s;
   -webkit-transition-delay: 0.275s;
   transition-delay: 0.275s;
 }
-/* line 504, ../sass/globals/_components.scss */
+/* line 510, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 505, ../sass/globals/_components.scss */
+/* line 511, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.325s;
   -o-transition-delay: 0.325s;
   -webkit-transition-delay: 0.325s;
   transition-delay: 0.325s;
 }
-/* line 506, ../sass/globals/_components.scss */
+/* line 512, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.35s;
   -o-transition-delay: 0.35s;
   -webkit-transition-delay: 0.35s;
   transition-delay: 0.35s;
 }
-/* line 507, ../sass/globals/_components.scss */
+/* line 513, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.375s;
   -o-transition-delay: 0.375s;
   -webkit-transition-delay: 0.375s;
   transition-delay: 0.375s;
 }
-/* line 508, ../sass/globals/_components.scss */
+/* line 514, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 509, ../sass/globals/_components.scss */
+/* line 515, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.425s;
   -o-transition-delay: 0.425s;
   -webkit-transition-delay: 0.425s;
   transition-delay: 0.425s;
 }
-/* line 510, ../sass/globals/_components.scss */
+/* line 516, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.45s;
   -o-transition-delay: 0.45s;
   -webkit-transition-delay: 0.45s;
   transition-delay: 0.45s;
 }
-/* line 511, ../sass/globals/_components.scss */
+/* line 517, ../sass/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 0.475s;
   -o-transition-delay: 0.475s;
@@ -1351,7 +1356,7 @@ ul.menu li:nth-of-type(20) {
   transition-delay: 0.475s;
 }
 
-/* line 538, ../sass/globals/_components.scss */
+/* line 544, ../sass/globals/_components.scss */
 .mask {
   height: 100vh;
   width: 100vw;
@@ -1361,7 +1366,7 @@ ul.menu li:nth-of-type(20) {
   background: transparent;
 }
 
-/* line 548, ../sass/globals/_components.scss */
+/* line 554, ../sass/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -1967,14 +1972,13 @@ section.container section.space section.content article.addElementForm ul li.upl
 }
 /* line 422, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done {
-  opacity: 0;
   position: relative;
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 430, ../sass/layout/_article.scss */
+/* line 429, ../sass/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.done a {
   border: 0;
   padding: 0;

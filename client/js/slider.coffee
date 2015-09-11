@@ -92,9 +92,9 @@ slidingPlace = (animate = true) ->
     $(@).removeClass 'onEdge'
     $(@).find('.card').addClass 'cardHover'
     if $(@).hasClass 'cover' or $(@).hasClass 'addElementForm' 
-      $(@).removeClass 'peek' if $(@).hasClass 'open'
+      $(@).removeClass 'peek'
     if $(@).hasClass 'addElementForm' 
-      $(@).removeClass 'peek' if $(@).hasClass 'open'
+      $(@).removeClass 'peek'
   
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)
   percentFromBorder = percentToBorder((translateX), $(@), sliderBorder())
