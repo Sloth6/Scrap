@@ -4,8 +4,8 @@
 
 if element.contentType == 'cover'
   -var content = JSON.parse(element.content)
-  //- .collection.closed(data-spacekey=content.spaceKey, class=content.spaceKey)
-  article.element.cover.closed.slider.sliding(id=element.id, data-contenttype='cover', data-spacekey=content.spaceKey, data-name=content.name, class=content.spaceKey)
+  -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content.spaceKey, collection.spaceKey]
+  article(id=element.id, data-contenttype='cover', data-spacekey=content.spaceKey, data-name=content.name, class=coverClasses)
     .card.cardHover.colored
       section.title
         h1.collectionTitle.typeTitle.typeOutlineClear!=content.name

@@ -11,14 +11,33 @@ draggingOnEdgeSpeed = .1
 draggingScale = 0.5
 
 mergeIntoCollection = (dragging, draggingOver) ->
-  console.log 'merging', dragging, draggingOver
+  
   draggedId = parseInt(dragging.attr('id'))
   draggedOverId = parseInt(draggingOver.attr('id'))
-
-  dragging.remove()
   $(window).off 'mousemove'
   $(window).off 'mouseup'
-  socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+
+  if dragging.hasClass('cover') and !draggingOver.hasClass('cover')
+    # cannot merge a collection onto an element
+    stopDragging dragging
+  
+  else if draggingOver.hasClass('cover')
+    # add an element to a collection
+    console.log 'adding', dragging[0], draggingOver[0]
+    dragging.remove()
+    padding.remove()
+    collectionRealignDontScale false
+    spaceKey = draggingOver.data 'spacekey'
+    socket.emit 'moveToCollection', { spaceKey, elemId: draggedId }
+
+  else
+    # create a new collection
+    console.log 'merging', dragging[0], draggingOver[0]
+    dragging.remove()
+    padding.remove()
+    collectionRealignDontScale false
+    socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+
 
 leftCenterRight = ({ clientX }, element) ->
   center = .50
@@ -33,36 +52,45 @@ leftCenterRight = ({ clientX }, element) ->
   else
     'center'
 
-foo = (dragEvent, draggingElement) ->
+
+"Check for element reordering or collection creation"
+afterDrag = (dragEvent, draggingElement) ->
   draggingOver = collectionElemAfterMouse dragEvent
+  # console.log 'afterDrag', draggingOver[0]
   return if draggingOver[0] == padding[0]
+  
+  #"Timeout before calling drop event"
   clearTimeout draggingOverTimeout
   draggingOverTimeout = null
+
   position = leftCenterRight dragEvent, draggingOver
-  # if (lastDraggingOver == null) or (draggingOver[0] != lastDraggingOver[0])# and draggingOver[0] != padding[0]
-  
   if position is 'center'
     draggingOverTimeout = setTimeout (() ->
-      mergeIntoCollection draggingElement, draggingOver
+      if collectionElemAfterMouse(dragEvent)[0] == draggingOver[0]
+        mergeIntoCollection draggingElement, draggingOver
     ), dragUntilCollectionTime
+  
   else if position is 'left'
     padding.insertBefore draggingOver
+    collectionRealignDontScale false
   else if position is 'right'
     padding.insertAfter draggingOver
-  collectionRealignDontScale.call $('.slidingContainer'), false
-
+    collectionRealignDontScale false
+  
   lastDraggingOver = draggingOver
 
+
+# "Take mousemove event while dragging"
 drag = (event, draggingElement) ->
   border = sliderBorder()
   x = event.clientX - draggingElement.width()/2
-  x = event.clientX - draggingElement.height()/2
+  # y = event.clientX - draggingElement.height()/2
   draggingElement.css { x }
-  
+
   clearTimeout lastn if lastn?
   if draggingOnBorder is false
     lastn = setTimeout (() -> 
-      foo event, draggingElement
+      afterDrag event, draggingElement
       lastn = null
     ), 10
   
@@ -98,8 +126,8 @@ stopDragging = (elem) ->
   if $('.slidingContainer').find('.padding').length # ensure in dom
     elem.insertAfter padding
     padding.remove()
-    collectionRealign.call $('.slidingContainer'), true
-    content = collectionContent.call $('.slidingContainer')
+    collectionRealign true
+    content = collectionChildren().not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
     socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
 

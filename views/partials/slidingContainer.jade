@@ -1,10 +1,13 @@
 .slidingContainer
 	//- .collection.root.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
-	article.root.cover.slider.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
-		.card.cardHover.colored
-			section.title
-				h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
-				h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
+	//- article.root.cover.slider.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
+	
+	-var coverClasses = ['card','root', 'cover','slider','sliding', 'colored', collection.spaceKey]
+	article(data-contenttype='cover', data-spacekey=collection.spaceKey, data-name=user.name, class=coverClasses)
+		//- .card.cardHover.colored(data-spacekey=collection.spaceKey)
+		section.title
+			h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
+			h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
 		//- .collectionContent(class=collection.spaceKey, style="display:none;")
 			//- include collectionContent
 
