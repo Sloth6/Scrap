@@ -8,7 +8,8 @@ var express = require('express')
     , port = (process.env.PORT || 9001)
     , db = require('./models')
     , coffeeMiddleware = require('coffee-middleware')
-    , SequelizeStore = require('connect-session-sequelize')(express.session.Store);
+    , SequelizeStore = require('connect-session-sequelize')(express.session.Store)
+    , compass = require('compass');
 
 // session = express.session({
 //     secret: "club_sexdungeon",
@@ -31,7 +32,7 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(session);
-    
+    app.use(compass({ cwd: __dirname + '/client' }));
     app.use(coffeeMiddleware({
         src: __dirname + '/client',
         compress: true,
@@ -41,6 +42,12 @@ app.configure(function(){
         bare: true
     }));
 });
+
+app.use(function(req, res, next) {
+    compass.compile(function(err, stdout, stderr) {
+        console.log('Compass compiled.')
+    });
+})
 
 io.use(sharedsession(session));
 
