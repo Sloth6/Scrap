@@ -47,6 +47,7 @@ app.use(function(req, res, next) {
     compass.compile(function(err, stdout, stderr) {
         console.log('Compass compiled.')
     });
+    next();
 })
 
 io.use(sharedsession(session));
