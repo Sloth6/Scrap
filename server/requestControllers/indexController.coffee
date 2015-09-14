@@ -23,24 +23,16 @@ indexPage = (res) ->
 module.exports =
   index: (req, res, app, callback) ->
     if req.session.currentUserId?
-      currentUserId = req.session.currentUserId
-      models.User.find(
-        where: { id: currentUserId }
-        include: [ {
-          model:models.Space, include:[ model:models.Element, models.User ]
-        } ]
-      ).complete (err, user) ->
+      models.User.find( where: { id: req.session.currentUserId }).complete (err, user) ->
         return callback err if err?
         return indexPage res unless user?
-        req.session.currentUserId = user.id        
-        
-        for space in user.spaces
-          space.nameMap = nameMap space.users
-          space.elements.sort (a, b) ->
-            new Date(b.createdAt) - new Date(a.createdAt)
-
-        res.render 'home.jade', { user, title: 'Hotpot' }
-        callback()
+        models.Space.find({
+          where: { root: true, UserId: user.id }
+          include:[ model:models.Element, models.User ]
+        }).complete (err, space) ->
+          return callback err if err?
+          res.render 'home.jade', { user, collection:space, title: 'Hotpot' }
+          callback()
     else
       indexPage res
       callback()

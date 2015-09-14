@@ -22,12 +22,12 @@ section.index {
     }
     
     .cover {
-        width: $articleWidth;
-        height: $articleWidthWide;
+        width: $articleSide;
+        height: $articleSideWide;
         
         @media screen and (max-width: 640px) {
             width: 90%;
-            max-width: $articleWidth;
+            max-width: $articleSide;
             
             &.title {
                 margin-top: $col;
@@ -36,12 +36,12 @@ section.index {
     }
             
     section.form {
-        width: $articleWidthNarrow;
+        width: $articleSideNarrow;
         padding-bottom: $broadMargin;
     }        
     
     section.description {
-        width: $articleWidthNarrow;
+        width: $articleSideNarrow;
         padding-bottom: $broadMargin;
     }
 }

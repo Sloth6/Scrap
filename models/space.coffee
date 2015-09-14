@@ -6,10 +6,14 @@ module.exports = (sequelize, DataTypes) ->
     spaceKey:
       type: DataTypes.TEXT
       allowNull: false
+    root:
+      type: DataTypes.BOOLEAN
+      defaultValue: false
+      allowNull: false
     publicRead:
       type: DataTypes.BOOLEAN
       allowNull: false
-      default: true
+      defaultValue: true
     lastChange:
       type: DataTypes.DATE
       allowNull: false

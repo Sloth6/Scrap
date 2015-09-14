@@ -94,11 +94,6 @@ module.exports =
     id = data.elementId
     spaceKey = data.spaceKey
 
-    # Post.destroy({
-    #   where: {
-    #     status: 'inactive'
-    #   }
-    # })
 
     query = "DELETE FROM \"Elements\" WHERE \"id\"=:id returning \"contentType\", content"
 
@@ -107,8 +102,6 @@ module.exports =
       .complete (err, results) ->
         return callback err if err?
         console.log results
-        
-
         type = results[0].contentType
         content = results[0].content
         
@@ -120,6 +113,19 @@ module.exports =
         #     console.log err if err
         sio.to(spaceKey).emit 'removeElement', { id }
         callback()
+
+  moveToCollection: (sio, socket, data, callback) ->
+    { elemId, spaceKey } = data
+    console.log "moveto collection data:", data
+    q = "
+        UPDATE \"Elements\"
+        SET \"SpaceId\" = (Select id from \"Spaces\" WHERE \"spaceKey\"=:spaceKey)
+        WHERE \"id\"=:elemId
+        "
+    models.sequelize.query(q, null, null, data).complete (err, results) ->
+      console.log err, results
+      return callback err if err?
+
 
   updateElement : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId

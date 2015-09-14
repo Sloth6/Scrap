@@ -1,9 +1,11 @@
 defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [20, 15]
 openCollectionDuration  = 1000
-margin = $(window).width() / 24
-sliderBorder = () -> $(window).width() / 6
-edgeWidth = 72
+
+margin = $(window).width() / 48
+sliderMarginTop = 100
+sliderBorder = () -> $(window).width() / 8
+edgeWidth = 36
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
@@ -34,15 +36,17 @@ yTransform = (elem) ->
 $ ->
   window.socket = io.connect()
   window.openSpace = "home"
-
   history.pushState { name: "home" }, "", "/"
+
+  window.container = $('.slidingContainer')
   
-  collectionRealign.call $('.slidingContainer'), false
+  collectionRealign { animate: false }
   
   $.Velocity.defaults.duration = openCollectionDuration
   $.Velocity.defaults.easing = openCollectionCurve
   $.Velocity.defaults.queue = false
 
+  collectionOpen $('.cover.root')
   # Main scroll event
   $(window).scroll (event) ->
     collectionScroll.call $('.slidingContainer')
@@ -59,17 +63,18 @@ $ ->
   # Close a collection on page back
   window.onpopstate = (event) ->
     # event.state.name will either be 'home' or a spaceKey
-    spaceKey = event.state.name
-    window.openSpace = spaceKey
+    # spaceKey = event.state.name
+    # window.openSpace = spaceKey    
     # always close any open collection first
-    if  $('.cover.open').length
-      collectionClose $('.cover.open')
+    if $('.cover.open').length
+      collectionClose()
     
     # equivlant to if spaceKey != home and spacekey cover exists
-    if $(".cover.#{spaceKey}").length
-      collectionOpen $(".cover.#{spaceKey}")
+    # if $(".cover.#{spaceKey}").length
+    #   collectionOpen $(".cover.#{spaceKey}")
 
   $('header.cover').each () ->
     backgroundColor = randomColor()
     $(@).find('.card.colored').css { backgroundColor : backgroundColor }
     $(@).find('.typeOutlineClear').css { '-webkit-text-fill-color' : backgroundColor }
+

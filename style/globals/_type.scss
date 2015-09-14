@@ -2,6 +2,7 @@
 // $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
 /* $fontFamily:            'Neue Haas Unica W01', "Helvetica Neue"; */
 $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
+$fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
 
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
@@ -25,7 +26,7 @@ $typeTitleLeading:    48pt;
 $headerLeftMarginOffset:
                     -1pt;
 @mixin typeTitle {
-/*     font-family:    "AGaramondPro", "helvetica"; */
+//     font-family:    $fontFamilySerif;
     font-size:      $typeTitleSize;
     font-weight:    $fontWeightBold;
     letter-spacing: -(1em / 24);
@@ -34,7 +35,8 @@ $headerLeftMarginOffset:
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
+//     font-family:    $fontFamilySerif;
     letter-spacing: -(1em / 24);
     line-height:    $typeHeaderLeading;
 }
@@ -51,28 +53,7 @@ $headerLeftMarginOffset:
     font-size:      $typeSmallSize;
     font-weight:    $fontWeightRegular;
     line-height:    12pt;
-    letter-spacing: (1em/16);
-}
-
-@mixin typeHeader1 {
-    font-size:      72pt;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: -.0625em;
-    line-height:    1em;
-}
-
-@mixin typeHeader2 {
-    font-size:      48pt;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: -.04em;
-    line-height:    1em;
-}
-
-@mixin typeHeader3 {
-    font-size:      36pt;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: -.04em;
-    line-height:    1em;
+    letter-spacing: (1em/32);
 }
 
 @mixin smallCaps {
@@ -90,7 +71,7 @@ $headerLeftMarginOffset:
 
 @mixin typeSmallSmallCaps {
     @include        smallCaps;
-    font-size:      $typeSmallSize * .75;
+    font-size:      $typeSmallSize * .667;
     font-weight:    $fontWeightMedium;
     letter-spacing: .125em;
 }
@@ -126,47 +107,42 @@ $headerLeftMarginOffset:
 html {
     @include typeBody;
     font-variant-numeric: oldstyle-num;
-    
-    .typeTitle {
-        @include typeTitle;
+}
+.typeTitle {
+    @include typeTitle;
+}
+
+.headerType {
+    @include typeHeader;
+}
+
+.bodyType {
+    @include typeBody;
+            
+    &.smallCaps {
+      @include typeBodySmallCaps;
     }
+}
+
+.smallType {
+    @include typeSmall;
     
-    .headerType {
-        @include typeHeader;
+    &.smallCaps {
+      @include typeSmallSmallCaps;
     }
-    
-    .bodyType {
-        @include typeBody;
-                
-        &.smallCaps {
-          @include typeBodySmallCaps;
-        }
-    }
-    
-    .smallType {
-        @include typeSmall;
+}
+
+.typeWeightBold {
+    font-weight: $fontWeightBold;
+}
+
+.typeOutlineClear {
+    @include typeOutlineClear;
+}
         
-        &.smallCaps {
-          @include typeSmallSmallCaps;
-        }
-    }
+p {
     
-    .typeWeightBold {
-        font-weight: $fontWeightBold;
-    }
-    
-    .typeWeightExtraBold {
-        font-weight: $fontWeightExtraBold;
-    }
-    
-    .typeOutlineClear {
-        @include typeOutlineClear;
-    }
-        
-    p {
-    
-      & + p {
+    & + p {
         margin-top: $baseline / 2;
-      }
     }
 }

@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) ->
   Element = sequelize.define 'Element', {
     contentType:
-      type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud', 'mp3', 'youtube'
+      type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud', 'mp3', 'youtube', 'cover'
       allowNull: false
     content:
       type: DataTypes.TEXT

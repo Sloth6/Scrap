@@ -1,20 +1,23 @@
-article.addElementForm.open.slider.card(data-spacekey=collection.spaceKey)
-  ul
-    li.text.note.closed.tall.expandable
-      span.label Write a note or paste a link
-      textarea.textInput(placeholder="Write a note or paste a link")
-    li.cardButtons
-    li.button.closed.upload.bodyType.smallCaps
-      span.label Upload a file
-      form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
-        input(type='hidden', name='key')
-        input(type='hidden', name='AWSAccessKeyId', value="AKIAJKJJR5OLTKWMMHSA")
-        input(type='hidden', name='acl', value='public-read')
-        input(type='hidden', name='policy')
-        input(type='hidden', name='signature')
-        input(type='hidden', name='success_action_status', value='201')
-        input(type='hidden', name='Content-Type')
-        input(type='file', class='file-input', name='file')
-    li.done.cardActions
-      a.cancel.bodyType.smallCaps.warning(href='#') Discard
-      a.submit.bodyType.smallCaps.confirm(href='#') Save
+article.element.addElementForm.slider.sliding(data-spacekey=collection.spaceKey, data-contenttype="addElementForm")
+  .translate
+    .card
+      ul
+        li.text.note.closed.tall.expandable
+          span.label Write a note or paste a link
+          textarea.textInput(placeholder="Write a note or paste a link")
+        li.cardActions
+          ul
+            li.button.closed.upload.bodyType
+              span.label Upload a file
+              form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
+                input(type='hidden', name='key')
+                input(type='hidden', name='AWSAccessKeyId', value="AKIAJKJJR5OLTKWMMHSA")
+                input(type='hidden', name='acl', value='public-read')
+                input(type='hidden', name='policy')
+                input(type='hidden', name='signature')
+                input(type='hidden', name='success_action_status', value='201')
+                input(type='hidden', name='Content-Type')
+                input(type='file', class='file-input', name='file')
+            li.done.invisible
+              a.cancel.bodyType.warning(href='#') Cancel
+              a.submit.bodyType.confirm(href='#') Save
