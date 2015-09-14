@@ -2,6 +2,7 @@
 // $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
 /* $fontFamily:            'Neue Haas Unica W01', "Helvetica Neue"; */
 $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
+$fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
 
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
@@ -25,7 +26,7 @@ $typeTitleLeading:    48pt;
 $headerLeftMarginOffset:
                     -1pt;
 @mixin typeTitle {
-/*     font-family:    "AGaramondPro", "helvetica"; */
+//     font-family:    $fontFamilySerif;
     font-size:      $typeTitleSize;
     font-weight:    $fontWeightBold;
     letter-spacing: -(1em / 24);
@@ -35,7 +36,7 @@ $headerLeftMarginOffset:
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
     font-weight:    $fontWeightMedium;
-//     font-family:    "BemboStd";
+//     font-family:    $fontFamilySerif;
     letter-spacing: -(1em / 24);
     line-height:    $typeHeaderLeading;
 }

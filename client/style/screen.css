@@ -577,7 +577,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
 /* $fontFamily:            'Neue Haas Unica W01', "Helvetica Neue"; */
-/* line 106, ../../style/globals/_type.scss */
+/* line 107, ../../style/globals/_type.scss */
 html {
   font-family: -apple-system, "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -587,16 +587,15 @@ html {
   font-variant-numeric: oldstyle-num;
 }
 
-/* line 110, ../../style/globals/_type.scss */
+/* line 111, ../../style/globals/_type.scss */
 .typeTitle {
-  /*     font-family:    "AGaramondPro", "helvetica"; */
   font-size: 52pt;
   font-weight: 700;
   letter-spacing: -0.04167em;
   line-height: 48pt;
 }
 
-/* line 114, ../../style/globals/_type.scss */
+/* line 115, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -604,7 +603,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 118, ../../style/globals/_type.scss */
+/* line 119, ../../style/globals/_type.scss */
 .bodyType {
   font-family: -apple-system, "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
@@ -612,7 +611,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0;
 }
-/* line 121, ../../style/globals/_type.scss */
+/* line 122, ../../style/globals/_type.scss */
 .bodyType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -622,14 +621,14 @@ html {
   letter-spacing: .0625em;
 }
 
-/* line 126, ../../style/globals/_type.scss */
+/* line 127, ../../style/globals/_type.scss */
 .smallType {
   font-size: 8pt;
   font-weight: 400;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 129, ../../style/globals/_type.scss */
+/* line 130, ../../style/globals/_type.scss */
 .smallType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -639,18 +638,18 @@ html {
   letter-spacing: .125em;
 }
 
-/* line 134, ../../style/globals/_type.scss */
+/* line 135, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 138, ../../style/globals/_type.scss */
+/* line 139, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 144, ../../style/globals/_type.scss */
+/* line 145, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1854,10 +1853,10 @@ section.container section.space section.content article.addElementForm.peek ul {
 }
 /* line 329, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.slideInFromSide .translate {
-  -moz-transform: translate(400px, -48px);
-  -ms-transform: translate(400px, -48px);
-  -webkit-transform: translate(400px, -48px);
-  transform: translate(400px, -48px);
+  -moz-transform: translate(400px, 0px);
+  -ms-transform: translate(400px, 0px);
+  -webkit-transform: translate(400px, 0px);
+  transform: translate(400px, 0px);
 }
 /* line 336, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.upload {
@@ -1871,7 +1870,7 @@ section.container section.space section.content article.addElementForm.typing ul
 section.container section.space section.content article.addElementForm .translate {
   overflow: hidden;
   position: relative;
-  height: 320pt;
+  height: 192pt;
   width: 256pt;
   cursor: pointer;
   -moz-transform: translate(0px, 0px);
@@ -1939,7 +1938,7 @@ section.container section.space section.content article.addElementForm ul li {
 /* line 393, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
-  height: 304pt;
+  height: 176pt;
   position: relative;
 }
 /* line 398, ../../style/layout/_article.scss */

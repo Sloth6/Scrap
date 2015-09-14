@@ -8,14 +8,14 @@ $cardPaddingLeft:       $cell;
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
-$articleWidthNarrow:    $col * 3;
-$articleWidth:          $col * 4;
-$articleWidthWide:      $col * 5;
+$articleSideNarrow:    $col * 3;
+$articleSide:          $col * 4;
+$articleSideWide:      $col * 5;
 $articleWidthVideo:     $col * 24;
 
-$articleMinHeight:      $col * 3;
+$articleMinHeight:     $col * 3;
 
-$menuWidth: $articleWidth;
+$menuWidth: $articleSide;
 $menuItemHeight: $leading;
 
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
@@ -344,11 +344,11 @@ ul.headerMenu {
     &.open {
         background: $colorCardBackground;
         border-color: $cardBorderColor;
-        width: $articleWidthNarrow;
+        width: $articleSideNarrow;
         padding: $cardPadding;
         
         &.wide {
-            width: $articleWidthWide;
+            width: $articleSideWide;
         }
         
          &.paddingBottom{
