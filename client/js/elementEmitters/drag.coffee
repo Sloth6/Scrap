@@ -56,10 +56,10 @@ scrollWindow = (event) ->
     draggingOnBorder = false
     scrollInterval = null
 
-  if event.screenX < border
-    speed = - (border - event.screenX) * draggingOnEdgeSpeed
-  else if event.screenX > $(window).width() - border
-    speed = (event.screenX - $(window).width() + border) * draggingOnEdgeSpeed
+  if event.clientX < border
+    speed = - (border - event.clientX) * draggingOnEdgeSpeed
+  else if event.clientX > $(window).width() - border
+    speed = (event.clientX - $(window).width() + border) * draggingOnEdgeSpeed
   
   if speed 
     draggingOnBorder = true
