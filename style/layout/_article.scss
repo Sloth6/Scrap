@@ -316,7 +316,50 @@ section.container section.space section.content{
         }
         
         &.addElementForm {
-            overflow-x: hidden;
+
+            // Compact view
+            &.peek {
+                .card {
+//                     background-color: transparent !important;
+//                     border: 0;
+                		@include transform(translate(0px, -48px));
+                		
+                &:after {
+                		@include transform(translate(0px, 0px));
+                }
+                    
+                }
+                
+                ul {
+                		@include transform(translate(-128px, 0px));
+                }
+            }
+            
+            
+            &.typing {
+                ul li {
+                    &.upload {
+                        opacity: 0;
+                    }
+                    
+                    &.done {
+                        opacity: 1;
+                    }
+                }
+            }
+            
+            .card {
+                position: relative;
+                height: $articleWidthWide;
+                width: $articleWidth;
+                cursor: pointer;
+                overflow: hidden;
+            		@include transform(translate(0px, 0px));
+                @include transition(1s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+
             // Plus sign for compact view
             &:after {
                 content: "";
@@ -337,50 +380,7 @@ section.container section.space section.content{
                                         -moz-transform);
             }
 
-            // Compact view
-            &.peek {
-                .card {
-//                     background-color: lime !important;
-//                     border: 0;
-//                 		@include transform(translate(0px, -50px));
-                		
-                }
-                
-                    &:after {
-                    		@include transform(translate(0px, 0px));
-                    }
-                    
-                ul {
-                		@include transform(translate(-128px, 0px));
-                }
-            }
-            
-            
-            &.typing {
-                ul li {
-                    &.upload {
-                        opacity: 0;
-                    }
-                    
-                    &.done {
-                        opacity: 1;
-                    }
-                }
-            }
-            
-            &.card {
-                position: relative;
-                height: $articleWidthWide;
-                width: $articleWidth;
-                cursor: pointer;
-                overflow: visible;
-/*
-            		@include transform(translate(0px, 0px));
-                @include transition(1s $defaultCurve);
-                @include transition-property(transform,
-                                     -webkit-transform,
-                                        -moz-transform);
-*/
+
                 
             }
                         
