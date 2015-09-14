@@ -42,7 +42,6 @@ sliderJumble = () ->
 
 sliderInit = (elems) ->
   bindCardHover()
-  showAddElementForm()
   elems.each sliderJumble
   makeDraggable elems
   elems.each () ->
@@ -80,17 +79,21 @@ slidingPlace = (animate = true) ->
   
   # If slider is at edge
   if translateX + $(@).width() < edgeWidth or translateX > $(window).width() - edgeWidth
-     $(@).addClass 'onEdge'
-     $(@).find('.card').removeClass 'cardHover'
-     # Make edge of card visible on open collections
-     if $(@).hasClass 'cover'
-       $(@).addClass 'peek' if $(@).hasClass 'open'
-     if $(@).hasClass 'addElementForm' 
-       $(@).addClass 'peek'
+    $(@).addClass 'onEdge'
+    # Make edge of card visible on open collections
+    if $(@).hasClass 'cover'
+      $(@).addClass 'peek' if $(@).hasClass 'open'
+    if $(@).hasClass 'addElementForm'
+#     If focused or focused with empty field
+      if (!$(@).hasClass('focus')) or ($(@).find('textarea').val() == '')
+        $(@).addClass 'peek'
+        $(@).find('textarea').blur()
+        $(@).find('.card').removeClass 'editing'
+        $(@).removeClass 'slideInFromSide'
+      
   # Not at edge
   else
     $(@).removeClass 'onEdge'
-    $(@).find('.card').addClass 'cardHover'
     if $(@).hasClass 'cover' or $(@).hasClass 'addElementForm' 
       $(@).removeClass 'peek'
     if $(@).hasClass 'addElementForm' 

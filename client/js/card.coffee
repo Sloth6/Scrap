@@ -4,7 +4,7 @@ $ ->
 bindCardHover = () ->
   $cardContainers = $('header.cover, .collection article')
   $cardContainers.mouseenter( () ->
-    $(@).find('.card').addClass 'hover'
+    $(@).not('.onEdge').find('.cardHover').addClass 'hover'
   ).mouseleave( () ->
-    $(@).find('.card').removeClass 'hover'
+    $(@).not('.onEdge').find('.cardHover').removeClass 'hover'
   )

@@ -11,8 +11,6 @@ section.container section.space section.content{
         line-height: 1.5em;
         transform-origin:           center;
         -webkit-transform-origin:   center;
-
-        @include typeHeader;
         
         // EVENTS
         
@@ -62,7 +60,6 @@ section.container section.space section.content{
             color: $colorType;
             
             .elementDeleteButton, author {
-                @include typeSmall;
                 @include linkReset;
                 position: absolute;
                 display: block;
@@ -212,13 +209,11 @@ section.container section.space section.content{
                 }
                 
                 .artist {
-                    @include typeSmall;
                     margin-top: $cell/2;
                 }
                 
                 .detail {
                     margin-top: $midMargin; 
-                    @include typeSmall;
                 }
             }
         }
@@ -268,19 +263,15 @@ section.container section.space section.content{
                             display: -webkit-box;
                             -webkit-line-clamp: 4;
                             -webkit-box-orient: vertical; 
-//                             max-height: $typeHeaderLeading * 3; 
-//                             text-overflow: ellipsis;
                             max-height: $typeHeaderLeading * 4;
                             overflow: hidden;
                             margin-left: $headerLeftMarginOffset;
                             padding-bottom: .125em;
                             margin-bottom: -.125em;
-//                             @include multiline-ellipsis($typeHeaderLeading * 3, $typeHeaderLeading, 1em);
                         }
     
                         .url {
                             margin-top: $cell/2;
-                            @include typeSmall;
                             @include transition($collectionOpenTransitionDuration $defaultCurve);
                             @include transition-property(opacity);
                         }
@@ -290,7 +281,6 @@ section.container section.space section.content{
                         margin-top: ($broadMargin * 3);
                         margin-bottom: $cell/2;
                         opacity: 1;
-                        @include typeSmall;
                         @include transition($collectionOpenTransitionDuration $defaultCurve);
                         @include transition-property(opacity, margin-top);
                     }
@@ -316,46 +306,31 @@ section.container section.space section.content{
         }
         
         &.addElementForm {
-            height: $articleWidthWide;
-            width: $articleWidth;
-            border: $cardBorder;
-            border-style: dashed;
-            padding: $cardPadding;
-            cursor: pointer;
-            overflow: hidden;
-            
+
             // Compact view
             &.peek {
-                
-                &:after {
-                		@include transform(translate(0px, 0px));
+                .translate {
+//                     background-color: transparent !important;
+//                     border: 0;
+                		@include transform(translate(0px, -48px));
+                		
+                    &:after {
+                    		@include transform(translate(0px, 0px));
+                    }
                 }
-                
+                                
                 ul {
                 		@include transform(translate(-128px, 0px));
                 }
+                
             }
             
-            // Plus sign for compact view
-            &:after {
-                content: "";
-                height: 24px;
-                width: 24px;
-                font-weight: $fontWeightLight;
-                background: url('/images/add.png') no-repeat;
-                background-size: cover;
-                position: absolute;
-                top:    $cell*.75;
-                right:  $cell*.75;
-                transform-origin:           center center;
-                -webkit-transform-origin:   center center;
-            		@include transform(translate(36px, 0px));
-                @include transition(.5s $defaultCurve);
-                @include transition-property(transform,
-                                     -webkit-transform,
-                                        -moz-transform);
+            &.slideInFromSide {
+                .translate {
+                    @include transform(translate(400px, -48px));
+                }
             }
-            
+
             &.typing {
                 ul li {
                     &.upload {
@@ -367,6 +342,43 @@ section.container section.space section.content{
                     }
                 }
             }
+            
+            .translate {
+                overflow: hidden;
+                position: relative;
+                height: $articleWidthWide;
+                width: $articleWidth;
+                cursor: pointer;
+            		  @include transform(translate(0px, 0px));
+                @include transition(1s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+
+                // Plus sign for compact view
+                &:after {
+                    content: "";
+                    height: 24px;
+                    width:  24px;
+                    font-weight: $fontWeightLight;
+                    background: url('/images/add.png') no-repeat;
+                    background-size: cover;
+                    position: absolute;
+                    top:    $cell*.75;
+                    right:  $cell*.75;
+                        transform-origin:           center center;
+                        -webkit-transform-origin:   center center;
+                    		@include transform(translate(36px, 0px));
+                    @include transition(.5s $defaultCurve);
+                    @include transition-property(transform,
+                                         -webkit-transform,
+                                            -moz-transform);
+                }
+
+                .card {
+                    overflow: visible;   
+                }
+            }               
                         
             ul {
             		@include transform(translate(0px, 0px));
@@ -394,12 +406,15 @@ section.container section.space section.content{
                     }
                     
                     &.cardActions {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        
                         ul {
                             li {
                                 &.upload {
-                                    background: yellow;
                                     opacity: 1;
-                                    position: relative;
                                     display: inline-block;
                                     height: $leading;
                                     width: intrinsic;
@@ -424,8 +439,6 @@ section.container section.space section.content{
                                 }
                                 
                                 &.done {
-                                    background: purple;
-                                    position: relative;
                                     display: inline-block;
                                     height: $leading;
                                     float: right;

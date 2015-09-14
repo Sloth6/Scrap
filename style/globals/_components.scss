@@ -21,8 +21,9 @@ $menuItemHeight: $leading;
 $cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
-$cardBorderWidth:           1pt;
-$cardBorderColor:           $colorType;
+$cardBorderWidth:           1px;
+$cardBorderColor:           rgba(0,0,0,.125);
+$cardBorderColorHover:      $colorType;
 $cardBorder:                $cardBorderWidth solid $cardBorderColor;
 $cardBoxShadowDimensions:   $cell $cell 0 0;
 $cardBoxShadowColor:        rgba(0,0,0,1);
@@ -49,6 +50,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
                                  color);
                                  
     &.hover {
+        border-color: $cardBorderColorHover;
         @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
         @include transform(translate(-$cell, -$cell));
         &.invertHover {
@@ -122,6 +124,7 @@ a {
 
 .card.editing {
     border-style: dashed !important;
+    border-color: $colorType !important;
     background-color: $colorCardBackground !important;
 }
 

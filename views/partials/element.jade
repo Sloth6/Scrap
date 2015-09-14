@@ -31,7 +31,7 @@ else
       case element.contentType
         when 'file'
           .decorative.fold
-      .card.cardHover(class=element.contentType)
+      .card.cardHover.invertHover(class=element.contentType)
         case element.contentType
           when 'image'
             - var content = JSON.parse(element.content)
@@ -54,17 +54,17 @@ else
             -var url = decodeURIComponent(content.url)
             .text
               header
-                h1!=content.title
-                .url!=content.domain
-              .description!=content.description
+                h1.headerType!=content.title
+                .url.smallType.smallCaps!=content.domain
+              .description.smallType!=content.description
             img(src=content.image)
-            a(href=url, target='_blank', title='Go to ' + content.title)
+            a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab.')
     
           when 'file'
             header
               - name = element.content.split('/').pop()
               //- - extension = name.pop()
-              h1.title=name.split('.')[0]
+              h1.headerType.title=name.split('.')[0]
               p.extension.smallCaps.bodyType=name.split('.').pop()
             ul.cardActions
               li.right
@@ -81,10 +81,10 @@ else
             img.soundcloudThumbnail(src=content.thumbnail_url)
             header
               .top
-                  h1.title!=content.title
-                  .artist!=content.author_name
+                  h1.headerType.title!=content.title
+                  .artist.smallType!=content.author_name
               .detail
-                .source SoundCloud
+                .source.smallType.smallCaps SoundCloud
           
           when 'youtube'
             - url = "//www.youtube.com/embed/"+ element.content
