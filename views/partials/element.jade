@@ -7,9 +7,11 @@ if element.contentType == 'cover'
   -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content.spaceKey, collection.spaceKey]
   article(id=element.id, data-contenttype='cover', data-spacekey=content.spaceKey, data-name=content.name, class=coverClasses)
     .card.cardHover.colored
+      - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
+      // .background(style='background-image: url("' + image + '");')
       section.title
-        h1.collectionTitle.typeTitle.typeOutlineClear!=content.name
-        h2.peekTitle.bodyType.typeBody.typeWeightBold!=content.name
+        h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
+        h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
         p.rename
           a.smallCaps.smallType.confirm Rename
       ul.users.menu.slideIn.left.canOpen
