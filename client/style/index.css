@@ -1848,41 +1848,41 @@ section.container section.space section.content article .card img {
   background-color: white;
 }
 /* line 322, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.peek .card {
+section.container section.space section.content article.addElementForm.peek .translate {
   -moz-transform: translate(0px, -48px);
   -ms-transform: translate(0px, -48px);
   -webkit-transform: translate(0px, -48px);
   transform: translate(0px, -48px);
 }
 /* line 327, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.peek .card:after {
+section.container section.space section.content article.addElementForm.peek .translate:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 333, ../../style/layout/_article.scss */
+/* line 332, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek ul {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
-/* line 341, ../../style/layout/_article.scss */
+/* line 340, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.upload {
   opacity: 0;
 }
-/* line 345, ../../style/layout/_article.scss */
+/* line 344, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.done {
   opacity: 1;
 }
-/* line 351, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .card {
+/* line 350, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm .translate {
+  overflow: hidden;
   position: relative;
   height: 320pt;
   width: 256pt;
   cursor: pointer;
-  overflow: hidden;
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
@@ -1896,8 +1896,8 @@ section.container section.space section.content article.addElementForm .card {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 364, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .card:after {
+/* line 363, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm .translate:after {
   content: "";
   height: 24px;
   width: 24px;
@@ -1921,6 +1921,10 @@ section.container section.space section.content article.addElementForm .card:aft
   -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
+}
+/* line 382, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm .translate .card {
+  overflow: visible;
 }
 /* line 387, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {

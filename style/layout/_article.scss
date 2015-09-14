@@ -319,17 +319,16 @@ section.container section.space section.content{
 
             // Compact view
             &.peek {
-                .card {
+                .translate {
 //                     background-color: transparent !important;
 //                     border: 0;
                 		@include transform(translate(0px, -48px));
                 		
-                &:after {
-                		@include transform(translate(0px, 0px));
+                    &:after {
+                    		@include transform(translate(0px, 0px));
+                    }
                 }
-                    
-                }
-                
+                                
                 ul {
                 		@include transform(translate(-128px, 0px));
                 }
@@ -348,41 +347,42 @@ section.container section.space section.content{
                 }
             }
             
-            .card {
+            .translate {
+                overflow: hidden;
                 position: relative;
                 height: $articleWidthWide;
                 width: $articleWidth;
                 cursor: pointer;
-                overflow: hidden;
             		@include transform(translate(0px, 0px));
                 @include transition(1s $defaultCurve);
                 @include transition-property(transform,
                                      -webkit-transform,
                                         -moz-transform);
 
-            // Plus sign for compact view
-            &:after {
-                content: "";
-                height: 24px;
-                width:  24px;
-                font-weight: $fontWeightLight;
-                background: url('/images/add.png') no-repeat;
-                background-size: cover;
-                position: absolute;
-                top:    $cell*.75;
-                right:  $cell*.75;
-                    transform-origin:           center center;
-                    -webkit-transform-origin:   center center;
-                		@include transform(translate(36px, 0px));
-                @include transition(.5s $defaultCurve);
-                @include transition-property(transform,
-                                     -webkit-transform,
-                                        -moz-transform);
-            }
+                // Plus sign for compact view
+                &:after {
+                    content: "";
+                    height: 24px;
+                    width:  24px;
+                    font-weight: $fontWeightLight;
+                    background: url('/images/add.png') no-repeat;
+                    background-size: cover;
+                    position: absolute;
+                    top:    $cell*.75;
+                    right:  $cell*.75;
+                        transform-origin:           center center;
+                        -webkit-transform-origin:   center center;
+                    		@include transform(translate(36px, 0px));
+                    @include transition(.5s $defaultCurve);
+                    @include transition-property(transform,
+                                         -webkit-transform,
+                                            -moz-transform);
+                }
 
-
-                
-            }
+                .card {
+                    overflow: visible;   
+                }
+            }               
                         
             ul {
             		@include transform(translate(0px, 0px));
