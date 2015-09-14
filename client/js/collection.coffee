@@ -6,9 +6,6 @@ loadElements = (spacekey, callback) ->
     cache[spacekey] = $(data)
     callback cache[spacekey]
 
-# given a space get the parent spacekey
-# collectionParent = (collection) ->
-#   $(".collection.#{spacekey}").parent().parent()
 coverToCollection = (cover, elements) ->
   spacekey = cover.data 'spacekey'
   collection = $("<div>").
@@ -29,13 +26,11 @@ collectionOpen = (cover) ->
   spacekey = cover.data 'spacekey'
   window.openSpace = spacekey
 
-  # edgeWidth += 32
-
   loadElements spacekey, (elements) ->
 
     parentCollection = $('.open.collection')
     parentCover = $('.open.cover')
-    prevSliding = cover.prevAll('.sliding').add cover
+    prevSliding = cover.prevAll('.sliding')
     nextSliding = cover.nextAll('.sliding')
     
     coverToCollection cover, elements    
@@ -53,10 +48,10 @@ collectionOpen = (cover) ->
     window.pastState.docWidth   = $(window.document).width()
     $(window).scrollLeft 0
 
-    console.log parentCover
     parentCover.velocity
       properties:
-        translateX: [ (() -> -$(@).width() + edgeWidth), xForceFeedSelf ]
+        translateX: [ (() -> -$(@).width()), xForceFeedSelf ]
+      options: { complete: () -> parentCover.hide() }
 
     nextSliding.velocity
       properties:
@@ -168,11 +163,10 @@ collectionScroll = () ->
   collectionChildren().filter('.sliding').each () ->
     slidingPlace.call @, false
 
-collectionElemAfterMouse = (event) ->
+collectionElemAfter = (x) ->
   # Get the element that the mouse is over
-  # sliding = collectionChildren()
   for html in collectionChildren().filter('.sliding').not('.addElementForm')
     child = $(html)
-    if parseInt(child.css('x')) + child.width() > event.screenX
+    if parseInt(child.css('x')) + child.width() > x
       return child
-  child
+  $()
