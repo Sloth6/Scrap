@@ -32,7 +32,7 @@ mergeIntoCollection = (dragging, draggingOver) ->
     dragging.remove()
     padding.remove()
     collectionRealignDontScale false
-    socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+    # socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
 
 
 leftCenterRight = (x, element) ->
@@ -71,6 +71,7 @@ scrollWindow = (event) ->
 # "Take mousemove event while dragging"
 drag = (event, draggingElement) ->
   x = event.clientX - draggingElement.width()/2
+  # y = event.clientY - draggingElement.height()/2
   draggingElement.css { x }
   scrollWindow event
   clearTimeout lastn if lastn?
@@ -86,14 +87,19 @@ afterDrag = (dragEvent, draggingElement) ->
   x = dragEvent.clientX
   draggingOver = collectionElemAfter x
   return if draggingOver[0] == padding[0]
-  position = leftCenterRight x, draggingOver
   
-  if position is 'left'
-    padding.insertBefore draggingOver
+  # if we are dragging at the end
+  if draggingOver[0] == undefined
+    $('.open.collection .collectionContent').append padding
     collectionRealignDontScale false
-  else if position is 'right'
-    padding.insertAfter draggingOver
-    collectionRealignDontScale false
+  else
+    position = leftCenterRight x, draggingOver
+    if position is 'left'
+      padding.insertBefore draggingOver
+      collectionRealignDontScale false
+    else if position is 'right'
+      padding.insertAfter draggingOver
+      collectionRealignDontScale false
 
   lastDraggingOver = draggingOver
 
@@ -109,7 +115,7 @@ stopDragging = (event, elem) ->
     scrollInterval = null
 
   position = leftCenterRight event.clientX, lastDraggingOver
-  if position is 'center' and !elem.hasClass('cover')
+  if position is 'center' and !elem.hasClass('cover') and lastDraggingOver[0]?
     mergeIntoCollection elem, lastDraggingOver
   else if $('.slidingContainer').find('.padding').length # ensure in dom
     elem.insertAfter padding
@@ -118,6 +124,8 @@ stopDragging = (event, elem) ->
     content = collectionChildren().not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
     socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
+  else
+    console.log 'did not find padding'
 
 
 startDragging = (elem) ->
