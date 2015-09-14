@@ -11,8 +11,6 @@ section.container section.space section.content{
         line-height: 1.5em;
         transform-origin:           center;
         -webkit-transform-origin:   center;
-
-        @include typeHeader;
         
         // EVENTS
         
@@ -62,7 +60,6 @@ section.container section.space section.content{
             color: $colorType;
             
             .elementDeleteButton, author {
-                @include typeSmall;
                 @include linkReset;
                 position: absolute;
                 display: block;
@@ -212,13 +209,11 @@ section.container section.space section.content{
                 }
                 
                 .artist {
-                    @include typeSmall;
                     margin-top: $cell/2;
                 }
                 
                 .detail {
                     margin-top: $midMargin; 
-                    @include typeSmall;
                 }
             }
         }
@@ -268,19 +263,15 @@ section.container section.space section.content{
                             display: -webkit-box;
                             -webkit-line-clamp: 4;
                             -webkit-box-orient: vertical; 
-//                             max-height: $typeHeaderLeading * 3; 
-//                             text-overflow: ellipsis;
                             max-height: $typeHeaderLeading * 4;
                             overflow: hidden;
                             margin-left: $headerLeftMarginOffset;
                             padding-bottom: .125em;
                             margin-bottom: -.125em;
-//                             @include multiline-ellipsis($typeHeaderLeading * 3, $typeHeaderLeading, 1em);
                         }
     
                         .url {
                             margin-top: $cell/2;
-                            @include typeSmall;
                             @include transition($collectionOpenTransitionDuration $defaultCurve);
                             @include transition-property(opacity);
                         }
@@ -290,7 +281,6 @@ section.container section.space section.content{
                         margin-top: ($broadMargin * 3);
                         margin-bottom: $cell/2;
                         opacity: 1;
-                        @include typeSmall;
                         @include transition($collectionOpenTransitionDuration $defaultCurve);
                         @include transition-property(opacity, margin-top);
                     }
@@ -332,9 +322,15 @@ section.container section.space section.content{
                 ul {
                 		@include transform(translate(-128px, 0px));
                 }
+                
             }
             
-            
+            &.slideInFromSide {
+                .translate {
+                    @include transform(translate(400px, -48px));
+                }
+            }
+
             &.typing {
                 ul li {
                     &.upload {
@@ -353,7 +349,7 @@ section.container section.space section.content{
                 height: $articleWidthWide;
                 width: $articleWidth;
                 cursor: pointer;
-            		@include transform(translate(0px, 0px));
+            		  @include transform(translate(0px, 0px));
                 @include transition(1s $defaultCurve);
                 @include transition-property(transform,
                                      -webkit-transform,
