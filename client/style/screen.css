@@ -648,17 +648,17 @@ html p + p {
   margin-top: 8pt;
 }
 
-/* line 80, ../../style/globals/_components.scss */
+/* line 82, ../../style/globals/_components.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
-/* line 83, ../../style/globals/_components.scss */
+/* line 85, ../../style/globals/_components.scss */
 a.warning {
   color: #ff0000;
 }
-/* line 86, ../../style/globals/_components.scss */
+/* line 88, ../../style/globals/_components.scss */
 a.warning:hover {
   -webkit-animation: hoverWarningFlicker 20s infinite linear;
   -moz-animation: hoverWarningFlicker 20s infinite linear;
@@ -669,7 +669,7 @@ a.warning:hover {
       border-color: $colorAccent;
   */
 }
-/* line 92, ../../style/globals/_components.scss */
+/* line 94, ../../style/globals/_components.scss */
 a.confirm:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -681,35 +681,35 @@ a.confirm:hover {
   */
 }
 
-/* line 99, ../../style/globals/_components.scss */
+/* line 101, ../../style/globals/_components.scss */
 .invertHover:hover {
   -webkit-filter: invert(1);
 }
 
-/* line 105, ../../style/globals/_components.scss */
+/* line 107, ../../style/globals/_components.scss */
 .blackHover:hover {
   background-color: #000000 !important;
   color: white !important;
   border-color: white;
 }
-/* line 71, ../../style/globals/_components.scss */
+/* line 73, ../../style/globals/_components.scss */
 .blackHover:hover.cardHover.hover {
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
 }
 
-/* line 110, ../../style/globals/_components.scss */
+/* line 112, ../../style/globals/_components.scss */
 .card {
   background-color: white;
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   display: block;
 }
 
-/* line 115, ../../style/globals/_components.scss */
+/* line 117, ../../style/globals/_components.scss */
 .cardHover {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -720,8 +720,9 @@ a.confirm:hover {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
 }
-/* line 51, ../../style/globals/_components.scss */
+/* line 52, ../../style/globals/_components.scss */
 .cardHover.hover {
+  border-color: #000000;
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
@@ -730,14 +731,14 @@ a.confirm:hover {
   -webkit-transform: translate(-8pt, -8pt);
   transform: translate(-8pt, -8pt);
 }
-/* line 54, ../../style/globals/_components.scss */
+/* line 56, ../../style/globals/_components.scss */
 .cardHover.hover.invertHover {
   -moz-box-shadow: 8pt 8pt 0 0 white;
   -webkit-box-shadow: 8pt 8pt 0 0 white;
   box-shadow: 8pt 8pt 0 0 white;
 }
 
-/* line 119, ../../style/globals/_components.scss */
+/* line 121, ../../style/globals/_components.scss */
 .cardDrag.dragging {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.125s;
@@ -748,8 +749,9 @@ a.confirm:hover {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
 }
-/* line 51, ../../style/globals/_components.scss */
+/* line 52, ../../style/globals/_components.scss */
 .cardDrag.dragging.hover {
+  border-color: #000000;
   -moz-box-shadow: 8pt 8pt 0 0 black;
   -webkit-box-shadow: 8pt 8pt 0 0 black;
   box-shadow: 8pt 8pt 0 0 black;
@@ -758,20 +760,20 @@ a.confirm:hover {
   -webkit-transform: translate(-8pt, -8pt);
   transform: translate(-8pt, -8pt);
 }
-/* line 54, ../../style/globals/_components.scss */
+/* line 56, ../../style/globals/_components.scss */
 .cardDrag.dragging.hover.invertHover {
   -moz-box-shadow: 8pt 8pt 0 0 white;
   -webkit-box-shadow: 8pt 8pt 0 0 white;
   box-shadow: 8pt 8pt 0 0 white;
 }
 
-/* line 123, ../../style/globals/_components.scss */
+/* line 125, ../../style/globals/_components.scss */
 .card.editing {
   border-style: dashed !important;
   background-color: white !important;
 }
 
-/* line 128, ../../style/globals/_components.scss */
+/* line 130, ../../style/globals/_components.scss */
 .cardActions {
   position: absolute;
   bottom: 4pt;
@@ -783,22 +785,22 @@ a.confirm:hover {
   letter-spacing: 0;
 }
 
-/* line 137, ../../style/globals/_components.scss */
+/* line 139, ../../style/globals/_components.scss */
 .invisible {
   opacity: 0;
 }
 
-/* line 143, ../../style/globals/_components.scss */
+/* line 145, ../../style/globals/_components.scss */
 form {
   position: relative;
 }
-/* line 146, ../../style/globals/_components.scss */
+/* line 148, ../../style/globals/_components.scss */
 form li {
   list-style: none;
   margin-top: 16pt;
 }
 
-/* line 153, ../../style/globals/_components.scss */
+/* line 155, ../../style/globals/_components.scss */
 label {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -808,7 +810,7 @@ label {
   letter-spacing: .0625em;
 }
 
-/* line 164, ../../style/globals/_components.scss */
+/* line 166, ../../style/globals/_components.scss */
 ::-webkit-input-placeholder {
   color: #000000;
   opacity: 1;
@@ -816,7 +818,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 168, ../../style/globals/_components.scss */
+/* line 170, ../../style/globals/_components.scss */
 :-moz-placeholder {
   color: #000000;
   opacity: 1;
@@ -824,7 +826,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 171, ../../style/globals/_components.scss */
+/* line 173, ../../style/globals/_components.scss */
 ::-moz-placeholder {
   color: #000000;
   opacity: 1;
@@ -832,7 +834,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 174, ../../style/globals/_components.scss */
+/* line 176, ../../style/globals/_components.scss */
 :-ms-input-placeholder {
   color: #000000;
   opacity: 1;
@@ -840,7 +842,7 @@ label {
   text-transform: lowercase;
 }
 
-/* line 178, ../../style/globals/_components.scss */
+/* line 180, ../../style/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -853,90 +855,90 @@ input {
   line-height: 16pt;
   letter-spacing: 0;
   color: #000000;
-  border-bottom: 1pt #000000 solid;
+  border-bottom: 1px #000000 solid;
   max-width: 100%;
   border-radius: 0;
 }
-/* line 190, ../../style/globals/_components.scss */
+/* line 192, ../../style/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
   text-align: left;
 }
-/* line 196, ../../style/globals/_components.scss */
+/* line 198, ../../style/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
-/* line 202, ../../style/globals/_components.scss */
+/* line 204, ../../style/globals/_components.scss */
 input[type=email] {
   text-transform: lowercase;
 }
 
-/* line 209, ../../style/globals/_components.scss */
+/* line 211, ../../style/globals/_components.scss */
 .slideIn li {
   opacity: 0;
 }
-/* line 213, ../../style/globals/_components.scss */
+/* line 215, ../../style/globals/_components.scss */
 .slideIn.open li {
   opacity: 1;
 }
-/* line 219, ../../style/globals/_components.scss */
+/* line 221, ../../style/globals/_components.scss */
 .slideIn.left li, .slideIn.left.open li.hidden {
   -moz-transform: translate3d(-128pt, 0, 0);
   -ms-transform: translate3d(-128pt, 0, 0);
   -webkit-transform: translate3d(-128pt, 0, 0);
   transform: translate3d(-128pt, 0, 0);
 }
-/* line 222, ../../style/globals/_components.scss */
+/* line 224, ../../style/globals/_components.scss */
 .slideIn.left li.first, .slideIn.left.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 229, ../../style/globals/_components.scss */
+/* line 231, ../../style/globals/_components.scss */
 .slideIn.left.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 236, ../../style/globals/_components.scss */
+/* line 238, ../../style/globals/_components.scss */
 .slideIn.right li, .slideIn.right.open li.hidden {
   -moz-transform: translate3d(128pt, 0, 0);
   -ms-transform: translate3d(128pt, 0, 0);
   -webkit-transform: translate3d(128pt, 0, 0);
   transform: translate3d(128pt, 0, 0);
 }
-/* line 239, ../../style/globals/_components.scss */
+/* line 241, ../../style/globals/_components.scss */
 .slideIn.right li.first, .slideIn.right.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 243, ../../style/globals/_components.scss */
+/* line 245, ../../style/globals/_components.scss */
 .slideIn.right li.first a:hover, .slideIn.right.open li.hidden.first a:hover {
   left: -8pt;
 }
-/* line 249, ../../style/globals/_components.scss */
+/* line 251, ../../style/globals/_components.scss */
 .slideIn.right li input, .slideIn.right.open li.hidden input {
   text-align: left;
 }
-/* line 252, ../../style/globals/_components.scss */
+/* line 254, ../../style/globals/_components.scss */
 .slideIn.right li input[type=button], .slideIn.right li input[type=submit], .slideIn.right.open li.hidden input[type=button], .slideIn.right.open li.hidden input[type=submit] {
   text-align: right;
 }
-/* line 260, ../../style/globals/_components.scss */
+/* line 262, ../../style/globals/_components.scss */
 .slideIn.right.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 269, ../../style/globals/_components.scss */
+/* line 271, ../../style/globals/_components.scss */
 .slideIn.hideFirst > li.first {
   position: absolute;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -948,7 +950,7 @@ input[type=email] {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 280, ../../style/globals/_components.scss */
+/* line 282, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right.open > li.first {
   -moz-transform: translate3d(128pt, 0, 0);
   -ms-transform: translate3d(128pt, 0, 0);
@@ -956,7 +958,7 @@ input[type=email] {
   transform: translate3d(128pt, 0, 0);
   opacity: 0;
 }
-/* line 286, ../../style/globals/_components.scss */
+/* line 288, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right > li.first {
   right: 8pt;
   -moz-transform: translate3d(0, 0, 0);
@@ -964,7 +966,7 @@ input[type=email] {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 294, ../../style/globals/_components.scss */
+/* line 296, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left.open > li.first {
   -moz-transform: translate3d(-128pt, 0, 0);
   -ms-transform: translate3d(-128pt, 0, 0);
@@ -972,7 +974,7 @@ input[type=email] {
   transform: translate3d(-128pt, 0, 0);
   opacity: 0;
 }
-/* line 300, ../../style/globals/_components.scss */
+/* line 302, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left > li.first {
   left: 8pt;
   -moz-transform: translate3d(-128pt, 0, 0);
@@ -981,16 +983,16 @@ input[type=email] {
   transform: translate3d(-128pt, 0, 0);
 }
 
-/* line 308, ../../style/globals/_components.scss */
+/* line 310, ../../style/globals/_components.scss */
 ul.headerMenu {
   position: absolute;
   display: inline-block;
   white-space: nowrap;
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   border-color: transparent;
   background-color: transparent;
   width: 0;
-  top: -1pt;
+  top: -1px;
   font-family: -apple-system, "Neue Haas Unica W01", "Helvetica Neue";
   font-size: 12pt;
   font-weight: 400;
@@ -1005,58 +1007,58 @@ ul.headerMenu {
   -webkit-transition-property: left, right, background, border, width, padding;
   transition-property: left, right, background, border, width, padding;
 }
-/* line 321, ../../style/globals/_components.scss */
+/* line 323, ../../style/globals/_components.scss */
 ul.headerMenu.left {
   float: left;
-  left: -1pt;
+  left: -1px;
 }
-/* line 326, ../../style/globals/_components.scss */
+/* line 328, ../../style/globals/_components.scss */
 ul.headerMenu.right {
-  right: -1pt;
+  right: -1px;
 }
-/* line 332, ../../style/globals/_components.scss */
+/* line 334, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.left {
   left: -384pt;
 }
-/* line 336, ../../style/globals/_components.scss */
+/* line 338, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.right {
   right: -384pt;
 }
-/* line 341, ../../style/globals/_components.scss */
+/* line 343, ../../style/globals/_components.scss */
 ul.headerMenu.open {
   background: white;
-  border-color: #000000;
+  border-color: rgba(0, 0, 0, 0.125);
   width: 192pt;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 347, ../../style/globals/_components.scss */
+/* line 349, ../../style/globals/_components.scss */
 ul.headerMenu.open.wide {
   width: 320pt;
 }
-/* line 351, ../../style/globals/_components.scss */
+/* line 353, ../../style/globals/_components.scss */
 ul.headerMenu.open.paddingBottom {
   padding-bottom: 48pt;
 }
-/* line 355, ../../style/globals/_components.scss */
+/* line 357, ../../style/globals/_components.scss */
 ul.headerMenu.open li {
   height: 16pt;
   margin-bottom: 8pt;
 }
-/* line 359, ../../style/globals/_components.scss */
+/* line 361, ../../style/globals/_components.scss */
 ul.headerMenu.open li a, ul.headerMenu.open li form {
   position: relative;
 }
-/* line 365, ../../style/globals/_components.scss */
+/* line 367, ../../style/globals/_components.scss */
 ul.headerMenu li {
   height: 0;
   margin-bottom: 0;
 }
 
-/* line 373, ../../style/globals/_components.scss */
+/* line 375, ../../style/globals/_components.scss */
 ul.menu section {
   padding-bottom: 16pt;
 }
-/* line 377, ../../style/globals/_components.scss */
+/* line 379, ../../style/globals/_components.scss */
 ul.menu li {
   position: relative;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1154,11 +1156,11 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-duration(1.9s); }
   */
 }
-/* line 385, ../../style/globals/_components.scss */
+/* line 387, ../../style/globals/_components.scss */
 ul.menu li.inputText {
   margin-bottom: 32pt;
 }
-/* line 389, ../../style/globals/_components.scss */
+/* line 391, ../../style/globals/_components.scss */
 ul.menu li.heading {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -1167,20 +1169,20 @@ ul.menu li.heading {
   font-weight: 500;
   letter-spacing: .0625em;
 }
-/* line 393, ../../style/globals/_components.scss */
+/* line 395, ../../style/globals/_components.scss */
 ul.menu li.hidden {
   height: 0;
   margin: 0;
   opacity: 0;
 }
-/* line 399, ../../style/globals/_components.scss */
+/* line 401, ../../style/globals/_components.scss */
 ul.menu li.first {
   opacity: 1;
   height: 16pt;
   cursor: pointer;
   margin-top: 4pt;
 }
-/* line 406, ../../style/globals/_components.scss */
+/* line 408, ../../style/globals/_components.scss */
 ul.menu li input {
   width: 100%;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1192,7 +1194,7 @@ ul.menu li input {
   -webkit-transition-property: width;
   transition-property: width;
 }
-/* line 412, ../../style/globals/_components.scss */
+/* line 414, ../../style/globals/_components.scss */
 ul.menu li a {
   position: relative;
   left: 0;
@@ -1201,11 +1203,11 @@ ul.menu li a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 417, ../../style/globals/_components.scss */
+/* line 419, ../../style/globals/_components.scss */
 ul.menu li a:hover, ul.menu li a:active, ul.menu li a:focus {
   left: 8pt;
 }
-/* line 422, ../../style/globals/_components.scss */
+/* line 424, ../../style/globals/_components.scss */
 ul.menu li > a {
   display: block;
   width: 100%;
@@ -1215,140 +1217,140 @@ ul.menu li > a {
   -webkit-transition-property: left, right, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, transform, -webkit-transform, -moz-transform;
 }
-/* line 498, ../../style/globals/_components.scss */
+/* line 500, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(1) {
   -moz-transition-delay: 0s;
   -o-transition-delay: 0s;
   -webkit-transition-delay: 0s;
   transition-delay: 0s;
 }
-/* line 499, ../../style/globals/_components.scss */
+/* line 501, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.025s;
   -o-transition-delay: 0.025s;
   -webkit-transition-delay: 0.025s;
   transition-delay: 0.025s;
 }
-/* line 500, ../../style/globals/_components.scss */
+/* line 502, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.05s;
   -o-transition-delay: 0.05s;
   -webkit-transition-delay: 0.05s;
   transition-delay: 0.05s;
 }
-/* line 501, ../../style/globals/_components.scss */
+/* line 503, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.075s;
   -o-transition-delay: 0.075s;
   -webkit-transition-delay: 0.075s;
   transition-delay: 0.075s;
 }
-/* line 502, ../../style/globals/_components.scss */
+/* line 504, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 503, ../../style/globals/_components.scss */
+/* line 505, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.125s;
   -o-transition-delay: 0.125s;
   -webkit-transition-delay: 0.125s;
   transition-delay: 0.125s;
 }
-/* line 504, ../../style/globals/_components.scss */
+/* line 506, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 505, ../../style/globals/_components.scss */
+/* line 507, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.175s;
   -o-transition-delay: 0.175s;
   -webkit-transition-delay: 0.175s;
   transition-delay: 0.175s;
 }
-/* line 506, ../../style/globals/_components.scss */
+/* line 508, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 507, ../../style/globals/_components.scss */
+/* line 509, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.225s;
   -o-transition-delay: 0.225s;
   -webkit-transition-delay: 0.225s;
   transition-delay: 0.225s;
 }
-/* line 508, ../../style/globals/_components.scss */
+/* line 510, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.25s;
   -o-transition-delay: 0.25s;
   -webkit-transition-delay: 0.25s;
   transition-delay: 0.25s;
 }
-/* line 509, ../../style/globals/_components.scss */
+/* line 511, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.275s;
   -o-transition-delay: 0.275s;
   -webkit-transition-delay: 0.275s;
   transition-delay: 0.275s;
 }
-/* line 510, ../../style/globals/_components.scss */
+/* line 512, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 511, ../../style/globals/_components.scss */
+/* line 513, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.325s;
   -o-transition-delay: 0.325s;
   -webkit-transition-delay: 0.325s;
   transition-delay: 0.325s;
 }
-/* line 512, ../../style/globals/_components.scss */
+/* line 514, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.35s;
   -o-transition-delay: 0.35s;
   -webkit-transition-delay: 0.35s;
   transition-delay: 0.35s;
 }
-/* line 513, ../../style/globals/_components.scss */
+/* line 515, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.375s;
   -o-transition-delay: 0.375s;
   -webkit-transition-delay: 0.375s;
   transition-delay: 0.375s;
 }
-/* line 514, ../../style/globals/_components.scss */
+/* line 516, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 515, ../../style/globals/_components.scss */
+/* line 517, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.425s;
   -o-transition-delay: 0.425s;
   -webkit-transition-delay: 0.425s;
   transition-delay: 0.425s;
 }
-/* line 516, ../../style/globals/_components.scss */
+/* line 518, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.45s;
   -o-transition-delay: 0.45s;
   -webkit-transition-delay: 0.45s;
   transition-delay: 0.45s;
 }
-/* line 517, ../../style/globals/_components.scss */
+/* line 519, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 0.475s;
   -o-transition-delay: 0.475s;
@@ -1356,7 +1358,7 @@ ul.menu li:nth-of-type(20) {
   transition-delay: 0.475s;
 }
 
-/* line 544, ../../style/globals/_components.scss */
+/* line 546, ../../style/globals/_components.scss */
 .mask {
   height: 100vh;
   width: 100vw;
@@ -1366,7 +1368,7 @@ ul.menu li:nth-of-type(20) {
   background: transparent;
 }
 
-/* line 554, ../../style/globals/_components.scss */
+/* line 556, ../../style/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -1644,7 +1646,7 @@ section.container section.space section.content article.youtube {
 section.container section.space section.content article.youtube .content .card {
   width: intrinsic;
   padding: 0px;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.125);
 }
 /* line 141, ../../style/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card iframe {
@@ -1675,14 +1677,14 @@ section.container section.space section.content article.file .content .decorativ
 /* line 175, ../../style/layout/_article.scss */
 section.container section.space section.content article.file .content .decorative.fold:after {
   content: " ";
-  left: -1pt;
+  left: -1px;
   right: 0;
   top: 48px;
   position: absolute;
-  height: 229pt;
+  height: 228.75pt;
   width: 48px;
   background: white;
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   border-left: 0;
   border-top: 0;
 }
@@ -1730,19 +1732,19 @@ section.container section.space section.content article .card {
 /* line 231, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
   background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   width: 256pt;
   min-height: 192pt;
 }
 /* line 240, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -1847,29 +1849,9 @@ section.container section.space section.content article .card img {
 }
 /* line 318, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm {
-  height: 320pt;
-  width: 256pt;
-  border: 1pt solid #000000;
-  border-style: dashed;
-  padding: 4pt 4pt 4pt 4pt;
-  cursor: pointer;
-  overflow: hidden;
+  overflow-x: hidden;
 }
-/* line 330, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.peek:after {
-  -moz-transform: translate(0px, 0px);
-  -ms-transform: translate(0px, 0px);
-  -webkit-transform: translate(0px, 0px);
-  transform: translate(0px, 0px);
-}
-/* line 334, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.peek ul {
-  -moz-transform: translate(-128px, 0px);
-  -ms-transform: translate(-128px, 0px);
-  -webkit-transform: translate(-128px, 0px);
-  transform: translate(-128px, 0px);
-}
-/* line 340, ../../style/layout/_article.scss */
+/* line 321, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm:after {
   content: "";
   height: 24px;
@@ -1895,6 +1877,20 @@ section.container section.space section.content article.addElementForm:after {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
+/* line 349, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm.peek:after {
+  -moz-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+}
+/* line 353, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm.peek ul {
+  -moz-transform: translate(-128px, 0px);
+  -ms-transform: translate(-128px, 0px);
+  -webkit-transform: translate(-128px, 0px);
+  transform: translate(-128px, 0px);
+}
 /* line 361, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.upload {
   opacity: 0;
@@ -1904,6 +1900,21 @@ section.container section.space section.content article.addElementForm.typing ul
   opacity: 1;
 }
 /* line 371, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm.card {
+  position: relative;
+  height: 320pt;
+  width: 256pt;
+  cursor: pointer;
+  overflow: visible;
+  /*
+              		@include transform(translate(0px, 0px));
+                  @include transition(1s $defaultCurve);
+                  @include transition-property(transform,
+                                       -webkit-transform,
+                                          -moz-transform);
+  */
+}
+/* line 387, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -1918,21 +1929,21 @@ section.container section.space section.content article.addElementForm ul {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 378, ../../style/layout/_article.scss */
+/* line 394, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
-/* line 381, ../../style/layout/_article.scss */
+/* line 397, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 304pt;
   position: relative;
 }
-/* line 386, ../../style/layout/_article.scss */
+/* line 402, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
-/* line 390, ../../style/layout/_article.scss */
+/* line 406, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 400;
@@ -1940,16 +1951,21 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 24pt;
   height: 100%;
 }
-/* line 399, ../../style/layout/_article.scss */
+/* line 412, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul li.cardActions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/* line 420, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload {
-  background: yellow;
   opacity: 1;
-  position: relative;
   display: inline-block;
   height: 16pt;
   width: intrinsic;
 }
-/* line 407, ../../style/layout/_article.scss */
+/* line 426, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1957,7 +1973,7 @@ section.container section.space section.content article.addElementForm ul li.car
   left: 0;
   position: absolute;
 }
-/* line 414, ../../style/layout/_article.scss */
+/* line 433, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1967,16 +1983,14 @@ section.container section.space section.content article.addElementForm ul li.car
   opacity: 0;
   cursor: pointer;
 }
-/* line 426, ../../style/layout/_article.scss */
+/* line 445, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.done {
-  background: purple;
-  position: relative;
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 434, ../../style/layout/_article.scss */
+/* line 451, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.done a {
   border: 0;
   padding: 0;
@@ -2012,7 +2026,7 @@ body article.cover .card.hover ul.users {
 /* line 34, ../../style/layout/_home.scss */
 body article.cover .card.hover section.title h1.typeTitle {
   -webkit-text-fill-color: #000000;
-  -webkit-text-stroke: 1pt #000000;
+  -webkit-text-stroke: 1px #000000;
 }
 /* line 45, ../../style/layout/_home.scss */
 body article.cover .card section.title:hover .rename {
@@ -2120,7 +2134,7 @@ body article.cover .card ul.users li.add input[type=submit] {
   padding-left: 16pt !important;
   padding-bottom: 8pt !important;
   background-color: white;
-  border: 1pt solid #000000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 4pt 4pt 4pt 4pt;
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;

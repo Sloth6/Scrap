@@ -316,45 +316,45 @@ section.container section.space section.content{
         }
         
         &.addElementForm {
-            height: $articleWidthWide;
-            width: $articleWidth;
-            border: $cardBorder;
-            border-style: dashed;
-            padding: $cardPadding;
-            cursor: pointer;
-            overflow: hidden;
-            
-            // Compact view
-            &.peek {
-                
-                &:after {
-                		@include transform(translate(0px, 0px));
-                }
-                
-                ul {
-                		@include transform(translate(-128px, 0px));
-                }
-            }
-            
+            overflow-x: hidden;
             // Plus sign for compact view
             &:after {
                 content: "";
                 height: 24px;
-                width: 24px;
+                width:  24px;
                 font-weight: $fontWeightLight;
                 background: url('/images/add.png') no-repeat;
                 background-size: cover;
                 position: absolute;
                 top:    $cell*.75;
                 right:  $cell*.75;
-                transform-origin:           center center;
-                -webkit-transform-origin:   center center;
-            		@include transform(translate(36px, 0px));
+                    transform-origin:           center center;
+                    -webkit-transform-origin:   center center;
+                		@include transform(translate(36px, 0px));
                 @include transition(.5s $defaultCurve);
                 @include transition-property(transform,
                                      -webkit-transform,
                                         -moz-transform);
             }
+
+            // Compact view
+            &.peek {
+                .card {
+//                     background-color: lime !important;
+//                     border: 0;
+//                 		@include transform(translate(0px, -50px));
+                		
+                }
+                
+                    &:after {
+                    		@include transform(translate(0px, 0px));
+                    }
+                    
+                ul {
+                		@include transform(translate(-128px, 0px));
+                }
+            }
+            
             
             &.typing {
                 ul li {
@@ -366,6 +366,22 @@ section.container section.space section.content{
                         opacity: 1;
                     }
                 }
+            }
+            
+            &.card {
+                position: relative;
+                height: $articleWidthWide;
+                width: $articleWidth;
+                cursor: pointer;
+                overflow: visible;
+/*
+            		@include transform(translate(0px, 0px));
+                @include transition(1s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+*/
+                
             }
                         
             ul {
@@ -395,7 +411,7 @@ section.container section.space section.content{
                     
                     &.cardActions {
                         position: absolute;
-                        bottom: -$cell * 2;
+                        bottom: 0;
                         left: 0;
                         right: 0;
                         
