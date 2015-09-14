@@ -71,8 +71,8 @@ scrollWindow = (event) ->
 # "Take mousemove event while dragging"
 drag = (event, draggingElement) ->
   x = event.clientX - draggingElement.width()/2
-  # y = event.clientY - draggingElement.height()/2
-  draggingElement.css { x }
+  y = event.clientY - draggingElement.height()/4
+  draggingElement.css { x, y }
   scrollWindow event
   clearTimeout lastn if lastn?
   afterDrag event, draggingElement
@@ -138,9 +138,7 @@ startDragging = (elem) ->
   padding.width elem.width()/2
 
 makeDraggable = (elements) ->
-  elements.find('a,img,iframe').bind 'dragstart', () ->
-    console.log $(@)
-    return false
+  elements.find('a,img,iframe').bind 'dragstart', () -> false
 
   elements.mousedown (event) ->
     return unless event.which is 1 # only work for left click
