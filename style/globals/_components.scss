@@ -124,6 +124,7 @@ a {
 
 .card.editing {
     border-style: dashed !important;
+    border-color: $colorType !important;
     background-color: $colorCardBackground !important;
 }
 
