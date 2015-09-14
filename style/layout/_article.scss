@@ -394,12 +394,15 @@ section.container section.space section.content{
                     }
                     
                     &.cardActions {
+                        position: absolute;
+                        bottom: -$cell * 2;
+                        left: 0;
+                        right: 0;
+                        
                         ul {
                             li {
                                 &.upload {
-                                    background: yellow;
                                     opacity: 1;
-                                    position: relative;
                                     display: inline-block;
                                     height: $leading;
                                     width: intrinsic;
@@ -424,8 +427,6 @@ section.container section.space section.content{
                                 }
                                 
                                 &.done {
-                                    background: purple;
-                                    position: relative;
                                     display: inline-block;
                                     height: $leading;
                                     float: right;
