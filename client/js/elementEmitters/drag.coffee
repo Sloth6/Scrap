@@ -1,38 +1,17 @@
 dragging = null
 padding = null
-lastn = null
 lastDraggingOver = null
-draggingOverTimeout = null
 
-dragUntilCollectionTime = 1500
+collectionOpenByDragTimeout = null
+collectionOpenByDragTime = 500
+
+collectionCloseByDragTopTimeout = null
+collectionCloseByDragTopTime = 500
+
 scrollInterval = null
 draggingOnBorder = false
 draggingOnEdgeSpeed = .1
 draggingScale = 0.5
-
-mergeIntoCollection = (dragging, draggingOver) ->
-  
-  draggedId = parseInt(dragging.attr('id'))
-  draggedOverId = parseInt(draggingOver.attr('id'))
-  $(window).off 'mousemove'
-  $(window).off 'mouseup'
-
-  if draggingOver.hasClass('cover')
-    # add an element to a collection
-    console.log 'adding', dragging[0], draggingOver[0]
-    dragging.remove()
-    padding.remove()
-    collectionRealignDontScale false
-    spaceKey = draggingOver.data 'spacekey'
-    socket.emit 'moveToCollection', { spaceKey, elemId: draggedId }
-
-  else
-    # create a new collection
-    console.log 'merging', dragging[0], draggingOver[0]
-    dragging.remove()
-    padding.remove()
-    collectionRealignDontScale false
-    # socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
 
 
 leftCenterRight = (x, element) ->
@@ -68,74 +47,148 @@ scrollWindow = (event) ->
         $(window).scrollLeft($(window).scrollLeft() + speed)
     ), 5
 
-# "Take mousemove event while dragging"
+# Take mousemove event while dragging
 drag = (event, draggingElement) ->
   x = event.clientX - draggingElement.width()/2
-  y = event.clientY - draggingElement.height()/4
+  y = event.clientY - draggingElement.height()/2
   draggingElement.css { x, y }
   scrollWindow event
-  clearTimeout lastn if lastn?
   afterDrag event, draggingElement
-  # if draggingOnBorder is false
-  #   lastn = setTimeout (() -> 
-  #     afterDrag event, draggingElement
-  #     lastn = null
-  #   ), 10
+
+checkForCollectionViaDrop = (event, dragging) ->
+  $(window).off 'mousemove'
+  $(window).off 'mouseup'
+  x = event.clientX
+  droppedOn = collectionElemAfter x
+
+  return false if droppedOn[0] == padding[0]
+  return false if droppedOn[0] == undefined
+  return false if droppedOn.hasClass('cover')
+  return false if dragging.hasClass('cover')
+  return false unless leftCenterRight(x, droppedOn) is 'center'
+
+  dragging.remove()
+  padding.remove()
+  collectionRealignDontScale false
   
+  draggedId = parseInt(dragging.attr('id'))
+  draggedOverId = parseInt(droppedOn.attr('id'))
+  console.log "Emitting newCollection."
+  socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+  true
+
+checkForCloseByDrag = (x, y, draggingElement) ->
+  return false if $('.open.root').length
+  if y < sliderMarginTop
+    return true if collectionCloseByDragTopTimeout
+    collectionCloseByDragTopTimeout = setTimeout (() ->
+      clearDragTimeouts()
+      $(window).off 'mousemove'
+      $(window).off 'mouseup'
+      collectionClose(draggingElement)
+    ), collectionCloseByDragTopTime
+    true
+  else
+    clearTimeout collectionCloseByDragTopTimeout
+    collectionCloseByDragTopTimeout = null
+    false
+
+checkForOpenByDrag = (x, y, dragging, draggingOver) ->
+  return false if !draggingOver.hasClass('cover')
+  return false if collectionOpenByDragTimeout
+  return false if y > parseInt(draggingOver.css('y'))+ draggingOver.height()
+  collectionOpenByDragTimeout = setTimeout (() ->
+    padding.remove()
+    clearDragTimeouts()
+    collectionOpen draggingOver, { dragging: true }
+  ), collectionOpenByDragTime
+  true
+
 # Check for element reordering or collection creation
 afterDrag = (dragEvent, draggingElement) ->
   x = dragEvent.clientX
+  y = dragEvent.clientY
+
   draggingOver = collectionElemAfter x
+  checkForCloseByDrag x, y, draggingElement
+
   return if draggingOver[0] == padding[0]
   
+  if draggingOver.is lastDraggingOver
+    clearDragTimeouts()
+
   # if we are dragging at the end
   if draggingOver[0] == undefined
     $('.open.collection .collectionContent').append padding
     collectionRealignDontScale false
   else
-    position = leftCenterRight x, draggingOver
-    if position is 'left'
-      padding.insertBefore draggingOver
-      collectionRealignDontScale false
-    else if position is 'right'
-      padding.insertAfter draggingOver
-      collectionRealignDontScale false
+    switch leftCenterRight x, draggingOver
+      when 'left'
+        padding.insertBefore draggingOver
+        collectionRealignDontScale false
+      when 'right'
+        padding.insertAfter draggingOver
+        collectionRealignDontScale false
+      when 'center'
+        console.log 'center'
+        checkForOpenByDrag x, y, draggingElement, draggingOver
 
   lastDraggingOver = draggingOver
 
+# Clear all timeouts
+clearDragTimeouts = () ->
+  clearInterval scrollInterval  
+  scrollInterval = null
+  clearTimeout collectionCloseByDragTopTimeout
+  collectionCloseByDragTopTimeout = null
+  clearTimeout collectionOpenByDragTimeout
+  collectionOpenByDragTimeout = null
+  draggingOnBorder = false
+
+addToCollection = (elem, spaceKey) ->
+  elem.addClass(spaceKey)
+  console.log 'Emitting move to collection'
+  socket.emit "moveToCollection", { elemId: elem.attr('id'), spaceKey }
+
 stopDragging = (event, elem) ->
+  console.log "Stop dragging"
+  clearDragTimeouts()
+
+  if checkForCollectionViaDrop(event, elem)
+    # do nothin
+  else 
+    if $('.slidingContainer').find('.padding').length # ensure in dom
+      elem.insertAfter padding
+      padding.remove()
+    else 
+      console.log 'did not find padding :('
+      # shit happens. Put in the closest place
+      # elem.insertBefore collectionElemAfter(event.clientX)
+
+    content = collectionChildren().not('.addElementForm')
+    elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
+    addToCollection(elem, openSpace) if !elem.hasClass(openSpace)
+    console.log "Emitting reorderElements"
+    socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
+  
   elem.
     removeClass('dragging').
     addClass('sliding').
-    css('zIndex', elem.data('oldZIndex'))
-  
-  if scrollInterval # sometime scrolling fails to end
-    clearInterval scrollInterval
-    draggingOnBorder = false
-    scrollInterval = null
+    css({scale: 1, zIndex: elem.data('oldZIndex')})
 
-  position = leftCenterRight event.clientX, lastDraggingOver
-  if position is 'center' and !elem.hasClass('cover') and lastDraggingOver[0]?
-    mergeIntoCollection elem, lastDraggingOver
-  else if $('.slidingContainer').find('.padding').length # ensure in dom
-    elem.insertAfter padding
-    padding.remove()
-    collectionRealign true
-    content = collectionChildren().not('.addElementForm')
-    elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
-    socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
-  else
-    console.log 'did not find padding'
-
+  collectionRealign true
 
 startDragging = (elem) ->
   elem.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
-    css { 'scale': draggingScale, 'z-index': 999 }
+    css({ 'scale': draggingScale, 'z-index': 999 })
+    # remove().
+    # appendTo $('.content')
 
-  padding.width elem.width()/2
+  padding.width(elem.width()*draggingScale).insertAfter elem
+  console.log padding.width()
 
 makeDraggable = (elements) ->
   elements.find('a,img,iframe').bind 'dragstart', () -> false

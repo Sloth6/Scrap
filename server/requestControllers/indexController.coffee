@@ -25,7 +25,7 @@ module.exports =
     if req.session.currentUserId?
       models.User.find( where: { id: req.session.currentUserId }).complete (err, user) ->
         return callback err if err?
-        return res.redirect '/' unless user?
+        return indexPage res unless user?
         models.Space.find({
           where: { root: true, UserId: user.id }
           include:[ model:models.Element, models.User ]

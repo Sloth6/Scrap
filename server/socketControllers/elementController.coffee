@@ -116,7 +116,7 @@ module.exports =
 
   moveToCollection: (sio, socket, data, callback) ->
     { elemId, spaceKey } = data
-    console.log data
+    console.log "moveto collection data:", data
     q = "
         UPDATE \"Elements\"
         SET \"SpaceId\" = (Select id from \"Spaces\" WHERE \"spaceKey\"=:spaceKey)

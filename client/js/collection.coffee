@@ -21,9 +21,10 @@ coverToCollection = (cover, elements) ->
 
   collection
 
-collectionOpen = (cover) ->
+collectionOpen = (cover, options = {}) ->
   return if cover.hasClass 'open'
   spacekey = cover.data 'spacekey'
+  dragging = options.dragging
   window.openSpace = spacekey
 
   loadElements spacekey, (elements) ->
@@ -33,12 +34,15 @@ collectionOpen = (cover) ->
     prevSliding = cover.prevAll('.sliding')
     nextSliding = cover.nextAll('.sliding')
     
-    coverToCollection cover, elements    
+    collection = coverToCollection cover, elements    
     parentCollection.removeClass('open').addClass 'closed'
     parentCover.removeClass('open').addClass 'closed'
     cover.addClass('open').removeClass('draggable')
     prevSliding.removeClass 'sliding'
     nextSliding.removeClass 'sliding'
+
+    if dragging?
+      padding.insertAfter collection.find('.addElementForm')
     
     elements.addClass('sliding').css({ x: xTransform(cover) })
     sliderInit elements
@@ -69,9 +73,10 @@ collectionOpen = (cover) ->
 
     setTimeout collectionRealign, 50
 
-collectionClose = (closingCover) ->
+collectionClose = (draggingElement) ->
+  closingCover = $('.open.cover')
   return if closingCover.hasClass 'root'
-  spacekey = closingCover.data 'spacekey'
+  closingSpacekey = closingCover.data 'spacekey'
 
   edgeWidth -= 32
 
@@ -85,11 +90,29 @@ collectionClose = (closingCover) ->
   parentChildren = collectionChildren parentCollection
   parentCover = parentCollection.children('.cover')
 
+  parentSpacekey = parentCover.data 'spacekey'
+
   parentCollection.addClass('open').removeClass('closed')
   parentChildren.show().addClass 'sliding'
   parentCover.addClass('open').removeClass('closed')
 
- 
+  
+  # console.log draggingElement
+  if draggingElement?
+    draggingElement.
+      removeClass('dragging').
+      addClass('sliding').
+      css({scale: 1, zIndex: draggingElement.data('oldZIndex')})
+    draggingElement.insertAfter parentCollection.find('.addElementForm')
+    # draggingElement.css({'y': sliderMarginTop})
+    
+
+    content = parentChildren.not('.addElementForm')
+    elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
+    addToCollection(draggingElement, parentSpacekey)
+    console.log "Emitting reorderElements"
+    socket.emit 'reorderElements', { elementOrder, spaceKey: parentSpacekey }
+
   closingCollection.children('.collectionContent').velocity {
     properties: { opacity: [0, 1] }
   }
@@ -110,6 +133,7 @@ collectionClose = (closingCover) ->
     closingCollection.remove()
     window.openSpace = parentCollection.data 'spacekey'
     $("body").css("overflow", "visible")
+    collectionRealign()
   ), openCollectionDuration
 
 

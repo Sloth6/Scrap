@@ -67,7 +67,7 @@ $ ->
     # window.openSpace = spaceKey    
     # always close any open collection first
     if $('.cover.open').length
-      collectionClose $('.cover.open')
+      collectionClose()
     
     # equivlant to if spaceKey != home and spacekey cover exists
     # if $(".cover.#{spaceKey}").length
