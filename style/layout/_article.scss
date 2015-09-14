@@ -393,43 +393,51 @@ section.container section.space section.content{
                         }
                     }
                     
-                    &.upload {
-                        opacity: 1;
-                        position: relative;
-                        display: inline-block;
-                        height: $leading;
-                        width: intrinsic;
-                        
-                        form {
-                            height: 100%;
-                            width: 100%;
-                            top: 0;
-                            left: 0;
-                            position: absolute;
-                            
-                            input {
-                                height: 100%;
-                                width: 100%;
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                opacity: 0;
-                                cursor: pointer;
+                    &.cardActions {
+                        ul {
+                            li {
+                                &.upload {
+                                    background: yellow;
+                                    opacity: 1;
+                                    position: relative;
+                                    display: inline-block;
+                                    height: $leading;
+                                    width: intrinsic;
+                                    
+                                    form {
+                                        height: 100%;
+                                        width: 100%;
+                                        top: 0;
+                                        left: 0;
+                                        position: absolute;
+                                        
+                                        input {
+                                            height: 100%;
+                                            width: 100%;
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            opacity: 0;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+                                
+                                &.done {
+                                    background: purple;
+                                    position: relative;
+                                    display: inline-block;
+                                    height: $leading;
+                                    float: right;
+                                    width: intrinsic;
+            
+                                    a {
+                                        border: 0;
+                                        padding: 0;
+                                        margin-left: $cell;
+                                    }
+                                }
                             }
-                        }
-                    }
-                    
-                    &.done {
-                        position: relative;
-                        display: inline-block;
-                        height: $leading;
-                        float: right;
-                        width: intrinsic;
-
-                        a {
-                            border: 0;
-                            padding: 0;
-                            margin-left: $cell;
                         }
                     }
                 }
