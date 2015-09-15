@@ -33,6 +33,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     background-color: $colorCardBackground;
     border: $cardBorder;
     padding: $cardPadding;
+    border-radius: $cell/4;
             transform-origin: bottom right;
     -webkit-transform-origin: bottom right;
 }

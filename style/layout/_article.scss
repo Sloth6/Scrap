@@ -260,12 +260,9 @@ section.container section.space section.content{
             overflow: hidden;
 
             &.text {
-                @include cardStyle;
-                background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
-//                 font-family: "Comic Sans MS";
-                border: $cardBorder;
+                @include background-image(linear-gradient(#ffffaa, #ffffff));
                 width: $articleSide;
-                min-height: $articleMinHeight;
+                min-height: $articleSideNarrow;
             }
             
             &.website {
@@ -288,7 +285,6 @@ section.container section.space section.content{
                                
                 .text {
 
-                    
                     header {
                         position: absolute;
                         top: $cell/2;
