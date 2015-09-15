@@ -81,9 +81,14 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 a {
     @include linkReset;
-
+    
+    &.action {
+        &:hover {
+            @include hoverLinkAnimation;
+        }
+    }
+    
     &.warning {
-        color: $colorAlert;
         
         &:hover {
             @include hoverWarningAnimation;
@@ -92,7 +97,7 @@ a {
     
     &.confirm {
         &:hover {
-            @include hoverLinkAnimation;
+            @include hoverConfirmAnimation;
         }
     }
 }

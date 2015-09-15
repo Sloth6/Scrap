@@ -2,15 +2,13 @@ defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [20, 15]
 openCollectionDuration  = 1000
 
-margin = $(window).width() / 48
+margin = $(window).width() / 96
 sliderMarginTop = 100
 sliderBorder = () -> $(window).width() / 8
 edgeWidth = 36
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
-
-
 
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
