@@ -26,13 +26,9 @@ stopEditing = (cover) ->
   
   # Make user menu accessible after renaming
   userMenu.addClass 'canOpen'
-#   userMenu.css('display', 'block')
-
   rename.children('a').text 'Rename'
-
   title.attr 'contenteditable', false
-  $.post '/updateSpaceName', { spaceKey, name: title.text() }, () ->
-    console.log 'name updated successfully'
+  socket.emit 'renameCover', { elemId: cover.attr('id'), name: title.text() }
 
 startEditing = (cover) ->
   title  = cover.find('.collectionTitle')
@@ -106,7 +102,7 @@ bindCoverControls = (covers) ->
       input.val ''
       textField.html 'An invite has been sent'
       addUser email, spaceKey
-
+      
   covers.find('ul.menu').each () ->
     $menu = $(@)
     $cover = $menu.parent().parent('.cover')

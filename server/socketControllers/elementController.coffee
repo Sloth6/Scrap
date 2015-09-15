@@ -122,7 +122,18 @@ module.exports =
       console.log err, results
       return callback err if err?
 
-
+  renameCover: (sio, socket, data, callback) ->
+    { elemId, name } = data
+    models.Element.find(where: { id: elemId }).complete (err, cover) ->
+      return callback err if err?
+      return callback 'no cover found in renameCover' unless cover?
+      content = JSON.parse(cover.content)
+      content.name = name 
+      content = JSON.stringify content     
+      models.Element.update({content}, {id:elemId}).complete (err) ->
+        return callback err if err?
+        # sio.to("#{spaceKey}").emit 'updateElement', data
+  
   updateElement : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
     { spaceKey, content, elementId } = data
