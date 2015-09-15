@@ -17,7 +17,7 @@ if element.contentType == 'cover'
         h1.collectionTitle.typeTitle.typeOutlineClear!=content.name
         h2.peekTitle.bodyType.typeBody.typeWeightBold!=content.name
         p.rename
-          a.smallCaps.smallType.confirm Rename
+          a.smallCaps.bodyType.confirm Rename
       ul.users.menu.slideIn.left.canOpen
         //- li.user!=user.name
         li.user.add
@@ -33,7 +33,7 @@ else
         - if (typeof(collection.nameMap) !== "undefined") {
           author!= collection.nameMap[element.creatorId].name
         - }    
-        a.elementDeleteButton.warning.smallType.smallCaps Delete
+        a.elementDeleteButton.warning.bodyType.smallCaps Delete
       case element.contentType
         when 'file'
           .decorative.fold
