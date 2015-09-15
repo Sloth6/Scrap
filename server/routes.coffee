@@ -14,9 +14,6 @@ module.exports = (app) ->
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 
-  app.get '/readonly', (req,res) ->
-    controllers.readOnlyController.index req, res, app, errorHandler
-
   app.post '/s/new', (req, res) ->
     controllers.spaceController.newSpace req, res, app, errorHandler
 
@@ -32,11 +29,8 @@ module.exports = (app) ->
   app.get '/collectionContent/:spaceKey', (req, res) ->
     controllers.spaceController.collectionContent req, res, app, errorHandler
 
-  # app.get '/s/:spaceKey', (req, res) ->
-  #   controllers.spaceController.showReadOnly req, res, app, errorHandler
-
-  # app.get '/r/:spaceKey', (req, res) ->
-  #   controllers.spaceController.showSpace req, res, app, errorHandler
+  app.get '/s/:spaceKey', (req, res) ->
+    controllers.readOnlyController.index req, res, app, errorHandler
 
   app.post '/login', (req, res) ->
     controllers.userController.login req, res, app, errorHandler
