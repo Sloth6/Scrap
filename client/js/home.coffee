@@ -3,7 +3,7 @@ openCollectionCurve     = [20, 15]
 openCollectionDuration  = 1000
 
 margin = $(window).width() / 96
-sliderBorder = () -> $(window).width() / 8
+sliderBorder = () -> $(window).width() / 6
 edgeWidth = 36
 
 click = { x: null, y: null }

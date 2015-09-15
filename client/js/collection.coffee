@@ -37,7 +37,7 @@ collectionOpen = (cover, options = {}) ->
     collection = coverToCollection cover, elements    
     parentCollection.removeClass('open').addClass 'closed'
     parentCover.removeClass('open').addClass 'closed'
-    cover.addClass('open').removeClass('draggable')
+    cover.addClass('open').removeClass('draggable closed')
     prevSliding.removeClass 'sliding'
     nextSliding.removeClass 'sliding'
 
@@ -134,7 +134,6 @@ collectionClose = (draggingElement) ->
     collectionRealign()
   ), openCollectionDuration
 
-
 collectionChildren = (collection) ->
   collection ?= $('.collection.open')
   cover = collection.children('.cover')
@@ -146,7 +145,7 @@ collectionOfElement = () ->
 
 realign = (animate) ->
   sliding = collectionChildren().filter('.sliding')
-  # console.log 'realign', sliding
+  console.log 'realign', sliding
   lastX  = 0
   maxX   = -Infinity
   zIndex = sliding.length
@@ -156,8 +155,13 @@ realign = (animate) ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
     
-    if $(@).hasClass 'cover open'
+    console.log $('.root.open').length
+
+    if $(@).hasClass('cover') and $(@).hasClass('open')
       $(@).css { zIndex: (sliding.length*3) }
+#   If at root level and elem is add element form, to prevent form from being on top at root level
+    else if $(@).hasClass('addElementForm') and not $('.root.open').length
+      $(@).css { zIndex: (sliding.length*3) - 1 }
     else
       $(@).css { zIndex: zIndex++ }
 

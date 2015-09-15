@@ -13,20 +13,20 @@ $articleSide:          $col * 4;
 $articleSideWide:      $col * 5;
 $articleWidthVideo:     $col * 24;
 
-$articleMinHeight:     $col * 3;
+$articleMinHeight:     $articleSideNarrow;
 
 $menuWidth: $articleSide;
 $menuItemHeight: $leading;
 
-$cardHoverScaleMin: scale3d(1.125, 1.125, 1.125);
+$cardHoverScaleMin: scale3d(1.015125, 1.015125, 1.015125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
 $cardBorderWidth:           1px;
 $cardBorderColor:           rgba(0,0,0,.125);
 $cardBorderColorHover:      $colorType;
 $cardBorder:                $cardBorderWidth solid $cardBorderColor;
-$cardBoxShadowDimensions:   $cell $cell 0 0;
-$cardBoxShadowColor:        rgba(0,0,0,1);
+$cardBoxShadowDimensions:   0 $cell/8 $cell/4 $cell/4;
+$cardBoxShadowColor:        rgba(0,0,0,.03125);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardStyle {
@@ -34,8 +34,8 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
     border: $cardBorder;
     padding: $cardPadding;
     border-radius: $cell/4;
-            transform-origin: bottom right;
-    -webkit-transform-origin: bottom right;
+            transform-origin: center center;
+    -webkit-transform-origin: center center;
 }
 
 @mixin cardHover {
@@ -52,15 +52,18 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
                                  
     &.hover {
         border-color: $cardBorderColorHover;
-        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-        @include transform(translate(-$cell, -$cell));
+//         @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+//         @include transform($cardHoverScaleMin);
         &.invertHover {
-            @include box-shadow($cardBoxShadowDimensions white);
+//             @include box-shadow($cardBoxShadowDimensions white);
         }
     }
 }
 
 @mixin cardDrag {
+    &.dragging {
+        @include transform(rotate(4deg));
+    }
 }
 
 @mixin button {
@@ -124,7 +127,7 @@ a {
     @include cardHover;
 }
 
-.cardDrag.dragging {
+.cardDrag {
     @include cardHover;
 }
 

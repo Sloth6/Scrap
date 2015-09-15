@@ -202,17 +202,23 @@ section.container section.space section.content{
             position: relative;
             
             &:hover {
-                cursor: pointer;
                 
                 .preview:after {
                     opacity: 1;
-                    @include transform(scale(1));
-                    
+                    @include transform(scale(1)); 
+                }
+            }
+            
+            &:active {
+                .preview:after {
+                    -webkit-filter: invert(1);
+                    @include transform(scale(.95)); 
                 }
             }
 
             .preview {
                 position: relative;
+                cursor: pointer;
                 
                 &:after {
                     content: '';
@@ -259,17 +265,17 @@ section.container section.space section.content{
             position: relative;
             max-width: $articleSide;
             overflow: hidden;
+            min-height: $articleMinHeight;
 
             &.text {
-                @include background-image(linear-gradient(#ffffaa, #ffffff));
+//                 @include background-image(linear-gradient(#ffffaa, #ffffff));
+                background-color: #ffffdc;
                 width: $articleSide;
-                min-height: $articleSideNarrow;
             }
             
             &.website {
                 @include cardStyle;
                 width: $articleSideNarrow;
-                padding-top: $cell * 2;
                 
                 &:hover {
                     @include hoverLinkAnimation;
@@ -298,7 +304,6 @@ section.container section.space section.content{
                             -webkit-box-orient: vertical; 
                             max-height: $typeHeaderLeading * 4;
                             overflow: hidden;
-                            margin-left: $headerLeftMarginOffset;
                             padding-bottom: .125em;
                             margin-bottom: -.125em;
                         }
@@ -311,7 +316,7 @@ section.container section.space section.content{
                     }
 
                     .description {
-                        margin-top: ($broadMargin * 3);
+                        margin-top: $articleSideNarrow - $col;
                         margin-bottom: $cell/2;
                         opacity: 1;
                         @include transition($collectionOpenTransitionDuration $defaultCurve);
@@ -329,6 +334,11 @@ section.container section.space section.content{
             
             &.caption, &.comment {                       
                 // background-color: $colorCardBackgroundLight;
+            }
+            
+            h1.headerType {
+                margin-left: $headerLeftMarginOffset;
+                margin-top: -.15em;
             }
 
             img {
