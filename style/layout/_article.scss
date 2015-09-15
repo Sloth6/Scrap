@@ -207,6 +207,7 @@ section.container section.space section.content{
                 .preview:after {
                     opacity: 1;
                     @include transform(scale(1));
+                    
                 }
             }
 
@@ -233,8 +234,8 @@ section.container section.space section.content{
                                                  transform,
                                          -webkit-transform,
                                             -moz-transform);
-                }
-                
+                                            
+                }                
             }
             
             header {

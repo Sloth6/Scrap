@@ -105,8 +105,8 @@ slidingPlace = (animate = true) ->
 
   scale = 1
   if rawX < sliderBorder()
-    scale = 1 - (rawX * .00001)
-  rotateZ = $(@).data('rotateZ') * percentFromCenter
+    scale = 1 + (rawX * .00001)
+  rotateZ = $(@).data('rotateZ') * percentFromBorder
   
   # On open/close or load
   if animate
