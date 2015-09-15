@@ -10,15 +10,16 @@ bindSoundCloudControls = (elems) ->
     if $(@).find('iframe').length
       SC.Widget($(@).find('iframe')[0]).toggle()
     else
-      preview = $(@).find('.preview')
+      img = $(@).find('img')
       iframe = $($(@).data('content').html)
       iframe.load () ->
         widget = SC.Widget(@)
         widget.bind SC.Widget.Events.READY, () ->
           SC.Widget(iframe[0]).toggle()
-
-      iframe.insertBefore preview
-      preview.hide()
       
+      iframe.insertBefore img
+      img.hide()
+      $(@).find('header').hide()
+
 $ ->
   bindSoundCloudControls $('.element.soundcloud')

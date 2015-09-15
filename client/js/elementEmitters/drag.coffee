@@ -184,12 +184,9 @@ startDragging = (elem) ->
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
     css({ 'scale': draggingScale, 'z-index': 999 })
-    # remove().
-    # appendTo $('.content')
-
   padding.width(elem.width()*draggingScale).insertAfter elem
-  console.log padding.width()
-
+  stopPlaying(elem) if elem.hasClass('playable')
+ 
 makeDraggable = (elements) ->
   elements.find('a,img,iframe').bind 'dragstart', () -> false
 
