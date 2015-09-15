@@ -159,7 +159,7 @@ realign = (animate) ->
     if $(@).hasClass 'cover open'
       $(@).css { zIndex: (sliding.length*3) }
     else
-      $(@).css { zIndex: zIndex-- }
+      $(@).css { zIndex: zIndex++ }
 
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate

@@ -1,5 +1,4 @@
 models = require '../../models'
-indexCollections = require '../indexCollections'
 
 nameMap = (users) ->
   map = {}
@@ -12,11 +11,10 @@ nameMap = (users) ->
 
 indexPage = (res) ->
   res.render 'index.jade',
-    title : 'Hotpot · Keep Everything for Your Project in One Place'
+    title : 'Scrap · Keep Everything for Your Project in One Place'
     description: ''
     author: 'scrap'
     names: { 1: "" }
-    collections: indexCollections
     current_space:
       spaceKey: 'index'
 
@@ -31,7 +29,7 @@ module.exports =
           include:[ model:models.Element, models.User ]
         }).complete (err, space) ->
           return callback err if err?
-          res.render 'home.jade', { user, collection:space, title: 'Hotpot' }
+          res.render 'home.jade', { user, collection:space, title: 'Scrap' }
           callback()
     else
       indexPage res
