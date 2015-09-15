@@ -2,11 +2,10 @@ logistic = (x) -> 1/(1 + Math.pow(Math.E, -x))
 
 getTranslateX = (x, e) ->  
   border = sliderBorder()
-  myEdgeWidth = if e.hasClass('cover') then edgeWidth/2 else edgeWidth
 
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
-  left_min = - e.width() + myEdgeWidth
+  left_min = - e.width() + edgeWidth
   left_start = left_min + border
 
   if x > right_start
@@ -19,11 +18,9 @@ getTranslateX = (x, e) ->
   x
 
 percentToBorder = (x, e, border) ->
-  myEdgeWidth = if e.hasClass('cover') then edgeWidth/2 else edgeWidth
-
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
-  left_min = - e.width() + myEdgeWidth
+  left_min = - e.width() + edgeWidth
   left_start = left_min + border
 
   if x > right_start
