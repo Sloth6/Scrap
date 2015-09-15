@@ -6,7 +6,7 @@ css_dir = "client/style"
 sass_dir = "style"
 images_dir = "client/images"
 javascripts_dir = "client/js"
-output_style = :expanded
+output_style = :compressed
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
 
