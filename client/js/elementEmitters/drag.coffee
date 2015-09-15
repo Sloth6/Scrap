@@ -79,7 +79,7 @@ checkForCollectionViaDrop = (event, dragging) ->
 
 checkForCloseByDrag = (x, y, draggingElement) ->
   return false if $('.open.root').length
-  if y < sliderMarginTop
+  if y < $('.slidingContainer').offset().top
     return true if collectionCloseByDragTopTimeout
     collectionCloseByDragTopTimeout = setTimeout (() ->
       clearDragTimeouts()

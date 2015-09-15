@@ -3,7 +3,6 @@ openCollectionCurve     = [20, 15]
 openCollectionDuration  = 1000
 
 margin = $(window).width() / 96
-sliderMarginTop = 100
 sliderBorder = () -> $(window).width() / 8
 edgeWidth = 36
 

@@ -103,9 +103,7 @@ collectionClose = (draggingElement) ->
       removeClass('dragging').
       addClass('sliding').
       css({scale: 1, zIndex: draggingElement.data('oldZIndex')})
-    draggingElement.insertAfter parentCollection.find('.addElementForm')
-    # draggingElement.css({'y': sliderMarginTop})
-    
+    draggingElement.insertAfter parentCollection.find('.addElementForm')    
 
     content = parentChildren.not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
