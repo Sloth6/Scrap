@@ -458,6 +458,12 @@ section.container section.space section.content{
                                     overflow: hidden;
                                     position: relative;
                                     
+                                    &:hover {
+                                        a {
+                                            @include hoverLinkAnimation;
+                                        }
+                                    }
+                                    
                                     form {
                                         height: 100%;
                                         width: 200%;
