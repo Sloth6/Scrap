@@ -64,7 +64,7 @@ else
                 .url.smallType.smallCaps!=content.domain
               .description.smallType!=content.description
             img(src=content.image)
-            a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab.')
+            a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
     
           when 'file'
             header
@@ -84,7 +84,8 @@ else
           when 'soundcloud'
             -var content = JSON.parse(element.content)
             //- title, description, thumbnail_url, html, author_name, author_url
-            img.soundcloudThumbnail(src=content.thumbnail_url)
+            .preview(title='Play “' + content.title + '”')
+              img.soundcloudThumbnail(src=content.thumbnail_url)
             header
               .top
                 h1.headerType.title!=content.title
@@ -94,7 +95,8 @@ else
           
           when 'youtube'
             -var content = JSON.parse(element.content)
-            img.youtubeThumbnail(src=content.image, style='width:580px;height:315')
+            .preview(title='Play “' + content.title + '”')
+              img.youtubeThumbnail(src=content.image, style='width:580px;height:315')
             header
               .top
                 h1.headerType.title!=content.title

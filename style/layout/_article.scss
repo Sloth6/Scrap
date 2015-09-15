@@ -199,6 +199,43 @@ section.container section.space section.content{
         &.playable .card {
             width: $articleSide;
             padding: 0;
+            position: relative;
+            
+            &:hover {
+                cursor: pointer;
+                
+                .preview:after {
+                    opacity: 1;
+                    @include transform(scale(1));
+                }
+            }
+
+            .preview {
+                position: relative;
+                
+                &:after {
+                    content: '';
+                    background: url('/images/playButton.png') no-repeat;
+                    background-size: cover;
+                    height: 72px;
+                    width:  72px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-top: -36px;
+                    margin-left: -36px;
+                    z-index: 9000000;
+
+                    opacity: 0;
+                    @include transform(scale(0));
+                    @include transition(.1825s $defaultCurve);
+                    @include transition-property(opacity,
+                                                 transform,
+                                         -webkit-transform,
+                                            -moz-transform);
+                }
+                
+            }
             
             header {
                 border-top: 0;
