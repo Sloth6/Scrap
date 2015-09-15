@@ -4,7 +4,7 @@
 //- - var interactiveTypes = ['soundcloud', 'youtube']
 
 if (element.contentType == 'soundcloud' || element.contentType == 'youtube')
-  - classes.push('interactive')
+  - classes.push('playable')
 
 if element.contentType == 'cover'
   -var content = JSON.parse(element.content)
@@ -30,14 +30,14 @@ else
   article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
     .content
       .elementControls
-        - if (.(collection.nameMap) !== "undefined") {
-          author!=collection.nameMap[element.creatorId].name
+        - if (typeof(collection.nameMap) !== "undefined") {
+          author!= collection.nameMap[element.creatorId].name
         - }    
         a.elementDeleteButton.warning.smallType.smallCaps Delete
       case element.contentType
         when 'file'
           .decorative.fold
-      .card.cardHover.invertHover(class=element.contentType)
+      .card.cardHover(class=element.contentType)
         case element.contentType
           when 'image'
             - var content = JSON.parse(element.content)
@@ -87,24 +87,18 @@ else
             img.soundcloudThumbnail(src=content.thumbnail_url)
             header
               .top
-                  h1.headerType.title!=content.title
-                  .artist.smallType!=content.author_name
+                h1.headerType.title!=content.title
+                .artist.smallType!=content.author_name
               .detail
                 .source.smallType.smallCaps SoundCloud
           
           when 'youtube'
             -var content = JSON.parse(element.content)
-            //- - videoUrl = "//www.youtube.com/embed/"+ element.content
-            //- - imgUrl = "http://img.youtube.com/vi/"+element.content+"/0.jpg"
-
-            //- img.youtubeThumbnail(src=imgUrl, style = "width:560px;height:315px")
-            //- .iframeBlocker(style="position:absolute;width:100%;height:100%;")
-            //- iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
-                        img.soundcloudThumbnail(src=content.thumbnail_url)
-            img.youtubeThumbnail(src=content.image)
+            img.youtubeThumbnail(src=content.image, style='width:580px;height:315')
             header
               .top
-                  h1.headerType.title!=content.title
+                h1.headerType.title!=content.title
+                .artist.smallType Artist
               .detail
                 .source.smallType.smallCaps youtube
 

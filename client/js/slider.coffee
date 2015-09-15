@@ -51,6 +51,8 @@ sliderInit = (elems) ->
         bindFileControls $(@)
       when 'soundcloud'
         bindSoundCloudControls $(@)
+      when 'youtube'
+        bindYoutubeControls $(@)
       when 'cover'
         bindCoverControls $(@)
       when 'addElementForm'

@@ -1645,24 +1645,23 @@ section.container section.space section.content article.youtube {
 section.container section.space section.content article.youtube .content .card {
   width: intrinsic;
   padding: 0px;
-  background-color: rgba(0, 0, 0, 0.125);
 }
-/* line 138, ../../style/layout/_article.scss */
+/* line 137, ../../style/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 149, ../../style/layout/_article.scss */
+/* line 148, ../../style/layout/_article.scss */
 section.container section.space section.content article.youtube .content .card {
   max-width: 1536pt;
 }
-/* line 155, ../../style/layout/_article.scss */
+/* line 154, ../../style/layout/_article.scss */
 section.container section.space section.content article.file .content {
   padding-right: 48px;
   height: 256pt;
   width: 192pt;
   position: relative;
 }
-/* line 162, ../../style/layout/_article.scss */
+/* line 161, ../../style/layout/_article.scss */
 section.container section.space section.content article.file .content .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1673,7 +1672,7 @@ section.container section.space section.content article.file .content .decorativ
   background: url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 172, ../../style/layout/_article.scss */
+/* line 171, ../../style/layout/_article.scss */
 section.container section.space section.content article.file .content .decorative.fold:after {
   content: " ";
   left: -1px;
@@ -1687,40 +1686,40 @@ section.container section.space section.content article.file .content .decorativ
   border-left: 0;
   border-top: 0;
 }
-/* line 187, ../../style/layout/_article.scss */
+/* line 186, ../../style/layout/_article.scss */
 section.container section.space section.content article.file .content .card {
   height: 100%;
   border-right: 0;
 }
-/* line 192, ../../style/layout/_article.scss */
+/* line 191, ../../style/layout/_article.scss */
 section.container section.space section.content article.file .content .card header h1 {
   word-wrap: break-word;
 }
-/* line 200, ../../style/layout/_article.scss */
+/* line 199, ../../style/layout/_article.scss */
 section.container section.space section.content article.playable .card {
   width: 256pt;
   padding: 0;
 }
-/* line 204, ../../style/layout/_article.scss */
+/* line 203, ../../style/layout/_article.scss */
 section.container section.space section.content article.playable .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 211, ../../style/layout/_article.scss */
+/* line 210, ../../style/layout/_article.scss */
 section.container section.space section.content article.playable .card header .artist {
   margin-top: 4pt;
 }
-/* line 215, ../../style/layout/_article.scss */
+/* line 214, ../../style/layout/_article.scss */
 section.container section.space section.content article.playable .card header .detail {
   margin-top: 24pt;
 }
-/* line 221, ../../style/layout/_article.scss */
+/* line 220, ../../style/layout/_article.scss */
 section.container section.space section.content article .card {
   position: relative;
   max-width: 256pt;
   overflow: hidden;
 }
-/* line 226, ../../style/layout/_article.scss */
+/* line 225, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.text {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -1732,7 +1731,7 @@ section.container section.space section.content article .card.text {
   width: 256pt;
   min-height: 192pt;
 }
-/* line 235, ../../style/layout/_article.scss */
+/* line 234, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -1742,7 +1741,7 @@ section.container section.space section.content article .card.website {
   width: 192pt;
   padding-top: 16pt;
 }
-/* line 240, ../../style/layout/_article.scss */
+/* line 239, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1753,7 +1752,7 @@ section.container section.space section.content article .card.website:hover {
       border-color: blue;
   */
 }
-/* line 244, ../../style/layout/_article.scss */
+/* line 243, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website a {
   border: 0;
   position: absolute;
@@ -1762,7 +1761,7 @@ section.container section.space section.content article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 256, ../../style/layout/_article.scss */
+/* line 255, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1775,7 +1774,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: top;
   transition-property: top;
 }
-/* line 262, ../../style/layout/_article.scss */
+/* line 261, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1786,7 +1785,7 @@ section.container section.space section.content article .card.website .text head
   padding-bottom: .125em;
   margin-bottom: -.125em;
 }
-/* line 273, ../../style/layout/_article.scss */
+/* line 272, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website .text header .url {
   margin-top: 4pt;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1798,7 +1797,7 @@ section.container section.space section.content article .card.website .text head
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 280, ../../style/layout/_article.scss */
+/* line 279, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website .text .description {
   margin-top: 144pt;
   margin-bottom: 4pt;
@@ -1812,7 +1811,7 @@ section.container section.space section.content article .card.website .text .des
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 288, ../../style/layout/_article.scss */
+/* line 287, ../../style/layout/_article.scss */
 section.container section.space section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1824,49 +1823,49 @@ section.container section.space section.content article .card.website .text img 
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 301, ../../style/layout/_article.scss */
+/* line 300, ../../style/layout/_article.scss */
 section.container section.space section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
-/* line 312, ../../style/layout/_article.scss */
+/* line 311, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek .translate {
   -moz-transform: translate(0px, -48px);
   -ms-transform: translate(0px, -48px);
   -webkit-transform: translate(0px, -48px);
   transform: translate(0px, -48px);
 }
-/* line 317, ../../style/layout/_article.scss */
+/* line 316, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek .translate:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 322, ../../style/layout/_article.scss */
+/* line 321, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek ul {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
-/* line 329, ../../style/layout/_article.scss */
+/* line 328, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.slideInFromSide .translate {
   -moz-transform: translate(400px, 0px);
   -ms-transform: translate(400px, 0px);
   -webkit-transform: translate(400px, 0px);
   transform: translate(400px, 0px);
 }
-/* line 336, ../../style/layout/_article.scss */
+/* line 335, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.upload {
   opacity: 0;
 }
-/* line 340, ../../style/layout/_article.scss */
+/* line 339, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.done {
   opacity: 1;
 }
-/* line 346, ../../style/layout/_article.scss */
+/* line 345, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm .translate {
   overflow: hidden;
   position: relative;
@@ -1886,7 +1885,7 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 359, ../../style/layout/_article.scss */
+/* line 358, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm .translate:after {
   content: "";
   height: 24px;
@@ -1912,11 +1911,11 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 378, ../../style/layout/_article.scss */
+/* line 377, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm .translate .card {
   overflow: visible;
 }
-/* line 383, ../../style/layout/_article.scss */
+/* line 382, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -1931,21 +1930,21 @@ section.container section.space section.content article.addElementForm ul {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 390, ../../style/layout/_article.scss */
+/* line 389, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li {
   vertical-align: top;
 }
-/* line 393, ../../style/layout/_article.scss */
+/* line 392, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text {
   width: 256pt;
   height: 176pt;
   position: relative;
 }
-/* line 398, ../../style/layout/_article.scss */
+/* line 397, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text span.label {
   display: none;
 }
-/* line 402, ../../style/layout/_article.scss */
+/* line 401, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.text textarea {
   font-size: 24pt;
   font-weight: 500;
@@ -1953,21 +1952,21 @@ section.container section.space section.content article.addElementForm ul li.tex
   line-height: 24pt;
   height: 100%;
 }
-/* line 408, ../../style/layout/_article.scss */
+/* line 407, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 }
-/* line 416, ../../style/layout/_article.scss */
+/* line 415, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
   height: 16pt;
   width: intrinsic;
 }
-/* line 422, ../../style/layout/_article.scss */
+/* line 421, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload form {
   height: 100%;
   width: 100%;
@@ -1975,7 +1974,7 @@ section.container section.space section.content article.addElementForm ul li.car
   left: 0;
   position: absolute;
 }
-/* line 429, ../../style/layout/_article.scss */
+/* line 428, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1985,14 +1984,14 @@ section.container section.space section.content article.addElementForm ul li.car
   opacity: 0;
   cursor: pointer;
 }
-/* line 441, ../../style/layout/_article.scss */
+/* line 440, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 447, ../../style/layout/_article.scss */
+/* line 446, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul li.cardActions ul li.done a {
   border: 0;
   padding: 0;
