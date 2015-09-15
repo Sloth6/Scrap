@@ -27,7 +27,7 @@ if element.contentType == 'cover'
             label.smallType.smallCaps Share this pack
     //- .collectionContent(class=collection.spaceKey, style="display:none;")
 else
-  article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
+  article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-spacekey=collection.spaceKey, data-content=element.content)
     .content
       .elementControls
         - if (typeof(collection.nameMap) !== "undefined") {

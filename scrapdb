@@ -1,0 +1,89 @@
+\d "scrapdb"
+\d scrapdb
+\c scrapdb
+select * from spaces, elements where space.id = "element.spaceId";
+select * from "Spaces", "Elements" where space.id = "element.spaceId";
+select * from "Spaces", "Elements" where "Space.id" = "element.spaceId";
+\d "Space
+\d "Spaces
+\d "Spaces"
+select * from "Spaces", "Elements" where "Spaces.id" = "element.spaceId";
+select * from "Spaces", "Elements" where "Spaces".id = "element.spaceId";
+\d "Elements"
+select * from "Spaces", "Elements" where "Spaces".id = "elements.SpaceId";
+select * from "Spaces", "Elements" where "Spaces".id = "Elements.SpaceId";
+select * from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId";
+select "Elements"."SpaceId", count(*) from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId";
+select count(*) from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId";
+select count(*) from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId" GROUPBY "Spaces".id;
+select count(*) from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId", GROUPBY "Spaces".id;
+select count(*) from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select count(*) from "Spaces";
+select * from "Spaces", "Elements" where "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select * from "Spaces" left outer join "Elements" where "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select * from "Spaces" left join "Elements" where "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select * from "Spaces" left join "Elements" where "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select * from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select "Spaces.id", count("Elements.id") * from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select "Spaces.id", count("Elements.id") from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select "Spaces".id, count("Elements.id") from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" where count("Elements".id) = 0 GROUP BY "Spaces".id);
+select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" where count("Elements".id) = 0 GROUP BY "Spaces".id;
+select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" where GROUP BY "Spaces".id;
+select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id;
+select * from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id);
+select * from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo;
+select * from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0;
+delete * from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0;
+select * from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0;
+select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0;
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+\c "scrapdb";
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+\c scrapdb;
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+delete from "Spaces" where id in (select id from (select "Spaces".id, count("Elements".id) from "Spaces" left join "Elements" ON "Spaces".id = "Elements"."SpaceId" GROUP BY "Spaces".id) as foo where foo.count = 0);
+\d "User"
+\d "Users"
+select * from "User";
+select * from "Users";
+drop from "Users";
+delete from "Users";
+select * from "Elements";
+delete from "Elements";
+delete from "Spaces";
+select * from "Users";
+'UPDATE "Users" SET "name"=\'cody simon\' "email"=\'cody@cody.com\' WHERE "id"=\'5\' RETURNING *'
+\c scrapdb
+\c scrapsb
+\c scrapdb
+\c
+\d
+\d "Elements"
+\d
+\c
+\c scrapdb
+\d
+\c
+select * from "Users";
+\s scrapdb;
+\s scrapdb

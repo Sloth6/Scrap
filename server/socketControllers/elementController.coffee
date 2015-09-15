@@ -93,26 +93,22 @@ module.exports =
     userId = socket.handshake.session.currentUserId
     id = data.elementId
     spaceKey = data.spaceKey
-
-
+    console.log "Delete element #{id}"
     query = "DELETE FROM \"Elements\" WHERE \"id\"=:id returning \"contentType\", content"
 
     elementShell = models.Element.build()
-    models.sequelize.query(query, null, null, { id })
-      .complete (err, results) ->
-        return callback err if err?
-        console.log results
-        type = results[0].contentType
-        content = results[0].content
-        
-        # if type in ['gif', 'image']
-        #   s3.deleteImage { spaceKey, key: content, type }, (err) ->
-        #     console.log err if err
-        # if type in ['file', 'video']
-        #   s3.delete {key: content}, (err) ->
-        #     console.log err if err
-        sio.to(spaceKey).emit 'removeElement', { id }
-        callback()
+    models.sequelize.query(query, null, null, { id }).complete (err, results) ->
+      return callback err if err?
+      type = results[0].contentType
+      content = results[0].content
+      # if type in ['gif', 'image']
+      #   s3.deleteImage { spaceKey, key: content, type }, (err) ->
+      #     console.log err if err
+      # if type in ['file', 'video']
+      #   s3.delete {key: content}, (err) ->
+      #     console.log err if err
+      sio.to(spaceKey).emit 'removeElement', { id }
+      callback()
 
   moveToCollection: (sio, socket, data, callback) ->
     { elemId, spaceKey } = data

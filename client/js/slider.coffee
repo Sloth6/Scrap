@@ -41,6 +41,7 @@ sliderInit = (elems) ->
   bindCardHover()
   elems.each sliderJumble
   makeDraggable elems
+  makeDeletable elems
   elems.each () ->
     switch $(@).data('contenttype')
       when 'text'
