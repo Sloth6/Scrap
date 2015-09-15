@@ -347,11 +347,13 @@ section.container section.space section.content{
             &.peek {
                 
                 &:hover {
-                    @include invertHover;
+                    
+                    .translate {
+                    		@include transform(translate(24px, -48px));
+                    }
+                    
                 }
                 .translate {
-//                     background-color: transparent !important;
-//                     border: 0;
                 		@include transform(translate(0px, -48px));
                 		
                     &:after {
