@@ -1,5 +1,6 @@
 models = require '../../../models'
 request = require 'request'
+webPreviews = require '../../modules/webPreviews.coffee'
 
 module.exports = (spaceKey, attributes, callback) ->
   options =

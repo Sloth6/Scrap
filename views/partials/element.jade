@@ -1,6 +1,10 @@
 - var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
 - var classes = [ element.contentType, "element", "slider", "draggable", collection.spaceKey]
 - var posString = "position:absolute;"
+//- - var interactiveTypes = ['soundcloud', 'youtube']
+
+if (element.contentType == 'soundcloud' || element.contentType == 'youtube')
+  - classes.push('interactive')
 
 if element.contentType == 'cover'
   -var content = JSON.parse(element.content)
@@ -87,9 +91,20 @@ else
                 .source.smallType.smallCaps SoundCloud
           
           when 'youtube'
-            - url = "//www.youtube.com/embed/"+ element.content
-            .iframeBlocker(style="position:absolute;width:100%;height:100%;")
-            iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
+            -var content = JSON.parse(element.content)
+            //- - videoUrl = "//www.youtube.com/embed/"+ element.content
+            //- - imgUrl = "http://img.youtube.com/vi/"+element.content+"/0.jpg"
+
+            //- img.youtubeThumbnail(src=imgUrl, style = "width:560px;height:315px")
+            //- .iframeBlocker(style="position:absolute;width:100%;height:100%;")
+            //- iframe(width="560", height="315", src= url, frameborder="0", allowfullscreen)
+                        img.soundcloudThumbnail(src=content.thumbnail_url)
+            img.youtubeThumbnail(src=content.image)
+            header
+              .top
+                  h1.headerType.title!=content.title
+              .detail
+                .source.smallType.smallCaps youtube
 
           when 'text'
             //- textarea.modify(name='content', style='height:300px')!=element.content

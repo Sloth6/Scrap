@@ -1697,21 +1697,21 @@ section.container section.space section.content article.file .content .card head
   word-wrap: break-word;
 }
 /* line 200, ../../style/layout/_article.scss */
-section.container section.space section.content article.soundcloud .card {
+section.container section.space section.content article.playable .card {
   width: 256pt;
   padding: 0;
 }
 /* line 204, ../../style/layout/_article.scss */
-section.container section.space section.content article.soundcloud .card header {
+section.container section.space section.content article.playable .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
 /* line 211, ../../style/layout/_article.scss */
-section.container section.space section.content article.soundcloud .card header .artist {
+section.container section.space section.content article.playable .card header .artist {
   margin-top: 4pt;
 }
 /* line 215, ../../style/layout/_article.scss */
-section.container section.space section.content article.soundcloud .card header .detail {
+section.container section.space section.content article.playable .card header .detail {
   margin-top: 24pt;
 }
 /* line 221, ../../style/layout/_article.scss */

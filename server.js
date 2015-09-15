@@ -32,7 +32,7 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(session);
-    app.use(compass({ cwd: __dirname + '/client' }));
+    // app.use(compass({ cwd: __dirname + '/client' }));
     app.use(coffeeMiddleware({
         src: __dirname + '/client',
         compress: true,
@@ -43,12 +43,12 @@ app.configure(function(){
     }));
 });
 
-app.use(function(req, res, next) {
-    compass.compile(function(err, stdout, stderr) {
-        console.log('Compass compiled.')
-    });
-    next();
-})
+// app.use(function(req, res, next) {
+//     compass.compile(function(err, stdout, stderr) {
+//         console.log('Compass compiled.')
+//     });
+//     next();
+// })
 
 io.use(sharedsession(session));
 
