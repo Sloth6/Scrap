@@ -40,7 +40,9 @@
     "mocha": "*",
     "sinon": "1.8.2",
     "sinon-chai": "~2.4.0",
-    "should": "*"
+    "should": "*",
+    "awsbox": "*"
+}
   },
   "engine": "node >= 0.6.6"
 }

@@ -1,25 +1,16 @@
 bindSoundCloudControls = (elems) ->
-  elems.mousedown (e) ->
-    # $(@).data 'lastX', e.clientX
-    # $(@).data 'lastY', e.clientY
+  bindPlayableControls elems, (elem) ->
+    # define how to create the iframe for soundcloud
+    iframe = $(elem.data('content').html)
+    # manually add autoplay to iframe src
+    src = decodeURIComponent(iframe.attr('src')) + '&auto_play=true'
+    iframe.attr { src }
 
-  elems.click (e) ->
-    # return if $(@).data('lastX') != e.clientX
-    # return if $(@).data('lastY') != e.clientY
 
-    if $(@).find('iframe').length
-      SC.Widget($(@).find('iframe')[0]).toggle()
-    else
-      img = $(@).find('img')
-      iframe = $($(@).data('content').html)
-      iframe.load () ->
-        widget = SC.Widget(@)
-        widget.bind SC.Widget.Events.READY, () ->
-          SC.Widget(iframe[0]).toggle()
-      
-      iframe.insertBefore img
-      img.hide()
-      $(@).find('header').hide()
+# old sc widget code
 
-$ ->
-  bindSoundCloudControls $('.element.soundcloud')
+# SC.Widget($(@).find('iframe')[0]).toggle()
+# iframe.load () ->
+#   widget = SC.Widget(@)
+#   widget.bind SC.Widget.Events.READY, () ->
+#     SC.Widget(iframe[0]).toggle()
