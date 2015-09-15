@@ -6,6 +6,7 @@ $logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
 
 .slidingContainer {
     position: absolute;
+        top: 10vh;
 }
 
 .slider {

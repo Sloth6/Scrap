@@ -101,7 +101,7 @@ slidingPlace = (animate = true) ->
   
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)
   percentFromBorder = percentToBorder((translateX), $(@), sliderBorder())
-  translateY = ($(@).data('translateY') * percentFromCenter) + sliderMarginTop
+  translateY = ($(@).data('translateY') * percentFromCenter)
 
   scale = 1
   if rawX < sliderBorder()
