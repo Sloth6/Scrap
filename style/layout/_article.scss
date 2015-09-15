@@ -346,10 +346,13 @@ section.container section.space section.content{
             // Compact view
             &.peek {
                 
-                &:hover {
-                    
+                &:hover {                    
                     .translate {
                     		@include transform(translate(24px, -48px));
+                    		
+                    		.card:hover {
+                        		border-color: $colorType;
+                    		}
                     }
                     
                 }
