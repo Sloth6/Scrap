@@ -1881,43 +1881,47 @@ section.container section.space section.content article .card img {
   margin-bottom: -2.66667pt;
   background-color: white;
 }
-/* line 348, ../../style/layout/_article.scss */
+/* line 349, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm.peek:hover {
+  -webkit-filter: invert(1);
+}
+/* line 352, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek .translate {
   -moz-transform: translate(0px, -48px);
   -ms-transform: translate(0px, -48px);
   -webkit-transform: translate(0px, -48px);
   transform: translate(0px, -48px);
 }
-/* line 353, ../../style/layout/_article.scss */
+/* line 357, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek .translate:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 358, ../../style/layout/_article.scss */
+/* line 362, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.peek ul {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
-/* line 365, ../../style/layout/_article.scss */
+/* line 369, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.slideInFromSide .translate {
   -moz-transform: translate(400px, 0px);
   -ms-transform: translate(400px, 0px);
   -webkit-transform: translate(400px, 0px);
   transform: translate(400px, 0px);
 }
-/* line 372, ../../style/layout/_article.scss */
+/* line 376, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.upload {
   opacity: 0;
 }
-/* line 376, ../../style/layout/_article.scss */
+/* line 380, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm.typing ul li.done {
   opacity: 1;
 }
-/* line 382, ../../style/layout/_article.scss */
+/* line 386, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm .translate {
   overflow: hidden;
   position: relative;
@@ -1937,7 +1941,7 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 395, ../../style/layout/_article.scss */
+/* line 399, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm .translate:after {
   content: "";
   height: 24px;
@@ -1963,11 +1967,11 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 414, ../../style/layout/_article.scss */
+/* line 418, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm .translate .card {
   overflow: visible;
 }
-/* line 419, ../../style/layout/_article.scss */
+/* line 423, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -1982,21 +1986,21 @@ section.container section.space section.content article.addElementForm ul {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 426, ../../style/layout/_article.scss */
+/* line 430, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li {
   vertical-align: top;
 }
-/* line 429, ../../style/layout/_article.scss */
+/* line 433, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.text {
   width: 256pt;
   height: 176pt;
   position: relative;
 }
-/* line 434, ../../style/layout/_article.scss */
+/* line 438, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.text span.label {
   display: none;
 }
-/* line 438, ../../style/layout/_article.scss */
+/* line 442, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.text textarea {
   font-size: 24pt;
   font-weight: 500;
@@ -2004,14 +2008,14 @@ section.container section.space section.content article.addElementForm ul > li.t
   line-height: 24pt;
   height: 100%;
 }
-/* line 444, ../../style/layout/_article.scss */
+/* line 448, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 }
-/* line 453, ../../style/layout/_article.scss */
+/* line 457, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -2020,7 +2024,7 @@ section.container section.space section.content article.addElementForm ul > li.c
   overflow: hidden;
   position: relative;
 }
-/* line 462, ../../style/layout/_article.scss */
+/* line 466, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -2031,7 +2035,7 @@ section.container section.space section.content article.addElementForm ul > li.c
       border-color: blue;
   */
 }
-/* line 467, ../../style/layout/_article.scss */
+/* line 471, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -2039,7 +2043,7 @@ section.container section.space section.content article.addElementForm ul > li.c
   left: 0;
   position: absolute;
 }
-/* line 474, ../../style/layout/_article.scss */
+/* line 478, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2049,14 +2053,14 @@ section.container section.space section.content article.addElementForm ul > li.c
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 486, ../../style/layout/_article.scss */
+/* line 490, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 492, ../../style/layout/_article.scss */
+/* line 496, ../../style/layout/_article.scss */
 section.container section.space section.content article.addElementForm ul > li.cardActions ul li.done a {
   border: 0;
   padding: 0;

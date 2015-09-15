@@ -345,6 +345,10 @@ section.container section.space section.content{
 
             // Compact view
             &.peek {
+                
+                &:hover {
+                    @include invertHover;
+                }
                 .translate {
 //                     background-color: transparent !important;
 //                     border: 0;
