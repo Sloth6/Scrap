@@ -423,7 +423,7 @@ section.container section.space section.content{
                                      -webkit-transform,
                                         -moz-transform);
                 
-                li {
+                > li {
                     vertical-align: top;
                     
                     &.text {
@@ -449,15 +449,18 @@ section.container section.space section.content{
                         
                         ul {
                             li {
+
                                 &.upload {
                                     opacity: 1;
                                     display: inline-block;
+                                    width: $col * 1.5;
                                     height: $leading;
-                                    width: intrinsic;
+                                    overflow: hidden;
+                                    position: relative;
                                     
                                     form {
                                         height: 100%;
-                                        width: 100%;
+                                        width: 200%;
                                         top: 0;
                                         left: 0;
                                         position: absolute;
@@ -467,9 +470,9 @@ section.container section.space section.content{
                                             width: 100%;
                                             position: absolute;
                                             top: 0;
-                                            left: 0;
+                                            left: -50%;
                                             opacity: 0;
-                                            cursor: pointer;
+                                            cursor: pointer !important;
                                         }
                                     }
                                 }

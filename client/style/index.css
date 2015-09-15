@@ -1975,21 +1975,21 @@ section.container section.space section.content article.addElementForm ul {
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 426, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li {
+section.container section.space section.content article.addElementForm ul > li {
   vertical-align: top;
 }
 /* line 429, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.text {
+section.container section.space section.content article.addElementForm ul > li.text {
   width: 256pt;
   height: 176pt;
   position: relative;
 }
 /* line 434, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.text span.label {
+section.container section.space section.content article.addElementForm ul > li.text span.label {
   display: none;
 }
 /* line 438, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.text textarea {
+section.container section.space section.content article.addElementForm ul > li.text textarea {
   font-size: 24pt;
   font-weight: 500;
   letter-spacing: -0.04167em;
@@ -1997,46 +1997,48 @@ section.container section.space section.content article.addElementForm ul li.tex
   height: 100%;
 }
 /* line 444, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cardActions {
+section.container section.space section.content article.addElementForm ul > li.cardActions {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 }
-/* line 452, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload {
+/* line 453, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
+  width: 96pt;
   height: 16pt;
-  width: intrinsic;
+  overflow: hidden;
+  position: relative;
 }
-/* line 458, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload form {
+/* line 461, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload form {
   height: 100%;
-  width: 100%;
+  width: 200%;
   top: 0;
   left: 0;
   position: absolute;
 }
-/* line 465, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cardActions ul li.upload form input {
+/* line 468, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul > li.cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -50%;
   opacity: 0;
-  cursor: pointer;
+  cursor: pointer !important;
 }
-/* line 477, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cardActions ul li.done {
+/* line 480, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul > li.cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 483, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm ul li.cardActions ul li.done a {
+/* line 486, ../../style/layout/_article.scss */
+section.container section.space section.content article.addElementForm ul > li.cardActions ul li.done a {
   border: 0;
   padding: 0;
   margin-left: 8pt;
