@@ -10,7 +10,7 @@ if element.contentType == 'cover'
   -var content = JSON.parse(element.content)
   -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content.spaceKey, collection.spaceKey]
   article(id=element.id, data-contenttype='cover', data-spacekey=content.spaceKey, data-name=content.name, class=coverClasses)
-    .card.cardHover.colored
+    .card.cardHover.colored(style="background-color:"+content.backgroundColor)
       - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
       // .background(style='background-image: url("' + image + '");')
       section.title

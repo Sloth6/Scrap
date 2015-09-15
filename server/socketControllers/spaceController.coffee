@@ -3,6 +3,7 @@ mail = require '../adapters/nodemailer'
 newSpace = require '../newSpace'
 async = require 'async'
 newElements = require './newElements'
+coverColor = require '../modules/coverColor'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
@@ -57,6 +58,7 @@ module.exports =
       # Create cover element
       (newSpace, parentSpace, cb) ->
         console.log "Creating cover element"
+
         coverAttributes =
           SpaceId: parentSpace.id
           creatorId: userId
@@ -64,6 +66,7 @@ module.exports =
           content: JSON.stringify {
                       spaceKey: newSpace.spaceKey
                       name: newSpace.name
+                      backgroundColor: coverColor()
                     }
         models.Element.create(coverAttributes).complete (err, cover) ->
           if err then cb err else cb null, parentSpace, cover

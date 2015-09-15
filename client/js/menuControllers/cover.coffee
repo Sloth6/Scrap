@@ -107,9 +107,6 @@ bindCoverControls = (covers) ->
       textField.html 'An invite has been sent'
       addUser email, spaceKey
 
-  $('.cover .card.colored').each () ->
-    $(@).css { backgroundColor : randomColor }
-
   covers.find('ul.menu').each () ->
     $menu = $(@)
     $cover = $menu.parent().parent('.cover')

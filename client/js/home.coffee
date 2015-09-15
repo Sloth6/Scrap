@@ -10,14 +10,7 @@ edgeWidth = 36
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
 
-randomColor = ->
-  letters = '0123456789ABCDEF'.split('')
-  color = '#'
-  i = 0
-  while i < 6
-    color += letters[Math.floor(((Math.random() / 2) + .5) * 16)]
-    i++
-  color
+
 
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
@@ -72,9 +65,3 @@ $ ->
     # equivlant to if spaceKey != home and spacekey cover exists
     # if $(".cover.#{spaceKey}").length
     #   collectionOpen $(".cover.#{spaceKey}")
-
-  $('header.cover').each () ->
-    backgroundColor = randomColor()
-    $(@).find('.card.colored').css { backgroundColor : backgroundColor }
-    $(@).find('.typeOutlineClear').css { '-webkit-text-fill-color' : backgroundColor }
-
