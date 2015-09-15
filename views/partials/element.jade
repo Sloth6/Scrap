@@ -30,10 +30,10 @@ else
   article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-content=element.content)
     .content
       .elementControls
-        - if (typeof(collection.nameMap) !== "undefined") {
-          author= collection.nameMap[element.creatorId].name
+        - if (.(collection.nameMap) !== "undefined") {
+          author!=collection.nameMap[element.creatorId].name
         - }    
-        a.elementDeleteButton.warning Delete
+        a.elementDeleteButton.warning.smallType.smallCaps Delete
       case element.contentType
         when 'file'
           .decorative.fold
