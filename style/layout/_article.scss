@@ -270,7 +270,7 @@ section.container section.space section.content{
             &.text {
 //                 @include background-image(linear-gradient(#ffffaa, #ffffff));
                 background-color: #ffffdc;
-                width: $articleSide;
+                width: $articleSideNarrow;
             }
             
             &.website {
@@ -398,8 +398,8 @@ section.container section.space section.content{
             .translate {
                 overflow: hidden;
                 position: relative;
-                height: $articleSideNarrow;
-                width: $articleSide;
+                width: $articleSideNarrow;
+                height: ($articleSideNarrow + $cardPaddingBottom) + $cardPaddingTop;
                 cursor: pointer;
             		  @include transform(translate(0px, 0px));
                 @include transition(1s $defaultCurve);
@@ -443,7 +443,7 @@ section.container section.space section.content{
                     vertical-align: top;
                     
                     &.text {
-                        width: $articleSide;
+                        width: 100%;
                         height: $articleSideNarrow - $cell * 2;
                         position: relative;
                         
