@@ -96,7 +96,7 @@ else
           when 'youtube'
             -var content = JSON.parse(element.content)
             .preview(title='Play “' + content.title + '”')
-              img.youtubeThumbnail(src=content.image, style='width:580px;height:315')
+              img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
             header
               .top
                 h1.headerType.title!=content.title
