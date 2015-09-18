@@ -4,7 +4,7 @@ openCollectionDuration  = 1000
 
 margin = $(window).width() / 96
 sliderBorder = () -> $(window).width() / 6
-edgeWidth = 36
+edgeWidth = 48
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }
