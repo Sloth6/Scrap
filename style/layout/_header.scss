@@ -2,7 +2,7 @@ header.main {
     .backButton {
         position: absolute;
         top: 0;
-        left: -24px;
+        left: -50px;
         
         &.visible {
             &:hover {
@@ -14,8 +14,7 @@ header.main {
 
         a {
             display: block;
-            width: 24px;
-            padding: 0 $cell/2;
+            padding: 0 12px 12px 24px;
     
             @include typeHeader;
             font-size: $typeHeaderSize * 2;

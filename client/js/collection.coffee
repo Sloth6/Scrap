@@ -77,7 +77,7 @@ collectionOpen = (cover, options = {}) ->
 #   If leaving root collection, animate in back button
     if parentCover.hasClass('root')
       $('header.main .backButton').addClass 'visible'
-      moveBackButton(24)
+      moveBackButton(32)
 
 collectionClose = (draggingElement) ->
   closingCover = $('.open.cover')
