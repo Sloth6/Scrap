@@ -26,6 +26,7 @@ collectionOpen = (cover, options = {}) ->
   spacekey = cover.data 'spacekey'
   dragging = options.dragging
   window.openSpace = spacekey
+  
 
   loadElements spacekey, (elements) ->
 
@@ -40,7 +41,7 @@ collectionOpen = (cover, options = {}) ->
     cover.addClass('open').removeClass('draggable closed')
     prevSliding.removeClass 'sliding'
     nextSliding.removeClass 'sliding'
-
+      
     if dragging?
       padding.insertAfter collection.find('.addElementForm')
     
@@ -73,6 +74,11 @@ collectionOpen = (cover, options = {}) ->
 
     setTimeout collectionRealign, 50
 
+#   If leaving root collection, animate in back button
+    if parentCover.hasClass('root')
+      $('header.main .backButton').addClass 'visible'
+      moveBackButton(24)
+
 collectionClose = (draggingElement) ->
   closingCover = $('.open.cover')
   return if closingCover.hasClass 'root'
@@ -96,6 +102,10 @@ collectionClose = (draggingElement) ->
   parentChildren.show().addClass 'sliding'
   parentCover.addClass('open').removeClass('closed')
 
+# If entering root collection, animate out back button
+  if parentCover.hasClass('root')
+    $('header.main .backButton').removeClass 'visible'
+    moveBackButton(0)
   
   # console.log draggingElement
   if draggingElement?
@@ -133,7 +143,7 @@ collectionClose = (draggingElement) ->
     $("body").css("overflow", "visible")
     collectionRealign()
   ), openCollectionDuration
-
+  
 collectionChildren = (collection) ->
   collection ?= $('.collection.open')
   cover = collection.children('.cover')
@@ -196,3 +206,11 @@ collectionElemAfter = (x) ->
     if parseInt(child.css('x')) + child.width() > x
       return child
   $()
+  
+moveBackButton = (x) ->
+  $('header.main .backButton').velocity
+    properties:
+      translateX: x
+    options:
+      easing: openCollectionCurve
+      duration: 1000
