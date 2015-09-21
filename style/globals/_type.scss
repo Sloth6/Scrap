@@ -18,7 +18,7 @@ $leading:           		$cell * 2;
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		52pt;
+$typeTitleSize:    		54pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
 
@@ -30,8 +30,8 @@ $headerLeftMarginOffset:
 @mixin typeTitle {
 //     font-family:    $fontFamilySerif;
     font-size:      $typeTitleSize;
-    font-weight:    $fontWeightBold;
-    letter-spacing: -(1em / 24);
+    font-weight:    $fontWeightExtraBold;
+    letter-spacing: -(1em / 64);
     line-height:    $typeTitleLeading;
 }
 
