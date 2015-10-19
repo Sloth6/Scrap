@@ -7,7 +7,7 @@ loadElements = (spacekey, callback) ->
     callback cache[spacekey]
 
 coverToCollection = (cover, elements) ->
-  spacekey = cover.data 'spacekey'
+  spacekey = cover.data('content').spaceKey
   collection = $("<div>").
     addClass("collection open #{spacekey}").
     data({ spacekey }).
@@ -23,7 +23,7 @@ coverToCollection = (cover, elements) ->
 
 collectionOpen = (cover, options = {}) ->
   return if cover.hasClass 'open'
-  spacekey = cover.data 'spacekey'
+  spacekey = cover.data('content').spaceKey
   dragging = options.dragging
   window.openSpace = spacekey
   
@@ -82,7 +82,7 @@ collectionOpen = (cover, options = {}) ->
 collectionClose = (draggingElement) ->
   closingCover = $('.open.cover')
   return if closingCover.hasClass 'root'
-  closingSpacekey = closingCover.data 'spacekey'
+  closingSpacekey = closingCover.data('content').spaceKey
 
   edgeWidth -= 32
 
@@ -96,7 +96,7 @@ collectionClose = (draggingElement) ->
   parentChildren = collectionChildren parentCollection
   parentCover = parentCollection.children('.cover')
 
-  parentSpacekey = parentCover.data 'spacekey'
+  parentSpacekey = parentCover.data('content').spaceKey
 
   parentCollection.addClass('open').removeClass('closed')
   parentChildren.show().addClass 'sliding'
@@ -139,7 +139,7 @@ collectionClose = (draggingElement) ->
 
   setTimeout (() ->
     closingCollection.remove()
-    window.openSpace = parentCollection.data 'spacekey'
+    window.openSpace = parentCollection.data('content').spaceKey
     $("body").css("overflow", "visible")
     collectionRealign()
   ), openCollectionDuration

@@ -20,8 +20,8 @@ module.exports = (app) ->
   app.post '/s/update', (req, res) ->
     controllers.spaceController.updateSpace req, res, app, errorHandler
 
-  app.post '/addUserToSpace', (req, res) ->
-    controllers.spaceController.addUserToSpace req, res, app, errorHandler
+  # app.post '/addUserToSpace', (req, res) ->
+  #   controllers.spaceController.addUserToSpace req, res, app, errorHandler
 
   app.post '/updateSpaceName', (req, res) ->
     controllers.spaceController.updateSpaceName req, res, app, errorHandler
@@ -29,11 +29,12 @@ module.exports = (app) ->
   app.get '/collectionContent/:spaceKey', (req, res) ->
     controllers.spaceController.collectionContent req, res, app, errorHandler
 
-  # app.get '/s/:spaceKey', (req, res) ->
-  #   controllers.spaceController.showReadOnly req, res, app, errorHandler
+  app.get '/collectionData/:spaceKey', (req, res) ->
+    controllers.spaceController.collectionData req, res, app, errorHandler
 
-  # app.get '/r/:spaceKey', (req, res) ->
-  #   controllers.spaceController.showSpace req, res, app, errorHandler
+  app.get '/s/:spaceKey', (req, res) ->
+    # res.redirect '/'
+    controllers.readOnlyController.index req, res, app, errorHandler
 
   app.post '/login', (req, res) ->
     controllers.userController.login req, res, app, errorHandler

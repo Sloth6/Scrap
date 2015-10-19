@@ -56,6 +56,7 @@ sliderInit = (elems) ->
         bindYoutubeControls $(@)
       when 'cover'
         bindCoverControls $(@)
+        getCoverData $(@)
       when 'addElementForm'
         addElementController.init $(@)
 

@@ -2,17 +2,13 @@ models   = require '../../models'
 async    = require 'async'
 s3 = require '../adapters/s3.coffee'
 request = require 'request'
-
+elementRenderer = require '../modules/elementRenderer.coffee'
 # webPreviews = require '../modules/webPreviews.coffee'
 # thumbnails = require '../modules/thumbnails.coffee'
 # videoScreenshot = require '../modules/videoScreenshot.coffee'
 
 newElements = require './newElements'
 
-element_jade = null
-require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
-  throw err if err
-  element_jade = require('jade').compile data
 
 
 getType = (s, cb) ->
@@ -36,15 +32,6 @@ getType = (s, cb) ->
       return cb 'website'
     return cb 'file'# if contentType.match /^application\//
 
-nameMap = (users) ->
-  map = {}
-  for {name, id, email} in users
-    # split = name.split(' ')
-    # first = split[0]
-    # last = if split.length > 1 then split[1] else ''
-    map[id] = {name, email}
-  map
-
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, callback) =>
@@ -67,12 +54,7 @@ module.exports =
           space.elementOrder.unshift(element.id)
           console.log space.elementOrder
           space.save()#then
-          # models.Element.update({content}, {id}).complete (err) ->
-
-          space.nameMap = nameMap space.users
-
-          html = encodeURIComponent(element_jade({element, collection: space}))
-          console.log 'emitting new element', element.content, spaceKey
+          html = elementRenderer space, element
           sio.to(spaceKey).emit 'newElement', { html, spaceKey }
           return callback null
     
@@ -121,18 +103,6 @@ module.exports =
     models.sequelize.query(q, null, null, data).complete (err, results) ->
       console.log err, results
       return callback err if err?
-
-  renameCover: (sio, socket, data, callback) ->
-    { elemId, name } = data
-    models.Element.find(where: { id: elemId }).complete (err, cover) ->
-      return callback err if err?
-      return callback 'no cover found in renameCover' unless cover?
-      content = JSON.parse(cover.content)
-      content.name = name 
-      content = JSON.stringify content     
-      models.Element.update({content}, {id:elemId}).complete (err) ->
-        return callback err if err?
-        # sio.to("#{spaceKey}").emit 'updateElement', data
   
   updateElement : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId

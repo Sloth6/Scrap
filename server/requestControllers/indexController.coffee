@@ -1,14 +1,5 @@
 models = require '../../models'
 
-nameMap = (users) ->
-  map = {}
-  for {name, id, email} in users
-    # split = name.split(' ')
-    # first = split[0]
-    # last = if split.length > 1 then split[1] else ''
-    map[id] = {name, email}
-  map
-
 indexPage = (res) ->
   res.render 'index.jade',
     title : 'Scrap · Keep Everything for Your Project in One Place'
@@ -25,11 +16,11 @@ module.exports =
         return callback err if err?
         return indexPage res unless user?
         models.Space.find({
-          where: { root: true, UserId: user.id }
-          include:[ model:models.Element, models.User ]
-        }).complete (err, space) ->
+          where: { root:true, UserId: user.id }
+          include:[ models.User ] #model:models.Element, 
+        }).complete (err, collection) ->
           return callback err if err?
-          res.render 'home.jade', { user, collection:space, title: 'Scrap' }
+          res.render 'home.jade', { user, collection, title: 'Scrap' }
           callback()
     else
       indexPage res

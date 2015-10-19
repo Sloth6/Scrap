@@ -1,15 +1,21 @@
 @import "screen.scss";
 
-section.index {
+section.page {
     @media screen and (max-width: 640px) {
         text-align: center;
+                        margin-top: $col;
     }
     
-    .card {
+    .animateIn {
         position: absolute;
                 transform-origin: center center;
         -webkit-transform-origin: center center;
         opacity: 0;
+    }
+    
+    .card {
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
         
         &:hover {
             z-index: 100;
@@ -19,29 +25,51 @@ section.index {
             position: relative;
             text-align: left;
         }
-    }
-    
-    .cover {
-        width: $articleSide;
-        height: $articleSideWide;
         
-        @media screen and (max-width: 640px) {
-            width: 90%;
-            max-width: $articleSide;
+        &.small {
+            width: $articleSideNarrow;
+            padding-bottom: $broadMargin;
+        }
+        
+        &.cover {
+            width: $articleSide;
+            height: $articleSideWide;
             
-            &.title {
-                margin-top: $col;
+            @media screen and (max-width: 640px) {
+                width: 90%;
+                max-width: $articleSide;
             }
         }
     }
-            
-    section.form {
-        width: $articleSideNarrow;
-        padding-bottom: $broadMargin;
-    }        
+}
+
+section.index {            
+}
+
+section.readOnly {
+    header.card {
+        z-index: 10;
+        position: relative;
+        opacity: 1;
+        
+        section.form {
+            position: absolute;
+            bottom: 0;
+            opacity: 0;
+        }
+    }
     
-    section.description {
-        width: $articleSideNarrow;
-        padding-bottom: $broadMargin;
+    .card {
+        position: absolute;
+        top: 0;
+        &.blank {
+            z-index: 0;
+        }
+        
+        &.logo {
+            border: 0;
+            background: transparent;
+            padding: 0;
+        }
     }
 }
