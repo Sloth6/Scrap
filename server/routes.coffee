@@ -33,8 +33,8 @@ module.exports = (app) ->
     controllers.spaceController.collectionData req, res, app, errorHandler
 
   app.get '/s/:spaceKey', (req, res) ->
-    res.redirect '/'
-    # controllers.readOnlyController.index req, res, app, errorHandler
+    # res.redirect '/'
+    controllers.readOnlyController.index req, res, app, errorHandler
 
   app.post '/login', (req, res) ->
     controllers.userController.login req, res, app, errorHandler
