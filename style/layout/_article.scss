@@ -87,6 +87,8 @@ section.container section.space section.content{
         &.text {
             font-style: normal;
             @include typeHeader;
+            background-color: #ffffdc;
+            width: $articleSideNarrow;
             
             * {
                 outline: none;
@@ -108,7 +110,7 @@ section.container section.space section.content{
                 @include typeBody;
                 
                 * {
-                    :first-child {
+                    &:first-child {
                         color: red !important;
                     }
                 }
@@ -277,12 +279,6 @@ section.container section.space section.content{
             max-width: $articleSide;
             overflow: hidden;
             min-height: $articleMinHeight;
-
-            &.text {
-//                 @include background-image(linear-gradient(#ffffaa, #ffffff));
-                background-color: #ffffdc;
-                width: $articleSideNarrow;
-            }
             
             &.website {
                 @include cardStyle;
