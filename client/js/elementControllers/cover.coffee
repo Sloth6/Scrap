@@ -4,17 +4,15 @@ validateEmail = (email) ->
 
 addUser = (email, spaceKey) ->
   console.log "inviting #{email} to #{spaceKey}"
-  
-  $.post '/addUserToSpace', { email, spaceKey }, (data) ->
-    console.log 'success', data
-
-  # socket.emit 'addUserToSpace', { email, spaceKey }
+  # $.post '/addUserToSpace', { email, spaceKey }, (data) ->
+  #   console.log 'success', data
+  socket.emit 'addUserToSpace', { email, spaceKey }
 
 stopEditing = (cover) ->
   return unless cover.hasClass('editing')
   title  = cover.find('.collectionTitle')
   card   = cover.children('.card')
-  spaceKey = cover.data 'spacekey'
+  spaceKey = cover.data('content').spaceKey
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
 
@@ -28,7 +26,7 @@ stopEditing = (cover) ->
   userMenu.addClass 'canOpen'
   rename.children('a').text 'Rename'
   title.attr 'contenteditable', false
-  socket.emit 'renameCover', { elemId: cover.attr('id'), name: title.text() }
+  socket.emit 'renameCover', { spaceKey, name: title.text() }
 
 startEditing = (cover) ->
   title  = cover.find('.collectionTitle')
@@ -71,6 +69,7 @@ coverClick = () ->
     collectionOpen $(@)
 
 bindCoverControls = (covers) ->
+  # console.log covers
   covers.click coverClick
   covers.each () ->
     cover  = $(@)
@@ -79,6 +78,22 @@ bindCoverControls = (covers) ->
       event.stopPropagation()
       if cover.hasClass('editing') then stopEditing cover else startEditing cover
   
+
+    # submit on enter
+    cover.find('.addUser').on 'submit', (event) ->
+      event.preventDefault()
+      spaceKey = cover.data('content').spaceKey
+      input = $('input[name="user[email]"]', @)
+      textField = $(@).children('label')
+      
+      email = input.val()
+      if !validateEmail(email) 
+        textField.html 'Please enter a valid email'
+      else
+        input.val ''
+        textField.html 'An invite has been sent'
+        addUser email, spaceKey
+        
   # dont open collection on clicking user field
   covers.find('.addUser input[name="user[email]"]').click (event) ->
     event.stopPropagation()
@@ -87,21 +102,7 @@ bindCoverControls = (covers) ->
   covers.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
 
-  # submit on enter
-  covers.find('.addUser').on 'submit', (event) ->
-    event.preventDefault()
-    spaceKey = $(@).data 'spacekey'
-    input = $('input[name="user[email]"]', @)
-    textField = $(@).children('label')
-    
-    email = input.val()
 
-    if !validateEmail(email) 
-      textField.html 'Please enter a valid email'
-    else
-      input.val ''
-      textField.html 'An invite has been sent'
-      addUser email, spaceKey
       
   covers.find('ul.menu').each () ->
     $menu = $(@)
@@ -111,6 +112,18 @@ bindCoverControls = (covers) ->
       $menu.addClass 'open' if $menu.hasClass 'canOpen'
     $cover.mouseleave () ->
       $menu.removeClass 'open' if $menu.hasClass 'canOpen'
+
+getCoverData = (covers) ->
+  covers.each () ->
+    cover = $(@)
+    content = $(@).data 'content'
+    # console.log 'content', content
+    $.get "/collectionData/#{content.spaceKey}", (data) ->
+      cover.find('section.title').children('h1, h2, h3').text data.name
+      for u in data.users
+        name = u.name or u.email
+        cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
+
 $ ->
   bindCoverControls $('.cover')
       

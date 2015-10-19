@@ -49,7 +49,7 @@ $ ->
       $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
       event.preventDefault()
 
-  sliderInit $('.slider')
+  # sliderInit $('.slider')
 
   # Close a collection on page back
   window.onpopstate = (event) ->

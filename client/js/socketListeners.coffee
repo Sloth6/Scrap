@@ -11,7 +11,7 @@ $ ->
   socket.on 'newElement', (data) ->
     { html, spaceKey } = data
     element = $(decodeURIComponent(html))
-    console.log 'new element', element
+    console.log "new element for #{spaceKey}", element
     
     if $(".#{spaceKey}.collection").hasClass 'open'
       element.

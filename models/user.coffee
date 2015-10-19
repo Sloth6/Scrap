@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) ->
   }, {
     classMethods:
       associate: (models) ->
-        User.hasMany models.Space
+        User.hasMany(models.Space, { onDelete: 'CASCADE' })
     instanceMethods:
       verifyPassword: (password, done) ->
         bcrypt.compare password, this.password, (err, res) ->

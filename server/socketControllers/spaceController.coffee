@@ -20,15 +20,20 @@ module.exports =
     console.log elementOrder
     models.Space.update({elementOrder}, {spaceKey}).complete (err) ->
       console.log err
-      # console.log space.name
-      # console.log space.elementOrder
-  
+
+  rename: (sio, socket, data, callback) ->
+    { spaceKey, name } = data
+    models.Space.update({ name }, { spaceKey }).complete (err) ->
+      return callback err if err?
+      console.log "updated name of #{spaceKey} to #{name}"
+        # sio.to("#{spaceKey}").emit 'updateElement', data
+
   newCollection: (sio, socket, data) ->
     spaceKey = data.spaceKey # SpaceKey will be the parent of the new collection
     draggedId = parseInt data.draggedId
     draggedOverId = parseInt data.draggedOverId
     userId = socket.handshake.session.userId
-    console.log 'New collection data', {spaceKey, draggedId, draggedOverId}
+    console.log 'New collection data', { spaceKey, draggedId, draggedOverId }
     
     # Dragged and draggedOver and the elements that created the collection
     
@@ -88,7 +93,7 @@ module.exports =
         order[draggedOverPosition] = cover.id
         order.splice(draggedPosition, 1)
         
-        console.log "\t",order
+        console.log "\t new order",order
 
         parentSpace.save().complete (err) ->
           if err then cb err else cb null, parentSpace, cover

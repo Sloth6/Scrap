@@ -57,11 +57,12 @@ module.exports =
   login : (req, res, app, callback) ->
     email = req.body.email
     password = req.body.password
-
+    console.log 'trying login', email, password
     models.User.find(
       where: { email }
       include: [ models.Space ]
     ).complete (err, user) ->
+      console.log err, !!user
       return res.status(400).send if err?
       return res.status(400).send "No account found for that email" if not user?
       user.verifyPassword password, (err, result) ->
@@ -74,6 +75,7 @@ module.exports =
           res.send "/"#"/s/" + user.spaces[0].spaceKey
           callback()
         else
+          console.log 'Incorrect password'
           # res.status 400
           return res.status(400).send 'Incorrect password.'
 
