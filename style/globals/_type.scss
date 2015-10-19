@@ -1,9 +1,11 @@
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
 // $fontFamily:        "ITC Avant Garde Gothic W01", Futura, "Century Gothic", sans-serif;
-/* $fontFamily:            'Neue Haas Unica W01', "Helvetica Neue"; */
-$fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
+$fontFamily:            'Neue Haas Unica W01', "Helvetica Neue", sans-serif;
+// $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
 $fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
 
+$fontWeightThin:        100;
+$fontWeightExtraLight:  200;
 $fontWeightLight:       300;
 $fontWeightRegular:     400;
 $fontWeightMedium:      500;
@@ -16,26 +18,26 @@ $leading:           		$cell * 2;
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		52pt;
+$typeTitleSize:    		54pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
 
 $typeHeaderLeading: 		24pt;
-$typeTitleLeading:    48pt;
+$typeTitleLeading:      48pt;
 
 $headerLeftMarginOffset:
-                    -1pt;
+                    -1.667pt;
 @mixin typeTitle {
 //     font-family:    $fontFamilySerif;
     font-size:      $typeTitleSize;
-    font-weight:    $fontWeightBold;
-    letter-spacing: -(1em / 24);
+    font-weight:    $fontWeightExtraBold;
+    letter-spacing: -(1em / 64);
     line-height:    $typeTitleLeading;
 }
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightExtraLight;
 //     font-family:    $fontFamilySerif;
     letter-spacing: -(1em / 24);
     line-height:    $typeHeaderLeading;
@@ -44,7 +46,7 @@ $headerLeftMarginOffset:
 @mixin typeBody {
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightLight;
     line-height:    $leading;
     letter-spacing: 0;
 }
@@ -65,15 +67,15 @@ $headerLeftMarginOffset:
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
-    font-weight:    $fontWeightMedium;
-    letter-spacing: .0625em;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: (1em/16);
 }
 
 @mixin typeSmallSmallCaps {
     @include        smallCaps;
-    font-size:      $typeSmallSize * .667;
+    font-size:      $typeSmallSize * .7;
     font-weight:    $fontWeightMedium;
-    letter-spacing: .125em;
+    letter-spacing: (1em/6);
 }
 
 @mixin typeHeaderSmallCaps {

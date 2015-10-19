@@ -1,14 +1,11 @@
 models = require '../../models'
-indexCollections = require '../indexCollections'
-collection = require '../modelControllers/collection'
 
 indexPage = (res) ->
   res.render 'index.jade',
-    title : 'Hotpot · Keep Everything for Your Project in One Place'
+    title : 'Scrap · Keep Everything for Your Project in One Place'
     description: ''
     author: 'scrap'
     names: { 1: "" }
-    collections: indexCollections
     current_space:
       spaceKey: 'index'
 
@@ -23,7 +20,7 @@ module.exports =
           include:[ models.User ] #model:models.Element, 
         }).complete (err, collection) ->
           return callback err if err?
-          res.render 'home.jade', { user, collection, title: 'Hotpot' }
+          res.render 'home.jade', { user, collection, title: 'Scrap' }
           callback()
     else
       indexPage res

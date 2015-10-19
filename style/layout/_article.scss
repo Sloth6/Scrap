@@ -86,6 +86,7 @@ section.container section.space section.content{
         
         &.text {
             font-style: normal;
+            @include typeHeader;
             
             * {
                 outline: none;
@@ -99,6 +100,7 @@ section.container section.space section.content{
                 font-weight: $fontWeightBold;
             }
             
+/*
             &.short {
                 @include typeHeader;
             }
@@ -106,6 +108,7 @@ section.container section.space section.content{
             &.long {
                 @include typeBody;
             }
+*/
         }
         
         &.image {
@@ -202,16 +205,23 @@ section.container section.space section.content{
             position: relative;
             
             &:hover {
-                cursor: pointer;
                 
                 .preview:after {
                     opacity: 1;
-                    @include transform(scale(1));
+                    @include transform(scale(1)); 
+                }
+            }
+            
+            &:active {
+                .preview:after {
+                    -webkit-filter: invert(1);
+                    @include transform(scale(.95)); 
                 }
             }
 
             .preview {
                 position: relative;
+                cursor: pointer;
                 
                 &:after {
                     content: '';
@@ -233,8 +243,8 @@ section.container section.space section.content{
                                                  transform,
                                          -webkit-transform,
                                             -moz-transform);
-                }
-                
+                                            
+                }                
             }
             
             header {
@@ -258,20 +268,17 @@ section.container section.space section.content{
             position: relative;
             max-width: $articleSide;
             overflow: hidden;
+            min-height: $articleMinHeight;
 
             &.text {
-                @include cardStyle;
-                background: -webkit-linear-gradient(#ffffaa 0%, #ffffff 100%);
-//                 font-family: "Comic Sans MS";
-                border: $cardBorder;
-                width: $articleSide;
-                min-height: $articleMinHeight;
+//                 @include background-image(linear-gradient(#ffffaa, #ffffff));
+                background-color: #ffffdc;
+                width: $articleSideNarrow;
             }
             
             &.website {
                 @include cardStyle;
                 width: $articleSideNarrow;
-                padding-top: $cell * 2;
                 
                 &:hover {
                     @include hoverLinkAnimation;
@@ -288,7 +295,6 @@ section.container section.space section.content{
                                
                 .text {
 
-                    
                     header {
                         position: absolute;
                         top: $cell/2;
@@ -301,7 +307,6 @@ section.container section.space section.content{
                             -webkit-box-orient: vertical; 
                             max-height: $typeHeaderLeading * 4;
                             overflow: hidden;
-                            margin-left: $headerLeftMarginOffset;
                             padding-bottom: .125em;
                             margin-bottom: -.125em;
                         }
@@ -314,7 +319,7 @@ section.container section.space section.content{
                     }
 
                     .description {
-                        margin-top: ($broadMargin * 3);
+                        margin-top: $articleSideNarrow - $col;
                         margin-bottom: $cell/2;
                         opacity: 1;
                         @include transition($collectionOpenTransitionDuration $defaultCurve);
@@ -333,6 +338,11 @@ section.container section.space section.content{
             &.caption, &.comment {                       
                 // background-color: $colorCardBackgroundLight;
             }
+            
+            h1.headerType {
+                margin-left: $headerLeftMarginOffset;
+                margin-top: -.15em;
+            }
 
             img {
                 width: 100%;
@@ -346,15 +356,19 @@ section.container section.space section.content{
             // Compact view
             &.peek {
                 
-                &:hover {
-                    
+                &:hover {  
+//                     z-index: 99999999 !important;                  
                     .translate {
-                    		@include transform(translate(24px, -48px));
+                    		@include transform(translate(24px, -64px));
+                    		
+                    		.card:hover {
+                        		border-color: $colorType;
+                    		}
                     }
                     
                 }
                 .translate {
-                		@include transform(translate(0px, -48px));
+                		@include transform(translate(0px, -64px));
                 		
                     &:after {
                     		@include transform(translate(0px, 0px));
@@ -368,12 +382,14 @@ section.container section.space section.content{
             }
             
             &.slideInFromSide {
+                z-index: 99999999 !important;                  
                 .translate {
-                    @include transform(translate(400px, 0px));
+                    @include transform(translate(320px, 0px));
                 }
             }
 
             &.typing {
+                z-index: 99999999 !important;                  
                 ul li {
                     &.upload {
                         opacity: 0;
@@ -388,8 +404,8 @@ section.container section.space section.content{
             .translate {
                 overflow: hidden;
                 position: relative;
-                height: $articleSideNarrow;
-                width: $articleSide;
+                width: $articleSideNarrow;
+                height: ($articleSideNarrow + $cardPaddingBottom) + $cardPaddingTop;
                 cursor: pointer;
             		  @include transform(translate(0px, 0px));
                 @include transition(1s $defaultCurve);
@@ -433,7 +449,7 @@ section.container section.space section.content{
                     vertical-align: top;
                     
                     &.text {
-                        width: $articleSide;
+                        width: 100%;
                         height: $articleSideNarrow - $cell * 2;
                         position: relative;
                         
@@ -449,7 +465,7 @@ section.container section.space section.content{
                     
                     &.cardActions {
                         position: absolute;
-                        bottom: 0;
+                        bottom: -$cell * 2;
                         left: 0;
                         right: 0;
                         

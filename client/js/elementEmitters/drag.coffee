@@ -79,9 +79,14 @@ checkForCollectionViaDrop = (event, dragging) ->
 
 checkForCloseByDrag = (x, y, draggingElement) ->
   return false if $('.open.root').length
-  if y < sliderMarginTop
+  if y < $('.slidingContainer').offset().top
     return true if collectionCloseByDragTopTimeout
     collectionCloseByDragTopTimeout = setTimeout (() ->
+      console.log draggingElement.find('.card')
+      draggingElement.find('.card').css({
+        'scale': 1,
+        'rotate': 0
+      })
       clearDragTimeouts()
       $(window).off 'mousemove'
       $(window).off 'mouseup'
@@ -174,7 +179,17 @@ stopDragging = (event, elem) ->
   elem.
     removeClass('dragging').
     addClass('sliding').
-    css({scale: 1, zIndex: elem.data('oldZIndex')})
+    css({
+      'z-index': elem.data('oldZIndex')
+    }).
+    find('.card').
+      velocity({
+        'scale': 1,
+        'rotateZ': 0
+      }, {
+        easing: [100, 10],
+        duration: 500
+      })
 
   collectionRealign true
 
@@ -183,7 +198,17 @@ startDragging = (elem) ->
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
-    css({ 'scale': draggingScale, 'z-index': 999 })
+    css({
+      'z-index': 9999999
+    }).
+    find('.card').
+      velocity({
+        'scale': draggingScale,
+        'rotateZ': (Math.random() * 8) - (Math.random() * 8)
+      }, {
+        easing: [100, 10],
+        duration: 500
+      })
   padding.width(elem.width()*draggingScale).insertAfter elem
   stopPlaying(elem) if elem.hasClass('playable')
  

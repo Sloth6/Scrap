@@ -1,4 +1,5 @@
 $coverHeight:  $col * 6;
+
 @mixin coverBackground {
 	position: absolute;
 	top: 0;
@@ -21,6 +22,10 @@ $coverHeight:  $col * 6;
 }
 body {
 	article.cover {
+    	
+    	    &.root {
+        	    display: none;
+    	    }
     	
     	    &.peek.open {
         	    .card {

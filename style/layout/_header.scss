@@ -1,85 +1,30 @@
-/*
+header.main {
+    .backButton {
+        position: absolute;
+        top: 0;
+        left: -50px;
+        
+        &.visible {
+            &:hover {
+                a {
+                    @include transform(translate3d(12px, 0px, 0px));
+                }
+            }
+        }
 
-.container > header {
-    position: fixed;
-    z-index: 20;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: red;
-    @include typeHeaderSmallCaps;
-    text-align: left;
-    cursor: default;
-    text-transform: lowercase;
+        a {
+            display: block;
+            padding: 0 12px 12px 24px;
     
-    a {
-        border: 0;
-        cursor: pointer;
-    }
-        
-    ul.menu {
-        
-        input {
-            max-width: 100%;
-        }
-        
-        &.settings {
-            a { 
-                &.logout:hover {
-                    @include hoverWarningAnimation;
-                }
-            }
-        }
-        
-        &.users {
+            @include typeHeader;
+            font-size: $typeHeaderSize * 2;
+            font-weight: $fontWeightThin;
+            @include transform(translate3d(0px, 0px, 0px));
+            @include transition(.25s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
             
-            li {
-                
-                &.user {
-                    @include typeHeader;
-                    text-transform: none;
-                }
-            }
-        }
-    }
-    
-    // Public space
-    
-    &.public, &.index {
-        
-        .card {
-            float: right;
-            display: inline-block;
-            
-            > p {
-                padding-bottom: $baseline/2;
-                            }
-            
-            form {
-                width: auto;
-                text-align: left;
-                
-                p {
-                                        
-                    &.submit input:hover {
-                        @include hoverConfirmAnimation;
-                    }
-                }
-                
-                input {
-                    width: 100%;
-                    text-align: left;
-                    
-                    &#name {
-                        text-transform: lowercase;
-                    }
-                    
-                    &[type=submit] {
-                        width: auto;
-                    }
-                }
-            }            
         }
     }
 }
-*/

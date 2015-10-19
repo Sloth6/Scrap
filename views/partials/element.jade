@@ -10,13 +10,13 @@ if element.contentType == 'cover'
   -var content = JSON.parse(element.content)
   -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content.spaceKey, collection.spaceKey]
   article(id=element.id, data-contenttype='cover', data-content=element.content,  data-spacekey=collection.spaceKey, class=coverClasses)
-    .card.cardHover.colored(style="background-color:blue")
+    .card.cardHover.cardDrag.colored(style="background-color:"+content.backgroundColor)
       - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
       section.title
         h1.collectionTitle.typeTitle.typeOutlineClear
         h2.peekTitle.bodyType.typeBody.typeWeightBold
         p.rename
-          a.smallCaps.smallType.confirm Rename
+          a.smallCaps.bodyType.confirm Rename
       ul.users.menu.slideIn.left.canOpen
         //- li.user foo
         //- li.user bar
@@ -33,11 +33,11 @@ else
         - if (typeof(collection.nameMap) !== "undefined") {
           author!= collection.nameMap[element.creatorId].name
         - }    
-        a.elementDeleteButton.warning.smallType.smallCaps Delete
+        a.elementDeleteButton.warning.bodyType.smallCaps Delete
       case element.contentType
         when 'file'
           .decorative.fold
-      .card.cardHover(class=element.contentType)
+      .card.cardHover.cardDrag(class=element.contentType)
         case element.contentType
           when 'image'
             - var content = JSON.parse(element.content)
@@ -96,7 +96,7 @@ else
           when 'youtube'
             -var content = JSON.parse(element.content)
             .preview(title='Play “' + content.title + '”')
-              img.youtubeThumbnail(src=content.image, style='width:580px;height:315')
+              img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
             header
               .top
                 h1.headerType.title!=content.title

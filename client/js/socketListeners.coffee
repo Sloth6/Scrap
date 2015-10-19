@@ -16,7 +16,7 @@ $ ->
     if $(".#{spaceKey}.collection").hasClass 'open'
       element.
         insertAfter($(".#{spaceKey}.collection").find('.addElementForm')).
-        css({x: xTransform(element), y: sliderMarginTop}).
+        css({x: xTransform(element)}).
         addClass('sliding')
 
       sliderInit element
@@ -29,7 +29,7 @@ $ ->
     cover = $(decodeURIComponent(data.coverHTML))
 
     cover.insertAfter draggedOver
-    cover.css {x: xTransform(draggedOver), y: sliderMarginTop}
+    cover.css {x: xTransform(draggedOver)}
     draggedOver.remove()
     dragged.remove()
     $("##{draggedOverId}").remove()

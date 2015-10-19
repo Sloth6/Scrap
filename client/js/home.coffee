@@ -1,11 +1,10 @@
 defaultCurve            = 'easeOutExpo'
-openCollectionCurve     = [20, 15]
+openCollectionCurve     = [50, 8]
 openCollectionDuration  = 1000
 
 margin = $(window).width() / 96
-sliderMarginTop = 100
-sliderBorder = () -> $(window).width() / 8
-edgeWidth = 36
+sliderBorder = () -> $(window).width() / 6
+edgeWidth = 48
 
 click = { x: null, y: null }
 window.pastState = { docWidth: null, scrollLeft: null }

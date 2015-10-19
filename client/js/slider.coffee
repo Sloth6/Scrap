@@ -76,10 +76,10 @@ slidingPlace = (animate = true) ->
   translateX = getTranslateX rawX, $(@)
   
   # Prevent stack from shifting to right when growing
-  translateX += .001825 * rawX
+  translateX -= .0001825 * rawX
   
   # If slider is at edge
-  if translateX + $(@).width() < edgeWidth or translateX > $(window).width() - edgeWidth
+  if translateX + $(@).width() < edgeWidth + 12 or translateX > $(window).width() - edgeWidth + 12
     $(@).addClass 'onEdge'
     # Make edge of card visible on open collections
     if $(@).hasClass 'cover'
@@ -102,12 +102,17 @@ slidingPlace = (animate = true) ->
   
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)
   percentFromBorder = percentToBorder((translateX), $(@), sliderBorder())
-  translateY = ($(@).data('translateY') * percentFromCenter)
+
+  if ($(@).hasClass('cover') and $(@).hasClass('open')) or $(@).hasClass('addElementForm')
+    translateY = 0
+  else
+    translateY = ($(@).data('translateY') * percentFromBorder)
+
 
   scale = 1
   if rawX < sliderBorder()
-    scale = 1 - (rawX * .00001)
-  rotateZ = $(@).data('rotateZ') * percentFromCenter
+    scale = 1 + (rawX * .00001)
+  rotateZ = $(@).data('rotateZ') * percentFromBorder
   
   # On open/close or load
   if animate

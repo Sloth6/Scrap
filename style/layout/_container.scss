@@ -1,12 +1,6 @@
-// must be the same as in main.coffee
-$scaleMultiple: 4;
-$backButtonWidth: ($col/4) + $cardPaddingLeft + $cell;
-$logoButtonWidth: $col*2 + $cardPaddingLeft + $cardBorderWidth;
-
-
 .slidingContainer {
     position: absolute;
-        top: 10vh;
+    top: 15vh;
 }
 
 .slider {
@@ -24,12 +18,4 @@ section.container {
     }
     
     
-    .elements {        
-        -webkit-transform-origin: 0 0;
-        @include transform(scale(1/$scaleMultiple));
-        @include transition(1s $defaultCurve);
-        @include transition-property(transform,
-                             -webkit-transform,
-                                -moz-transform);
-    }
 }

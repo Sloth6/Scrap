@@ -26,6 +26,7 @@ collectionOpen = (cover, options = {}) ->
   spacekey = cover.data('content').spaceKey
   dragging = options.dragging
   window.openSpace = spacekey
+  
 
   loadElements spacekey, (elements) ->
 
@@ -37,10 +38,10 @@ collectionOpen = (cover, options = {}) ->
     collection = coverToCollection cover, elements    
     parentCollection.removeClass('open').addClass 'closed'
     parentCover.removeClass('open').addClass 'closed'
-    cover.addClass('open').removeClass('draggable')
+    cover.addClass('open').removeClass('draggable closed')
     prevSliding.removeClass 'sliding'
     nextSliding.removeClass 'sliding'
-
+      
     if dragging?
       padding.insertAfter collection.find('.addElementForm')
     
@@ -73,6 +74,11 @@ collectionOpen = (cover, options = {}) ->
 
     setTimeout collectionRealign, 50
 
+#   If leaving root collection, animate in back button
+    if parentCover.hasClass('root')
+      $('header.main .backButton').addClass 'visible'
+      moveBackButton(32)
+
 collectionClose = (draggingElement) ->
   closingCover = $('.open.cover')
   return if closingCover.hasClass 'root'
@@ -96,6 +102,10 @@ collectionClose = (draggingElement) ->
   parentChildren.show().addClass 'sliding'
   parentCover.addClass('open').removeClass('closed')
 
+# If entering root collection, animate out back button
+  if parentCover.hasClass('root')
+    $('header.main .backButton').removeClass 'visible'
+    moveBackButton(0)
   
   # console.log draggingElement
   if draggingElement?
@@ -103,9 +113,7 @@ collectionClose = (draggingElement) ->
       removeClass('dragging').
       addClass('sliding').
       css({scale: 1, zIndex: draggingElement.data('oldZIndex')})
-    draggingElement.insertAfter parentCollection.find('.addElementForm')
-    # draggingElement.css({'y': sliderMarginTop})
-    
+    draggingElement.insertAfter parentCollection.find('.addElementForm')    
 
     content = parentChildren.not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
@@ -135,8 +143,7 @@ collectionClose = (draggingElement) ->
     $("body").css("overflow", "visible")
     collectionRealign()
   ), openCollectionDuration
-
-
+  
 collectionChildren = (collection) ->
   collection ?= $('.collection.open')
   cover = collection.children('.cover')
@@ -148,7 +155,7 @@ collectionOfElement = () ->
 
 realign = (animate) ->
   sliding = collectionChildren().filter('.sliding')
-  # console.log 'realign', sliding
+  console.log 'realign', sliding
   lastX  = 0
   maxX   = -Infinity
   zIndex = sliding.length
@@ -158,10 +165,15 @@ realign = (animate) ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
     
-    if $(@).hasClass 'cover open'
+    console.log $('.root.open').length
+
+    if $(@).hasClass('cover') and $(@).hasClass('open')
       $(@).css { zIndex: (sliding.length*3) }
+#   If at root level and elem is add element form, to prevent form from being on top at root level
+    else if $(@).hasClass('addElementForm') and not $('.root.open').length # (puts add element card at back on root level
+      $(@).css { zIndex: (sliding.length*3) - 1 }
     else
-      $(@).css { zIndex: zIndex-- }
+      $(@).css { zIndex: zIndex++ }
 
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
@@ -194,3 +206,11 @@ collectionElemAfter = (x) ->
     if parseInt(child.css('x')) + child.width() > x
       return child
   $()
+  
+moveBackButton = (x) ->
+  $('header.main .backButton').velocity
+    properties:
+      translateX: x
+    options:
+      easing: openCollectionCurve
+      duration: 1000
