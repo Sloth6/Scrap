@@ -38,7 +38,7 @@ collectionOpen = (cover, options = {}) ->
     collection = coverToCollection cover, elements    
     parentCollection.removeClass('open').addClass 'closed'
     parentCover.removeClass('open').addClass 'closed'
-    cover.addClass('open').removeClass('draggable closed')
+    cover.addClass('open').removeClass('draggable').removeClass('closed')
     prevSliding.removeClass 'sliding'
     nextSliding.removeClass 'sliding'
       
@@ -94,6 +94,7 @@ collectionClose = (draggingElement) ->
 
   parentCollection = closingCollection.parent().parent()
   parentChildren = collectionChildren parentCollection
+  # console.log 'parent children', parentChildren
   parentCover = parentCollection.children('.cover')
 
   parentSpacekey = parentCover.data('content').spaceKey
@@ -102,12 +103,11 @@ collectionClose = (draggingElement) ->
   parentChildren.show().addClass 'sliding'
   parentCover.addClass('open').removeClass('closed')
 
-# If entering root collection, animate out back button
+  # If entering root collection, animate out back button
   if parentCover.hasClass('root')
     $('header.main .backButton').removeClass 'visible'
     moveBackButton(0)
   
-  # console.log draggingElement
   if draggingElement?
     draggingElement.
       removeClass('dragging').
@@ -121,9 +121,11 @@ collectionClose = (draggingElement) ->
     console.log "Emitting reorderElements"
     socket.emit 'reorderElements', { elementOrder, spaceKey: parentSpacekey }
 
-  closingCollection.children('.collectionContent').velocity {
-    properties: { opacity: [0, 1] }
-  }
+  closingCollection.
+    data('width', 0).
+    children('.collectionContent').velocity {
+      properties: { opacity: [0, 1] }
+    }
 
   closingCover.
     addClass('closed').
@@ -131,23 +133,24 @@ collectionClose = (draggingElement) ->
     addClass('draggable').
     addClass('sliding').
     insertBefore closingCollection
-  
+  console.log closingCover
   $(document.body).css width: window.pastState.docWidth
   $(window).scrollLeft window.pastState.scrollLeft
   $("body").css("overflow", "hidden")
-  collectionRealignDontScale()
-
+  # collectionRealignDontScale()
+  
+  realign()
   setTimeout (() ->
     closingCollection.remove()
-    window.openSpace = parentCollection.data('content').spaceKey
+    window.openSpace = parentCollection.children('.cover').data('content').spaceKey
     $("body").css("overflow", "visible")
-    collectionRealign()
+
   ), openCollectionDuration
   
 collectionChildren = (collection) ->
   collection ?= $('.collection.open')
   cover = collection.children('.cover')
-  elements = collection.children('.collectionContent').children()
+  elements = collection.children('.collectionContent').children('.element')
   elements.add cover
 
 collectionOfElement = () ->
@@ -155,7 +158,7 @@ collectionOfElement = () ->
 
 realign = (animate) ->
   sliding = collectionChildren().filter('.sliding')
-  console.log 'realign', sliding
+  # console.log {sliding}
   lastX  = 0
   maxX   = -Infinity
   zIndex = sliding.length
@@ -165,8 +168,6 @@ realign = (animate) ->
     $(@).data 'scroll_offset', lastX
     collection = $(@).parent().parent()
     
-    console.log $('.root.open').length
-
     if $(@).hasClass('cover') and $(@).hasClass('open')
       $(@).css { zIndex: (sliding.length*3) }
 #   If at root level and elem is add element form, to prevent form from being on top at root level
@@ -177,7 +178,7 @@ realign = (animate) ->
 
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
-    width = $(@).width()
+    width = $(@).data('width') or $(@).find('.card').width()
     if collection.hasClass('closing')
       width = 0
     lastX += width + margin

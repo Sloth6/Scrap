@@ -6,4 +6,4 @@ makeDeletable = (elems) ->
 
     elem.find('.elementDeleteButton').click () ->
       socket.emit 'removeElement', { elementId, spaceKey }
-      collectionRealign()
+      # collectionRealign()
