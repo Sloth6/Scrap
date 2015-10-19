@@ -100,15 +100,23 @@ section.container section.space section.content{
                 font-weight: $fontWeightBold;
             }
             
-/*
             &.short {
                 @include typeHeader;
             }
             
             &.long {
                 @include typeBody;
+                
+                * {
+                    :first-child {
+                        color: red !important;
+                    }
+                }
+                
+                .card {
+                    width: $articleSide;
+                }
             }
-*/
         }
         
         &.image {
