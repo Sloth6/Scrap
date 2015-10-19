@@ -87,8 +87,11 @@ section.container section.space section.content{
         &.text {
             font-style: normal;
             @include typeHeader;
-            background-color: #ffffdc;
-            width: $articleSideNarrow;
+            
+            .card {
+                background-color: #ffffdc;
+                width: $articleSideNarrow;
+            }
             
             * {
                 outline: none;
