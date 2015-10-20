@@ -29,11 +29,13 @@ $cardBoxShadowDimensions:   0 $cell/8 $cell/4 $cell/4;
 $cardBoxShadowColor:        rgba(0,0,0,.03125);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
+$cardBorderRadius:          $cell/4;
+
 @mixin cardStyle {
     background-color: $colorCardBackground;
     border: $cardBorder;
     padding: $cardPadding;
-    border-radius: $cell/4;
+    border-radius: $cardBorderRadius;
             transform-origin: center center;
     -webkit-transform-origin: center center;
 }

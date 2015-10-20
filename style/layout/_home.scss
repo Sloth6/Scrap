@@ -50,8 +50,7 @@ body {
       		height: $coverHeight;
       		cursor: pointer;
       		overflow: hidden;
-      		border-radius: $cell/2;
-      		border-radius: 0 $cell $cell 0;
+      		border-radius: $cardBorderRadius $cell * 2 $cell * 2 $cardBorderRadius;
         		        		
         		&.hover {
             		ul.users {
