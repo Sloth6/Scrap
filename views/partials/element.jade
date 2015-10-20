@@ -13,7 +13,7 @@ if element.contentType == 'cover'
     .card.cardHover.cardDrag.colored(style="background-color:"+content.backgroundColor)
       - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
       section.title
-        h1.collectionTitle.typeTitle.typeOutlineClear
+        h1.collectionTitle.typeTitle.typeOutlineClear.hyphenate
         h2.peekTitle.bodyType.typeBody.typeWeightBold
         p.rename
           a.smallCaps.bodyType.confirm Rename
@@ -60,9 +60,9 @@ else
             -var url = decodeURIComponent(content.url)
             .text
               header
-                h1.headerType!=content.title
+                h1.headerType.hyphenate!=content.title
                 .url.smallType.smallCaps!=content.domain
-              .description.smallType!=content.description
+              .description.smallType.hyphenate!=content.description
             img(src=content.image)
             a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
     
@@ -106,7 +106,7 @@ else
 
           when 'text'
             //- textarea.modify(name='content', style='height:300px')!=element.content
-            .editable(contentEditable="true", designmode="on")
+            .editable.hyphenate(contentEditable="true", designmode="on")
               !{element.content}
           default
-            p!=element.content
+            p.hyphenate!=element.content

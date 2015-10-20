@@ -36,7 +36,8 @@ $ ->
   $.Velocity.defaults.easing = openCollectionCurve
   $.Velocity.defaults.queue = false
 
-  collectionOpen $('.cover.root')
+  collectionOpen $('.cover.root'), {}, () ->
+    hyphenateText()
   # Main scroll event
   $(window).scroll (event) ->
     collectionScroll.call $('.slidingContainer')

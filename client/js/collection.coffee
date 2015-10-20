@@ -21,7 +21,7 @@ coverToCollection = (cover, elements) ->
 
   collection
 
-collectionOpen = (cover, options = {}) ->
+collectionOpen = (cover, options = {}, callback) ->
   return if cover.hasClass 'open'
   spacekey = cover.data('content').spaceKey
   dragging = options.dragging
@@ -78,6 +78,8 @@ collectionOpen = (cover, options = {}) ->
     if parentCover.hasClass('root')
       $('header.main .backButton').addClass 'visible'
       moveBackButton(32)
+      
+    callback() if callback?
 
 collectionClose = (draggingElement) ->
   closingCover = $('.open.cover')
