@@ -39,7 +39,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 }
 
 @mixin cardHover {
-    @include transition(.125s $defaultCurve);
+    @include transition(.25s $defaultCurve);
     @include transition-property(transform,
                          -webkit-transform,
                             -moz-transform,

@@ -119,6 +119,9 @@ body {
             		}
 
                 .rename {
+                    z-index: 20;
+                    position: relative;
+                    margin-top: $cell;
                     opacity: 0;
                     
                     a {

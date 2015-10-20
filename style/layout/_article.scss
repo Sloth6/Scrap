@@ -106,12 +106,12 @@ section.container section.space section.content{
             
             .editable {
 //                 background: lime;
-                min-height: 100%;
+                height: 100%;
                 margin-top: (1em / 3);
+                @include typeBody;
             }                
 
             &.short {
-//                 @include typeHeader;
             }
             
             &.long {
@@ -123,11 +123,13 @@ section.container section.space section.content{
                         padding-left: $col / 2;
                         padding-right: $col / 4;
                    
+/*
                         * {
                             &:first-child {
                                 @include typeHeader;
                             }
                         }
+*/
                     }
                 }
             }
