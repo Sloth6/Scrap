@@ -107,14 +107,20 @@ section.container section.space section.content{
             .editable {
 //                 background: lime;
                 height: 100%;
-                margin-top: (1em / 3);
-                @include typeBody;
             }                
 
             &.short {
+                .editable {
+                    @include typeLarge;
+                    margin-top: -1pt;
+                }
             }
             
             &.long {
+                .editable {
+                    @include typeBody;
+                    margin-top: (1em / 3);
+                }
                 
                 .card {
                     width: $articleSideWide;
