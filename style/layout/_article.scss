@@ -107,6 +107,7 @@ section.container section.space section.content{
             .editable {
 //                 background: lime;
                 height: 100%;
+                margin-bottom: $broadMargin;
             }                
 
             &.short {
@@ -119,7 +120,7 @@ section.container section.space section.content{
             &.long {
                 .editable {
                     @include typeBody;
-                    margin-top: (1em / 3);
+                    margin-top: $typeBodyLeading / 2.5;
                 }
                 
                 .card {
