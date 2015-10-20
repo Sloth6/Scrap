@@ -106,7 +106,9 @@ else
 
           when 'text'
             //- textarea.modify(name='content', style='height:300px')!=element.content
-            .editable(contentEditable="true", designmode="on")
+            .editable(contentEditable="false", designmode="on")
               !{element.content}
+            .done.invisible
+              a.bodyType.warning(href='#') Done
           default
             p!=element.content
