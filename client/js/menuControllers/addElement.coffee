@@ -5,7 +5,7 @@ addElementController =
   init: (menu) ->
     
     spacekey = menu.data 'spacekey'
-    input    = menu.find '.textInput'
+    input    = menu.find '.editable'
 
     content = () ->
       input.html()
@@ -23,15 +23,19 @@ addElementController =
         menu.removeClass 'slideInFromSide'
 
     input.on 'focus', () ->
-      if content() is defaultText
-        input.html('')
+      console.log 'blue', input[0]
       menu.addClass 'focus'
       menu.find('.card').addClass 'editing'
       menu.find('.done').removeClass 'invisible'
       menu.find('.upload').hide()
+      return false
 
     input.on 'blur', () ->
-      # Blur with empty text area
+      
+      #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
+      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
+    #   # Blur with empty text area
+      console.log content()
       if content() == ''
         menu.removeClass 'focus'
         slideBackToSide()
@@ -43,6 +47,7 @@ addElementController =
         menu.find('.upload').hide()
     
     input.bind "paste", () ->
+      return unless content() == ''
       setTimeout (() =>
         emitNewElement content(), spacekey
         addElementController.reset menu
@@ -66,9 +71,8 @@ addElementController =
     )
     
   reset: (menu) ->
-    input = menu.find '.textInput'
-    # menu.find('.text input,textarea').val('')
-    input.html(defaultText)
+    input = menu.find '.editable'
+    input.html('')
     menu.removeClass 'focus'
     menu.find('.card').removeClass 'editing'
      

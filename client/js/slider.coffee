@@ -85,7 +85,7 @@ slidingPlace = (animate = true) ->
     if $(@).hasClass 'cover'
       $(@).addClass 'peek' if $(@).hasClass 'open'
     if $(@).hasClass 'addElementForm'
-#     If focused or focused with empty field
+      #If focused or focused with empty field
       if (!$(@).hasClass('focus')) or ($(@).find('textarea').val() == '')
         $(@).addClass 'peek'
         $(@).find('textarea').blur()

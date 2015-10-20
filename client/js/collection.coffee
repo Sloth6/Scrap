@@ -170,7 +170,7 @@ realign = (animate) ->
     
     if $(@).hasClass('cover') and $(@).hasClass('open')
       $(@).css { zIndex: (sliding.length*3) }
-#   If at root level and elem is add element form, to prevent form from being on top at root level
+    # If at root level and elem is add element form, to prevent form from being on top at root level
     else if $(@).hasClass('addElementForm') and not $('.root.open').length # (puts add element card at back on root level
       $(@).css { zIndex: (sliding.length*3) - 1 }
     else

@@ -209,7 +209,7 @@ startDragging = (elem) ->
         easing: [100, 10],
         duration: 500
       })
-  padding.width(elem.width()*draggingScale).insertAfter elem
+  padding.data('width', elem.width()*draggingScale).insertAfter elem
   stopPlaying(elem) if elem.hasClass('playable')
  
 makeDraggable = (elements) ->
@@ -237,4 +237,4 @@ makeDraggable = (elements) ->
         ), 10
 
 $ ->
-  window.padding = $('<div>').addClass('slider sliding padding').css 'width', 200 
+  window.padding = $('<div>').addClass('slider sliding padding').data 'width', 200
