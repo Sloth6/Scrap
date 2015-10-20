@@ -2,7 +2,7 @@ defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [50, 8]
 openCollectionDuration  = 1000
 
-margin = $(window).width() / 96
+margin = $(window).width() / 48
 sliderBorder = () -> $(window).width() / 6
 edgeWidth = 48
 

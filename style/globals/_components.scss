@@ -8,9 +8,9 @@ $cardPaddingLeft:       $cell;
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
-$articleSideNarrow:    $col * 3;
-$articleSide:          $col * 4;
-$articleSideWide:      $col * 5;
+$articleSideNarrow:     $col * 3;
+$articleSide:           $col * 4;
+$articleSideWide:       $col * 6;
 $articleWidthVideo:     $col * 24;
 
 $articleMinHeight:     $articleSideNarrow;

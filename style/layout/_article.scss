@@ -86,10 +86,9 @@ section.container section.space section.content{
         
         &.text {
             font-style: normal;
-            @include typeHeader;
             
             .card {
-                background-color: #ffffdc;
+                background-color: #ffffee;
                 width: $articleSideNarrow;
             }
             
@@ -105,21 +104,31 @@ section.container section.space section.content{
                 font-weight: $fontWeightBold;
             }
             
+            .editable {
+//                 background: lime;
+                min-height: 100%;
+                margin-top: (1em / 3);
+            }                
+
             &.short {
-                @include typeHeader;
+//                 @include typeHeader;
             }
             
             &.long {
-                @include typeBody;
-                
-                * {
-                    &:first-child {
-                        color: red !important;
-                    }
-                }
                 
                 .card {
-                    width: $articleSide;
+                    width: $articleSideWide;
+                                            
+                    .editable {
+                        padding-left: $col / 2;
+                        padding-right: $col / 4;
+                   
+                        * {
+                            &:first-child {
+                                @include typeHeader;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -279,7 +288,6 @@ section.container section.space section.content{
         
         .card {
             position: relative;
-            max-width: $articleSide;
             overflow: hidden;
             min-height: $articleMinHeight;
             

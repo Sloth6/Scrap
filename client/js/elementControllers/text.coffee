@@ -1,4 +1,4 @@
-lengthForLong = 40
+lengthForLong = 500
 
 formatText = (elems) ->
   elems.each () ->
