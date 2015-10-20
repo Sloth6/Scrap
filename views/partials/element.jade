@@ -108,7 +108,8 @@ else
             //- textarea.modify(name='content', style='height:300px')!=element.content
             .editable(contentEditable="false", designmode="on")
               !{element.content}
-            .done.invisible
-              a.bodyType.warning(href='#') Done
+            ul.cardActions
+              li
+                a.invisible.done.confirm(href='#') Done
           default
             p!=element.content

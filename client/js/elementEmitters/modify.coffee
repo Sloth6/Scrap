@@ -34,7 +34,7 @@ makeModifiable = (elems) ->
     form = elem.find('.editable')
     timeout = null
 
-    elem.find('.done a').click () ->
+    elem.find('a.done').click () ->
       stopEditing elem
     # elem.click () ->
     #   card = $(@).find('.card')

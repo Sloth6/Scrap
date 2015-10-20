@@ -305,6 +305,16 @@ section.container section.space section.content{
                 
                 &:hover {
                     @include hoverLinkAnimation;
+                    
+                    .text {
+                        
+                        header {
+                            
+                            .url {
+                                opacity: 1;
+                            }
+                        }
+                    }
                 }
                 
                 a {
@@ -336,8 +346,9 @@ section.container section.space section.content{
     
                         .url {
                             margin-top: $cell/2;
-                            @include transition($collectionOpenTransitionDuration $defaultCurve);
+                            @include transition(.25s $defaultCurve);
                             @include transition-property(opacity);
+                            opacity: 0;
                         }
                     }
 
