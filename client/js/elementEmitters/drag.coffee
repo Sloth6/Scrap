@@ -50,7 +50,7 @@ scrollWindow = (event) ->
 # Take mousemove event while dragging
 drag = (event, draggingElement) ->
   x = event.clientX - draggingElement.width()/2
-  y = event.clientY - draggingElement.height()/2
+  y = event.clientY - draggingElement.height()/2 - 50
   draggingElement.css { x, y }
   scrollWindow event
   afterDrag event, draggingElement
@@ -135,7 +135,7 @@ afterDrag = (dragEvent, draggingElement) ->
         padding.insertAfter draggingOver
         collectionRealignDontScale false
       when 'center'
-        console.log 'center'
+        # console.log 'center'
         checkForOpenByDrag x, y, draggingElement, draggingOver
 
   lastDraggingOver = draggingOver

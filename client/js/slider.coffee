@@ -68,6 +68,7 @@ sliderInit = (elems) ->
     $(@).data 'oldZIndex', $(@).css('zIndex')
     $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
   ).mouseout () ->
+    return if $(@).hasClass 'dragging'
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
 
 slidingPlace = (animate = true) ->

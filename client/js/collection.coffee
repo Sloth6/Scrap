@@ -150,7 +150,7 @@ collectionClose = (draggingElement) ->
 collectionChildren = (collection) ->
   collection ?= $('.collection.open')
   cover = collection.children('.cover')
-  elements = collection.children('.collectionContent').children('.element')
+  elements = collection.children('.collectionContent').children('.element,.padding')
   elements.add cover
 
 collectionOfElement = () ->
@@ -158,7 +158,7 @@ collectionOfElement = () ->
 
 realign = (animate) ->
   sliding = collectionChildren().filter('.sliding')
-  # console.log {sliding}
+  # console.log 'sliding', sliding
   lastX  = 0
   maxX   = -Infinity
   zIndex = sliding.length
@@ -178,7 +178,7 @@ realign = (animate) ->
 
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
-    width = $(@).data('width') or $(@).find('.card').width()
+    width = $(@).data('width') or $(@).find('.card').width()# or $(@).width()
     if collection.hasClass('closing')
       width = 0
     lastX += width + margin
