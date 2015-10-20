@@ -32,9 +32,15 @@ percentToBorder = (x, e, border) ->
   percent
 
 sliderJumble = () ->
+  if ($(@).hasClass 'cover')
+    maxYOffset = 200
+    maxRotate = 12
+  else
+    maxYOffset = 50
+    maxRotate = 4
   $(@).data
-    'translateY': (Math.random()-.5) * 50# + 50
-    'rotateZ': Math.random() * 4 + (Math.random() * -4)
+    'translateY': (Math.random()-.5) * maxYOffset
+    'rotateZ': Math.random() * maxRotate + (Math.random() * -maxRotate)
     'scale': 1
 
 sliderInit = (elems) ->
@@ -85,7 +91,7 @@ slidingPlace = (animate = true) ->
     if $(@).hasClass 'cover'
       $(@).addClass 'peek' if $(@).hasClass 'open'
     if $(@).hasClass 'addElementForm'
-#     If focused or focused with empty field
+      # If focused or focused with empty field
       if (!$(@).hasClass('focus')) or ($(@).find('textarea').val() == '')
         $(@).addClass 'peek'
         $(@).find('textarea').blur()
@@ -105,14 +111,18 @@ slidingPlace = (animate = true) ->
 
   if ($(@).hasClass('cover') and $(@).hasClass('open')) or $(@).hasClass('addElementForm')
     translateY = 0
+  else if ($(@).hasClass('cover')) # Not the parent cover of the current collection
+    translateY = $(@).data('translateY')
   else
-    translateY = ($(@).data('translateY') * percentFromBorder)
-
+    translateY = $(@).data('translateY') * percentFromBorder
 
   scale = 1
   if rawX < sliderBorder()
     scale = 1 + (rawX * .00001)
-  rotateZ = $(@).data('rotateZ') * percentFromBorder
+  if ($(@).hasClass('cover'))
+    rotateZ = $(@).data('rotateZ')
+  else
+    rotateZ = $(@).data('rotateZ') * percentFromBorder
   
   # On open/close or load
   if animate
@@ -124,7 +134,7 @@ slidingPlace = (animate = true) ->
           translateX: [translateX, oldX]
           scale: scale
           translateY: [translateY, yTransform($(@))]
-          rotateZ: $(@).data('rotateZ') * percentFromBorder
+          rotateZ: rotateZ
 
       $(@).velocity animateOptions
     
