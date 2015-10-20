@@ -14,7 +14,7 @@ addElementController =
       if menu.hasClass 'peek'
         menu.removeClass 'peek'
         menu.addClass 'slideInFromSide'
-        menu.find('textarea').select()
+        menu.find('.editable').select()
         menu.find('.upload').show()
   
     slideBackToSide = () ->
@@ -31,7 +31,6 @@ addElementController =
       return false
 
     input.on 'blur', () ->
-      
       #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
       $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
     #   # Blur with empty text area

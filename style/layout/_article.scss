@@ -374,7 +374,6 @@ section.container section.space section.content{
             &.peek {
                 
                 &:hover {  
-//                     z-index: 99999999 !important;                  
                     .translate {
                     		@include transform(translate(24px, -64px));
                     		
@@ -382,8 +381,8 @@ section.container section.space section.content{
                         		border-color: $colorType;
                     		}
                     }
-                    
                 }
+
                 .translate {
                 		@include transform(translate(0px, -64px));
                 		
@@ -392,22 +391,23 @@ section.container section.space section.content{
                     }
                 }
                                 
-                ul {
+                .card .editable {
                 		@include transform(translate(-128px, 0px));
                 }
-                
             }
             
             &.slideInFromSide {
-                z-index: 99999999 !important;                  
+                z-index: 99999999 !important;
+
                 .translate {
                     @include transform(translate(320px, 0px));
                 }
             }
 
             &.typing {
-                z-index: 99999999 !important;                  
-                ul li {
+                z-index: 99999999 !important;    
+                              
+                .cardActions ul li {
                     &.upload {
                         opacity: 0;
                     }
@@ -419,12 +419,10 @@ section.container section.space section.content{
             }
             
             .translate {
-                overflow: hidden;
+                overflow-x: hidden;
                 position: relative;
-                width: $articleSideNarrow;
-                height: ($articleSideNarrow + $cardPaddingBottom) + $cardPaddingTop;
                 cursor: pointer;
-            		  @include transform(translate(0px, 0px));
+                @include transform(translate(0px, 0px));
                 @include transition(1s $defaultCurve);
                 @include transition-property(transform,
                                      -webkit-transform,
@@ -441,9 +439,9 @@ section.container section.space section.content{
                     position: absolute;
                     top:    $cell*.75;
                     right:  $cell*.75;
-                        transform-origin:           center center;
-                        -webkit-transform-origin:   center center;
-                    		@include transform(translate(36px, 0px));
+                    -webkit-transform-origin: center center;
+                            transform-origin: center center;
+                		@include transform(translate(36px, 0px));
                     @include transition(.5s $defaultCurve);
                     @include transition-property(transform,
                                          -webkit-transform,
@@ -451,42 +449,23 @@ section.container section.space section.content{
                 }
 
                 .card {
-                    overflow: visible;   
-                }
-            }               
-                        
-            ul {
-            		@include transform(translate(0px, 0px));
-                @include transition(.5s $defaultCurve);
-                @include transition-property(transform,
-                                     -webkit-transform,
-                                        -moz-transform);
-                
-                > li {
-                    vertical-align: top;
-                    
-                    &.text {
-                        width: 100%;
-                        height: $articleSideNarrow - $cell * 2;
-                        position: relative;
-                        
-                        span.label {
-                            display: none;
-                        }
-                        
-                        textarea {
-                            @include typeHeader;
-                            height: 100%;
-                        }
+                    overflow: visible;
+                    width: $articleSideNarrow;
+
+                    .editable {
+                        height: 100%;
+                    		@include transform(translate(0px, 0px));
+                        @include transition(.5s $defaultCurve);
+                        @include transition-property(transform,
+                                             -webkit-transform,
+                                                -moz-transform);                    
                     }
-                    
-                    &.cardActions {
-                        position: absolute;
-                        bottom: -$cell * 2;
-                        left: 0;
-                        right: 0;
+                        
+                    .cardActions {
+                        width: $articleSideNarrow;
                         
                         ul {
+                            
                             li {
 
                                 &.upload {
@@ -538,7 +517,7 @@ section.container section.space section.content{
                         }
                     }
                 }
-            }
+            }               
         }
     }
 }
