@@ -47,17 +47,8 @@ section.page.index {
     }
 
     .example {
-        position: absolute;
-        top: 0;
-        left: 0;
         height: 200vh;
-        border: orange 1pt solid;
         position: relative;
-
-        &.two {
-            height: 317vh;
-            background: teal;
-        }
         
         .collection {
 //             position: fixed;
