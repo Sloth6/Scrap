@@ -3,7 +3,7 @@
 section.page {
     @media screen and (max-width: 640px) {
         text-align: center;
-                        margin-top: $col;
+        margin-top: $col;
     }
     
     .animateIn {
@@ -16,10 +16,6 @@ section.page {
     .card {
                 transform-origin: center center;
         -webkit-transform-origin: center center;
-        
-        &:hover {
-            z-index: 100;
-        }
         
         @media screen and (max-width: 640px) {
             position: relative;
@@ -43,7 +39,55 @@ section.page {
     }
 }
 
-section.index {            
+section.page.index {
+    height: 300vh;
+    
+    header.intro {
+        position: fixed;
+        top: 0;
+        left: 0;
+        
+        .card {
+            position: absolute;
+            top: 25vh;
+            left: 50vh;
+        }
+        
+        .cover {
+            opacity: .5;
+            top: 0;
+            left: 0;
+            position: absolute;
+                    transform-origin: center 25vh;
+            -webkit-transform-origin: center 25vh;
+
+            @media all and (orientation: landscape) {
+                height: (100vw * (4/3));
+                width: 100vw;
+                z-index: 10;
+                
+                h1 {
+                    font-size: 24vw;
+                }
+            }
+            
+            @media all and (orientation: portrait) {
+                width: (100vh * (3/4));
+                height: 100vh;
+                max-width: 100vw;
+                z-index: 10;
+                
+                h1 {
+                    font-size: 12vh;
+                }
+            }
+
+            h1 {
+                line-height: .8em;
+                margin-top: -.03125em;
+            }
+        }
+    }
 }
 
 section.readOnly {

@@ -18,12 +18,17 @@ block scripts
 
 block content
   section.page.index
-    header.card.cover.cardHover.left.colored.title.top.animateIn.twist
-      h1.typeTitle.typeOutlineClear Hotpot
-    section.tagline.card.cover.cardHover.right.animateIn.bottom.twist
-      h2.typeTitle.typeOutlineClear Little notebooks for collecting stuff.
-    section.form.closed.card.left.animateIn.bottom.twist.small
-      include partials/signUp
-      include partials/logIn
-    section.description.card.cardHover.top.animateIn.small.right.twist
-      p Donec sed odio dui. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+    header.intro
+      .card.cover.cardHover.colored.title
+        // .top.animateIn.twist.left
+        h1.typeTitle.typeOutlineClear Scrap 
+          br
+          | is dope.
+      section.tagline.card.small.cardHover.slideOver
+        // .top.right.animateIn.bottom.twist
+        h2.headerType A home for your projects.
+      section.form.small.closed.card.slideOver
+        // .right.animateIn.bottom.twist.
+        h2.bodyType Sign up or log in.
+        // include partials/signUp
+        include partials/logIn
