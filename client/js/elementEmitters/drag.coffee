@@ -17,7 +17,7 @@ draggingScale = 0.5
 leftCenterRight = (x, element) ->
   center = .50
   elemLeft = parseInt element.css('x')
-  elemWidth = element.width()
+  elemWidth = sliderWidth element
   elemRight = elemLeft + elemWidth
   
   if x > elemRight - elemWidth/4
@@ -53,28 +53,55 @@ drag = (event, draggingElement) ->
   y = event.clientY - draggingElement.height()/2 - 50
   draggingElement.css { x, y }
   scrollWindow event
-  afterDrag event, draggingElement
+  dragTimeout event, draggingElement
 
 checkForCollectionViaDrop = (event, dragging) ->
+  return false
+  # $(window).off 'mousemove'
+  # $(window).off 'mouseup'
+  # x = event.clientX
+  # droppedOn = collectionElemAfter x
+
+  # return false if droppedOn[0] == padding[0]
+  # return false if droppedOn[0] == undefined
+  # return false if droppedOn.hasClass('cover')
+  # return false if dragging.hasClass('cover')
+  # return false unless leftCenterRight(x, droppedOn) is 'center'
+
+  # dragging.remove()
+  # padding.remove()
+  # collectionRealignDontScale false
+  
+  # draggedId = parseInt(dragging.attr('id'))
+  # draggedOverId = parseInt(droppedOn.attr('id'))
+  # console.log "Emitting newCollection."
+  # 
+  # true
+
+checkForAddToStack = (event, dragging) ->
   $(window).off 'mousemove'
   $(window).off 'mouseup'
   x = event.clientX
   droppedOn = collectionElemAfter x
-
   return false if droppedOn[0] == padding[0]
   return false if droppedOn[0] == undefined
-  return false if droppedOn.hasClass('cover')
   return false if dragging.hasClass('cover')
+  return false if dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
-
-  dragging.remove()
+  spaceKey = droppedOn.data('content').spaceKey
+  
   padding.remove()
-  collectionRealignDontScale false
   
   draggedId = parseInt(dragging.attr('id'))
   draggedOverId = parseInt(droppedOn.attr('id'))
-  console.log "Emitting newCollection."
-  socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+  
+  if droppedOn.hasClass('stack')
+    console.log 'Emitting move to collection'
+    stackAdd droppedOn, dragging
+    socket.emit "moveToCollection", { elemId: draggedId, spaceKey }
+  else
+    dragging.remove()
+    socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
   true
 
 checkForCloseByDrag = (x, y, draggingElement) ->
@@ -82,7 +109,6 @@ checkForCloseByDrag = (x, y, draggingElement) ->
   if y < $('.slidingContainer').offset().top
     return true if collectionCloseByDragTopTimeout
     collectionCloseByDragTopTimeout = setTimeout (() ->
-      console.log draggingElement.find('.card')
       draggingElement.find('.card').css({
         'scale': 1,
         'rotate': 0
@@ -110,7 +136,7 @@ checkForOpenByDrag = (x, y, dragging, draggingOver) ->
   true
 
 # Check for element reordering or collection creation
-afterDrag = (dragEvent, draggingElement) ->
+dragTimeout = (dragEvent, draggingElement) ->
   x = dragEvent.clientX
   y = dragEvent.clientY
 
@@ -150,16 +176,13 @@ clearDragTimeouts = () ->
   collectionOpenByDragTimeout = null
   draggingOnBorder = false
 
-addToCollection = (elem, spaceKey) ->
-  elem.addClass(spaceKey)
-  console.log 'Emitting move to collection'
-  socket.emit "moveToCollection", { elemId: elem.attr('id'), spaceKey }
-
 stopDragging = (event, elem) ->
   console.log "Stop dragging"
   clearDragTimeouts()
 
   if checkForCollectionViaDrop(event, elem)
+    # do nothin
+  else if checkForAddToStack(event, elem)
     # do nothin
   else 
     if $('.slidingContainer').find('.padding').length # ensure in dom
@@ -172,7 +195,7 @@ stopDragging = (event, elem) ->
 
     content = collectionChildren().not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
-    addToCollection(elem, openSpace) if !elem.hasClass(openSpace)
+    # addToCollection(elem, openSpace) if !elem.hasClass(openSpace)
     console.log "Emitting reorderElements"
     socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
   
@@ -209,7 +232,7 @@ startDragging = (elem) ->
         easing: [100, 10],
         duration: 500
       })
-  padding.data('width', elem.width()*draggingScale).insertAfter elem
+  padding.data('width', (elem.data('width') or elem.width())*draggingScale).insertAfter elem
   stopPlaying(elem) if elem.hasClass('playable')
  
 makeDraggable = (elements) ->

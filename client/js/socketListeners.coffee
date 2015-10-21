@@ -27,13 +27,18 @@ $ ->
     dragged = $("##{data.draggedId}")
     draggedOver = $("##{data.draggedOverId}")
     cover = $(decodeURIComponent(data.coverHTML))
-
-    cover.insertAfter draggedOver
-    cover.css {x: xTransform(draggedOver)}
+    stack = stackCreate cover
+    
+    stack.add draggedOver
+    stack.add dragged
+    
+    stack.insertAfter draggedOver
+    stack.css {x: xTransform(draggedOver)}
+    
     draggedOver.remove()
     dragged.remove()
     $("##{draggedOverId}").remove()
-    sliderInit cover
+    sliderInit stack
     collectionRealign.call $('.slidingContainer')
 
 

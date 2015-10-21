@@ -1,8 +1,7 @@
 cache = {}
 loadElements = (spacekey, callback) ->
-  return callback cache[spacekey] if cache[spacekey]
+  # return callback cache[spacekey] if cache[spacekey]
   $.get "/collectionContent/#{spacekey}", (data) ->
-    console.log "got collection from #{spacekey}"
     cache[spacekey] = $(data)
     callback cache[spacekey]
 
@@ -31,7 +30,12 @@ collectionOpen = (cover, options = {}) ->
   loadElements spacekey, (elements) ->
 
     parentCollection = $('.open.collection')
-    parentCover = $('.open.cover')
+    parentCover = $('.open.cover, .open.stack')
+
+    console.log parentCollection
+    console.log parentCover
+
+
     prevSliding = cover.prevAll('.sliding')
     nextSliding = cover.nextAll('.sliding')
     
@@ -80,11 +84,10 @@ collectionOpen = (cover, options = {}) ->
       moveBackButton(32)
 
 collectionClose = (draggingElement) ->
-  closingCover = $('.open.cover')
+  closingCover = $('.open.cover, .open.stack')
   return if closingCover.hasClass 'root'
-  closingSpacekey = closingCover.data('content').spaceKey
 
-  edgeWidth -= 32
+  # edgeWidth -= 32
 
   closingCollection = closingCover.parent()
   closingChildren = collectionChildren()
@@ -94,8 +97,10 @@ collectionClose = (draggingElement) ->
 
   parentCollection = closingCollection.parent().parent()
   parentChildren = collectionChildren parentCollection
-  # console.log 'parent children', parentChildren
+
   parentCover = parentCollection.children('.cover')
+
+  console.log parentCover
 
   parentSpacekey = parentCover.data('content').spaceKey
 
@@ -133,7 +138,10 @@ collectionClose = (draggingElement) ->
     addClass('draggable').
     addClass('sliding').
     insertBefore closingCollection
-  console.log closingCover
+
+  if closingCover.hasClass 'stack'
+    stackPopulate closingCover
+
   $(document.body).css width: window.pastState.docWidth
   $(window).scrollLeft window.pastState.scrollLeft
   $("body").css("overflow", "hidden")
@@ -145,7 +153,11 @@ collectionClose = (draggingElement) ->
     window.openSpace = parentCollection.children('.cover').data('content').spaceKey
     $("body").css("overflow", "visible")
 
+
+
   ), openCollectionDuration
+
+  $('.root.cover').hide()
   
 collectionChildren = (collection) ->
   collection ?= $('.collection.open')
@@ -178,12 +190,14 @@ realign = (animate) ->
 
     $(@).removeData 'oldZIndex'
     slidingPlace.call @, animate
-    width = $(@).data('width') or $(@).find('.card').width()# or $(@).width()
+    width = sliderWidth($(@))# or $(@).width()
+    
     if collection.hasClass('closing')
       width = 0
+    # console.log width
     lastX += width + margin
   
-  maxX = lastX - sliding.last().width()/2
+  maxX = lastX - sliderWidth(sliding.last())/2
   $(@).data { maxX }
   maxX
 
@@ -204,7 +218,7 @@ collectionElemAfter = (x) ->
   # Get the element that the mouse is over
   for html in collectionChildren().filter('.sliding').not('.addElementForm')
     child = $(html)
-    if parseInt(child.css('x')) + child.width() > x
+    if parseInt(child.css('x')) + sliderWidth(child) > x
       return child
   $()
   

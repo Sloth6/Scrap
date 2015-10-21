@@ -3,9 +3,9 @@ logistic = (x) -> 1/(1 + Math.pow(Math.E, -x))
 getTranslateX = (x, e) ->  
   border = sliderBorder()
 
-  maxX = $(window).width() - e.width()
+  maxX = $(window).width() - sliderWidth(e)
   right_start = $(window).width() - border
-  left_min = - e.width() + edgeWidth
+  left_min = - sliderWidth(e) + edgeWidth
   left_start = left_min + border
 
   if x > right_start
@@ -55,8 +55,9 @@ sliderInit = (elems) ->
       when 'youtube'
         bindYoutubeControls $(@)
       when 'cover'
-        bindCoverControls $(@)
-        getCoverData $(@)
+        coverInit $(@)
+        # bindCoverControls $(@)
+        # getCoverData $(@)
       when 'addElementForm'
         addElementController.init $(@)
 
@@ -78,9 +79,10 @@ slidingPlace = (animate = true) ->
   
   # Prevent stack from shifting to right when growing
   translateX -= .0001825 * rawX
-  
+  # if $(@).attr('id') is '900'
+    # console.log sliderWidth($(@)), translateX# + sliderWidth($(@)) < edgeWidth or translateX > $(window).width() - edgeWidth + 12
   # If slider is at edge
-  if translateX + $(@).width() < edgeWidth + 12 or translateX > $(window).width() - edgeWidth + 12
+  if translateX + sliderWidth($(@)) < edgeWidth or translateX > $(window).width() - edgeWidth
     $(@).addClass 'onEdge'
     # Make edge of card visible on open collections
     if $(@).hasClass 'cover'
@@ -138,3 +140,6 @@ slidingPlace = (animate = true) ->
     if $(@).data('scale')
         options.scale = scale
     $(@).css options
+
+sliderWidth = (elem) ->
+  elem.data('width') or elem.find('.card').width()

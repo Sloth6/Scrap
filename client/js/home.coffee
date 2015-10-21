@@ -56,7 +56,7 @@ $ ->
     # spaceKey = event.state.name
     # window.openSpace = spaceKey    
     # always close any open collection first
-    if $('.cover.open').length
+    if $('.cover.open, .stack.open').length
       collectionClose()
     
     # equivlant to if spaceKey != home and spacekey cover exists
