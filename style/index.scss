@@ -40,16 +40,23 @@ section.page {
 }
 
 section.page.index {
+  
+    .spacer {
+        background: pink;
+        height: 100px;
+    }
 
     .example {
-        position: relative;
-        height: 150vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 200vh;
         border: orange 1pt solid;
         position: relative;
-        
+
         &.two {
-            height: 120vh;
-            background: yellow;
+            height: 317vh;
+            background: teal;
         }
         
         .collection {

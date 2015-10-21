@@ -1,5 +1,6 @@
 width = $(window).width()
 spring = [60, 10]
+easingSmooth = [20, 10]
 coverWidth = 300
 scaleRatio = coverWidth / $(window).width()
 previousStep = 0
@@ -48,59 +49,53 @@ animateIntroCards = ($collection, $coverTranslate) ->
     duration
     easing: spring
   }
-    
+  
+updateSectionScrollValues = ($section, scrollTop) ->
+  $section.data 'sectionTopToWindowTop',                $section.offset().top - scrollTop
+  $section.data 'sectionTopToDocumentTop',              $(window).height() - $section.data('sectionTopToWindowTop')
+  $section.data 'sectionBottomToDocumentTop',           $section.height() + $section.position().top
+  $section.data 'sectionTopToWindowTopProgress',        ($(window).height() - $section.data('sectionTopToWindowTop')) / $(window).height()
+  $section.data 'sectionBottomToWindowTopProgress',     $section.data('sectionTopToDocumentTop') / $section.data('sectionBottomToDocumentTop')
+  $section.data 'sectionBottomToWindowBottomProgress',  (scrollTop + $(window).height()) / $section.data('sectionBottomToDocumentTop')
+  
+positionCollection = ($collection, status, position, top) ->
+  $collection.data  'status', status
+  $collection.css {
+    position
+    top
+  }
+  
 onScrollSection = ($section, scrollTop, scrollProgress) ->
   $collection       = $section.children('.collection')
   $cover            = $collection.find('.cover')
   $coverTranslate   = $cover.parent()
-  sectionTopToWindowTop       = $section.offset().top - scrollTop
-  sectionTopToDocumentTop     = $(window).height() - sectionTopToWindowTop
-  sectionBottomToDocumentTop  = $section.height() + $(window).height()
-  sectionBottomToWindowTopProgress  = sectionTopToDocumentTop / sectionBottomToDocumentTop
-  sectionTopToWindowTopProgress  = ($(window).height() - sectionTopToWindowTop) / $(window).height()
-  sectionBottomToWindowTopProgress     = (scrollTop + $(window).height()/2) /  sectionBottomToDocumentTop
   
-  $section.data 'progressThroughSelf', sectionBottomToWindowTopProgress
-  $section.data 'progressToWindowTop', sectionTopToWindowTopProgress
-
+  updateSectionScrollValues $section, scrollTop
 #   if $section.hasClass 'two'
-#     console.log (scrollTop + $(window).height()/2) /  sectionBottomToDocumentTop
-
+#     console.log $section.data 'sectionBottomToWindowBottomProgress'
   # Scale content section down unless halfway scrolled through first screen
 #   scaleContent(Math.min(1, sectionProgress), $cover)
   
   # If section top is above window top
-  if sectionTopToWindowTopProgress >= 1
+  if $section.data('sectionTopToWindowTopProgress') >= 1
     animateIntroCards($collection, $coverTranslate) unless $collection.data('stackHasOpened')
     # If section bottom is below window bottom
-    if sectionBottomToWindowTopProgress <= 1
-      $collection.css({
-        border: ''
-        position: 'fixed'
-        top:      0
-      })
+    if $section.data('sectionBottomToWindowBottomProgress') <= 1
+      if $collection.data('status') != 'current'
+        positionCollection($collection, 'current', 'fixed', $(window).height()/4)
     # If bottom of section is above window bottom
-    else
-      $collection.css({
-        border: 'red 2pt solid'
-        position: 'absolute'
-        top:      500
-      })
+    else if $collection.data('status') != 'above'
+      positionCollection($collection, 'above', 'absolute', $section.height() - ($collection.height() + $(window).height()/8))
   # If section top is below window top
   else
-    reverseIntroCards($collection, $coverTranslate) if      $collection.data('stackHasOpened') 
+    reverseIntroCards($collection, $coverTranslate) if $collection.data('stackHasOpened') 
     # If bottom of section is above window bottom
-#     if sectionBottomToWindowTopProgress >= 1
-    $collection.css({
-      border: 'lime 2pt solid'
-      position: 'absolute'
-      top:      0
-    })
-      
+    if ($collection.data('status') != 'below')
+      positionCollection($collection, 'below', 'absolute', $(window).height()/4)
   
-  # Make intro section fixed or scrolling
-  # If section top is above top of window and section bottom is above bottom of window
-#   if sectionTopToWindowTopProgress >= .75 and sectionBottomToWindowTopProgress <= .5
+# Make intro section fixed or scrolling
+# If section top is above top of window and section bottom is above bottom of window
+#   if sectionTopToWindowTopProgress >= .75 and sectionBottomToWindowBottomProgress <= .5
 #     $collection.css({
 #       position: 'fixed'
 #       top:      '25vh'
@@ -120,7 +115,12 @@ onScroll = ($sections) ->
   
 initSections = ($sections) ->
   $sections.each(() ->
-    $(@).data 'stackHasOpened', false
+    $section = $(@)
+    $section.data 'stackHasOpened', false
+    updateSectionScrollValues $section, 0
+    $section.children('.collection').each(() ->
+      $(@).data('status', null)
+    )
   )
   
 $ ->
