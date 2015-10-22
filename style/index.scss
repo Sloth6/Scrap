@@ -50,29 +50,38 @@ section.page.index {
         min-height: 100vh;
         
         &.example {
-            height: 300vh;
+            height: 200vh;
             position: relative;
-//             border: 1pt red solid;
+
+            &.intro {
+                height: 400vh;
+            }
             
             .collection {
+                $collectionTop: 10vh;
                 position: relative;
-                height: 400px;
+                height: 100vh;
                 width: 100vw;
                 z-index: 2;
                 
                 .cover {
                     position: absolute;
                     left: 50vw;
+                    top: $collectionTop;
                     margin-left: -$articleSide/2;
+                    z-index: 3;
+                    -webkit-transform-origin: center center;
+                            transform-origin: center center;
 
                     &.scale {
-                        top: -25vh;
+                        top: 0;
                         left: 0;
                         margin-left: 0;
-                                transform-origin: center 25vh;
                         -webkit-transform-origin: center 25vh;
+                                transform-origin: center 25vh;
                         z-index: 10;
                     
+/*
                         @media all and (orientation: landscape) {
                             height: (100vw * (4/3));
                             width: 100vw;
@@ -82,29 +91,38 @@ section.page.index {
                             width: (100vh * (3/4));
                             height: 100vh;
                         }
+*/
                         
                         h1 {
                             font-size: 24vw;
                             line-height: .8em;
                             margin-top: -.03125em;
                         }
-           
                     }
                 }
-        
-                .under {
-                    position: absolute;
-                    top: 25vh;
-                    left: 50vh;
-                    z-index: -2;
-                }
                 
-                &.intro {
+                .exampleContent {
+                    position: absolute;
+                    overflow-x: hidden;
+                    height: 100%;
+                    left: 0;
+                    right: 0;
+                    z-index: -1;
+                    opacity: 0;
+                    
+                    .card {
+                        -webkit-transform-origin: center center;
+                                transform-origin: center center;
+                        position: absolute;
+                        top: $collectionTop;
+                        left: 50vw;
+                    }
                 }
             }
             
             .caption {
                 position: absolute;
+                text-align: center;
                 top: 75vh;
                 left: 25vw;
                 right: 25vw;
@@ -129,6 +147,7 @@ section.readOnly {
     .card {
         position: absolute;
         top: 0;
+        
         &.blank {
             z-index: 0;
         }
