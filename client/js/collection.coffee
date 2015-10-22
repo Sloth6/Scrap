@@ -23,18 +23,19 @@ coverToCollection = (cover, elements) ->
 collectionOpen = (cover, options = {}) ->
   return if cover.hasClass 'open'
   spacekey = cover.data('content').spaceKey
-  dragging = options.dragging
-  window.openSpace = spacekey
   
+  console.log 'opens', spacekey
 
+  spacePath.unshift(spacekey)
+  dragging = options.dragging
+  
   loadElements spacekey, (elements) ->
 
     parentCollection = $('.open.collection')
     parentCover = $('.open.cover, .open.stack')
 
-    console.log parentCollection
-    console.log parentCover
-
+    # console.log parentCollection
+    # console.log parentCover
 
     prevSliding = cover.prevAll('.sliding')
     nextSliding = cover.nextAll('.sliding')
@@ -59,7 +60,7 @@ collectionOpen = (cover, options = {}) ->
 
     parentCover.velocity
       properties:
-        translateX: [ (() -> -$(@).width()), xForceFeedSelf ]
+        translateX: [ (() -> -sliderWidth($(@))), xForceFeedSelf ]
       options: { complete: () -> parentCover.hide() }
 
     nextSliding.velocity
@@ -69,7 +70,7 @@ collectionOpen = (cover, options = {}) ->
 
     prevSliding.velocity
       properties:
-        translateX: [ (() -> -$(@).width()), xForceFeedSelf ]
+        translateX: [ (() -> -sliderWidth($(@))), xForceFeedSelf ]
       options: { complete: () -> prevSliding.hide() }
 
     cover.siblings('.collectionContent').velocity {
@@ -78,14 +79,18 @@ collectionOpen = (cover, options = {}) ->
 
     setTimeout collectionRealign, 50
 
-#   If leaving root collection, animate in back button
+    # If leaving root collection, animate in back button
     if parentCover.hasClass('root')
       $('header.main .backButton').addClass 'visible'
       moveBackButton(32)
 
-collectionClose = (draggingElement) ->
+collectionClose = (options = {}) ->
+  draggingElement = options.draggingElement or null
+  deleteAfter     = options.deleteAfter or null
+
   closingCover = $('.open.cover, .open.stack')
   return if closingCover.hasClass 'root'
+  spacePath.shift()
 
   # edgeWidth -= 32
 
@@ -98,10 +103,7 @@ collectionClose = (draggingElement) ->
   parentCollection = closingCollection.parent().parent()
   parentChildren = collectionChildren parentCollection
 
-  parentCover = parentCollection.children('.cover')
-
-  console.log parentCover
-
+  parentCover = parentCollection.children('.cover,.stack')
   parentSpacekey = parentCover.data('content').spaceKey
 
   parentCollection.addClass('open').removeClass('closed')
@@ -132,29 +134,29 @@ collectionClose = (draggingElement) ->
       properties: { opacity: [0, 1] }
     }
 
-  closingCover.
-    addClass('closed').
-    removeClass('open').
-    addClass('draggable').
-    addClass('sliding').
-    insertBefore closingCollection
+  console.log deleteAfter, closingCover
+  unless deleteAfter
+    closingCover.
+      addClass('closed').
+      removeClass('open').
+      addClass('draggable').
+      addClass('sliding').
+      show().
+      insertBefore closingCollection
 
-  if closingCover.hasClass 'stack'
-    stackPopulate closingCover
+    if closingCover.hasClass 'stack'
+      stackPopulate closingCover
 
   $(document.body).css width: window.pastState.docWidth
   $(window).scrollLeft window.pastState.scrollLeft
   $("body").css("overflow", "hidden")
   # collectionRealignDontScale()
   
-  realign()
+  collectionRealign()
   setTimeout (() ->
     closingCollection.remove()
-    window.openSpace = parentCollection.children('.cover').data('content').spaceKey
     $("body").css("overflow", "visible")
-
-
-
+    collectionRealign()
   ), openCollectionDuration
 
   $('.root.cover').hide()
@@ -164,6 +166,9 @@ collectionChildren = (collection) ->
   cover = collection.children('.cover')
   elements = collection.children('.collectionContent').children('.element,.padding')
   elements.add cover
+
+collectionParent = (collection) ->
+  collection.parent().parent()
 
 collectionOfElement = () ->
   $(@).parent().parent()

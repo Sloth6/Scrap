@@ -49,8 +49,8 @@ scrollWindow = (event) ->
 
 # Take mousemove event while dragging
 drag = (event, draggingElement) ->
-  x = event.clientX - draggingElement.width()/2
-  y = event.clientY - draggingElement.height()/2 - 50
+  x = event.clientX# - draggingElement.width()/2
+  y = event.clientY# - draggingElement.height()/2# - 50
   draggingElement.css { x, y }
   scrollWindow event
   dragTimeout event, draggingElement
@@ -101,7 +101,7 @@ checkForAddToStack = (event, dragging) ->
     socket.emit "moveToCollection", { elemId: draggedId, spaceKey }
   else
     dragging.remove()
-    socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+    socket.emit 'newCollection', { spaceKey: spacePath[0], draggedId, draggedOverId }
   true
 
 checkForCloseByDrag = (x, y, draggingElement) ->
@@ -166,6 +166,7 @@ dragTimeout = (dragEvent, draggingElement) ->
 
   lastDraggingOver = draggingOver
 
+
 # Clear all timeouts
 clearDragTimeouts = () ->
   clearInterval scrollInterval  
@@ -179,10 +180,11 @@ clearDragTimeouts = () ->
 stopDragging = (event, elem) ->
   console.log "Stop dragging"
   clearDragTimeouts()
-
   if checkForCollectionViaDrop(event, elem)
+    console.log 'checkForCollectionViaDrop'
     # do nothin
   else if checkForAddToStack(event, elem)
+    console.log 'checkForAddToStack'
     # do nothin
   else 
     if $('.slidingContainer').find('.padding').length # ensure in dom
@@ -192,47 +194,57 @@ stopDragging = (event, elem) ->
       console.log 'did not find padding :('
       # shit happens. Put in the closest place
       # elem.insertBefore collectionElemAfter(event.clientX)
-
     content = collectionChildren().not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
-    # addToCollection(elem, openSpace) if !elem.hasClass(openSpace)
     console.log "Emitting reorderElements"
-    socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
+    socket.emit 'reorderElements', { elementOrder, spaceKey: spacePath[0] }
   
   elem.
     removeClass('dragging').
     addClass('sliding').
     css({
       'z-index': elem.data('oldZIndex')
-    }).
-    find('.card').
-      velocity({
-        'scale': 1,
-        'rotateZ': 0
+    })
+
+  endDragTransform = (e) ->
+    e.velocity({
+      'scale': 1,
+      # 'rotateZ': 0
+    }, {
+      easing: [100, 10],
+      duration: 500
+    })
+
+  # endDragTransform elem.find('.transform')
+  # if elem.hasClass('stack')
+  #   endDragTransform elem.children('.transform')
+  # else
+  #   endDragTransform elem.find('.card.cardDrag')
+  collectionRealign true
+
+startDragging = (elem) ->
+  return unless elem.hasClass 'draggable'
+  dragTransform = (e) ->
+    e.velocity({
+        'scale': draggingScale,
+        # 'rotateZ': (Math.random() * 8) - (Math.random() * 8)
       }, {
         easing: [100, 10],
         duration: 500
       })
-
-  collectionRealign true
-
-startDragging = (elem) ->
   elem.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
-    css({
-      'z-index': 9999999
-    }).
-    find('.card').
-      velocity({
-        'scale': draggingScale,
-        'rotateZ': (Math.random() * 8) - (Math.random() * 8)
-      }, {
-        easing: [100, 10],
-        duration: 500
-      })
-  padding.data('width', (elem.data('width') or elem.width())*draggingScale).insertAfter elem
+    zIndex 9999
+  
+  # dragTransform elem.find('.transform')
+  # if elem.hasClass('stack')
+  #   dragTransform elem.children('.transform')
+  # else
+  #   dragTransform elem.find('.card.cardDrag')
+      
+  padding.data('width', sliderWidth(elem)*draggingScale).insertAfter elem
   stopPlaying(elem) if elem.hasClass('playable')
  
 makeDraggable = (elements) ->
@@ -254,10 +266,8 @@ makeDraggable = (elements) ->
     $(window).mouseup (event) ->
       $(window).off 'mousemove'
       $(window).off 'mouseup'
-      if draggingElement != null
-        setTimeout (() ->
-          stopDragging(event, draggingElement)
-        ), 10
+      if draggingElement?
+        stopDragging(event, draggingElement)
 
 $ ->
   window.padding = $('<div>').addClass('slider sliding padding').data 'width', 200

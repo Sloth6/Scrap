@@ -79,8 +79,6 @@ slidingPlace = (animate = true) ->
   
   # Prevent stack from shifting to right when growing
   translateX -= .0001825 * rawX
-  # if $(@).attr('id') is '900'
-    # console.log sliderWidth($(@)), translateX# + sliderWidth($(@)) < edgeWidth or translateX > $(window).width() - edgeWidth + 12
   # If slider is at edge
   if translateX + sliderWidth($(@)) < edgeWidth or translateX > $(window).width() - edgeWidth
     $(@).addClass 'onEdge'
@@ -125,16 +123,18 @@ slidingPlace = (animate = true) ->
         properties:
           translateZ: 0
           translateX: [translateX, oldX]
+          translateY: [marginTop, marginTop]
           scale: scale
-          translateY: [translateY, yTransform($(@))]
+          # translateY: [translateY, yTransform($(@))]
           rotateZ: $(@).data('rotateZ') * percentFromBorder
 
       $(@).velocity animateOptions
-    
+
   # On Scroll
   else
-    options = {x: translateX}
-    options.y = translateY if translateY?
+    options = { x: translateX }
+    # options.y = translateY if translateY?
+    options.y = marginTop
     if $(@).data('rotateZ')
         options.rotate3d = "0,0,1,#{rotateZ}deg" 
     if $(@).data('scale')

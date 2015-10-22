@@ -17,9 +17,9 @@ module.exports =
   reorderElements: (sio, socket, data) ->
     { spaceKey, elementOrder } = data
     elementOrder = JSON.parse elementOrder
-    console.log elementOrder
+    # console.log elementOrder
     models.Space.update({elementOrder}, {spaceKey}).complete (err) ->
-      console.log err
+      console.log(err) if err?
 
   rename: (sio, socket, data, callback) ->
     { spaceKey, name } = data
@@ -27,6 +27,13 @@ module.exports =
       return callback err if err?
       console.log "updated name of #{spaceKey} to #{name}"
         # sio.to("#{spaceKey}").emit 'updateElement', data
+
+      # the stack should be emptied
+      # sio.to(spaceKey).emit 'removeStack', { id: space.id }
+      
+    # models.sequelize.query(q2, null, null, { spaceKey }).complete (err, results) ->
+    #   return callback err if err?
+    #   console.log results
 
   newCollection: (sio, socket, data) ->
     spaceKey = data.spaceKey # SpaceKey will be the parent of the new collection
@@ -51,8 +58,11 @@ module.exports =
                       SET \"SpaceId\" = '#{newSpace.id}'
                       WHERE id = #{draggedId} or id = #{draggedOverId};
                       "
-        models.sequelize.query(updateQuery).complete (err) ->
-          if err then cb err else cb null, newSpace
+        newSpace.elementOrder = [draggedId, draggedOverId]
+        newSpace.save().complete (err) ->
+          return cb(err) if err 
+          models.sequelize.query(updateQuery).complete (err) ->
+            if err then cb err else cb null, newSpace
 
       # Get the parent space
       (newSpace, cb) ->
@@ -63,18 +73,19 @@ module.exports =
       # Create cover element
       (newSpace, parentSpace, cb) ->
         console.log "Creating cover element"
-
         coverAttributes =
           SpaceId: parentSpace.id
           creatorId: userId
           contentType: 'cover'
           content: JSON.stringify {
                       spaceKey: newSpace.spaceKey
-                      name: newSpace.name
                       backgroundColor: coverColor()
                     }
         models.Element.create(coverAttributes).complete (err, cover) ->
-          if err then cb err else cb null, parentSpace, cover
+          if err then cb err
+          newSpace.coverId = cover.id
+          newSpace.save().complete (err) ->
+            if err then cb err else cb null, parentSpace, cover
 
       # Change element order
       (parentSpace, cover, cb) ->

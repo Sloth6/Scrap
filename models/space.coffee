@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) ->
       type: DataTypes.BOOLEAN
       allowNull: false
       defaultValue: true
-    # hasCover:
-    #   type: DataTypes.BOOLEAN
-    #   allowNull: false
-    #   defaultValue: false
+    hasCover:
+      type: DataTypes.BOOLEAN
+      allowNull: false
+      defaultValue: false
     lastChange:
       type: DataTypes.DATE
       allowNull: false
@@ -28,9 +28,11 @@ module.exports = (sequelize, DataTypes) ->
       defaultValue: '{}'
 
   }, {
+
     classMethods:
       associate: (models) ->
         Space.hasMany models.User
         Space.hasMany models.Element
-        Space.belongsTo models.User, {as: 'Creator'}
+        Space.belongsTo models.Element, { as: 'coverId', foreignKey: 'coverId' }
+        Space.belongsTo models.User, { as: 'Creator' }
   }

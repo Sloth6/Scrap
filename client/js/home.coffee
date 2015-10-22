@@ -2,6 +2,7 @@ defaultCurve            = 'easeOutExpo'
 openCollectionCurve     = [50, 8]
 openCollectionDuration  = 1000
 
+marginTop = $(window).height() * 0.15
 margin = $(window).width() / 48
 sliderBorder = () -> $(window).width() / 6
 edgeWidth = 48
@@ -11,6 +12,9 @@ window.pastState = { docWidth: null, scrollLeft: null }
 
 Array.max = (array) -> Math.max.apply Math, array
 Array.min = (array) -> Math.min.apply Math, array
+
+Array.prototype.last = () ->
+  @[@length - 1]
 
 xForceFeedSelf = () ->
   xTransform $(@)
@@ -23,9 +27,10 @@ yTransform = (elem) ->
   transform = elem.css('transform')
   new WebKitCSSMatrix(transform).f
 
+spacePath = []
+
 $ ->
   window.socket = io.connect()
-  window.openSpace = "home"
   history.pushState { name: "home" }, "", "/"
 
   window.container = $('.slidingContainer')
@@ -54,11 +59,6 @@ $ ->
   window.onpopstate = (event) ->
     # event.state.name will either be 'home' or a spaceKey
     # spaceKey = event.state.name
-    # window.openSpace = spaceKey    
     # always close any open collection first
     if $('.cover.open, .stack.open').length
       collectionClose()
-    
-    # equivlant to if spaceKey != home and spacekey cover exists
-    # if $(".cover.#{spaceKey}").length
-    #   collectionOpen $(".cover.#{spaceKey}")

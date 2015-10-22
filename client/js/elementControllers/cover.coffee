@@ -121,6 +121,12 @@ coverInit = (covers) ->
 
   stackInit = (cover, data) ->
     stack = stackCreate cover
+    # stack.css {
+    #   'background-color': 'red'
+    #   width: 300
+    #   height: 300
+    # }
+
     stackPopulate stack
     stack.click () ->
       stack.empty()
