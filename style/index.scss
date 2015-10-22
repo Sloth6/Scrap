@@ -52,14 +52,13 @@ section.page.index {
         &.example {
             height: 300vh;
             position: relative;
-            border: 1pt red solid;
-            
+//             border: 1pt red solid;
             
             .collection {
                 position: relative;
                 height: 400px;
                 width: 100vw;
-                background: lime;
+                z-index: 2;
                 
                 .cover {
                     position: absolute;
@@ -102,6 +101,13 @@ section.page.index {
                 
                 &.intro {
                 }
+            }
+            
+            .caption {
+                position: absolute;
+                top: 75vh;
+                left: 25vw;
+                right: 25vw;
             }
         }
     }
