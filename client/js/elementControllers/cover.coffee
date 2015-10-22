@@ -62,7 +62,7 @@ coverClick = () ->
   return if $(@).hasClass 'dragging'
   if $(@).hasClass 'open'
     $(window).scrollLeft 0
-    collectionRealign.call $('.slidingContainer')
+    collectionRealignDontScale()
   else if !$(@).hasClass('editing')
     spaceKey = $(@).data('content').spaceKey
     history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"

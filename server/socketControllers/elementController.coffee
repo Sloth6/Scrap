@@ -37,7 +37,7 @@ checkForStackDelete = (sio, socket, data, callback) ->
     where: { spaceKey }
     include: [ models.Element ]
   }).complete (err, space) ->
-    console.log space.spaceKey, space.hasCover, space.root, space.elements.length
+    # console.log space.spaceKey, space.hasCover, space.root, space.elements.length
     return callback err if err?
     return callback null if space.hasCover or space.root
     return callback null if space.elements.length > 1
@@ -68,9 +68,7 @@ module.exports =
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
-          # console.log space.elementOrder
-          space.elementOrder.unshift(element.id)
-          # console.log space.elementOrder
+          space.elementOrder.push(element.id)
           space.save()
           html = elementRenderer space, element
           sio.to(spaceKey).emit 'newElement', { html, spaceKey }

@@ -77,12 +77,20 @@ collectionOpen = (cover, options = {}) ->
       properties: { opacity: [1, 0] }
     }
 
-    setTimeout collectionRealign, 50
-
     # If leaving root collection, animate in back button
     if parentCover.hasClass('root')
       $('header.main .backButton').addClass 'visible'
       moveBackButton(32)
+
+    # console.log options.callback
+    setTimeout ( ->
+      
+      collectionRealign()
+      # options.callback() if options.callback?
+
+    ), 500
+
+    
 
 collectionClose = (options = {}) ->
   draggingElement = options.draggingElement or null
@@ -173,6 +181,13 @@ collectionParent = (collection) ->
 collectionOfElement = () ->
   $(@).parent().parent()
 
+collectionWidth = () ->
+  sliding = collectionChildren().filter('.sliding')
+  w = 0
+  sliding.each () ->
+    w += sliderWidth($(@)) + margin
+  w
+
 realign = (animate) ->
   sliding = collectionChildren().filter('.sliding')
   # console.log 'sliding', sliding
@@ -199,16 +214,18 @@ realign = (animate) ->
     
     if collection.hasClass('closing')
       width = 0
-    # console.log width
     lastX += width + margin
   
-  maxX = lastX - sliderWidth(sliding.last())/2
+  maxX = lastX# - sliderWidth(sliding.last())/2
   $(@).data { maxX }
   maxX
 
 collectionRealign = (animate) ->
+  width = collectionWidth $(@)
+  width += margin
+  $(document.body).css { width } #+ $(window).width()/2
+  $(window).scrollLeft(width)
   maxX = realign.call @, animate
-  $(document.body).css { width: maxX + $(window).width()/2}
   $("body").css("overflow", "hidden")
   setTimeout (() -> $("body").css("overflow", "visible")), openCollectionDuration
 

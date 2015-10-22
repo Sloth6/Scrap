@@ -15,12 +15,10 @@ $ ->
     
     if $(".#{spaceKey}.collection").hasClass 'open'
       element.
-        insertAfter($(".#{spaceKey}.collection").find('.addElementForm')).
-        css({x: xTransform(element)}).
-        addClass('sliding')
-
+        css({x: xTransform($('.addElementForm'))}).
+        insertBefore($('.addElementForm'))
       sliderInit element
-      collectionRealign.call $('.slidingContainer')
+      collectionRealign()
       
   socket.on 'newCollection', (data) ->
     { draggedId, draggedOverId, coverHTML } = data

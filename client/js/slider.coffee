@@ -40,6 +40,7 @@ sliderJumble = () ->
 sliderInit = (elems) ->
   bindCardHover()
   elems.each sliderJumble
+  elems.addClass('sliding')
   makeDraggable elems
   makeDeletable elems
   elems.each () ->

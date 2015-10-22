@@ -390,7 +390,7 @@ section.container section.space section.content{
 
             // Compact view
             &.peek {
-                
+                /*
                 &:hover {  
                     .translate {
                     		@include transform(translate(24px, -64px));
@@ -412,14 +412,16 @@ section.container section.space section.content{
                 .card .editable {
                 		@include transform(translate(-128px, 0px));
                 }
+                */
             }
             
             &.slideInFromSide {
                 z-index: 99999999 !important;
-
+                /*
                 .translate {
                     @include transform(translate(320px, 0px));
                 }
+                */
             }
 
             &.typing {

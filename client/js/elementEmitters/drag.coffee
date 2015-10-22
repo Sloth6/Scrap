@@ -149,19 +149,21 @@ dragTimeout = (dragEvent, draggingElement) ->
     clearDragTimeouts()
 
   # if we are dragging at the end
-  if draggingOver[0] == undefined
-    $('.open.collection .collectionContent').append padding
-    collectionRealignDontScale false
+  if draggingOver[0] == undefined or draggingOver.hasClass('.addElementForm')
+    if $('.addElementForm').prev()[0] isnt padding[0]
+      padding.insertBefore $('.addElementForm')
+      collectionRealignDontScale()
   else
     switch leftCenterRight x, draggingOver
       when 'left'
         padding.insertBefore draggingOver
         collectionRealignDontScale false
+
       when 'right'
         padding.insertAfter draggingOver
         collectionRealignDontScale false
+
       when 'center'
-        # console.log 'center'
         checkForOpenByDrag x, y, draggingElement, draggingOver
 
   lastDraggingOver = draggingOver
@@ -182,18 +184,14 @@ stopDragging = (event, elem) ->
   clearDragTimeouts()
   if checkForCollectionViaDrop(event, elem)
     console.log 'checkForCollectionViaDrop'
-    # do nothin
   else if checkForAddToStack(event, elem)
     console.log 'checkForAddToStack'
-    # do nothin
   else 
     if $('.slidingContainer').find('.padding').length # ensure in dom
       elem.insertAfter padding
       padding.remove()
     else 
       console.log 'did not find padding :('
-      # shit happens. Put in the closest place
-      # elem.insertBefore collectionElemAfter(event.clientX)
     content = collectionChildren().not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
     console.log "Emitting reorderElements"
@@ -220,7 +218,7 @@ stopDragging = (event, elem) ->
   #   endDragTransform elem.children('.transform')
   # else
   #   endDragTransform elem.find('.card.cardDrag')
-  collectionRealign true
+  collectionRealignDontScale()
 
 startDragging = (elem) ->
   return unless elem.hasClass 'draggable'

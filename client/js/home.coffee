@@ -32,16 +32,14 @@ spacePath = []
 $ ->
   window.socket = io.connect()
   history.pushState { name: "home" }, "", "/"
-
   window.container = $('.slidingContainer')
-  
-  collectionRealign { animate: false }
   
   $.Velocity.defaults.duration = openCollectionDuration
   $.Velocity.defaults.easing = openCollectionCurve
   $.Velocity.defaults.queue = false
 
   collectionOpen $('.cover.root')
+
   # Main scroll event
   $(window).scroll (event) ->
     collectionScroll.call $('.slidingContainer')
@@ -52,15 +50,6 @@ $ ->
     if Math.abs(event.deltaY) > 2
       $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
       event.preventDefault()
-
-  # setTimeout (() ->
-  #   $('.collectionContent').append $('.addProjectForm')
-  #   $('.addProjectForm').show()
-  #   sliderInit $('.addProjectForm')
-  #   collectionRealign()
-  #   console.log $('.addProjectForm')
-  # ), 1000
-  # sliderInit $('.slider')
 
   # Close a collection on page back
   window.onpopstate = (event) ->
