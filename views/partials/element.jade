@@ -67,15 +67,16 @@ else
               img(src=content.image)
               a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
       
-            when 'file'
-              header
-                - name = element.content.split('/').pop()
-                //- - extension = name.pop()
-                h1.headerType.title=name.split('.')[0]
-                p.extension.smallCaps.bodyType=name.split('.').pop()
-              ul.cardActions
-                li.right
-                  a.download.confirm(href='#') Download
+
+          when 'file'
+            header
+              - name = element.content.split('/').pop()
+              //- - extension = name.pop()
+              h1.headerType.title=name.split('.')[0]
+              p.extension.smallCaps.bodyType=name.split('.').pop()
+            ul.cardActions
+              li
+                a.download.confirm(href='#') Download
 
             when 'video'
               video()
@@ -105,6 +106,7 @@ else
                 .detail
                   .source.smallType.smallCaps youtube
 
+<<<<<<< HEAD
             when 'text'
               //- textarea.modify(name='content', style='height:300px')!=element.content
               .editable(contentEditable="false", designmode="on")
@@ -113,3 +115,14 @@ else
                 a.bodyType.warning(href='#') Done
             default
               p!=element.content
+=======
+          when 'text'
+            //- textarea.modify(name='content', style='height:300px')!=element.content
+            .editable(contentEditable="false", designmode="on")
+              !{element.content}
+            ul.cardActions
+              li.right
+                a.invisible.done.confirm(href='#') Done
+          default
+            p!=element.content
+>>>>>>> 15690ab52496b999fe500d4ae01535ee8146d423

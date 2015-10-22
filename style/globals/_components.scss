@@ -10,7 +10,7 @@ $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $ca
 
 $articleSideNarrow:     $col * 3;
 $articleSide:           $col * 4;
-$articleSideWide:       $col * 6;
+$articleSideWide:       $col * 5;
 $articleWidthVideo:     $col * 24;
 
 $articleMinHeight:     $articleSideNarrow;
@@ -143,7 +143,12 @@ a {
     position: absolute;
     bottom: $cardPaddingBottom/2;
     left: $cardPaddingLeft/2;
+    right: $cardPaddingLeft/2;
     @include typeBody;
+    
+    li.right {
+        float: right;
+    }
 }
 
 // Globals

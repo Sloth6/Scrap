@@ -107,21 +107,28 @@ section.container section.space section.content{
             .editable {
 //                 background: lime;
                 height: 100%;
-                margin-top: (1em / 3);
-                @include typeBody;
+                margin-bottom: $broadMargin;
             }                
 
             &.short {
+                .editable {
+                    @include typeLarge;
+                    margin-top: -1pt;
+                }
             }
             
             &.long {
+                .editable {
+                    @include typeBody;
+                    margin-top: $typeBodyLeading / 2.5;
+                }
                 
                 .card {
-                    width: $articleSideWide;
+                    width: $articleSide;
                                             
                     .editable {
-                        padding-left: $col / 2;
-                        padding-right: $col / 4;
+//                         padding-left: $col / 2;
+//                         padding-right: $col / 4;
                    
 /*
                         * {
@@ -299,6 +306,16 @@ section.container section.space section.content{
                 
                 &:hover {
                     @include hoverLinkAnimation;
+                    
+                    .text {
+                        
+                        header {
+                            
+                            .url {
+                                opacity: 1;
+                            }
+                        }
+                    }
                 }
                 
                 a {
@@ -330,8 +347,9 @@ section.container section.space section.content{
     
                         .url {
                             margin-top: $cell/2;
-                            @include transition($collectionOpenTransitionDuration $defaultCurve);
+                            @include transition(.25s $defaultCurve);
                             @include transition-property(opacity);
+                            opacity: 0;
                         }
                     }
 
