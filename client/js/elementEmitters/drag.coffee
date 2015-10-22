@@ -17,7 +17,7 @@ draggingScale = 0.5
 leftCenterRight = (x, element) ->
   center = .50
   elemLeft = parseInt element.css('x')
-  elemWidth = element.width()
+  elemWidth = sliderWidth element
   elemRight = elemLeft + elemWidth
   
   if x > elemRight - elemWidth/4
@@ -49,32 +49,59 @@ scrollWindow = (event) ->
 
 # Take mousemove event while dragging
 drag = (event, draggingElement) ->
-  x = event.clientX - draggingElement.width()/2
-  y = event.clientY - draggingElement.height()/2 - 50
+  x = event.clientX# - draggingElement.width()/2
+  y = event.clientY# - draggingElement.height()/2# - 50
   draggingElement.css { x, y }
   scrollWindow event
-  afterDrag event, draggingElement
+  dragTimeout event, draggingElement
 
 checkForCollectionViaDrop = (event, dragging) ->
+  return false
+  # $(window).off 'mousemove'
+  # $(window).off 'mouseup'
+  # x = event.clientX
+  # droppedOn = collectionElemAfter x
+
+  # return false if droppedOn[0] == padding[0]
+  # return false if droppedOn[0] == undefined
+  # return false if droppedOn.hasClass('cover')
+  # return false if dragging.hasClass('cover')
+  # return false unless leftCenterRight(x, droppedOn) is 'center'
+
+  # dragging.remove()
+  # padding.remove()
+  # collectionRealignDontScale false
+  
+  # draggedId = parseInt(dragging.attr('id'))
+  # draggedOverId = parseInt(droppedOn.attr('id'))
+  # console.log "Emitting newCollection."
+  # 
+  # true
+
+checkForAddToStack = (event, dragging) ->
   $(window).off 'mousemove'
   $(window).off 'mouseup'
   x = event.clientX
   droppedOn = collectionElemAfter x
-
   return false if droppedOn[0] == padding[0]
   return false if droppedOn[0] == undefined
-  return false if droppedOn.hasClass('cover')
   return false if dragging.hasClass('cover')
+  return false if dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
-
-  dragging.remove()
+  spaceKey = droppedOn.data('content').spaceKey
+  
   padding.remove()
-  collectionRealignDontScale false
   
   draggedId = parseInt(dragging.attr('id'))
   draggedOverId = parseInt(droppedOn.attr('id'))
-  console.log "Emitting newCollection."
-  socket.emit 'newCollection', { spaceKey: openSpace, draggedId, draggedOverId }
+  
+  if droppedOn.hasClass('stack')
+    console.log 'Emitting move to collection'
+    stackAdd droppedOn, dragging
+    socket.emit "moveToCollection", { elemId: draggedId, spaceKey }
+  else
+    dragging.remove()
+    socket.emit 'newCollection', { spaceKey: spacePath[0], draggedId, draggedOverId }
   true
 
 checkForCloseByDrag = (x, y, draggingElement) ->
@@ -82,7 +109,6 @@ checkForCloseByDrag = (x, y, draggingElement) ->
   if y < $('.slidingContainer').offset().top
     return true if collectionCloseByDragTopTimeout
     collectionCloseByDragTopTimeout = setTimeout (() ->
-      console.log draggingElement.find('.card')
       draggingElement.find('.card').css({
         'scale': 1,
         'rotate': 0
@@ -110,7 +136,7 @@ checkForOpenByDrag = (x, y, dragging, draggingOver) ->
   true
 
 # Check for element reordering or collection creation
-afterDrag = (dragEvent, draggingElement) ->
+dragTimeout = (dragEvent, draggingElement) ->
   x = dragEvent.clientX
   y = dragEvent.clientY
 
@@ -123,22 +149,25 @@ afterDrag = (dragEvent, draggingElement) ->
     clearDragTimeouts()
 
   # if we are dragging at the end
-  if draggingOver[0] == undefined
-    $('.open.collection .collectionContent').append padding
-    collectionRealignDontScale false
+  if draggingOver[0] == undefined or draggingOver.hasClass('.addElementForm')
+    if $('.addElementForm').prev()[0] isnt padding[0]
+      padding.insertBefore $('.addElementForm')
+      collectionRealignDontScale()
   else
     switch leftCenterRight x, draggingOver
       when 'left'
         padding.insertBefore draggingOver
         collectionRealignDontScale false
+
       when 'right'
         padding.insertAfter draggingOver
         collectionRealignDontScale false
+
       when 'center'
-        # console.log 'center'
         checkForOpenByDrag x, y, draggingElement, draggingOver
 
   lastDraggingOver = draggingOver
+
 
 # Clear all timeouts
 clearDragTimeouts = () ->
@@ -150,66 +179,70 @@ clearDragTimeouts = () ->
   collectionOpenByDragTimeout = null
   draggingOnBorder = false
 
-addToCollection = (elem, spaceKey) ->
-  elem.addClass(spaceKey)
-  console.log 'Emitting move to collection'
-  socket.emit "moveToCollection", { elemId: elem.attr('id'), spaceKey }
-
 stopDragging = (event, elem) ->
   console.log "Stop dragging"
   clearDragTimeouts()
-
   if checkForCollectionViaDrop(event, elem)
-    # do nothin
+    console.log 'checkForCollectionViaDrop'
+  else if checkForAddToStack(event, elem)
+    console.log 'checkForAddToStack'
   else 
     if $('.slidingContainer').find('.padding').length # ensure in dom
       elem.insertAfter padding
       padding.remove()
     else 
       console.log 'did not find padding :('
-      # shit happens. Put in the closest place
-      # elem.insertBefore collectionElemAfter(event.clientX)
-
     content = collectionChildren().not('.addElementForm')
     elementOrder = JSON.stringify(content.get().map (elem) -> +elem.id)
-    addToCollection(elem, openSpace) if !elem.hasClass(openSpace)
     console.log "Emitting reorderElements"
-    socket.emit 'reorderElements', { elementOrder, spaceKey: openSpace }
+    socket.emit 'reorderElements', { elementOrder, spaceKey: spacePath[0] }
   
   elem.
     removeClass('dragging').
     addClass('sliding').
     css({
       'z-index': elem.data('oldZIndex')
-    }).
-    find('.card').
-      velocity({
-        'scale': 1,
-        'rotateZ': 0
+    })
+
+  endDragTransform = (e) ->
+    e.velocity({
+      'scale': 1,
+      # 'rotateZ': 0
+    }, {
+      easing: [100, 10],
+      duration: 500
+    })
+
+  # endDragTransform elem.find('.transform')
+  # if elem.hasClass('stack')
+  #   endDragTransform elem.children('.transform')
+  # else
+  #   endDragTransform elem.find('.card.cardDrag')
+  collectionRealignDontScale()
+
+startDragging = (elem) ->
+  return unless elem.hasClass 'draggable'
+  dragTransform = (e) ->
+    e.velocity({
+        'scale': draggingScale,
+        # 'rotateZ': (Math.random() * 8) - (Math.random() * 8)
       }, {
         easing: [100, 10],
         duration: 500
       })
-
-  collectionRealign true
-
-startDragging = (elem) ->
   elem.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
-    css({
-      'z-index': 9999999
-    }).
-    find('.card').
-      velocity({
-        'scale': draggingScale,
-        'rotateZ': (Math.random() * 8) - (Math.random() * 8)
-      }, {
-        easing: [100, 10],
-        duration: 500
-      })
-  padding.data('width', elem.width()*draggingScale).insertAfter elem
+    zIndex 9999
+  
+  # dragTransform elem.find('.transform')
+  # if elem.hasClass('stack')
+  #   dragTransform elem.children('.transform')
+  # else
+  #   dragTransform elem.find('.card.cardDrag')
+      
+  padding.data('width', sliderWidth(elem)*draggingScale).insertAfter elem
   stopPlaying(elem) if elem.hasClass('playable')
  
 makeDraggable = (elements) ->
@@ -231,10 +264,8 @@ makeDraggable = (elements) ->
     $(window).mouseup (event) ->
       $(window).off 'mousemove'
       $(window).off 'mouseup'
-      if draggingElement != null
-        setTimeout (() ->
-          stopDragging(event, draggingElement)
-        ), 10
+      if draggingElement?
+        stopDragging(event, draggingElement)
 
 $ ->
   window.padding = $('<div>').addClass('slider sliding padding').data 'width', 200

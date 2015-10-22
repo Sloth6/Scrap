@@ -9,8 +9,8 @@ section.container section.space section.content{
         backface-visibility: hidden;
         margin-right: -2pt;
         line-height: 1.5em;
-        transform-origin:           center;
-        -webkit-transform-origin:   center;
+        //transform-origin:           center;
+        //-webkit-transform-origin:   center;
         
         // EVENTS
         
@@ -390,7 +390,7 @@ section.container section.space section.content{
 
             // Compact view
             &.peek {
-                
+                /*
                 &:hover {  
                     .translate {
                     		@include transform(translate(24px, -64px));
@@ -412,14 +412,16 @@ section.container section.space section.content{
                 .card .editable {
                 		@include transform(translate(-128px, 0px));
                 }
+                */
             }
             
             &.slideInFromSide {
                 z-index: 99999999 !important;
-
+                /*
                 .translate {
                     @include transform(translate(320px, 0px));
                 }
+                */
             }
 
             &.typing {
@@ -457,8 +459,8 @@ section.container section.space section.content{
                     position: absolute;
                     top:    $cell*.75;
                     right:  $cell*.75;
-                    -webkit-transform-origin: center center;
-                            transform-origin: center center;
+                    //-webkit-transform-origin: center center;
+                    //        transform-origin: center center;
                 		@include transform(translate(36px, 0px));
                     @include transition(.5s $defaultCurve);
                     @include transition-property(transform,

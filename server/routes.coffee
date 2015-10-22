@@ -14,8 +14,8 @@ module.exports = (app) ->
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 
-  app.post '/s/new', (req, res) ->
-    controllers.spaceController.newSpace req, res, app, errorHandler
+  app.post '/s/newPack', (req, res) ->
+    controllers.spaceController.newPack req, res, app, errorHandler
 
   app.post '/s/update', (req, res) ->
     controllers.spaceController.updateSpace req, res, app, errorHandler

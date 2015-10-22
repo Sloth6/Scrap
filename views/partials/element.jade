@@ -37,79 +37,80 @@ else
       case element.contentType
         when 'file'
           .decorative.fold
-      .card.cardHover.cardDrag(class=element.contentType)
-        case element.contentType
-          when 'image'
-            - var content = JSON.parse(element.content)
-            - if (typeof(content.original_url) !== 'undefined'){
-              img(src= content.original_url)
-            - } else { 
-              img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
-            - }
-    
-          when 'gif'
-            -var content = JSON.parse(element.content)
-            - if (typeof(content.original_url) !== 'undefined'){
-              img(src= content.original_url)
-            - } else {
-              img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
-            - }
-    
-          when 'website'
-            -var content = JSON.parse(element.content)
-            -var url = decodeURIComponent(content.url)
-            .text
+      .transform
+        .card.cardHover.cardDrag(class=element.contentType)
+          case element.contentType
+            when 'image'
+              - var content = JSON.parse(element.content)
+              - if (typeof(content.original_url) !== 'undefined'){
+                img(src= content.original_url)
+              - } else { 
+                img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
+              - }
+      
+            when 'gif'
+              -var content = JSON.parse(element.content)
+              - if (typeof(content.original_url) !== 'undefined'){
+                img(src= content.original_url)
+              - } else {
+                img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
+              - }
+      
+            when 'website'
+              -var content = JSON.parse(element.content)
+              -var url = decodeURIComponent(content.url)
+              .text
+                header
+                  h1.headerType!=content.title
+                  .url.smallType.smallCaps!=content.domain
+                .description.smallType!=content.description
+              img(src=content.image)
+              a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
+      
+            when 'file'
               header
-                h1.headerType!=content.title
-                .url.smallType.smallCaps!=content.domain
-              .description.smallType!=content.description
-            img(src=content.image)
-            a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
-    
-          when 'file'
-            header
-              - name = element.content.split('/').pop()
-              //- - extension = name.pop()
-              h1.headerType.title=name.split('.')[0]
-              p.extension.smallCaps.bodyType=name.split('.').pop()
-            ul.cardActions
-              li
-                a.download.confirm(href='#') Download
+                - name = element.content.split('/').pop()
+                //- - extension = name.pop()
+                h1.headerType.title=name.split('.')[0]
+                p.extension.smallCaps.bodyType=name.split('.').pop()
+              ul.cardActions
+                li
+                  a.download.confirm(href='#') Download
 
-          when 'video'
-            video()
-              source(src=element.content)
-              img(src=element.content+'.png')
-          
-          when 'soundcloud'
-            -var content = JSON.parse(element.content)
-            //- title, description, thumbnail_url, html, author_name, author_url
-            .preview(title='Play “' + content.title + '”')
-              img.soundcloudThumbnail(src=content.thumbnail_url)
-            header
-              .top
-                h1.headerType.title!=content.title
-                .artist.smallType!=content.author_name
-              .detail
-                .source.smallType.smallCaps SoundCloud
-          
-          when 'youtube'
-            -var content = JSON.parse(element.content)
-            .preview(title='Play “' + content.title + '”')
-              img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
-            header
-              .top
-                h1.headerType.title!=content.title
-                .artist.smallType Artist
-              .detail
-                .source.smallType.smallCaps youtube
+            when 'video'
+              video()
+                source(src=element.content)
+                img(src=element.content+'.png')
+            
+            when 'soundcloud'
+              -var content = JSON.parse(element.content)
+              //- title, description, thumbnail_url, html, author_name, author_url
+              .preview(title='Play “' + content.title + '”')
+                img.soundcloudThumbnail(src=content.thumbnail_url)
+              header
+                .top
+                  h1.headerType.title!=content.title
+                  .artist.smallType!=content.author_name
+                .detail
+                  .source.smallType.smallCaps SoundCloud
+            
+            when 'youtube'
+              -var content = JSON.parse(element.content)
+              .preview(title='Play “' + content.title + '”')
+                img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
+              header
+                .top
+                  h1.headerType.title!=content.title
+                  .artist.smallType Artist
+                .detail
+                  .source.smallType.smallCaps youtube
 
-          when 'text'
-            //- textarea.modify(name='content', style='height:300px')!=element.content
-            .editable(contentEditable="false", designmode="on")
-              !{element.content}
-            ul.cardActions
-              li.right
-                a.invisible.done.confirm(href='#') Done
-          default
-            p!=element.content
+            when 'text'
+              //- textarea.modify(name='content', style='height:300px')!=element.content
+              .editable(contentEditable="false", designmode="on")
+                !{element.content}
+              ul.cardActions
+                li.right
+                  a.invisible.done.confirm(href='#') Done
+            default
+              p!=element.content

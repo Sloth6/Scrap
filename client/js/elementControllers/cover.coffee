@@ -62,9 +62,9 @@ coverClick = () ->
   return if $(@).hasClass 'dragging'
   if $(@).hasClass 'open'
     $(window).scrollLeft 0
-    collectionRealign.call $('.slidingContainer')
+    collectionRealignDontScale()
   else if !$(@).hasClass('editing')
-    spaceKey = $(@).data 'spacekey'
+    spaceKey = $(@).data('content').spaceKey
     history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
     collectionOpen $(@)
 
@@ -101,9 +101,7 @@ bindCoverControls = (covers) ->
   # dont open collection on submit
   covers.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
-
-
-      
+ 
   covers.find('ul.menu').each () ->
     $menu = $(@)
     $cover = $menu.parent().parent('.cover')
@@ -113,17 +111,24 @@ bindCoverControls = (covers) ->
     $cover.mouseleave () ->
       $menu.removeClass 'open' if $menu.hasClass 'canOpen'
 
-getCoverData = (covers) ->
-  covers.each () ->
-    cover = $(@)
-    content = $(@).data 'content'
-    # console.log 'content', content
-    $.get "/collectionData/#{content.spaceKey}", (data) ->
-      cover.find('section.title').children('h1, h2, h3').text data.name
-      for u in data.users
-        name = u.name or u.email
-        cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
+coverInit = (covers) ->
+  packInit = (cover, data) ->
+    cover.find('section.title').children('h1, h2, h3').text data.name
+    bindCoverControls cover
+    for u in data.users
+      name = u.name or u.email
+      cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
 
-$ ->
-  bindCoverControls $('.cover')
-      
+  stackInit = (cover, data) ->
+    stack = stackCreate cover
+    stackPopulate stack
+    stack.click () ->
+      stack.empty()
+      coverClick.call $(@)
+
+  covers.each () ->
+    $.get "/collectionData/#{$(@).data('content').spaceKey}", (data) =>
+      if $(@).hasClass 'stack' then stackInit($(@), data) else packInit $(@), data
+
+# $ ->
+#   coverInit $('.cover')

@@ -36,8 +36,8 @@ $cardBorderRadius:          $cell/4;
     border: $cardBorder;
     padding: $cardPadding;
     border-radius: $cardBorderRadius;
-            transform-origin: center center;
-    -webkit-transform-origin: center center;
+    //        transform-origin: center center;
+    //-webkit-transform-origin: center center;
 }
 
 @mixin cardHover {
@@ -64,7 +64,7 @@ $cardBorderRadius:          $cell/4;
 
 @mixin cardDrag {
     &.dragging {
-        @include transform(rotate(4deg));
+        // @include transform(rotate(4deg));
     }
 }
 

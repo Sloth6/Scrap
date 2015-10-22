@@ -42,7 +42,7 @@ module.exports =
         req.session.currentUserId = user.id
         # create the users root space
         firstSpaceOptions =
-          userId: user.id
+          UserId: user.id
           spaceName: user.name
           root: true
         newSpace firstSpaceOptions, (err) ->
