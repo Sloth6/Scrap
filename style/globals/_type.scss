@@ -17,16 +17,18 @@ $leading:           		$cell * 2;
 
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
-$typeLargeSize:         18pt;
+$typeLargeSize:       18pt;
 $typeHeaderSize:    		24pt;
 $typeTitleSize:    		56pt;
+$typeSubtitleSize:    	36pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
 
-$typeHeaderLeading: 		24pt;
+$typeHeaderLeading:     24pt;
 $typeBodyLeading:       16pt;
 $typeLargeLeading:      24pt;
 $typeTitleLeading:      48pt;
+$typeSubtitleLeading:   36pt;
 
 $headerLeftMarginOffset:
                     -1.667pt;
@@ -36,6 +38,14 @@ $headerLeftMarginOffset:
     font-weight:    $fontWeightExtraBold;
     letter-spacing: -(1em / 32);
     line-height:    $typeTitleLeading;
+}
+
+@mixin typeSubtitle {
+//     font-family:    $fontFamilySerif;
+    font-size:      $typeSubtitleSize;
+    font-weight:    $fontWeightBold;
+    letter-spacing: -(1em / 32);
+    line-height:    $typeSubtitleLeading;
 }
 
 @mixin typeHeader {
@@ -130,6 +140,10 @@ html {
 }
 .typeTitle {
     @include typeTitle;
+}
+
+.typeSubtitle {
+    @include typeSubtitle;
 }
 
 .headerType {

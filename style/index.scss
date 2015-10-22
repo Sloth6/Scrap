@@ -3,7 +3,7 @@
 section.page {
     @media screen and (max-width: 640px) {
         text-align: center;
-                        margin-top: $col;
+        margin-top: $col;
     }
     
     .animateIn {
@@ -16,10 +16,6 @@ section.page {
     .card {
                 transform-origin: center center;
         -webkit-transform-origin: center center;
-        
-        &:hover {
-            z-index: 100;
-        }
         
         @media screen and (max-width: 640px) {
             position: relative;
@@ -41,9 +37,135 @@ section.page {
             }
         }
     }
+    
+    footer {
+        @include typeSmall;
+        width: 100vw;
+        padding-bottom: $cell;
+        text-align: center;
+    }
 }
 
-section.index {            
+section.page.index {
+  
+    nav {
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 4;
+    }
+    
+    .page {
+        min-height: 100vh;
+        $collectionTop: 10vh;
+        position: relative;
+        
+        .collection {
+            
+            .cover {
+                position: absolute;
+                left: 50vw;
+                top: $collectionTop;
+                margin-left: -$articleSide/2;
+                z-index: 3;
+                -webkit-transform-origin: center center;
+                        transform-origin: center center;
+            }
+        }
+        
+        &.example {
+            height: 200vh;
+
+            &.intro {
+                height: 400vh;
+                
+                .caption {
+                    position: relative;
+                    
+                    p {
+                        position: absolute;
+                    }
+                }
+            }
+            
+            &.join {
+                height: 125vh;
+                
+                .form {
+                    text-align: left;
+                }
+            }
+            
+            .collection {
+                position: relative;
+                height: 100vh;
+                width: 100vw;
+                z-index: 2;
+                
+                .cover {
+
+                    &.scale {
+                        top: 0;
+                        left: 0;
+                        margin-left: 0;
+                        -webkit-transform-origin: center 25vh;
+                                transform-origin: center 25vh;
+                        z-index: 10;
+                    
+/*
+                        @media all and (orientation: landscape) {
+                            height: (100vw * (4/3));
+                            width: 100vw;
+                        }
+                        
+                        @media all and (orientation: portrait) {
+                            width: (100vh * (3/4));
+                            height: 100vh;
+                        }
+*/
+                        
+                        h1 {
+                            font-size: 24vw;
+                            line-height: .8em;
+                            margin-top: -.03125em;
+                        }
+                    }
+                }
+                
+                .exampleContent {
+                    position: absolute;
+                    overflow-x: hidden;
+                    height: 100%;
+                    left: 0;
+                    right: 0;
+                    z-index: -1;
+                    opacity: 0;
+                    
+                    .card {
+                        -webkit-transform-origin: center center;
+                                transform-origin: center center;
+                        position: absolute;
+                        top: $collectionTop;
+                        left: 50vw;
+                    }
+                }
+            }
+            
+            .caption {
+                position: absolute;
+                text-align: center;
+                top: 75vh;
+                left: 25vw;
+                right: 25vw;
+                
+                p {
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
 }
 
 section.readOnly {
@@ -62,6 +184,7 @@ section.readOnly {
     .card {
         position: absolute;
         top: 0;
+        
         &.blank {
             z-index: 0;
         }
