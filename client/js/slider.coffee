@@ -68,7 +68,7 @@ sliderInit = (elems) ->
     return if x < edgeWidth or (x > $(window).width - edgeWidth)
     return if $(@).hasClass 'dragging'
     $(@).data 'oldZIndex', $(@).css('zIndex')
-    $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
+    $(@).css 'zIndex', $.topZIndex('article')
   ).mouseout () ->
     return if $(@).hasClass 'dragging'
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
