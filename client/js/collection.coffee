@@ -1,12 +1,14 @@
 cache = {}
 loadElements = (spacekey, callback) ->
+  return callback 'ERR. spacekey not passed to loadElements' unless spacekey
+  
   # return callback cache[spacekey] if cache[spacekey]
   $.get "/collectionContent/#{spacekey}", (data) ->
     cache[spacekey] = $(data)
     callback cache[spacekey]
 
 coverToCollection = (cover, elements) ->
-  spacekey = cover.data('content').spaceKey
+  spacekey = cover.data('content')
   collection = $("<div>").
     addClass("collection open #{spacekey}").
     data({ spacekey }).
@@ -22,7 +24,7 @@ coverToCollection = (cover, elements) ->
 
 collectionOpen = (cover, options = {}) ->
   return if cover.hasClass 'open'
-  spacekey = cover.data('content').spaceKey
+  spacekey = cover.data('content')
   
   console.log 'opens', spacekey
 
@@ -112,7 +114,7 @@ collectionClose = (options = {}) ->
   parentChildren = collectionChildren parentCollection
 
   parentCover = parentCollection.children('.cover,.stack')
-  parentSpacekey = parentCover.data('content').spaceKey
+  parentSpacekey = parentCover.data('content')
 
   parentCollection.addClass('open').removeClass('closed')
   parentChildren.show().addClass 'sliding'
@@ -141,8 +143,7 @@ collectionClose = (options = {}) ->
     children('.collectionContent').velocity {
       properties: { opacity: [0, 1] }
     }
-
-  console.log deleteAfter, closingCover
+  # console.log deleteAfter, closingCover
   unless deleteAfter
     closingCover.
       addClass('closed').

@@ -1,4 +1,3 @@
-uuid = require 'node-uuid'
 models = require '../models'
 
 module.exports = (params, callback) ->
@@ -6,7 +5,7 @@ module.exports = (params, callback) ->
   # { userId, spaceName, root } = params
   # spaceName ?= 'New Space'
   params.name ?= ''
-  params.spaceKey = uuid.v4().split('-')[0]
+  # params.spaceKey = uuid.v4().split('-')[0]
   # spaceKey = uuid.v4().split('-')[0]
   models.User.find(
     where: { id: params.UserId }
@@ -15,7 +14,6 @@ module.exports = (params, callback) ->
     return callback err if err?
     return callback('no user found') unless user?
     # params = { name: spaceName, spaceKey, root }
-    console.log params, user
     models.Space.create( params ).complete (err, space) ->
       return callback err if err?
       space.addUser(user).complete (err) ->

@@ -5,52 +5,54 @@ async = require 'async'
 domain = 'http://tryScrap.com'
 newSpace = require '../newSpace'
 
-pipeline = (user, spaceKey, callback) ->
+pipeline = (sio, user, spaceKey, callback) ->
   coverAttributes =
     SpaceId: null
     creatorId: null
     contentType: 'cover'
-    content: JSON.stringify { spaceKey }
-  models.Space.find( where: { spaceKey }).complete (err, space) ->
+    content: spaceKey
+
+  models.Space.find({
+    where: { spaceKey }
+    include:[ model:models.User]
+  }).complete (err, space) ->
     return callback(err) if err?
     return callback('no space found for '+spaceKey) unless space?
     return callback('cant add user to root space') if space.root
     coverAttributes.SpaceId = space.id
     coverAttributes.creatorId = user.id
-
     async.waterfall [
       (cb) ->
         space.hasUser(user).complete (err, hasUser) ->
           if hasUser then cb('repeat add user to a space') else cb(null)
 
-      (cb) ->
-        space.addUser(user).complete (err) ->
-          cb err
+      (cb) -> space.addUser(user).complete cb
 
-      (cb) -> # get the root element
-        console.log { where: { root:true, UserId: user.id } }
+      (user, cb) -> # get the root space
         models.Space.find({ where: { root:true, UserId: user.id } }).complete cb
       
       # Create cover element
-      (parentSpace, cb) ->
-        return cb('no root colelction found for invitee') unless parentSpace?
-        coverAttributes.SpaceId = parentSpace.id
+      (rootSpace, cb) ->
+        return cb('no root collection found for invitee') unless rootSpace?
+        coverAttributes.SpaceId = rootSpace.id
         models.Element.create(coverAttributes).complete (err, cover) ->
-          if err then cb err else cb null, cover, parentSpace
+          if err then cb err else cb null, cover, rootSpace
 
       # Change element order
-      (cover, parentSpace, cb) ->
-        parentSpace.elementOrder.unshift(cover.id)
-        parentSpace.save().complete (err) ->
+      (cover, rootSpace, cb) ->
+        rootSpace.elementOrder.unshift(cover.id)
+        rootSpace.save().complete (err) ->
           return cb(err) if err?
-          cb null, cover, parentSpace
+          cb null, cover, rootSpace
 
-      (cover, parentSpace, cb) ->
-        try
-          html = elementRenderer parentSpace, cover
-          sio.to(parentSpace.spaceKey).emit 'newElement', { html, spaceKey }
-        catch e
-          return cb(err)
+      (cover, rootSpace, cb) ->
+        # console.log cover.dataValues, rootSpace.dataValues
+        # try
+        html = elementRenderer space, cover
+        sio.to(rootSpace.spaceKey).emit 'newElement', { html, spaceKey }
+        # catch e
+        #   console.log 'e', e
+        #   return cb(e)
         cb null
       
       (cb) ->
@@ -80,17 +82,22 @@ module.exports = (sio, socket, data, callback) =>
     return callback(err) if err?
     # return callback('no user found') unless user?
     if user?
-      pipeline(user, spaceKey, callback)
+      pipeline(sio, user, spaceKey, callback)
     else
-      models.User.create({ email }).complete (err, user) ->
+      models.User.create({ email, name:email }).complete (err, user) ->
         return callback err if err?
         firstSpaceOptions =
-          userId: user.id
-          spaceName: user.name
+          UserId: user.id
+          name: user.name
           root: true
         newSpace firstSpaceOptions, (err) ->
           return callback err if err?
-          pipeline(user, spaceKey, callback)
+          pipeline(sio, user, spaceKey, callback)
 
+
+# models.sequelize.query('delete from "Users" where password is null').complete (err) ->
+#   console.log err
+#   module.exports null, null, {email:'jssimon@andrew.cmu', spaceKey: 'f0dcd0fc'}, (err) ->
+#     console.log err
 # module.exports null, null, {email:'jssimon@andrew.cmu.edu', spaceKey:'6d4c94c1'}, (err) ->
 #   console.log err

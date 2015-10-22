@@ -16,12 +16,6 @@ config =
   host:  "s3.amazonaws.com" #S3 provider host
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
-# newSpace { UserId: 6, hasCover:true, name:"foo" }, (err, space) ->
-#   if err?
-#     console.log err
-#   else
-#     console.log space.dataValues
-
 module.exports =
   newPack: (req, res, app, callback) ->
     { name } = req.body
@@ -47,10 +41,11 @@ module.exports =
           SpaceId: root.id
           creatorId: userId
           contentType: 'cover'
-          content: JSON.stringify {
-                      spaceKey: newSpace.spaceKey
-                      backgroundColor: coverColor()
-                    }
+          content: newSpace.spaceKey
+                    # JSON.stringify {
+                    #   spaceKey: newSpace.spaceKey
+                    #   backgroundColor: coverColor()
+                    # }
         models.Element.create(coverAttributes).complete (err, cover) ->
           if err then cb err else cb null, root, cover
       # Change element order
@@ -78,20 +73,24 @@ module.exports =
 
   collectionData: (req, res, app, callback) ->
     { spaceKey } = req.params
-    models.Space.find({ where: { spaceKey }, include:[ model:models.User] }).complete (err, space) ->
+    models.Space.find({
+      where: { spaceKey }, include:[ model:models.User ]
+    }).complete (err, space) ->
       return callback(err, res) if err?
-      # for i in [0..space.users.length]
-      #   u = space.users[i]
-      #   space.users[i] = {name:u.name, email: u.emai}
+      return res.send(400) unless space?
       res.status(200).send space
 
   collectionContent: (req, res, app, callback) ->
     { spaceKey } = req.params
-    models.Space.find({ where: { spaceKey }, include:[ model:models.Element] }).complete (err, space) ->
+    console.log spaceKey
+    models.Space.find({
+      where: { spaceKey }, include:[ model:models.Element ]
+    }).complete (err, space) ->
       return callback err, res if err?
       return callback "No space found for '#{spaceKey}'", res unless space?
 
       { elements, elementOrder } = space
+      # console.log elementOrder, elements
       elements.sort (a, b) ->
         if elementOrder.indexOf(a.id) > elementOrder.indexOf(b.id) then 1 else -1
       

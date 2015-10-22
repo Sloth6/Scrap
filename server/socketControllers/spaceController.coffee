@@ -76,10 +76,11 @@ module.exports =
           SpaceId: parentSpace.id
           creatorId: userId
           contentType: 'cover'
-          content: JSON.stringify {
-                      spaceKey: newSpace.spaceKey
-                      backgroundColor: coverColor()
-                    }
+          content: newSpace.spaceKey
+          # content: JSON.stringify {
+                      # spaceKey: newSpace.spaceKey
+                      # backgroundColor: coverColor()
+                    # }
         models.Element.create(coverAttributes).complete (err, cover) ->
           if err then cb err
           newSpace.coverId = cover.id

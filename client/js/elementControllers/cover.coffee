@@ -12,7 +12,7 @@ stopEditing = (cover) ->
   return unless cover.hasClass('editing')
   title  = cover.find('.collectionTitle')
   card   = cover.children('.card')
-  spaceKey = cover.data('content').spaceKey
+  spaceKey = cover.data('content')
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
 
@@ -64,7 +64,7 @@ coverClick = () ->
     $(window).scrollLeft 0
     collectionRealignDontScale()
   else if !$(@).hasClass('editing')
-    spaceKey = $(@).data('content').spaceKey
+    spaceKey = $(@).data('content')
     history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
     collectionOpen $(@)
 
@@ -82,7 +82,7 @@ bindCoverControls = (covers) ->
     # submit on enter
     cover.find('.addUser').on 'submit', (event) ->
       event.preventDefault()
-      spaceKey = cover.data('content').spaceKey
+      spaceKey = cover.data('content')
       input = $('input[name="user[email]"]', @)
       textField = $(@).children('label')
       
@@ -113,8 +113,10 @@ bindCoverControls = (covers) ->
 
 coverInit = (covers) ->
   packInit = (cover, data) ->
+    console.log data
     cover.find('section.title').children('h1, h2, h3').text data.name
     bindCoverControls cover
+    cover.find('.card').css 'background-color', data.color
     for u in data.users
       name = u.name or u.email
       cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
@@ -127,8 +129,10 @@ coverInit = (covers) ->
       coverClick.call $(@)
 
   covers.each () ->
-    $.get "/collectionData/#{$(@).data('content').spaceKey}", (data) =>
-      if $(@).hasClass 'stack' then stackInit($(@), data) else packInit $(@), data
+    spaceKey = $(@).data('content')
+    console.log spaceKey
+    $.get "/collectionData/#{spaceKey}", (data) =>
+      if $(@).hasClass 'stack' then stackInit($(@), data) else packInit($(@), data)
 
 # $ ->
 #   coverInit $('.cover')

@@ -74,7 +74,7 @@ $ ->
         # collectionClose(children.first())
         
       # if 
-    # stack = $('.stack').filter( -> $(@).data('content').spaceKey == spaceKey)
+    # stack = $('.stack').filter( -> $(@).data('content') == spaceKey)
     # stackUpdate stack
 
   socket.on 'updateElement', ({ spaceKey, userId, elementId, content }) ->

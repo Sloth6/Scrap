@@ -7,10 +7,9 @@ if (element.contentType == 'soundcloud' || element.contentType == 'youtube')
   - classes.push('playable')
 
 if element.contentType == 'cover'
-  -var content = JSON.parse(element.content)
-  -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content.spaceKey, collection.spaceKey]
+  -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content, collection.spaceKey]
   article(id=element.id, data-contenttype='cover', data-content=element.content,  data-spacekey=collection.spaceKey, class=coverClasses)
-    .card.cardHover.cardDrag.colored(style="background-color:"+content.backgroundColor)
+    .card.cardHover.cardDrag.colored()
       - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
       section.title
         h1.collectionTitle.typeTitle.typeOutlineClear
