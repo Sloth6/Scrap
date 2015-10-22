@@ -112,21 +112,15 @@ bindCoverControls = (covers) ->
       $menu.removeClass 'open' if $menu.hasClass 'canOpen'
 
 coverInit = (covers) ->
-  projectInit = (project, data) ->
+  packInit = (cover, data) ->
     cover.find('section.title').children('h1, h2, h3').text data.name
-    bindCoverControls project
+    bindCoverControls cover
     for u in data.users
       name = u.name or u.email
       cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
 
   stackInit = (cover, data) ->
     stack = stackCreate cover
-    # stack.css {
-    #   'background-color': 'red'
-    #   width: 300
-    #   height: 300
-    # }
-
     stackPopulate stack
     stack.click () ->
       stack.empty()
@@ -134,7 +128,7 @@ coverInit = (covers) ->
 
   covers.each () ->
     $.get "/collectionData/#{$(@).data('content').spaceKey}", (data) =>
-      if true then stackInit($(@), data) else projectInit $(@), data
+      if $(@).hasClass 'stack' then stackInit($(@), data) else packInit $(@), data
 
 # $ ->
 #   coverInit $('.cover')

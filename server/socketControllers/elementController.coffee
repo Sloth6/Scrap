@@ -32,7 +32,6 @@ getType = (s, cb) ->
 
 checkForStackDelete = (sio, socket, data, callback) ->
   { spaceKey, parentSpaceKey } = data
-  # console.log spaceKey, parentSpaceKey
 
   models.Space.find({
     where: { spaceKey }
@@ -50,9 +49,6 @@ checkForStackDelete = (sio, socket, data, callback) ->
       module.exports.removeElement sio, socket, removeParams, (err) ->
         return callback(err) if err?
         space.destroy().then callback
-
-# checkForDelete null, null, { spaceKey:'aecba014', parentSpaceKey: 'dbdb550d' }, (err) ->
-#   console.log err
 
 module.exports =
   # create a new element and save it to db

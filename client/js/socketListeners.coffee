@@ -57,8 +57,8 @@ $ ->
         children.insertAfter collection
         collectionClose(deleteAfter: true)
       
-      toRemove.remove()
-      collectionRealign()
+        toRemove.remove()
+        collectionRealign()
     #   # collectionRealign()
     #   if $(@).hasClass('stack open')
     #     console.log 'need to close this collection!'

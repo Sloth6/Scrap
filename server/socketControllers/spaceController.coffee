@@ -45,11 +45,10 @@ module.exports =
     # Dragged and draggedOver and the elements that created the collection
     
     async.waterfall [
-      
       # Create the new space
       (cb) ->
         console.log "Creating the new space"
-        newSpace { userId }, cb
+        newSpace { UserId: userId }, cb
 
       # Move elements to the new space
       (newSpace, cb) -> 

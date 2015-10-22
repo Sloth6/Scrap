@@ -56,10 +56,10 @@ sliderInit = (elems) ->
         bindYoutubeControls $(@)
       when 'cover'
         coverInit $(@)
-        # bindCoverControls $(@)
-        # getCoverData $(@)
       when 'addElementForm'
         addElementController.init $(@)
+      when 'addProjectForm'
+        addProjectController.init $(@)
 
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')

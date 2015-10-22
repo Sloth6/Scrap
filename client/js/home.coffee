@@ -53,6 +53,13 @@ $ ->
       $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
       event.preventDefault()
 
+  # setTimeout (() ->
+  #   $('.collectionContent').append $('.addProjectForm')
+  #   $('.addProjectForm').show()
+  #   sliderInit $('.addProjectForm')
+  #   collectionRealign()
+  #   console.log $('.addProjectForm')
+  # ), 1000
   # sliderInit $('.slider')
 
   # Close a collection on page back
