@@ -46,7 +46,7 @@ $ ->
 
     sliderInit stack
 
-    setTimeout collectionRealign, 300
+    setTimeout collectionRealignDontScale, 300
     console.log 'here all good'
     # console.log stack[0]
     

@@ -56,13 +56,18 @@ module.exports =
           addUserToSpace(user, spaceKey, complete) if user?
 
   newCollection: (sio, socket, data) ->
-    spaceKey = data.spaceKey # SpaceKey will be the parent of the new collection
+    # SpaceKey will be the parent of the new collection
+    spaceKey = data.spaceKey
+    # Dragged and draggedOver and the elements that created the collection
     draggedId = parseInt data.draggedId
     draggedOverId = parseInt data.draggedOverId
-    userId = socket.handshake.session.userId
-    console.log 'New collection data', { spaceKey, draggedId, draggedOverId }
     
-    # Dragged and draggedOver and the elements that created the collection
+    console.log 'New collection data', data
+    return console.log('no draggedId in newCollection') unless draggedId?
+    return console.log('no draggedOverId in newCollection') unless draggedOverId?
+
+    userId = socket.handshake.session.userId
+    
     
     async.waterfall [
       # Create the new space

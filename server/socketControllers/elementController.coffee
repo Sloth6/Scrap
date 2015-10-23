@@ -31,17 +31,23 @@ getType = (s, cb) ->
 
 
 checkForStackDelete = (sio, socket, data, callback) ->
-  { spaceKey, parentSpaceKey } = data
+  parentSpaceKey = data.parentSpaceKey
+  
+  if data.spaceKey
+    where = { spaceKey: data.spaceKey }
+  else if data.SpaceId
+    where = { id: data.SpaceId }
+  else
+    return callback('no key passed to check for delete')
 
-  models.Space.find({
-    where: { spaceKey }
-    include: [ models.Element ]
-  }).complete (err, space) ->
-    # console.log space.spaceKey, space.hasCover, space.root, space.elements.length
+  models.Space.find({ where:where, include: [ models.Element ] }).complete (err, space) ->
     return callback err if err?
     return callback 'no space found in check for delete' unless space?
     return callback null if space.hasCover or space.root
     return callback null if space.elements.length > 1
+    console.log space.dataValues
+    return space.destroy().then(callback) unless space.elements.length
+    
 
     params = { spaceKey: parentSpaceKey, elemId: space.elements[0].id }
     module.exports.moveToCollection sio, socket, params, (err) ->
@@ -100,13 +106,12 @@ module.exports =
     q1 = "
         DELETE FROM \"Elements\"
         WHERE \"id\"=:id
-        RETURNING \"contentType\", content
+        RETURNING \"contentType\", content, \"SpaceId\"
       "
     models.sequelize.query(q1, null, null, { id }).complete (err, results) ->
       return callback err if err?
       console.log 'emiting removeElement', { id, spaceKey }
       sio.to(spaceKey).emit 'removeElement', { id, spaceKey }
-      # callback null
       setTimeout (() ->
         checkForStackDelete sio, socket, data, callback
       ), 300
@@ -123,16 +128,21 @@ module.exports =
     { elemId, spaceKey } = data
     return callback('no spacekey in moveToCollection') unless spaceKey?
     return callback('no elemId in moveToCollection') unless elemId?
-    
     console.log "move to collection data:", data
-    q = "
-        UPDATE \"Elements\"
-        SET \"SpaceId\" = (Select id from \"Spaces\" WHERE \"spaceKey\"=:spaceKey)
-        WHERE \"id\"=:elemId
-        "
-    models.sequelize.query(q, null, null, data).complete (err, results) ->
+    models.Element.find(where: { id: elemId }).complete (err, elem) ->
       return callback err if err?
-      return callback null
+      oldSpaceId = elem.SpaceId
+      console.log 'old space id', oldSpaceId
+      q = "
+          UPDATE \"Elements\"
+          SET \"SpaceId\" = (Select id from \"Spaces\" WHERE \"spaceKey\"=:spaceKey)
+          WHERE \"id\"=:elemId
+          "
+      models.sequelize.query(q, null, null, data).complete (err, results) ->
+        return callback err if err?
+        params = { SpaceId: oldSpaceId, parentSpaceKey: spaceKey }
+        checkForStackDelete sio, socket, params, callback
+        # return callback null
   
   updateElement : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId

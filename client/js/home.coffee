@@ -38,6 +38,7 @@ $ ->
   $.Velocity.defaults.easing = openCollectionCurve
   $.Velocity.defaults.queue = false
 
+  console.log $('.cover.root')
   collectionOpen $('.cover.root')
 
   # Main scroll event

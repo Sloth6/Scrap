@@ -49,9 +49,8 @@ scrollWindow = (event) ->
 
 # Take mousemove event while dragging
 drag = (event, draggingElement) ->
-  # console.log draggingElement.height()
   x = event.clientX - draggingElement.width()/2
-  y = event.clientY - draggingElement.height()/2# - 50
+  y = event.clientY - draggingElement.height()/2
   draggingElement.css { x, y }
   scrollWindow event
   dragTimeout event, draggingElement
@@ -62,11 +61,12 @@ checkForAddToStack = (event, dragging) ->
   x = event.clientX
   droppedOn = collectionElemAfter x
   return false if droppedOn[0] == padding[0]
-  return false if droppedOn[0] == undefined
+  return false unless droppedOn[0]?
   return false if droppedOn.hasClass 'cover'
   return false if dragging.hasClass('cover')
   return false if dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
+  return if event.clientY < marginTop
   spaceKey = droppedOn.data 'content'
   
   padding.remove()
@@ -74,7 +74,9 @@ checkForAddToStack = (event, dragging) ->
   draggedId = parseInt(dragging.attr('id'))
   draggedOverId = parseInt(droppedOn.attr('id'))
   
-  if droppedOn.hasClass('stack')
+  if !draggedId or !draggedOverId?
+    return false
+  else if droppedOn.hasClass('stack')
     console.log 'Emitting move to collection'
     stackAdd droppedOn, dragging
     socket.emit "moveToCollection", { elemId: draggedId, spaceKey }
@@ -84,18 +86,23 @@ checkForAddToStack = (event, dragging) ->
   true
 
 checkForCloseByDrag = (x, y, draggingElement) ->
-  return false if $('.open.root').length
+  return false unless $('.open.stack').length
   if y < marginTop
-    return true if collectionCloseByDragTopTimeout
+    return false if collectionCloseByDragTopTimeout
     console.log 'setting close setTimeout'
     collectionCloseByDragTopTimeout = setTimeout (() ->
-      # clearDragTimeouts()
+      console.log 'collectionCloseByDragTopTimeout'
+      clearDragTimeouts()
+      elemId = draggingElement.attr 'id'
+      spaceKey = spacePath[1]
+      socket.emit 'moveToCollection', { elemId, spaceKey }
       # $(window).off 'mousemove'
       # $(window).off 'mouseup'
-      collectionClose()
+      history.back()
     ), collectionCloseByDragTopTime
     true
   else
+    console.log 'clearTimeout'
     clearTimeout collectionCloseByDragTopTimeout
     collectionCloseByDragTopTimeout = null
     false
