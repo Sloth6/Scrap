@@ -181,10 +181,7 @@ collectionWidth = () ->
 
 realign = (animate) ->
   return if realignTimeout?
-  console.log 'realign'
-  console.log 'before', realignTimeout
   realignTimeout = setTimeout (() -> realignTimeout = null), 300
-  console.log 'after', realignTimeout
   sliding = collectionChildren().filter('.sliding')
   lastX  = 0
   maxX   = -Infinity

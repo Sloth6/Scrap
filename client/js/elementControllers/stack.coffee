@@ -1,13 +1,11 @@
 stackCreate = (cover) ->
   transform = $('<div>').addClass('transform')
   cover.addClass('stack').removeClass('cover').empty().append transform
-  # $('div').addClass('stack').data('content', {spaceKey})
 
 stackPopulate = (stack) ->
   spaceKey = stack.data('content')
   loadElements spaceKey, (elements) ->
     stackAdd stack, elements.not('.addElementForm')
-    collectionRealign()
 
 stackAdd = (stack, elements) ->
   # elements = elements.not('.cover')#.slice(1, 6)
@@ -37,5 +35,4 @@ stackAdd = (stack, elements) ->
   stack.width maxX
   stack.height maxY
   stack.data 'width', maxX
-  collectionRealign()
      

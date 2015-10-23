@@ -66,7 +66,7 @@ checkForAddToStack = (event, dragging) ->
   return false if dragging.hasClass('cover')
   return false if dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
-  spaceKey = droppedOn.data('content').spaceKey
+  spaceKey = droppedOn.data 'content'
   
   padding.remove()
   
@@ -130,7 +130,7 @@ dragTimeout = (dragEvent, draggingElement) ->
   if draggingOver[0] == undefined or draggingOver.hasClass('.addElementForm')
     if $('.addElementForm').prev()[0] isnt padding[0]
       padding.insertBefore $('.addElementForm')
-      collectionRealignDontScale()
+      collectionRealignDontScale false
   else
     switch leftCenterRight x, draggingOver
       when 'left'

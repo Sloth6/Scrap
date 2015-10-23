@@ -28,7 +28,7 @@ makeModifiable = (elems) ->
   elems.each () ->
     elem = $(@)
     
-    formatText elem
+    # formatText elem
     spaceKey = elem.parent().parent().data 'spacekey'
     elementId = elem.attr 'id'
     form = elem.find('.editable')

@@ -5,11 +5,11 @@ formatText = (elems) ->
     editable = $(@).find('.editable')
     if editable.text().length < lengthForLong and !$(@).hasClass('short')
       $(@).addClass('short').removeClass('long')
-      realign()
+      collectionRealign()
     
     else if editable.text().length > lengthForLong and !$(@).hasClass('long')
       $(@).addClass('long').removeClass('short')
-      realign()
+      collectionRealign()
 
 $ ->
   editable = $('.editable')
