@@ -39,6 +39,7 @@ checkForStackDelete = (sio, socket, data, callback) ->
   }).complete (err, space) ->
     # console.log space.spaceKey, space.hasCover, space.root, space.elements.length
     return callback err if err?
+    return callback 'no space found in check for delete' unless space?
     return callback null if space.hasCover or space.root
     return callback null if space.elements.length > 1
 

@@ -10,20 +10,19 @@ addElementController =
     content = () ->
       input.html()
     
-    slideInFromSide = () ->
-      if menu.hasClass 'peek'
-        menu.removeClass 'peek'
-        menu.addClass 'slideInFromSide'
-        menu.find('.editable').select()
-        menu.find('.upload').show()
+    # slideInFromSide = () ->
+    #   if menu.hasClass 'peek'
+    #     menu.removeClass 'peek'
+    #     menu.addClass 'slideInFromSide'
+    #     menu.find('.editable').select()
+    #     menu.find('.upload').show()
   
-    slideBackToSide = () ->
-      if menu.hasClass('slideInFromSide') and !menu.hasClass('focus')
-        menu.addClass 'peek'
-        menu.removeClass 'slideInFromSide'
+    # slideBackToSide = () ->
+    #   if menu.hasClass('slideInFromSide') and !menu.hasClass('focus')
+    #     menu.addClass 'peek'
+    #     menu.removeClass 'slideInFromSide'
 
     input.on 'focus', () ->
-      console.log 'blue', input[0]
       menu.addClass 'focus'
       menu.find('.card').addClass 'editing'
       menu.find('.done').removeClass 'invisible'
@@ -36,7 +35,7 @@ addElementController =
     #   # Blur with empty text area
       if content() == ''
         menu.removeClass 'focus'
-        slideBackToSide()
+        # slideBackToSide()
         addElementController.reset menu
         menu.find('.card').removeClass 'editing'
         menu.find('.done').addClass 'invisible'
@@ -53,20 +52,20 @@ addElementController =
 
     menu.find('a.submit').click (event) ->
       menu.removeClass 'focus'
-      slideBackToSide()
+      # slideBackToSide()
       emitNewElement content(), spacekey
       addElementController.reset menu
       event.preventDefault()
 
     menu.find('a.cancel').click (event) ->
       menu.removeClass 'focus'
-      slideBackToSide()
+      # slideBackToSide()
       addElementController.reset menu
       event.preventDefault()
 
-    menu.click(() ->
-      slideInFromSide()
-    )
+    # menu.click(() ->
+    #   slideInFromSide()
+    # )
     
   reset: (menu) ->
     input = menu.find '.editable'

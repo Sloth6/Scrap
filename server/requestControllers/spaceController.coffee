@@ -16,54 +16,6 @@ config =
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
 module.exports =
-  newPack: (req, res, app, callback) ->
-    { name } = req.body
-    userId = req.session.currentUserId
-    return callback('no userid', res) unless userId?
-    return callback('no name sent', res) unless name?
-    console.log 'New pack', { name, userId }
-    
-    async.waterfall [
-      # Create the new space
-      (cb) -> 
-        newSpace { UserId: userId, name, hasCover:true }, cb
-      # Get the parent space
-      (newSpace, cb) ->
-        console.log  'Get the parent space'
-        params = where: { UserId:userId, root: true }
-        models.Space.find( params ).complete (err, root) ->
-          if err then cb err else cb null, newSpace, root
-      # Create cover element
-      (newSpace, root, cb) ->
-        console.log 'Create cover element'
-        coverAttributes =
-          SpaceId: root.id
-          creatorId: userId
-          contentType: 'cover'
-          content: newSpace.spaceKey
-                    # JSON.stringify {
-                    #   spaceKey: newSpace.spaceKey
-                    #   backgroundColor: coverColor()
-                    # }
-        models.Element.create(coverAttributes).complete (err, cover) ->
-          if err then cb err else cb null, root, cover
-      # Change element order
-      (root, cover, cb) ->
-        console.log 'chage order'
-        console.log root.elementOrder
-        root.elementOrder.push cover.id
-        console.log root.elementOrder
-        root.save().complete (err) ->
-          if err then cb err else cb null, root, cover
-    ], (err, root, cover) ->
-      return callback(err) if err?
-      res.render 'partials/element.jade', { element:cover, collection: root }
-      # coverHTML = encodeURIComponent element_jade({
-      #   element: cover, collection: parentSpace
-      # })
-
-      # sio.to("#{spaceKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
-
   collectionData: (req, res, app, callback) ->
     { spaceKey } = req.params
     models.Space.find({

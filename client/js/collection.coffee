@@ -180,9 +180,7 @@ collectionWidth = () ->
   w
 
 realign = (animate) ->
-  console.log 'realign', console.trace()
   return if realignTimeout?
-  console.log 'success'
   clearTimeout realignTimeout
   realignTimeout = setTimeout (() -> realignTimeout = null), 100
 

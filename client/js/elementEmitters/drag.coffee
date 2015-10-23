@@ -63,6 +63,7 @@ checkForAddToStack = (event, dragging) ->
   droppedOn = collectionElemAfter x
   return false if droppedOn[0] == padding[0]
   return false if droppedOn[0] == undefined
+  return false if droppedOn.hasClass 'cover'
   return false if dragging.hasClass('cover')
   return false if dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
@@ -84,17 +85,14 @@ checkForAddToStack = (event, dragging) ->
 
 checkForCloseByDrag = (x, y, draggingElement) ->
   return false if $('.open.root').length
-  if y < $('.slidingContainer').offset().top
+  if y < marginTop
     return true if collectionCloseByDragTopTimeout
+    console.log 'setting close setTimeout'
     collectionCloseByDragTopTimeout = setTimeout (() ->
-      draggingElement.find('.card').css({
-        'scale': 1,
-        'rotate': 0
-      })
-      clearDragTimeouts()
-      $(window).off 'mousemove'
-      $(window).off 'mouseup'
-      collectionClose(draggingElement)
+      # clearDragTimeouts()
+      # $(window).off 'mousemove'
+      # $(window).off 'mouseup'
+      collectionClose()
     ), collectionCloseByDragTopTime
     true
   else
@@ -103,7 +101,7 @@ checkForCloseByDrag = (x, y, draggingElement) ->
     false
 
 checkForOpenByDrag = (x, y, dragging, draggingOver) ->
-  return false if !draggingOver.hasClass('cover')
+  return false unless draggingOver.hasClass('stack')
   return false if collectionOpenByDragTimeout
   return false if y > parseInt(draggingOver.css('y'))+ draggingOver.height()
   collectionOpenByDragTimeout = setTimeout (() ->
@@ -141,8 +139,8 @@ dragTimeout = (dragEvent, draggingElement) ->
         padding.insertAfter draggingOver
         collectionRealignDontScale false
 
-      when 'center'
-        checkForOpenByDrag x, y, draggingElement, draggingOver
+      # when 'center'
+      #   checkForOpenByDrag x, y, draggingElement, draggingOver
 
   lastDraggingOver = draggingOver
 
@@ -190,8 +188,9 @@ startDragging = (elem) ->
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
+    insertAfter('.slidingContainer').
     zIndex 9999
-  
+
   if elem.hasClass('stack')
     startDragTransform elem.children('.transform').first()
   else
