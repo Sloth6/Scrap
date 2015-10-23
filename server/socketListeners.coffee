@@ -2,7 +2,6 @@ sio = require('socket.io')
 url = require('url')
 spaceController = require './socketControllers/spaceController'
 elementController = require './socketControllers/elementController'
-addUserToSpace = require './socketControllers/addUserToSpace'
 
 errorHandler = require './errorHandler'
 validator = require 'validator'
@@ -41,7 +40,7 @@ module.exports = (io)->
 
       # socket.on 'updateSpace', (data) -> spaceController.updateSpace io, socket, clean(data), errorHandler
       
-      socket.on 'addUserToSpace', (data) -> addUserToSpace io, socket, clean(data), errorHandler
+      socket.on 'addUserToSpace', (data) -> spaceController.addUserToSpace io, socket, clean(data), errorHandler
       
       # socket.on 'removeUserFromSpace',(data) -> spaceController.removeUserFromSpace io, socket, clean(data), errorHandler
 

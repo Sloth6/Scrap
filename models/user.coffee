@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) ->
         isEmail: true
     password: 
       type: DataTypes.STRING
-      allowNull: false
+      allowNull: true
       set: (password) ->
         salt = bcrypt.genSaltSync 10
         encrypted = bcrypt.hashSync password, salt

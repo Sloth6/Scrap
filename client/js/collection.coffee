@@ -1,12 +1,15 @@
 cache = {}
+realignTimeout = null
 loadElements = (spacekey, callback) ->
+  return callback 'ERR. spacekey not passed to loadElements' unless spacekey
+  
   # return callback cache[spacekey] if cache[spacekey]
   $.get "/collectionContent/#{spacekey}", (data) ->
     cache[spacekey] = $(data)
     callback cache[spacekey]
 
 coverToCollection = (cover, elements) ->
-  spacekey = cover.data('content').spaceKey
+  spacekey = cover.data('content')
   collection = $("<div>").
     addClass("collection open #{spacekey}").
     data({ spacekey }).
@@ -22,10 +25,8 @@ coverToCollection = (cover, elements) ->
 
 collectionOpen = (cover, options = {}) ->
   return if cover.hasClass 'open'
-  spacekey = cover.data('content').spaceKey
-  
+  spacekey = cover.data('content')  
   console.log 'opens', spacekey
-
   spacePath.unshift(spacekey)
   dragging = options.dragging
   
@@ -33,9 +34,6 @@ collectionOpen = (cover, options = {}) ->
 
     parentCollection = $('.open.collection')
     parentCover = $('.open.cover, .open.stack')
-
-    # console.log parentCollection
-    # console.log parentCover
 
     prevSliding = cover.prevAll('.sliding')
     nextSliding = cover.nextAll('.sliding')
@@ -82,15 +80,9 @@ collectionOpen = (cover, options = {}) ->
       $('header.main .backButton').addClass 'visible'
       moveBackButton(32)
 
-    # console.log options.callback
-    setTimeout ( ->
-      
-      collectionRealign()
-      # options.callback() if options.callback?
-
-    ), 500
-
-    
+    # setTimeout ( ->
+    collectionRealign()
+    # ), 500
 
 collectionClose = (options = {}) ->
   draggingElement = options.draggingElement or null
@@ -112,7 +104,7 @@ collectionClose = (options = {}) ->
   parentChildren = collectionChildren parentCollection
 
   parentCover = parentCollection.children('.cover,.stack')
-  parentSpacekey = parentCover.data('content').spaceKey
+  parentSpacekey = parentCover.data('content')
 
   parentCollection.addClass('open').removeClass('closed')
   parentChildren.show().addClass 'sliding'
@@ -141,8 +133,7 @@ collectionClose = (options = {}) ->
     children('.collectionContent').velocity {
       properties: { opacity: [0, 1] }
     }
-
-  console.log deleteAfter, closingCover
+  # console.log deleteAfter, closingCover
   unless deleteAfter
     closingCover.
       addClass('closed').
@@ -189,8 +180,12 @@ collectionWidth = () ->
   w
 
 realign = (animate) ->
+  return if realignTimeout?
+  console.log 'realign'
+  console.log 'before', realignTimeout
+  realignTimeout = setTimeout (() -> realignTimeout = null), 300
+  console.log 'after', realignTimeout
   sliding = collectionChildren().filter('.sliding')
-  # console.log 'sliding', sliding
   lastX  = 0
   maxX   = -Infinity
   zIndex = sliding.length
