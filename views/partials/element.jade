@@ -9,22 +9,20 @@ if (element.contentType == 'soundcloud' || element.contentType == 'youtube')
 if element.contentType == 'cover'
   -var coverClasses = ['element','cover','closed','draggable','slider','sliding', content, collection.spaceKey]
   article(id=element.id, data-contenttype='cover', data-content=element.content,  data-spacekey=collection.spaceKey, class=coverClasses)
-    .card.cardHover.cardDrag.colored()
-      - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
-      section.title
-        h1.collectionTitle.typeTitle.typeOutlineClear
-        h2.peekTitle.bodyType.typeBody.typeWeightBold
-        p.rename
-          a.smallType Rename
-      ul.users.menu.slideIn.left.canOpen
-        //- li.user foo
-        //- li.user bar
-        li.user.add
-          form.addUser(data-spacekey=collection.spaceKey)
-            input(type="email", name="user[email]", placeholder="email")
-            input(type="submit", value="→")
-            label.smallType.smallCaps Share this pack
-    //- .collectionContent(class=collection.spaceKey, style="display:none;")
+    .transform
+      .card.cardHover.cardDrag.colored()
+        - var image = 'http://lorempixel.com/' + Math.floor(400 + Math.random() * 200) + '/' + Math.floor(300 + Math.random() * 200)
+        section.title
+          h1.collectionTitle.typeTitle.typeOutlineClear
+          h2.peekTitle.bodyType.typeBody.typeWeightBold
+          p.rename
+            a.smallType Rename
+        ul.users.menu.slideIn.left.canOpen
+          li.user.add
+            form.addUser(data-spacekey=collection.spaceKey)
+              input(type="email", name="user[email]", placeholder="email")
+              input(type="submit", value="→")
+              label.smallType.smallCaps Share this pack
 else
   article(id=element.id, class=classes, style= posString, data-contenttype=element.contentType, data-creatorid=element.creatorId, data-spacekey=collection.spaceKey, data-content=element.content)
     .content

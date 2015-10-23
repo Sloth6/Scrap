@@ -49,34 +49,12 @@ scrollWindow = (event) ->
 
 # Take mousemove event while dragging
 drag = (event, draggingElement) ->
-  x = event.clientX# - draggingElement.width()/2
-  y = event.clientY# - draggingElement.height()/2# - 50
+  # console.log draggingElement.height()
+  x = event.clientX - draggingElement.width()/2
+  y = event.clientY - draggingElement.height()/2# - 50
   draggingElement.css { x, y }
   scrollWindow event
   dragTimeout event, draggingElement
-
-checkForCollectionViaDrop = (event, dragging) ->
-  return false
-  # $(window).off 'mousemove'
-  # $(window).off 'mouseup'
-  # x = event.clientX
-  # droppedOn = collectionElemAfter x
-
-  # return false if droppedOn[0] == padding[0]
-  # return false if droppedOn[0] == undefined
-  # return false if droppedOn.hasClass('cover')
-  # return false if dragging.hasClass('cover')
-  # return false unless leftCenterRight(x, droppedOn) is 'center'
-
-  # dragging.remove()
-  # padding.remove()
-  # collectionRealignDontScale false
-  
-  # draggedId = parseInt(dragging.attr('id'))
-  # draggedOverId = parseInt(droppedOn.attr('id'))
-  # console.log "Emitting newCollection."
-  # 
-  # true
 
 checkForAddToStack = (event, dragging) ->
   $(window).off 'mousemove'
@@ -168,7 +146,6 @@ dragTimeout = (dragEvent, draggingElement) ->
 
   lastDraggingOver = draggingOver
 
-
 # Clear all timeouts
 clearDragTimeouts = () ->
   clearInterval scrollInterval  
@@ -182,9 +159,8 @@ clearDragTimeouts = () ->
 stopDragging = (event, elem) ->
   console.log "Stop dragging"
   clearDragTimeouts()
-  if checkForCollectionViaDrop(event, elem)
-    console.log 'checkForCollectionViaDrop'
-  else if checkForAddToStack(event, elem)
+  
+  if checkForAddToStack(event, elem)
     console.log 'checkForAddToStack'
   else 
     if $('.slidingContainer').find('.padding').length # ensure in dom
@@ -204,44 +180,22 @@ stopDragging = (event, elem) ->
       'z-index': elem.data('oldZIndex')
     })
 
-  endDragTransform = (e) ->
-    e.velocity({
-      'scale': 1,
-      # 'rotateZ': 0
-    }, {
-      easing: [100, 10],
-      duration: 500
-    })
-
-  # endDragTransform elem.find('.transform')
-  # if elem.hasClass('stack')
-  #   endDragTransform elem.children('.transform')
-  # else
-  #   endDragTransform elem.find('.card.cardDrag')
+  endDragTransform elem.find('.transform')
   collectionRealignDontScale()
 
 startDragging = (elem) ->
   return unless elem.hasClass 'draggable'
-  dragTransform = (e) ->
-    e.velocity({
-        'scale': draggingScale,
-        # 'rotateZ': (Math.random() * 8) - (Math.random() * 8)
-      }, {
-        easing: [100, 10],
-        duration: 500
-      })
+
   elem.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
     zIndex 9999
   
-  # dragTransform elem.find('.transform')
-  # if elem.hasClass('stack')
-  #   dragTransform elem.children('.transform')
-  # else
-  #   dragTransform elem.find('.card.cardDrag')
-      
+  if elem.hasClass('stack')
+    startDragTransform elem.children('.transform').first()
+  else
+    startDragTransform elem.find('.transform')
   padding.data('width', sliderWidth(elem)*draggingScale).insertAfter elem
   stopPlaying(elem) if elem.hasClass('playable')
  
@@ -266,6 +220,23 @@ makeDraggable = (elements) ->
       $(window).off 'mouseup'
       if draggingElement?
         stopDragging(event, draggingElement)
+
+dragOptions =  {
+  easing: [100, 10],
+  duration: 500
+}
+
+startDragTransform = (e) ->
+  e.velocity({
+    'scale': draggingScale,
+    'rotateZ': (Math.random() * 8) - 4
+  }, dragOptions)
+
+endDragTransform = (e) ->
+  e.velocity({
+    'scale': 1,
+    'rotateZ': 0
+  }, dragOptions)
 
 $ ->
   window.padding = $('<div>').addClass('slider sliding padding').data 'width', 200

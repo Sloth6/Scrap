@@ -1,4 +1,5 @@
 cache = {}
+realignTimeout = null
 loadElements = (spacekey, callback) ->
   return callback 'ERR. spacekey not passed to loadElements' unless spacekey
   
@@ -24,10 +25,8 @@ coverToCollection = (cover, elements) ->
 
 collectionOpen = (cover, options = {}) ->
   return if cover.hasClass 'open'
-  spacekey = cover.data('content')
-  
+  spacekey = cover.data('content')  
   console.log 'opens', spacekey
-
   spacePath.unshift(spacekey)
   dragging = options.dragging
   
@@ -35,9 +34,6 @@ collectionOpen = (cover, options = {}) ->
 
     parentCollection = $('.open.collection')
     parentCover = $('.open.cover, .open.stack')
-
-    # console.log parentCollection
-    # console.log parentCover
 
     prevSliding = cover.prevAll('.sliding')
     nextSliding = cover.nextAll('.sliding')
@@ -84,15 +80,9 @@ collectionOpen = (cover, options = {}) ->
       $('header.main .backButton').addClass 'visible'
       moveBackButton(32)
 
-    # console.log options.callback
-    setTimeout ( ->
-      
-      collectionRealign()
-      # options.callback() if options.callback?
-
-    ), 500
-
-    
+    # setTimeout ( ->
+    collectionRealign()
+    # ), 500
 
 collectionClose = (options = {}) ->
   draggingElement = options.draggingElement or null
@@ -190,8 +180,12 @@ collectionWidth = () ->
   w
 
 realign = (animate) ->
+  return if realignTimeout?
+  console.log 'realign'
+  console.log 'before', realignTimeout
+  realignTimeout = setTimeout (() -> realignTimeout = null), 300
+  console.log 'after', realignTimeout
   sliding = collectionChildren().filter('.sliding')
-  # console.log 'sliding', sliding
   lastX  = 0
   maxX   = -Infinity
   zIndex = sliding.length

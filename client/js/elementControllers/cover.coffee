@@ -74,7 +74,6 @@ bindCoverControls = (covers) ->
     rename.find('a').click (event) ->
       event.stopPropagation()
       if cover.hasClass('editing') then stopEditing cover else startEditing cover
-  
     # submit on enter
     cover.find('.addUser').on 'submit', (event) ->
       event.preventDefault()
@@ -91,10 +90,13 @@ bindCoverControls = (covers) ->
           addClass('user').
           text('Joel Simon').
           insertBefore cover.find('.user.add')
-
         textField.html 'An invite has been sent'
         addUser email, spaceKey
-        
+    
+    cover.find('ul.menu').each () ->
+      cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'
+      cover.mouseleave () => $(@).removeClass 'open' if $(@).hasClass 'canOpen'
+
   # dont open collection on clicking user field
   covers.find('.addUser input[name="user[email]"]').click (event) ->
     event.stopPropagation()
@@ -103,14 +105,7 @@ bindCoverControls = (covers) ->
   covers.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
  
-  covers.find('ul.menu').each () ->
-    $menu = $(@)
-    $cover = $menu.parent().parent('.cover')
 
-    $cover.mouseenter () ->
-      $menu.addClass 'open' if $menu.hasClass 'canOpen'
-    $cover.mouseleave () ->
-      $menu.removeClass 'open' if $menu.hasClass 'canOpen'
 
 coverInit = (covers) ->
   packInit = (cover, data) ->
@@ -123,7 +118,6 @@ coverInit = (covers) ->
 
   stackInit = (cover, data) ->
     stack = stackCreate cover
-    # stack.width 400
     stackPopulate stack
     stack.click () ->
       stack.empty()
