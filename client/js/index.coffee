@@ -35,7 +35,7 @@ scaleCover = (scrollProgress, $cover, $caption) ->
       'letter-spacing': "#{letterSpacing}em"
   # Bring caption to top on scroll
   $caption.css
-    zIndex: if scrollProgress < 1 then 0 else $cover.css('z-index') + 1
+    zIndex: if scrollProgress < .8 then 0 else $cover.css('z-index') + 1
   console.log $caption.css('z-index'), scrollProgress
   $('nav ul.menu li.first').css
     opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
@@ -286,7 +286,9 @@ initCreateAccount = () ->
         easing: fancySpring
       }
       $('.page.example').velocity {
+        translateZ: 0
         opacity: .1
+        blur: 10
       }, {
         duration: 1000
         easing: easingSmooth
