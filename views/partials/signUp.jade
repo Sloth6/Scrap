@@ -1,9 +1,9 @@
 ul.right
   form(id="signUp")
     li.name
-      input(id="name",type="text", name="user[name]", placeholder="Name")
+      input(id="name",type="text", name="user[name]", placeholder="First and last name")
     li.mail
-      input(id="email",type="email", name="user[email]", placeholder="Mail")
+      input(id="email",type="email", name="user[email]", placeholder="Email address")
     li.password
       input(id="password",type="password", name="user[password]", placeholder="Password")
     li.submit
@@ -13,6 +13,11 @@ script.
   function onError(res) {
     $('#signUp errorField').text(res.responseText);
   }
+  
+  $("#signUp").click(function(event) {
+      console.log("hi")
+      event.stopPropagation();
+  });
   
   $("#signUp").submit(function(e) {
     e.preventDefault();

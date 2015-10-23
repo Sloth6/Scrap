@@ -2277,12 +2277,18 @@ section.page.index nav {
 section.page.index nav ul.menu li.first:hover {
   opacity: 1 !important;
 }
-/* line 62, ../../style/index.scss */
+/* line 61, ../../style/index.scss */
+section.page.index nav .signUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+/* line 68, ../../style/index.scss */
 section.page.index .page {
   min-height: 100vh;
   position: relative;
 }
-/* line 69, ../../style/index.scss */
+/* line 75, ../../style/index.scss */
 section.page.index .page .collection .cover {
   position: absolute;
   left: 50vw;
@@ -2292,45 +2298,41 @@ section.page.index .page .collection .cover {
   -webkit-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 80, ../../style/index.scss */
+/* line 86, ../../style/index.scss */
 section.page.index .page.example {
   height: 200vh;
 }
-/* line 83, ../../style/index.scss */
+/* line 89, ../../style/index.scss */
 section.page.index .page.example.intro {
   height: 400vh;
 }
-/* line 86, ../../style/index.scss */
-section.page.index .page.example.intro .caption {
-  position: relative;
+/* line 94, ../../style/index.scss */
+section.page.index .page.example.intro .caption p.createAccount {
+  line-height: 36pt;
 }
-/* line 89, ../../style/index.scss */
-section.page.index .page.example.intro .caption p {
-  position: absolute;
-}
-/* line 95, ../../style/index.scss */
+/* line 100, ../../style/index.scss */
 section.page.index .page.example.join {
   height: 125vh;
 }
-/* line 98, ../../style/index.scss */
+/* line 103, ../../style/index.scss */
 section.page.index .page.example.join .form {
   text-align: left;
 }
-/* line 103, ../../style/index.scss */
+/* line 108, ../../style/index.scss */
 section.page.index .page.example .collection {
   position: relative;
   height: 100vh;
   width: 100vw;
   z-index: 2;
 }
-/* line 111, ../../style/index.scss */
+/* line 116, ../../style/index.scss */
 section.page.index .page.example .collection .cover.scale {
   top: 0;
   left: 0;
   margin-left: 0;
   -webkit-transform-origin: center 25vh;
   transform-origin: center 25vh;
-  z-index: 10;
+  z-index: 2;
   /*
                           @media all and (orientation: landscape) {
                               height: (100vw * (4/3));
@@ -2343,13 +2345,13 @@ section.page.index .page.example .collection .cover.scale {
                           }
   */
 }
-/* line 131, ../../style/index.scss */
+/* line 136, ../../style/index.scss */
 section.page.index .page.example .collection .cover.scale h1 {
   font-size: 24vw;
   line-height: .8em;
   margin-top: -.03125em;
 }
-/* line 139, ../../style/index.scss */
+/* line 144, ../../style/index.scss */
 section.page.index .page.example .collection .exampleContent {
   position: absolute;
   overflow-x: hidden;
@@ -2359,7 +2361,7 @@ section.page.index .page.example .collection .exampleContent {
   z-index: -1;
   opacity: 0;
 }
-/* line 148, ../../style/index.scss */
+/* line 153, ../../style/index.scss */
 section.page.index .page.example .collection .exampleContent .card {
   -webkit-transform-origin: center center;
   transform-origin: center center;
@@ -2367,43 +2369,50 @@ section.page.index .page.example .collection .exampleContent .card {
   top: 10vh;
   left: 50vw;
 }
-/* line 158, ../../style/index.scss */
+/* line 163, ../../style/index.scss */
 section.page.index .page.example .caption {
   position: absolute;
   text-align: center;
   top: 75vh;
-  left: 25vw;
-  right: 25vw;
+  left: 12.5vw;
+  right: 12.5vw;
+  width: 75vw;
+  background: yellow;
 }
-/* line 165, ../../style/index.scss */
+/* line 172, ../../style/index.scss */
+section.page.index .page.example .caption .animateInPop {
+  position: absolute;
+  width: 100%;
+}
+/* line 177, ../../style/index.scss */
 section.page.index .page.example .caption p {
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* line 176, ../../style/index.scss */
+/* line 188, ../../style/index.scss */
 section.readOnly header.card {
   z-index: 10;
   position: relative;
   opacity: 1;
 }
-/* line 181, ../../style/index.scss */
+/* line 193, ../../style/index.scss */
 section.readOnly header.card section.form {
   position: absolute;
   bottom: 0;
   opacity: 0;
 }
-/* line 188, ../../style/index.scss */
+/* line 200, ../../style/index.scss */
 section.readOnly .card {
   position: absolute;
   top: 0;
 }
-/* line 192, ../../style/index.scss */
+/* line 204, ../../style/index.scss */
 section.readOnly .card.blank {
   z-index: 0;
 }
-/* line 196, ../../style/index.scss */
+/* line 208, ../../style/index.scss */
 section.readOnly .card.logo {
   border: 0;
   background: transparent;

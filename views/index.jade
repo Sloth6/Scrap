@@ -21,6 +21,8 @@ block content
     nav
       ul.menu.headerMenu.settings.right.hideFirst.slideIn
         include partials/logIn
+      .signUp.card
+          include partials/signUp
     header.example.intro.page
       .collection.intro
         .translate
@@ -40,8 +42,11 @@ block content
           .card.small Foo
           .card.small Wow          
       .caption
-        p.animateOutOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Introducing Scrap. A home for your projects.
-        p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear This is a pack. Whaaat.
+        .animateOutOnCollectionOpen.animateInPop
+          p.typeSubtitle.typeOutlineClear Scrap. Home for your projects.
+          p.createAccount
+            a(href='#') Create an account
+        p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear This pack is wack.
     section.example.two.page
       .collection
         .card.cover.cardHover.colored.title.translate

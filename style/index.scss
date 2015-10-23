@@ -57,6 +57,12 @@ section.page.index {
         ul.menu li.first:hover {
             opacity: 1 !important;
         }
+        
+        .signUp {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
     }
     
     .page {
@@ -84,10 +90,9 @@ section.page.index {
                 height: 400vh;
                 
                 .caption {
-                    position: relative;
                     
-                    p {
-                        position: absolute;
+                    p.createAccount {
+                        line-height: $typeSubtitleLeading;
                     }
                 }
             }
@@ -114,7 +119,7 @@ section.page.index {
                         margin-left: 0;
                         -webkit-transform-origin: center 25vh;
                                 transform-origin: center 25vh;
-                        z-index: 10;
+                        z-index: 2;
                     
 /*
                         @media all and (orientation: landscape) {
@@ -159,8 +164,15 @@ section.page.index {
                 position: absolute;
                 text-align: center;
                 top: 75vh;
-                left: 25vw;
-                right: 25vw;
+                left: 12.5vw;
+                right: 12.5vw;
+                width: 75vw;
+                background: yellow;
+                
+                .animateInPop {
+                    position: absolute;
+                    width: 100%;
+                }
                 
                 p {
                     width: 100%;
