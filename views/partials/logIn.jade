@@ -1,11 +1,12 @@
-ul.right
+ul.menu.headerMenu.settings.right.hideFirst.slideIn
+  li.first Sign in
   form(id="logIn")
     li.mail
       input(id="email",type="email", name="user[email]", placeholder="Mail")
     li.password
       input(id="password",type="password", name="user[password]", placeholder="Password")
     li.submit
-      input.offset(type="submit", value="Log In")
+      input.offset(type="submit", value="Sign in")
     li(id="errorField")
 script.
   function onError(res) {

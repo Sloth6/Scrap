@@ -24,10 +24,8 @@ scaleCover = (scrollProgress, $cover) ->
   borderRadius        = scrollProgress * finalBorderRadius
   finalBorderWidth    = 1 / scaleRatio
   borderWidth         = scrollProgress * finalBorderWidth
-
   $cover.css
     transform: "scale3d(#{scale}, #{scale}, 1)"
-
   if step isnt previousStep or scrollProgress is 0
     $cover.css
       borderRadius: "#{borderRadius}pt"
@@ -35,7 +33,8 @@ scaleCover = (scrollProgress, $cover) ->
     $h1.css
       '-webkit-text-stroke': "#{stroke}px black"
       'letter-spacing': "#{letterSpacing}em"
-      
+  $('nav ul.menu li.first').css
+    opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
 animateOutPop = ($element) ->
   if $element.data('hasAnimatedIn')
     $element.velocity {
