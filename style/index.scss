@@ -28,8 +28,8 @@ section.page {
         }
         
         &.cover {
-            width: $articleSide;
-            height: $articleSideWide;
+          		width: $articleSide;
+          		height: $coverHeight;
             
             @media screen and (max-width: 640px) {
                 width: 90%;
