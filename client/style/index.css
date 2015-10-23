@@ -2337,11 +2337,11 @@ section.page.index .page.example.intro .caption p.createAccount {
 }
 /* line 120, ../../style/index.scss */
 section.page.index .page.example.join {
-  height: 125vh;
+  height: 120vh;
 }
 /* line 123, ../../style/index.scss */
-section.page.index .page.example.join .form {
-  text-align: left;
+section.page.index .page.example.join .cover {
+  margin-top: 25vh;
 }
 /* line 128, ../../style/index.scss */
 section.page.index .page.example .collection {

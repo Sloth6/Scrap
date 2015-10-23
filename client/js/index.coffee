@@ -83,12 +83,12 @@ animateCollection = ($section, $collection, $cover, $cards) ->
   cardSpacing             = 24
   maxRotate               = 12
   translateXToWindowLeft  = (cardSpacing/2) + ((coverWidth / 2) - ($(window).width()/2))
-  translateY              = if isJoin then $(window).width()/16 else 0
+  translateY              = 0
   
   $cover.velocity {
     translateZ:   0
-    rotateZ:      if isJoin then -Math.random() * maxRotate + 'deg' else 0
-    translateX:   if isJoin then -coverWidth/2 else translateXToWindowLeft
+    translateX:   if isJoin then 0 else translateXToWindowLeft
+    translateY:   if isJoin then -$(window).height() / 8 else 0
   }, {
     duration: collectionOpenDuration
     easing: basicSpring
@@ -103,8 +103,8 @@ animateCollection = ($section, $collection, $cover, $cards) ->
   
   $cards.each () ->
     translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 1.5
-    translateX        = if isJoin then coverWidth/4 else translateXStart + ($(@).index() * ($(@).width() + cardSpacing))
-    rotateZ           = if isJoin then Math.random() * maxRotate + 'deg' else '0deg'
+    translateX        = translateXStart + ($(@).index() * ($(@).width() + cardSpacing))
+    rotateZ           = '0deg'
     $(@).velocity({
       translateZ: 0
       translateY
@@ -132,7 +132,7 @@ positionElement = ($element, status, position, top) ->
   $element.css {
     position
     top
-  }
+  } 
   
 onScrollSection = ($section, scrollTop, scrollProgress) ->
   $collection       = $section.children('.collection')
@@ -155,13 +155,19 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
 
   if $section.data('sectionTopToWindowTopProgress') >= openCollectionThreshold
     animateInPop($section.find('.animateInOnCollectionOpen'))
-    unless $collection.data('stackHasOpened')
+    if ($section.hasClass 'join') and ($caption.css('z-index') < $cover.css('z-index'))
+      setTimeout (() ->
+        $caption.css('z-index', $cover.css('z-index') + 1)
+      ), collectionOpenDuration
+    unless $collection.data('stackHasOpened')# or $section.hasClass 'cantOpen'
       animateCollection($section, $collection, $translateCover, $exampleCards)
     if $section.hasClass('intro')
       animateOutPop($section.find('.animateOutOnCollectionOpen'))
   else
     animateOutPop($section.find('.animateInOnCollectionOpen'))
-    if $collection.data('stackHasOpened')
+    if $section.hasClass 'join'
+      $caption.css 'z-index', 0
+    if $collection.data('stackHasOpened') # or not $section.hasClass 'cantOpen'
       reverseAnimateCollection($section, $collection, $translateCover, $exampleCards)
     if $section.hasClass('intro')
       animateInPop($section.find('.animateOutOnCollectionOpen'))
