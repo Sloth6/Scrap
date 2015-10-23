@@ -83,6 +83,26 @@ section.page.index {
             }
         }
         
+        .caption {
+            position: absolute;
+            text-align: center;
+            top: 75vh;
+            left: 12.5vw;
+            right: 12.5vw;
+            width: 75vw;
+            
+            .animateInPop {
+                position: absolute;
+                width: 100%;
+            }
+            
+            p {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
         &.example {
             height: 200vh;
 
@@ -157,27 +177,6 @@ section.page.index {
                         top: $collectionTop;
                         left: 50vw;
                     }
-                }
-            }
-            
-            .caption {
-                position: absolute;
-                text-align: center;
-                top: 75vh;
-                left: 12.5vw;
-                right: 12.5vw;
-                width: 75vw;
-                background: yellow;
-                
-                .animateInPop {
-                    position: absolute;
-                    width: 100%;
-                }
-                
-                p {
-                    width: 100%;
-                    margin: 0;
-                    padding: 0;
                 }
             }
         }

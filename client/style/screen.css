@@ -686,7 +686,13 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 187, ../../style/globals/_type.scss */
+/* line 186, ../../style/globals/_type.scss */
+.typeOutlineBlackOnHover:hover {
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-text-stroke: 1px #000000;
+}
+
+/* line 193, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1471,6 +1477,13 @@ section.container section.space section.content article {
   backface-visibility: hidden;
   margin-right: -2pt;
   line-height: 1.5em;
+  /* 
+  > .content {
+      position: relative;
+              transform-origin: bottom right;
+      -webkit-transform-origin: bottom right;
+  }
+  */
 }
 /* line 17, ../../style/layout/_article.scss */
 section.container section.space section.content article:hover, section.container section.space section.content article.hover {
@@ -1533,12 +1546,6 @@ section.container section.space section.content article .elementControls .elemen
 section.container section.space section.content article .elementControls author {
   right: 0;
   white-space: nowrap;
-}
-/* line 81, ../../style/layout/_article.scss */
-section.container section.space section.content article > .content {
-  position: relative;
-  transform-origin: bottom right;
-  -webkit-transform-origin: bottom right;
 }
 /* line 87, ../../style/layout/_article.scss */
 section.container section.space section.content article.text {
@@ -2103,8 +2110,6 @@ body article.cover .card section.title h1 {
 }
 /* line 114, ../../style/layout/_home.scss */
 body article.cover .card section.title h2 {
-  transform-origin: bottom right;
-  -webkit-transform-origin: bottom right;
   width: 384pt;
   white-space: nowrap;
   text-align: right;

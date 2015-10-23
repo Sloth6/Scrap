@@ -254,8 +254,9 @@ initJoinAnimations = () ->
   $cover = $join.find('.cover')
   
 initCreateAccount = () ->
-  $button = $('.page.intro').children('.caption').find('p.createAccount a')
+  $button = $('.page').children('.caption').find('p.createAccount a')
   $signUp = $('nav .signUp.card')
+  duration = 1000
   signUpIsOpen = false
   $signUp.css {
     top:  $(window).height() / 2
@@ -282,15 +283,15 @@ initCreateAccount = () ->
         scaleY: 1
         rotateZ: 0
       }, {
-        duration: 1000
+        duration
         easing: fancySpring
       }
-      $('.page.example').velocity {
-        translateZ: 0
-        opacity: .1
+      $('.page.index .contentBlah').velocity {
+#         translateZ: 0
+        opacity: .125
         blur: 10
       }, {
-        duration: 1000
+        duration
         easing: easingSmooth
       }
     event.stopPropagation()
@@ -300,7 +301,7 @@ initCreateAccount = () ->
     if signUpIsOpen
       signUpIsOpen = false
       $signUp.velocity 'reverse'
-      $('.page.example').velocity 'reverse'
+      $('.page.index .contentBlah').velocity 'reverse', { duration }
 
 init = ($sections) ->
   initSections($sections)
@@ -309,7 +310,7 @@ init = ($sections) ->
   initCreateAccount()
 
 $ ->
-  $sections = $('.page > .example')
+  $sections = $('.page.index > .contentBlah > .example')
   init $sections
   onScroll $sections
   $(window).scroll -> onScroll $sections

@@ -181,6 +181,12 @@ html {
 .typeOutlineClear {
     @include typeOutlineClear;
 }
+
+.typeOutlineBlackOnHover {
+    &:hover {
+        @include typeOutlineFillBlack;
+    }
+}
         
 p {
     
