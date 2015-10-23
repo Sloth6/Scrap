@@ -5,7 +5,7 @@ stackCreate = (cover) ->
 
 stackPopulate = (stack) ->
   # console.log 'stack stackPopulate', stack
-  spaceKey = stack.data('content').spaceKey
+  spaceKey = stack.data('content')
   loadElements spaceKey, (elements) ->
     stackAdd stack, elements.not('.addElementForm')
     collectionRealign()
@@ -35,36 +35,4 @@ stackAdd = (stack, elements) ->
 
   stack.data 'width', max
   collectionRealign()
-
-#check for reduce
-# stackUpdate = (stack) ->
-#   console.log 'updating', stack
-#   if 
-
-# createStack = (cover) ->
-#   # stack = $('div').addClass('stack').
-
-#   # stack = $('div').addClass('stack')
-#   stack = cover.
-#             removeClass('cover').
-#             addClass('stack').
-#             empty()
-#   # $.each cover.prop("attributes"), () ->
-#   #   stack.attr @name, @value
-
-#   spaceKey = stack.data('content').spaceKey
-#   spacing = 25
-#   loadElements spaceKey, (elements) ->
-#     elements = elements.not('.cover').slice(1, 6)
-#     stack.append elements
-#     max = 0
-#     for i in [0...elements.length]
-#       e = $(elements[i])
-#       offset = i*spacing
-#       max = Math.max(max, offset+e.width())
-#       e.css 'left', offset
-
-#     # stack.data 'width', max
-#     stack.width max
-#     realign()
-#     
+     

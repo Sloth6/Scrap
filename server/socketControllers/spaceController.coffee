@@ -2,8 +2,8 @@ models = require '../../models'
 mail = require '../adapters/nodemailer'
 newSpace = require '../newSpace'
 async = require 'async'
-newElements = require './newElements'
 coverColor = require '../modules/coverColor'
+addUserToSpace = require '../addUserToSpace'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
@@ -27,13 +27,33 @@ module.exports =
       return callback err if err?
       console.log "updated name of #{spaceKey} to #{name}"
         # sio.to("#{spaceKey}").emit 'updateElement', data
-
-      # the stack should be emptied
-      # sio.to(spaceKey).emit 'removeStack', { id: space.id }
+  
+  addUserToSpace: (sio, socket, data, callback) =>
+    { email, spaceKey } = data
+    console.log "Inviting #{email} to #{spaceKey}"
+    return callback('invalid') unless email?
+    return callback('invalid') unless spaceKey?
+    complete = (err, html, space) ->
+      domain = 'http://tryScrap.com'
+      title = "<a href=\"#{domain}s/#{spaceKey}\">#{space.name}</a>"
+      subject = "#you were invited to #{space.name} on Scrap."
       
-    # models.sequelize.query(q2, null, null, { spaceKey }).complete (err, results) ->
-    #   return callback err if err?
-    #   console.log results
+      html = "
+          <h1>View #{title} on Scrap.</h1>
+          <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
+          <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
+      mail.send { to: email, subject: subject, text: html, html: html }
+      sio.to(spaceKey).emit 'newElement', { html, spaceKey }
+
+    models.User.find( where: { email }).success (user) ->
+      return callback(err) if err?
+      return addUserToSpace(user, spaceKey, complete) if user?
+      models.User.create({ email, name:email }).complete (err, user) ->
+        return callback err if err?
+        firstSpaceOptions = { UserId: user.id, name: user.name, root: true }
+        newSpace firstSpaceOptions, (err) ->
+          return callback err if err?
+          addUserToSpace(user, spaceKey, complete) if user?
 
   newCollection: (sio, socket, data) ->
     spaceKey = data.spaceKey # SpaceKey will be the parent of the new collection
@@ -48,7 +68,7 @@ module.exports =
       # Create the new space
       (cb) ->
         console.log "Creating the new space"
-        newSpace { UserId: userId }, cb
+        newSpace { UserId: userId, hasCover:false }, cb
 
       # Move elements to the new space
       (newSpace, cb) -> 
@@ -77,10 +97,7 @@ module.exports =
           creatorId: userId
           contentType: 'cover'
           content: newSpace.spaceKey
-          # content: JSON.stringify {
-                      # spaceKey: newSpace.spaceKey
-                      # backgroundColor: coverColor()
-                    # }
+ 
         models.Element.create(coverAttributes).complete (err, cover) ->
           if err then cb err
           newSpace.coverId = cover.id
@@ -117,3 +134,4 @@ module.exports =
       })
 
       sio.to("#{spaceKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
+

@@ -31,6 +31,7 @@ addProjectController =
           card.removeClass 'hover'
           $.post '/s/newPack', { name: title.text() }, (coverDom) ->
             cover = $(coverDom)
+            cover.css { x: xTransform($('.addProjectForm')), y: marginTop }
             cover.insertBefore elem
             sliderInit cover
             addProjectController.reset elem

@@ -14,37 +14,21 @@ module.exports =
   index: (req, res, app, callback) ->
     { spaceKey } = req.params
     currentUserId = req.session.currentUserId
-
-    if currentUserId?
-      console.log 'has userID'
-      models.User.find(where: { id: currentUserId }).complete (err, user) ->
-        return callback(err, res) if err?
-        models.Space.find(where: { spaceKey }).complete (err, space) ->
-          return callback(err, res) if err?
-          console.log !!user, !!space
-          return res.send 404 unless space?
-          return readOnlyPage res unless user?
-
-          space.hasUser(user).complete (err, hasUser) ->
-            return res.redirect('/') if hasUser
-              
-            
-              space.addUser(user).complete (err) ->
-                return callback(err, res) if err?
-                readOnlyPage res, space
-
-
-
-
-    else
-      # get space if exists
-      models.Space.find(where: { spaceKey }).complete (err, space) ->
-        return callback err if err
-        return res.send 404 unless space?
-        readOnlyPage(res, space)
-               
-
-
-        # space.hasUser(user).complete (err, hasUser) ->
-        #   # make sure we don't add the user twice
-        #   return res.send 200 if hasUser
+    
+    models.Space.find(where: { spaceKey }).complete (err, space) ->
+      return callback err if err
+      return res.send(404) unless space?
+      return readOnlyPage(res, space) unless currentUserId?
+      q = 'select exists
+            (select true from "SpacesUsers" where "UserId"=? and "SpaceId"=?)'
+      params = [ currentUserId, space.id ]
+      models.sequelize.query(q, null, { raw:true}, params).complete (err, results) ->
+        return res.send(400) if err?
+        return res.send(400) unless results?
+        hasSpace = results[0].exists
+        console.log 'results', results, hasSpace
+        if hasSpace
+          # in the future load them directly into space
+          return res.redirect('/')
+        else
+          readOnlyPage(res, space)

@@ -4,7 +4,6 @@ uuid = require('node-uuid')
 mime = require('mime')
 moment = require('moment')
 async = require 'async'
-welcomeElements = require '../welcomeElements'
 mail = require '../adapters/nodemailer'
 request = require 'request'
 domain = require('../config.json').domain
@@ -64,12 +63,6 @@ module.exports =
       # })
 
       # sio.to("#{spaceKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
-
-
-  addUserToSpace : (req, res, app, callback) ->
-    { email, spaceKey } = req.body
-    userName = req.session.userName
-    addUserToSpace userId, spaceKey
 
   collectionData: (req, res, app, callback) ->
     { spaceKey } = req.params

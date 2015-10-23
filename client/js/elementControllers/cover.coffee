@@ -44,9 +44,6 @@ startEditing = (cover) ->
   # Make user menu inaccessible during renaming
   userMenu.removeClass 'canOpen'
   userMenu.removeClass 'open'
-#   setTimeout( () ->
-#     userMenu.css('display', 'none')
-#   , 1000)
 
   rename.children('a').text 'Save'
   title.attr('contenteditable', true).focus()
@@ -78,7 +75,6 @@ bindCoverControls = (covers) ->
       event.stopPropagation()
       if cover.hasClass('editing') then stopEditing cover else startEditing cover
   
-
     # submit on enter
     cover.find('.addUser').on 'submit', (event) ->
       event.preventDefault()
@@ -91,6 +87,11 @@ bindCoverControls = (covers) ->
         textField.html 'Please enter a valid email'
       else
         input.val ''
+        $('<li>').
+          addClass('user').
+          text('Joel Simon').
+          insertBefore cover.find('.user.add')
+
         textField.html 'An invite has been sent'
         addUser email, spaceKey
         
@@ -113,7 +114,6 @@ bindCoverControls = (covers) ->
 
 coverInit = (covers) ->
   packInit = (cover, data) ->
-    console.log data
     cover.find('section.title').children('h1, h2, h3').text data.name
     bindCoverControls cover
     cover.find('.card').css 'background-color', data.color
@@ -123,6 +123,7 @@ coverInit = (covers) ->
 
   stackInit = (cover, data) ->
     stack = stackCreate cover
+    # stack.width 400
     stackPopulate stack
     stack.click () ->
       stack.empty()
@@ -130,9 +131,8 @@ coverInit = (covers) ->
 
   covers.each () ->
     spaceKey = $(@).data('content')
-    console.log spaceKey
     $.get "/collectionData/#{spaceKey}", (data) =>
-      if $(@).hasClass 'stack' then stackInit($(@), data) else packInit($(@), data)
+      if data.hasCover then packInit($(@), data) else stackInit($(@), data)
 
 # $ ->
 #   coverInit $('.cover')

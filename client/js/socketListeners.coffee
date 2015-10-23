@@ -14,18 +14,19 @@ $ ->
     console.log "new element for #{spaceKey}", element
     
     if $(".#{spaceKey}.collection").hasClass 'open'
-      element.
-        css({x: xTransform($('.addElementForm'))}).
-        insertBefore($('.addElementForm'))
+      element.css { x: xTransform($('.addElementForm')), y:marginTop }
+      element.insertBefore($('.addElementForm'))
       sliderInit element
       collectionRealign()
-      
+  
+  # for new stacks
   socket.on 'newCollection', (data) ->
     { draggedId, draggedOverId, coverHTML } = data
+    console.log data
     dragged = $("##{data.draggedId}")
     draggedOver = $("##{data.draggedOverId}")
-    cover = $(decodeURIComponent(data.coverHTML))
-    stack = stackCreate cover
+    stack = $(decodeURIComponent(data.coverHTML))
+    
     
     stack.add draggedOver
     stack.add dragged
@@ -37,7 +38,8 @@ $ ->
     dragged.remove()
     $("##{draggedOverId}").remove()
     sliderInit stack
-    collectionRealign.call $('.slidingContainer')
+    console.log 'here all good'
+    collectionRealign()
 
   socket.on 'reorderElements', (data) ->
     console.log 'reorderElements', data
