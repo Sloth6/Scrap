@@ -2,7 +2,7 @@ models = require '../../models'
 
 readOnlyPage = (res, space) ->
   res.render 'read-only.jade',
-    title : 'Hotpot · Here is a read-only space'
+    title : "#{space.name} on Scrap"
     description: ''
     author: 'scrap'
     collection: space

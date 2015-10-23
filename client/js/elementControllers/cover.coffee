@@ -62,7 +62,19 @@ coverClick = () ->
     collectionRealignDontScale()
   else if !$(@).hasClass('editing')
     spaceKey = $(@).data('content')
-    history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
+
+    history.replaceState {
+      scrollLeft : $(window).scrollLeft()
+      width : $(window.document).width()
+      name: history.state.name
+    }, ""
+
+    state = 
+      # scrollLeft: $(window).scrollLeft()
+      # docWidth: $(window.document).width()
+      name: spaceKey
+    
+    history.pushState state, "", "/s/#{spaceKey}"
     collectionOpen $(@)
 
 bindCoverControls = (covers) ->

@@ -11,7 +11,7 @@ $ ->
   socket.on 'newElement', (data) ->
     { html, spaceKey } = data
     element = $(decodeURIComponent(html))
-    console.log "new element for #{spaceKey}", element
+    console.log "new element for #{spaceKey}", element[0]
     
     if $(".#{spaceKey}.collection").hasClass 'open'
       element.css { x: xTransform($('.addElementForm')), y:element.data('translateY') }
@@ -19,6 +19,16 @@ $ ->
       sliderInit element
       collectionRealign()
   
+  socket.on 'newPack', (data) ->
+    { coverHTML } = data
+    cover = $(decodeURIComponent(coverHTML))
+    form = $('.addProjectForm')
+    cover.css { x: xTransform(form), y: marginTop }
+    cover.insertBefore form
+    sliderInit cover
+    addProjectController.reset form
+    collectionRealign()
+
   # for new stacks
   socket.on 'newCollection', (data) ->
     { draggedId, draggedOverId, coverHTML } = data
@@ -27,19 +37,19 @@ $ ->
     draggedOver = $("##{data.draggedOverId}")
     stack = $(decodeURIComponent(data.coverHTML))
     
-    
+    stack.insertAfter draggedOver
     stack.add draggedOver
     stack.add dragged
-    
-    stack.insertAfter draggedOver
-    stack.css {x: xTransform(draggedOver), y: marginTop}
-    
+    stack.css { x: xTransform(draggedOver), y: marginTop }
     draggedOver.remove()
     dragged.remove()
-    $("##{draggedOverId}").remove()
+
     sliderInit stack
+
+    setTimeout collectionRealignDontScale, 300
     console.log 'here all good'
-    collectionRealign()
+    # console.log stack[0]
+    
 
   socket.on 'reorderElements', (data) ->
     console.log 'reorderElements', data

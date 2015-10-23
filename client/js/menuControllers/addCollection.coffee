@@ -29,13 +29,8 @@ addProjectController =
           title.attr('contenteditable', false)
           card.removeClass 'editing'
           card.removeClass 'hover'
-          $.post '/s/newPack', { name: title.text() }, (coverDom) ->
-            cover = $(coverDom)
-            cover.css { x: xTransform($('.addProjectForm')), y: marginTop }
-            cover.insertBefore elem
-            sliderInit cover
-            addProjectController.reset elem
-            collectionRealign()
+          socket.emit 'newPack', { name: title.text() }
+
             # console.log dom
 
         else if e.which != 8 && elem.text().length > max

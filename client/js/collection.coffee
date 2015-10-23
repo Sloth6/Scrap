@@ -103,13 +103,12 @@ collectionOpen = (cover, options = {}, callback) ->
 collectionClose = (options = {}) ->
   draggingElement = options.draggingElement or null
   deleteAfter     = options.deleteAfter or null
+  state           = options.state or null
 
   closingCover = $('.open.cover, .open.stack')
   sliderInit closingCover
   return if closingCover.hasClass 'root'
   spacePath.shift()
-
-  # edgeWidth -= 32
 
   closingCollection = closingCover.parent()
   closingChildren = collectionChildren()
@@ -163,16 +162,17 @@ collectionClose = (options = {}) ->
     if closingCover.hasClass 'stack'
       stackPopulate closingCover
 
-  $(document.body).css width: window.pastState.docWidth
-  $(window).scrollLeft window.pastState.scrollLeft
-  $("body").css("overflow", "hidden")
-  # collectionRealignDontScale()
+  # return to the parents state last time we were there.
+  if state?
+    $(document.body).css width: state.width
+    $(window).scrollLeft state.scrollLeft
+    $("body").css("overflow", "hidden")
   
-  collectionRealign()
+  collectionRealignDontScale()
   setTimeout (() ->
     closingCollection.remove()
     $("body").css("overflow", "visible")
-    collectionRealign()
+    # collectionRealignDontScale()
   ), openCollectionDuration
 
   $('.root.cover').hide()
@@ -198,7 +198,8 @@ collectionWidth = () ->
 
 realign = (animate) ->
   return if realignTimeout?
-  realignTimeout = setTimeout (() -> realignTimeout = null), 300
+  clearTimeout realignTimeout
+  realignTimeout = setTimeout (() -> realignTimeout = null), 100
   sliding = collectionChildren().filter('.sliding')
   lastX  = 0
   maxX   = -Infinity

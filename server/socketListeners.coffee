@@ -37,7 +37,7 @@ module.exports = (io)->
       socket.on 'moveToCollection', (data) -> elementController.moveToCollection io, socket, clean(data), errorHandler
       socket.on 'reorderElements', (data) -> spaceController.reorderElements io, socket, clean(data), errorHandler
       socket.on 'newCollection', (data) -> spaceController.newCollection io, socket, clean(data), errorHandler
-
+      socket.on 'newPack', (data) -> spaceController.newPack io, socket, clean(data), errorHandler
       # socket.on 'updateSpace', (data) -> spaceController.updateSpace io, socket, clean(data), errorHandler
       
       socket.on 'addUserToSpace', (data) -> spaceController.addUserToSpace io, socket, clean(data), errorHandler

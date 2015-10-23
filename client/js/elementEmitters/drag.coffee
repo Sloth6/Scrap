@@ -49,9 +49,8 @@ scrollWindow = (event) ->
 
 # Take mousemove event while dragging
 drag = (event, draggingElement) ->
-  # console.log draggingElement.height()
   x = event.clientX - draggingElement.width()/2
-  y = event.clientY - draggingElement.height()/2# - 50
+  y = event.clientY - draggingElement.height()/2
   draggingElement.css { x, y }
   scrollWindow event
   dragTimeout event, draggingElement
@@ -62,10 +61,12 @@ checkForAddToStack = (event, dragging) ->
   x = event.clientX
   droppedOn = collectionElemAfter x
   return false if droppedOn[0] == padding[0]
-  return false if droppedOn[0] == undefined
+  return false unless droppedOn[0]?
+  return false if droppedOn.hasClass 'cover'
   return false if dragging.hasClass('cover')
   return false if dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
+  return if event.clientY < marginTop
   spaceKey = droppedOn.data 'content'
   
   padding.remove()
@@ -73,7 +74,9 @@ checkForAddToStack = (event, dragging) ->
   draggedId = parseInt(dragging.attr('id'))
   draggedOverId = parseInt(droppedOn.attr('id'))
   
-  if droppedOn.hasClass('stack')
+  if !draggedId or !draggedOverId?
+    return false
+  else if droppedOn.hasClass('stack')
     console.log 'Emitting move to collection'
     stackAdd droppedOn, dragging
     socket.emit "moveToCollection", { elemId: draggedId, spaceKey }
@@ -83,27 +86,29 @@ checkForAddToStack = (event, dragging) ->
   true
 
 checkForCloseByDrag = (x, y, draggingElement) ->
-  return false if $('.open.root').length
-  if y < $('.slidingContainer').offset().top
-    return true if collectionCloseByDragTopTimeout
+  return false unless $('.open.stack').length
+  if y < marginTop
+    return false if collectionCloseByDragTopTimeout
+    console.log 'setting close setTimeout'
     collectionCloseByDragTopTimeout = setTimeout (() ->
-      draggingElement.find('.card').css({
-        'scale': 1,
-        'rotate': 0
-      })
+      console.log 'collectionCloseByDragTopTimeout'
       clearDragTimeouts()
-      $(window).off 'mousemove'
-      $(window).off 'mouseup'
-      collectionClose(draggingElement)
+      elemId = draggingElement.attr 'id'
+      spaceKey = spacePath[1]
+      socket.emit 'moveToCollection', { elemId, spaceKey }
+      # $(window).off 'mousemove'
+      # $(window).off 'mouseup'
+      history.back()
     ), collectionCloseByDragTopTime
     true
   else
+    console.log 'clearTimeout'
     clearTimeout collectionCloseByDragTopTimeout
     collectionCloseByDragTopTimeout = null
     false
 
 checkForOpenByDrag = (x, y, dragging, draggingOver) ->
-  return false if !draggingOver.hasClass('cover')
+  return false unless draggingOver.hasClass('stack')
   return false if collectionOpenByDragTimeout
   return false if y > parseInt(draggingOver.css('y'))+ draggingOver.height()
   collectionOpenByDragTimeout = setTimeout (() ->
@@ -141,8 +146,8 @@ dragTimeout = (dragEvent, draggingElement) ->
         padding.insertAfter draggingOver
         collectionRealignDontScale false
 
-      when 'center'
-        checkForOpenByDrag x, y, draggingElement, draggingOver
+      # when 'center'
+      #   checkForOpenByDrag x, y, draggingElement, draggingOver
 
   lastDraggingOver = draggingOver
 
@@ -190,8 +195,9 @@ startDragging = (elem) ->
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', elem.zIndex()).
+    insertAfter('.slidingContainer').
     zIndex 9999
-  
+
   if elem.hasClass('stack')
     startDragTransform elem.children('.transform').first()
   else

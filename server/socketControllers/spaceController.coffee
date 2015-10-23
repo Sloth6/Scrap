@@ -56,13 +56,18 @@ module.exports =
           addUserToSpace(user, spaceKey, complete) if user?
 
   newCollection: (sio, socket, data) ->
-    spaceKey = data.spaceKey # SpaceKey will be the parent of the new collection
+    # SpaceKey will be the parent of the new collection
+    spaceKey = data.spaceKey
+    # Dragged and draggedOver and the elements that created the collection
     draggedId = parseInt data.draggedId
     draggedOverId = parseInt data.draggedOverId
-    userId = socket.handshake.session.userId
-    console.log 'New collection data', { spaceKey, draggedId, draggedOverId }
     
-    # Dragged and draggedOver and the elements that created the collection
+    console.log 'New collection data', data
+    return console.log('no draggedId in newCollection') unless draggedId?
+    return console.log('no draggedOverId in newCollection') unless draggedOverId?
+
+    userId = socket.handshake.session.userId
+    
     
     async.waterfall [
       # Create the new space
@@ -134,4 +139,46 @@ module.exports =
       })
 
       sio.to("#{spaceKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
+      console.log  'Adding user to room', cover.content
+      socket.join cover.content
 
+  newPack: (sio, socket, data) ->
+    { name } = data
+    userId = socket.handshake.session.userId
+    return console.log('no userid', res) unless userId?
+    return console.log('no name sent', res) unless name?
+    console.log 'New pack', { name, userId }
+    
+    async.waterfall [
+      # Create the new space
+      (cb) -> 
+        newSpace { UserId: userId, name, hasCover:true }, cb
+      # Get the parent space
+      (newSpace, cb) ->
+        console.log  'Get the parent space'
+        params = where: { UserId:userId, root: true }
+        models.Space.find( params ).complete (err, root) ->
+          if err then cb err else cb null, newSpace, root
+      # Create cover element
+      (newSpace, root, cb) ->
+        console.log 'Create cover element'
+        coverAttributes =
+          SpaceId: root.id
+          creatorId: userId
+          contentType: 'cover'
+          content: newSpace.spaceKey
+        models.Element.create(coverAttributes).complete (err, cover) ->
+          if err then cb err else cb null, root, cover
+      # Change element order
+      (root, cover, cb) ->
+        root.elementOrder.push cover.id
+        root.save().complete (err) ->
+          if err then cb err else cb null, root, cover
+    ], (err, root, cover) ->
+      return callback(err) if err?
+      coverHTML = encodeURIComponent element_jade {
+        element: cover, collection: root
+      }
+      socket.emit 'newPack', { coverHTML }
+      console.log 'Adding user to room', cover.content
+      socket.join cover.content
