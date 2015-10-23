@@ -33,7 +33,7 @@ percentToBorder = (x, e, border) ->
 
 sliderJumble = () ->
   if $(@).hasClass('cover') and not $(@).hasClass('open')
-    maxRotate = 45/2
+    maxRotate = 45
     maxYOffset = $(window).height() / 4
     altMarginTop = ($(window).height() / 2) - ($(@).height() / 2)
   else

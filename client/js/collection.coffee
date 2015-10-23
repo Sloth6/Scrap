@@ -8,7 +8,7 @@ loadElements = (spacekey, callback) ->
     cache[spacekey] = $(data)
     callback cache[spacekey]
     
-jumblePacks = (cover, collection) ->
+transformCollection = (cover, collection) ->
   rotateZ=    ['0deg', cover.data('rotateZ')]
   translateY= [0, cover.data('translateY')]
   collection.velocity {
@@ -31,7 +31,7 @@ coverToCollection = (cover, elements) ->
     appendTo(collection).
     append elements
   if not cover.hasClass 'root'
-    jumblePacks(cover, collection)
+    transformCollection(cover, collection)
   collection
 
 collectionOpen = (cover, options = {}, callback) ->
