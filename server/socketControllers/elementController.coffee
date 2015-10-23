@@ -120,6 +120,9 @@ module.exports =
 
   moveToCollection: (sio, socket, data, callback) ->
     { elemId, spaceKey } = data
+    return callback('no spacekey in moveToCollection') unless spaceKey?
+    return callback('no elemId in moveToCollection') unless elemId?
+    
     console.log "move to collection data:", data
     q = "
         UPDATE \"Elements\"
