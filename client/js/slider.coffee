@@ -32,21 +32,17 @@ percentToBorder = (x, e, border) ->
   percent
 
 sliderJumble = () ->
-  if $(@).hasClass 'cover'
+  if $(@).hasClass('cover') and not $(@).hasClass('open')
     maxRotate = 45/2
-    if not $(@).hasClass 'open'
-      maxYOffset = $(window).height() / 4
-      newMarginTop = ($(window).height() / 2) - ($(@).height() / 2)
-    else
-      maxYOffset = 50
-      newMarginTop = marginTop
+    maxYOffset = $(window).height() / 4
+    altMarginTop = ($(window).height() / 2) - ($(@).height() / 2)
   else
     maxRotate   = 4
-    maxYOffset  = 50
-    newMarginTop = marginTop
+    maxYOffset = 50
+    altMarginTop = marginTop
   $(@).data
-    'translateY': newMarginTop + ((Math.random()-.5) * maxYOffset)
     'rotateZ':    Math.random() * maxRotate + (Math.random() * -maxRotate)
+    'translateY': altMarginTop + ((Math.random()-.5) * maxYOffset)
     'scale':      1
   console.log $(@).attr('class'), $(@).data('translateY')
 
