@@ -33,7 +33,7 @@ percentToBorder = (x, e, border) ->
 
 sliderJumble = () ->
   if $(@).hasClass 'cover'
-    maxRotate = 45
+    maxRotate = 45/2
     if not $(@).hasClass 'open'
       maxYOffset = $(window).height() / 4
       newMarginTop = ($(window).height() / 2) - ($(@).height() / 2)
@@ -44,19 +44,17 @@ sliderJumble = () ->
     maxRotate   = 4
     maxYOffset  = 50
     newMarginTop = marginTop
-  console.log 'marginTop', newMarginTop, $(@).attr 'class'
   $(@).data
     'translateY': newMarginTop + ((Math.random()-.5) * maxYOffset)
     'rotateZ':    Math.random() * maxRotate + (Math.random() * -maxRotate)
     'scale':      1
+  console.log $(@).attr('class'), $(@).data('translateY')
 
 sliderInit = (elems) ->
   bindCardHover()
   elems.addClass('sliding')
   makeDraggable elems
   makeDeletable elems
-  # elems.find('.transforms').css 'transform-origin': 'center center'
-  # elems.find('.transforms').css '-webkit-transform-origin': 'center center'
   elems.each () ->
     sliderJumble.call(@)
     $(@).css y: $(@).data('translateY')
@@ -153,9 +151,10 @@ slidingPlace = (animate = true) ->
 
   # On Scroll
   else
-    options = { x: translateX }
-    # options.y = translateY if translateY?
-    options.y = $(@).data('translateY')
+    options = 
+      x: translateX
+      y: $(@).data('translateY')
+      
     if $(@).data('rotateZ')
       options.rotate3d = "0,0,1,#{rotateZ}deg" 
     if $(@).data('scale')

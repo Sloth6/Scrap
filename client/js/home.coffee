@@ -5,7 +5,7 @@ openCollectionDuration  = 1000
 
 marginTop = $(window).height() * 0.125
 margin = 16
-coverMargin = 72
+coverMargin = 120
 sliderBorder = () -> $(window).width() / 6
 edgeWidth = 48
 

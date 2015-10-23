@@ -77,14 +77,14 @@ collectionOpen = (cover, options = {}, callback) ->
     nextSliding.velocity
       properties:
         translateX: [ $(window).width() + coverMargin, xForceFeedSelf ]
-        translateY: 0
+        translateY: marginTop
         rotateZ: '0deg'
       options: { complete: () -> nextSliding.hide() }
 
     prevSliding.velocity
       properties:
         translateX: [ (() -> -sliderWidth($(@)) - coverMargin), xForceFeedSelf ]
-        translateY: 0
+        translateY: marginTop
         rotateZ: '0deg'
       options: { complete: () -> prevSliding.hide() }
     
