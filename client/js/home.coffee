@@ -51,10 +51,15 @@ $ ->
       $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
       event.preventDefault()
 
+
+  $('.backButton').click (event) ->
+    event.preventDefault()
+    history.back()
+
   # Close a collection on page back
   window.onpopstate = (event) ->
-    # event.state.name will either be 'home' or a spaceKey
-    # spaceKey = event.state.name
-    # always close any open collection first
+    throw 'No event state object' unless event.state
+    # close the open collection and return the view to where it was 
+    # when it was opened. which is stored in the state object
     if $('.cover.open, .stack.open').length
-      collectionClose()
+      collectionClose({ state: event.state })

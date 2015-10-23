@@ -44,8 +44,6 @@ sliderInit = (elems) ->
   elems.addClass('sliding')
   makeDraggable elems
   makeDeletable elems
-  # elems.find('.transforms').css 'transform-origin': 'center center'
-  # elems.find('.transforms').css '-webkit-transform-origin': 'center center'
   elems.each () ->
     switch $(@).data('contenttype')
       when 'text'

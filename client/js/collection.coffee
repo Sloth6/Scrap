@@ -50,11 +50,6 @@ collectionOpen = (cover, options = {}) ->
     
     elements.addClass('sliding').css({ x: xTransform(cover) })
     sliderInit elements
-    
-    # Remember where we were  
-    window.pastState.scrollLeft = $(window).scrollLeft()
-    window.pastState.docWidth   = $(window.document).width()
-    $(window).scrollLeft 0
 
     parentCover.velocity
       properties:
@@ -80,19 +75,18 @@ collectionOpen = (cover, options = {}) ->
       $('header.main .backButton').addClass 'visible'
       moveBackButton(32)
 
-    # setTimeout ( ->
     collectionRealign()
-    # ), 500
+    # init after stacks have loaded content
+    # setTimeout collectionRealign, 500
 
 collectionClose = (options = {}) ->
   draggingElement = options.draggingElement or null
   deleteAfter     = options.deleteAfter or null
+  state           = options.state or null
 
   closingCover = $('.open.cover, .open.stack')
   return if closingCover.hasClass 'root'
   spacePath.shift()
-
-  # edgeWidth -= 32
 
   closingCollection = closingCover.parent()
   closingChildren = collectionChildren()
@@ -146,16 +140,17 @@ collectionClose = (options = {}) ->
     if closingCover.hasClass 'stack'
       stackPopulate closingCover
 
-  $(document.body).css width: window.pastState.docWidth
-  $(window).scrollLeft window.pastState.scrollLeft
-  $("body").css("overflow", "hidden")
-  # collectionRealignDontScale()
+  # return to the parents state last time we were there.
+  if state?
+    $(document.body).css width: state.width
+    $(window).scrollLeft state.scrollLeft
+    $("body").css("overflow", "hidden")
   
-  collectionRealign()
+  collectionRealignDontScale()
   setTimeout (() ->
     closingCollection.remove()
     $("body").css("overflow", "visible")
-    collectionRealign()
+    # collectionRealignDontScale()
   ), openCollectionDuration
 
   $('.root.cover').hide()
