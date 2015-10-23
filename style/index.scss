@@ -53,6 +53,16 @@ section.page.index {
         right: 0;
         top: 0;
         z-index: 4;
+        
+        ul.menu li.first:hover {
+            opacity: 1 !important;
+        }
+        
+        .signUp {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
     }
     
     .page {
@@ -73,6 +83,26 @@ section.page.index {
             }
         }
         
+        .caption {
+            position: absolute;
+            text-align: center;
+            top: 75vh;
+            left: 12.5vw;
+            right: 12.5vw;
+            width: 75vw;
+            
+            .animateInPop {
+                position: absolute;
+                width: 100%;
+            }
+            
+            p {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
         &.example {
             height: 200vh;
 
@@ -80,19 +110,18 @@ section.page.index {
                 height: 400vh;
                 
                 .caption {
-                    position: relative;
                     
-                    p {
-                        position: absolute;
+                    p.createAccount {
+                        line-height: $typeSubtitleLeading;
                     }
                 }
             }
             
             &.join {
-                height: 125vh;
+                height: 120vh;
                 
-                .form {
-                    text-align: left;
+                .cover {
+                    margin-top: 25vh;
                 }
             }
             
@@ -110,7 +139,7 @@ section.page.index {
                         margin-left: 0;
                         -webkit-transform-origin: center 25vh;
                                 transform-origin: center 25vh;
-                        z-index: 10;
+                        z-index: 2;
                     
 /*
                         @media all and (orientation: landscape) {
@@ -148,20 +177,6 @@ section.page.index {
                         top: $collectionTop;
                         left: 50vw;
                     }
-                }
-            }
-            
-            .caption {
-                position: absolute;
-                text-align: center;
-                top: 75vh;
-                left: 25vw;
-                right: 25vw;
-                
-                p {
-                    width: 100%;
-                    margin: 0;
-                    padding: 0;
                 }
             }
         }

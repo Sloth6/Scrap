@@ -11,86 +11,87 @@ block scripts
   //- script(src="/js/element.js")
 
   script(src="/js/lib/velocity.min.js")
-  script(src="/js/stack.js")
-  script(src="/js/index.js")
+  script(src="/js/page/stackAnimation.js")
+  script(src="/js/page/index.js")
   script(src="/js/menuControllers/header.js")
   //- script(src="/js/menuControllers/settings.js")
 
 block content
   section.page.index
     nav
-      .card.small
-        include partials/signUp
+      ul.menu.headerMenu.settings.right.hideFirst.slideIn
         include partials/logIn
-    header.example.intro.page
-      .collection.intro
-        .translate
-          .scale.card.cover.cardHover.colored.title.translate
-            h1.typeTitle.typeOutlineClear Licorice ice cream recipes
-        .exampleContent
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-      .caption
-        p.animateOutOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Introducing Scrap. A home for your projects.
-        p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear This is a pack. Whaaat.
-    section.example.two.page
-      .collection
-        .card.cover.cardHover.colored.title.translate
-          h1.typeTitle.typeOutlineClear Example two
-        .exampleContent
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-      .caption
-        p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Collect whatever from wherever and organize it however.
-    section.example.page
-      .collection
-        .card.cover.cardHover.colored.title.translate
-          h1.typeTitle.typeOutlineClear Example three
-        .exampleContent
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-          .card.small Hey
-          .card.small Foo
-          .card.small Wow          
-      .caption
-        p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Share it with anyone. Just give them the link, and they can add stuff, too.
-    section.join.page.example
-      .collection
-        .card.cover.cardHover.colored.title.translate.editing
-          h1.typeTitle.typeOutlineClear Your project here
-        .exampleContent
-          .card.small.under
-            p.typeSubtitle.typeOutlineClear Try it todae.
-      .caption
-        .animateInOnCollectionOpen.animateInPop.form
-          h2.bodyType Sign up pls thx
+      .signUp.card
           include partials/signUp
+    .contentBlah
+      header.example.intro.page
+        .collection.intro
+          .translate
+            .scale.card.cover.cardHover.colored.title.translate
+              h1.typeTitle.typeOutlineClear Licorice ice cream recipes
+          .exampleContent
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+        .caption
+          .animateOutOnCollectionOpen.animateInPop
+            p.typeSubtitle.typeOutlineClear Scrap. Home for your projects.
+            p.createAccount
+              a(href='#') Create an account
+          p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear This pack is wack.
+      section.example.two.page
+        .collection
+          .card.cover.cardHover.colored.title.translate
+            h1.typeTitle.typeOutlineClear Example two
+          .exampleContent
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+        .caption
+          p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Collect whatever from wherever and organize it however.
+      section.example.page
+        .collection
+          .card.cover.cardHover.colored.title.translate
+            h1.typeTitle.typeOutlineClear Example three
+          .exampleContent
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+            .card.small Hey
+            .card.small Foo
+            .card.small Wow
+        .caption
+          p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Share it with anyone. Just give them the link, and they can add stuff, too.
+      section.join.page.example.cantOpen
+        .collection
+          .card.cover.cardHover.colored.title.translate.editing
+            h1.typeTitle.typeOutlineClear Your project here
+        .caption
+          p.createAccount.animateInOnCollectionOpen.animateInPop
+            a.typeSubtitle.typeOutlineClear.typeOutlineBlackOnHover(href='#') Create an account
     footer
       p Dis is mah footur.

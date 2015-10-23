@@ -1,4 +1,4 @@
-/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -686,7 +686,13 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 187, ../../style/globals/_type.scss */
+/* line 186, ../../style/globals/_type.scss */
+.typeOutlineBlackOnHover:hover {
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-text-stroke: 1px #000000;
+}
+
+/* line 193, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -966,16 +972,8 @@ input[type=email] {
 /* line 288, ../../style/globals/_components.scss */
 .slideIn.hideFirst > li.first {
   position: absolute;
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
-  -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
-  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
-  transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 299, ../../style/globals/_components.scss */
+/* line 295, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right.open > li.first {
   -moz-transform: translate3d(128pt, 0, 0);
   -ms-transform: translate3d(128pt, 0, 0);
@@ -983,7 +981,7 @@ input[type=email] {
   transform: translate3d(128pt, 0, 0);
   opacity: 0;
 }
-/* line 305, ../../style/globals/_components.scss */
+/* line 301, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right > li.first {
   right: 8pt;
   -moz-transform: translate3d(0, 0, 0);
@@ -991,7 +989,7 @@ input[type=email] {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 313, ../../style/globals/_components.scss */
+/* line 309, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left.open > li.first {
   -moz-transform: translate3d(-128pt, 0, 0);
   -ms-transform: translate3d(-128pt, 0, 0);
@@ -999,7 +997,7 @@ input[type=email] {
   transform: translate3d(-128pt, 0, 0);
   opacity: 0;
 }
-/* line 319, ../../style/globals/_components.scss */
+/* line 315, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left > li.first {
   left: 8pt;
   -moz-transform: translate3d(-128pt, 0, 0);
@@ -1008,7 +1006,7 @@ input[type=email] {
   transform: translate3d(-128pt, 0, 0);
 }
 
-/* line 327, ../../style/globals/_components.scss */
+/* line 323, ../../style/globals/_components.scss */
 ul.headerMenu {
   position: absolute;
   display: inline-block;
@@ -1032,58 +1030,58 @@ ul.headerMenu {
   -webkit-transition-property: left, right, background, border, width, padding;
   transition-property: left, right, background, border, width, padding;
 }
-/* line 340, ../../style/globals/_components.scss */
+/* line 336, ../../style/globals/_components.scss */
 ul.headerMenu.left {
   float: left;
   left: -1px;
 }
-/* line 345, ../../style/globals/_components.scss */
+/* line 341, ../../style/globals/_components.scss */
 ul.headerMenu.right {
   right: -1px;
 }
-/* line 351, ../../style/globals/_components.scss */
+/* line 347, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.left {
   left: -384pt;
 }
-/* line 355, ../../style/globals/_components.scss */
+/* line 351, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.right {
   right: -384pt;
 }
-/* line 360, ../../style/globals/_components.scss */
+/* line 356, ../../style/globals/_components.scss */
 ul.headerMenu.open {
   background: white;
   border-color: rgba(0, 0, 0, 0.125);
   width: 192pt;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 366, ../../style/globals/_components.scss */
+/* line 362, ../../style/globals/_components.scss */
 ul.headerMenu.open.wide {
   width: 320pt;
 }
-/* line 370, ../../style/globals/_components.scss */
+/* line 366, ../../style/globals/_components.scss */
 ul.headerMenu.open.paddingBottom {
   padding-bottom: 48pt;
 }
-/* line 374, ../../style/globals/_components.scss */
+/* line 370, ../../style/globals/_components.scss */
 ul.headerMenu.open li {
   height: 16pt;
   margin-bottom: 8pt;
 }
-/* line 378, ../../style/globals/_components.scss */
+/* line 374, ../../style/globals/_components.scss */
 ul.headerMenu.open li a, ul.headerMenu.open li form {
   position: relative;
 }
-/* line 384, ../../style/globals/_components.scss */
+/* line 380, ../../style/globals/_components.scss */
 ul.headerMenu li {
   height: 0;
   margin-bottom: 0;
 }
 
-/* line 392, ../../style/globals/_components.scss */
+/* line 388, ../../style/globals/_components.scss */
 ul.menu section {
   padding-bottom: 16pt;
 }
-/* line 396, ../../style/globals/_components.scss */
+/* line 392, ../../style/globals/_components.scss */
 ul.menu li {
   position: relative;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1138,26 +1136,26 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-delay(.19s); }
   */
   /*
-          &:nth-of-type(1)  { @include transition-delay(.05s); }
-          &:nth-of-type(2)  { @include transition-delay(.1s); }
-          &:nth-of-type(3)  { @include transition-delay(.15s); }
-          &:nth-of-type(4)  { @include transition-delay(.2s); }
-          &:nth-of-type(5)  { @include transition-delay(.25s); }
-          &:nth-of-type(6)  { @include transition-delay(.3s); }
-          &:nth-of-type(7)  { @include transition-delay(.35s); }
-          &:nth-of-type(8)  { @include transition-delay(.4s); }
-          &:nth-of-type(9)  { @include transition-delay(.45s); }
-          &:nth-of-type(10) { @include transition-delay(.5s); }
-          &:nth-of-type(11) { @include transition-delay(.55s); }
-          &:nth-of-type(12) { @include transition-delay(.6s); }
-          &:nth-of-type(13) { @include transition-delay(.65s); }
-          &:nth-of-type(14) { @include transition-delay(.7s); }
-          &:nth-of-type(15) { @include transition-delay(.75s); }
-          &:nth-of-type(16) { @include transition-delay(.8s); }
-          &:nth-of-type(17) { @include transition-delay(.85s); }
-          &:nth-of-type(18) { @include transition-delay(.9s); }
-          &:nth-of-type(19) { @include transition-delay(.95s); }
-          &:nth-of-type(20) { @include transition-delay(1.0s); }
+          &:nth-of-type(1)  { @include transition-delay(.0s); }
+          &:nth-of-type(2)  { @include transition-delay(.025s); }
+          &:nth-of-type(3)  { @include transition-delay(.05s); }
+          &:nth-of-type(4)  { @include transition-delay(.075s); }
+          &:nth-of-type(5)  { @include transition-delay(.1s); }
+          &:nth-of-type(6)  { @include transition-delay(.125s); }
+          &:nth-of-type(7)  { @include transition-delay(.15s); }
+          &:nth-of-type(8)  { @include transition-delay(.175s); }
+          &:nth-of-type(9)  { @include transition-delay(.2s); }
+          &:nth-of-type(10) { @include transition-delay(.225s); }
+          &:nth-of-type(11) { @include transition-delay(.25s); }
+          &:nth-of-type(12) { @include transition-delay(.275s); }
+          &:nth-of-type(13) { @include transition-delay(.3s); }
+          &:nth-of-type(14) { @include transition-delay(.325s); }
+          &:nth-of-type(15) { @include transition-delay(.35s); }
+          &:nth-of-type(16) { @include transition-delay(.375s); }
+          &:nth-of-type(17) { @include transition-delay(.4s); }
+          &:nth-of-type(18) { @include transition-delay(.425s); }
+          &:nth-of-type(19) { @include transition-delay(.45s); }
+          &:nth-of-type(20) { @include transition-delay(.475s); }
   */
   /*
           &:nth-of-type(2)  { @include transition-duration(.1s); }
@@ -1181,11 +1179,11 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-duration(1.9s); }
   */
 }
-/* line 404, ../../style/globals/_components.scss */
+/* line 400, ../../style/globals/_components.scss */
 ul.menu li.inputText {
   margin-bottom: 32pt;
 }
-/* line 408, ../../style/globals/_components.scss */
+/* line 404, ../../style/globals/_components.scss */
 ul.menu li.heading {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -1194,20 +1192,20 @@ ul.menu li.heading {
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
-/* line 412, ../../style/globals/_components.scss */
+/* line 408, ../../style/globals/_components.scss */
 ul.menu li.hidden {
   height: 0;
   margin: 0;
   opacity: 0;
 }
-/* line 418, ../../style/globals/_components.scss */
+/* line 414, ../../style/globals/_components.scss */
 ul.menu li.first {
   opacity: 1;
   height: 16pt;
   cursor: pointer;
   margin-top: 4pt;
 }
-/* line 425, ../../style/globals/_components.scss */
+/* line 421, ../../style/globals/_components.scss */
 ul.menu li input {
   width: 100%;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1219,7 +1217,7 @@ ul.menu li input {
   -webkit-transition-property: width;
   transition-property: width;
 }
-/* line 431, ../../style/globals/_components.scss */
+/* line 427, ../../style/globals/_components.scss */
 ul.menu li a {
   position: relative;
   left: 0;
@@ -1228,11 +1226,11 @@ ul.menu li a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 436, ../../style/globals/_components.scss */
+/* line 432, ../../style/globals/_components.scss */
 ul.menu li a:hover, ul.menu li a:active, ul.menu li a:focus {
   left: 8pt;
 }
-/* line 441, ../../style/globals/_components.scss */
+/* line 437, ../../style/globals/_components.scss */
 ul.menu li > a {
   display: block;
   width: 100%;
@@ -1242,148 +1240,148 @@ ul.menu li > a {
   -webkit-transition-property: left, right, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, transform, -webkit-transform, -moz-transform;
 }
-/* line 517, ../../style/globals/_components.scss */
+/* line 490, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(1) {
-  -moz-transition-delay: 0s;
-  -o-transition-delay: 0s;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-/* line 518, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(2) {
-  -moz-transition-delay: 0.025s;
-  -o-transition-delay: 0.025s;
-  -webkit-transition-delay: 0.025s;
-  transition-delay: 0.025s;
-}
-/* line 519, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.05s;
   -o-transition-delay: 0.05s;
   -webkit-transition-delay: 0.05s;
   transition-delay: 0.05s;
 }
-/* line 520, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(4) {
-  -moz-transition-delay: 0.075s;
-  -o-transition-delay: 0.075s;
-  -webkit-transition-delay: 0.075s;
-  transition-delay: 0.075s;
-}
-/* line 521, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(5) {
+/* line 491, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 522, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(6) {
-  -moz-transition-delay: 0.125s;
-  -o-transition-delay: 0.125s;
-  -webkit-transition-delay: 0.125s;
-  transition-delay: 0.125s;
-}
-/* line 523, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(7) {
+/* line 492, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 524, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(8) {
-  -moz-transition-delay: 0.175s;
-  -o-transition-delay: 0.175s;
-  -webkit-transition-delay: 0.175s;
-  transition-delay: 0.175s;
-}
-/* line 525, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(9) {
+/* line 493, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 526, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(10) {
-  -moz-transition-delay: 0.225s;
-  -o-transition-delay: 0.225s;
-  -webkit-transition-delay: 0.225s;
-  transition-delay: 0.225s;
-}
-/* line 527, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(11) {
+/* line 494, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.25s;
   -o-transition-delay: 0.25s;
   -webkit-transition-delay: 0.25s;
   transition-delay: 0.25s;
 }
-/* line 528, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(12) {
-  -moz-transition-delay: 0.275s;
-  -o-transition-delay: 0.275s;
-  -webkit-transition-delay: 0.275s;
-  transition-delay: 0.275s;
-}
-/* line 529, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(13) {
+/* line 495, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 530, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(14) {
-  -moz-transition-delay: 0.325s;
-  -o-transition-delay: 0.325s;
-  -webkit-transition-delay: 0.325s;
-  transition-delay: 0.325s;
-}
-/* line 531, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(15) {
+/* line 496, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.35s;
   -o-transition-delay: 0.35s;
   -webkit-transition-delay: 0.35s;
   transition-delay: 0.35s;
 }
-/* line 532, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(16) {
-  -moz-transition-delay: 0.375s;
-  -o-transition-delay: 0.375s;
-  -webkit-transition-delay: 0.375s;
-  transition-delay: 0.375s;
-}
-/* line 533, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(17) {
+/* line 497, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 534, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(18) {
-  -moz-transition-delay: 0.425s;
-  -o-transition-delay: 0.425s;
-  -webkit-transition-delay: 0.425s;
-  transition-delay: 0.425s;
-}
-/* line 535, ../../style/globals/_components.scss */
-ul.menu li:nth-of-type(19) {
+/* line 498, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.45s;
   -o-transition-delay: 0.45s;
   -webkit-transition-delay: 0.45s;
   transition-delay: 0.45s;
 }
-/* line 536, ../../style/globals/_components.scss */
+/* line 499, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(10) {
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+/* line 500, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(11) {
+  -moz-transition-delay: 0.55s;
+  -o-transition-delay: 0.55s;
+  -webkit-transition-delay: 0.55s;
+  transition-delay: 0.55s;
+}
+/* line 501, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(12) {
+  -moz-transition-delay: 0.6s;
+  -o-transition-delay: 0.6s;
+  -webkit-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}
+/* line 502, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(13) {
+  -moz-transition-delay: 0.65s;
+  -o-transition-delay: 0.65s;
+  -webkit-transition-delay: 0.65s;
+  transition-delay: 0.65s;
+}
+/* line 503, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(14) {
+  -moz-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  -webkit-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+/* line 504, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(15) {
+  -moz-transition-delay: 0.75s;
+  -o-transition-delay: 0.75s;
+  -webkit-transition-delay: 0.75s;
+  transition-delay: 0.75s;
+}
+/* line 505, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(16) {
+  -moz-transition-delay: 0.8s;
+  -o-transition-delay: 0.8s;
+  -webkit-transition-delay: 0.8s;
+  transition-delay: 0.8s;
+}
+/* line 506, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(17) {
+  -moz-transition-delay: 0.85s;
+  -o-transition-delay: 0.85s;
+  -webkit-transition-delay: 0.85s;
+  transition-delay: 0.85s;
+}
+/* line 507, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(18) {
+  -moz-transition-delay: 0.9s;
+  -o-transition-delay: 0.9s;
+  -webkit-transition-delay: 0.9s;
+  transition-delay: 0.9s;
+}
+/* line 508, ../../style/globals/_components.scss */
+ul.menu li:nth-of-type(19) {
+  -moz-transition-delay: 0.95s;
+  -o-transition-delay: 0.95s;
+  -webkit-transition-delay: 0.95s;
+  transition-delay: 0.95s;
+}
+/* line 509, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
-  -moz-transition-delay: 0.475s;
-  -o-transition-delay: 0.475s;
-  -webkit-transition-delay: 0.475s;
-  transition-delay: 0.475s;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
 }
 
-/* line 563, ../../style/globals/_components.scss */
+/* line 559, ../../style/globals/_components.scss */
 .mask {
   height: 100vh;
   width: 100vw;
@@ -1393,7 +1391,7 @@ ul.menu li:nth-of-type(20) {
   background: transparent;
 }
 
-/* line 573, ../../style/globals/_components.scss */
+/* line 569, ../../style/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;

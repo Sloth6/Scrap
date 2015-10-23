@@ -183,7 +183,6 @@ realign = (animate) ->
   return if realignTimeout?
   clearTimeout realignTimeout
   realignTimeout = setTimeout (() -> realignTimeout = null), 100
-
   sliding = collectionChildren().filter('.sliding')
   lastX  = 0
   maxX   = -Infinity
