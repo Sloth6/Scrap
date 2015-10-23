@@ -8,9 +8,9 @@ $cardPaddingLeft:       $cell;
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
-$articleSideNarrow:    $col * 3;
-$articleSide:          $col * 4;
-$articleSideWide:      $col * 5;
+$articleSideNarrow:     $col * 3;
+$articleSide:           $col * 4;
+$articleSideWide:       $col * 5;
 $articleWidthVideo:     $col * 24;
 
 $articleMinHeight:     $articleSideNarrow;
@@ -29,17 +29,19 @@ $cardBoxShadowDimensions:   0 $cell/8 $cell/4 $cell/4;
 $cardBoxShadowColor:        rgba(0,0,0,.03125);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
+$cardBorderRadius:          $cell/4;
+
 @mixin cardStyle {
     background-color: $colorCardBackground;
     border: $cardBorder;
     padding: $cardPadding;
-    border-radius: $cell/4;
-            transform-origin: center center;
-    -webkit-transform-origin: center center;
+    border-radius: $cardBorderRadius;
+    //        transform-origin: center center;
+    //-webkit-transform-origin: center center;
 }
 
 @mixin cardHover {
-    @include transition(.125s $defaultCurve);
+    @include transition(.25s $defaultCurve);
     @include transition-property(transform,
                          -webkit-transform,
                             -moz-transform,
@@ -62,7 +64,7 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 @mixin cardDrag {
     &.dragging {
-        @include transform(rotate(4deg));
+        // @include transform(rotate(4deg));
     }
 }
 
@@ -141,7 +143,12 @@ a {
     position: absolute;
     bottom: $cardPaddingBottom/2;
     left: $cardPaddingLeft/2;
+    right: $cardPaddingLeft/2;
     @include typeBody;
+    
+    li.right {
+        float: right;
+    }
 }
 
 // Globals
@@ -280,10 +287,6 @@ input {
 
             &.first {
             position: absolute;
-            @include transition(1s $defaultCurve);
-            @include transition-property(transform,
-                                 -webkit-transform,
-                                    -moz-transform);
             }
         }
         
@@ -484,7 +487,6 @@ ul.menu {
         &:nth-of-type(20) { @include transition-delay(.19s); }
 */
 
-/*
         &:nth-of-type(1)  { @include transition-delay(.05s); }
         &:nth-of-type(2)  { @include transition-delay(.1s); }
         &:nth-of-type(3)  { @include transition-delay(.15s); }
@@ -505,8 +507,8 @@ ul.menu {
         &:nth-of-type(18) { @include transition-delay(.9s); }
         &:nth-of-type(19) { @include transition-delay(.95s); }
         &:nth-of-type(20) { @include transition-delay(1.0s); }
-*/
 
+/*
         &:nth-of-type(1)  { @include transition-delay(.0s); }
         &:nth-of-type(2)  { @include transition-delay(.025s); }
         &:nth-of-type(3)  { @include transition-delay(.05s); }
@@ -527,6 +529,7 @@ ul.menu {
         &:nth-of-type(18) { @include transition-delay(.425s); }
         &:nth-of-type(19) { @include transition-delay(.45s); }
         &:nth-of-type(20) { @include transition-delay(.475s); }
+*/
 
 
 /*

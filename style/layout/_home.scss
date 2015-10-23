@@ -50,8 +50,7 @@ body {
       		height: $coverHeight;
       		cursor: pointer;
       		overflow: hidden;
-      		border-radius: $cell/2;
-      		border-radius: 0 $cell $cell 0;
+      		border-radius: $cardBorderRadius $cell * 2 $cell * 2 $cardBorderRadius;
         		        		
         		&.hover {
             		ul.users {
@@ -63,12 +62,22 @@ body {
                 		h1.typeTitle {
                     		@include typeOutlineFillBlack;
                 		}
+            		
+                		.rename a {
+                    		opacity: .25;
+                		}
             		}
             		
             		.background {
                 		@include coverBackgroundDull;
             		}
             		
+        		}
+        		
+        		&.editing {
+            		section.title .rename a {
+                		opacity: .5;
+            		}
         		}
         		
         		.background {
@@ -79,8 +88,8 @@ body {
             		// For transition to spine view
 
             		&:hover {
-                		.rename {
-                    		opacity: 1;
+                		.rename a {
+                    		opacity: .5;
                 		}
             		}
         
@@ -103,8 +112,8 @@ body {
             		}
             		
             		h2 {
-                    transform-origin:           bottom right;
-                    -webkit-transform-origin:   bottom right;
+                    //transform-origin:           bottom right;
+                    //-webkit-transform-origin:   bottom right;
                     width: $coverHeight;
                 		white-space: nowrap;
                 		text-align: right;
@@ -119,13 +128,23 @@ body {
             		}
 
                 .rename {
-                    opacity: 0;
+                    z-index: 20;
+                    position: relative;
+                    margin-top: $cell;
                     
                     a {
                         display: inline-block;
                         padding: $cell * 2 $cell * 2 $cell * 2 $cell; // Larger click area
                         margin-left: -$cell;
                         margin-top: -$cell;
+                        opacity: 0;
+                        @include transition(.5s $defaultCurve);
+                        @include transition-property(opacity);
+
+                        
+                        &:hover {
+                            opacity: 1;
+                        }
                     }
                 }
         		}

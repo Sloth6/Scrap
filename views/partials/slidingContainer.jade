@@ -1,10 +1,11 @@
+
 .slidingContainer
 	//- .collection.root.closed(data-spacekey=collection.spaceKey, class=collection.spaceKey)
 	//- article.root.cover.slider.sliding(data-spacekey=collection.spaceKey, data-name=collection.name, class=collection.spaceKey)
 	
 	-var coverClasses = ['card','root', 'cover','slider','sliding', 'colored', collection.spaceKey]
-	-var content = JSON.stringify({'spaceKey': collection.spaceKey})
-	article(data-contenttype='cover', data-content=content, data-name=user.name, class=coverClasses)
+	-var content = collection.spaceKey
+	article(data-contenttype='addProjectForm', data-content=content, data-name=user.name, class=coverClasses)
 		//- .card.cardHover.colored(data-spacekey=collection.spaceKey)
 		section.title
 			h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name

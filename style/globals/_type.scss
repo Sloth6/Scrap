@@ -17,13 +17,18 @@ $leading:           		$cell * 2;
 
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
+$typeLargeSize:       18pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		54pt;
+$typeTitleSize:    		56pt;
+$typeSubtitleSize:    	36pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
 
-$typeHeaderLeading: 		24pt;
+$typeHeaderLeading:     24pt;
+$typeBodyLeading:       16pt;
+$typeLargeLeading:      24pt;
 $typeTitleLeading:      48pt;
+$typeSubtitleLeading:   36pt;
 
 $headerLeftMarginOffset:
                     -1.667pt;
@@ -35,9 +40,17 @@ $headerLeftMarginOffset:
     line-height:    $typeTitleLeading;
 }
 
+@mixin typeSubtitle {
+//     font-family:    $fontFamilySerif;
+    font-size:      $typeSubtitleSize;
+    font-weight:    $fontWeightBold;
+    letter-spacing: -(1em / 32);
+    line-height:    $typeSubtitleLeading;
+}
+
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightExtraLight;
+    font-weight:    $fontWeightMedium;
 //     font-family:    $fontFamilySerif;
     letter-spacing: -(1em / 24);
     line-height:    $typeHeaderLeading;
@@ -47,8 +60,16 @@ $headerLeftMarginOffset:
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
     font-weight:    $fontWeightLight;
-    line-height:    $leading;
-    letter-spacing: 0;
+    line-height:    $typeBodyLeading;
+    letter-spacing: (1em / 64);
+}
+
+@mixin typeLarge {
+    font-family:    $fontFamily;
+    font-size:      $typeLargeSize;
+    font-weight:    $fontWeightLight;
+    line-height:    $typeLargeLeading;
+    letter-spacing: -(1em / 64);
 }
 
 @mixin typeSmall {
@@ -67,6 +88,13 @@ $headerLeftMarginOffset:
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: (1em/16);
+}
+
+@mixin typeLargeSmallCaps {
+    @include        smallCaps;
+    font-size:      $typeLargeSize * .666;
     font-weight:    $fontWeightRegular;
     letter-spacing: (1em/16);
 }
@@ -114,6 +142,10 @@ html {
     @include typeTitle;
 }
 
+.typeSubtitle {
+    @include typeSubtitle;
+}
+
 .headerType {
     @include typeHeader;
 }
@@ -123,6 +155,14 @@ html {
             
     &.smallCaps {
       @include typeBodySmallCaps;
+    }
+}
+
+.largeType {
+    @include typeLarge;
+            
+    &.smallCaps {
+      @include typeLargeSmallCaps;
     }
 }
 
@@ -140,6 +180,12 @@ html {
 
 .typeOutlineClear {
     @include typeOutlineClear;
+}
+
+.typeOutlineBlackOnHover {
+    &:hover {
+        @include typeOutlineFillBlack;
+    }
 }
         
 p {

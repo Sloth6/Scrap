@@ -12,7 +12,7 @@ stopEditing = (cover) ->
   return unless cover.hasClass('editing')
   title  = cover.find('.collectionTitle')
   card   = cover.children('.card')
-  spaceKey = cover.data('content').spaceKey
+  spaceKey = cover.data('content')
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
 
@@ -44,9 +44,6 @@ startEditing = (cover) ->
   # Make user menu inaccessible during renaming
   userMenu.removeClass 'canOpen'
   userMenu.removeClass 'open'
-#   setTimeout( () ->
-#     userMenu.css('display', 'none')
-#   , 1000)
 
   rename.children('a').text 'Save'
   title.attr('contenteditable', true).focus()
@@ -62,9 +59,9 @@ coverClick = () ->
   return if $(@).hasClass 'dragging'
   if $(@).hasClass 'open'
     $(window).scrollLeft 0
-    collectionRealign.call $('.slidingContainer')
+    collectionRealignDontScale()
   else if !$(@).hasClass('editing')
-    spaceKey = $(@).data 'spacekey'
+    spaceKey = $(@).data('content')
     history.pushState { name: spaceKey }, "", "/s/#{spaceKey}"
     collectionOpen $(@)
 
@@ -77,12 +74,10 @@ bindCoverControls = (covers) ->
     rename.find('a').click (event) ->
       event.stopPropagation()
       if cover.hasClass('editing') then stopEditing cover else startEditing cover
-  
-
     # submit on enter
     cover.find('.addUser').on 'submit', (event) ->
       event.preventDefault()
-      spaceKey = cover.data('content').spaceKey
+      spaceKey = cover.data('content')
       input = $('input[name="user[email]"]', @)
       textField = $(@).children('label')
       
@@ -91,9 +86,17 @@ bindCoverControls = (covers) ->
         textField.html 'Please enter a valid email'
       else
         input.val ''
+        $('<li>').
+          addClass('user').
+          text('Joel Simon').
+          insertBefore cover.find('.user.add')
         textField.html 'An invite has been sent'
         addUser email, spaceKey
-        
+    
+    cover.find('ul.menu').each () ->
+      cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'
+      cover.mouseleave () => $(@).removeClass 'open' if $(@).hasClass 'canOpen'
+
   # dont open collection on clicking user field
   covers.find('.addUser input[name="user[email]"]').click (event) ->
     event.stopPropagation()
@@ -101,29 +104,29 @@ bindCoverControls = (covers) ->
   # dont open collection on submit
   covers.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
+ 
 
 
-      
-  covers.find('ul.menu').each () ->
-    $menu = $(@)
-    $cover = $menu.parent().parent('.cover')
+coverInit = (covers) ->
+  packInit = (cover, data) ->
+    cover.find('section.title').children('h1, h2, h3').text data.name
+    bindCoverControls cover
+    cover.find('.card').css 'background-color', data.color
+    for u in data.users
+      name = u.name or u.email
+      cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
 
-    $cover.mouseenter () ->
-      $menu.addClass 'open' if $menu.hasClass 'canOpen'
-    $cover.mouseleave () ->
-      $menu.removeClass 'open' if $menu.hasClass 'canOpen'
+  stackInit = (cover, data) ->
+    stack = stackCreate cover
+    stackPopulate stack
+    stack.click () ->
+      stack.empty()
+      coverClick.call $(@)
 
-getCoverData = (covers) ->
   covers.each () ->
-    cover = $(@)
-    content = $(@).data 'content'
-    # console.log 'content', content
-    $.get "/collectionData/#{content.spaceKey}", (data) ->
-      cover.find('section.title').children('h1, h2, h3').text data.name
-      for u in data.users
-        name = u.name or u.email
-        cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
+    spaceKey = $(@).data('content')
+    $.get "/collectionData/#{spaceKey}", (data) =>
+      if data.hasCover then packInit($(@), data) else stackInit($(@), data)
 
-$ ->
-  bindCoverControls $('.cover')
-      
+# $ ->
+#   coverInit $('.cover')

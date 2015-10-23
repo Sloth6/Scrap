@@ -1,16 +1,20 @@
+defaultText = '<p>Write a note or paste a link</p>'
+
 addElementController =
   #  Open closed menu items
   init: (menu) ->
     
     spacekey = menu.data 'spacekey'
-    input    = menu.find '.textInput'
+    input    = menu.find '.editable'
+
+    content = () ->
+      input.html()
     
     slideInFromSide = () ->
       if menu.hasClass 'peek'
-        console.log 'hey'
         menu.removeClass 'peek'
         menu.addClass 'slideInFromSide'
-        menu.find('textarea').select()
+        menu.find('.editable').select()
         menu.find('.upload').show()
   
     slideBackToSide = () ->
@@ -18,16 +22,19 @@ addElementController =
         menu.addClass 'peek'
         menu.removeClass 'slideInFromSide'
 
-    menu.find('textarea').on('focus', () ->
+    input.on 'focus', () ->
+      console.log 'blue', input[0]
       menu.addClass 'focus'
       menu.find('.card').addClass 'editing'
       menu.find('.done').removeClass 'invisible'
       menu.find('.upload').hide()
-    )
+      return false
 
-    menu.find('textarea').on('blur', () ->
-    # Blur with empty text area
-      if $(@).val() == ''
+    input.on 'blur', () ->
+      #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
+      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
+    #   # Blur with empty text area
+      if content() == ''
         menu.removeClass 'focus'
         slideBackToSide()
         addElementController.reset menu
@@ -36,18 +43,18 @@ addElementController =
         menu.find('.upload').show()
       else 
         menu.find('.upload').hide()
-    )
     
-    menu.find('textarea').bind "paste", () ->
+    input.bind "paste", () ->
+      return unless content() == ''
       setTimeout (() =>
-        emitNewElement $(@).val(), spacekey
+        emitNewElement content(), spacekey
         addElementController.reset menu
       ), 20
 
     menu.find('a.submit').click (event) ->
       menu.removeClass 'focus'
       slideBackToSide()
-      emitNewElement input.val(), spacekey
+      emitNewElement content(), spacekey
       addElementController.reset menu
       event.preventDefault()
 
@@ -62,7 +69,8 @@ addElementController =
     )
     
   reset: (menu) ->
-    menu.find('.text input,textarea').val('')
+    input = menu.find '.editable'
+    input.html('')
     menu.removeClass 'focus'
     menu.find('.card').removeClass 'editing'
      

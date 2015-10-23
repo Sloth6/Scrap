@@ -3,9 +3,9 @@ logistic = (x) -> 1/(1 + Math.pow(Math.E, -x))
 getTranslateX = (x, e) ->  
   border = sliderBorder()
 
-  maxX = $(window).width() - e.width()
+  maxX = $(window).width() - sliderWidth(e)
   right_start = $(window).width() - border
-  left_min = - e.width() + edgeWidth
+  left_min = - sliderWidth(e) + edgeWidth
   left_start = left_min + border
 
   if x > right_start
@@ -32,23 +32,34 @@ percentToBorder = (x, e, border) ->
   percent
 
 sliderJumble = () ->
-  if ($(@).hasClass 'cover')
-    maxYOffset = 200
-    maxRotate = 12
+  if $(@).hasClass 'cover'
+    maxRotate = 45
+    if not $(@).hasClass 'open'
+      maxYOffset = $(window).height() / 4
+      newMarginTop = ($(window).height() / 2) - ($(@).height() / 2)
+    else
+      maxYOffset = 50
+      newMarginTop = marginTop
   else
-    maxYOffset = 50
-    maxRotate = 4
+    maxRotate   = 4
+    maxYOffset  = 50
+    newMarginTop = marginTop
+  console.log 'marginTop', newMarginTop, $(@).attr 'class'
   $(@).data
-    'translateY': (Math.random()-.5) * maxYOffset
-    'rotateZ': Math.random() * maxRotate + (Math.random() * -maxRotate)
-    'scale': 1
+    'translateY': newMarginTop + ((Math.random()-.5) * maxYOffset)
+    'rotateZ':    Math.random() * maxRotate + (Math.random() * -maxRotate)
+    'scale':      1
 
 sliderInit = (elems) ->
   bindCardHover()
-  elems.each sliderJumble
+  elems.addClass('sliding')
   makeDraggable elems
   makeDeletable elems
+  # elems.find('.transforms').css 'transform-origin': 'center center'
+  # elems.find('.transforms').css '-webkit-transform-origin': 'center center'
   elems.each () ->
+    sliderJumble.call(@)
+    $(@).css y: $(@).data('translateY')
     switch $(@).data('contenttype')
       when 'text'
         makeModifiable $(@)
@@ -61,10 +72,11 @@ sliderInit = (elems) ->
       when 'youtube'
         bindYoutubeControls $(@)
       when 'cover'
-        bindCoverControls $(@)
-        getCoverData $(@)
+        coverInit $(@)
       when 'addElementForm'
         addElementController.init $(@)
+      when 'addProjectForm'
+        addProjectController.init $(@)
 
   elems.mouseover( () ->
     return unless $(@).hasClass('sliding')
@@ -72,8 +84,9 @@ sliderInit = (elems) ->
     return if x < edgeWidth or (x > $(window).width - edgeWidth)
     return if $(@).hasClass 'dragging'
     $(@).data 'oldZIndex', $(@).css('zIndex')
-    $(@).css 'zIndex', collectionChildren.call($('.slidingContainer')).length + 1
+    $(@).css 'zIndex', $.topZIndex('article')
   ).mouseout () ->
+    return if $(@).hasClass 'dragging'
     $(@).data('oldZIndex') and $(@).css 'zIndex', $(@).data('oldZIndex')
 
 slidingPlace = (animate = true) ->
@@ -83,9 +96,8 @@ slidingPlace = (animate = true) ->
   
   # Prevent stack from shifting to right when growing
   translateX -= .0001825 * rawX
-  
   # If slider is at edge
-  if translateX + $(@).width() < edgeWidth + 12 or translateX > $(window).width() - edgeWidth + 12
+  if translateX + sliderWidth($(@)) < edgeWidth or translateX > $(window).width() - edgeWidth
     $(@).addClass 'onEdge'
     # Make edge of card visible on open collections
     if $(@).hasClass 'cover'
@@ -109,9 +121,10 @@ slidingPlace = (animate = true) ->
   percentFromCenter = percentToBorder((translateX), $(@), $(window).width()/2)
   percentFromBorder = percentToBorder((translateX), $(@), sliderBorder())
 
+  # If is add element form or is cover of current collection
   if ($(@).hasClass('cover') and $(@).hasClass('open')) or $(@).hasClass('addElementForm')
-    translateY = 0
-  else if ($(@).hasClass('cover')) # Not the parent cover of the current collection
+    translateY = $(@).data('translateY')
+  else if $(@).hasClass('cover') and not $(@).hasClass 'open' # Not the parent cover of the current collection
     translateY = $(@).data('translateY')
   else
     translateY = $(@).data('translateY') * percentFromBorder
@@ -132,18 +145,22 @@ slidingPlace = (animate = true) ->
         properties:
           translateZ: 0
           translateX: [translateX, oldX]
-          scale: scale
           translateY: [translateY, yTransform($(@))]
+          scale: scale
           rotateZ: rotateZ
 
       $(@).velocity animateOptions
-    
+
   # On Scroll
   else
-    options = {x: translateX}
-    options.y = translateY if translateY?
+    options = { x: translateX }
+    # options.y = translateY if translateY?
+    options.y = $(@).data('translateY')
     if $(@).data('rotateZ')
-        options.rotate3d = "0,0,1,#{rotateZ}deg" 
+      options.rotate3d = "0,0,1,#{rotateZ}deg" 
     if $(@).data('scale')
-        options.scale = scale
+      options.scale = scale
     $(@).css options
+
+sliderWidth = (elem) ->
+  elem.data('width') or elem.find('.card').width()

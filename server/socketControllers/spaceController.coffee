@@ -2,8 +2,8 @@ models = require '../../models'
 mail = require '../adapters/nodemailer'
 newSpace = require '../newSpace'
 async = require 'async'
-newElements = require './newElements'
 coverColor = require '../modules/coverColor'
+addUserToSpace = require '../addUserToSpace'
 
 element_jade = null
 require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
@@ -17,9 +17,9 @@ module.exports =
   reorderElements: (sio, socket, data) ->
     { spaceKey, elementOrder } = data
     elementOrder = JSON.parse elementOrder
-    console.log elementOrder
+    # console.log elementOrder
     models.Space.update({elementOrder}, {spaceKey}).complete (err) ->
-      console.log err
+      console.log(err) if err?
 
   rename: (sio, socket, data, callback) ->
     { spaceKey, name } = data
@@ -27,6 +27,33 @@ module.exports =
       return callback err if err?
       console.log "updated name of #{spaceKey} to #{name}"
         # sio.to("#{spaceKey}").emit 'updateElement', data
+  
+  addUserToSpace: (sio, socket, data, callback) =>
+    { email, spaceKey } = data
+    console.log "Inviting #{email} to #{spaceKey}"
+    return callback('invalid') unless email?
+    return callback('invalid') unless spaceKey?
+    complete = (err, html, space) ->
+      domain = 'http://tryScrap.com'
+      title = "<a href=\"#{domain}s/#{spaceKey}\">#{space.name}</a>"
+      subject = "#you were invited to #{space.name} on Scrap."
+      
+      html = "
+          <h1>View #{title} on Scrap.</h1>
+          <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
+          <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
+      mail.send { to: email, subject: subject, text: html, html: html }
+      sio.to(spaceKey).emit 'newElement', { html, spaceKey }
+
+    models.User.find( where: { email }).success (user) ->
+      return callback(err) if err?
+      return addUserToSpace(user, spaceKey, complete) if user?
+      models.User.create({ email, name:email }).complete (err, user) ->
+        return callback err if err?
+        firstSpaceOptions = { UserId: user.id, name: user.name, root: true }
+        newSpace firstSpaceOptions, (err) ->
+          return callback err if err?
+          addUserToSpace(user, spaceKey, complete) if user?
 
   newCollection: (sio, socket, data) ->
     spaceKey = data.spaceKey # SpaceKey will be the parent of the new collection
@@ -38,11 +65,10 @@ module.exports =
     # Dragged and draggedOver and the elements that created the collection
     
     async.waterfall [
-      
       # Create the new space
       (cb) ->
         console.log "Creating the new space"
-        newSpace { userId }, cb
+        newSpace { UserId: userId, hasCover:false }, cb
 
       # Move elements to the new space
       (newSpace, cb) -> 
@@ -51,8 +77,11 @@ module.exports =
                       SET \"SpaceId\" = '#{newSpace.id}'
                       WHERE id = #{draggedId} or id = #{draggedOverId};
                       "
-        models.sequelize.query(updateQuery).complete (err) ->
-          if err then cb err else cb null, newSpace
+        newSpace.elementOrder = [draggedId, draggedOverId]
+        newSpace.save().complete (err) ->
+          return cb(err) if err 
+          models.sequelize.query(updateQuery).complete (err) ->
+            if err then cb err else cb null, newSpace
 
       # Get the parent space
       (newSpace, cb) ->
@@ -63,18 +92,17 @@ module.exports =
       # Create cover element
       (newSpace, parentSpace, cb) ->
         console.log "Creating cover element"
-
         coverAttributes =
           SpaceId: parentSpace.id
           creatorId: userId
           contentType: 'cover'
-          content: JSON.stringify {
-                      spaceKey: newSpace.spaceKey
-                      name: newSpace.name
-                      backgroundColor: coverColor()
-                    }
+          content: newSpace.spaceKey
+ 
         models.Element.create(coverAttributes).complete (err, cover) ->
-          if err then cb err else cb null, parentSpace, cover
+          if err then cb err
+          newSpace.coverId = cover.id
+          newSpace.save().complete (err) ->
+            if err then cb err else cb null, parentSpace, cover
 
       # Change element order
       (parentSpace, cover, cb) ->
@@ -106,3 +134,4 @@ module.exports =
       })
 
       sio.to("#{spaceKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
+

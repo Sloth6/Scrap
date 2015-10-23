@@ -42,7 +42,7 @@ module.exports =
         req.session.currentUserId = user.id
         # create the users root space
         firstSpaceOptions =
-          userId: user.id
+          UserId: user.id
           spaceName: user.name
           root: true
         newSpace firstSpaceOptions, (err) ->
@@ -65,6 +65,7 @@ module.exports =
       console.log err, !!user
       return res.status(400).send if err?
       return res.status(400).send "No account found for that email" if not user?
+      return res.status(400).send "Sign up to activate this account" if user? and !user.password
       user.verifyPassword password, (err, result) ->
         return res.status(400).send err if err?
         # render first space on success

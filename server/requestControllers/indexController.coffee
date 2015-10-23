@@ -2,7 +2,7 @@ models = require '../../models'
 
 indexPage = (res) ->
   res.render 'index.jade',
-    title : 'Scrap · Keep Everything for Your Project in One Place'
+    title : 'Scrap'
     description: ''
     author: 'scrap'
     names: { 1: "" }
