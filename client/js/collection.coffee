@@ -72,7 +72,7 @@ collectionOpen = (cover, options = {}) ->
 
     # If leaving root collection, animate in back button
     if parentCover.hasClass('root')
-      $('header.main .backButton').addClass 'visible'
+      $('header.main .backButton.main').addClass 'visible'
       moveBackButton(32)
 
     collectionRealign()
@@ -106,7 +106,7 @@ collectionClose = (options = {}) ->
 
   # If entering root collection, animate out back button
   if parentCover.hasClass('root')
-    $('header.main .backButton').removeClass 'visible'
+    $('header.main .backButton.main').removeClass 'visible'
     moveBackButton(0)
   
   if draggingElement?
@@ -233,7 +233,7 @@ collectionElemAfter = (x) ->
   $()
   
 moveBackButton = (x) ->
-  $('header.main .backButton').velocity
+  $('header.main .backButton.main').velocity
     properties:
       translateX: x
     options:
