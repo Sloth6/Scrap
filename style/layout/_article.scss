@@ -349,7 +349,6 @@ section.container section.space section.content{
                             margin-top: $cell/2;
                             @include transition(.25s $defaultCurve);
                             @include transition-property(opacity);
-                            opacity: 0;
                         }
                     }
 

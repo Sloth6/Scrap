@@ -44,13 +44,13 @@ $headerLeftMarginOffset:
 //     font-family:    $fontFamilySerif;
     font-size:      $typeSubtitleSize;
     font-weight:    $fontWeightBold;
-    letter-spacing: -(1em / 32);
+    letter-spacing: -(1em / 24);
     line-height:    $typeSubtitleLeading;
 }
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightExtraLight;
 //     font-family:    $fontFamilySerif;
     letter-spacing: -(1em / 24);
     line-height:    $typeHeaderLeading;
