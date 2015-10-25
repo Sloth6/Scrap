@@ -327,7 +327,7 @@ ul.headerMenu {
     white-space: nowrap;
     border: $cardBorder;
     border-color: transparent;
-    background-color: transparent;
+    background: $colorCardBackground;
     width: 0;
     top: -$cardBorderWidth;
     @include typeBody;
@@ -336,11 +336,11 @@ ul.headerMenu {
         
     &.left {
         float: left;
-        left: -$cardBorderWidth;
+        left: -$cardBorderWidth * 2;
     }
     
     &.right {
-        right: -$cardBorderWidth;
+        right: -$cardBorderWidth * 2;
     }
     
     &.hidden {
@@ -355,7 +355,6 @@ ul.headerMenu {
     }
     
     &.open {
-        background: $colorCardBackground;
         border-color: $cardBorderColor;
         width: $articleSideNarrow;
         padding: $cardPadding;
@@ -403,7 +402,7 @@ ul.menu {
         }
                                 
         &.inputText {
-            margin-bottom: $typeBodyLeading
+            margin-top: $typeBodyLeading;
         }
                                         
         &.heading {

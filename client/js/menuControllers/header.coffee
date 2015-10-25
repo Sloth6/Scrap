@@ -60,5 +60,6 @@ $ ->
             $menu.addClass('wide paddingBottom')
             console.log 'subMenuIsOpen'
     
-        $menu.find($('.backButton')).click ->
+        $menu.find($('.backButton a')).click (event) ->
+            event.preventDefault()
             resetSubmenu()
