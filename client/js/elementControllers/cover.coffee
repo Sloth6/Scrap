@@ -11,7 +11,7 @@ addUser = (email, spaceKey) ->
 stopEditing = (cover) ->
   return unless cover.hasClass('editing')
   title  = cover.find('.collectionTitle')
-  card   = cover.children('.card')
+  card   = cover.find('.card')
   spaceKey = cover.data('content')
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
@@ -30,7 +30,7 @@ stopEditing = (cover) ->
 
 startEditing = (cover) ->
   title  = cover.find('.collectionTitle')
-  card   = cover.children('.card')
+  card   = cover.find('.card')
   spaceKey = cover.data 'spacekey'
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
