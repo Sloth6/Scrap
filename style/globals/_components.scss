@@ -157,6 +157,15 @@ a {
     opacity: 0;
 }
 
+.backButton {
+    a {
+        @include typeHeader;
+        font-size: $typeHeaderSize * 2;
+        font-weight: $fontWeightThin;
+    }
+    
+}
+
 // Forms
 
 form {
@@ -175,9 +184,6 @@ label {
 
 @mixin placeHolderOverride {
     color: $colorType;
-    opacity: .2;
-//     font-style: italic;
-    text-transform: lowercase;
 }
 
 ::-webkit-input-placeholder {
@@ -216,12 +222,7 @@ input {
         width: 1em;
         margin-left: -1.5em;
         margin-right: .5em;
-    }
-    
-    &[type=email] {
-        text-transform: lowercase;
-    }
-    
+    }    
 }
 
 .slideIn {
@@ -397,8 +398,12 @@ ul.menu {
                              -webkit-transform,
                                 -moz-transform);
                                 
+        &.backButton {
+            padding-bottom: $typeBodyLeading;
+        }
+                                
         &.inputText {
-            margin-bottom: $leading * 2;
+            margin-bottom: $typeBodyLeading
         }
                                         
         &.heading {
@@ -409,6 +414,7 @@ ul.menu {
             height: 0;
             margin: 0;
             opacity: 0;
+            padding: 0;
         }
           
         &.first {

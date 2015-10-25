@@ -1,5 +1,5 @@
 header.main {
-    .backButton {
+    .backButton.main {
         position: absolute;
         top: 0;
         left: -50px;
@@ -14,17 +14,12 @@ header.main {
 
         a {
             display: block;
-            padding: 0 12px 12px 24px;
-    
-            @include typeHeader;
-            font-size: $typeHeaderSize * 2;
-            font-weight: $fontWeightThin;
+            padding: 0 12px 12px 24px;            
             @include transform(translate3d(0px, 0px, 0px));
             @include transition(.25s $defaultCurve);
             @include transition-property(transform,
                                  -webkit-transform,
                                     -moz-transform);
-            
         }
     }
 }
