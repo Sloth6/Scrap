@@ -1,4 +1,5 @@
 $headerHeight:          25vh;
+$coverHeight:  $col * 6;
 
 $cardPaddingTop:        $cell;
 $cardPaddingRight:      $cell;
@@ -68,6 +69,42 @@ $cardBorderRadius:          $cell/4;
     }
 }
 
+@mixin cardEditing {
+    border-style: dashed !important;
+    border-color: $colorType !important;
+    background-color: $colorCardBackground !important;
+}
+
+@mixin coverBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    background-size: cover;
+      mix-blend-mode: multiply;
+    -webkit-filter: brightness(2) contrast(1) grayscale(1);
+    // Disabled transition because of flickering bug in Chrome
+    // 	@include transition(.25s $defaultCurve);
+    // 	@include transition-property(opacity, -webkit-filter);
+}
+
+@mixin coverBackgroundDull {
+    opacity: .125;
+    // 	  mix-blend-mode: screen;
+    -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
+}
+
+@mixin cardCover {
+    position: relative;
+	width: $articleSide;
+	height: $coverHeight;
+	cursor: pointer;
+	overflow: hidden;
+
+}
+
 @mixin button {
 }
 
@@ -122,7 +159,7 @@ a {
     
 .card {
     @include cardStyle;
-    display: block;    
+    display: block;
 }
 
 .cardHover {
@@ -134,9 +171,7 @@ a {
 }
 
 .card.editing {
-    border-style: dashed !important;
-    border-color: $colorType !important;
-    background-color: $colorCardBackground !important;
+    @include cardEditing;
 }
 
 .cardActions {
@@ -151,7 +186,6 @@ a {
     }
 }
 
-
 .newCard {
     border-style: dashed;
     
@@ -160,6 +194,9 @@ a {
     }
 }
 
+.card.cover, .cover .card {
+    @include cardCover;
+}
 
 // Globals
 

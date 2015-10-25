@@ -19,7 +19,7 @@ $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
 $typeLargeSize:       18pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		56pt;
+$typeTitleSize:    		52pt;
 $typeSubtitleSize:    	36pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
@@ -36,7 +36,7 @@ $headerLeftMarginOffset:
 //     font-family:    $fontFamilySerif;
     font-size:      $typeTitleSize;
     font-weight:    $fontWeightExtraBold;
-    letter-spacing: -(1em / 32);
+    letter-spacing: -(1em / 24);
     line-height:    $typeTitleLeading;
 }
 

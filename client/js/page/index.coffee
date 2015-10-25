@@ -79,7 +79,6 @@ reverseAnimateCollection = ($section, $collection, $cover, $cards) ->
   $collection.data('stackHasOpened', false)
 
 animateCollection = ($section, $collection, $cover, $cards) ->
-  isJoin                  = $section.hasClass 'join'
   cardSpacing             = 24
   maxRotate               = 12
   translateXToWindowLeft  = (cardSpacing/2) + ((coverWidth / 2) - ($(window).width()/2))
@@ -87,8 +86,8 @@ animateCollection = ($section, $collection, $cover, $cards) ->
   
   $cover.velocity {
     translateZ:   0
-    translateX:   if isJoin then 0 else translateXToWindowLeft
-    translateY:   if isJoin then -$(window).height() / 8 else 0
+    translateX:   if $section.hasClass 'join' then 0 else translateXToWindowLeft
+    translateY:   if $section.hasClass 'join' then -$(window).height() / 4 else 0
   }, {
     duration: collectionOpenDuration
     easing: basicSpring

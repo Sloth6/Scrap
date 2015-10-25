@@ -27,10 +27,7 @@ section.page {
             padding-bottom: $broadMargin;
         }
         
-        &.cover {
-          		width: $articleSide;
-          		height: $coverHeight;
-            
+        &.cover {            
             @media screen and (max-width: 640px) {
                 width: 90%;
                 max-width: $articleSide;
@@ -122,6 +119,7 @@ section.page.index {
                 
                 .cover {
                     margin-top: 25vh;
+                    @include cardEditing;
                 }
             }
             
