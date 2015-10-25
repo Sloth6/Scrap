@@ -70,8 +70,6 @@ coverClick = () ->
     }, ""
 
     state = 
-      # scrollLeft: $(window).scrollLeft()
-      # docWidth: $(window.document).width()
       name: spaceKey
     
     history.pushState state, "", "/s/#{spaceKey}"
@@ -116,8 +114,6 @@ bindCoverControls = (covers) ->
   # dont open collection on submit
   covers.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
- 
-
 
 coverInit = (covers) ->
   packInit = (cover, data) ->

@@ -47,7 +47,7 @@ sliderInit = (elems) ->
   elems.each () ->
     switch $(@).data('contenttype')
       when 'text'
-        makeModifiable $(@)
+        textInit $(@)
       when 'video'
         bindVideoControls $(@)
       when 'file'
