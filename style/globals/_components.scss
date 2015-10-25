@@ -151,6 +151,16 @@ a {
     }
 }
 
+
+.newCard {
+    border-style: dashed;
+    
+    &:hover {
+    		  border-color: $colorType;
+    }
+}
+
+
 // Globals
 
 .invisible {

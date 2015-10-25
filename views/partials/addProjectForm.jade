@@ -1,7 +1,7 @@
 - var coverClasses = [ 'cover', 'closed', 'slider', 'sliding', 'editing', 'addProjectForm', 'element' ]
 - var defaulttext = "New Project"
 article(data-contenttype='addProjectForm', data-defaulttext=defaulttext, class=coverClasses)
-  .card.cardHover.cardDrag.colored()
+  .card.newCard()
     section.title
       h1.collectionTitle.typeTitle.typeOutlineClear!=defaulttext
       h2.peekTitle.bodyType.typeBody.typeWeightBold!=defaulttext

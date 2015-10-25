@@ -1,189 +1,193 @@
 $coverHeight:  $col * 6;
 
 @mixin coverBackground {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	opacity: 1;
-	background-size: cover;
-    mix-blend-mode: multiply;
-	-webkit-filter: brightness(2) contrast(1) grayscale(1);
-	// Disabled transition because of flickering bug in Chrome
-// 	@include transition(.25s $defaultCurve);
-// 	@include transition-property(opacity, -webkit-filter);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    background-size: cover;
+      mix-blend-mode: multiply;
+    -webkit-filter: brightness(2) contrast(1) grayscale(1);
+    // Disabled transition because of flickering bug in Chrome
+    // 	@include transition(.25s $defaultCurve);
+    // 	@include transition-property(opacity, -webkit-filter);
 }
 
 @mixin coverBackgroundDull {
-	opacity: .125;
-// 	  mix-blend-mode: screen;
-	-webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
+    opacity: .125;
+    // 	  mix-blend-mode: screen;
+    -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
 body {
   
-	article.cover {
-    	
-    	    &.root {
-        	    display: none;
-    	    }
-    	
-    	    &.peek.open {
-        	    .card {
-            	    .background {
-                	    @include coverBackgroundDull;
-            	    }
-            		section.title {
-                		h1 {
-                    		@include transform(translate(-128px, 0px));
-                		}
-                		
-                		h2 {
-                    		@include transform(rotate(270deg));
-                		}
-            		}
-        	    }
-    	    }
-    	
-        .card {
-            position: relative;
-          		width: $articleSide;
-          		height: $coverHeight;
-          		cursor: pointer;
-          		overflow: hidden;
-        		        		
-        		&.hover {
-            		ul.users {
-                		opacity: 1;
-            		}
+    	article.cover {
+      	
+      	    &.root {
+          	    display: none;
+      	    }
+      	
+      	    &.peek.open {
+          	    .card {
+              	    .background {
+                  	    @include coverBackgroundDull;
+              	    }
+              		section.title {
+                  		h1 {
+                      		@include transform(translate(-128px, 0px));
+                  		}
+                  		
+                  		h2 {
+                      		@include transform(rotate(270deg));
+                  		}
+              		}
+          	    }
+      	    }
+      	
+          .card {
+              position: relative;
+            		width: $articleSide;
+            		height: $coverHeight;
+            		cursor: pointer;
+            		overflow: hidden;
             		
-            		section.title {
-                		
-                		h1.typeTitle {
-                    		@include typeOutlineFillBlack;
-                		}
-            		
-                		.rename a {
-                    		opacity: .25;
-                		}
+            		&.hover, &.editing {
+              		  section.title {
+                		    h1.typeTitle {
+                        		@include typeOutlineFillBlack;
+                    		}
+              		  }
             		}
-            		
-            		.background {
-                		@include coverBackgroundDull;
-            		}
-            		
-        		}
-        		
-        		&.editing {
-            		section.title .rename a {
-                		opacity: .5;
-            		}
-        		}
-        		
-        		.background {
-            		@include coverBackground;
-        		}
-        		
-        		section.title {
-            		// For transition to spine view
-
-            		&:hover {
-                		.rename a {
-                    		opacity: .5;
-                		}
-            		}
-        
-            		h1 {
-              		  margin-top:  -.0625em;
-              		  margin-left: -.03125em;
-                  margin-right: $cardPaddingRight/2;
-                  outline: 0;
-                  word-wrap: break-word;
-                		@include transform(translate(0px, 0px));
-                  @include transition(.25s $defaultCurve);
-                  @include transition-property(
-                              transform,
-                      -webkit-transform,
-                         -moz-transform,
-                      -webkit-text-fill-color,
-                      -webkit-text-stroke,
-                              color
-                  );
-            		}
-            		
-            		h2 {
-                    //transform-origin:           bottom right;
-                    //-webkit-transform-origin:   bottom right;
-                  width: $coverHeight;
-                		white-space: nowrap;
-                		text-align: right;
-                		position: absolute;
-                		top: -$cell*1.25;
-                		right: $cell/2.5;
-                		@include transform(rotate(270deg) translate(0px, 36px));
-                    @include transition(.5s $defaultCurve);
-                    @include transition-property(transform,
-                                         -webkit-transform,
-                                            -moz-transform);
-            		}
-
-                .rename {
-                    z-index: 20;
-                    position: relative;
-                    margin-top: $cell;
-                    
-                    a {
-                        display: inline-block;
-                        padding: $cell * 2 $cell * 2 $cell * 2 $cell; // Larger click area
-                        margin-left: -$cell;
-                        margin-top: -$cell;
-                        opacity: 0;
-                        @include transition(.5s $defaultCurve);
-                        @include transition-property(opacity);
-
-                        
-                        &:hover {
-                            opacity: 1;
-                        }
-                    }
-                }
-        		}
-        		
-        		.elementCount {
-            		position: absolute;
-            		top: 0;
-            		right: 0;
-            		opacity: 0;
-        		}
-        		
-        		ul.users {
+          		        		
+          		&.hover {
+              		ul.users {
+                  		opacity: 1;
+              		}
+              		
+              		section.title {
+                  		
+                  		.rename a {
+                      		opacity: .25;
+                  		}
+              		}
+              		
+              		.background {
+                  		@include coverBackgroundDull;
+              		}
+              		
+          		}
+          		
+          		&.editing {
+              		section.title .rename a {
+                  		opacity: .5;
+              		}
+          		}
+          		          		
+          		.background {
+              		@include coverBackground;
+          		}
+          		
+          		section.title {
+              		// For transition to spine view
+  
+              		&:hover {
+                  		.rename a {
+                      		opacity: .5;
+                  		}
+              		}
+          
+              		h1 {
+                		  margin-top:  -.0625em;
+                		  margin-left: -.03125em;
+                    margin-right: $cardPaddingRight/2;
+                    outline: 0;
+                    word-wrap: break-word;
+                  		@include transform(translate(0px, 0px));
+                    @include transition(.25s $defaultCurve);
+                    @include transition-property(
+                                transform,
+                        -webkit-transform,
+                           -moz-transform,
+                        -webkit-text-fill-color,
+                        -webkit-text-stroke,
+                                color
+                    );
+              		}
+              		
+              		h2 {
+                      //transform-origin:           bottom right;
+                      //-webkit-transform-origin:   bottom right;
+                    width: $coverHeight;
+                  		white-space: nowrap;
+                  		text-align: right;
+                  		position: absolute;
+                  		top: -$cell*1.25;
+                  		right: $cell/2.5;
+                  		@include transform(rotate(270deg) translate(0px, 36px));
+                      @include transition(.5s $defaultCurve);
+                      @include transition-property(transform,
+                                           -webkit-transform,
+                                              -moz-transform);
+              		}
+  
+                  .rename {
+                      z-index: 20;
+                      position: relative;
+                      margin-top: $cell;
+                      
+                      a {
+                          display: inline-block;
+                          padding: $cell * 2 $cell * 2 $cell * 2 $cell; // Larger click area
+                          margin-left: -$cell;
+                          margin-top: -$cell;
+                          opacity: 0;
+                          @include transition(.5s $defaultCurve);
+                          @include transition-property(opacity);
+  
+                          
+                          &:hover {
+                              opacity: 1;
+                          }
+                      }
+                  }
+          		}
+          		
+          		.elementCount {
+              		position: absolute;
+              		top: 0;
+              		right: 0;
+              		opacity: 0;
+          		}
+          		
+          		ul.users {
                 position: absolute;
                 width: 50%;
                 bottom: 0;
-            		@include typeSmall;
-            		@include transition(opacity .25s $defaultCurve);
-            		
-            		li.add {
-                		width: 100%;
-                		
-                    label {
-                        display: block;
-                    }
-                    
-                		input[type=email] {
-                    		padding-right: $cell * 3;
-                    		width: auto;
-                		}
-                		
-                		input[type=submit] {
-                    		position: absolute;
-                    		top: 0;
-                    		text-align: right;
-                    		right: -$cell * 3;
-                    		width: $cell * 3;
-                		}
-            		}
-        		}
+              		@include typeSmall;
+              		@include transition(opacity .25s $defaultCurve);
+              		
+              		li.add {
+                  		width: 100%;
+                  		
+                      label {
+                          display: block;
+                      }
+                      
+                  		input[type=email] {
+                      		padding-right: $cell * 3;
+                      		width: auto;
+                  		}
+                  		
+                  		input[type=submit] {
+                      		position: absolute;
+                      		top: 0;
+                      		text-align: right;
+                      		right: -$cell * 3;
+                      		width: $cell * 3;
+                  		}
+              		}
+          		}
         	}
-	}
+    	}
 }

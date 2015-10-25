@@ -11,7 +11,7 @@ collectionCloseByDragTopTime = 500
 scrollInterval = null
 draggingOnBorder = false
 draggingOnEdgeSpeed = .1
-draggingScale = 0.5
+draggingScale = 0.25
 
 
 leftCenterRight = (x, element) ->
