@@ -158,16 +158,11 @@ a {
 }
 
 .backButton {
-    display: block;
-    padding-bottom: $typeBodyLeading;
-    @include typeHeader;
-    font-size: $typeHeaderSize * 2;
-    font-weight: $fontWeightThin;
-    @include transform(translate3d(0px, 0px, 0px));
-    @include transition(.25s $defaultCurve);
-    @include transition-property(transform,
-                         -webkit-transform,
-                            -moz-transform);
+    a {
+        @include typeHeader;
+        font-size: $typeHeaderSize * 2;
+        font-weight: $fontWeightThin;
+    }
     
 }
 
@@ -402,6 +397,10 @@ ul.menu {
                                      transform,
                              -webkit-transform,
                                 -moz-transform);
+                                
+        &.backButton {
+            padding-bottom: $typeBodyLeading;
+        }
                                 
         &.inputText {
             margin-bottom: $typeBodyLeading
