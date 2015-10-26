@@ -1,5 +1,5 @@
 defaultCurve            = 'easeOutExpo'
-openCollectionCurve     = [50, 8]
+openCollectionCurve     = [20, 10]
 openCollectionDuration  = 1000
 
 marginTop = $(window).height() * 0.15

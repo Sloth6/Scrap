@@ -833,7 +833,7 @@ a.confirm:hover {
 .card.cover, .cover .card {
   position: relative;
   width: 224pt;
-  height: 280pt;
+  height: 336pt;
   cursor: pointer;
   overflow: hidden;
 }
@@ -2107,7 +2107,7 @@ section.container section.space section.content article.addElementForm .translat
 }
 /* line 91, ../../style/layout/_home.scss */
 .cover .card section.title h2, .cover.card section.title h2 {
-  width: 280pt;
+  width: 336pt;
   white-space: nowrap;
   text-align: right;
   position: absolute;
