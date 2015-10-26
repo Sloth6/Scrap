@@ -205,10 +205,12 @@ initScaleCover = ($scaleCover, $normalCover) ->
 #     backgroundColor: $normalCover[0].style.backgroundColor
   }
   
-  $scaleCover.children('h1').css {
+  $scaleCover.find('h1').css {
     letterSpacing: parseFloat($normalH1.css('letter-spacing')) / scaleRatio + 'px'
     lineHeight:    parseFloat($normalH1.css('line-height')) / scaleRatio + 'px'
     fontSize:      parseFloat($normalH1.css('font-size')) / scaleRatio + 'px'
+    marginTop:     parseFloat($normalH1.css('margin-top')) / scaleRatio + 'px'
+    marginLeft:    parseFloat($normalH1.css('margin-left')) / scaleRatio + 'px'
   }
 
 initSections = ($sections) ->

@@ -24,7 +24,6 @@ $ ->
         resetSubmenu = ->
             $menu.find($('ul.submenu li')).addClass 'hidden'
             $menu.find($('li.hideOnOpenSubmenu')).removeClass 'hidden'
-            $menu.removeClass('wide')
             $menu.removeClass('paddingBottom')
             inputIsFocused = false
             subMenuIsOpen = false
@@ -57,7 +56,7 @@ $ ->
             subMenuIsOpen = true
             $('ul.submenu li.hidden').removeClass 'hidden'
             $('li.hideOnOpenSubmenu').addClass 'hidden'
-            $menu.addClass('wide paddingBottom')
+            $menu.addClass('paddingBottom')
             console.log 'subMenuIsOpen'
     
         $menu.find($('.backButton a')).click (event) ->

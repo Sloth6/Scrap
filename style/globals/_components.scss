@@ -1,5 +1,4 @@
 $headerHeight:          25vh;
-$coverHeight:  $col * 6;
 
 $cardPaddingTop:        $cell;
 $cardPaddingRight:      $cell;
@@ -14,7 +13,11 @@ $articleSide:           $col * 4;
 $articleSideWide:       $col * 5;
 $articleWidthVideo:     $col * 24;
 
-$articleMinHeight:     $articleSideNarrow;
+$articleMinHeight:      $articleSideNarrow;
+
+$coverWidth:            $articleSide;
+$coverHeight:           $articleSideWide;
+
 
 $menuWidth: $articleSide;
 $menuItemHeight: $leading;
@@ -98,11 +101,10 @@ $cardBorderRadius:          $cell/4;
 
 @mixin cardCover {
     position: relative;
-	width: $articleSide;
+	width: $coverWidth;
 	height: $coverHeight;
 	cursor: pointer;
 	overflow: hidden;
-
 }
 
 @mixin button {
@@ -315,10 +317,6 @@ input {
             
             input {
                 text-align: left;
-                
-                &[type=button], &[type=submit] {
-                    text-align: right;
-                }
             }
             
         }
@@ -448,8 +446,8 @@ ul.menu {
             padding-bottom: $typeBodyLeading;
         }
                                 
-        &.inputText {
-            margin-top: $typeBodyLeading;
+        &.input {
+            margin-top: $cell * 3;
         }
                                         
         &.heading {
