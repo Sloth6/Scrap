@@ -1,4 +1,4 @@
-bindSoundCloudControls = (elems) ->
+initSoundCloud = (elems) ->
   bindPlayableControls elems, (elem) ->
     # define how to create the iframe for soundcloud
     iframe = $(elem.data('content').html)

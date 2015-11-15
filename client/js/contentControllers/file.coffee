@@ -1,4 +1,4 @@
-bindFileControls = (elems) ->
+initFile = (elems) ->
   elems.mousedown (e) ->
     $(@).data 'lastX', e.clientX
     $(@).data 'lastY', e.clientY
@@ -12,6 +12,3 @@ bindFileControls = (elems) ->
     link.download = name
     link.href = uri
     link.click()
-
-$ ->
-  bindFileControls $('.element.file')

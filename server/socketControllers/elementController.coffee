@@ -140,8 +140,9 @@ module.exports =
           "
       models.sequelize.query(q, null, null, data).complete (err, results) ->
         return callback err if err?
-        params = { SpaceId: oldSpaceId, parentSpaceKey: spaceKey }
-        checkForStackDelete sio, socket, params, callback
+        sio.to("#{spaceKey}").emit 'moveToCollection', data 
+        # params = { SpaceId: oldSpaceId, parentSpaceKey: spaceKey }
+        # checkForStackDelete sio, socket, params, callback
         # return callback null
   
   updateElement : (sio, socket, data, callback) =>

@@ -20,11 +20,11 @@ textFormat = (elems) ->
 
     if editable.text().length < lengthForLong and !$(@).hasClass('short')
       $(@).addClass('short').removeClass('long')
-      collectionRealign()
+      collectionViewController.draw $('.collection.open')
     
     else if editable.text().length > lengthForLong and !$(@).hasClass('long')
       $(@).addClass('long').removeClass('short')
-      collectionRealign()
+      collectionViewController.draw $('.collection.open')
 
 # Bind events on article.text elements.
 bindTextEvents = ($text) ->
@@ -60,7 +60,7 @@ bindTextEvents = ($text) ->
         socket.emit 'updateElement', { spaceKey, userId, elementId, content }
       ), 200
 
-textInit = (elems) ->
+initText = (elems) ->
   elems.each () ->
     editable = $(@).find '.editable'
     if editable.text().length < lengthForLong

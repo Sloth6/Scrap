@@ -28,3 +28,9 @@ jQuery(function($){
         }
     });
 });
+
+(function ($) {
+    $.fn.contains = function ($elem) {
+        return (this.index($elem) != -1);
+    }
+})(jQuery)

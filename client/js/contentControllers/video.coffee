@@ -1,4 +1,4 @@
-bindVideoControls = (elems) ->
+initVideo = (elems) ->
   videos = elems.find('video')
   
   hoverIn  = () -> @setAttribute "controls", "controls"
@@ -13,6 +13,3 @@ bindVideoControls = (elems) ->
     return if $(@).data('lastX') != e.clientX
     return if $(@).data('lastY') != e.clientY
     if @paused then @play() else @pause()
-
-$ ->
-  bindVideoControls $('.element.video')

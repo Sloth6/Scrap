@@ -1,4 +1,4 @@
-bindYoutubeControls = (elems) ->
+initYoutube = (elems) ->
   bindPlayableControls elems, (elem) ->
 #   Define how to create the iframe for youtube videos
     id = elem.data('content').id

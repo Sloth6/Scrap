@@ -16,12 +16,18 @@ block scripts
   script(src='/js/lib/soundcloud-api.js')
   script(src='/js/lib/velocity.min.js')
   
-  
-  script(src="/js/collection.js")
+  //- script(src="/js/collection.js")
   script(src="/js/card.js")
-  script(src="/js/element.js")
-  script(src="/js/slider.js")
+  
+  script(src="/js/contentViewController.js")
+  script(src="/js/contentModel.js")
+  
+  script(src="/js/collectionViewController.js")
+  script(src="/js/collectionModel.js")
 
+  script(src="/js/navigationController.js")
+
+  script(src="/js/utilityFunctions.js")
   script(src="/js/home.js")
   script(src="/js/menuControllers/addCollection.js")
   script(src="/js/menuControllers/addElement.js")
@@ -30,21 +36,20 @@ block scripts
 
   script(src="/js/socketListeners.js")
 
-  script(src="/js/elementEmitters/add.js")
-  script(src="/js/elementEmitters/delete.js")
-  script(src="/js/elementEmitters/drag.js")
-  script(src="/js/elementEmitters/upload.js")
-  script(src="/js/elementEmitters/modify.js")
+  script(src="/js/contentEmitters/add.js")
+  script(src="/js/contentEmitters/delete.js")
+  script(src="/js/contentEmitters/drag.js")
+  script(src="/js/contentEmitters/upload.js")
 
-  script(src="/js/elementControllers/stack.js")
-  script(src="/js/elementControllers/cover.js")
-  script(src="/js/elementControllers/file.js")
-  script(src="/js/elementControllers/gif.js")
-  script(src="/js/elementControllers/soundCloud.js")
-  script(src="/js/elementControllers/video.js")
-  script(src="/js/elementControllers/text.js")
-  script(src="/js/elementControllers/youtube.js")
-  script(src="/js/elementControllers/playable.js")
+  script(src="/js/contentControllers/stack.js")
+  script(src="/js/contentControllers/packCover.js")
+  script(src="/js/contentControllers/file.js")
+  script(src="/js/contentControllers/gif.js")
+  script(src="/js/contentControllers/soundCloud.js")
+  script(src="/js/contentControllers/video.js")
+  script(src="/js/contentControllers/text.js")
+  script(src="/js/contentControllers/youtube.js")
+  script(src="/js/contentControllers/playable.js")
 
   script.
     var userName = "!{user.name}";var userId = +"!{user.id}"
