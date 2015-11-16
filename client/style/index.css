@@ -588,7 +588,7 @@ body section.space section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 137, ../../style/globals/_type.scss */
+/* line 139, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -598,15 +598,15 @@ html {
   font-variant-numeric: oldstyle-num;
 }
 
-/* line 141, ../../style/globals/_type.scss */
+/* line 143, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 52pt;
   font-weight: 800;
-  letter-spacing: -0.04167em;
+  letter-spacing: -0.03125em;
   line-height: 48pt;
 }
 
-/* line 145, ../../style/globals/_type.scss */
+/* line 147, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -614,15 +614,17 @@ html {
   line-height: 36pt;
 }
 
-/* line 149, ../../style/globals/_type.scss */
+/* line 151, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
-  font-weight: 200;
-  letter-spacing: -0.04167em;
+  font-weight: 700;
+  letter-spacing: -0.03125em;
   line-height: 24pt;
+  -webkit-text-stroke: 0.5pt #000000;
+  -webkit-text-fill-color: transparent;
 }
 
-/* line 153, ../../style/globals/_type.scss */
+/* line 155, ../../style/globals/_type.scss */
 .bodyType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -630,7 +632,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 156, ../../style/globals/_type.scss */
+/* line 158, ../../style/globals/_type.scss */
 .bodyType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -640,15 +642,15 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 161, ../../style/globals/_type.scss */
+/* line 163, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
-  font-weight: 300;
+  font-weight: 200;
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 164, ../../style/globals/_type.scss */
+/* line 166, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -658,14 +660,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 169, ../../style/globals/_type.scss */
+/* line 171, ../../style/globals/_type.scss */
 .smallType {
   font-size: 8pt;
   font-weight: 400;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 172, ../../style/globals/_type.scss */
+/* line 174, ../../style/globals/_type.scss */
 .smallType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -675,24 +677,24 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 177, ../../style/globals/_type.scss */
+/* line 179, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 181, ../../style/globals/_type.scss */
+/* line 183, ../../style/globals/_type.scss */
 .typeOutlineClear {
-  -webkit-text-stroke: 1px #000000;
+  -webkit-text-stroke: 0.5pt #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 186, ../../style/globals/_type.scss */
+/* line 188, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
-  -webkit-text-stroke: 1px #000000;
+  -webkit-text-stroke: 0.5pt #000000;
 }
 
-/* line 193, ../../style/globals/_type.scss */
+/* line 195, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -846,9 +848,11 @@ a.confirm:hover {
 /* line 210, ../../style/globals/_components.scss */
 .backButton a {
   font-size: 24pt;
-  font-weight: 200;
-  letter-spacing: -0.04167em;
+  font-weight: 700;
+  letter-spacing: -0.03125em;
   line-height: 24pt;
+  -webkit-text-stroke: 0.5pt #000000;
+  -webkit-text-fill-color: transparent;
   font-size: 48pt;
   font-weight: 100;
 }
@@ -1587,7 +1591,7 @@ section.container section.space section.content article.text .editable {
 section.container section.space section.content article.text.short .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
-  font-weight: 300;
+  font-weight: 200;
   line-height: 24pt;
   letter-spacing: -0.01563em;
   margin-top: -1pt;
@@ -2050,7 +2054,7 @@ section.container section.space section.content article.addElementForm .translat
 /* line 30, ../../style/layout/_home.scss */
 .cover .card.hover section.title h1.typeTitle, .cover .card.editing section.title h1.typeTitle, .cover.card.hover section.title h1.typeTitle, .cover.card.editing section.title h1.typeTitle {
   -webkit-text-fill-color: #000000 !important;
-  -webkit-text-stroke: 1px #000000;
+  -webkit-text-stroke: 0.5pt #000000;
 }
 /* line 37, ../../style/layout/_home.scss */
 .cover .card.hover ul.users, .cover.card.hover ul.users {
@@ -2087,6 +2091,11 @@ section.container section.space section.content article.addElementForm .translat
 }
 /* line 73, ../../style/layout/_home.scss */
 .cover .card section.title h1, .cover.card section.title h1 {
+  /*
+          		text-align: right;
+          		font-family: "futura";
+          		font-weight: bold;
+  */
   margin-top: -0.125em;
   margin-left: -0.03125em;
   margin-right: 4pt;
@@ -2105,7 +2114,7 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
   transition-property: transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
 }
-/* line 91, ../../style/layout/_home.scss */
+/* line 96, ../../style/layout/_home.scss */
 .cover .card section.title h2, .cover.card section.title h2 {
   width: 336pt;
   white-space: nowrap;
@@ -2126,13 +2135,13 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 107, ../../style/layout/_home.scss */
+/* line 112, ../../style/layout/_home.scss */
 .cover .card section.title .rename, .cover.card section.title .rename {
   z-index: 20;
   position: relative;
   margin-top: 8pt;
 }
-/* line 112, ../../style/layout/_home.scss */
+/* line 117, ../../style/layout/_home.scss */
 .cover .card section.title .rename a, .cover.card section.title .rename a {
   display: inline-block;
   padding: 16pt 16pt 16pt 8pt;
@@ -2148,18 +2157,18 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 121, ../../style/layout/_home.scss */
+/* line 126, ../../style/layout/_home.scss */
 .cover .card section.title .rename a:hover, .cover.card section.title .rename a:hover {
   opacity: 1;
 }
-/* line 128, ../../style/layout/_home.scss */
+/* line 133, ../../style/layout/_home.scss */
 .cover .card .elementCount, .cover.card .elementCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
-/* line 135, ../../style/layout/_home.scss */
+/* line 140, ../../style/layout/_home.scss */
 .cover .card ul.users, .cover.card ul.users {
   position: absolute;
   width: 50%;
@@ -2173,20 +2182,20 @@ section.container section.space section.content article.addElementForm .translat
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 142, ../../style/layout/_home.scss */
+/* line 147, ../../style/layout/_home.scss */
 .cover .card ul.users li.add, .cover.card ul.users li.add {
   width: 100%;
 }
-/* line 145, ../../style/layout/_home.scss */
+/* line 150, ../../style/layout/_home.scss */
 .cover .card ul.users li.add label, .cover.card ul.users li.add label {
   display: block;
 }
-/* line 149, ../../style/layout/_home.scss */
+/* line 154, ../../style/layout/_home.scss */
 .cover .card ul.users li.add input[type=email], .cover.card ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
-/* line 154, ../../style/layout/_home.scss */
+/* line 159, ../../style/layout/_home.scss */
 .cover .card ul.users li.add input[type=submit], .cover.card ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
