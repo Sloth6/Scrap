@@ -62,7 +62,6 @@ window.collectionViewController =
     else if $collection.data('contenttype') == 'stack'
       drawClosedStack($collection)
 
-
   # This function is only called from collectionViewController.open
   pushOffScreen: ($collection, $openingCollection) ->
     # Some element move to one side of the view and soem move to the other

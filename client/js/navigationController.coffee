@@ -5,9 +5,9 @@ window.navigationController =
     spaceKey        = collectionState.spaceKey
 
 
-    #If leaving root collection, animate in back button
+    #If leaving root collection, animate out back button
     if collectionModel.getParent($collection)?.hasClass('root')
-      $('header.main .backButton.main').addClass 'visible'
+      $('header.main .backButton.main').velocity { translateX: 32 }
 
     spacePath.unshift spaceKey
 
@@ -39,9 +39,9 @@ window.navigationController =
     $parentCollection         = collectionModel.getParent   $collection
     collectionViewController.close $collection
 
-        # If entering root collection, animate out back button
+    # If entering root collection, animate out back button
     if collectionModel.getParent($collection).hasClass 'root'
-      $('header.main .backButton.main').removeClass 'visible'
+      $('header.main .backButton.main').velocity { translateX: 0 }
 
     # return to the parents state last time we were there.
     $(document.body).css width: state.width

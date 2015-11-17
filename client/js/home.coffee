@@ -30,8 +30,8 @@ $ ->
   window.socket = io.connect()
   
   $.Velocity.defaults.duration = openCollectionDuration
-  $.Velocity.defaults.easing = openCollectionCurve
-  $.Velocity.defaults.queue = false
+  $.Velocity.defaults.easing   = openCollectionCurve
+  $.Velocity.defaults.queue    = false
 
   #TODO reimpelment this
   #, {}, () -> hyphenateText()
