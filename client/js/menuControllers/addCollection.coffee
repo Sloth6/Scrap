@@ -10,6 +10,7 @@ addCollection = () ->
   #   collection = $(dom)
 
 addProjectController =
+
   init: (elem) ->
     elem.data 'sent', false
     elem.click () ->
@@ -30,8 +31,6 @@ addProjectController =
           card.removeClass 'editing'
           card.removeClass 'hover'
           socket.emit 'newPack', { name: title.text() }
-
-            # console.log dom
 
         else if e.which != 8 && elem.text().length > max
           e.preventDefault()

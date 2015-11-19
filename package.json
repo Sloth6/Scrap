@@ -13,12 +13,13 @@
     "coffeelint": "~1.5.2",
     "compass": "~0.1.1",
     "connect": "1.8.5",
+    "connect-pg-simple": "^3.0.2",
     "connect-session-sequelize": "~1.0.0",
     "crypto": "0.0.3",
     "express": "~3.4.8",
     "express-session": "^1.11.3",
     "express-socket.io-session": "^1.3.0",
-    "jade": "0.20.0",
+    "jade": "^1.11.0",
     "lodash": "~2.4.1",
     "mime": "~1.2.11",
     "moment": "~2.8.2",
@@ -42,7 +43,5 @@
     "sinon-chai": "~2.4.0",
     "should": "*",
     "awsbox": "*"
-}
-  },
-  "engine": "node >= 0.6.6"
+  }
 }

@@ -1,7 +1,10 @@
 models = require '../models'
+async = require 'async'
 
 module.exports = (params, callback) ->
   params.name ?= ''
+  parent = params.parent
+  
   models.User.find(
     where: { id: params.UserId }
   ).complete (err, user) ->
@@ -9,8 +12,14 @@ module.exports = (params, callback) ->
     return callback('no user found') unless user?
     models.Space.create( params ).complete (err, space) ->
       return callback err if err?
-      space.addUser(user).complete (err) ->
-        return callback err if err?
-        space.setCreator(user).complete (err) ->
-          return callback err if err?
-          callback null, space
+      async.parallel [
+        (cb) -> space.addUser(user).complete cb
+        (cb) -> space.setCreator(user).complete cb
+        (cb) ->
+          return cb(null) unless parent?
+          space.setParent(parent).complete cb
+        (cb) ->
+          return cb(null) unless parent?
+          parent.addChildren(space).complete cb
+      ], (err) ->
+        callback err, space

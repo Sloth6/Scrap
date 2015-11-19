@@ -16,5 +16,5 @@ module.exports = (sequelize, DataTypes) ->
     classMethods:
       associate: (models) ->
         Element.belongsTo models.User, foreignKey: 'creatorId', as: 'Creator'
-        Element.belongsTo models.Space
+        Element.belongsTo models.Space, { onDelete: 'CASCADE' }
   }

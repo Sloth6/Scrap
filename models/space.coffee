@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) ->
       associate: (models) ->
         Space.hasMany models.User
         Space.hasMany models.Element
-        Space.belongsTo models.Element, { as: 'coverId', foreignKey: 'coverId' }
+
+        Space.hasMany models.Space, { as: 'children' }
+        Space.belongsTo models.Space, { as: 'parent', onDelete: 'CASCADE' }
+
+        # Space.belongsTo models.Element, { as: 'coverId', foreignKey: 'coverId' }
         Space.belongsTo models.User, { as: 'Creator' }
   }

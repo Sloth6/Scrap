@@ -16,26 +16,31 @@ config =
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
 module.exports =
-  collectionData: (req, res, app, callback) ->
-    { spaceKey } = req.params
-    models.Space.find({
-      where: { spaceKey }, include:[ model:models.User ]
-    }).complete (err, space) ->
-      return callback(err, res) if err?
-      return res.send(400) unless space?
-      res.status(200).send space
+  # collectionData: (req, res, app, callback) ->
+  #   { spaceKey } = req.params
+  #   models.Space.find({
+  #     where: { spaceKey }, include:[ model:models.User ]
+  #   }).complete (err, space) ->
+  #     return callback(err, res) if err?
+  #     return res.send(400) unless space?
+  #     res.status(200).send space
 
   collectionContent: (req, res, app, callback) ->
     { spaceKey } = req.params
-    console.log spaceKey
+    return res.send(400) unless spaceKey?
     models.Space.find({
-      where: { spaceKey }, include:[ model:models.Element ]
+      where: { spaceKey }
+      include:[ 
+        model:models.Element
+        { model:models.Space, as: 'children', include: [model:models.Element] }
+      ]
     }).complete (err, space) ->
       return callback err, res if err?
       return callback "No space found for '#{spaceKey}'", res unless space?
 
-      { elements, elementOrder } = space
-      # console.log elementOrder, elements
+      { elements, children, elementOrder } = space
+      console.log children
+
       elements.sort (a, b) ->
         if elementOrder.indexOf(a.id) > elementOrder.indexOf(b.id) then 1 else -1
       

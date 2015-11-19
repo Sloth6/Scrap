@@ -16,10 +16,14 @@ module.exports =
         return callback err if err?
         return indexPage res unless user?
         models.Space.find({
-          where: { root:true, UserId: user.id }
-          include:[ models.User ] #model:models.Element, 
+          where: { root: true, UserId: user.id }
+          include:[ 
+            model: models.User
+            model: models.Space, as: 'children'
+          ]
         }).complete (err, collection) ->
           return callback err if err?
+          return callback 'no collection found' unless collection?
           res.render 'home.jade', { user, collection, title: 'Scrap' }
           callback()
     else

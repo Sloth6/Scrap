@@ -1,58 +1,15 @@
-- var root = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/'
-- var posString = "position:absolute;"
-
-//- if (element.contentType == 'soundcloud' || element.contentType == 'youtube')
-//-   - classes.push('playable')
-
-if element.contentType == 'cover'
-
-  .collection(
-    data-spacekey=element.content,
-    data-contenttype= 'collection', 
-    class='draggable closed '+element.content,
-    
-    style= posString
-  )
-    article(id=element.id, style= posString,
-            class = 'cover',
-            data-contenttype= 'cover', 
-            data-creatorid  = element.creatorId,
-            data-content    = element.content
-            style='z-index:2;'
-            )
-      .transform
-        .card.cardHover.cardDrag.colored()
-          section.title
-            h1.collectionTitle.typeTitle.typeOutlineClear
-            h2.peekTitle.bodyType.typeBody.typeWeightBold
-            p.rename
-              a.smallType Rename
-          ul.users.menu.slideIn.left.canOpen
-            li.user.add
-              form.addUser(data-spacekey=collection.spaceKey)
-                input(type="email", name="user[email]", placeholder="email")
-                input(type="submit", value="→")
-                label.smallType.smallCaps Share this pack
-      //- else
-      //-   .transform
-      //-     .card.cardHover.cardDrag.colored()
-      //-       section.title
-      //-         h1.collectionTitle.typeTitle.typeOutlineClear
-      //-         h2.peekTitle.bodyType.typeBody.typeWeightBold
-      //-         p.rename
-      //-           a.smallType Rename
-    .contentContainer(style='z-index:1;')
-else
+mixin articleMixin(element)
   article(id=element.id, style= posString,
-        class = "draggable #{element.contentType}"
-        data-contenttype= element.contentType, 
-        data-creatorid  = element.creatorId, 
-        data-content    = element.content)
+    class = "draggable #{element.contentType}"
+    data-contenttype= element.contentType, 
+    data-creatorid  = element.creatorId, 
+    data-content    = element.content
+  )
     .content
       .elementControls
-        - if (typeof(collection.nameMap) !== "undefined") {
-          author!= collection.nameMap[element.creatorId].name
-        - }    
+        // - if (typeof(collection.nameMap) !== "undefined") {
+        //   author!= collection.nameMap[element.creatorId].name
+        // - }    
         a.elementDeleteButton.warning.bodyType.smallCaps Delete
       case element.contentType
         when 'file'
@@ -62,20 +19,7 @@ else
           case element.contentType
             when 'image'
               - var content = JSON.parse(element.content)
-              - if (typeof(content.original_url) !== 'undefined'){
-                img(src= content.original_url)
-              - } else { 
-                img(src= root+collection.spaceKey+"/"+content.key+'/small.jpg')
-              - }
-      
-            when 'gif'
-              -var content = JSON.parse(element.content)
-              - if (typeof(content.original_url) !== 'undefined'){
-                img(src= content.original_url)
-              - } else {
-                img(src= root+collection.spaceKey+"/"+content.key+'/normal.gif')
-              - }
-      
+              img(src= content.original_url)
             when 'website'
               -var content = JSON.parse(element.content)
               -var url = decodeURIComponent(content.url)

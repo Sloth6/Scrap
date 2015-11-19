@@ -2,14 +2,13 @@ drawOpenCollection = ($collection, animate) ->
   return if drawTimeout?
   clearTimeout drawTimeout
   drawTimeout = setTimeout (() -> drawTimeout = null), 100
-  $contents = collectionModel.getContent $collection
-
+  $contents  = collectionModel.getContent $collection
+  $addForm   = collectionModel.getAddForm $collection
   sizeTotal  = 0
   maxX       = -Infinity
   zIndex     = $contents.length
-  scroll = 0
 
-  $contents.each () ->
+  $contents.add($addForm).each () ->
     $(@).data 'scrollOffset', sizeTotal
     # if $(@).hasClass('cover') and $(@).hasClass('open')
     #   $(@).css { zIndex: ($contents.length*3) }
@@ -25,8 +24,10 @@ drawOpenCollection = ($collection, animate) ->
 
 drawClosedStack = ($collection) ->
   console.log 'drawing stack', $collection
+  $cover = collectionModel.getCover($collection)
   collectionModel.loadContent $collection, () ->
     $content = collectionModel.getContent $collection
+    $content.find('.elementControls').hide()
     collectionModel.getAddForm($collection).hide()
 
     translateX = 0
@@ -38,8 +39,10 @@ drawClosedStack = ($collection) ->
       translateX += 50
 
     # subtract 50 for last addition and add element form
-    size = contentModel.getSize($content.last()) + translateX - 100
-    contentModel.setSize $collection, size
+    sizeTotal = contentModel.getSize($content.last()) + translateX - 100
+    $cover.find(".card").width sizeTotal
+    
+    contentModel.setSize $collection, sizeTotal
 
     collectionViewController.draw $('.collection.open')
     size = contentModel.getSize $('.collection.open')
@@ -67,6 +70,7 @@ window.collectionViewController =
     # Some element move to one side of the view and soem move to the other
     # this depends on which side of the opening element they are.
     $openingCover = collectionModel.getCover $openingCollection
+    $addForm = collectionModel.getAddForm $collection
     partition = collectionModel.getContentPartitioned $collection, $openingCollection
     { $contentsBefore, $contentsAfter } = partition
 
@@ -81,7 +85,7 @@ window.collectionViewController =
         translateY: [yOfSelf, yOfSelf]
       options: { complete: () -> $(@).hide() }
 
-    $contentsAfter.velocity
+    $contentsAfter.add($addForm).velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ $(window).width(), xOfSelf ]
@@ -99,25 +103,28 @@ window.collectionViewController =
     $cover             = collectionModel.getCover $collection
     $parentCollection  = collectionModel.getParent $collection
     $collectionContent = collectionModel.getContent $collection
-
+    $collectionAddForm = collectionModel.getAddForm $collection
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection
     
     # Initialize new content to make it interactive
     contentModel.init $collectionContent
-    
+    contentModel.init $collectionAddForm
+
     # Make sure cover is above its children during transition
     $cover.css 'z-index': 999
-
     # Animate in content, content appears from behind its cover
+
+    $collectionAddForm.show()
     if $collection.data('contenttype') == 'pack'
-      $collectionContent.velocity
+      $collectionContent.add($collectionAddForm).velocity
         opacity: [1, 0]
         x: [ xTransform($cover), xOfSelf ]
     else
       $cover.hide()
       # Show the add element Form.
+      $collectionAddForm.show()
       $collectionContent.show()
 
     # When opeing a collection, it no longer slides but is fixed to start
@@ -131,14 +138,16 @@ window.collectionViewController =
     console.log 'clossing', $collection.attr('class')
     return if $collection.hasClass 'root'
 
-    $collectionCover    = collectionModel.getCover    $collection
-    $collectionState    = collectionModel.getState    $collection
-    $collectionContent  = collectionModel.getContent $collection
+    $collectionCover   = collectionModel.getCover   $collection
+    $collectionState   = collectionModel.getState   $collection
+    $collectionContent = collectionModel.getContent $collection
+    $collectionAddForm = collectionModel.getAddForm $collection
 
-    $parentCollection         = collectionModel.getParent   $collection
-    $parentCollectionCover    = collectionModel.getCover    $parentCollection
-    $parentCollectionState    = collectionModel.getState    $parentCollection
+    $parentCollection         = collectionModel.getParent  $collection
+    $parentCollectionCover    = collectionModel.getCover   $parentCollection
+    $parentCollectionState    = collectionModel.getState   $parentCollection
     $parentCollectionContent  = collectionModel.getContent $parentCollection
+    $parentCollectionAddForm  = collectionModel.getAddForm $parentCollection
 
     $collection.
       addClass('closed').
@@ -150,10 +159,14 @@ window.collectionViewController =
     $collectionCover.css 'z-index': 2
     $parentCollection.addClass('open').removeClass 'closed'
     $parentCollectionContent.show()
+    $parentCollectionAddForm.show()
 
     if $collection.data('contenttype') == 'pack'
       # The size of the collection will be reset to just the cover
       contentModel.setSize $collection, null
+      $collectionAddForm.velocity
+        properties: { opacity: [0, 1] }
+        options: { complete: () -> $(@).hide() }
       $collectionContent.velocity
         properties: { opacity: [0, 1] }
         options: { complete: () -> $(@).remove() }

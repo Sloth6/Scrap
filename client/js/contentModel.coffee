@@ -38,7 +38,6 @@ window.contentModel =
   getSize: ($content) ->
     return $content.data('size') if $content.data('size')?
     return $content.find('.card').width() if $content.find('.card').width()
-    console.log $content[0]
     throw 'Cannot get size'
 
   getCollection: ($content) ->

@@ -51,17 +51,20 @@ drag = (event, $dragging) ->
   }
 
   $contentAfter = collectionModel.getContentAfter $('.collection.open'), x
-  if $contentAfter.length == 0
-    $contentAfter = collectionModel.getFinalContent $('.collection.open')
+  # if $contentAfter.length == 0
+  #   $contentAfter = collectionModel.getFinalContent $('.collection.open')
 
   return if $contentAfter.is lastDraggingOver
   return if $contentAfter.is padding
 
   # if draggingOver.is(lastDraggingOver)
   #   clearDragTimeouts()
-
-  padding.insertBefore $contentAfter
-  collectionViewController.draw $('.collection.open'), {animate: true}
+  if $contentAfter.length
+    padding.insertBefore $contentAfter
+  else
+    collectionModel.appendContent padding
+  
+  collectionViewController.draw $('.collection.open'), { animate: true }
   lastDraggingOver = $contentAfter
 
 leftCenterRight = (x, $content) ->

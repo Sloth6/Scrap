@@ -3,7 +3,7 @@ openCollectionCurve     = smoothCurve # [50, 8]
 openCollectionDuration  = 1000
 
 marginTop    = $(window).height() * 0.125
-margin       = 16
+margin       = 32
 sliderBorder = $(window).width() * 0.15
 edgeWidth    = 48
 marginAfter  = $(window).width()/2
@@ -48,4 +48,6 @@ $ ->
     history.back()
 
   history.pushState { name: "home" }, "", "/"
+  # $('.collection.root').removeClass('closed').addClass('open')
   navigationController.open $('.collection.root')
+  # collectionViewController.draw $('.collection.root')

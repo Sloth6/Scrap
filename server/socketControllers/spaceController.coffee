@@ -4,11 +4,7 @@ newSpace = require '../newSpace'
 async = require 'async'
 coverColor = require '../modules/coverColor'
 addUserToSpace = require '../addUserToSpace'
-
-element_jade = null
-require('fs').readFile __dirname+'/../../views/partials/element.jade', 'utf8', (err, data) ->
-  throw err if err
-  element_jade = require('jade').compile data
+collectionRenderer = require '../modules/collectionRenderer'
 
 toTitleCase = (str) -> 
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
@@ -18,7 +14,7 @@ module.exports =
     { spaceKey, elementOrder } = data
     elementOrder = JSON.parse elementOrder
     # console.log elementOrder
-    models.Space.update({elementOrder}, {spaceKey}).complete (err) ->
+    models.Space.update({ elementOrder }, { spaceKey }).complete (err) ->
       console.log(err) if err?
 
   rename: (sio, socket, data, callback) ->
@@ -58,22 +54,22 @@ module.exports =
   newCollection: (sio, socket, data) ->
     # SpaceKey will be the parent of the new collection
     spaceKey = data.spaceKey
+    userId   = socket.handshake.session.userId
     # Dragged and draggedOver and the elements that created the collection
-    draggedId = parseInt data.draggedId
+    draggedId     = parseInt data.draggedId
     draggedOverId = parseInt data.draggedOverId
     
     console.log 'New collection data', data
     return console.log('no draggedId in newCollection') unless draggedId?
     return console.log('no draggedOverId in newCollection') unless draggedOverId?
 
-    userId = socket.handshake.session.userId
-    
-    
+
     async.waterfall [
+      # Get the parent space
+      (newSpace, cb) -> models.Space.find( where: { spaceKey } ).complete cb
+
       # Create the new space
-      (cb) ->
-        console.log "Creating the new space"
-        newSpace { UserId: userId, hasCover:false }, cb
+      (parent, cb) -> newSpace { UserId: userId, hasCover:false, parent }, cb
 
       # Move elements to the new space
       (newSpace, cb) -> 
@@ -88,59 +84,35 @@ module.exports =
           models.sequelize.query(updateQuery).complete (err) ->
             if err then cb err else cb null, newSpace
 
-      # Get the parent space
-      (newSpace, cb) ->
-        console.log "Getting parent spaces"
-        models.Space.find( where: { spaceKey } ).complete (err, parentSpace) ->
-          if err then cb err else cb null, newSpace, parentSpace
-
-      # Create cover element
-      (newSpace, parentSpace, cb) ->
-        console.log "Creating cover element"
-        coverAttributes =
-          SpaceId: parentSpace.id
-          creatorId: userId
-          contentType: 'cover'
-          content: newSpace.spaceKey
- 
-        models.Element.create(coverAttributes).complete (err, cover) ->
-          if err then cb err
-          newSpace.coverId = cover.id
-          newSpace.save().complete (err) ->
-            if err then cb err else cb null, parentSpace, cover
-
-      # Change element order
-      (parentSpace, cover, cb) ->
-        console.log "Changing element order"
-        order = parentSpace.elementOrder
-        console.log "\told element order:", order
-        console.log "\tcover id:", cover.id
-        # The position of the dragegdOverId becomes the cover id
+      # # Change element order
+      # (parentSpace, cover, cb) ->
+      #   console.log "Changing element order"
+      #   order = parentSpace.elementOrder
+      #   console.log "\told element order:", order
+      #   console.log "\tcover id:", cover.id
+      #   # The position of the dragegdOverId becomes the cover id
         
-        draggedOverPosition = order.indexOf(draggedOverId)
-        draggedPosition = order.indexOf(draggedId)
+      #   draggedOverPosition = order.indexOf(draggedOverId)
+      #   draggedPosition = order.indexOf(draggedId)
 
-        console.log '\tdraggedover index:', draggedOverPosition
-        console.log  "\tdragged position:", draggedPosition
+      #   console.log '\tdraggedover index:', draggedOverPosition
+      #   console.log  "\tdragged position:", draggedPosition
 
-        order[draggedOverPosition] = cover.id
-        order.splice(draggedPosition, 1)
+      #   order[draggedOverPosition] = cover.id
+      #   order.splice(draggedPosition, 1)
         
-        console.log "\t new order",order
+      #   console.log "\t new order",order
 
-        parentSpace.save().complete (err) ->
-          if err then cb err else cb null, parentSpace, cover
+      #   parentSpace.save().complete (err) ->
+      #     if err then cb err else cb null, parentSpace, cover
     
     ], (err, parentSpace, cover) ->
       return console.log err if err
       
-      coverHTML = encodeURIComponent element_jade({
-        element: cover, collection: parentSpace
-      })
-
+      coverHTML = collectionRenderer(parentSpace)
       sio.to("#{spaceKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
-      console.log  'Adding user to room', cover.content
-      socket.join cover.content
+      console.log 'Adding user to room', spaceKey
+      socket.join spaceKey
 
   newPack: (sio, socket, data) ->
     { name } = data
@@ -150,35 +122,28 @@ module.exports =
     console.log 'New pack', { name, userId }
     
     async.waterfall [
-      # Create the new space
-      (cb) -> 
-        newSpace { UserId: userId, name, hasCover:true }, cb
       # Get the parent space
-      (newSpace, cb) ->
-        console.log  'Get the parent space'
-        params = where: { UserId:userId, root: true }
-        models.Space.find( params ).complete (err, root) ->
-          if err then cb err else cb null, newSpace, root
-      # Create cover element
-      (newSpace, root, cb) ->
-        console.log 'Create cover element'
-        coverAttributes =
-          SpaceId: root.id
-          creatorId: userId
-          contentType: 'cover'
-          content: newSpace.spaceKey
-        models.Element.create(coverAttributes).complete (err, cover) ->
-          if err then cb err else cb null, root, cover
-      # Change element order
-      (root, cover, cb) ->
-        root.elementOrder.push cover.id
-        root.save().complete (err) ->
-          if err then cb err else cb null, root, cover
-    ], (err, root, cover) ->
+      (cb) ->
+        models.Space.find( where: { UserId:userId, root: true } ).complete cb
+
+      # Create the new space
+      (parent, cb) -> 
+        newSpace { UserId: userId, name, hasCover:true, parent }, cb
+
+    ], (err, space) ->
+      console.log 'err', err
       return callback(err) if err?
-      coverHTML = encodeURIComponent element_jade {
-        element: cover, collection: root
-      }
+      coverHTML = collectionRenderer(space)
       socket.emit 'newPack', { coverHTML }
-      console.log 'Adding user to room', cover.content
-      socket.join cover.content
+      console.log 'Adding user to room', space.spaceKey
+      socket.join space.spaceKey
+
+  deleteCollection: (sio, socket, data) ->
+    spaceKey = data.spaceKey
+    models.Space.find({
+      where: { spaceKey }, include:[ model:models.Space, as: "parent" ]
+    }).complete (err, space) ->
+      parentSpaceKey = space.parent.spaceKey
+      space.destroy().complete (err) ->
+        console.log 'delete', err
+        sio.to("#{parentSpaceKey}").emit 'deleteCollection', { spaceKey }

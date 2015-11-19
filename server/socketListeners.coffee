@@ -16,7 +16,7 @@ module.exports = (io)->
   io.sockets.on 'connection', (socket) ->
     userId = socket.handshake.session.currentUserId
     
-    return unless userId
+    return unless userId?
 
     socket.handshake.session.userId = userId
     
@@ -38,11 +38,8 @@ module.exports = (io)->
       socket.on 'reorderElements', (data) -> spaceController.reorderElements io, socket, clean(data), errorHandler
       socket.on 'newCollection', (data) -> spaceController.newCollection io, socket, clean(data), errorHandler
       socket.on 'newPack', (data) -> spaceController.newPack io, socket, clean(data), errorHandler
-      # socket.on 'updateSpace', (data) -> spaceController.updateSpace io, socket, clean(data), errorHandler
-      
+      socket.on 'deleteCollection', (data) -> spaceController.deleteCollection io, socket, clean(data), errorHandler
       socket.on 'addUserToSpace', (data) -> spaceController.addUserToSpace io, socket, clean(data), errorHandler
       
-      # socket.on 'removeUserFromSpace',(data) -> spaceController.removeUserFromSpace io, socket, clean(data), errorHandler
-
       socket.on 'disconnect', ->
         console.log 'Client Disconnected.'

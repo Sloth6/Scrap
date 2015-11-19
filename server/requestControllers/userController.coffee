@@ -51,6 +51,7 @@ module.exports =
           req.session.userName = user.name
           req.session.userEmail = user.email
           res.send "/"
+          callback null
           # res.render 'home.jade', { user, title: 'Scrap' }
 
   # verify login creds, redirect to first space

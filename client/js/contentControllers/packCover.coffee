@@ -93,9 +93,9 @@ bindCoverControls = (cover) ->
     event.stopPropagation()
 
 packCoverInit = (cover, data) ->
-  cover.find('section.title').children('h1, h2, h3').text data.name
+  # cover.find('section.title').children('h1, h2, h3').text data.name
   bindCoverControls cover
-  cover.find('.card').css 'background-color', data.color
-  for u in data.users
-    name = u.name or u.email
-    cover.find('ul.users').prepend "<li class='user'>#{name}</li>"
+  # cover.find('.card').css 'background-color', data.color
+  # for u in data.users
+  #   name = u.name or u.email
+  #   cover.find('ul.users').prepend "<li class='user'>#{name}</li>"

@@ -23,11 +23,12 @@ $ ->
   
   socket.on 'newPack', (data) ->
     { coverHTML } = data
-    cover = $(decodeURIComponent(coverHTML))
+    $collection = $(decodeURIComponent(coverHTML))
     form = $('.addProjectForm')
-    cover.velocity { transformX: [xTransform(form), xTransform(form)] }
-    cover.insertBefore form
-    contentModel.init cover
+    $collection.velocity { transformX: [xTransform(form), xTransform(form)] }
+
+    collectionModel.appendContent $('.collection.open'), $collection
+    contentModel.init $collection
     addProjectController.reset form
     collectionViewController.draw $('.collection.open')
 
@@ -55,19 +56,19 @@ $ ->
   socket.on 'reorderElements', (data) ->
     console.log 'reorderElements', data
 
+  socket.on 'deleteCollection', (data) ->
+    { spaceKey } = data
+    $collection =  $(".collection.#{spaceKey}")
+    $collection.fadeOut ->
+      $collection.remove()
+      collectionViewController.draw $('.collection.open'), {animate: true}
+
   socket.on 'removeElement', (data) ->
     console.log 'removeElement', data, $("\##{data.id}")
     { id, spaceKey } = data
     
     toRemove = $("\##{data.id}")
     toRemove.fadeOut ->
-      # if removing the open collection
-      if toRemove.hasClass('stack') and toRemove.hasClass('open')
-        collection = $('.open.collection')
-        children = collectionChildren(collection).not('.addElementForm')
-        children.insertAfter collection
-        collectionClose(deleteAfter: true)
-      
       toRemove.remove()
       collectionViewController.draw $('.collection.open'), {animate: true}
 

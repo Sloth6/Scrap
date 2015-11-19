@@ -86,7 +86,7 @@ window.contentViewController =
       properties:
         translateZ: 0
         translateX: [translateX, oldX]
-        translateY: [translateY, yOfSelf]
+        translateY: translateY
         rotateZ: rotateZ
         scale: scale
 

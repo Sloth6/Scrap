@@ -1,7 +1,7 @@
 async = require 'async'
 models = require '../models'
 mail = require './adapters/nodemailer'
-elementRenderer = require './modules/elementRenderer.coffee'
+elementRenderer = require './modules/articleRenderer.coffee'
 newSpace = require './newSpace'
 
 module.exports = (user, spaceKey, callback) ->

@@ -6,7 +6,8 @@ loadElements = (spacekey, callback) ->
 
 window.collectionModel =
   init: ($collection) ->
-    $cover = collectionModel.getCover $collection
+    console.log $collection
+    $cover   = collectionModel.getCover $collection
     spaceKey = collectionModel.getState($collection).spaceKey
 
     $collection.click (event) ->
@@ -15,13 +16,12 @@ window.collectionModel =
       return if $(@).hasClass 'open'
       navigationController.open $(@)
 
-    $.get "/collectionData/#{spaceKey}", (data) ->
-      if data.hasCover
-        $collection.data 'contenttype', 'pack'
-        packCoverInit $cover, data
-      else
-        $collection.data 'contenttype', 'stack'
-        collectionViewController.draw $collection 
+    if $collection.data('hascover')
+      $collection.data 'contenttype', 'pack'
+      packCoverInit $cover
+    else
+      $collection.data 'contenttype', 'stack'
+      collectionViewController.draw $collection 
 
   removeContent: ($collection) ->
     $collection.children('.contentContainer').empty()
@@ -68,10 +68,12 @@ window.collectionModel =
     $()
 
   appendContent: ($collection, $content) ->
-    console.log $collection, $content
-    $contents = collectionModel.getContent $collection
-    console.log 'last', $contents.last()
-    $content.insertBefore $contents.last()
+    $collection.children('.contentContainer').append $content
+    # console.log $collection, $content
+    # $contents = collectionModel.getContent $collection
+    # console.log 'last', $contents.last()
+    # $contents.append $content
+    # $content.insertBefore $contents.last()
 
   getFinalContent: ($collection) ->
     $contents = collectionModel.getContent $collection
@@ -86,11 +88,12 @@ window.collectionModel =
   getAddForm: ($collection) ->
     $contents = collectionModel.getContent $collection
     $contents.filter('.addElementForm')
+    $collection.children('.addElementForm,.addProjectForm')
 
   loadContent: ($collection, callback) ->
     spaceKey = collectionModel.getState($collection).spaceKey
     $contentContainer = $collection.children('.contentContainer')
-
+    # $contentContainer.empty()
     # A stack will already have content
     return callback() if $contentContainer.children().length
     $.get "/collectionContent/#{spaceKey}", (data) ->

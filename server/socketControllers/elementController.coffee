@@ -2,7 +2,8 @@ models   = require '../../models'
 async    = require 'async'
 s3 = require '../adapters/s3.coffee'
 request = require 'request'
-elementRenderer = require '../modules/elementRenderer.coffee'
+
+articleRenderer = require '../modules/articleRenderer.coffee'
 # webPreviews = require '../modules/webPreviews.coffee'
 # thumbnails = require '../modules/thumbnails.coffee'
 # videoScreenshot = require '../modules/videoScreenshot.coffee'
@@ -29,34 +30,6 @@ getType = (s, cb) ->
       return cb 'website'
     return cb 'file'# if contentType.match /^application\//
 
-
-checkForStackDelete = (sio, socket, data, callback) ->
-  parentSpaceKey = data.parentSpaceKey
-  
-  if data.spaceKey
-    where = { spaceKey: data.spaceKey }
-  else if data.SpaceId
-    where = { id: data.SpaceId }
-  else
-    return callback('no key passed to check for delete')
-
-  models.Space.find({ where:where, include: [ models.Element ] }).complete (err, space) ->
-    return callback err if err?
-    return callback 'no space found in check for delete' unless space?
-    return callback null if space.hasCover or space.root
-    return callback null if space.elements.length > 1
-    console.log space.dataValues
-    return space.destroy().then(callback) unless space.elements.length
-    
-
-    params = { spaceKey: parentSpaceKey, elemId: space.elements[0].id }
-    module.exports.moveToCollection sio, socket, params, (err) ->
-      return callback(err) if err
-      removeParams = { elementId: space.coverId, spaceKey: parentSpaceKey }
-      module.exports.removeElement sio, socket, removeParams, (err) ->
-        return callback(err) if err?
-        space.destroy().then callback
-
 module.exports =
   # create a new element and save it to db
   newElement : (sio, socket, data, callback) =>
@@ -70,14 +43,17 @@ module.exports =
 
     done = (err, attributes) ->
       return callback err if err
-      models.Space.find({ where: { spaceKey }, include: models.User }).complete (err, space) =>
+      params =
+        where: { spaceKey }
+        include: models.User
+      models.Space.find( params ).complete (err, space) =>
         return callback err if err? or !space
         attributes.SpaceId = space.id
         models.Element.create(attributes).complete (err, element) =>
           return callback err if err?
           space.elementOrder.push(element.id)
           space.save()
-          html = elementRenderer space, element
+          html = articleRenderer space, element
           sio.to(spaceKey).emit 'newElement', { html, spaceKey }
           return callback null
     
