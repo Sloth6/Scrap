@@ -8,7 +8,7 @@ sliderBorder = $(window).width() * 0.15
 edgeWidth    = 48
 marginAfter  = $(window).width()/2
 
-spacePath = []
+collectionPath = []
 
 # Main scroll event
 onScroll = ->

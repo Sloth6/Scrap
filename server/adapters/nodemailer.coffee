@@ -4,14 +4,14 @@ nodemailer = require 'nodemailer'
 transporter = nodemailer.createTransport {
   service: 'Gmail'
   auth:
-    user: 'scrapspaces@gmail.com'
+    user: 'scrapcollections@gmail.com'
     pass: 'olabs123'
   }
 
 module.exports = 
   send: (options, callback) ->
     callback ?= ()->
-    options.from = 'scrapspaces@gmail.com'
+    options.from = 'scrapcollections@gmail.com'
     transporter.sendMail options, (err, message) ->
       if err?
         console.log "Failed to send email:"+err

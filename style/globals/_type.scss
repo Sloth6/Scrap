@@ -111,7 +111,7 @@ $headerLeftMarginOffset:
 }
 
 
-@mixin typeSpaceName {
+@mixin typeCollectionName {
     @include typeHeader;
     font-family: $fontFamily;
     font-size: .75rem;

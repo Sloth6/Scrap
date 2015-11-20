@@ -1,10 +1,10 @@
 defaultText = '<p>Write a note or paste a link</p>'
 
-addElementController =
+addArticleController =
   #  Open closed menu items
   init: (menu) ->
     
-    spacekey = menu.data 'spacekey'
+    collectionkey = menu.data 'collectionkey'
     input    = menu.find '.editable'
 
     content = () ->
@@ -36,7 +36,7 @@ addElementController =
       if content() == ''
         menu.removeClass 'focus'
         # slideBackToSide()
-        addElementController.reset menu
+        addArticleController.reset menu
         menu.find('.card').removeClass 'editing'
         menu.find('.done').addClass 'invisible'
         menu.find('.upload').show()
@@ -46,21 +46,21 @@ addElementController =
     input.bind "paste", () ->
       return unless content() == ''
       setTimeout (() =>
-        emitNewElement content(), spacekey
-        addElementController.reset menu
+        emitNewArticle content(), collectionkey
+        addArticleController.reset menu
       ), 20
 
     menu.find('a.submit').click (event) ->
       menu.removeClass 'focus'
       # slideBackToSide()
-      emitNewElement content(), spacekey
-      addElementController.reset menu
+      emitNewArticle content(), collectionkey
+      addArticleController.reset menu
       event.preventDefault()
 
     menu.find('a.cancel').click (event) ->
       menu.removeClass 'focus'
       # slideBackToSide()
-      addElementController.reset menu
+      addArticleController.reset menu
       event.preventDefault()
 
     # menu.click(() ->
@@ -74,5 +74,5 @@ addElementController =
     menu.find('.card').removeClass 'editing'
      
 $ ->
-  $('.addElementForm').each () ->
-    addElementController.init $(@)
+  $('.addArticleForm').each () ->
+    addArticleController.init $(@)

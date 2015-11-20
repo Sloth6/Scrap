@@ -4,10 +4,7 @@ s3 = require '../adapters/s3.coffee'
 request = require 'request'
 
 articleRenderer = require '../modules/articleRenderer.coffee'
-# webPreviews = require '../modules/webPreviews.coffee'
-# thumbnails = require '../modules/thumbnails.coffee'
-# videoScreenshot = require '../modules/videoScreenshot.coffee'
-newElements = require './newElements'
+newArticles = require './newArticles'
 
 getType = (s, cb) ->
   jar = request.jar()
@@ -31,30 +28,30 @@ getType = (s, cb) ->
     return cb 'file'# if contentType.match /^application\//
 
 module.exports =
-  # create a new element and save it to db
-  newElement : (sio, socket, data, callback) =>
-    spaceKey = data.spacekey
+  # create a new article and save it to db
+  newArticle : (sio, socket, data, callback) =>
+    collectionKey = data.collectionkey
     data.content = decodeURIComponent data.content
     userId = socket.handshake.session.userId
     console.log 'Received content:'
     console.log "\tuserId: #{userId}"
-    console.log "\tspaceKey: #{spaceKey}"
+    console.log "\tcollectionKey: #{collectionKey}"
     console.log "\tcontent: #{data.content}"
 
     done = (err, attributes) ->
       return callback err if err
       params =
-        where: { spaceKey }
+        where: { collectionKey }
         include: models.User
-      models.Space.find( params ).complete (err, space) =>
-        return callback err if err? or !space
-        attributes.SpaceId = space.id
-        models.Element.create(attributes).complete (err, element) =>
+      models.Collection.find( params ).complete (err, collection) =>
+        return callback err if err? or !collection
+        attributes.CollectionId = collection.id
+        models.Article.create(attributes).complete (err, article) =>
           return callback err if err?
-          space.elementOrder.push(element.id)
-          space.save()
-          html = articleRenderer space, element
-          sio.to(spaceKey).emit 'newElement', { html, spaceKey }
+          collection.articleOrder.push(article.id)
+          collection.save()
+          html = articleRenderer collection, article
+          sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
           return callback null
     
     getType data.content, (contentType) ->
@@ -64,68 +61,68 @@ module.exports =
         contentType: contentType
         content: data.content
 
-      if contentType of newElements
-        newElements[contentType] spaceKey, attributes, done
+      if contentType of newArticles
+        newArticles[contentType] collectionKey, attributes, done
       else
         done null, attributes
 
-  # delete the element
-  removeElement : (sio, socket, data, callback) =>
+  # delete the article
+  deleteArticle : (sio, socket, data, callback) =>
     userId   = socket.handshake.session.currentUserId
-    id       = data.elementId
-    spaceKey = data.spaceKey
+    id       = data.articleId
+    collectionKey = data.collectionKey
 
-    return callback('no id passed to removeElement') unless id
-    return callback('no spaceKey passed to removeElement') unless spaceKey
+    return callback('no id passed to deleteArticle') unless id
+    return callback('no collectionKey passed to deleteArticle') unless collectionKey
     
-    console.log "Delete element #{id} in #{spaceKey}"
+    console.log "Delete article #{id} in #{collectionKey}"
     q1 = "
-        DELETE FROM \"Elements\"
+        DELETE FROM \"Articles\"
         WHERE \"id\"=:id
-        RETURNING \"contentType\", content, \"SpaceId\"
+        RETURNING \"contentType\", content, \"CollectionId\"
       "
     models.sequelize.query(q1, null, null, { id }).complete (err, results) ->
       return callback err if err?
-      console.log 'emiting removeElement', { id, spaceKey }
-      sio.to(spaceKey).emit 'removeElement', { id, spaceKey }
+      console.log 'emiting deleteArticle', { id, collectionKey }
+      sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
       setTimeout (() ->
         checkForStackDelete sio, socket, data, callback
       ), 300
       # type = results[0].contentType
       # content = results[0].content
       # if type in ['gif', 'image']
-      #   s3.deleteImage { spaceKey, key: content, type }, (err) ->
+      #   s3.deleteImage { collectionKey, key: content, type }, (err) ->
       #     console.log err if err
       # if type in ['file', 'video']
       #   s3.delete {key: content}, (err) ->
       #     console.log err if err
 
   moveToCollection: (sio, socket, data, callback) ->
-    { elemId, spaceKey } = data
-    return callback('no spacekey in moveToCollection') unless spaceKey?
+    { elemId, collectionKey } = data
+    return callback('no collectionkey in moveToCollection') unless collectionKey?
     return callback('no elemId in moveToCollection') unless elemId?
     console.log "move to collection data:", data
-    models.Element.find(where: { id: elemId }).complete (err, elem) ->
+    models.Article.find(where: { id: elemId }).complete (err, elem) ->
       return callback err if err?
-      oldSpaceId = elem.SpaceId
-      console.log 'old space id', oldSpaceId
+      oldCollectionId = elem.CollectionId
+      console.log 'old collection id', oldCollectionId
       q = "
-          UPDATE \"Elements\"
-          SET \"SpaceId\" = (Select id from \"Spaces\" WHERE \"spaceKey\"=:spaceKey)
+          UPDATE \"Articles\"
+          SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
           WHERE \"id\"=:elemId
           "
       models.sequelize.query(q, null, null, data).complete (err, results) ->
         return callback err if err?
-        sio.to("#{spaceKey}").emit 'moveToCollection', data 
-        # params = { SpaceId: oldSpaceId, parentSpaceKey: spaceKey }
+        sio.to("#{collectionKey}").emit 'moveToCollection', data 
+        # params = { CollectionId: oldCollectionId, parentCollectionKey: collectionKey }
         # checkForStackDelete sio, socket, params, callback
         # return callback null
   
-  updateElement : (sio, socket, data, callback) =>
+  updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
-    { spaceKey, content, elementId } = data
-    id = +elementId
-    models.Element.update({content}, {id}).complete (err) ->
+    { collectionKey, content, articleId } = data
+    id = +articleId
+    models.Article.update({content}, {id}).complete (err) ->
       return callback err if err
       data.userId = userId
-      sio.to("#{spaceKey}").emit 'updateElement', data
+      sio.to("#{collectionKey}").emit 'updateArticle', data

@@ -1,18 +1,18 @@
 onDelete = ($content) ->
   if $content.hasClass('collection')
     if confirm('Delete everything?')
-      spaceKey = collectionModel.getState($content).spaceKey
-      parentSpaceKey = spacePath[1]  
-      socket.emit 'deleteCollection', { spaceKey }
+      collectionKey = collectionModel.getState($content).collectionKey
+      parentCollectionKey = collectionPath[1]  
+      socket.emit 'deleteCollection', { collectionKey }
   else
-    elementId = $content.attr 'id'
+    articleId = $content.attr 'id'
     $collection = contentModel.getCollection $content
-    spaceKey  = $collection.data 'spacekey'
-    parentSpaceKey = spacePath[1]
-    socket.emit 'removeElement', { elementId, spaceKey, parentSpaceKey }
+    collectionKey  = $collection.data 'collectionkey'
+    parentCollectionKey = collectionPath[1]
+    socket.emit 'deleteArticle', { articleId, collectionKey, parentCollectionKey }
 
 makeDeletable = ($content) ->
   $content.each () ->
-    $(@).find('.elementDeleteButton').click (event) =>
+    $(@).find('.articleDeleteButton').click (event) =>
       event.stopPropagation()
       onDelete $(@)

@@ -2,7 +2,7 @@ $ ->
 
   socket = io.connect()
 
-  # updating a space name
+  # updating a collection name
   $('.name').on 'dblclick', (event) ->
     editing = !!$('.edit-name', this).length
     event.stopPropagation()
@@ -27,4 +27,4 @@ $ ->
         event.preventDefault()
         newName = $('input[name="name"]').val()
         $(this).remove()
-        socket.emit 'updateSpace', { name : newName }
+        socket.emit 'updateCollection', { name : newName }

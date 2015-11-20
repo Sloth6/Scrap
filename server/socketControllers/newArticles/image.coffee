@@ -1,7 +1,7 @@
 models = require '../../../models'
 thumbnails = require '../../modules/thumbnails.coffee'
 
-module.exports = (spaceKey, attributes, callback) ->
+module.exports = (collectionKey, attributes, callback) ->
   original_url = attributes.content
   attributes.content = JSON.stringify { original_url, key: null }
   return callback null, attributes
@@ -10,7 +10,7 @@ module.exports = (spaceKey, attributes, callback) ->
   thumbnailOptions =
     url: attributes.content
     # contentType: attributes.contentType
-    path: "#{spaceKey}/#{imageKey}"
+    path: "#{collectionKey}/#{imageKey}"
     copy: true
 
   # s3_prefix = 'https://s3-us-west-2.amazonaws.com/scrapimagesteamnap'

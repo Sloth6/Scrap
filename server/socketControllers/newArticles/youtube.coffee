@@ -6,7 +6,7 @@ getId = (url) ->
   match = url.match(regExp)
   if match && match[2].length == 11 then match[2] else null
 
-module.exports = (spaceKey, attributes, callback) ->
+module.exports = (collectionKey, attributes, callback) ->
   id = getId attributes.content
   if id == null
     return callback "failed to get youtube id  #{attributes.content}"

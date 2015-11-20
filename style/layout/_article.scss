@@ -1,7 +1,7 @@
 $collectionOpenTransitionDuration: 1s;
 $hideImageWhiteBorder: -2px -1px -4px -2px;
 
-section.container section.space section.content{
+section.container section.collection section.content{
         
     article {
         color: $colorType;
@@ -20,7 +20,7 @@ section.container section.space section.content{
             cursor: -moz-grab;;
             cursor: grab;
             
-            .elementControls {
+            .articleControls {
                 opacity: 1;
             }
         }
@@ -48,7 +48,7 @@ section.container section.space section.content{
                 
         // CONTENTS
         
-        .elementControls {
+        .articleControls {
             @include transition(.25s $defaultCurve);
             @include transition-property(opacity);
             opacity: 0; 
@@ -59,20 +59,20 @@ section.container section.space section.content{
             font-style: normal;
             color: $colorType;
             
-            .elementDeleteButton, author {
+            .articleDeleteButton, author {
                 @include linkReset;
                 position: absolute;
                 display: block;
                 bottom: 0;
             }
             
-            .elementDeleteButton {
+            .articleDeleteButton {
                 left: 0;
             }
             
             author {
                 right:  0;
-                white-space: nowrap;
+                white-collection: nowrap;
             }
         }
         
@@ -385,7 +385,7 @@ section.container section.space section.content{
             }
         }
         
-        &.addElementForm {
+        &.addArticleForm {
 
             // Compact view
             &.peek {

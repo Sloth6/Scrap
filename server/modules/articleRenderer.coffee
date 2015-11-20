@@ -1,7 +1,7 @@
 path = __dirname+'/../../views/partials/article.jade'
 jadeFun = require('jade').compileFile path, {  filename: path }
 
-module.exports = (collection, element) ->
+module.exports = (collection, article) ->
   nameMap = () ->
     map = {}
     for user in collection.users
@@ -9,4 +9,4 @@ module.exports = (collection, element) ->
     map
 
   collection.nameMap = nameMap collection.users
-  return encodeURIComponent jadeFun({ element, collection })
+  return encodeURIComponent jadeFun({ article, collection })

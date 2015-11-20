@@ -12,8 +12,8 @@ drawOpenCollection = ($collection, animate) ->
     $(@).data 'scrollOffset', sizeTotal
     # if $(@).hasClass('cover') and $(@).hasClass('open')
     #   $(@).css { zIndex: ($contents.length*3) }
-    # # If at root level and elem is add element form, to prevent form from being on top at root level
-    # else if $(@).hasClass('addElementForm') and not $('.root.open').length # (puts add element card at back on root level
+    # # If at root level and elem is add article form, to prevent form from being on top at root level
+    # else if $(@).hasClass('addArticleForm') and not $('.root.open').length # (puts add article card at back on root level
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
     $(@).css { zIndex: zIndex++ }
@@ -27,7 +27,7 @@ drawClosedStack = ($collection) ->
   $cover = collectionModel.getCover($collection)
   collectionModel.loadContent $collection, () ->
     $content = collectionModel.getContent $collection
-    $content.find('.elementControls').hide()
+    $content.find('.articleControls').hide()
     collectionModel.getAddForm($collection).hide()
 
     translateX = 0
@@ -38,7 +38,7 @@ drawClosedStack = ($collection) ->
       $(@).css {zIndex: zIndex++}
       translateX += 50
 
-    # subtract 50 for last addition and add element form
+    # subtract 50 for last addition and add article form
     sizeTotal = contentModel.getSize($content.last()) + translateX - 100
     $cover.find(".card").width sizeTotal
     
@@ -67,8 +67,8 @@ window.collectionViewController =
 
   # This function is only called from collectionViewController.open
   pushOffScreen: ($collection, $openingCollection) ->
-    # Some element move to one side of the view and soem move to the other
-    # this depends on which side of the opening element they are.
+    # Some article move to one side of the view and soem move to the other
+    # this depends on which side of the opening article they are.
     $openingCover = collectionModel.getCover $openingCollection
     $addForm = collectionModel.getAddForm $collection
     partition = collectionModel.getContentPartitioned $collection, $openingCollection
@@ -123,7 +123,7 @@ window.collectionViewController =
         x: [ xTransform($cover), xOfSelf ]
     else
       $cover.hide()
-      # Show the add element Form.
+      # Show the add article Form.
       $collectionAddForm.show()
       $collectionContent.show()
 

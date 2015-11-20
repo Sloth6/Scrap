@@ -1,5 +1,4 @@
 require('coffee-script/register');
-
 var express = require('express')
     , app = express()
     , server = require('http').createServer(app)
@@ -46,7 +45,7 @@ app.configure(function(){
 
 io.use(sharedsession(session));
 
-db.sequelize.sync({ force: false }).complete(function(err) {
+db.sequelize.sync({ force: true }).complete(function(err) {
     if (err) {
         throw err;
     } else {

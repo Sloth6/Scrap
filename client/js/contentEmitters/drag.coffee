@@ -92,7 +92,7 @@ checkForAddToStack = (event, $dragging) ->
   return false if $dragging.hasClass('stack')
   return false unless leftCenterRight(x, droppedOn) is 'center'
   return if event.clientY < marginTop
-  spaceKey = droppedOn.data 'content'
+  collectionKey = droppedOn.data 'content'
   
   padding.remove()
   
@@ -105,11 +105,11 @@ checkForAddToStack = (event, $dragging) ->
     console.log 'Emitting move to collection'
     collectionModel.appendContent droppedOn, $dragging
     collectionViewController.draw droppedOn
-    spaceKey = collectionModel.getState(droppedOn).spaceKey
-    socket.emit "moveToCollection", { elemId: draggedId, spaceKey }
+    collectionKey = collectionModel.getState(droppedOn).collectionKey
+    socket.emit "moveToCollection", { elemId: draggedId, collectionKey }
   else
     $dragging.remove()
-    socket.emit 'newCollection', { spaceKey: spacePath[0], draggedId, draggedOverId }
+    socket.emit 'newCollection', { collectionKey: collectionPath[0], draggedId, draggedOverId }
   true
 
 checkForOpenByDrag = (x, y, dragging, draggingOver) ->
@@ -144,8 +144,8 @@ stopDragging = (event, $dragging) ->
     padding.remove()
   
   articles = collectionModel.getContent $('.collection.open')
-  elementOrder = JSON.stringify(articles.get().map (elem) -> +elem.id)
-  socket.emit 'reorderElements', { elementOrder, spaceKey: spacePath[0] }
+  articleOrder = JSON.stringify(articles.get().map (elem) -> +elem.id)
+  socket.emit 'reorderArticles', { articleOrder, collectionKey: collectionPath[0] }
   
   # timeout to prevent click event after drag
   setTimeout (() ->
@@ -180,20 +180,20 @@ makeDraggable = ($content) ->
     return unless mouseDownEvent.which is 1 # only work for left click
     return unless $(@).hasClass 'draggable'
 
-    mousedownElement = $(@)
-    draggingElement  = null
+    mousedownArticle = $(@)
+    draggingArticle  = null
     
     $(window).mousemove (event) ->
-      if draggingElement == null
-        draggingElement = mousedownElement
-        startDragging draggingElement, mouseDownEvent
-      drag event, draggingElement
+      if draggingArticle == null
+        draggingArticle = mousedownArticle
+        startDragging draggingArticle, mouseDownEvent
+      drag event, draggingArticle
     
     $(window).mouseup (event) ->
       $(window).off 'mousemove'
       $(window).off 'mouseup'
-      if draggingElement?
-        stopDragging(event, draggingElement)
+      if draggingArticle?
+        stopDragging(event, draggingArticle)
 
 
 startDragTransform = (e) ->

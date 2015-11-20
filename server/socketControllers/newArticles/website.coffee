@@ -1,6 +1,6 @@
 webPreviews = require '../../modules/webPreviews.coffee'
 
-module.exports = (spaceKey, attributes, callback) ->
+module.exports = (collectionKey, attributes, callback) ->
   url = attributes.content
   webPreviews url, (err, pageData) ->
     if err?

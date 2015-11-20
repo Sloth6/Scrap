@@ -25,8 +25,8 @@ window.contentModel =
         when 'file'       then initFile $(@)
         when 'soundcloud' then initSoundCloud $(@)
         when 'youtube'    then initYoutube $(@)
-        when 'addElementForm'
-          addElementController.init $(@)
+        when 'addArticleForm'
+          addArticleController.init $(@)
         when 'addProjectForm'
           addProjectController.init $(@)
         when 'collection'
@@ -46,6 +46,6 @@ window.contentModel =
     else
       $content.parent().parent()
 
-  getSpacekey: ($content) ->
+  getCollectionkey: ($content) ->
     $collection = contentModel.getCollection $content
-    return collectionModel.getState($collection).spaceKey
+    return collectionModel.getState($collection).collectionKey

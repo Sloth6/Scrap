@@ -11,7 +11,7 @@ ElementHandlers = require '../../server/socket_handlers/element_handlers'
 
 describe 'ElementHandlers', ->
 
-  describe '#newElement', ->
+  describe '#newArticle', ->
 
     before (done) =>
       @emit = sinon.stub()
@@ -32,7 +32,7 @@ describe 'ElementHandlers', ->
         columnId: @column.id
         contentType: "text"
         content: "content"
-      ElementHandlers.newElement @sio, null, data, (err, res) =>
+      ElementHandlers.newArticle @sio, null, data, (err, res) =>
         return done err if err?
         query = 'SELECT * FROM "Elements" WHERE "ColumnId"=$1'
         pg.query query, [data.columnId], (err, res) =>
@@ -46,7 +46,7 @@ describe 'ElementHandlers', ->
           expect(@emit).to.have.been.calledOnce
           done()
 
-  describe '#removeElement', ->
+  describe '#deleteArticle', ->
 
     beforeEach (done) =>
       @emit = sinon.stub()
@@ -70,7 +70,7 @@ describe 'ElementHandlers', ->
       data =
         spaceId: 1
         elementId: @element.id
-      ElementHandlers.removeElement @sio, null, data, (err, res) =>
+      ElementHandlers.deleteArticle @sio, null, data, (err, res) =>
         return done err if err?
         query = 'SELECT * FROM "Elements" WHERE id=$1'
         pg.query query, [@element.id], (err, res) =>
@@ -87,7 +87,7 @@ describe 'ElementHandlers', ->
         data =
           spaceId: 1
           elementId: @element.id
-        ElementHandlers.removeElement @sio, null, data, (err, res) =>
+        ElementHandlers.deleteArticle @sio, null, data, (err, res) =>
           return done err if err?
           query = 'SELECT * FROM "Columns" WHERE id=$1'
           pg.query query, [@column.id], (err, res) =>
@@ -114,7 +114,7 @@ describe 'ElementHandlers', ->
               ).complete (err, space) ->
                 return done err if err?
         # remove first element       
-        ElementHandlers.removeElement @sio, null, data, (err, res) =>
+        ElementHandlers.deleteArticle @sio, null, data, (err, res) =>
           return done err if err?
           query = 'SELECT * FROM "Columns" WHERE id=$1'
           pg.query query, [@column.id], (err, res) =>

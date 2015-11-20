@@ -1,7 +1,7 @@
 formatName = (name) ->
   name.split('/').pop().replace(/\s/g, '+')
 
-fileuploadOptions = (collection, spaceKey) ->
+fileuploadOptions = (collection, collectionKey) ->
   multipart = false
 
   url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
@@ -16,12 +16,12 @@ fileuploadOptions = (collection, spaceKey) ->
       data:# Send filename to /signed for the signed response 
         title: add_data.files[0].name
         type: add_data.files[0].type
-        spaceKey: spaceKey
+        collectionKey: collectionKey
       async: false
       success: (success_data) ->
         console.log success_data.path
         # file_name = formatName(success_data.key)
-        # createLoadingElement locations[file_name], file_name
+        # createLoadingArticle locations[file_name], file_name
 
         # Now that we have our data, we update the form so it contains all
         # the needed data to sign the request
@@ -49,4 +49,4 @@ fileuploadOptions = (collection, spaceKey) ->
     content = decodeURIComponent $(data).find('Location').text()
     # file_name = content.split('/').pop()
     # { x, y } = locations[file_name]
-    emitNewElement content, spaceKey
+    emitNewArticle content, collectionKey

@@ -1,7 +1,7 @@
 sio = require('socket.io')
 url = require('url')
-spaceController = require './socketControllers/spaceController'
-elementController = require './socketControllers/elementController'
+collectionController = require './socketControllers/collectionController'
+articleController = require './socketControllers/articleController'
 
 errorHandler = require './errorHandler'
 validator = require 'validator'
@@ -22,24 +22,24 @@ module.exports = (io)->
     
     models.User.find(
       where: { id: userId }
-      include: [ {model:models.Space}]
+      include: [ {model:models.Collection}]
     ).complete (err, user) ->
       return console.console.log(err) if err
-      for space in user.spaces
-        socket.join space.spaceKey
+      for collection in user.collections
+        socket.join collection.collectionKey
 
-      console.log "user #{userId} joined #{user.spaces.length} collections"
+      console.log "user #{userId} joined #{user.collections.length} collections"
 
-      socket.on 'newElement',   (data) -> elementController.newElement io, socket, clean(data), errorHandler
-      socket.on 'removeElement', (data) -> elementController.removeElement io, socket, clean(data), errorHandler
-      socket.on 'updateElement', (data) -> elementController.updateElement io, socket, data, errorHandler
-      socket.on 'renameCover', (data) -> spaceController.rename io, socket, data, errorHandler
-      socket.on 'moveToCollection', (data) -> elementController.moveToCollection io, socket, clean(data), errorHandler
-      socket.on 'reorderElements', (data) -> spaceController.reorderElements io, socket, clean(data), errorHandler
-      socket.on 'newCollection', (data) -> spaceController.newCollection io, socket, clean(data), errorHandler
-      socket.on 'newPack', (data) -> spaceController.newPack io, socket, clean(data), errorHandler
-      socket.on 'deleteCollection', (data) -> spaceController.deleteCollection io, socket, clean(data), errorHandler
-      socket.on 'addUserToSpace', (data) -> spaceController.addUserToSpace io, socket, clean(data), errorHandler
+      socket.on 'newArticle',   (data) -> articleController.newArticle io, socket, clean(data), errorHandler
+      socket.on 'deleteArticle', (data) -> articleController.deleteArticle io, socket, clean(data), errorHandler
+      socket.on 'updateArticle', (data) -> articleController.updateArticle io, socket, data, errorHandler
+      socket.on 'renameCover', (data) -> collectionController.rename io, socket, data, errorHandler
+      socket.on 'moveToCollection', (data) -> articleController.moveToCollection io, socket, clean(data), errorHandler
+      socket.on 'reorderArticles', (data) -> collectionController.reorderArticles io, socket, clean(data), errorHandler
+      socket.on 'newCollection', (data) -> collectionController.newCollection io, socket, clean(data), errorHandler
+      socket.on 'newPack', (data) -> collectionController.newPack io, socket, clean(data), errorHandler
+      socket.on 'deleteCollection', (data) -> collectionController.deleteCollection io, socket, clean(data), errorHandler
+      socket.on 'addUserToCollection', (data) -> collectionController.addUserToCollection io, socket, clean(data), errorHandler
       
       socket.on 'disconnect', ->
         console.log 'Client Disconnected.'

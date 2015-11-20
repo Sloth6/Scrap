@@ -1,4 +1,4 @@
-/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -97,44 +97,44 @@ html *[contentEditable=true] {
 }
 
 /* line 48, ../../style/globals/_color.scss */
-body section.space section.content article.color0 div.card.text.comment, body section.space section.content article.color0 header {
+body section.collection section.content article.color0 div.card.text.comment, body section.collection section.content article.color0 header {
   background-color: rgba(255, 59, 48, 0.9);
 }
 /* line 52, ../../style/globals/_color.scss */
-body section.space section.content article.color1 div.card.text.comment, body section.space section.content article.color1 header {
+body section.collection section.content article.color1 div.card.text.comment, body section.collection section.content article.color1 header {
   background-color: rgba(255, 149, 0, 0.9);
 }
 /* line 56, ../../style/globals/_color.scss */
-body section.space section.content article.color2 div.card.text.comment, body section.space section.content article.color2 header {
+body section.collection section.content article.color2 div.card.text.comment, body section.collection section.content article.color2 header {
   background-color: rgba(255, 204, 0, 0.9);
 }
 /* line 60, ../../style/globals/_color.scss */
-body section.space section.content article.color3 div.card.text.comment, body section.space section.content article.color3 header {
+body section.collection section.content article.color3 div.card.text.comment, body section.collection section.content article.color3 header {
   background-color: rgba(76, 217, 100, 0.9);
   color: #fffbf1;
 }
 /* line 65, ../../style/globals/_color.scss */
-body section.space section.content article.color4 div.card.text.comment, body section.space section.content article.color4 header {
+body section.collection section.content article.color4 div.card.text.comment, body section.collection section.content article.color4 header {
   background-color: rgba(0, 122, 255, 0.9);
 }
 /* line 69, ../../style/globals/_color.scss */
-body section.space section.content article.color5 div.card.text.comment, body section.space section.content article.color5 header {
+body section.collection section.content article.color5 div.card.text.comment, body section.collection section.content article.color5 header {
   background-color: rgba(255, 45, 85, 0.9);
 }
 /* line 73, ../../style/globals/_color.scss */
-body section.space section.content article.color6 div.card.text.comment, body section.space section.content article.color6 header {
+body section.collection section.content article.color6 div.card.text.comment, body section.collection section.content article.color6 header {
   background-color: rgba(135, 252, 112, 0.9);
 }
 /* line 77, ../../style/globals/_color.scss */
-body section.space section.content article.color7 div.card.text.comment, body section.space section.content article.color7 header {
+body section.collection section.content article.color7 div.card.text.comment, body section.collection section.content article.color7 header {
   background-color: rgba(255, 19, 0, 0.9);
 }
 /* line 81, ../../style/globals/_color.scss */
-body section.space section.content article.color8 div.card.text.comment, body section.space section.content article.color8 header {
+body section.collection section.content article.color8 div.card.text.comment, body section.collection section.content article.color8 header {
   background-color: rgba(239, 77, 182, 0.9);
 }
 /* line 85, ../../style/globals/_color.scss */
-body section.space section.content article.color9 div.card.text.comment, body section.space section.content article.color9 header {
+body section.collection section.content article.color9 div.card.text.comment, body section.collection section.content article.color9 header {
   background-color: rgba(82, 237, 199, 0.9);
 }
 
@@ -1008,7 +1008,7 @@ input[type=checkbox] {
 ul.headerMenu {
   position: absolute;
   display: inline-block;
-  white-space: nowrap;
+  white-collection: nowrap;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-color: transparent;
   background-color: transparent;
@@ -1468,7 +1468,7 @@ section.container header.main {
 }
 
 /* line 6, ../../style/layout/_article.scss */
-section.container section.space section.content article {
+section.container section.collection section.content article {
   color: #000000;
   position: absolute;
   backface-visibility: hidden;
@@ -1483,33 +1483,33 @@ section.container section.space section.content article {
   */
 }
 /* line 17, ../../style/layout/_article.scss */
-section.container section.space section.content article:hover, section.container section.space section.content article.hover {
+section.container section.collection section.content article:hover, section.container section.collection section.content article.hover {
   cursor: move;
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
 }
 /* line 23, ../../style/layout/_article.scss */
-section.container section.space section.content article:hover .elementControls, section.container section.space section.content article.hover .elementControls {
+section.container section.collection section.content article:hover .articleControls, section.container section.collection section.content article.hover .articleControls {
   opacity: 1;
 }
 /* line 28, ../../style/layout/_article.scss */
-section.container section.space section.content article.dragging, section.container section.space section.content article.ui-draggable-dragging, section.container section.space section.content article.active, section.container section.space section.content article:active {
+section.container section.collection section.content article.dragging, section.container section.collection section.content article.ui-draggable-dragging, section.container section.collection section.content article.active, section.container section.collection section.content article:active {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing;
 }
 /* line 38, ../../style/layout/_article.scss */
-section.container section.space section.content article.locked {
+section.container section.collection section.content article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
 /* line 44, ../../style/layout/_article.scss */
-section.container section.space section.content article.resizing .card .ui-resizable-handle {
+section.container section.collection section.content article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
 /* line 51, ../../style/layout/_article.scss */
-section.container section.space section.content article .elementControls {
+section.container section.collection section.content article .articleControls {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1527,7 +1527,7 @@ section.container section.space section.content article .elementControls {
   color: #000000;
 }
 /* line 62, ../../style/layout/_article.scss */
-section.container section.space section.content article .elementControls .elementDeleteButton, section.container section.space section.content article .elementControls author {
+section.container section.collection section.content article .articleControls .articleDeleteButton, section.container section.collection section.content article .articleControls author {
   color: #000000;
   text-decoration: none;
   border: 0;
@@ -1536,42 +1536,42 @@ section.container section.space section.content article .elementControls .elemen
   bottom: 0;
 }
 /* line 69, ../../style/layout/_article.scss */
-section.container section.space section.content article .elementControls .elementDeleteButton {
+section.container section.collection section.content article .articleControls .articleDeleteButton {
   left: 0;
 }
 /* line 73, ../../style/layout/_article.scss */
-section.container section.space section.content article .elementControls author {
+section.container section.collection section.content article .articleControls author {
   right: 0;
-  white-space: nowrap;
+  white-collection: nowrap;
 }
 /* line 87, ../../style/layout/_article.scss */
-section.container section.space section.content article.text {
+section.container section.collection section.content article.text {
   font-style: normal;
 }
 /* line 90, ../../style/layout/_article.scss */
-section.container section.space section.content article.text .card {
+section.container section.collection section.content article.text .card {
   background-color: #ffffee;
   width: 192pt;
 }
 /* line 95, ../../style/layout/_article.scss */
-section.container section.space section.content article.text * {
+section.container section.collection section.content article.text * {
   outline: none;
 }
 /* line 99, ../../style/layout/_article.scss */
-section.container section.space section.content article.text em {
+section.container section.collection section.content article.text em {
   font-style: italic;
 }
 /* line 103, ../../style/layout/_article.scss */
-section.container section.space section.content article.text strong {
+section.container section.collection section.content article.text strong {
   font-weight: 700;
 }
 /* line 107, ../../style/layout/_article.scss */
-section.container section.space section.content article.text .editable {
+section.container section.collection section.content article.text .editable {
   height: 100%;
   margin-bottom: 48pt;
 }
 /* line 114, ../../style/layout/_article.scss */
-section.container section.space section.content article.text.short .editable {
+section.container section.collection section.content article.text.short .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
   font-weight: 300;
@@ -1580,7 +1580,7 @@ section.container section.space section.content article.text.short .editable {
   margin-top: -1pt;
 }
 /* line 121, ../../style/layout/_article.scss */
-section.container section.space section.content article.text.long .editable {
+section.container section.collection section.content article.text.long .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 300;
@@ -1589,11 +1589,11 @@ section.container section.space section.content article.text.long .editable {
   margin-top: 6.4pt;
 }
 /* line 126, ../../style/layout/_article.scss */
-section.container section.space section.content article.text.long .card {
+section.container section.collection section.content article.text.long .card {
   width: 256pt;
 }
 /* line 129, ../../style/layout/_article.scss */
-section.container section.space section.content article.text.long .card .editable {
+section.container section.collection section.content article.text.long .card .editable {
   /*
                           * {
                               &:first-child {
@@ -1603,42 +1603,42 @@ section.container section.space section.content article.text.long .card .editabl
   */
 }
 /* line 149, ../../style/layout/_article.scss */
-section.container section.space section.content article.image .content .card {
+section.container section.collection section.content article.image .content .card {
   padding: 0px;
   width: 256pt;
   max-height: 320pt;
   overflow: hidden;
 }
 /* line 155, ../../style/layout/_article.scss */
-section.container section.space section.content article.image .content .card img {
+section.container section.collection section.content article.image .content .card img {
   margin: -2px -1px -4px -2px;
 }
 /* line 162, ../../style/layout/_article.scss */
-section.container section.space section.content article.youtube {
+section.container section.collection section.content article.youtube {
   width: intrinsic;
 }
 /* line 167, ../../style/layout/_article.scss */
-section.container section.space section.content article.youtube .content .card {
+section.container section.collection section.content article.youtube .content .card {
   width: intrinsic;
   padding: 0px;
 }
 /* line 171, ../../style/layout/_article.scss */
-section.container section.space section.content article.youtube .content .card iframe {
+section.container section.collection section.content article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
 /* line 182, ../../style/layout/_article.scss */
-section.container section.space section.content article.youtube .content .card {
+section.container section.collection section.content article.youtube .content .card {
   max-width: 1536pt;
 }
 /* line 188, ../../style/layout/_article.scss */
-section.container section.space section.content article.file .content {
+section.container section.collection section.content article.file .content {
   padding-right: 48px;
   height: 256pt;
   width: 192pt;
   position: relative;
 }
 /* line 195, ../../style/layout/_article.scss */
-section.container section.space section.content article.file .content .decorative.fold {
+section.container section.collection section.content article.file .content .decorative.fold {
   z-index: 10;
   position: absolute;
   top: 0;
@@ -1649,7 +1649,7 @@ section.container section.space section.content article.file .content .decorativ
   background-size: 48px 48px;
 }
 /* line 205, ../../style/layout/_article.scss */
-section.container section.space section.content article.file .content .decorative.fold:after {
+section.container section.collection section.content article.file .content .decorative.fold:after {
   content: " ";
   left: -1px;
   right: 0;
@@ -1663,22 +1663,22 @@ section.container section.space section.content article.file .content .decorativ
   border-top: 0;
 }
 /* line 220, ../../style/layout/_article.scss */
-section.container section.space section.content article.file .content .card {
+section.container section.collection section.content article.file .content .card {
   height: 100%;
   border-right: 0;
 }
 /* line 225, ../../style/layout/_article.scss */
-section.container section.space section.content article.file .content .card header h1 {
+section.container section.collection section.content article.file .content .card header h1 {
   word-wrap: break-word;
 }
 /* line 233, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card {
+section.container section.collection section.content article.playable .card {
   width: 256pt;
   padding: 0;
   position: relative;
 }
 /* line 240, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card:hover .preview:after {
+section.container section.collection section.content article.playable .card:hover .preview:after {
   opacity: 1;
   -moz-transform: scale(1);
   -ms-transform: scale(1);
@@ -1686,7 +1686,7 @@ section.container section.space section.content article.playable .card:hover .pr
   transform: scale(1);
 }
 /* line 247, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card:active .preview:after {
+section.container section.collection section.content article.playable .card:active .preview:after {
   -webkit-filter: invert(1);
   -moz-transform: scale(0.95);
   -ms-transform: scale(0.95);
@@ -1694,12 +1694,12 @@ section.container section.space section.content article.playable .card:active .p
   transform: scale(0.95);
 }
 /* line 253, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card .preview {
+section.container section.collection section.content article.playable .card .preview {
   position: relative;
   cursor: pointer;
 }
 /* line 257, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card .preview:after {
+section.container section.collection section.content article.playable .card .preview:after {
   content: '';
   background: url("/images/playButton.png") no-repeat;
   background-size: cover;
@@ -1726,26 +1726,26 @@ section.container section.space section.content article.playable .card .preview:
   transition-property: opacity, transform, -webkit-transform, -moz-transform;
 }
 /* line 281, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card header {
+section.container section.collection section.content article.playable .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
 /* line 288, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card header .artist {
+section.container section.collection section.content article.playable .card header .artist {
   margin-top: 4pt;
 }
 /* line 292, ../../style/layout/_article.scss */
-section.container section.space section.content article.playable .card header .detail {
+section.container section.collection section.content article.playable .card header .detail {
   margin-top: 24pt;
 }
 /* line 298, ../../style/layout/_article.scss */
-section.container section.space section.content article .card {
+section.container section.collection section.content article .card {
   position: relative;
   overflow: hidden;
   min-height: 192pt;
 }
 /* line 303, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website {
+section.container section.collection section.content article .card.website {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 4pt 4pt 4pt 4pt;
@@ -1753,7 +1753,7 @@ section.container section.space section.content article .card.website {
   width: 192pt;
 }
 /* line 307, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website:hover {
+section.container section.collection section.content article .card.website:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
   -o-animation: hoverLinkFlicker 20s infinite linear;
@@ -1764,11 +1764,11 @@ section.container section.space section.content article .card.website:hover {
   */
 }
 /* line 314, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website:hover .text header .url {
+section.container section.collection section.content article .card.website:hover .text header .url {
   opacity: 1;
 }
 /* line 321, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website a {
+section.container section.collection section.content article .card.website a {
   border: 0;
   position: absolute;
   top: 0;
@@ -1777,7 +1777,7 @@ section.container section.space section.content article .card.website a {
   bottom: 0;
 }
 /* line 332, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website .text header {
+section.container section.collection section.content article .card.website .text header {
   position: absolute;
   top: 4pt;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1790,7 +1790,7 @@ section.container section.space section.content article .card.website .text head
   transition-property: top;
 }
 /* line 338, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website .text header h1 {
+section.container section.collection section.content article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -1800,7 +1800,7 @@ section.container section.space section.content article .card.website .text head
   margin-bottom: -.125em;
 }
 /* line 348, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website .text header .url {
+section.container section.collection section.content article .card.website .text header .url {
   margin-top: 4pt;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1812,7 +1812,7 @@ section.container section.space section.content article .card.website .text head
   transition-property: opacity;
 }
 /* line 355, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website .text .description {
+section.container section.collection section.content article .card.website .text .description {
   margin-top: 128pt;
   margin-bottom: 4pt;
   opacity: 1;
@@ -1826,7 +1826,7 @@ section.container section.space section.content article .card.website .text .des
   transition-property: opacity, margin-top;
 }
 /* line 363, ../../style/layout/_article.scss */
-section.container section.space section.content article .card.website .text img {
+section.container section.collection section.content article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1838,18 +1838,18 @@ section.container section.space section.content article .card.website .text img 
   transition-property: margin-top;
 }
 /* line 376, ../../style/layout/_article.scss */
-section.container section.space section.content article .card h1.headerType {
+section.container section.collection section.content article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
 /* line 381, ../../style/layout/_article.scss */
-section.container section.space section.content article .card img {
+section.container section.collection section.content article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
 /* line 391, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.peek {
+section.container section.collection section.content article.addArticleForm.peek {
                 /*
                 &:hover {  
                     .translate {
@@ -1875,7 +1875,7 @@ section.container section.space section.content article.addElementForm.peek {
                 */
 }
 /* line 417, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.slideInFromSide {
+section.container section.collection section.content article.addArticleForm.slideInFromSide {
   z-index: 99999999 !important;
   /*
   .translate {
@@ -1884,19 +1884,19 @@ section.container section.space section.content article.addElementForm.slideInFr
   */
 }
 /* line 426, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.typing {
+section.container section.collection section.content article.addArticleForm.typing {
   z-index: 99999999 !important;
 }
 /* line 430, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.typing .cardActions ul li.upload {
+section.container section.collection section.content article.addArticleForm.typing .cardActions ul li.upload {
   opacity: 0;
 }
 /* line 434, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm.typing .cardActions ul li.done {
+section.container section.collection section.content article.addArticleForm.typing .cardActions ul li.done {
   opacity: 1;
 }
 /* line 440, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate {
+section.container section.collection section.content article.addArticleForm .translate {
   overflow-x: hidden;
   position: relative;
   cursor: pointer;
@@ -1914,7 +1914,7 @@ section.container section.space section.content article.addElementForm .translat
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 451, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate:after {
+section.container section.collection section.content article.addArticleForm .translate:after {
   content: "";
   height: 24px;
   width: 24px;
@@ -1938,12 +1938,12 @@ section.container section.space section.content article.addElementForm .translat
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 470, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card {
+section.container section.collection section.content article.addArticleForm .translate .card {
   overflow: visible;
   width: 192pt;
 }
 /* line 474, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .editable {
+section.container section.collection section.content article.addArticleForm .translate .card .editable {
   height: 100%;
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -1959,11 +1959,11 @@ section.container section.space section.content article.addElementForm .translat
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 483, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions {
   width: 192pt;
 }
 /* line 490, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions ul li.upload {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
   width: 96pt;
@@ -1972,7 +1972,7 @@ section.container section.space section.content article.addElementForm .translat
   position: relative;
 }
 /* line 499, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions ul li.upload:hover a {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
   -o-animation: hoverLinkFlicker 20s infinite linear;
@@ -1983,7 +1983,7 @@ section.container section.space section.content article.addElementForm .translat
   */
 }
 /* line 504, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions ul li.upload form {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
   top: 0;
@@ -1991,7 +1991,7 @@ section.container section.space section.content article.addElementForm .translat
   position: absolute;
 }
 /* line 511, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions ul li.upload form input {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -2001,14 +2001,14 @@ section.container section.space section.content article.addElementForm .translat
   cursor: pointer !important;
 }
 /* line 523, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions ul li.done {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
 /* line 529, ../../style/layout/_article.scss */
-section.container section.space section.content article.addElementForm .translate .card .cardActions ul li.done a {
+section.container section.collection section.content article.addArticleForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;
   margin-left: 8pt;
@@ -2106,7 +2106,7 @@ body article.cover .card section.title h1 {
 /* line 114, ../../style/layout/_home.scss */
 body article.cover .card section.title h2 {
   width: 384pt;
-  white-space: nowrap;
+  white-collection: nowrap;
   text-align: right;
   position: absolute;
   top: -10pt;
@@ -2151,7 +2151,7 @@ body article.cover .card section.title .rename a:hover {
   opacity: 1;
 }
 /* line 152, ../../style/layout/_home.scss */
-body article.cover .card .elementCount {
+body article.cover .card .articleCount {
   position: absolute;
   top: 0;
   right: 0;

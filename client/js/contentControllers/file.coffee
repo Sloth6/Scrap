@@ -8,7 +8,7 @@ initFile = (elems) ->
     return if $(@).data('lastY') != e.clientY
     uri = $(@).data 'content'
     name = uri.split('/').pop()
-    link = document.createElement "a"
+    link = document.createArticle "a"
     link.download = name
     link.href = uri
     link.click()

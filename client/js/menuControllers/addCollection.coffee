@@ -6,7 +6,7 @@ check_charcount = (elem, e) ->
   # if e.which
  
 addCollection = () ->
-  # $.post '/s/new', {space:{ name }}, (dom) ->
+  # $.post '/s/new', {collection:{ name }}, (dom) ->
   #   collection = $(dom)
 
 addProjectController =

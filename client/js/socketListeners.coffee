@@ -1,22 +1,22 @@
 $ ->  
   socket = io.connect()
 
-  socket.on 'updateSpace', (data) ->
+  socket.on 'updateCollection', (data) ->
     name = data.name
-    spaceKey = data.spaceKey
+    collectionKey = data.collectionKey
     $('h1').text(name)
     document.title = name
-    $("a[href='/s/#{spaceKey}']").text(name)
+    $("a[href='/s/#{collectionKey}']").text(name)
 
-  socket.on 'newElement', (data) ->
-    { html, spaceKey } = data
+  socket.on 'newArticle', (data) ->
+    { html, collectionKey } = data
     $content = $(decodeURIComponent(html))
-    console.log "new $content for #{spaceKey}", $content[0]
+    console.log "new $content for #{collectionKey}", $content[0]
     $collection = $('.collection.open')
     
-    if $collection.data('spacekey') == spaceKey
-      $addElementForm = collectionModel.getAddForm $collection
-      $content.css { x: xTransform($addElementForm) }
+    if $collection.data('collectionkey') == collectionKey
+      $addArticleForm = collectionModel.getAddForm $collection
+      $content.css { x: xTransform($addArticleForm) }
       collectionModel.appendContent $collection, $content
       contentModel.init $content
       collectionViewController.draw $collection, {animate: true}
@@ -41,8 +41,6 @@ $ ->
     stack = $(decodeURIComponent(data.coverHTML))
     
     stack.insertAfter draggedOver
-    # stack.add draggedOver
-    # stack.add dragged
     stack.css { x: xTransform(draggedOver), y: marginTop }
     draggedOver.remove()
     dragged.remove()
@@ -51,33 +49,32 @@ $ ->
 
     setTimeout collectionRealignDontScale, 300
     console.log 'here all good'
-    # console.log stack[0]
 
-  socket.on 'reorderElements', (data) ->
-    console.log 'reorderElements', data
+  socket.on 'reorderArticles', (data) ->
+    console.log 'reorderArticles', data
 
   socket.on 'deleteCollection', (data) ->
-    { spaceKey } = data
-    $collection =  $(".collection.#{spaceKey}")
+    { collectionKey } = data
+    $collection =  $(".collection.#{collectionKey}")
     $collection.fadeOut ->
       $collection.remove()
       collectionViewController.draw $('.collection.open'), {animate: true}
 
-  socket.on 'removeElement', (data) ->
-    console.log 'removeElement', data, $("\##{data.id}")
-    { id, spaceKey } = data
+  socket.on 'deleteArticle', (data) ->
+    console.log 'deleteArticle', data, $("\##{data.id}")
+    { id, collectionKey } = data
     
     toRemove = $("\##{data.id}")
     toRemove.fadeOut ->
       toRemove.remove()
       collectionViewController.draw $('.collection.open'), {animate: true}
 
-  socket.on 'updateElement', ({ spaceKey, userId, elementId, content }) ->
+  socket.on 'updateArticle', ({ collectionKey, userId, articleId, content }) ->
     return if data.userId is window.userId
-    elem = $("\##{elementId}")
-    elem.find('.editable').innerHTML element.content
+    elem = $("\##{articleId}")
+    elem.find('.editable').innerHTML article.content
 
-  # socket.on 'moveToCollection', ({ elemId, spaceKey }) ->
+  # socket.on 'moveToCollection', ({ elemId, collectionKey }) ->
   #   $collectionFrom = contentModel.getCollection $("##{elemId}")
-  #   $collectionTo = $(".collection.#{spaceKey}")
+  #   $collectionTo = $(".collection.#{collectionKey}")
   #   console.log collectionFrom, collectionTo

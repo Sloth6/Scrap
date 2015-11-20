@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) ->
-  Element = sequelize.define 'Element', {
+  Article = sequelize.define 'Article', {
     contentType:
       type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud', 'mp3', 'youtube', 'cover'
       allowNull: false
@@ -15,6 +15,6 @@ module.exports = (sequelize, DataTypes) ->
   }, {
     classMethods:
       associate: (models) ->
-        Element.belongsTo models.User, foreignKey: 'creatorId', as: 'Creator'
-        Element.belongsTo models.Space, { onDelete: 'CASCADE' }
+        Article.belongsTo models.User, foreignKey: 'creatorId', as: 'Creator'
+        Article.belongsTo models.Collection, { onDelete: 'CASCADE' }
   }

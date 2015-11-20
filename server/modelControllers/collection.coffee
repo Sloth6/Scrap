@@ -9,9 +9,9 @@ nameMap = (users) ->
 
 
 module.exports = 
-	load : ({root, spaceKey}) ->
-		models.Space.find({
-      where: { root, spaceKey }
-      include:[ model:models.Element, models.User ]
-    }).complete (err, space) ->
+	load : ({root, collectionKey}) ->
+		models.Collection.find({
+      where: { root, collectionKey }
+      include:[ model:models.Article, models.User ]
+    }).complete (err, collection) ->
       return callback err if err?

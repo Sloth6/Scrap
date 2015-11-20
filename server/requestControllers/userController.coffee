@@ -1,6 +1,6 @@
 models = require '../../models'
-spaceController = require './spaceController'
-newSpace = require '../newSpace'
+collectionController = require './collectionController'
+newCollection = require '../newCollection'
 
 module.exports =
   updateUser: (req, res, app)  ->
@@ -16,7 +16,7 @@ module.exports =
         return res.send 400 if err?
         return res.send 200
 
-  # create a new user and default space, redirect to space
+  # create a new user and default collection, redirect to collection
   newUser : (req, res, app, callback) ->
     { name, email, password } = req?.body
     attributes = { name, email, password }
@@ -40,12 +40,12 @@ module.exports =
             done user
       done = (user) ->
         req.session.currentUserId = user.id
-        # create the users root space
-        firstSpaceOptions =
+        # create the users root collection
+        firstCollectionOptions =
           UserId: user.id
-          spaceName: user.name
+          collectionName: user.name
           root: true
-        newSpace firstSpaceOptions, (err) ->
+        newCollection firstCollectionOptions, (err) ->
           return callback err if err?
           req.session.currentUserId = user.id
           req.session.userName = user.name
@@ -54,14 +54,14 @@ module.exports =
           callback null
           # res.render 'home.jade', { user, title: 'Scrap' }
 
-  # verify login creds, redirect to first space
+  # verify login creds, redirect to first collection
   login : (req, res, app, callback) ->
     email = req.body.email
     password = req.body.password
     console.log 'trying login', email, password
     models.User.find(
       where: { email }
-      include: [ models.Space ]
+      include: [ models.Collection ]
     ).complete (err, user) ->
       console.log err, !!user
       return res.status(400).send if err?
@@ -69,12 +69,12 @@ module.exports =
       return res.status(400).send "Sign up to activate this account" if user? and !user.password
       user.verifyPassword password, (err, result) ->
         return res.status(400).send err if err?
-        # render first space on success
+        # render first collection on success
         if result
           req.session.currentUserId = user.id
           req.session.userName = user.name
           req.session.userEmail = user.email
-          res.send "/"#"/s/" + user.spaces[0].spaceKey
+          res.send "/"#"/s/" + user.collections[0].collectionKey
           callback()
         else
           console.log 'Incorrect password'

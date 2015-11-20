@@ -6,8 +6,8 @@ indexPage = (res) ->
     description: ''
     author: 'scrap'
     names: { 1: "" }
-    current_space:
-      spaceKey: 'index'
+    current_collection:
+      collectionKey: 'index'
 
 module.exports =
   index: (req, res, app, callback) ->
@@ -15,11 +15,11 @@ module.exports =
       models.User.find( where: { id: req.session.currentUserId }).complete (err, user) ->
         return callback err if err?
         return indexPage res unless user?
-        models.Space.find({
+        models.Collection.find({
           where: { root: true, UserId: user.id }
           include:[ 
             model: models.User
-            model: models.Space, as: 'children'
+            model: models.Collection, as: 'children'
           ]
         }).complete (err, collection) ->
           return callback err if err?

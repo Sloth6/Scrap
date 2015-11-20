@@ -2,14 +2,14 @@ window.navigationController =
   open: ($collection) ->
     throw 'no collection passed' unless $collection?
     collectionState = collectionModel.getState $collection
-    spaceKey        = collectionState.spaceKey
+    collectionKey        = collectionState.collectionKey
 
 
     #If leaving root collection, animate out back button
     if collectionModel.getParent($collection)?.hasClass('root')
       $('header.main .backButton.main').velocity { translateX: 32 }
 
-    spacePath.unshift spaceKey
+    collectionPath.unshift collectionKey
 
     # update the state object for this view so we can return to where we left
     history.replaceState {
@@ -19,9 +19,9 @@ window.navigationController =
     }, ""
 
     # The object that will hold the state of the opening collection
-    newState = { name: spaceKey }
+    newState = { name: collectionKey }
     # update the url
-    history.pushState newState, "", "/s/#{spaceKey}"
+    history.pushState newState, "", "/s/#{collectionKey}"
 
     collectionModel.loadContent $collection, () ->
       collectionViewController.open $collection 
@@ -35,7 +35,7 @@ window.navigationController =
   close: ($collection, state) ->
     throw 'cannot close root' if $('.root.collection.open').length
     
-    spacePath.shift()
+    collectionPath.shift()
     $parentCollection         = collectionModel.getParent   $collection
     collectionViewController.close $collection
 

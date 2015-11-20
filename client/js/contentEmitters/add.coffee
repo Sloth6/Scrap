@@ -1,7 +1,7 @@
-emitNewElement = (content, spacekey) ->
-  if !spacekey
-    throw 'no spacekey given to emitNewElement'
+emitNewArticle = (content, collectionkey) ->
+  if !collectionkey
+    throw 'no collectionkey given to emitNewArticle'
   content = encodeURIComponent(content)
   if content != ''
-    console.log "emiting '#{content}' to #{spacekey}"
-    socket.emit 'newElement', { content, userId, spacekey }
+    console.log "emiting '#{content}' to #{collectionkey}"
+    socket.emit 'newArticle', { content, userId, collectionkey }

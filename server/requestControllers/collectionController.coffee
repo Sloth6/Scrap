@@ -8,7 +8,7 @@ mail = require '../adapters/nodemailer'
 request = require 'request'
 domain = require('../config.json').domain
 coverColor = require '../modules/coverColor'
-newSpace = require '../newSpace'
+newCollection = require '../newCollection'
 
 config = 
   redirect_host:  "http://localhost:3000/" #Host to redirect after uploading
@@ -17,41 +17,41 @@ config =
 
 module.exports =
   # collectionData: (req, res, app, callback) ->
-  #   { spaceKey } = req.params
-  #   models.Space.find({
-  #     where: { spaceKey }, include:[ model:models.User ]
-  #   }).complete (err, space) ->
+  #   { collectionKey } = req.params
+  #   models.Collection.find({
+  #     where: { collectionKey }, include:[ model:models.User ]
+  #   }).complete (err, collection) ->
   #     return callback(err, res) if err?
-  #     return res.send(400) unless space?
-  #     res.status(200).send space
+  #     return res.send(400) unless collection?
+  #     res.status(200).send collection
 
   collectionContent: (req, res, app, callback) ->
-    { spaceKey } = req.params
-    return res.send(400) unless spaceKey?
-    models.Space.find({
-      where: { spaceKey }
+    { collectionKey } = req.params
+    return res.send(400) unless collectionKey?
+    models.Collection.find({
+      where: { collectionKey }
       include:[ 
-        model:models.Element
-        { model:models.Space, as: 'children', include: [model:models.Element] }
+        model:models.Article
+        { model:models.Collection, as: 'children', include: [model:models.Article] }
       ]
-    }).complete (err, space) ->
+    }).complete (err, collection) ->
       return callback err, res if err?
-      return callback "No space found for '#{spaceKey}'", res unless space?
+      return callback "No collection found for '#{collectionKey}'", res unless collection?
 
-      { elements, children, elementOrder } = space
+      { articles, children, articleOrder } = collection
       console.log children
 
-      elements.sort (a, b) ->
-        if elementOrder.indexOf(a.id) > elementOrder.indexOf(b.id) then 1 else -1
+      articles.sort (a, b) ->
+        if articleOrder.indexOf(a.id) > articleOrder.indexOf(b.id) then 1 else -1
       
-      app.render 'partials/collectionContent', { collection: space }, (err, html) ->
+      app.render 'partials/collectionContent', { collection: collection }, (err, html) ->
         return callback err if err?
         res.status(200).send html
 
   uploadFile : (req, res, app, callback) ->
-    { type, title, spaceKey } = req.query
+    { type, title, collectionKey } = req.query
     title = title or 'undefined'
-    console.log title, type, spaceKey
+    console.log title, type, collectionKey
 
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
     file_key = uuid.v4() # Generate uuid for filename
@@ -61,7 +61,7 @@ module.exports =
       "expiration": expire
       "conditions": [
         {"bucket": config.aws_bucket}
-        ["eq", "$key", spaceKey + "/" + file_key + "/" + title]
+        ["eq", "$key", collectionKey + "/" + file_key + "/" + title]
         {"acl": "public-read"}
         {"success_action_status": "201"}
         ["starts-with", "$Content-Type", type]
@@ -76,7 +76,7 @@ module.exports =
     res.json {
       policy: base64policy
       signature: signature
-      path: (spaceKey + "/" + file_key + "/" + title)
+      path: (collectionKey + "/" + file_key + "/" + title)
       success_action_redirect: "/"
       contentType: type
     }

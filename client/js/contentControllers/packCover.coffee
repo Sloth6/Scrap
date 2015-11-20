@@ -1,12 +1,12 @@
-addUser = (email, spaceKey) ->
-  console.log "inviting #{email} to #{spaceKey}"
-  socket.emit 'addUserToSpace', { email, spaceKey }
+addUser = (email, collectionKey) ->
+  console.log "inviting #{email} to #{collectionKey}"
+  socket.emit 'addUserToCollection', { email, collectionKey }
 
 stopEditing = (cover) ->
   return unless cover.hasClass('editing')
   title  = cover.find('.collectionTitle')
   card   = cover.find('.card')
-  spaceKey = cover.parent().data 'spacekey'
+  collectionKey = cover.parent().data 'collectionkey'
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
 
@@ -20,12 +20,12 @@ stopEditing = (cover) ->
   userMenu.addClass 'canOpen'
   rename.children('a').text 'Rename'
   title.attr 'contenteditable', false
-  socket.emit 'renameCover', { spaceKey, name: title.text() }
+  socket.emit 'renameCover', { collectionKey, name: title.text() }
 
 startEditing = (cover) ->
   title  = cover.find('.collectionTitle')
   card   = cover.find('.card')
-  spaceKey = cover.parent().data 'spacekey'
+  collectionKey = cover.parent().data 'collectionkey'
   rename   = cover.find('.rename')
   userMenu = card.find('ul.menu')
 
@@ -64,7 +64,7 @@ bindCoverControls = (cover) ->
   # submit on enter
   cover.find('.addUser').on 'submit', (event) ->
     event.preventDefault()
-    spaceKey = cover.data('content')
+    collectionKey = cover.data('content')
     input = $('input[name="user[email]"]', @)
     textField = $(@).children('label')
     
@@ -78,7 +78,7 @@ bindCoverControls = (cover) ->
         text('Joel Simon').
         insertBefore cover.find('.user.add')
       textField.html 'An invite has been sent'
-      addUser email, spaceKey
+      addUser email, collectionKey
     
     cover.find('ul.menu').each () ->
       cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'

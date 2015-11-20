@@ -1,14 +1,14 @@
 
-loadElements = (spacekey, callback) ->
-  return callback 'ERR. spacekey not passed to loadElements' unless spacekey  
-  $.get "/collectionContent/#{spacekey}", (data) ->
+loadArticles = (collectionkey, callback) ->
+  return callback 'ERR. collectionkey not passed to loadArticles' unless collectionkey  
+  $.get "/collectionContent/#{collectionkey}", (data) ->
     callback $(data)
 
 window.collectionModel =
   init: ($collection) ->
     console.log $collection
     $cover   = collectionModel.getCover $collection
-    spaceKey = collectionModel.getState($collection).spaceKey
+    collectionKey = collectionModel.getState($collection).collectionKey
 
     $collection.click (event) ->
       event.stopPropagation()
@@ -32,8 +32,8 @@ window.collectionModel =
   getState: ($collection) ->
     open    = $collection.hasClass('.open')
     size    = $collection.data('size')
-    spaceKey = $collection.data('spacekey')
-    return { open, size, spaceKey }
+    collectionKey = $collection.data('collectionkey')
+    return { open, size, collectionKey }
 
   # Return articles in a collection
   # 
@@ -43,7 +43,7 @@ window.collectionModel =
     $contents         = $contentContainer.children()
     $contents
 
-  # The collection and element to partion around
+  # The collection and article to partion around
   getContentPartitioned: ($collection, $content) ->
     $contentsBefore = $([])
     $contentsAfter  = $([])
@@ -87,16 +87,16 @@ window.collectionModel =
 
   getAddForm: ($collection) ->
     $contents = collectionModel.getContent $collection
-    $contents.filter('.addElementForm')
-    $collection.children('.addElementForm,.addProjectForm')
+    $contents.filter('.addArticleForm')
+    $collection.children('.addArticleForm,.addProjectForm')
 
   loadContent: ($collection, callback) ->
-    spaceKey = collectionModel.getState($collection).spaceKey
+    collectionKey = collectionModel.getState($collection).collectionKey
     $contentContainer = $collection.children('.contentContainer')
     # $contentContainer.empty()
     # A stack will already have content
     return callback() if $contentContainer.children().length
-    $.get "/collectionContent/#{spaceKey}", (data) ->
+    $.get "/collectionContent/#{collectionKey}", (data) ->
       $contentContainer.append $(data)
       callback()
 

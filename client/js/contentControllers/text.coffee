@@ -26,7 +26,7 @@ textFormat = (elems) ->
       $(@).addClass('long').removeClass('short')
       collectionViewController.draw $('.collection.open')
 
-# Bind events on article.text elements.
+# Bind events on article.text articles.
 bindTextEvents = ($text) ->
   $text.mousedown (e) ->
     $(@).data 'lastX', e.clientX
@@ -43,8 +43,8 @@ bindTextEvents = ($text) ->
 
   $text.each () ->
     elem      = $(@)
-    spaceKey  = elem.data 'spacekey'
-    elementId = elem.attr 'id'
+    collectionKey  = elem.data 'collectionkey'
+    articleId = elem.attr 'id'
     form      = elem.find('.editable')
     timeout   = null
 
@@ -57,7 +57,7 @@ bindTextEvents = ($text) ->
       clearTimeout timeout if timeout
       content = @innerHTML
       timeout = setTimeout (() ->
-        socket.emit 'updateElement', { spaceKey, userId, elementId, content }
+        socket.emit 'updateArticle', { collectionKey, userId, articleId, content }
       ), 200
 
 initText = (elems) ->

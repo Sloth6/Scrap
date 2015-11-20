@@ -51,7 +51,7 @@ calculateRotateZ = ($content) ->
 #   # Make edge of card visible on open collections
 #   if $content.hasClass 'cover'
 #     $content.addClass 'peek' if $content.hasClass 'open'
-#   if $content.hasClass 'addElementForm'
+#   if $content.hasClass 'addArticleForm'
 #     #If focused or focused with empty field
 #     if (!$content.hasClass('focus')) or ($content.find('textarea').val() == '')
 #       $content.addClass 'peek'
@@ -62,9 +62,9 @@ calculateRotateZ = ($content) ->
 # Not at edge
 # else
 #   $content.removeClass 'onEdge'
-#   if $content.hasClass 'cover' or $content.hasClass 'addElementForm' 
+#   if $content.hasClass 'cover' or $content.hasClass 'addArticleForm' 
 #     $content.removeClass 'peek'
-#   if $content.hasClass 'addElementForm' 
+#   if $content.hasClass 'addArticleForm' 
 #     $content.removeClass 'peek'
 
 # percentFromCenter = percentToBorder((translateX), $content, $(window).width()/2)

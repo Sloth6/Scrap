@@ -2,7 +2,7 @@ models = require '../../../models'
 request = require 'request'
 webPreviews = require '../../modules/webPreviews.coffee'
 
-module.exports = (spaceKey, attributes, callback) ->
+module.exports = (collectionKey, attributes, callback) ->
   options =
     uri: "http://soundcloud.com/oembed"
     method: 'POST'

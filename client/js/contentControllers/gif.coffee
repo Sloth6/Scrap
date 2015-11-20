@@ -35,6 +35,6 @@
 #   $('article.gif').each () ->
 #     key = $(this).children('.card').data('key')
 #     root = "https://s3-us-west-2.amazonaws.com/scrapimagesteamnap/"
-#     url = "#{root}#{spaceKey}/#{key}/normal.gif"
+#     url = "#{root}#{collectionKey}/#{key}/normal.gif"
 #     gif = $('<img/>').attr { src: url }
 #     enableGifMouseover $(this), gif

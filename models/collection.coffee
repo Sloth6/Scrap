@@ -1,11 +1,11 @@
 uuid = require 'node-uuid'
 coverColor = require('../server/modules/coverColor')
 module.exports = (sequelize, DataTypes) ->
-  Space = sequelize.define 'Space', {
+  Collection = sequelize.define 'Collection', {
     name:
       type: DataTypes.TEXT
       allowNull: false
-    spaceKey:
+    collectionKey:
       type: DataTypes.TEXT
       defaultValue: () -> uuid.v4().split('-')[0]
       allowNull: false
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) ->
       type: DataTypes.DATE
       allowNull: false
       defaultValue: DataTypes.NOW
-    elementOrder:
+    articleOrder:
       type: DataTypes.ARRAY(DataTypes.INTEGER)
       allowNull: false
       defaultValue: '{}'
@@ -38,12 +38,12 @@ module.exports = (sequelize, DataTypes) ->
 
     classMethods:
       associate: (models) ->
-        Space.hasMany models.User
-        Space.hasMany models.Element
+        Collection.hasMany models.User
+        Collection.hasMany models.Article
 
-        Space.hasMany models.Space, { as: 'children' }
-        Space.belongsTo models.Space, { as: 'parent', onDelete: 'CASCADE' }
+        Collection.hasMany models.Collection, { as: 'children' }
+        Collection.belongsTo models.Collection, { as: 'parent', onDelete: 'CASCADE' }
 
-        # Space.belongsTo models.Element, { as: 'coverId', foreignKey: 'coverId' }
-        Space.belongsTo models.User, { as: 'Creator' }
+        # Collection.belongsTo models.Article, { as: 'coverId', foreignKey: 'coverId' }
+        Collection.belongsTo models.User, { as: 'Creator' }
   }
