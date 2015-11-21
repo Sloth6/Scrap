@@ -4,9 +4,10 @@ async = require 'async'
 module.exports = (params, callback) ->
   params.name ?= ''
   parent = params.parent
+  userId = params.UserId
   
   models.User.find(
-    where: { id: params.UserId }
+    where: { id: userId }
   ).complete (err, user) ->
     return callback err if err?
     return callback('no user found') unless user?

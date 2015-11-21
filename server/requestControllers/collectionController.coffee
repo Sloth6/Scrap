@@ -39,7 +39,6 @@ module.exports =
       return callback "No collection found for '#{collectionKey}'", res unless collection?
 
       { articles, children, articleOrder } = collection
-      console.log children
 
       articles.sort (a, b) ->
         if articleOrder.indexOf(a.id) > articleOrder.indexOf(b.id) then 1 else -1

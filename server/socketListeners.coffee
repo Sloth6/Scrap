@@ -36,7 +36,7 @@ module.exports = (io)->
       socket.on 'renameCover', (data) -> collectionController.rename io, socket, data, errorHandler
       socket.on 'moveToCollection', (data) -> articleController.moveToCollection io, socket, clean(data), errorHandler
       socket.on 'reorderArticles', (data) -> collectionController.reorderArticles io, socket, clean(data), errorHandler
-      socket.on 'newCollection', (data) -> collectionController.newCollection io, socket, clean(data), errorHandler
+      socket.on 'newStack', (data) -> collectionController.newStack io, socket, clean(data), errorHandler
       socket.on 'newPack', (data) -> collectionController.newPack io, socket, clean(data), errorHandler
       socket.on 'deleteCollection', (data) -> collectionController.deleteCollection io, socket, clean(data), errorHandler
       socket.on 'addUserToCollection', (data) -> collectionController.addUserToCollection io, socket, clean(data), errorHandler

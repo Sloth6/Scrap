@@ -51,10 +51,11 @@ module.exports =
           return callback err if err?
           addUserToCollection(user, collectionKey, complete) if user?
 
-  newCollection: (sio, socket, data) ->
+  newStack: (sio, socket, data) ->
     # CollectionKey will be the parent of the new collection
-    collectionKey = data.collectionKey
-    userId   = socket.handshake.session.userId
+    parentCollectionKey = data.collectionKey
+    userId = socket.handshake.session.userId
+    
     # Dragged and draggedOver and the articles that created the collection
     draggedId     = parseInt data.draggedId
     draggedOverId = parseInt data.draggedOverId
@@ -66,76 +67,61 @@ module.exports =
 
     async.waterfall [
       # Get the parent collection
-      (newCollection, cb) -> models.Collection.find( where: { collectionKey } ).complete cb
+      (cb) ->
+        opts = where: { collectionKey: parentCollectionKey }
+        models.Collection.find(opts).complete cb
 
       # Create the new collection
-      (parent, cb) -> newCollection { UserId: userId, hasCover:false, parent }, cb
+      (parent, cb) -> newCollection { UserId: userId, parent }, (err, collection) ->
+        return cb(err) if err?
+        return cb null, collection, parent
 
       # Move articles to the new collection
-      (newCollection, cb) -> 
+      (collection, parent, cb) -> 
         console.log 'Moving articles to the new collection'
         updateQuery = "UPDATE \"Articles\"
-                      SET \"CollectionId\" = '#{newCollection.id}'
+                      SET \"CollectionId\" = '#{collection.id}'
                       WHERE id = #{draggedId} or id = #{draggedOverId};
                       "
-        newCollection.articleOrder = [draggedId, draggedOverId]
-        newCollection.save().complete (err) ->
+        collection.articleOrder = [draggedId, draggedOverId]
+        collection.save().complete (err) ->
           return cb(err) if err 
           models.sequelize.query(updateQuery).complete (err) ->
-            if err then cb err else cb null, newCollection
+            if err then cb err else cb null, collection, parent
 
-      # # Change article order
-      # (parentCollection, cover, cb) ->
-      #   console.log "Changing article order"
-      #   order = parentCollection.articleOrder
-      #   console.log "\told article order:", order
-      #   console.log "\tcover id:", cover.id
-      #   # The position of the dragegdOverId becomes the cover id
-        
-      #   draggedOverPosition = order.indexOf(draggedOverId)
-      #   draggedPosition = order.indexOf(draggedId)
-
-      #   console.log '\tdraggedover index:', draggedOverPosition
-      #   console.log  "\tdragged position:", draggedPosition
-
-      #   order[draggedOverPosition] = cover.id
-      #   order.splice(draggedPosition, 1)
-        
-      #   console.log "\t new order",order
-
-      #   parentCollection.save().complete (err) ->
-      #     if err then cb err else cb null, parentCollection, cover
+      # Change article order
+      (collection, parent, cb) ->
+        console.log "Changing article order"
+        order = parent.articleOrder
+        # The position of the dragegdOverId becomes the cover id   
+        draggedOverPosition = order.indexOf(draggedOverId)
+        draggedPosition = order.indexOf(draggedId)
+        order[draggedOverPosition] = collection.id
+        order.splice(draggedPosition, 1)
+        parent.save().complete (err) ->
+          if err then cb err else cb null, parent, collection
     
-    ], (err, parentCollection, cover) ->
+    ], (err, parent, collection) ->
       return console.log err if err
       
-      coverHTML = collectionRenderer(parentCollection)
-      sio.to("#{collectionKey}").emit 'newCollection', {coverHTML, draggedId, draggedOverId}
-      console.log 'Adding user to room', collectionKey
-      socket.join collectionKey
+      collectionHTML = collectionRenderer(collection)
+      emitData = {collectionHTML, draggedId, draggedOverId}
+      sio.to("#{parentCollectionKey}").emit 'newCollection', emitData
+      socket.join collection.collectionKey
 
   newPack: (sio, socket, data) ->
     { name } = data
     userId = socket.handshake.session.userId
     return console.log('no userid', res) unless userId?
     return console.log('no name sent', res) unless name?
-    console.log 'New pack', { name, userId }
-    
     async.waterfall [
       # Get the parent collection
-      (cb) ->
-        models.Collection.find( where: { UserId:userId, root: true } ).complete cb
-
+      (cb) -> models.Collection.find( where: { UserId:userId, root: true } ).complete cb
       # Create the new collection
-      (parent, cb) -> 
-        newCollection { UserId: userId, name, hasCover:true, parent }, cb
-
+      (parent, cb) -> newCollection { UserId: userId, name, hasCover:true, parent }, cb
     ], (err, collection) ->
-      console.log 'err', err
       return callback(err) if err?
-      coverHTML = collectionRenderer(collection)
-      socket.emit 'newPack', { coverHTML }
-      console.log 'Adding user to room', collection.collectionKey
+      socket.emit 'newPack', { collectionHTML: collectionRenderer(collection) }
       socket.join collection.collectionKey
 
   deleteCollection: (sio, socket, data) ->
@@ -144,6 +130,11 @@ module.exports =
       where: { collectionKey }, include:[ model:models.Collection, as: "parent" ]
     }).complete (err, collection) ->
       parentCollectionKey = collection.parent.collectionKey
+
+      # TODO change location string of parent
+      # draggedPosition = order.indexOf(draggedId)
+      # order.splice(draggedPosition, 1)
+
       collection.destroy().complete (err) ->
         console.log 'delete', err
         sio.to("#{parentCollectionKey}").emit 'deleteCollection', { collectionKey }

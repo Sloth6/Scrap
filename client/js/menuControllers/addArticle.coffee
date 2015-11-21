@@ -10,18 +10,6 @@ addArticleController =
     content = () ->
       input.html()
     
-    # slideInFromSide = () ->
-    #   if menu.hasClass 'peek'
-    #     menu.removeClass 'peek'
-    #     menu.addClass 'slideInFromSide'
-    #     menu.find('.editable').select()
-    #     menu.find('.upload').show()
-  
-    # slideBackToSide = () ->
-    #   if menu.hasClass('slideInFromSide') and !menu.hasClass('focus')
-    #     menu.addClass 'peek'
-    #     menu.removeClass 'slideInFromSide'
-
     input.on 'focus', () ->
       menu.addClass 'focus'
       menu.find('.card').addClass 'editing'

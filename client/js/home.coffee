@@ -36,6 +36,8 @@ $ ->
   #TODO reimpelment this
   #, {}, () -> hyphenateText()
   $('.slidingContainer').css y: marginTop
+  # $('.content').css y: marginTop
+  # $('.content').velocity { translateY: marginTop}, {duration: 1}
   
   onScroll()
   $(window).scroll onScroll

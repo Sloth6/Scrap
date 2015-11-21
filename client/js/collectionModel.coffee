@@ -69,11 +69,6 @@ window.collectionModel =
 
   appendContent: ($collection, $content) ->
     $collection.children('.contentContainer').append $content
-    # console.log $collection, $content
-    # $contents = collectionModel.getContent $collection
-    # console.log 'last', $contents.last()
-    # $contents.append $content
-    # $content.insertBefore $contents.last()
 
   getFinalContent: ($collection) ->
     $contents = collectionModel.getContent $collection

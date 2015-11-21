@@ -45,14 +45,12 @@ drag = (event, $dragging) ->
 
   $dragging.velocity {
     translateX: x - $dragging.data('mouseOffsetX')
-    translateY: y - $dragging.data('mouseOffsetY')
+    translateY: y - $dragging.data('mouseOffsetY') - marginTop
   }, {
     duration: 1
   }
 
   $contentAfter = collectionModel.getContentAfter $('.collection.open'), x
-  # if $contentAfter.length == 0
-  #   $contentAfter = collectionModel.getFinalContent $('.collection.open')
 
   return if $contentAfter.is lastDraggingOver
   return if $contentAfter.is padding
@@ -62,7 +60,8 @@ drag = (event, $dragging) ->
   if $contentAfter.length
     padding.insertBefore $contentAfter
   else
-    collectionModel.appendContent padding
+    console.log 'append to end'
+    collectionModel.appendContent $('.collection.open'), padding
   
   collectionViewController.draw $('.collection.open'), { animate: true }
   lastDraggingOver = $contentAfter
@@ -109,7 +108,7 @@ checkForAddToStack = (event, $dragging) ->
     socket.emit "moveToCollection", { elemId: draggedId, collectionKey }
   else
     $dragging.remove()
-    socket.emit 'newCollection', { collectionKey: collectionPath[0], draggedId, draggedOverId }
+    socket.emit 'newStack', { collectionKey: collectionPath[0], draggedId, draggedOverId }
   true
 
 checkForOpenByDrag = (x, y, dragging, draggingOver) ->
@@ -170,7 +169,8 @@ startDragging = ($dragging, mouseDownEvent) ->
   # startDragTransform $dragging
   contentModel.setSize padding, contentModel.getSize($dragging)
   padding.insertAfter $dragging
-  $dragging.insertAfter $('.slidingContainer')
+  # $dragging.insertAfter $('.slidingContainer')
+  $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
   collectionViewController.draw $('.collection.open')
  

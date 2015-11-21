@@ -22,8 +22,8 @@ $ ->
       collectionViewController.draw $collection, {animate: true}
   
   socket.on 'newPack', (data) ->
-    { coverHTML } = data
-    $collection = $(decodeURIComponent(coverHTML))
+    { collectionHTML } = data
+    $collection = $(decodeURIComponent(collectionHTML))
     form = $('.addProjectForm')
     $collection.velocity { transformX: [xTransform(form), xTransform(form)] }
 
@@ -34,11 +34,11 @@ $ ->
 
   # for new stacks
   socket.on 'newCollection', (data) ->
-    { draggedId, draggedOverId, coverHTML } = data
+    { draggedId, draggedOverId, collectionHTML } = data
     console.log data
     dragged = $("##{data.draggedId}")
     draggedOver = $("##{data.draggedOverId}")
-    stack = $(decodeURIComponent(data.coverHTML))
+    stack = $(decodeURIComponent(data.collectionHTML))
     
     stack.insertAfter draggedOver
     stack.css { x: xTransform(draggedOver), y: marginTop }

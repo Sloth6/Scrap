@@ -45,7 +45,7 @@ app.configure(function(){
 
 io.use(sharedsession(session));
 
-db.sequelize.sync({ force: true }).complete(function(err) {
+db.sequelize.sync({ force: false }).complete(function(err) {
     if (err) {
         throw err;
     } else {
