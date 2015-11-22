@@ -1,6 +1,6 @@
 dragging = null
 padding = null
-lastDraggingOver = null
+lastDraggingOver = [null]
 
 collectionOpenByDragTimeout = null
 collectionOpenByDragTime = 500
@@ -46,21 +46,17 @@ drag = (event, $dragging) ->
   $dragging.velocity {
     translateX: x - $dragging.data('mouseOffsetX')
     translateY: y - $dragging.data('mouseOffsetY') - marginTop
-  }, {
-    duration: 1
-  }
+  }, { duration: 1 }
+  
+  $collection   = $('.collection.open')
+  $contentAfter = collectionModel.getContentAfter($collection, x)
 
-  $contentAfter = collectionModel.getContentAfter $('.collection.open'), x
+  return if $contentAfter[0] == lastDraggingOver[0]
+  return if $contentAfter[0] == padding[0]
 
-  return if $contentAfter.is lastDraggingOver
-  return if $contentAfter.is padding
-
-  # if draggingOver.is(lastDraggingOver)
-  #   clearDragTimeouts()
   if $contentAfter.length
     padding.insertBefore $contentAfter
   else
-    console.log 'append to end'
     collectionModel.appendContent $('.collection.open'), padding
   
   collectionViewController.draw $('.collection.open'), { animate: true }
