@@ -27,8 +27,6 @@ window.navigationController =
       collectionViewController.open $collection 
       collectionViewController.draw $collection 
       size = contentModel.getSize($collection)
-      console.log size
-      $(document.body).css { width: size }
 
   # close the open collection and return the view to where it was 
   # when it was opened. which is stored in the state object

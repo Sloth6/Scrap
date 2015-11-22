@@ -58,13 +58,14 @@ window.collectionModel =
 
     { $contentsBefore, $contentsAfter }
 
-  getContentAfter: ($collection, x) ->
+  getContentAt: ($collection, x) ->
     $contents = collectionModel.getContent $collection
+    $content = $()
     for i in [0...$contents.length]
       $content = $($contents[i])
-      if xTransform($content) + contentModel.getSize($content)/2 > x
+      if xTransform($content) + contentModel.getSize($content) > x
         return $content
-    $()
+    $content
 
   appendContent: ($collection, $content) ->
     $collection.children('.contentContainer').append $content

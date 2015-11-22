@@ -37,20 +37,27 @@ $ ->
   # for new stacks
   socket.on 'newCollection', (data) ->
     { draggedId, draggedOverId, collectionHTML } = data
-    console.log data
+    
+    console.log 'new data', data
+    
     dragged = $("##{data.draggedId}")
     draggedOver = $("##{data.draggedOverId}")
-    stack = $(decodeURIComponent(data.collectionHTML))
     
-    stack.insertAfter draggedOver
-    # stack.css { x: xTransform(draggedOver), y: marginTop }
-    draggedOver.remove()
-    dragged.remove()
+    dragged.show()
 
-    contentModel.init stack
+    $stack = $(decodeURIComponent(data.collectionHTML))
+    $stack.insertAfter draggedOver
+    $stack.css { x: xTransform(draggedOver) }
+  
+    console.log 'draggedOver', draggedOver
+    console.log 'dragged', dragged
 
-    setTimeout collectionRealignDontScale, 300
-    console.log 'here all good'
+    collectionModel.appendContent $stack, draggedOver
+    collectionModel.appendContent $stack, dragged
+    
+    contentModel.init $stack
+    collectionViewController.draw $stack
+    collectionViewController.draw $('.collection.open')
 
   socket.on 'reorderArticles', (data) ->
     console.log 'reorderArticles', data

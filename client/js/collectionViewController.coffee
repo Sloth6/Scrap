@@ -21,15 +21,16 @@ drawOpenCollection = ($collection, animate) ->
     sizeTotal += contentModel.getSize($(@)) + margin
   
   contentModel.setSize $collection, sizeTotal
+  $(document.body).css { width: sizeTotal }
   sizeTotal
 
 drawClosedStack = ($collection) ->
-  console.log 'drawing stack', $collection
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
   
   collectionModel.getAddForm($collection).hide()
   $content.find('.articleControls').hide()
+  $cover.zIndex 0
 
   translateX = 0
   translateY = 0

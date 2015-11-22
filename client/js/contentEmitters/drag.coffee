@@ -1,6 +1,6 @@
 dragging = null
 padding = null
-lastDraggingOver = [null]
+lastDraggingOver = null
 
 collectionOpenByDragTimeout = null
 collectionOpenByDragTime = 500
@@ -42,28 +42,39 @@ dragOptions =  {
 drag = (event, $dragging) ->
   x = event.clientX
   y = event.clientY
+  $collection = $('.collection.open')
 
   $dragging.velocity {
     translateX: x - $dragging.data('mouseOffsetX')
     translateY: y - $dragging.data('mouseOffsetY') - marginTop
   }, { duration: 1 }
   
-  $collection   = $('.collection.open')
-  $contentAfter = collectionModel.getContentAfter($collection, x)
-
-  return if $contentAfter[0] == lastDraggingOver[0]
-  return if $contentAfter[0] == padding[0]
-
-  if $contentAfter.length
-    padding.insertBefore $contentAfter
-  else
-    collectionModel.appendContent $('.collection.open'), padding
+  # The content we are moused over
+  $content = collectionModel.getContentAt $collection, x
   
-  collectionViewController.draw $('.collection.open'), { animate: true }
-  lastDraggingOver = $contentAfter
+  # When dragging is the only content
+  return if $content.length == 0    
+  
+  # return if $content[0] == lastDraggingOver[0]
+  return if $content.is padding
 
-leftCenterRight = (x, $content) ->
-  center = .50
+  # Are we over the left, center or right of content
+  LCR = leftCenterRight $content, x
+
+  # Prevent spamming the same 
+  return if lastDraggingOver is ($content.attr('id') + LCR)
+
+  switch LCR
+    when 'left'  then padding.insertBefore $content
+    when 'right' then padding.insertAfter $content
+    
+  if LCR isnt 'center'
+    collectionViewController.draw $collection, { animate: true }
+  
+  lastDraggingOver = $content.attr('id') + LCR
+
+leftCenterRight = ($content, x) ->
+  center = .30
   left  = xTransform $content
   size  = contentModel.getSize $content
   right = left + size
@@ -78,45 +89,37 @@ leftCenterRight = (x, $content) ->
 checkForAddToStack = (event, $dragging) ->
   $(window).off 'mousemove'
   $(window).off 'mouseup'
-  x = event.clientX
-  droppedOn = collectionModel.getContentAfter $('.collection.open'), x
-  return false if droppedOn[0] == padding[0]
-  return false unless droppedOn[0]?
-  return false if droppedOn.hasClass 'cover'
-  return false if $dragging.hasClass('cover')
-  return false if $dragging.hasClass('stack')
-  return false unless leftCenterRight(x, droppedOn) is 'center'
-  return if event.clientY < marginTop
-  collectionKey = droppedOn.data 'content'
   
+  $collection = $('.collection.open')
+  $droppedOn = collectionModel.getContentAt $collection, event.clientX
+  return false unless $droppedOn.length
+  return false if $droppedOn.is padding
+  return false if $dragging.hasClass 'collection'
+  return false unless leftCenterRight($droppedOn, event.clientX) is 'center'
+  return false if event.clientY < marginTop
+
+  collectionKey = collectionModel.getState($droppedOn).collectionKey
+  draggedId     = parseInt($dragging.attr('id'))
+  draggedOverId = parseInt($droppedOn.attr('id'))
   padding.remove()
   
-  draggedId     = parseInt($dragging.attr('id'))
-  draggedOverId = parseInt(droppedOn.attr('id'))
-  
-  if !draggedId or !draggedOverId?
-    return false
-  else if droppedOn.hasClass('collection')
-    console.log 'Emitting move to collection'
-    collectionModel.appendContent droppedOn, $dragging
-    collectionViewController.draw droppedOn
-    collectionKey = collectionModel.getState(droppedOn).collectionKey
+  if $droppedOn.hasClass 'collection'
     socket.emit "moveToCollection", { elemId: draggedId, collectionKey }
   else
-    $dragging.remove()
+    $dragging.hide()
     socket.emit 'newStack', { collectionKey: collectionPath[0], draggedId, draggedOverId }
   true
 
-checkForOpenByDrag = (x, y, dragging, draggingOver) ->
-  return false unless draggingOver.hasClass('stack')
-  return false if collectionOpenByDragTimeout
-  return false if y > parseInt(draggingOver.css('y'))+ draggingOver.height()
-  collectionOpenByDragTimeout = setTimeout (() ->
-    padding.remove()
-    clearDragTimeouts()
-    collectionOpen draggingOver, { dragging: true }
-  ), collectionOpenByDragTime
-  true
+# checkForOpenByDrag = (x, y, dragging, draggingOver) ->
+#   return false unless draggingOver.hasClass('stack')
+#   return false if collectionOpenByDragTimeout
+#   return false if y > parseInt(draggingOver.css('y'))+ draggingOver.height()
+#   collectionOpenByDragTimeout = setTimeout (() ->
+#     padding.remove()
+#     clearDragTimeouts()
+#     collectionOpen draggingOver, { dragging: true }
+#   ), collectionOpenByDragTime
+#   true
 
 # Clear all timeouts
 clearDragTimeouts = () ->
@@ -130,26 +133,26 @@ clearDragTimeouts = () ->
 
 stopDragging = (event, $dragging) ->
   console.log "Stop dragging"
-  clearDragTimeouts()  
+  # clearDragTimeouts()  
   
   if !checkForAddToStack(event, $dragging)
     padding = $('.slidingContainer').find('.padding')
     throw 'did not find padding :(' unless padding.length
     $dragging.insertAfter padding
     padding.remove()
+
+    articles = collectionModel.getContent $('.collection.open')
+    articleOrder = JSON.stringify(articles.get().map (elem) -> +elem.id)
+    socket.emit 'reorderArticles', { articleOrder, collectionKey: collectionPath[0] }
   
-  articles = collectionModel.getContent $('.collection.open')
-  articleOrder = JSON.stringify(articles.get().map (elem) -> +elem.id)
-  socket.emit 'reorderArticles', { articleOrder, collectionKey: collectionPath[0] }
-  
-  # timeout to prevent click event after drag
+  # Timeout to prevent click event after drag
   setTimeout (() ->
     $dragging.
       removeClass('dragging').
       zIndex $dragging.data('oldZIndex')
     # endDragTransform $dragging.find('.transform')
-    collectionViewController.draw $('.collection.open'), {animate: true}
-  ), 50
+    collectionViewController.draw $('.collection.open'), { animate: true }
+  ), 20
 
 startDragging = ($dragging, mouseDownEvent) ->
   return unless $dragging.hasClass 'draggable'
