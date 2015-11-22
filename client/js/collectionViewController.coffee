@@ -20,47 +20,39 @@ drawOpenCollection = ($collection, animate) ->
     contentViewController.draw $(@), null, { animate }
     sizeTotal += contentModel.getSize($(@)) + margin
   
+  contentModel.setSize $collection, sizeTotal
   sizeTotal
 
 drawClosedStack = ($collection) ->
   console.log 'drawing stack', $collection
   $cover = collectionModel.getCover($collection)
-  collectionModel.loadContent $collection, () ->
-    $content = collectionModel.getContent $collection
-    $content.find('.articleControls').hide()
-    collectionModel.getAddForm($collection).hide()
+  $content = collectionModel.getContent $collection
+  
+  collectionModel.getAddForm($collection).hide()
+  $content.find('.articleControls').hide()
 
-    translateX = 0
-    translateY = 0
-    zIndex     = $content.length
-    $content.each () ->
-      $(@).velocity { translateX, translateY }
-      $(@).css {zIndex: zIndex++}
-      translateX += 50
+  translateX = 0
+  translateY = 0
+  zIndex     = $content.length
+  $content.each () ->
+    $(@).velocity { translateX, translateY }
+    $(@).css {zIndex: zIndex++}
+    translateX += 50
 
-    # subtract 50 for last addition and add article form
-    sizeTotal = contentModel.getSize($content.last()) + translateX - 100
-    $cover.find(".card").width sizeTotal
-    
-    contentModel.setSize $collection, sizeTotal
-
-    collectionViewController.draw $('.collection.open')
-    size = contentModel.getSize $('.collection.open')
+  # subtract 50 for last addition and add article form
+  sizeTotal = contentModel.getSize($content.last()) + translateX - 100
+  $cover.find(".card").width sizeTotal
+  
+  contentModel.setSize $collection, sizeTotal
+  sizeTotal
 
 window.collectionViewController =
-  getContentSize: ($collection) ->
-    content = collectionViewController.content $collection
-    size = 0
-    content.each () ->
-      size += contentModel.getSize($(@)) + margin
-    size
 
   draw: ($collection, options = {}) ->
     animate = options.animate or false
     
     if $collection.hasClass('open')
-      size = drawOpenCollection $collection, animate
-      contentModel.setSize $collection, size
+      drawOpenCollection $collection, animate
 
     else if $collection.data('contenttype') == 'stack'
       drawClosedStack($collection)
@@ -73,9 +65,6 @@ window.collectionViewController =
     $addForm = collectionModel.getAddForm $collection
     partition = collectionModel.getContentPartitioned $collection, $openingCollection
     { $contentsBefore, $contentsAfter } = partition
-
-    # $contentsBefore.removeClass 'dragging'
-    # $contentsAfter.removeClass 'dragging'
 
     # Animate content offscreen in either direction, hide when done
     $contentsBefore.add($openingCover).velocity
@@ -117,6 +106,8 @@ window.collectionViewController =
     # Animate in content, content appears from behind its cover
 
     $collectionAddForm.show()
+    $collectionContent.find('.articleControls').show()
+
     if $collection.data('contenttype') == 'pack'
       $collectionContent.add($collectionAddForm).velocity
         opacity: [1, 0]

@@ -40,8 +40,7 @@ window.collectionModel =
   # @param $collection [jquery array] 
   getContent: ($collection) ->
     $contentContainer = $collection.children('.contentContainer')
-    $contents         = $contentContainer.children()
-    $contents
+    $contentContainer.children()
 
   # The collection and article to partion around
   getContentPartitioned: ($collection, $content) ->

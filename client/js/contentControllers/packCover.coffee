@@ -1,6 +1,6 @@
 addUser = (email, collectionKey) ->
   console.log "inviting #{email} to #{collectionKey}"
-  socket.emit 'addUserToCollection', { email, collectionKey }
+  socket.emit 'inviteToCollection', { email, collectionKey }
 
 stopEditing = (cover) ->
   return unless cover.hasClass('editing')

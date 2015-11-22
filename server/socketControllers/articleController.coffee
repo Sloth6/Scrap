@@ -52,7 +52,7 @@ module.exports =
           collection.save()
           html = articleRenderer collection, article
           sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
-          return callback null
+          callback null
     
     getType data.content, (contentType) ->
       console.log "\tcontentType: #{contentType}"
@@ -85,9 +85,7 @@ module.exports =
       return callback err if err?
       console.log 'emiting deleteArticle', { id, collectionKey }
       sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
-      setTimeout (() ->
-        checkForStackDelete sio, socket, data, callback
-      ), 300
+      callback null
       # type = results[0].contentType
       # content = results[0].content
       # if type in ['gif', 'image']
@@ -114,9 +112,7 @@ module.exports =
       models.sequelize.query(q, null, null, data).complete (err, results) ->
         return callback err if err?
         sio.to("#{collectionKey}").emit 'moveToCollection', data 
-        # params = { CollectionId: oldCollectionId, parentCollectionKey: collectionKey }
-        # checkForStackDelete sio, socket, params, callback
-        # return callback null
+        callback null
   
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
@@ -126,3 +122,4 @@ module.exports =
       return callback err if err
       data.userId = userId
       sio.to("#{collectionKey}").emit 'updateArticle', data
+      callback null

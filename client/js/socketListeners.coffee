@@ -9,28 +9,30 @@ $ ->
     $("a[href='/s/#{collectionKey}']").text(name)
 
   socket.on 'newArticle', (data) ->
-    { html, collectionKey } = data
-    $content = $(decodeURIComponent(html))
-    console.log "new $content for #{collectionKey}", $content[0]
+    {collectionKey, html} = data
+    $article = $(decodeURIComponent(html))
+
+    console.log "new $article for #{collectionKey}", $article.attr('class')
     $collection = $('.collection.open')
-    
-    if $collection.data('collectionkey') == collectionKey
+
+    if ''+$collection.data('collectionkey') == collectionKey
       $addArticleForm = collectionModel.getAddForm $collection
-      $content.css { x: xTransform($addArticleForm) }
-      collectionModel.appendContent $collection, $content
-      contentModel.init $content
-      collectionViewController.draw $collection, {animate: true}
+      $article.css { x: xTransform($addArticleForm) }
+      collectionModel.appendContent $collection, $article
+      contentModel.init $article
+      collectionViewController.draw $collection, { animate: true }
+
   
   socket.on 'newPack', (data) ->
     { collectionHTML } = data
     $collection = $(decodeURIComponent(collectionHTML))
-    form = $('.addProjectForm')
-    $collection.velocity { transformX: [xTransform(form), xTransform(form)] }
+    $form = collectionModel.getAddForm $('.collection.root')
 
     collectionModel.appendContent $('.collection.open'), $collection
+    $collection.css { x: xTransform($form) }
     contentModel.init $collection
-    addProjectController.reset form
-    collectionViewController.draw $('.collection.open')
+    addProjectController.reset $form
+    collectionViewController.draw $('.collection.open'), {animate: true}
 
   # for new stacks
   socket.on 'newCollection', (data) ->
@@ -41,7 +43,7 @@ $ ->
     stack = $(decodeURIComponent(data.collectionHTML))
     
     stack.insertAfter draggedOver
-    stack.css { x: xTransform(draggedOver), y: marginTop }
+    # stack.css { x: xTransform(draggedOver), y: marginTop }
     draggedOver.remove()
     dragged.remove()
 

@@ -72,7 +72,7 @@ mixin articleMixin(article)
             when 'text'
               //- textarea.modify(name='content', style='height:300px')!=article.content
               .editable(contentEditable="false", designmode="on")
-                !{article.content}
+                | !{article.content}
               ul.cardActions
                 li.right
                   a.invisible.done.confirm(href='#') Done

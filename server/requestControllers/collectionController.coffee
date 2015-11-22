@@ -1,14 +1,8 @@
 models = require '../../models'
 crypto = require 'crypto'
 uuid = require('node-uuid')
-mime = require('mime')
 moment = require('moment')
 async = require 'async'
-mail = require '../adapters/nodemailer'
-request = require 'request'
-domain = require('../config.json').domain
-coverColor = require '../modules/coverColor'
-newCollection = require '../newCollection'
 
 config = 
   redirect_host:  "http://localhost:3000/" #Host to redirect after uploading
@@ -46,6 +40,7 @@ module.exports =
       app.render 'partials/collectionContent', { collection: collection }, (err, html) ->
         return callback err if err?
         res.status(200).send html
+        callback null
 
   uploadFile : (req, res, app, callback) ->
     { type, title, collectionKey } = req.query
@@ -79,6 +74,6 @@ module.exports =
       success_action_redirect: "/"
       contentType: type
     }
-    callback()
+    callback null
 
 

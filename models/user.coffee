@@ -22,6 +22,22 @@ module.exports = (sequelize, DataTypes) ->
     classMethods:
       associate: (models) ->
         User.hasMany(models.Collection, { onDelete: 'CASCADE' })
+
+      # Create a new user and their root collection
+      createAndInitialize: (options, callback) ->
+        User.create(options).complete (err, user) ->
+          return callback(err) if err?
+          Collection = sequelize.model('Collection')
+
+          collectionOptions = 
+            UserId: user.id
+            name: user.name
+            root: true
+            publicRead: false
+
+          Collection.createAndInitialize collectionOptions, user, null, callback
+
+
     instanceMethods:
       verifyPassword: (password, done) ->
         bcrypt.compare password, this.password, (err, res) ->

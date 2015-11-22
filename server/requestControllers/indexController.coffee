@@ -25,7 +25,7 @@ module.exports =
           return callback err if err?
           return callback 'no collection found' unless collection?
           res.render 'home.jade', { user, collection, title: 'Scrap' }
-          callback()
+          callback null
     else
       indexPage res
-      callback()
+      callback null

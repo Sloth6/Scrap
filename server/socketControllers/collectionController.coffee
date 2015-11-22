@@ -1,9 +1,7 @@
 models = require '../../models'
 mail = require '../adapters/nodemailer'
-newCollection = require '../newCollection'
 async = require 'async'
 coverColor = require '../modules/coverColor'
-addUserToCollection = require '../addUserToCollection'
 collectionRenderer = require '../modules/collectionRenderer'
 
 toTitleCase = (str) -> 
@@ -22,36 +20,42 @@ module.exports =
     models.Collection.update({ name }, { collectionKey }).complete (err) ->
       return callback err if err?
       console.log "updated name of #{collectionKey} to #{name}"
+      callback null
         # sio.to("#{collectionKey}").emit 'updateArticle', data
   
-  addUserToCollection: (sio, socket, data, callback) =>
+  inviteToCollection: (sio, socket, data, callback) =>
     { email, collectionKey } = data
     console.log "Inviting #{email} to #{collectionKey}"
-    return callback('invalid') unless email?
-    return callback('invalid') unless collectionKey?
-    complete = (err, html, collection) ->
-      domain = 'http://tryScrap.com'
-      title = "<a href=\"#{domain}s/#{collectionKey}\">#{collection.name}</a>"
-      subject = "#you were invited to #{collection.name} on Scrap."
-      
-      html = "
-          <h1>View #{title} on Scrap.</h1>
-          <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
-          <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
-      mail.send { to: email, subject: subject, text: html, html: html }
-      sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
+    return callback('invalid email') unless email?
+    return callback('invalid collectionKey') unless collectionKey?
+    
+    done = (user, collection) ->
+      collection.addUser(user).complete (err) ->
+        return callback(err) if err?
+        domain = 'http://tryScrap.com'
+        title = "<a href=\"#{domain}s/#{collectionKey}\">#{collection.name}</a>"
+        subject = "#you were invited to #{collection.name} on Scrap."
+        
+        html = "
+            <h1>View #{title} on Scrap.</h1>
+            <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
+            <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
+        mail.send { to: email, subject: subject, text: html, html: html }
+        callback null
 
-    models.User.find( where: { email }).success (user) ->
+    models.Collection.find( where: { collectionKey }).complete (err, collection) ->
+      return callback('cannot invite to stack') unless collection.hasCover
       return callback(err) if err?
-      return addUserToCollection(user, collectionKey, complete) if user?
-      models.User.create({ email, name:email }).complete (err, user) ->
-        return callback err if err?
-        firstCollectionOptions = { UserId: user.id, name: user.name, root: true }
-        newCollection firstCollectionOptions, (err) ->
-          return callback err if err?
-          addUserToCollection(user, collectionKey, complete) if user?
+      
+      models.User.find( where: { email }).complete (err, user) ->
+        return callback(err) if err?
+        return done user, collection
+        # Else no user
+        models.User.createAndInitialize({ email, name:email }).complete (err, user) ->
+          return callback(err) if err?
+          done email, collection
 
-  newStack: (sio, socket, data) ->
+  newStack: (sio, socket, data, callback) ->
     # CollectionKey will be the parent of the new collection
     parentCollectionKey = data.collectionKey
     userId = socket.handshake.session.userId
@@ -68,13 +72,18 @@ module.exports =
     async.waterfall [
       # Get the parent collection
       (cb) ->
-        opts = where: { collectionKey: parentCollectionKey }
-        models.Collection.find(opts).complete cb
+        options =
+          where: { collectionKey: parentCollectionKey }
+          include: [ model: models.User, as: 'Creator' ]
+        models.Collection.find( options ).complete cb
 
       # Create the new collection
-      (parent, cb) -> newCollection { UserId: userId, parent }, (err, collection) ->
-        return cb(err) if err?
-        return cb null, collection, parent
+      (parent, cb) ->
+        user = parent.creator
+        options = { hasCover: false, UserId: userId }
+        models.Collection.createAndInitialize options, user, parent, (err, collection) ->
+          return cb(err) if err?
+          return cb null, collection, parent
 
       # Move articles to the new collection
       (collection, parent, cb) -> 
@@ -99,7 +108,8 @@ module.exports =
         order[draggedOverPosition] = collection.id
         order.splice(draggedPosition, 1)
         parent.save().complete (err) ->
-          if err then cb err else cb null, parent, collection
+          return cb(err) if err?
+          cb null, parent, collection
     
     ], (err, parent, collection) ->
       return console.log err if err
@@ -108,23 +118,34 @@ module.exports =
       emitData = {collectionHTML, draggedId, draggedOverId}
       sio.to("#{parentCollectionKey}").emit 'newCollection', emitData
       socket.join collection.collectionKey
+      callback null
 
-  newPack: (sio, socket, data) ->
+  newPack: (sio, socket, data, callback) ->
     { name } = data
     userId = socket.handshake.session.userId
     return console.log('no userid', res) unless userId?
     return console.log('no name sent', res) unless name?
     async.waterfall [
       # Get the parent collection
-      (cb) -> models.Collection.find( where: { UserId:userId, root: true } ).complete cb
+      (cb) ->
+        options =
+          where: { UserId:userId, root: true }
+          include: [ model: models.User, as: 'Creator' ]
+        models.Collection.find( options ).complete cb
+      
       # Create the new collection
-      (parent, cb) -> newCollection { UserId: userId, name, hasCover:true, parent }, cb
+      (parent, cb) ->
+        user = parent.creator
+        options = { name, hasCover:true, UserId: userId }
+        models.Collection.createAndInitialize options, user, parent, cb
+
     ], (err, collection) ->
       return callback(err) if err?
       socket.emit 'newPack', { collectionHTML: collectionRenderer(collection) }
       socket.join collection.collectionKey
+      callback null
 
-  deleteCollection: (sio, socket, data) ->
+  deleteCollection: (sio, socket, data, callback) ->
     collectionKey = data.collectionKey
     models.Collection.find({
       where: { collectionKey }, include:[ model:models.Collection, as: "parent" ]
@@ -136,5 +157,5 @@ module.exports =
       # order.splice(draggedPosition, 1)
 
       collection.destroy().complete (err) ->
-        console.log 'delete', err
         sio.to("#{parentCollectionKey}").emit 'deleteCollection', { collectionKey }
+        callback null

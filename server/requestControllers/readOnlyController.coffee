@@ -29,6 +29,8 @@ module.exports =
         console.log 'results', results, hasCollection
         if hasCollection
           # in the future load them directly into collection
+          callback null
           return res.redirect('/')
         else
+          callback null
           readOnlyPage(res, collection)

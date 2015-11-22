@@ -22,7 +22,7 @@ module.exports = (io)->
     
     models.User.find(
       where: { id: userId }
-      include: [ {model:models.Collection}]
+      include: [ { model: models.Collection }]
     ).complete (err, user) ->
       return console.console.log(err) if err
       for collection in user.collections
@@ -39,7 +39,7 @@ module.exports = (io)->
       socket.on 'newStack', (data) -> collectionController.newStack io, socket, clean(data), errorHandler
       socket.on 'newPack', (data) -> collectionController.newPack io, socket, clean(data), errorHandler
       socket.on 'deleteCollection', (data) -> collectionController.deleteCollection io, socket, clean(data), errorHandler
-      socket.on 'addUserToCollection', (data) -> collectionController.addUserToCollection io, socket, clean(data), errorHandler
+      socket.on 'inviteToCollection', (data) -> collectionController.inviteToCollection io, socket, clean(data), errorHandler
       
       socket.on 'disconnect', ->
         console.log 'Client Disconnected.'
