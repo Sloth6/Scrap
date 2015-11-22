@@ -79,9 +79,9 @@ leftCenterRight = ($content, x) ->
   size  = contentModel.getSize $content
   right = left + size
   
-  if x > right - size/4
+  if x > right - size*center
     'right'
-  else if x < left + size/4
+  else if x < left + size*center
     'left'
   else
     'center'
@@ -103,8 +103,12 @@ checkForAddToStack = (event, $dragging) ->
   draggedOverId = parseInt($droppedOn.attr('id'))
   padding.remove()
   
+  console.log 'droppedOn', $droppedOn
+
   if $droppedOn.hasClass 'collection'
     socket.emit "moveToCollection", { elemId: draggedId, collectionKey }
+    collectionModel.appendContent $droppedOn, $dragging
+    collectionViewController.draw $droppedOn
   else
     $dragging.hide()
     socket.emit 'newStack', { collectionKey: collectionPath[0], draggedId, draggedOverId }
