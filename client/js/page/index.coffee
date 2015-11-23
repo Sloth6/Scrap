@@ -186,8 +186,8 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
       positionArticle($caption, 'above', 'absolute', ($section.height() - $(window).height()) + windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
   else
     if ($collection.data('status') != 'below')
-      positionElement($collection, 'below', 'absolute', 0)
-      positionElement($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+      positionArticle($collection, 'below', 'absolute', 0)
+      positionArticle($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
       positionArticle($collection, 'below', 'absolute', 0)
       positionArticle($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
             
