@@ -36,7 +36,6 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   # Bring caption to top on scroll
   $caption.css
     zIndex: if scrollProgress < .8 then 0 else $cover.css('z-index') + 1
-  console.log $caption.css('z-index'), scrollProgress
   $('nav ul.menu li.first').css
     opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
     
@@ -72,14 +71,14 @@ animateInPop = ($element) ->
     }
   $element.data 'hasAnimatedIn', true
   
-reverseAnimateCollection = ($section, $collection, $cover, $cards) ->
+closeCollection = ($section, $collection, $cover, $cards) ->
   $cover.velocity 'reverse'
   $cards.parent('.exampleContent').velocity 'reverse'
   $cards.each -> $(@).velocity 'reverse'
   $collection.data('stackHasOpened', false)
 
-animateCollection = ($section, $collection, $cover, $cards) ->
-  cardSpacing             = 24
+openCollection = ($section, $collection, $cover, $cards) ->
+  cardSpacing             = 12
   maxRotate               = 12
   translateXToWindowLeft  = (cardSpacing/2) + ((coverWidth / 2) - ($(window).width()/2))
   translateY              = 0
@@ -101,9 +100,14 @@ animateCollection = ($section, $collection, $cover, $cards) ->
   }
   
   $cards.each () ->
+    # Sum width of previous cards
+    widthOfPreviousCards = 0
+    $(@).prevAll().each () ->
+      widthOfPreviousCards += $(@).width()
     translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 1.5
-    translateX        = translateXStart + ($(@).index() * ($(@).width() + cardSpacing))
+    translateX        = translateXStart + ($(@).index() * cardSpacing) + widthOfPreviousCards
     rotateZ           = '0deg'
+    console.log $(@), translateX
     $(@).velocity({
       translateZ: 0
       translateY
@@ -117,6 +121,7 @@ animateCollection = ($section, $collection, $cover, $cards) ->
       delay: Math.random() * (collectionOpenDuration / 4)
     })
   $collection.data('stackHasOpened', true)
+  $collection.find('.exampleContent').css('opacity', 1)
   
 updateSectionScrollValues = ($section, scrollTop) ->
   $section.data 'sectionTopToWindowTop',                $section.offset().top - scrollTop
@@ -137,7 +142,7 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
   $collection       = $section.children('.collection')
   $cover            = $collection.find('.cover')
   $translateCover   = if $cover.hasClass 'scale' then $cover.parent('.translate') else $cover
-  $exampleCards     = $collection.children('.exampleContent').children('.card')
+  $exampleCards     = $collection.children('.exampleContent').find('article')
   $caption          = $section.find('.caption')
   collectionTopPercentage       = .1 # Percentage of window height
   collectionTop                 = $(window).height() * collectionTopPercentage
@@ -159,7 +164,7 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
         $caption.css('z-index', $cover.css('z-index') + 1)
       ), collectionOpenDuration
     unless $collection.data('stackHasOpened')# or $section.hasClass 'cantOpen'
-      animateCollection($section, $collection, $translateCover, $exampleCards)
+      openCollection($section, $collection, $translateCover, $exampleCards)
     if $section.hasClass('intro')
       animateOutPop($section.find('.animateOutOnCollectionOpen'))
   else
@@ -167,7 +172,7 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
     if $section.hasClass 'join'
       $caption.css 'z-index', 0
     if $collection.data('stackHasOpened') # or not $section.hasClass 'cantOpen'
-      reverseAnimateCollection($section, $collection, $translateCover, $exampleCards)
+      closeCollection($section, $collection, $translateCover, $exampleCards)
     if $section.hasClass('intro')
       animateInPop($section.find('.animateOutOnCollectionOpen'))
 
@@ -183,7 +188,6 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
     if ($collection.data('status') != 'below')
       positionElement($collection, 'below', 'absolute', 0)
       positionElement($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
-      console.log $caption.offset().top
             
 animateJoin = () ->
   $section = $('.join')
@@ -224,11 +228,11 @@ initSections = ($sections) ->
       $(@).data('status', null)
       if $(@).find('.cover').hasClass('scale')
         initScaleCover($(@).find('.cover'), $sections.children('.collection').find('.cover').not('.scale'))
-      $(@).find('.exampleContent').css {
-        opacity: 0
-      }
-      $(@).find('.exampleContent').find('.card').each () ->
-        $(@).css 'height', (Math.random() * (coverHeight / 2)) + coverHeight / 2
+#       $(@).find('.exampleContent').css {
+#         opacity: 0
+#       }
+      $(@).find('.exampleContent').find('article').each () ->
+#         $(@).css 'height', (Math.random() * (coverHeight / 2)) + coverHeight / 2
         $(@).velocity {
           translateY: Math.random() * (coverHeight / 2)
           rotateZ: (Math.random() - .5) * rotateZRandomMax + 'deg'

@@ -32,18 +32,51 @@ block content
               section.title
                 h1.typeTitle.typeOutlineClear Example One
           .exampleContent
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
+            article#263.image
+              .content
+                .card.cardHover.image
+                  img(src='http://www.glengarry.co.nz/images/v8/decorations/eames-lounge-chair.jpg')
+            article#260.website
+              .content
+                .transform
+                  .card.cardHover.website
+                    .text
+                      header
+                        h1.headerType The World of Charles and Ray Eames
+                        .url.smallType.smallCaps barbican.org.uk
+                      .description.smallType
+                    img(src='http://www.barbican.org.uk/images/events/medium/18398eamesglassesevent.jpg')
+                    a(href='http://www.barbican.org.uk/artgallery/event-detail.asp?ID=18398', target='_blank', title='Open “The World of Charles and Ray Eames” in a new tab')
+            article#267.youtube
+              .content
+                .transform
+                  .card.cardHover.youtube
+                    .preview(title='Play “Tops (1969)”')
+                      img.youtubeThumbnail(src='https://i.ytimg.com/vi/UJ-VFMymEiE/hqdefault.jpg', style='width:480px; height: 270px')
+                    header
+                      .top
+                        h1.headerType.title Tops (1969)
+                        .artist.smallType Artist
+                      .detail
+                        .source.smallType.smallCaps youtube
+            article#278.text.long
+              .content
+                .transform
+                  .card.cardHover.text
+                    .editable(contenteditable='false', designmode='on')
+                      | Early works
+                      div
+                        br
+                      div - Leg splint, 1942
+                      div - Child’s chair, 1946
+                      div
+                        | - DCW side chair, 1946
+                        br
+                      div
+                        br
+                    ul.cardActions
+                      li.right
+                        a.invisible.done.confirm(href='#') Done
         .caption
           .animateOutOnCollectionOpen.animateInPop
             p.typeSubtitle.typeOutlineClear Scrap. Home for your projects.
@@ -56,18 +89,56 @@ block content
             section.title
               h1.typeTitle.typeOutlineClear Example Two
           .exampleContent
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
+            article#253.draggable.text.long
+              .content
+                .transform
+                  .card.cardHover.cardDrag.text
+                    .editable(contenteditable='false', designmode='on')
+                      | Packing list
+                      div
+                        br
+                        div - Sunscreen
+                        div - Umbrella
+                        div - Phone charger
+                    ul.cardActions
+                      li.right
+                        a.invisible.done.confirm(href='#') Done
+            article#287.draggable.website
+              .content
+                .transform
+                  .card.cardHover.cardDrag.website
+                    .text
+                      header
+                        h1.headerType Lisbon Tourism: Best of Lisbon, Portugal - TripAdvisor
+                        .url.smallType.smallCaps tripadvisor.com
+                      .description.smallType
+                        | Lisbon Tourism: TripAdvisor has 494,485 reviews of Lisbon Hotels, Attractions, and Restaurants making it your best Lisbon resource.
+                    img(src='http://media-cdn.tripadvisor.com/media/photo-s/03/9b/2f/c5/lisbon.jpg')
+                    a(href='http://www.tripadvisor.com/Tourism-g189158-Lisbon_Lisbon_District_Central_Portugal-Vacations.html', target='_blank', title='Open “Lisbon Tourism: Best of Lisbon, Portugal - TripAdvisor” in a new tab')
+            article#288.draggable.website
+              .content
+                .transform
+                  .card.cardHover.cardDrag.website
+                    .text
+                      header
+                        h1.headerType 36 Hours in Lisbon
+                        .url.smallType.smallCaps nytimes.com
+                      .description.smallType
+                        | From old townhouses filled with chic shops to docklands harboring night clubs, the city is undergoing a remarkable rebirth.
+                    img(src='http://static01.nyt.com/images/2015/04/05/travel/05HOURS1/05HOURS1-facebookJumbo.jpg')
+                    a(href='http://www.nytimes.com/2015/04/05/travel/-2015-04-05-travel-what-to-do-in-36-hours-in-lisbon.html', target='_blank', title='Open “36 Hours in Lisbon” in a new tab')
+            article#289.draggable.website
+              .content
+                .transform
+                  .card.cardHover.cardDrag.website
+                    .text
+                      header
+                        h1.headerType How I Fell for Lisbon
+                        .url.smallType.smallCaps nytimes.com
+                      .description.smallType
+                        | I didn’t expect romance, but this city had other ideas. No must-see list or hard-fought reservations. It lets you in.
+                    img(src='http://static01.nyt.com/images/2012/05/27/travel/27LISBON_395/27LISBON_395-superJumbo.jpg')
+                    a(href='http://www.nytimes.com/2012/05/27/travel/how-i-fell-for-lisbon.html', target='_blank', title='Open “How I Fell for Lisbon” in a new tab')
         .caption
           p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Collect whatever from wherever and organize it however.
       section.example.page
@@ -76,18 +147,68 @@ block content
             section.title
               h1.typeTitle.typeOutlineClear Example Three
           .exampleContent
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
-            .card.small Hey
-            .card.small Foo
-            .card.small Wow
+            article#306.file
+              .content
+                .transform
+                  .card.cardHover.cardDrag.file
+                    header
+                      h1.headerType.title Guestlist
+                      p.extension.smallCaps.bodyType xlsx
+                    ul.cardActions
+                      li
+                        a.download.confirm(href='#') Download
+            article#316.draggable.soundcloud
+              .content
+                .transform
+                  .card.cardHover.cardDrag.soundcloud
+                    .preview(title='Play “O Superman (Laurie Anderson Cover) - Performed by Moses Sumney (Live & Improvised) by Moogfest”')
+                      img.soundcloudThumbnail(src='http://i1.sndcdn.com/artworks-000123174454-9amvh0-t500x500.jpg')
+                    header
+                      .top
+                        h1.headerType.title
+                          | O Superman (Laurie Anderson Cover) - Performed by Moses Sumney (Live & Improvised) by Moogfest
+                        .artist.smallType Moogfest
+                      .detail
+                        .source.smallType.smallCaps SoundCloud
+            article#317.draggable.text.long
+              .content
+                .transform
+                  .card.cardHover.cardDrag.text
+                    .editable(contenteditable='false', designmode='on')
+                      | Things we need
+                      div
+                        br
+                      div - Cups
+                      div - Snacks
+                      div - ?
+                      div
+                        br
+                    ul.cardActions
+                      li.right
+                        a.invisible.done.confirm(href='#') Done
+            article#318.draggable.website
+              .content
+                .transform
+                  .card.cardHover.cardDrag.website
+                    .text
+                      header
+                        h1.headerType Tokyo Kaikan Gimlet
+                        .url.smallType.smallCaps pinterest.com
+                      .description.smallType Tokyo Kaikan Gimlet
+                    img(src='https://s-media-cache-ak0.pinimg.com/600x315/59/2e/45/592e45505e5f014644ac39364fdf65e7.jpg')
+                    a(href='https://www.pinterest.com/pin/169659110936001995/', target='_blank', title='Open “Tokyo Kaikan Gimlet” in a new tab')
+            article#319.draggable.youtube
+              .content
+                .transform
+                  .card.cardHover.cardDrag.youtube
+                    .preview(title='Play “Club cheval - Discipline (Official video)”')
+                      img.youtubeThumbnail(src='https://i.ytimg.com/vi/svG1XTDBIfU/maxresdefault.jpg', style='width:480px; height: 270px')
+                    header
+                      .top
+                        h1.headerType.title Club cheval - Discipline (Official video)
+                        .artist.smallType Artist
+                      .detail
+                        .source.smallType.smallCaps youtube
         .caption
           p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear Share it with anyone. Just give them the link, and they can add stuff, too.
       section.join.page.example.cantOpen
@@ -99,4 +220,4 @@ block content
           p.createAccount.animateInOnCollectionOpen.animateInPop
             a.typeSubtitle.typeOutlineClear.typeOutlineBlackOnHover(href='#') Create an account
     footer
-      p Dis is mah footur.
+      p Copyright 2015 Joel Simon and Antonio Ono
