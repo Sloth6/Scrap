@@ -1,7 +1,7 @@
 # A global that maps 
 name_to_key = {}
 
-createLoadingElement = (position, name) ->
+createLoadingArticle = (position, name) ->
   key = Math.random().toString(36).substring(7)
   name_to_key[name] = key
 
@@ -28,6 +28,6 @@ createLoadingElement = (position, name) ->
   addClass(key).
   appendTo($('.content'))
 
-removeLoadingElement = (name) ->
+removeLoadingArticle = (name) ->
   key = name_to_key[name]
   $(".loading.#{key}").remove()

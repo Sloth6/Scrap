@@ -39,9 +39,9 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   $('nav ul.menu li.first').css
     opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
     
-animateOutPop = ($element) ->
-  if $element.data('hasAnimatedIn')
-    $element.velocity {
+animateOutPop = ($article) ->
+  if $article.data('hasAnimatedIn')
+    $article.velocity {
       translateZ: 0
       translateY: -coverHeight/2
       scaleX: 0
@@ -53,11 +53,11 @@ animateOutPop = ($element) ->
       easing: fancySpring
       delay: collectionOpenDuration / 8
     }
-    $element.data 'hasAnimatedIn', false
+    $article.data 'hasAnimatedIn', false
         
-animateInPop = ($element) ->
-  unless $element.data 'hasAnimatedIn'
-    $element.velocity {
+animateInPop = ($article) ->
+  unless $article.data 'hasAnimatedIn'
+    $article.velocity {
       translateZ: 0
       translateY: 0
       scaleY: 1
@@ -69,7 +69,7 @@ animateInPop = ($element) ->
       easing: fancySpring
       delay: collectionOpenDuration / 8
     }
-  $element.data 'hasAnimatedIn', true
+  $article.data 'hasAnimatedIn', true
   
 closeCollection = ($section, $collection, $cover, $cards) ->
   $cover.velocity 'reverse'
@@ -131,9 +131,9 @@ updateSectionScrollValues = ($section, scrollTop) ->
   $section.data 'sectionBottomToWindowTopProgress',     $section.data('sectionTopToDocumentTop') / $section.data('sectionBottomToDocumentTop')
   $section.data 'sectionBottomToWindowBottomProgress',  (scrollTop + $(window).height()) / $section.data('sectionBottomToDocumentTop')
   
-positionElement = ($element, status, position, top) ->
-  $element.data 'status', status
-  $element.css {
+positionArticle = ($article, status, position, top) ->
+  $article.data 'status', status
+  $article.css {
     position
     top
   } 
@@ -179,15 +179,17 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
   if $section.data('sectionTopToWindowTopProgress') >= 1
     if $section.data('sectionBottomToWindowBottomProgress') <= 1
       if $collection.data('status') != 'current'
-        positionElement($collection, 'current', 'fixed', 0)
-        positionElement($caption, 'current', 'fixed', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+        positionArticle($collection, 'current', 'fixed', 0)
+        positionArticle($caption, 'current', 'fixed', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
     else if $collection.data('status') != 'above'
-      positionElement($collection, 'above', 'absolute', $section.height() - $collection.height())
-      positionElement($caption, 'above', 'absolute', ($section.height() - $(window).height()) + windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+      positionArticle($collection, 'above', 'absolute', $section.height() - $collection.height())
+      positionArticle($caption, 'above', 'absolute', ($section.height() - $(window).height()) + windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
   else
     if ($collection.data('status') != 'below')
       positionElement($collection, 'below', 'absolute', 0)
       positionElement($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+      positionArticle($collection, 'below', 'absolute', 0)
+      positionArticle($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
             
 animateJoin = () ->
   $section = $('.join')
@@ -243,11 +245,11 @@ initSections = ($sections) ->
           easing: basicSpring
         }
 
-initElementAnimations = () ->
-  $elements = $('.animateInPop')
-  hasAnimatedIn = if $elements.hasClass 'animateInOnCollectionOpen' then false else true
-  $elements.data 'hasAnimatedIn', hasAnimatedIn
-  $elements.velocity {
+initArticleAnimations = () ->
+  $articles = $('.animateInPop')
+  hasAnimatedIn = if $articles.hasClass 'animateInOnCollectionOpen' then false else true
+  $articles.data 'hasAnimatedIn', hasAnimatedIn
+  $articles.velocity {
     translateZ: 0
     translateY: -coverHeight/2
     opacity: 0
@@ -316,7 +318,7 @@ initCreateAccount = () ->
 
 init = ($sections) ->
   initSections($sections)
-  initElementAnimations()
+  initArticleAnimations()
   initJoinAnimations()
   initCreateAccount()
 

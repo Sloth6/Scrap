@@ -5,16 +5,16 @@ s3 = new AWS.S3()
 Bucket = 'scrapimagesteamnap'
 async = require 'async'
 
-# s3obj = new AWS.S3({params: {Bucket, Key: "#spaceKey/screenshot.jpg"}})
+# s3obj = new AWS.S3({params: {Bucket, Key: "#collectionKey/screenshot.jpg"}})
 # console.log s3obj.upload
 Stream = require('stream');
 
 module.exports = 
-  putImage: ({ key, img, spaceKey, path, type }, callback) ->
-    console.log "uploading to ", "#{spaceKey}/#{key}/#{path}.#{type}"
+  putImage: ({ key, img, collectionKey, path, type }, callback) ->
+    console.log "uploading to ", "#{collectionKey}/#{key}/#{path}.#{type}"
     params =
       Bucket: Bucket
-      Key: "#{spaceKey}/#{key}/#{path}.#{type}"
+      Key: "#{collectionKey}/#{key}/#{path}.#{type}"
       ACL: 'public-read'
       Body: img
       ContentType: "image/#{type}"
@@ -25,28 +25,28 @@ module.exports =
   delete: ({key}, cb) ->
     s3.deleteObject { Bucket, Key: key }, cb
     
-  uploadSpacePreview: ({spaceKey, stream}, callback) ->
+  uploadCollectionPreview: ({collectionKey, stream}, callback) ->
     # params =
     #   Bucket: Bucket
-    #   Key: "#spaceKey/screenshot.jpg"
+    #   Key: "#collectionKey/screenshot.jpg"
     #   ACL: 'public-read'
     #   Body: stream
     #   ContentType: "image/jpg"
-    s3obj = new AWS.S3({ params: { Bucket: Bucket, Key: "#{spaceKey}/screenshot.jpg" }})
+    s3obj = new AWS.S3({ params: { Bucket: Bucket, Key: "#{collectionKey}/screenshot.jpg" }})
     readableStream = new Stream.Readable().wrap(stream)
     s3obj.upload { Body: readableStream, ACL: 'public-read' }, callback
 
 
-  deleteImage: ({ spaceKey, key, type }, cb) ->
+  deleteImage: ({ collectionKey, key, type }, cb) ->
     if type is 'gif'
       deletes = [
-        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.gif" }, cb),
-        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.png" }, cb)
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{collectionKey}/#{key}/normal.gif" }, cb),
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{collectionKey}/#{key}/normal.png" }, cb)
       ]
     else
       deletes = [
-        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/small.jpg" }, cb),
-        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/medium.jpg" }, cb),
-        ((cb) -> s3.deleteObject { Bucket, Key: "#{spaceKey}/#{key}/normal.jpg" }, cb)
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{collectionKey}/#{key}/small.jpg" }, cb),
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{collectionKey}/#{key}/medium.jpg" }, cb),
+        ((cb) -> s3.deleteObject { Bucket, Key: "#{collectionKey}/#{key}/normal.jpg" }, cb)
       ]
     async.parallel deletes, cb

@@ -1,0 +1,51 @@
+include article
+include addCollectionForm
+include addArticleForm
+
+mixin collectionContentMixin(collection)
+  if collection.articles !== undefined
+    each article in collection.articles
+      +articleMixin(article)
+
+  if collection.children !== undefined
+    each article in collection.children
+      +collectionMixin(article)
+
+mixin collectionMixin(collection)
+  - var classes = 'draggable closed ' + collection.collectionKey
+  - if(collection.root == true){
+    - classes = classes+' root'
+  - }
+
+  .collection(
+    class         = classes
+    data-contenttype= "collection"
+    data-collectionkey = collection.collectionKey,
+    data-hascover = collection.hasCover
+  )
+    if collection.root == false
+      article(class = 'cover', style='z-index:2;')
+        .content
+          .articleControls
+            a.articleDeleteButton.warning.bodyType.smallCaps Delete
+          .transform
+            .card.cardHover.cardDrag.colored(style='background-color:'+collection.color)
+              section.title
+                h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
+                h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
+                p.rename
+                  a.smallType Rename
+              ul.users.menu.slideIn.left.canOpen
+                li.user.add
+                  form.addUser(data-collectionkey=collection.collectionKey)
+                    input(type="email", name="user[email]", placeholder="email")
+                    input(type="submit", value="→")
+                    label.smallType.smallCaps Share this pack
+
+    .contentContainer(style='z-index:1;')
+      +collectionContentMixin(collection)
+
+    if collection.root
+      +addCollectionFormMixin(collection)
+    else
+      +addArticleFormMixin(collection)

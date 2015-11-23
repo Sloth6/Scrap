@@ -1,0 +1,12 @@
+mixin addCollectionFormMixin(collection)
+  - var coverClasses = [ 'cover', 'closed', 'editing', 'addProjectForm']
+  - var defaulttext = "New Project"
+  article(
+    data-contenttype='addProjectForm',
+    data-defaulttext=defaulttext,
+    class=coverClasses
+  )
+    .card.newCard
+      section.title
+        h1.collectionTitle.typeTitle.typeOutlineClear!=defaulttext
+        h2.peekTitle.bodyType.typeBody.typeWeightBold!=defaulttext

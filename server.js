@@ -1,5 +1,4 @@
 require('coffee-script/register');
-
 var express = require('express')
     , app = express()
     , server = require('http').createServer(app)
@@ -11,17 +10,19 @@ var express = require('express')
     , SequelizeStore = require('connect-session-sequelize')(express.session.Store)
     , compass = require('compass');
 
-// session = express.session({
-//     secret: "club_sexdungeon",
-//     store: new SequelizeStore({
-//         db: db.sequelize
-//     })
-// })
+var pg = require('pg')
+  , express_session = require('express-session')
+  , pgSession = require('connect-pg-simple')(express_session);
 
-var session = require("express-session")({
-    secret: "club_sexdungeon",
-    resave: true,
-    saveUninitialized: true
+var session = express_session({
+  store: new pgSession({
+    pg : pg, // Use global pg-module
+    conString : 'postgres://localhost/scrapdb',
+  }),
+  saveUninitialized: false,
+  secret: "club_sexdungeon",
+  resave: true,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 })
 
 app.configure(function(){
@@ -31,8 +32,7 @@ app.configure(function(){
     app.use(express.static(__dirname + '/client'));
     app.use(express.bodyParser());
     app.use(express.cookieParser());
-    app.use(session);
-    // app.use(compass({ cwd: __dirname + '/client' }));
+    app.use(session)
     app.use(coffeeMiddleware({
         src: __dirname + '/client',
         compress: true,
@@ -42,13 +42,6 @@ app.configure(function(){
         bare: true
     }));
 });
-
-// app.use(function(req, res, next) {
-//     compass.compile(function(err, stdout, stderr) {
-//         console.log('Compass compiled.')
-//     });
-//     next();
-// })
 
 io.use(sharedsession(session));
 

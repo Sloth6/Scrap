@@ -1,4 +1,4 @@
-/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -97,44 +97,44 @@ html *[contentEditable=true] {
 }
 
 /* line 48, ../../style/globals/_color.scss */
-body section.space section.content article.color0 div.card.text.comment, body section.space section.content article.color0 header {
+body section.collection section.content article.color0 div.card.text.comment, body section.collection section.content article.color0 header {
   background-color: rgba(255, 59, 48, 0.9);
 }
 /* line 52, ../../style/globals/_color.scss */
-body section.space section.content article.color1 div.card.text.comment, body section.space section.content article.color1 header {
+body section.collection section.content article.color1 div.card.text.comment, body section.collection section.content article.color1 header {
   background-color: rgba(255, 149, 0, 0.9);
 }
 /* line 56, ../../style/globals/_color.scss */
-body section.space section.content article.color2 div.card.text.comment, body section.space section.content article.color2 header {
+body section.collection section.content article.color2 div.card.text.comment, body section.collection section.content article.color2 header {
   background-color: rgba(255, 204, 0, 0.9);
 }
 /* line 60, ../../style/globals/_color.scss */
-body section.space section.content article.color3 div.card.text.comment, body section.space section.content article.color3 header {
+body section.collection section.content article.color3 div.card.text.comment, body section.collection section.content article.color3 header {
   background-color: rgba(76, 217, 100, 0.9);
   color: #fffbf1;
 }
 /* line 65, ../../style/globals/_color.scss */
-body section.space section.content article.color4 div.card.text.comment, body section.space section.content article.color4 header {
+body section.collection section.content article.color4 div.card.text.comment, body section.collection section.content article.color4 header {
   background-color: rgba(0, 122, 255, 0.9);
 }
 /* line 69, ../../style/globals/_color.scss */
-body section.space section.content article.color5 div.card.text.comment, body section.space section.content article.color5 header {
+body section.collection section.content article.color5 div.card.text.comment, body section.collection section.content article.color5 header {
   background-color: rgba(255, 45, 85, 0.9);
 }
 /* line 73, ../../style/globals/_color.scss */
-body section.space section.content article.color6 div.card.text.comment, body section.space section.content article.color6 header {
+body section.collection section.content article.color6 div.card.text.comment, body section.collection section.content article.color6 header {
   background-color: rgba(135, 252, 112, 0.9);
 }
 /* line 77, ../../style/globals/_color.scss */
-body section.space section.content article.color7 div.card.text.comment, body section.space section.content article.color7 header {
+body section.collection section.content article.color7 div.card.text.comment, body section.collection section.content article.color7 header {
   background-color: rgba(255, 19, 0, 0.9);
 }
 /* line 81, ../../style/globals/_color.scss */
-body section.space section.content article.color8 div.card.text.comment, body section.space section.content article.color8 header {
+body section.collection section.content article.color8 div.card.text.comment, body section.collection section.content article.color8 header {
   background-color: rgba(239, 77, 182, 0.9);
 }
 /* line 85, ../../style/globals/_color.scss */
-body section.space section.content article.color9 div.card.text.comment, body section.space section.content article.color9 header {
+body section.collection section.content article.color9 div.card.text.comment, body section.collection section.content article.color9 header {
   background-color: rgba(82, 237, 199, 0.9);
 }
 
@@ -1022,7 +1022,7 @@ input[type=checkbox] {
 ul.headerMenu {
   position: absolute;
   display: inline-block;
-  white-space: nowrap;
+  white-collection: nowrap;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-color: transparent;
   background: white;
@@ -1503,7 +1503,7 @@ body article:hover, body article.hover {
   cursor: grab;
 }
 /* line 23, ../../style/layout/_article.scss */
-body article:hover .elementControls, body article.hover .elementControls {
+body article:hover .articleControls, body article.hover .articleControls {
   opacity: 1;
 }
 /* line 28, ../../style/layout/_article.scss */
@@ -1522,7 +1522,7 @@ body article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
 /* line 51, ../../style/layout/_article.scss */
-body article .elementControls {
+body article .articleControls {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1540,7 +1540,7 @@ body article .elementControls {
   color: #000000;
 }
 /* line 62, ../../style/layout/_article.scss */
-body article .elementControls .elementDeleteButton, body article .elementControls author {
+body article .articleControls .articleDeleteButton, body article .articleControls author {
   color: #000000;
   text-decoration: none;
   border: 0;
@@ -1549,13 +1549,13 @@ body article .elementControls .elementDeleteButton, body article .elementControl
   bottom: 0;
 }
 /* line 69, ../../style/layout/_article.scss */
-body article .elementControls .elementDeleteButton {
+body article .articleControls .articleDeleteButton {
   left: 0;
 }
 /* line 73, ../../style/layout/_article.scss */
-body article .elementControls author {
+body article .articleControls author {
   right: 0;
-  white-space: nowrap;
+  white-collection: nowrap;
 }
 /* line 87, ../../style/layout/_article.scss */
 body article.text {
@@ -1858,7 +1858,7 @@ body article .card img {
   background-color: white;
 }
 /* line 391, ../../style/layout/_article.scss */
-body article.addElementForm.peek {
+body article.addArticleForm.peek {
                 /*
                 &:hover {  
                     .translate {
@@ -1884,7 +1884,7 @@ body article.addElementForm.peek {
                 */
 }
 /* line 417, ../../style/layout/_article.scss */
-body article.addElementForm.slideInFromSide {
+body article.addArticleForm.slideInFromSide {
   z-index: 99999999 !important;
   /*
   .translate {
@@ -1893,19 +1893,19 @@ body article.addElementForm.slideInFromSide {
   */
 }
 /* line 426, ../../style/layout/_article.scss */
-body article.addElementForm.typing {
+body article.addArticleForm.typing {
   z-index: 99999999 !important;
 }
 /* line 430, ../../style/layout/_article.scss */
-body article.addElementForm.typing .cardActions ul li.upload {
+body article.addArticleForm.typing .cardActions ul li.upload {
   opacity: 0;
 }
 /* line 434, ../../style/layout/_article.scss */
-body article.addElementForm.typing .cardActions ul li.done {
+body article.addArticleForm.typing .cardActions ul li.done {
   opacity: 1;
 }
 /* line 440, ../../style/layout/_article.scss */
-body article.addElementForm .translate {
+body article.addArticleForm .translate {
   overflow-x: hidden;
   position: relative;
   cursor: pointer;
@@ -1923,7 +1923,7 @@ body article.addElementForm .translate {
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 451, ../../style/layout/_article.scss */
-body article.addElementForm .translate:after {
+body article.addArticleForm .translate:after {
   content: "";
   height: 24px;
   width: 24px;
@@ -1947,12 +1947,12 @@ body article.addElementForm .translate:after {
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 470, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card {
+body article.addArticleForm .translate .card {
   overflow: visible;
   width: 168pt;
 }
 /* line 474, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .editable {
+body article.addArticleForm .translate .card .editable {
   height: 100%;
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -1968,11 +1968,11 @@ body article.addElementForm .translate .card .editable {
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 /* line 483, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions {
+body article.addArticleForm .translate .card .cardActions {
   width: 168pt;
 }
 /* line 490, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions ul li.upload {
+body article.addArticleForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
   width: 84pt;
@@ -1981,7 +1981,7 @@ body article.addElementForm .translate .card .cardActions ul li.upload {
   position: relative;
 }
 /* line 499, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions ul li.upload:hover a {
+body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
   -o-animation: hoverLinkFlicker 20s infinite linear;
@@ -1992,7 +1992,7 @@ body article.addElementForm .translate .card .cardActions ul li.upload:hover a {
   */
 }
 /* line 504, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions ul li.upload form {
+body article.addArticleForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
   top: 0;
@@ -2000,7 +2000,7 @@ body article.addElementForm .translate .card .cardActions ul li.upload form {
   position: absolute;
 }
 /* line 511, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions ul li.upload form input {
+body article.addArticleForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -2010,14 +2010,14 @@ body article.addElementForm .translate .card .cardActions ul li.upload form inpu
   cursor: pointer !important;
 }
 /* line 523, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions ul li.done {
+body article.addArticleForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
 /* line 529, ../../style/layout/_article.scss */
-body article.addElementForm .translate .card .cardActions ul li.done a {
+body article.addArticleForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;
   margin-left: 8pt;
@@ -2157,15 +2157,15 @@ body article.addElementForm .translate .card .cardActions ul li.done a {
 .cover .card section.title .rename a:hover, .cover.card section.title .rename a:hover {
   opacity: 1;
 }
-/* line 133, ../../style/layout/_home.scss */
-.cover .card .elementCount, .cover.card .elementCount {
+/* line 131, ../../style/layout/_home.scss */
+.cover .card section.title .rename .articleCount, .cover.card section.title .rename .articleCount {
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
 }
-/* line 140, ../../style/layout/_home.scss */
-.cover .card ul.users, .cover.card ul.users {
+/* line 138, ../../style/layout/_home.scss */
+.cover .card section.title .rename ul.users, .cover.card section.title .rename ul.users {
   position: absolute;
   width: 50%;
   bottom: 0;
@@ -2178,21 +2178,21 @@ body article.addElementForm .translate .card .cardActions ul li.done a {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 147, ../../style/layout/_home.scss */
-.cover .card ul.users li.add, .cover.card ul.users li.add {
+/* line 145, ../../style/layout/_home.scss */
+.cover .card section.title .rename ul.users li.add, .cover.card section.title .rename ul.users li.add {
   width: 100%;
 }
-/* line 150, ../../style/layout/_home.scss */
-.cover .card ul.users li.add label, .cover.card ul.users li.add label {
+/* line 148, ../../style/layout/_home.scss */
+.cover .card section.title .rename ul.users li.add label, .cover.card section.title .rename ul.users li.add label {
   display: block;
 }
-/* line 154, ../../style/layout/_home.scss */
-.cover .card ul.users li.add input[type=email], .cover.card ul.users li.add input[type=email] {
+/* line 152, ../../style/layout/_home.scss */
+.cover .card section.title .rename ul.users li.add input[type=email], .cover.card section.title .rename ul.users li.add input[type=email] {
   padding-right: 24pt;
   width: auto;
 }
-/* line 159, ../../style/layout/_home.scss */
-.cover .card ul.users li.add input[type=submit], .cover.card ul.users li.add input[type=submit] {
+/* line 157, ../../style/layout/_home.scss */
+.cover .card section.title .rename ul.users li.add input[type=submit], .cover.card section.title .rename ul.users li.add input[type=submit] {
   position: absolute;
   top: 0;
   text-align: right;

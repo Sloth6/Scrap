@@ -1,9 +1,3 @@
+include ../mixins/collection
 
--for (var j = 0; j < collection.elements.length; j++)
-  -var element = collection.elements[j]
-  include element
-
-- if(collection.root == true)
-  include addProjectForm
-- else 
-  include addElementForm
++collectionContentMixin(collection)

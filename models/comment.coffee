@@ -7,5 +7,5 @@ module.exports = (sequelize, DataTypes) ->
     classMethods:
       associate: (models) ->
         Comment.belongsTo models.User, as: 'Creator', foreignKey: 'creator_id'
-        Comment.belongsTo models.Element
+        Comment.belongsTo models.Article
   }

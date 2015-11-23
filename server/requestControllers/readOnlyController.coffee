@@ -1,34 +1,36 @@
 models = require '../../models'
 
-readOnlyPage = (res, space) ->
+readOnlyPage = (res, collection) ->
   res.render 'read-only.jade',
-    title : "#{space.name} on Scrap"
+    title : "#{collection.name} on Scrap"
     description: ''
     author: 'scrap'
-    collection: space
+    collection: collection
     names: { 1: "" }
-    current_space:
-      spaceKey: 'index'
+    current_collection:
+      collectionKey: 'index'
 
 module.exports =
   index: (req, res, app, callback) ->
-    { spaceKey } = req.params
+    { collectionKey } = req.params
     currentUserId = req.session.currentUserId
     
-    models.Space.find(where: { spaceKey }).complete (err, space) ->
+    models.Collection.find(where: { collectionKey }).complete (err, collection) ->
       return callback err if err
-      return res.send(404) unless space?
-      return readOnlyPage(res, space) unless currentUserId?
+      return res.send(404) unless collection?
+      return readOnlyPage(res, collection) unless currentUserId?
       q = 'select exists
-            (select true from "SpacesUsers" where "UserId"=? and "SpaceId"=?)'
-      params = [ currentUserId, space.id ]
+            (select true from "CollectionsUsers" where "UserId"=? and "CollectionId"=?)'
+      params = [ currentUserId, collection.id ]
       models.sequelize.query(q, null, { raw:true}, params).complete (err, results) ->
         return res.send(400) if err?
         return res.send(400) unless results?
-        hasSpace = results[0].exists
-        console.log 'results', results, hasSpace
-        if hasSpace
-          # in the future load them directly into space
+        hasCollection = results[0].exists
+        console.log 'results', results, hasCollection
+        if hasCollection
+          # in the future load them directly into collection
+          callback null
           return res.redirect('/')
         else
-          readOnlyPage(res, space)
+          callback null
+          readOnlyPage(res, collection)

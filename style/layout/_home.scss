@@ -126,43 +126,43 @@
                 &:hover {
                     opacity: 1;
                 }
-            }
-        }
-		}
-    
-    .elementCount {
-        position: absolute;
-        top: 0;
-        right: 0;
-        opacity: 0;
-    }
-    
-		ul.users {
-        position: absolute;
-        width: 50%;
-        bottom: 0;
-        @include typeSmall;
-        @include transition(opacity .25s $defaultCurve);
-  		
-  		li.add {
-      		width: 100%;
-      		
-            label {
-                display: block;
-            }
-          
-      		input[type=email] {
-          		padding-right: $cell * 3;
-          		width: auto;
-      		}
-      		
-      		input[type=submit] {
-          		position: absolute;
-          		top: 0;
-          		text-align: right;
-          		right: -$cell * 3;
-          		width: $cell * 3;
-      		}
-  		}
-		}
+        		}
+        		
+        		.articleCount {
+            		position: absolute;
+            		top: 0;
+            		right: 0;
+            		opacity: 0;
+        		}
+        		
+        		ul.users {
+                position: absolute;
+                width: 50%;
+                bottom: 0;
+            		@include typeSmall;
+            		@include transition(opacity .25s $defaultCurve);
+            		
+            		li.add {
+                		width: 100%;
+                		
+                    label {
+                        display: block;
+                    }
+                    
+                		input[type=email] {
+                    		padding-right: $cell * 3;
+                    		width: auto;
+                		}
+                		
+                		input[type=submit] {
+                    		position: absolute;
+                    		top: 0;
+                    		text-align: right;
+                    		right: -$cell * 3;
+                    		width: $cell * 3;
+                		}
+            		}
+        		}
+        	}
+	}
 }

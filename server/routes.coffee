@@ -14,20 +14,13 @@ module.exports = (app) ->
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 
-  app.post '/s/update', (req, res) ->
-    controllers.spaceController.updateSpace req, res, app, errorHandler
+  app.get '/collectionContent/:collectionKey', (req, res) ->
+    controllers.collectionController.collectionContent req, res, app, errorHandler
 
-  app.post '/updateSpaceName', (req, res) ->
-    controllers.spaceController.updateSpaceName req, res, app, errorHandler
+  app.get '/sign_s3', (req, res) ->
+    controllers.collectionController.uploadFile req, res, app, errorHandler
 
-  app.get '/collectionContent/:spaceKey', (req, res) ->
-    controllers.spaceController.collectionContent req, res, app, errorHandler
-
-  app.get '/collectionData/:spaceKey', (req, res) ->
-    controllers.spaceController.collectionData req, res, app, errorHandler
-
-  app.get '/s/:spaceKey', (req, res) ->
-    # res.redirect '/'
+  app.get '/s/:collectionKey', (req, res) ->
     controllers.readOnlyController.index req, res, app, errorHandler
 
   app.post '/login', (req, res) ->
@@ -42,8 +35,6 @@ module.exports = (app) ->
   app.post '/updateUser', (req, res) ->
     controllers.userController.updateUser req, res, app, errorHandler
 
-  app.get '/sign_s3', (req, res) ->
-    controllers.spaceController.uploadFile req, res, app, errorHandler
     
   app.get '/500', (req, res) ->
     throw new Error 'This is a 500 Error'

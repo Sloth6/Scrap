@@ -6,10 +6,11 @@ check_charcount = (elem, e) ->
   # if e.which
  
 addCollection = () ->
-  # $.post '/s/new', {space:{ name }}, (dom) ->
+  # $.post '/s/new', {collection:{ name }}, (dom) ->
   #   collection = $(dom)
 
 addProjectController =
+
   init: (elem) ->
     elem.data 'sent', false
     elem.click () ->
@@ -30,8 +31,6 @@ addProjectController =
           card.removeClass 'editing'
           card.removeClass 'hover'
           socket.emit 'newPack', { name: title.text() }
-
-            # console.log dom
 
         else if e.which != 8 && elem.text().length > max
           e.preventDefault()
