@@ -39,9 +39,9 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   $('nav ul.menu li.first').css
     opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
     
-animateOutPop = ($article) ->
-  if $article.data('hasAnimatedIn')
-    $article.velocity {
+animateOutPop = ($element) ->
+  if $element.data('hasAnimatedIn')
+    $element.velocity {
       translateZ: 0
       translateY: -coverHeight/2
       scaleX: 0
@@ -53,11 +53,11 @@ animateOutPop = ($article) ->
       easing: fancySpring
       delay: collectionOpenDuration / 8
     }
-    $article.data 'hasAnimatedIn', false
+    $element.data 'hasAnimatedIn', false
         
-animateInPop = ($article) ->
-  unless $article.data 'hasAnimatedIn'
-    $article.velocity {
+animateInPop = ($element) ->
+  unless $element.data 'hasAnimatedIn'
+    $element.velocity {
       translateZ: 0
       translateY: 0
       scaleY: 1
@@ -69,7 +69,7 @@ animateInPop = ($article) ->
       easing: fancySpring
       delay: collectionOpenDuration / 8
     }
-  $article.data 'hasAnimatedIn', true
+  $element.data 'hasAnimatedIn', true
   
 closeCollection = ($section, $collection, $cover, $cards) ->
   $cover.velocity 'reverse'
@@ -78,9 +78,9 @@ closeCollection = ($section, $collection, $cover, $cards) ->
   $collection.data('stackHasOpened', false)
 
 openCollection = ($section, $collection, $cover, $cards) ->
-  cardSpacing             = 12
+  cardSpacing             = 4
   maxRotate               = 12
-  translateXToWindowLeft  = (cardSpacing/2) + ((coverWidth / 2) - ($(window).width()/2))
+  translateXToWindowLeft  = (cardSpacing * 1.5) + ((coverWidth / 2) - ($(window).width()/2))
   translateY              = 0
   
   $cover.velocity {
@@ -95,33 +95,32 @@ openCollection = ($section, $collection, $cover, $cards) ->
   $cards.parent('.exampleContent').velocity {
     opacity: 1
   }, {
-    duration: collectionOpenDuration
+    duration: collectionOpenDuration / 2
     easing: easingSmooth
   }
-  
+
   $cards.each () ->
     # Sum width of previous cards
     widthOfPreviousCards = 0
     $(@).prevAll().each () ->
       widthOfPreviousCards += $(@).width()
-    translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 1.5
-    translateX        = translateXStart + ($(@).index() * cardSpacing) + widthOfPreviousCards
+    translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 4
+    translateX        = widthOfPreviousCards + translateXStart + (($(@).index() + 2) * cardSpacing)
     rotateZ           = '0deg'
     console.log $(@), translateX
     $(@).velocity({
       translateZ: 0
-      translateY
+      translateY: [translateY, Math.random() * (coverHeight / 2)]
       translateX
-      rotateZ
-      scaleX: 1
-      scaleY: 1
+      rotateZ: [rotateZ, (Math.random() - .5) * rotateZRandomMax + 'deg']
+      scaleX: [1, 1]
+      scaleY: [1, 0]
     }, {
       duration: collectionOpenDuration
       easing: basicSpring
       delay: Math.random() * (collectionOpenDuration / 4)
     })
   $collection.data('stackHasOpened', true)
-  $collection.find('.exampleContent').css('opacity', 1)
   
 updateSectionScrollValues = ($section, scrollTop) ->
   $section.data 'sectionTopToWindowTop',                $section.offset().top - scrollTop
@@ -131,9 +130,9 @@ updateSectionScrollValues = ($section, scrollTop) ->
   $section.data 'sectionBottomToWindowTopProgress',     $section.data('sectionTopToDocumentTop') / $section.data('sectionBottomToDocumentTop')
   $section.data 'sectionBottomToWindowBottomProgress',  (scrollTop + $(window).height()) / $section.data('sectionBottomToDocumentTop')
   
-positionArticle = ($article, status, position, top) ->
-  $article.data 'status', status
-  $article.css {
+positionArticle = ($element, status, position, top) ->
+  $element.data 'status', status
+  $element.css {
     position
     top
   } 
@@ -230,26 +229,15 @@ initSections = ($sections) ->
       $(@).data('status', null)
       if $(@).find('.cover').hasClass('scale')
         initScaleCover($(@).find('.cover'), $sections.children('.collection').find('.cover').not('.scale'))
-#       $(@).find('.exampleContent').css {
-#         opacity: 0
-#       }
-      $(@).find('.exampleContent').find('article').each () ->
-#         $(@).css 'height', (Math.random() * (coverHeight / 2)) + coverHeight / 2
-        $(@).velocity {
-          translateY: Math.random() * (coverHeight / 2)
-          rotateZ: (Math.random() - .5) * rotateZRandomMax + 'deg'
-          scaleX: 2
-          scaleY: 0
-        }, {
-          duration: 0
-          easing: basicSpring
-        }
+      $(@).find('.exampleContent').css {
+        opacity: 0
+      }
 
-initArticleAnimations = () ->
-  $articles = $('.animateInPop')
-  hasAnimatedIn = if $articles.hasClass 'animateInOnCollectionOpen' then false else true
-  $articles.data 'hasAnimatedIn', hasAnimatedIn
-  $articles.velocity {
+initElementAnimations = () ->
+  $elements = $('.animateInPop')
+  hasAnimatedIn = if $elements.hasClass 'animateInOnCollectionOpen' then false else true
+  $elements.data 'hasAnimatedIn', hasAnimatedIn
+  $elements.velocity {
     translateZ: 0
     translateY: -coverHeight/2
     opacity: 0
@@ -300,7 +288,7 @@ initCreateAccount = () ->
         easing: fancySpring
       }
       $('.page.index .contentBlah').velocity {
-#         translateZ: 0
+        translateZ: 0
         opacity: .125
         blur: 10
       }, {
@@ -318,7 +306,7 @@ initCreateAccount = () ->
 
 init = ($sections) ->
   initSections($sections)
-  initArticleAnimations()
+  initElementAnimations()
   initJoinAnimations()
   initCreateAccount()
 

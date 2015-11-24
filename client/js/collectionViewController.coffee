@@ -60,7 +60,7 @@ window.collectionViewController =
 
   # This function is only called from collectionViewController.open
   pushOffScreen: ($collection, $openingCollection) ->
-    # Some article move to one side of the view and soem move to the other
+    # Some article move to one side of the view and some move to the other
     # this depends on which side of the opening article they are.
     $openingCover = collectionModel.getCover $openingCollection
     $addForm = collectionModel.getAddForm $collection
