@@ -165,22 +165,13 @@ body {
             .content {
                 
                 .card {
+                    max-width: $articleWidthVideo;
                     width: intrinsic;
                     padding: 0px;
                     
                     iframe {
                         margin: $hideImageWhiteBorder;
                     }
-                }
-            }
-        }
-        
-        &.youtube {
-            
-            .content {
-                
-                .card {
-                    max-width: $articleWidthVideo;
                 }
             }
         }

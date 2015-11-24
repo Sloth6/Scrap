@@ -1,6 +1,11 @@
 mixin articleMixin(article)
+  -
+    var classes =  ['draggable', article.contentType]
+    if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
+      classes.push('playable')
+    }
   article(id=article.id, style= posString,
-    class = "draggable #{article.contentType}"
+    class = classes,
     data-contenttype= article.contentType, 
     data-creatorid  = article.creatorId, 
     data-content    = article.content
