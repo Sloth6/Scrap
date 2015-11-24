@@ -466,6 +466,7 @@ ul.menu {
             height: $menuItemHeight;
             cursor: pointer;
             margin-top: $cell/2;
+            white-space: nowrap;
         }
         
         input {
