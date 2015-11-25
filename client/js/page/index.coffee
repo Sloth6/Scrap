@@ -24,8 +24,10 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   borderRadius        = scrollProgress * finalBorderRadius
   finalBorderWidth    = 1 / scaleRatio
   borderWidth         = scrollProgress * finalBorderWidth
+  translateY          = scrollProgress * 724
+  console.log scrollProgress * 220, translateY
   $cover.css
-    transform: "scale3d(#{scale}, #{scale}, 1)"
+    transform: "scale3d(#{scale}, #{scale}, 1) translate3d(0px, #{translateY}px, 0px)"
   if step isnt previousStep or scrollProgress is 0
     $cover.css
       borderRadius: "#{borderRadius}pt"
@@ -34,7 +36,7 @@ scaleCover = (scrollProgress, $cover, $caption) ->
       '-webkit-text-stroke': "#{stroke}px black"
       'letter-spacing': "#{letterSpacing}em"
   # Bring caption to top on scroll
-  if scrollProgress < .9
+  if scrollProgress < .25
     $caption.css
       zIndex: 0
     $caption.find('.createAccount').css
@@ -208,7 +210,7 @@ onScroll = ($sections) ->
     
 initScaleCover = ($scaleCover, $normalCover) ->
   $normalH1 = $normalCover.find('h1')
-  transformOrigin = "#{$(window).width() / 2}px 232pt"
+  transformOrigin = "#{$(window).width() / 2}px top"
   $scaleCover.css {
     transformOrigin: transformOrigin
     webkitTransformOrigin: transformOrigin
