@@ -124,7 +124,7 @@ $cardBorderRadius:          $cell/4;
     -webkit-filter: invert(1);
 }
 
-a {
+a, input[type=submit], input[type=button] {
     @include linkReset;
     
     &.action {

@@ -698,13 +698,13 @@ p + p {
 }
 
 /* line 127, ../../style/globals/_components.scss */
-a {
+a, input[type=submit], input[type=button] {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 /* line 131, ../../style/globals/_components.scss */
-a.action:hover {
+a.action:hover, input[type=submit].action:hover, input[type=button].action:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
   -o-animation: hoverLinkFlicker 20s infinite linear;
@@ -715,7 +715,7 @@ a.action:hover {
   */
 }
 /* line 138, ../../style/globals/_components.scss */
-a.warning:hover {
+a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:hover {
   -webkit-animation: hoverWarningFlicker 20s infinite linear;
   -moz-animation: hoverWarningFlicker 20s infinite linear;
   -o-animation: hoverWarningFlicker 20s infinite linear;
@@ -726,7 +726,7 @@ a.warning:hover {
   */
 }
 /* line 144, ../../style/globals/_components.scss */
-a.confirm:hover {
+a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:hover {
   -webkit-animation: hoverConfirmFlicker 20s infinite linear;
   -moz-animation: hoverConfirmFlicker 20s infinite linear;
   -o-animation: hoverConfirmFlicker 20s infinite linear;

@@ -134,9 +134,9 @@ section.page.index {
                     &.scale {
                         top: 0;
                         left: 0;
-                        margin-left: 0;
-                        -webkit-transform-origin: center 25vh;
-                                transform-origin: center 25vh;
+                        margin: 0;
+//                         -webkit-transform-origin: 50vw 13.2vh;
+//                                 transform-origin: 50vw 13.2vh;
                         z-index: 2;
                     
 /*

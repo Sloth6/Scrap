@@ -24,6 +24,7 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   borderRadius        = scrollProgress * finalBorderRadius
   finalBorderWidth    = 1 / scaleRatio
   borderWidth         = scrollProgress * finalBorderWidth
+  console.log coverWidth #$cover.width(), $(window).width()
   $cover.css
     transform: "scale3d(#{scale}, #{scale}, 1)"
   if step isnt previousStep or scrollProgress is 0
@@ -83,6 +84,8 @@ openCollection = ($section, $collection, $cover, $cards) ->
   translateXToWindowLeft  = (cardSpacing * 1.5) + ((coverWidth / 2) - ($(window).width()/2))
   translateY              = 0
   
+  console.log $cover.height(), $cover.width()
+  
   $cover.velocity {
     translateZ:   0
     translateX:   if $section.hasClass 'join' then 0 else translateXToWindowLeft
@@ -107,7 +110,6 @@ openCollection = ($section, $collection, $cover, $cards) ->
     translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 4
     translateX        = widthOfPreviousCards + translateXStart + (($(@).index() + 2) * cardSpacing)
     rotateZ           = '0deg'
-    console.log $(@), translateX
     $(@).velocity({
       translateZ: 0
       translateY: [translateY, Math.random() * (coverHeight / 2)]
@@ -203,7 +205,10 @@ onScroll = ($sections) ->
     
 initScaleCover = ($scaleCover, $normalCover) ->
   $normalH1 = $normalCover.find('h1')
+  transformOrigin = "#{$(window).width() / 2}px 13.2vh"
   $scaleCover.css {
+    transformOrigin: transformOrigin
+    webkitTransformOrigin: transformOrigin
     padding:  parseFloat($normalCover.css('padding')) / scaleRatio + 'px'
     height:   parseFloat($normalCover.css('height')) / scaleRatio + 'px'
     width:    parseFloat($normalCover.css('width')) / scaleRatio + 'px'
