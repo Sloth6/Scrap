@@ -6,15 +6,20 @@ block scripts
   script(src="/js/jquery/jquery-ui.min.js")
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")
-  
-  //- script(src="/js/collection.js")
-  //- script(src="/js/article.js")
-
   script(src="/js/lib/velocity.min.js")
   script(src="/js/page/stackAnimation.js")
   script(src="/js/page/index.js")
   script(src="/js/menuControllers/header.js")
   //- script(src="/js/menuControllers/settings.js")
+  script(src="/js/contentControllers/stack.js")
+  script(src="/js/contentControllers/packCover.js")
+  script(src="/js/contentControllers/file.js")
+  script(src="/js/contentControllers/gif.js")
+  script(src="/js/contentControllers/soundCloud.js")
+  script(src="/js/contentControllers/video.js")
+  script(src="/js/contentControllers/text.js")
+  script(src="/js/contentControllers/youtube.js")
+  script(src="/js/contentControllers/playable.js")
 
 block content
   section.page.index
@@ -24,19 +29,19 @@ block content
         include partials/logIn
       .signUp.card
           include partials/signUp
-    .contentBlah
+    .sectionsWrapper
       header.example.intro.page
         .collection.intro
           .translate
             .scale.card.cover.cardHover.colored.title.translate
               section.title
-                h1.typeTitle.typeOutlineClear Example One
+                h1.typeTitle.typeOutlineClear Design History Final
           .exampleContent
             article#263.image
               .content
                 .card.cardHover.image
                   img(src='http://www.glengarry.co.nz/images/v8/decorations/eames-lounge-chair.jpg')
-            article#260.website
+            article#260.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.website
@@ -47,7 +52,7 @@ block content
                       .description.smallType
                     img(src='http://www.barbican.org.uk/images/events/medium/18398eamesglassesevent.jpg')
                     a(href='http://www.barbican.org.uk/artgallery/event-detail.asp?ID=18398', target='_blank', title='Open “The World of Charles and Ray Eames” in a new tab')
-            article#267.youtube.playable
+            article#267.youtube.playable(data-contenttype='youtube')
               .content
                 .transform
                   .card.cardHover.youtube
@@ -59,7 +64,7 @@ block content
                         .artist.smallType Artist
                       .detail
                         .source.smallType.smallCaps youtube
-            article#278.text.long
+            article#278.text.long(data-contenttype='text')
               .content
                 .transform
                   .card.cardHover.text
@@ -79,7 +84,7 @@ block content
                         a.invisible.done.confirm(href='#') Done
         .caption
           .animateOutOnCollectionOpen.animateInPop
-            p.typeSubtitle.typeOutlineClear Scrap. A home for your projects.
+            p.typeSubtitle.typeOutlineClear Introducing Scrap. A home for your projects.
             p.createAccount
               a(href='#') Create an account
           p.animateInOnCollectionOpen.animateInPop.typeSubtitle.typeOutlineClear This is a Pack. A shareable bundle of all the stuff you need for your project.
@@ -87,9 +92,9 @@ block content
         .collection
           .card.cover.cardHover.colored.title.translate
             section.title
-              h1.typeTitle.typeOutlineClear Example Two
+              h1.typeTitle.typeOutlineClear Trip to Lisbon
           .exampleContent
-            article#253.draggable.text.long
+            article#253.draggable.text.long(data-contenttype='text')
               .content
                 .transform
                   .card.cardHover.cardDrag.text
@@ -103,7 +108,7 @@ block content
                     ul.cardActions
                       li.right
                         a.invisible.done.confirm(href='#') Done
-            article#287.draggable.website
+            article#287.draggable.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -115,7 +120,7 @@ block content
                         | Lisbon Tourism: TripAdvisor has 494,485 reviews of Lisbon Hotels, Attractions, and Restaurants making it your best Lisbon resource.
                     img(src='http://media-cdn.tripadvisor.com/media/photo-s/03/9b/2f/c5/lisbon.jpg')
                     a(href='http://www.tripadvisor.com/Tourism-g189158-Lisbon_Lisbon_District_Central_Portugal-Vacations.html', target='_blank', title='Open “Lisbon Tourism: Best of Lisbon, Portugal - TripAdvisor” in a new tab')
-            article#288.draggable.website
+            article#288.draggable.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -127,7 +132,7 @@ block content
                         | From old townhouses filled with chic shops to docklands harboring night clubs, the city is undergoing a remarkable rebirth.
                     img(src='http://static01.nyt.com/images/2015/04/05/travel/05HOURS1/05HOURS1-facebookJumbo.jpg')
                     a(href='http://www.nytimes.com/2015/04/05/travel/-2015-04-05-travel-what-to-do-in-36-hours-in-lisbon.html', target='_blank', title='Open “36 Hours in Lisbon” in a new tab')
-            article#289.draggable.website
+            article#289.draggable.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -145,9 +150,9 @@ block content
         .collection
           .card.cover.cardHover.colored.title.translate
             section.title
-              h1.typeTitle.typeOutlineClear Example Three
+              h1.typeTitle.typeOutlineClear Stuff for Alex’s Party
           .exampleContent
-            article#306.file
+            article#306.file(data-contenttype='file')
               .content
                 .transform
                   .card.cardHover.cardDrag.file
@@ -157,7 +162,7 @@ block content
                     ul.cardActions
                       li
                         a.download.confirm(href='#') Download
-            article#316.draggable.soundcloud.playable
+            article#316.draggable.soundcloud.playable(data-contenttype='soundcloud')
               .content
                 .transform
                   .card.cardHover.cardDrag.soundcloud
@@ -170,7 +175,7 @@ block content
                         .artist.smallType Moogfest
                       .detail
                         .source.smallType.smallCaps SoundCloud
-            article#317.draggable.text.long
+            article#317.draggable.text.long(data-contenttype='text')
               .content
                 .transform
                   .card.cardHover.cardDrag.text
@@ -186,7 +191,7 @@ block content
                     ul.cardActions
                       li.right
                         a.invisible.done.confirm(href='#') Done
-            article#318.draggable.website
+            article#318.draggable.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -197,7 +202,7 @@ block content
                       .description.smallType Tokyo Kaikan Gimlet
                     img(src='https://s-media-cache-ak0.pinimg.com/600x315/59/2e/45/592e45505e5f014644ac39364fdf65e7.jpg')
                     a(href='https://www.pinterest.com/pin/169659110936001995/', target='_blank', title='Open “Tokyo Kaikan Gimlet” in a new tab')
-            article#319.draggable.youtube.playable
+            article#319.draggable.youtube.playable(data-contenttype='youtube')
               .content
                 .transform
                   .card.cardHover.cardDrag.youtube

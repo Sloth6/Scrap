@@ -25,9 +25,18 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   finalBorderWidth    = 1 / scaleRatio
   borderWidth         = scrollProgress * finalBorderWidth
   translateY          = scrollProgress * ($cover.width() / coverWidth) * 224
-  console.log translateY
+  rotateZ             = $cover.data('rotateZ') * scrollProgress
   $cover.css
     transform: "scale3d(#{scale}, #{scale}, 1) translate3d(0px, #{translateY}px, 0px)"
+  if not $cover.parent('.translate').data('animating')
+#     $cover.parent('.translate').css
+#       transform: "rotateZ(#{rotateZ}deg)"
+    $cover.parent('.translate').velocity { # Separate rotation so it can be undone in openCollection()
+      translateZ: 0
+      rotateZ: rotateZ
+    }, {
+      duration: 0
+    }
   if step isnt previousStep or scrollProgress is 0
     $cover.css
       borderRadius: "#{borderRadius}pt"
@@ -82,7 +91,10 @@ animateInPop = ($element) ->
   $element.data 'hasAnimatedIn', true
   
 closeCollection = ($section, $collection, $cover, $cards) ->
-  $cover.velocity 'reverse'
+  $cover.velocity 'reverse',
+    {
+      complete: () -> $cover.data 'animating', false
+    }
   $cards.parent('.exampleContent').velocity 'reverse'
   $cards.each -> $(@).velocity 'reverse'
   $collection.data('stackHasOpened', false)
@@ -92,22 +104,23 @@ openCollection = ($section, $collection, $cover, $cards) ->
   maxRotate               = 12
   translateXToWindowLeft  = (cardSpacing * 1.5) + ((coverWidth / 2) - ($(window).width()/2))
   translateY              = 0
+  $cover.data 'animating', true
   $cover.velocity {
     translateZ:   0
     translateX:   if $section.hasClass 'join' then 0 else translateXToWindowLeft
     translateY:   if $section.hasClass 'join' then -$(window).height() / 4 else 0
+    rotateZ:      0
   }, {
     duration: collectionOpenDuration
     easing: basicSpring
   }
-  
+  # Unrotate cover
   $cards.parent('.exampleContent').velocity {
     opacity: 1
   }, {
     duration: collectionOpenDuration / 2
     easing: easingSmooth
   }
-
   $cards.each () ->
     # Sum width of previous cards
     widthOfPreviousCards = 0
@@ -155,15 +168,11 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
   collectionTop                 = $(window).height() * collectionTopPercentage
   windowTopToCollectionBottom   = collectionTop + coverHeight
   sectionTopToCollectionBottom  = $section.height() + coverHeight
-
   openCollectionThreshold = if $cover.hasClass('scale') then 2 else 1
-  
   updateSectionScrollValues $section, scrollTop
-
   # Scale content section down unless halfway scrolled through first screen
   if $cover.hasClass 'scale'
     scaleCover(Math.max(0, Math.min(1, ($section.data('sectionTopToWindowTopProgress')  - 1) * 4)), $cover, $caption)
-
   if $section.data('sectionTopToWindowTopProgress') >= openCollectionThreshold
     animateInPop($section.find('.animateInOnCollectionOpen'))
     if ($section.hasClass 'join') and ($caption.css('z-index') < $cover.css('z-index'))
@@ -182,7 +191,6 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
       closeCollection($section, $collection, $translateCover, $exampleCards)
     if $section.hasClass('intro')
       animateInPop($section.find('.animateOutOnCollectionOpen'))
-
   if $section.data('sectionTopToWindowTopProgress') >= 1
     if $section.data('sectionBottomToWindowBottomProgress') <= 1
       if $collection.data('status') != 'current'
@@ -227,9 +235,12 @@ initScaleCover = ($scaleCover, $normalCover) ->
     marginTop:     parseFloat($normalH1.css('margin-top')) / scaleRatio + 'px'
     marginLeft:    parseFloat($normalH1.css('margin-left')) / scaleRatio + 'px'
   }
+  
+randomCoverRotate = () ->
+  (Math.random() * 22) - 11
 
 initSections = ($sections) ->
-  coverWidth = $sections.children('.collection').find('.cover').not('.scale').width()
+  coverWidth  = $sections.children('.collection').find('.cover').not('.scale').width()
   coverHeight = $sections.children('.collection').find('.cover').not('.scale').height()
   updateScaleRatio()
   $sections.each () ->
@@ -237,11 +248,20 @@ initSections = ($sections) ->
     $(@).data 'stackHasOpened', false
     $(@).children('.collection').each () ->
       $(@).data('status', null)
-      if $(@).find('.cover').hasClass('scale')
-        initScaleCover($(@).find('.cover'), $sections.children('.collection').find('.cover').not('.scale'))
       $(@).find('.exampleContent').css {
         opacity: 0
       }
+      $(@).find('.cover').each () ->
+        if $(@).hasClass('scale')
+          initScaleCover($(@), $sections.children('.collection').find('.cover').not('.scale'))
+          $(@).data('rotateZ', randomCoverRotate())
+        else
+          $(@).velocity {
+            rotateZ: randomCoverRotate()
+          }, {
+            duration: 0
+          }
+        
 
 initElementAnimations = () ->
   $elements = $('.animateInPop')
@@ -297,7 +317,7 @@ initCreateAccount = () ->
         duration
         easing: fancySpring
       }
-      $('.page.index .contentBlah').velocity {
+      $('.page.index .sectionsWrapper').velocity {
         translateZ: 0
         opacity: .125
         blur: 10
@@ -312,7 +332,18 @@ initCreateAccount = () ->
     if signUpIsOpen
       signUpIsOpen = false
       $signUp.velocity 'reverse'
-      $('.page.index .contentBlah').velocity 'reverse', { duration }
+      $('.page.index .sectionsWrapper').velocity 'reverse', { duration }
+      
+initContentControllers = ->
+  $('.exampleContent').find('article').each () ->
+    $content = $(@)
+    switch $content.data('contenttype')
+      when 'text'       then initText $content
+      when 'video'      then initVideo $content
+      when 'file'       then initFile $content
+      when 'soundcloud' then initSoundCloud $content
+      when 'youtube'    then initYoutube $content
+      when 'collection' then collectionModel.init $content
 
 init = ($sections) ->
   initSections($sections)
@@ -321,8 +352,9 @@ init = ($sections) ->
   initCreateAccount()
 
 $ ->
-  $sections = $('.page.index > .contentBlah > .example')
+  $sections = $('.page.index > .sectionsWrapper > .example')
   init $sections
+  initContentControllers()
   onScroll $sections
   $(window).scroll -> onScroll $sections
   $(window).resize -> onScroll $sections

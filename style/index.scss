@@ -111,7 +111,7 @@ section.page.index {
                     
                     p.createAccount {
                         line-height: $typeSubtitleLeading;
-                        @include transition(opacity .25s $defaultCurve);
+                        @include transition(opacity .5s $defaultCurve);
                     }
                 }
             }
@@ -134,6 +134,14 @@ section.page.index {
                 height: 100vh;
                 width: 100vw;
                 z-index: 2;
+                
+                &.intro {
+                    .translate {
+                        -webkit-transform-origin: center center;
+                                transform-origin: center center;
+                        background: yellow;
+                    }
+                }
                 
                 .cover {
                     cursor: default;

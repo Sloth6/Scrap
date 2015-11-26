@@ -2330,10 +2330,10 @@ section.page.index .page.example.intro {
 /* line 112, ../../style/index.scss */
 section.page.index .page.example.intro .caption p.createAccount {
   line-height: 36pt;
-  -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 /* line 119, ../../style/index.scss */
 section.page.index .page.example.join {
@@ -2357,24 +2357,30 @@ section.page.index .page.example .collection {
   width: 100vw;
   z-index: 2;
 }
-/* line 138, ../../style/index.scss */
+/* line 139, ../../style/index.scss */
+section.page.index .page.example .collection.intro .translate {
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  background: yellow;
+}
+/* line 146, ../../style/index.scss */
 section.page.index .page.example .collection .cover {
   cursor: default;
 }
-/* line 141, ../../style/index.scss */
+/* line 149, ../../style/index.scss */
 section.page.index .page.example .collection .cover.scale {
   top: 0;
   left: 0;
   margin: 0;
   z-index: 2;
 }
-/* line 147, ../../style/index.scss */
+/* line 155, ../../style/index.scss */
 section.page.index .page.example .collection .cover.scale h1 {
   font-size: 24vw;
   line-height: .8em;
   margin-top: -.03125em;
 }
-/* line 155, ../../style/index.scss */
+/* line 163, ../../style/index.scss */
 section.page.index .page.example .collection .exampleContent {
   position: absolute;
   overflow-x: hidden;
@@ -2384,7 +2390,7 @@ section.page.index .page.example .collection .exampleContent {
   z-index: -1;
   opacity: 0;
 }
-/* line 164, ../../style/index.scss */
+/* line 172, ../../style/index.scss */
 section.page.index .page.example .collection .exampleContent article {
   -webkit-transform-origin: center center;
   transform-origin: center center;
@@ -2393,28 +2399,28 @@ section.page.index .page.example .collection .exampleContent article {
   left: 50vw;
 }
 
-/* line 178, ../../style/index.scss */
+/* line 186, ../../style/index.scss */
 section.readOnly header.card {
   z-index: 10;
   position: relative;
   opacity: 1;
 }
-/* line 183, ../../style/index.scss */
+/* line 191, ../../style/index.scss */
 section.readOnly header.card section.form {
   position: absolute;
   bottom: 0;
   opacity: 0;
 }
-/* line 190, ../../style/index.scss */
+/* line 198, ../../style/index.scss */
 section.readOnly .card {
   position: absolute;
   top: 0;
 }
-/* line 194, ../../style/index.scss */
+/* line 202, ../../style/index.scss */
 section.readOnly .card.blank {
   z-index: 0;
 }
-/* line 198, ../../style/index.scss */
+/* line 206, ../../style/index.scss */
 section.readOnly .card.logo {
   border: 0;
   background: transparent;
