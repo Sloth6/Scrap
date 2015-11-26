@@ -45,10 +45,8 @@ drawClosedStack = ($collection) ->
     $(@).velocity { translateX, translateY }
     $(@).css {zIndex: zIndex++}
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
-    translateX += 50
+    translateX += 25
 
-  # subtract 50 for add article form
-  # sizeTotal = contentModel.getSize($content.last()) + translateX - 50
   $cover.find(".card").width sizeTotal
   
   # $collection.width sizeTotal
