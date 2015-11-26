@@ -46,7 +46,7 @@ drag = (event, $dragging) ->
 
   $dragging.velocity {
     translateX: x - $dragging.data('mouseOffsetX')
-    translateY: y - $dragging.data('mouseOffsetY') - marginTop
+    translateY: y - $dragging.data('mouseOffsetY')
   }, { duration: 1 }
   
   # The content we are moused over
@@ -54,8 +54,6 @@ drag = (event, $dragging) ->
   
   # When dragging is the only content
   return if $content.length == 0    
-  
-  # return if $content[0] == lastDraggingOver[0]
   return if $content.is padding
 
   # Are we over the left, center or right of content
@@ -147,8 +145,8 @@ stopDragging = (event, $dragging) ->
 
 startDragging = ($dragging, mouseDownEvent) ->
   # console.log 'start dragging', $dragging[0]
-  $dragging.data 'mouseOffsetX', mouseDownEvent.offsetX
-  $dragging.data 'mouseOffsetY', mouseDownEvent.offsetY
+  $dragging.data 'mouseOffsetX', mouseDownEvent.clientX - xTransform($dragging)
+  $dragging.data 'mouseOffsetY', mouseDownEvent.clientY - yTransform($dragging)
 
   $dragging.
     addClass('dragging').
