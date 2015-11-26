@@ -17,7 +17,7 @@ var pg = require('pg')
 var session = express_session({
   store: new pgSession({
     pg : pg, // Use global pg-module
-    conString : 'postgres://localhost/scrapdb',
+    conString : process.env.POSTGRES_URL || 'postgres://localhost/scrapdb',
   }),
   saveUninitialized: false,
   secret: "club_sexdungeon",
