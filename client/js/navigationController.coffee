@@ -1,13 +1,17 @@
 window.navigationController =
   open: ($collection) ->
-    throw 'no collection passed' unless $collection?
-    collectionState = collectionModel.getState $collection
-    collectionKey        = collectionState.collectionKey
-
+    collectionState    = collectionModel.getState $collection
+    collectionKey      = collectionState.collectionKey
+    $collectionContent = collectionModel.getContent $collection
 
     #If leaving root collection, animate out back button
-    if collectionModel.getParent($collection)?.hasClass('root')
-      $('header.main .backButton.main').velocity { translateX: 32 }
+    if collectionModel.getParent($collection)?
+      $parentCollection        = collectionModel.getParent($collection)
+      $parentCollectionContent = collectionModel.getContent($parentCollection)
+      
+      if $parentCollection.hasClass('root')
+        $('header.main .backButton.main').velocity { translateX: 32 }
+
 
     collectionPath.unshift collectionKey
 
@@ -20,25 +24,39 @@ window.navigationController =
 
     # The object that will hold the state of the opening collection
     newState = { name: collectionKey }
-    # update the url
+    # Update the url.
     history.pushState newState, "", "/s/#{collectionKey}"
 
-    collectionModel.loadContent $collection, () ->
-      collectionViewController.open $collection 
-      collectionViewController.draw $collection 
-      size = contentModel.getSize($collection)
+    onContentLoaded = () ->
+      # Initialize new content to make it interactive
+      collectionModel.getContent($collection).each () -> contentModel.init $(@)
+      $addForm = collectionModel.getAddForm($collection)
+      switch $addForm.data('contenttype')
+        when 'addArticleForm' then addArticleController.init $addForm
+        when 'addProjectForm' then addProjectController.init $addForm
+  
+      collectionViewController.open $collection
+
+    if $collectionContent.length
+      onContentLoaded()
+    else
+      collectionModel.loadContent $collection, () ->
+        onContentLoaded()
 
   # close the open collection and return the view to where it was 
   # when it was opened. which is stored in the state object
   close: ($collection, state) ->
-    throw 'cannot close root' if $('.root.collection.open').length
-    
-    collectionPath.shift()
-    $parentCollection         = collectionModel.getParent   $collection
+    return if $collection.hasClass('root')
+    $parentCollection  = collectionModel.getParent  $collection
+    $collectionContent = collectionModel.getContent $collection
+
+    $collectionContent.off()
+
     collectionViewController.close $collection
+    collectionPath.shift()
 
     # If entering root collection, animate out back button
-    if collectionModel.getParent($collection).hasClass 'root'
+    if $parentCollection.hasClass 'root'
       $('header.main .backButton.main').velocity { translateX: 0 }
 
     # return to the parents state last time we were there.
@@ -49,7 +67,7 @@ window.navigationController =
     setTimeout (() ->
       $("body").css("overflow", "visible")
     ), openCollectionDuration
-    collectionViewController.draw $parentCollection, {animate: true }
+    collectionViewController.draw $parentCollection, { animate: true }
 
   goToStart: ($collection) ->
     $(window).scrollLeft 0

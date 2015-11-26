@@ -12,7 +12,7 @@ mixin collectionContentMixin(collection)
       +collectionMixin(article)
 
 mixin collectionMixin(collection)
-  - var classes = 'draggable closed ' + collection.collectionKey
+  - var classes = 'closed ' + collection.collectionKey
   - if(collection.root == true){
     - classes = classes+' root'
   - }

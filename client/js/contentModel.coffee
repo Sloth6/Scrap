@@ -1,36 +1,27 @@
 window.contentModel = 
-  init: ($contents) ->    
-    # $contents.addClass 'draggable'
-    contentViewController.jumble $contents
-    makeDraggable $contents.filter('.draggable')
-    makeDeletable $contents
+  init: ($content) ->
+    makeDraggable $content
+    makeDeletable $content
+    # contentModel.setJumble $content
 
-    $contents.mouseover( () ->
-      $content = $(@)
-      x = xTransform $content
-      return if x < edgeWidth or (x > $(window).width - edgeWidth)
-      return if $content.hasClass 'dragging'
-      $content.data 'oldZIndex', $content.css('zIndex')
-      $content.css 'zIndex', $.topZIndex('article')
-    ).mouseout () ->
-      $content = $(@)
-      return if $content.hasClass 'dragging'
-      return unless $content.data 'oldZIndex'
-      $content.css 'zIndex', $content.data('oldZIndex')
+    switch $content.data('contenttype')
+      when 'text'       then initText $content
+      when 'video'      then initVideo $content
+      when 'file'       then initFile $content
+      when 'soundcloud' then initSoundCloud $content
+      when 'youtube'    then initYoutube $content
+      when 'collection' then collectionModel.init $content
 
-    $contents.each () ->
-      switch $(@).data('contenttype')
-        when 'text'       then initText $(@)
-        when 'video'      then initVideo $(@)
-        when 'file'       then initFile $(@)
-        when 'soundcloud' then initSoundCloud $(@)
-        when 'youtube'    then initYoutube $(@)
-        when 'addArticleForm'
-          addArticleController.init $(@)
-        when 'addProjectForm'
-          addProjectController.init $(@)
-        when 'collection'
-          collectionModel.init $(@)
+    # $content.mouseover( () ->
+    #   x = xTransform $content
+    #   return if x < edgeWidth or (x > $(window).width - edgeWidth)
+    #   return if $content.hasClass 'dragging'
+    #   $content.data 'oldZIndex', $content.css('zIndex')
+    #   $content.css 'zIndex', $.topZIndex('article')
+    # ).mouseout () ->
+    #   return if $content.hasClass 'dragging'
+    #   return unless $content.data 'oldZIndex'
+    #   $content.css 'zIndex', $content.data('oldZIndex')
   
   setSize: ($contents, size) ->
     $contents.data 'size', size
@@ -38,7 +29,7 @@ window.contentModel =
   getSize: ($content) ->
     return $content.data('size') if $content.data('size')?
     return $content.find('.card').width() if $content.find('.card').width()
-    console.log $content
+    # console.log $content
     throw 'Cannot get size'
 
   getCollection: ($content) ->
@@ -50,3 +41,9 @@ window.contentModel =
   getCollectionkey: ($content) ->
     $collection = contentModel.getCollection $content
     return collectionModel.getState($collection).collectionKey
+
+  setJumble: ($content) ->
+    $content.data
+      'translateY': (Math.random()-.5) * 50# + 50
+      'rotateZ': 0#Math.random() * 4 + (Math.random() * -4)
+      'scale': 1

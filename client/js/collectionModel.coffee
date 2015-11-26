@@ -6,8 +6,7 @@ loadArticles = (collectionkey, callback) ->
 
 window.collectionModel =
   init: ($collection) ->
-    console.log $collection
-    $cover   = collectionModel.getCover $collection
+    $cover        = collectionModel.getCover $collection
     collectionKey = collectionModel.getState($collection).collectionKey
 
     $collection.click (event) ->
@@ -21,7 +20,9 @@ window.collectionModel =
       packCoverInit $cover
     else
       $collection.data 'contenttype', 'stack'
-      collectionViewController.draw $collection 
+      # console.log collectionModel.getContent($collection)
+      collectionModel.getContent($collection).removeClass('draggable')
+      collectionViewController.draw $collection
 
   removeContent: ($collection) ->
     $collection.children('.contentContainer').empty()
@@ -88,10 +89,10 @@ window.collectionModel =
   loadContent: ($collection, callback) ->
     collectionKey = collectionModel.getState($collection).collectionKey
     $contentContainer = $collection.children('.contentContainer')
-    # $contentContainer.empty()
+    
     # A stack will already have content
-    return callback() if $contentContainer.children().length
     $.get "/collectionContent/#{collectionKey}", (data) ->
+      $contentContainer.empty()
       $contentContainer.append $(data)
       callback()
 

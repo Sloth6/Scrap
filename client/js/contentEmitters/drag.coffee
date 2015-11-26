@@ -97,6 +97,7 @@ checkForAddToStack = (event, $dragging) ->
   return false if $dragging.hasClass 'collection'
   return false unless leftCenterRight($droppedOn, event.clientX) is 'center'
   return false if event.clientY < marginTop
+  return false if $dragging.is $droppedOn
 
   collectionKey = collectionModel.getState($droppedOn).collectionKey
   draggedId     = parseInt($dragging.attr('id'))
@@ -114,17 +115,6 @@ checkForAddToStack = (event, $dragging) ->
     socket.emit 'newStack', { collectionKey: collectionPath[0], draggedId, draggedOverId }
   true
 
-# checkForOpenByDrag = (x, y, dragging, draggingOver) ->
-#   return false unless draggingOver.hasClass('stack')
-#   return false if collectionOpenByDragTimeout
-#   return false if y > parseInt(draggingOver.css('y'))+ draggingOver.height()
-#   collectionOpenByDragTimeout = setTimeout (() ->
-#     padding.remove()
-#     clearDragTimeouts()
-#     collectionOpen draggingOver, { dragging: true }
-#   ), collectionOpenByDragTime
-#   true
-
 # Clear all timeouts
 clearDragTimeouts = () ->
   clearInterval scrollInterval  
@@ -136,9 +126,6 @@ clearDragTimeouts = () ->
   draggingOnBorder = false
 
 stopDragging = (event, $dragging) ->
-  console.log "Stop dragging"
-  # clearDragTimeouts()  
-  
   if !checkForAddToStack(event, $dragging)
     padding = $('.slidingContainer').find('.padding')
     throw 'did not find padding :(' unless padding.length
@@ -159,8 +146,7 @@ stopDragging = (event, $dragging) ->
   ), 20
 
 startDragging = ($dragging, mouseDownEvent) ->
-  return unless $dragging.hasClass 'draggable'
-  
+  # console.log 'start dragging', $dragging[0]
   $dragging.data 'mouseOffsetX', mouseDownEvent.offsetX
   $dragging.data 'mouseOffsetY', mouseDownEvent.offsetY
 
@@ -169,6 +155,7 @@ startDragging = ($dragging, mouseDownEvent) ->
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999
+  
   # startDragTransform $dragging
   contentModel.setSize padding, contentModel.getSize($dragging)
   padding.insertAfter $dragging
@@ -179,11 +166,13 @@ startDragging = ($dragging, mouseDownEvent) ->
  
 makeDraggable = ($content) ->
   $content.find('a,img,iframe').bind 'dragstart', () -> false
-  $content.mousedown (mouseDownEvent) ->
+  
+  $content.on 'mousedown', (mouseDownEvent) ->
+    # console.log 'mouseDownEvent', $(@)
     return unless mouseDownEvent.which is 1 # only work for left click
-    return unless $(@).hasClass 'draggable'
-
-    mousedownArticle = $(@)
+    return if $(@).hasClass 'open'
+    return unless collectionModel.getParent($content).hasClass 'open'
+    mousedownArticle = $content
     draggingArticle  = null
     
     $(window).mousemove (event) ->
@@ -213,7 +202,7 @@ endDragTransform = (e) ->
 
 $ ->
   window.padding = $('<article>').addClass('slider sliding padding')
-  padding.css({'background-color': 'red'})
-  padding.width 200
-  padding.height 200
+  # padding.css({'background-color': 'red'})
+  # padding.width 200
+  # padding.height 200
   contentModel.setSize padding, 200

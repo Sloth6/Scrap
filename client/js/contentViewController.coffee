@@ -98,9 +98,3 @@ window.contentViewController =
     if Math.abs(translateX - oldX) > 1
       $content.velocity velocityParams
 
-  jumble: ($contents) ->
-    $contents.each () ->
-      $(@).data
-        'translateY': (Math.random()-.5) * 50# + 50
-        # 'rotateZ': Math.random() * 4 + (Math.random() * -4)
-        'scale': 1

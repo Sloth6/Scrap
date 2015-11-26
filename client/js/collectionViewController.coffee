@@ -28,22 +28,30 @@ drawClosedStack = ($collection) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
   
+  # With a new stack, the dragged over element hides whiel waiting for a 
+  # server resposse
+  $content.show()
+  
   collectionModel.getAddForm($collection).hide()
+  # console.log 'drawing closed stack', $collection.find('.articleControls')
   $content.find('.articleControls').hide()
   $cover.zIndex 0
 
   translateX = 0
   translateY = 0
   zIndex     = $content.length
+  sizeTotal  = 0
   $content.each () ->
     $(@).velocity { translateX, translateY }
     $(@).css {zIndex: zIndex++}
+    sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += 50
 
-  # subtract 50 for last addition and add article form
-  sizeTotal = contentModel.getSize($content.last()) + translateX - 100
+  # subtract 50 for add article form
+  # sizeTotal = contentModel.getSize($content.last()) + translateX - 50
   $cover.find(".card").width sizeTotal
   
+  # $collection.width sizeTotal
   contentModel.setSize $collection, sizeTotal
   sizeTotal
 
@@ -94,18 +102,15 @@ window.collectionViewController =
     $parentCollection  = collectionModel.getParent $collection
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
+    
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection
-    
-    # Initialize new content to make it interactive
-    contentModel.init $collectionContent
-    contentModel.init $collectionAddForm
 
     # Make sure cover is above its children during transition
     $cover.css 'z-index': 999
+    
     # Animate in content, content appears from behind its cover
-
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
 
@@ -125,6 +130,7 @@ window.collectionViewController =
 
     # Mark collection as open. 
     $collection.addClass('open').removeClass 'closed'
+    collectionViewController.draw $collection
 
   close: ($collection, options = {}) ->
     console.log 'clossing', $collection.attr('class')

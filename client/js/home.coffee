@@ -11,11 +11,13 @@ collectionPath = []
 
 # Main scroll event
 onScroll = ->
+  return if $('.velocity-animating').length
   collectionViewController.draw $('.open.collection')
   $('.hover').removeClass 'hover'
 
 # Enable the user to scroll vertically and map it to horizontal scroll
 onMousewheel = (event) ->
+  return false if $('.velocity-animating').length
   if Math.abs(event.deltaY) > 2
     $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
     event.preventDefault()
@@ -49,6 +51,6 @@ $ ->
     history.back()
 
   history.pushState { name: "home" }, "", "/"
-  # $('.collection.root').removeClass('closed').addClass('open')
+
   navigationController.open $('.collection.root')
-  # collectionViewController.draw $('.collection.root')
+

@@ -43,8 +43,6 @@ $ ->
     dragged = $("##{data.draggedId}")
     draggedOver = $("##{data.draggedOverId}")
     
-    dragged.show()
-
     $stack = $(decodeURIComponent(data.collectionHTML))
     $stack.insertAfter draggedOver
     $stack.css { x: xTransform(draggedOver) }
@@ -56,7 +54,6 @@ $ ->
     collectionModel.appendContent $stack, dragged
     
     contentModel.init $stack
-    collectionViewController.draw $stack
     collectionViewController.draw $('.collection.open')
 
   socket.on 'reorderArticles', (data) ->
