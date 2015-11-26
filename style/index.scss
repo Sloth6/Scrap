@@ -64,7 +64,7 @@ section.page.index {
     
     .page {
         min-height: 100vh;
-        $collectionTop: 10vh;
+        $collectionTop: $col * 3;
         position: relative;
         
         .collection {
@@ -83,10 +83,11 @@ section.page.index {
         .caption {
             position: absolute;
             text-align: center;
-            top: 75vh;
+            top: 0;
             left: 12.5vw;
             right: 12.5vw;
             width: 75vw;
+            margin-top: $broadMargin;
             
             .animateInPop {
                 position: absolute;
@@ -110,6 +111,7 @@ section.page.index {
                     
                     p.createAccount {
                         line-height: $typeSubtitleLeading;
+                        @include transition(opacity .25s $defaultCurve);
                     }
                 }
             }
@@ -121,6 +123,10 @@ section.page.index {
                     margin-top: 25vh;
                     @include cardEditing;
                 }
+                
+                .createAccount {
+                    padding-top: $broadMargin/1.5;
+                }
             }
             
             .collection {
@@ -130,26 +136,13 @@ section.page.index {
                 z-index: 2;
                 
                 .cover {
+                    cursor: default;
 
                     &.scale {
                         top: 0;
                         left: 0;
-                        margin-left: 0;
-                        -webkit-transform-origin: center 25vh;
-                                transform-origin: center 25vh;
+                        margin: 0;
                         z-index: 2;
-                    
-/*
-                        @media all and (orientation: landscape) {
-                            height: (100vw * (4/3));
-                            width: 100vw;
-                        }
-                        
-                        @media all and (orientation: portrait) {
-                            width: (100vh * (3/4));
-                            height: 100vh;
-                        }
-*/
                         
                         h1 {
                             font-size: 24vw;

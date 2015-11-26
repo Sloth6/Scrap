@@ -4,7 +4,7 @@ form(id="logIn")
   li.input.inputText.password
     input(id="password",type="password", name="user[password]", placeholder="Password")
   li.input.submit
-    input.offset(type="submit", value="Sign in")
+    input.confirm.offset(type="submit", value="Sign in")
   li(id="errorField")
 script.
   function onError(res) {

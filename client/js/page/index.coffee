@@ -24,8 +24,10 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   borderRadius        = scrollProgress * finalBorderRadius
   finalBorderWidth    = 1 / scaleRatio
   borderWidth         = scrollProgress * finalBorderWidth
+  translateY          = scrollProgress * ($cover.width() / coverWidth) * 224
+  console.log translateY
   $cover.css
-    transform: "scale3d(#{scale}, #{scale}, 1)"
+    transform: "scale3d(#{scale}, #{scale}, 1) translate3d(0px, #{translateY}px, 0px)"
   if step isnt previousStep or scrollProgress is 0
     $cover.css
       borderRadius: "#{borderRadius}pt"
@@ -34,8 +36,16 @@ scaleCover = (scrollProgress, $cover, $caption) ->
       '-webkit-text-stroke': "#{stroke}px black"
       'letter-spacing': "#{letterSpacing}em"
   # Bring caption to top on scroll
-  $caption.css
-    zIndex: if scrollProgress < .8 then 0 else $cover.css('z-index') + 1
+  if scrollProgress < .25
+    $caption.css
+      zIndex: 0
+    $caption.find('.createAccount').css
+      opacity: 0
+  else
+    $caption.css
+      zIndex: $cover.css('z-index') + 1
+    $caption.find('.createAccount').css
+      opacity: 1
   $('nav ul.menu li.first').css
     opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
     
@@ -43,7 +53,7 @@ animateOutPop = ($element) ->
   if $element.data('hasAnimatedIn')
     $element.velocity {
       translateZ: 0
-      translateY: -coverHeight/2
+      translateY: coverHeight
       scaleX: 0
       scaleY: 2
       rotateZ: (Math.random() - .5) * rotateZRandomMax + 'deg'
@@ -59,7 +69,7 @@ animateInPop = ($element) ->
   unless $element.data 'hasAnimatedIn'
     $element.velocity {
       translateZ: 0
-      translateY: 0
+      translateY: [0, coverHeight]
       scaleY: 1
       scaleX: 1
       rotateZ: '0deg'
@@ -82,7 +92,6 @@ openCollection = ($section, $collection, $cover, $cards) ->
   maxRotate               = 12
   translateXToWindowLeft  = (cardSpacing * 1.5) + ((coverWidth / 2) - ($(window).width()/2))
   translateY              = 0
-  
   $cover.velocity {
     translateZ:   0
     translateX:   if $section.hasClass 'join' then 0 else translateXToWindowLeft
@@ -107,7 +116,6 @@ openCollection = ($section, $collection, $cover, $cards) ->
     translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 4
     translateX        = widthOfPreviousCards + translateXStart + (($(@).index() + 2) * cardSpacing)
     rotateZ           = '0deg'
-    console.log $(@), translateX
     $(@).velocity({
       translateZ: 0
       translateY: [translateY, Math.random() * (coverHeight / 2)]
@@ -130,7 +138,7 @@ updateSectionScrollValues = ($section, scrollTop) ->
   $section.data 'sectionBottomToWindowTopProgress',     $section.data('sectionTopToDocumentTop') / $section.data('sectionBottomToDocumentTop')
   $section.data 'sectionBottomToWindowBottomProgress',  (scrollTop + $(window).height()) / $section.data('sectionBottomToDocumentTop')
   
-positionArticle = ($element, status, position, top) ->
+positionElement = ($element, status, position, top) ->
   $element.data 'status', status
   $element.css {
     position
@@ -178,17 +186,16 @@ onScrollSection = ($section, scrollTop, scrollProgress) ->
   if $section.data('sectionTopToWindowTopProgress') >= 1
     if $section.data('sectionBottomToWindowBottomProgress') <= 1
       if $collection.data('status') != 'current'
-        positionArticle($collection, 'current', 'fixed', 0)
-        positionArticle($caption, 'current', 'fixed', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+        positionElement($collection, 'current', 'fixed', 0)
+        positionElement($caption, 'current', 'fixed', 0)
     else if $collection.data('status') != 'above'
-      positionArticle($collection, 'above', 'absolute', $section.height() - $collection.height())
-      positionArticle($caption, 'above', 'absolute', ($section.height() - $(window).height()) + windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+      # Section is scrolled past
+      positionElement($collection, 'above', 'absolute', $section.height() - $collection.height())
+      positionElement($caption, 'above', 'absolute', $section.height() - $(window).height())
   else
     if ($collection.data('status') != 'below')
-      positionArticle($collection, 'below', 'absolute', 0)
-      positionArticle($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
-      positionArticle($collection, 'below', 'absolute', 0)
-      positionArticle($caption, 'below', 'absolute', windowTopToCollectionBottom + (($(window).height() - windowTopToCollectionBottom) / 2) - ($caption.height() / 2))
+      positionElement($collection, 'below', 'absolute', 0)
+      positionElement($caption, 'below', 'absolute', 0)
             
 animateJoin = () ->
   $section = $('.join')
@@ -203,7 +210,10 @@ onScroll = ($sections) ->
     
 initScaleCover = ($scaleCover, $normalCover) ->
   $normalH1 = $normalCover.find('h1')
+  transformOrigin = "#{$(window).width() / 2}px top"
   $scaleCover.css {
+    transformOrigin: transformOrigin
+    webkitTransformOrigin: transformOrigin
     padding:  parseFloat($normalCover.css('padding')) / scaleRatio + 'px'
     height:   parseFloat($normalCover.css('height')) / scaleRatio + 'px'
     width:    parseFloat($normalCover.css('width')) / scaleRatio + 'px'
