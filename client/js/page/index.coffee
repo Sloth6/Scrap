@@ -24,8 +24,8 @@ scaleCover = (scrollProgress, $cover, $caption) ->
   borderRadius        = scrollProgress * finalBorderRadius
   finalBorderWidth    = 1 / scaleRatio
   borderWidth         = scrollProgress * finalBorderWidth
-  translateY          = scrollProgress * 724
-  console.log scrollProgress * 220, translateY
+  translateY          = scrollProgress * ($cover.width() / coverWidth) * 224
+  console.log translateY
   $cover.css
     transform: "scale3d(#{scale}, #{scale}, 1) translate3d(0px, #{translateY}px, 0px)"
   if step isnt previousStep or scrollProgress is 0
