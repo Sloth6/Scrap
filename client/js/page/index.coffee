@@ -335,6 +335,7 @@ initCreateAccount = () ->
       $('.page.index .sectionsWrapper').velocity 'reverse', { duration }
       
 initContentControllers = ->
+  # console.log $('.exampleContent').children
   $('.exampleContent').find('article').each () ->
     $content = $(@)
     switch $content.data('contenttype')
@@ -343,7 +344,6 @@ initContentControllers = ->
       when 'file'       then initFile $content
       when 'soundcloud' then initSoundCloud $content
       when 'youtube'    then initYoutube $content
-      when 'collection' then collectionModel.init $content
 
 init = ($sections) ->
   initSections($sections)

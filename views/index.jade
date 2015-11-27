@@ -40,7 +40,9 @@ block content
             article#263.image
               .content
                 .card.cardHover.image
-                  img(src='http://www.glengarry.co.nz/images/v8/decorations/eames-lounge-chair.jpg')
+                  img(src='https://s-media-cache-ak0.pinimg.com/236x/6b/9a/7f/6b9a7f1326a5b70c65a5d5410e9270cb.jpg')
+            
+
             article#260.website(data-contenttype='website')
               .content
                 .transform
@@ -52,7 +54,9 @@ block content
                       .description.smallType
                     img(src='http://www.barbican.org.uk/images/events/medium/18398eamesglassesevent.jpg')
                     a(href='http://www.barbican.org.uk/artgallery/event-detail.asp?ID=18398', target='_blank', title='Open “The World of Charles and Ray Eames” in a new tab')
-            article#267.youtube.playable(data-contenttype='youtube')
+
+            -var content = '{"id":"UJ-VFMymEiE"}'
+            article#267.youtube.playable(data-contenttype='youtube', data-content=content)
               .content
                 .transform
                   .card.cardHover.youtube
@@ -94,7 +98,7 @@ block content
             section.title
               h1.typeTitle.typeOutlineClear Trip to Lisbon
           .exampleContent
-            article#253.draggable.text.long(data-contenttype='text')
+            article#253.text.long(data-contenttype='text')
               .content
                 .transform
                   .card.cardHover.cardDrag.text
@@ -108,7 +112,7 @@ block content
                     ul.cardActions
                       li.right
                         a.invisible.done.confirm(href='#') Done
-            article#287.draggable.website(data-contenttype='website')
+            article#287.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -120,7 +124,7 @@ block content
                         | Lisbon Tourism: TripAdvisor has 494,485 reviews of Lisbon Hotels, Attractions, and Restaurants making it your best Lisbon resource.
                     img(src='http://media-cdn.tripadvisor.com/media/photo-s/03/9b/2f/c5/lisbon.jpg')
                     a(href='http://www.tripadvisor.com/Tourism-g189158-Lisbon_Lisbon_District_Central_Portugal-Vacations.html', target='_blank', title='Open “Lisbon Tourism: Best of Lisbon, Portugal - TripAdvisor” in a new tab')
-            article#288.draggable.website(data-contenttype='website')
+            article#288.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -132,7 +136,7 @@ block content
                         | From old townhouses filled with chic shops to docklands harboring night clubs, the city is undergoing a remarkable rebirth.
                     img(src='http://static01.nyt.com/images/2015/04/05/travel/05HOURS1/05HOURS1-facebookJumbo.jpg')
                     a(href='http://www.nytimes.com/2015/04/05/travel/-2015-04-05-travel-what-to-do-in-36-hours-in-lisbon.html', target='_blank', title='Open “36 Hours in Lisbon” in a new tab')
-            article#289.draggable.website(data-contenttype='website')
+            article#289.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -162,7 +166,10 @@ block content
                     ul.cardActions
                       li
                         a.download.confirm(href='#') Download
-            article#316.draggable.soundcloud.playable(data-contenttype='soundcloud')
+            
+            - var content = {"html":"<iframe width=\"100%\" height=\"400\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?visual=true&url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F214664718&show_artwork=true\"></iframe>","author_name":"Moogfest","author_url":"http://soundcloud.com/moogfest"}
+            
+            article#316.soundcloud.playable(data-contenttype='soundcloud', data-content = content)
               .content
                 .transform
                   .card.cardHover.cardDrag.soundcloud
@@ -175,7 +182,7 @@ block content
                         .artist.smallType Moogfest
                       .detail
                         .source.smallType.smallCaps SoundCloud
-            article#317.draggable.text.long(data-contenttype='text')
+            article#317.text.long(data-contenttype='text')
               .content
                 .transform
                   .card.cardHover.cardDrag.text
@@ -191,7 +198,7 @@ block content
                     ul.cardActions
                       li.right
                         a.invisible.done.confirm(href='#') Done
-            article#318.draggable.website(data-contenttype='website')
+            article#318.website(data-contenttype='website')
               .content
                 .transform
                   .card.cardHover.cardDrag.website
@@ -202,7 +209,7 @@ block content
                       .description.smallType Tokyo Kaikan Gimlet
                     img(src='https://s-media-cache-ak0.pinimg.com/600x315/59/2e/45/592e45505e5f014644ac39364fdf65e7.jpg')
                     a(href='https://www.pinterest.com/pin/169659110936001995/', target='_blank', title='Open “Tokyo Kaikan Gimlet” in a new tab')
-            article#319.draggable.youtube.playable(data-contenttype='youtube')
+            article#319.youtube.playable(data-contenttype='youtube')
               .content
                 .transform
                   .card.cardHover.cardDrag.youtube
