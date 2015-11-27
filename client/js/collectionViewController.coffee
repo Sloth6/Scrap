@@ -33,7 +33,6 @@ drawClosedStack = ($collection) ->
   $content.show()
   
   collectionModel.getAddForm($collection).hide()
-  # console.log 'drawing closed stack', $collection.find('.articleControls')
   $content.find('.articleControls').hide()
   $cover.zIndex 0
 
@@ -42,10 +41,13 @@ drawClosedStack = ($collection) ->
   zIndex     = $content.length
   sizeTotal  = 0
   $content.each () ->
-    $(@).velocity { translateX, translateY }
-    $(@).css {zIndex: zIndex++}
+    $(@).
+      velocity({ translateX, translateY }).
+      css({ zIndex: zIndex++, 'overflow': 'hidden' }).
+      width(Math.min($(@).width(), 300))
+    
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
-    translateX += 25
+    translateX += 20
 
   $cover.find(".card").width sizeTotal
   
@@ -111,7 +113,7 @@ window.collectionViewController =
     # Animate in content, content appears from behind its cover
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
-
+    $collectionContent.css {'overflow': 'visible' }
     if $collection.data('contenttype') == 'pack'
       $collectionContent.add($collectionAddForm).velocity
         opacity: [1, 0]

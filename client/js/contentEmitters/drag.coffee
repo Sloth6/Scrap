@@ -139,14 +139,14 @@ stopDragging = (event, $dragging) ->
     $dragging.
       removeClass('dragging').
       zIndex $dragging.data('oldZIndex')
-    # endDragTransform $dragging.find('.transform')
+    endDragTransform $dragging
     collectionViewController.draw $('.collection.open'), { animate: true }
   ), 20
 
 startDragging = ($dragging, mouseDownEvent) ->
   # console.log 'start dragging', $dragging[0]
-  $dragging.data 'mouseOffsetX', mouseDownEvent.clientX - xTransform($dragging)
-  $dragging.data 'mouseOffsetY', mouseDownEvent.clientY - yTransform($dragging)
+  $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
+  $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
 
   $dragging.
     addClass('dragging').
@@ -154,7 +154,7 @@ startDragging = ($dragging, mouseDownEvent) ->
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999
   
-  # startDragTransform $dragging
+  startDragTransform $dragging
   contentModel.setSize padding, contentModel.getSize($dragging)
   padding.insertAfter $dragging
   # $dragging.insertAfter $('.slidingContainer')
@@ -187,20 +187,17 @@ makeDraggable = ($content) ->
 
 
 startDragTransform = (e) ->
-  e.velocity({
-    'scale': draggingScale,
+  e.find('.transform').velocity({
+    # 'scale': draggingScale,
     'rotateZ': (Math.random() * 8) - 4
   }, dragOptions)
 
 endDragTransform = (e) ->
-  e.velocity({
-    'scale': 1,
+  e.find('.transform').velocity({
+    # 'scale': 1,
     'rotateZ': 0
   }, dragOptions)
 
 $ ->
   window.padding = $('<article>').addClass('slider sliding padding')
-  # padding.css({'background-color': 'red'})
-  # padding.width 200
-  # padding.height 200
   contentModel.setSize padding, 200
