@@ -46,9 +46,10 @@ module.exports = (sequelize, DataTypes) ->
 
       # A new collection always has a creator and usually a parent.
       createAndInitialize: (params, user, parent, callback) ->
-        Collection.create( params ).complete (err, collection) ->
+        Collection.create( params ).then ( collection) ->
           return callback err if err?
           async.parallel [
+            (cb) -> user.addCollection(collection).complete cb
             (cb) -> collection.addUser(user).complete cb
             (cb) -> collection.setCreator(user).complete cb
             (cb) ->

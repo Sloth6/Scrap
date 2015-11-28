@@ -43,14 +43,13 @@ module.exports =
       params =
         where: { collectionKey }
         include: models.User
-      models.Collection.find( params ).complete (err, collection) =>
-        return callback err if err? or !collection
+      models.Collection.find( params ).then (collection) =>
         attributes.CollectionId = collection.id
-        models.Article.create(attributes).complete (err, article) =>
-          return callback err if err?
+        models.Article.create(attributes).then (article) =>
           collection.articleOrder.push(article.id)
           collection.save()
           html = articleRenderer collection, article
+          console.log 'emitting to ', collectionKey
           sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
           callback null
     
@@ -81,8 +80,7 @@ module.exports =
         WHERE \"id\"=:id
         RETURNING \"contentType\", content, \"CollectionId\"
       "
-    models.sequelize.query(q1, null, null, { id }).complete (err, results) ->
-      return callback err if err?
+    models.sequelize.query(q1, null, null, { id }).then (results) ->
       console.log 'emiting deleteArticle', { id, collectionKey }
       sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
       callback null
@@ -100,8 +98,7 @@ module.exports =
     return callback('no collectionkey in moveToCollection') unless collectionKey?
     return callback('no elemId in moveToCollection') unless elemId?
     console.log "move to collection data:", data
-    models.Article.find(where: { id: elemId }).complete (err, elem) ->
-      return callback err if err?
+    models.Article.find(where: { id: elemId }).then (elem) ->
       oldCollectionId = elem.CollectionId
       console.log 'old collection id', oldCollectionId
       q = "
@@ -109,7 +106,7 @@ module.exports =
           SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
           WHERE \"id\"=:elemId
           "
-      models.sequelize.query(q, null, null, data).complete (err, results) ->
+      models.sequelize.query(q, null, null, data).then ( results) ->
         return callback err if err?
         sio.to("#{collectionKey}").emit 'moveToCollection', data 
         callback null
@@ -118,8 +115,7 @@ module.exports =
     userId = socket.handshake.session.currentUserId
     { collectionKey, content, articleId } = data
     id = +articleId
-    models.Article.update({content}, {id}).complete (err) ->
-      return callback err if err
+    models.Article.update({content}, where: {id}).then () ->
       data.userId = userId
       sio.to("#{collectionKey}").emit 'updateArticle', data
       callback null

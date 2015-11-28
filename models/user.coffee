@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) ->
 
       # Create a new user and their root collection
       createAndInitialize: (options, callback) ->
-        User.create(options).complete (err, user) ->
+        User.create(options).then ( user) ->
           return callback(err) if err?
           Collection = sequelize.model('Collection')
 

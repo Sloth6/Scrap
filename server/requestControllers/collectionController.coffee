@@ -10,34 +10,22 @@ config =
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
 module.exports =
-  # collectionData: (req, res, app, callback) ->
-  #   { collectionKey } = req.params
-  #   models.Collection.find({
-  #     where: { collectionKey }, include:[ model:models.User ]
-  #   }).complete (err, collection) ->
-  #     return callback(err, res) if err?
-  #     return res.send(400) unless collection?
-  #     res.status(200).send collection
-
   collectionContent: (req, res, app, callback) ->
     { collectionKey } = req.params
     return res.send(400) unless collectionKey?
     models.Collection.find({
       where: { collectionKey }
-      include:[ 
-        model:models.Article
+      include:[
+        { model:models.Article }
         { model:models.Collection, as: 'children', include: [model:models.Article] }
       ]
-    }).complete (err, collection) ->
-      return callback err, res if err?
+    }).then (collection) ->
       return callback "No collection found for '#{collectionKey}'", res unless collection?
-
-      { articles, children, articleOrder } = collection
-
-      articles.sort (a, b) ->
+      articleOrder = collection.articleOrder
+      collection.Articles.sort (a, b) ->
         if articleOrder.indexOf(a.id) > articleOrder.indexOf(b.id) then 1 else -1
       
-      app.render 'partials/collectionContent', { collection: collection }, (err, html) ->
+      app.render 'partials/collectionContent', { collection }, (err, html) ->
         return callback err if err?
         res.status(200).send html
         callback null

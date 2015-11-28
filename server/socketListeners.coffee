@@ -23,12 +23,13 @@ module.exports = (io)->
     models.User.find(
       where: { id: userId }
       include: [ { model: models.Collection }]
-    ).complete (err, user) ->
-      return console.console.log(err) if err
-      for collection in user.collections
+    ).then (user) ->
+      return unless user?
+      for collection in user.Collections
+        console.log collection.collectionKey
         socket.join collection.collectionKey
 
-      console.log "user #{userId} joined #{user.collections.length} collections"
+      console.log "user #{userId} joined #{user.Collections.length} collections"
 
       socket.on 'newArticle',   (data) -> articleController.newArticle io, socket, clean(data), errorHandler
       socket.on 'deleteArticle', (data) -> articleController.deleteArticle io, socket, clean(data), errorHandler

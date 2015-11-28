@@ -3,8 +3,8 @@ include addCollectionForm
 include addArticleForm
 
 mixin collectionContentMixin(collection)
-  if collection.articles !== undefined
-    each article in collection.articles
+  if collection.Articles !== undefined
+    each article in collection.Articles
       +articleMixin(article)
 
   if collection.children !== undefined
@@ -28,19 +28,23 @@ mixin collectionMixin(collection)
         .content
           .articleControls
             a.articleDeleteButton.warning.bodyType.smallCaps Delete
-          .transform
-            .card.cardHover.cardDrag.colored(style='background-color:'+collection.color)
-              section.title
-                h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
-                h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
-                p.rename
-                  a.smallType Rename
-              ul.users.menu.slideIn.left.canOpen
-                li.user.add
-                  form.addUser(data-collectionkey=collection.collectionKey)
-                    input(type="email", name="user[email]", placeholder="email")
-                    input(type="submit", value="→")
-                    label.smallType.smallCaps Share this pack
+          if collection.hasCover
+            .transform
+              .card.cardHover.cardDrag.colored(style='background-color:'+collection.color)
+                section.title
+                  h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
+                  h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
+                  p.rename
+                    a.smallType Rename
+                ul.users.menu.slideIn.left.canOpen
+                  if collection.Users != undefined
+                    for user in collection.Users
+                      li.user!=user.name
+                  li.user.add
+                    form.addUser(data-collectionkey=collection.collectionKey)
+                      input(type="email", name="user[email]", placeholder="email")
+                      input(type="submit", value="→")
+                      label.smallType.smallCaps Share this pack
 
     .contentContainer(style='z-index:1;')
       +collectionContentMixin(collection)

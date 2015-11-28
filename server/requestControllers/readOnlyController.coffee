@@ -15,18 +15,16 @@ module.exports =
     { collectionKey } = req.params
     currentUserId = req.session.currentUserId
     
-    models.Collection.find(where: { collectionKey }).complete (err, collection) ->
-      return callback err if err
+    models.Collection.find(where: { collectionKey }).then (collection) ->
       return res.send(404) unless collection?
       return readOnlyPage(res, collection) unless currentUserId?
       q = 'select exists
             (select true from "CollectionsUsers" where "UserId"=? and "CollectionId"=?)'
-      params = [ currentUserId, collection.id ]
-      models.sequelize.query(q, null, { raw:true}, params).complete (err, results) ->
-        return res.send(400) if err?
+      replacements = [ currentUserId, collection.id ]
+      models.sequelize.query(q, {replacements}).spread (results, metadata) ->
         return res.send(400) unless results?
         hasCollection = results[0].exists
-        console.log 'results', results, hasCollection
+        console.log 'Has page access:', hasCollection
         if hasCollection
           # in the future load them directly into collection
           callback null

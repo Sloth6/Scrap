@@ -12,13 +12,11 @@ module.exports =
     { collectionKey, articleOrder } = data
     articleOrder = JSON.parse articleOrder
     # console.log articleOrder
-    models.Collection.update({ articleOrder }, { collectionKey }).complete (err) ->
-      console.log(err) if err?
+    models.Collection.update({ articleOrder }, where: { collectionKey })
 
   rename: (sio, socket, data, callback) ->
     { collectionKey, name } = data
-    models.Collection.update({ name }, { collectionKey }).complete (err) ->
-      return callback err if err?
+    models.Collection.update({ name }, where: { collectionKey }).then () ->
       console.log "updated name of #{collectionKey} to #{name}"
       callback null
         # sio.to("#{collectionKey}").emit 'updateArticle', data
@@ -43,15 +41,15 @@ module.exports =
         mail.send { to: email, subject: subject, text: html, html: html }
         callback null
 
-    models.Collection.find( where: { collectionKey }).complete (err, collection) ->
+    models.Collection.find( where: { collectionKey }).then ( collection) ->
       return callback('cannot invite to stack') unless collection.hasCover
       return callback(err) if err?
       
-      models.User.find( where: { email }).complete (err, user) ->
+      models.User.find( where: { email }).then ( user) ->
         return callback(err) if err?
         return done user, collection
         # Else no user
-        models.User.createAndInitialize({ email, name:email }).complete (err, user) ->
+        models.User.createAndInitialize({ email, name:email }).then ( user) ->
           return callback(err) if err?
           done email, collection
 
@@ -80,7 +78,7 @@ module.exports =
       # Create the new collection
       (parent, cb) ->
         user = parent.creator
-        options = { hasCover: false, UserId: userId }
+        options = { hasCover: false, CreatorId: userId }
         models.Collection.createAndInitialize options, user, parent, (err, collection) ->
           return cb(err) if err?
           return cb null, collection, parent
@@ -129,14 +127,14 @@ module.exports =
       # Get the parent collection
       (cb) ->
         options =
-          where: { UserId:userId, root: true }
+          where: { CreatorId:userId, root: true }
           include: [ model: models.User, as: 'Creator' ]
         models.Collection.find( options ).complete cb
       
       # Create the new collection
       (parent, cb) ->
         user = parent.creator
-        options = { name, hasCover:true, UserId: userId }
+        options = { name, hasCover:true, CreatorId: userId }
         models.Collection.createAndInitialize options, user, parent, cb
 
     ], (err, collection) ->
@@ -149,7 +147,7 @@ module.exports =
     collectionKey = data.collectionKey
     models.Collection.find({
       where: { collectionKey }, include:[ model:models.Collection, as: "parent" ]
-    }).complete (err, collection) ->
+    }).then ( collection) ->
       parentCollectionKey = collection.parent.collectionKey
 
       # TODO change location string of parent

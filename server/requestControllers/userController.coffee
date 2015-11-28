@@ -8,11 +8,10 @@ module.exports =
     attributes.name = name if name
     attributes.email = email if email
     attributes.password = password if password
-    models.User.find(where: { id: userId }).complete (err, user) ->
+    models.User.find(where: { id: userId }).then (user) ->
       return res.send(400) unless user?
-      user.updateAttributes(attributes).complete (err) ->
-        console.log err
-        return res.send 400 if err?
+      user.updateAttributes(attributes).then () ->
+        # return res.send 400 if err?
         return res.send 200
 
   # create a new user and default collection, redirect to collection
@@ -20,12 +19,12 @@ module.exports =
     { name, email, password } = req?.body
     attributes = { name, email, password }
 
-    models.User.find(where: { email }).complete (err, user) ->
+    models.User.find(where: { email }).then (user) ->
       if user?
         if user.name? and user.password?
           return res.status(400).send 'Duplicate email'
         # if name and password are not send the user was unvited by email.
-        user.updateAttributes({name, password}).complete (err) ->
+        user.updateAttributes({name, password}).then () ->
           done user
       else
         models.User.createAndInitialize attributes, (err, user) ->
@@ -52,8 +51,7 @@ module.exports =
     models.User.find(
       where: { email }
       include: [ models.Collection ]
-    ).complete (err, user) ->
-      console.log err, !!user
+    ).then (user) ->
       return res.status(400).send if err?
       return res.status(400).send "No account found for that email" if not user?
       return res.status(400).send "Sign up to activate this account" if user? and !user.password
