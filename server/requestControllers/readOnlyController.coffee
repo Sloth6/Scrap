@@ -15,7 +15,8 @@ module.exports =
     { collectionKey } = req.params
     currentUserId = req.session.currentUserId
     
-    models.Collection.find(where: { collectionKey }).then (collection) ->
+    models.Collection.find(where: { collectionKey }).done (err, collection) ->
+      return res.send(400) if err?
       return res.send(404) unless collection?
       return readOnlyPage(res, collection) unless currentUserId?
       q = 'select exists

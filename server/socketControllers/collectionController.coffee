@@ -77,7 +77,7 @@ module.exports =
 
       # Create the new collection
       (parent, cb) ->
-        user = parent.creator
+        user = parent.Creator
         options = { hasCover: false, CreatorId: userId }
         models.Collection.createAndInitialize options, user, parent, (err, collection) ->
           return cb(err) if err?
@@ -133,12 +133,13 @@ module.exports =
       
       # Create the new collection
       (parent, cb) ->
-        user = parent.creator
+        user = parent.Creator
         options = { name, hasCover:true, CreatorId: userId }
         models.Collection.createAndInitialize options, user, parent, cb
 
     ], (err, collection) ->
       return callback(err) if err?
+      console.log 'new pack', collection.collectionKey
       socket.emit 'newPack', { collectionHTML: collectionRenderer(collection) }
       socket.join collection.collectionKey
       callback null

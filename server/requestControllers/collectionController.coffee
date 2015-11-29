@@ -19,7 +19,8 @@ module.exports =
         { model:models.Article }
         { model:models.Collection, as: 'children', include: [model:models.Article] }
       ]
-    }).then (collection) ->
+    }).done (err, collection) ->
+      return callback(err, res) if err?
       return callback "No collection found for '#{collectionKey}'", res unless collection?
       articleOrder = collection.articleOrder
       collection.Articles.sort (a, b) ->

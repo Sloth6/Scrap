@@ -19,7 +19,8 @@ module.exports =
     { name, email, password } = req?.body
     attributes = { name, email, password }
 
-    models.User.find(where: { email }).then (user) ->
+    models.User.find(where: { email }).done (err, user) ->
+      console.log err, !!user
       if user?
         if user.name? and user.password?
           return res.status(400).send 'Duplicate email'
@@ -51,7 +52,7 @@ module.exports =
     models.User.find(
       where: { email }
       include: [ models.Collection ]
-    ).then (user) ->
+    ).done (err, user) ->
       return res.status(400).send if err?
       return res.status(400).send "No account found for that email" if not user?
       return res.status(400).send "Sign up to activate this account" if user? and !user.password
