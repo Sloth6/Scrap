@@ -26,7 +26,6 @@ module.exports = (io)->
     ).then (user) ->
       return unless user?
       for collection in user.Collections
-        console.log collection.collectionKey
         socket.join collection.collectionKey
 
       console.log "user #{userId} joined #{user.Collections.length} collections"

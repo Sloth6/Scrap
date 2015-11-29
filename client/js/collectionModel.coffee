@@ -17,7 +17,7 @@ window.collectionModel =
 
     if $collection.data('hascover')
       $collection.data 'contenttype', 'pack'
-      packCoverInit $cover
+      packCoverInit $cover, collectionKey
     else
       $collection.data 'contenttype', 'stack'
       # console.log collectionModel.getContent($collection)

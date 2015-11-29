@@ -80,7 +80,7 @@ module.exports =
         WHERE \"id\"=:id
         RETURNING \"contentType\", content, \"CollectionId\"
       "
-    models.sequelize.query(q1, null, null, { id }).then (results) ->
+    models.sequelize.query(q1, replacements: { id }).then (results) ->
       console.log 'emiting deleteArticle', { id, collectionKey }
       sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
       callback null
@@ -106,7 +106,7 @@ module.exports =
           SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
           WHERE \"id\"=:elemId
           "
-      models.sequelize.query(q, null, null, data).then ( results) ->
+      models.sequelize.query(q, replacements :data).then ( results) ->
         return callback err if err?
         sio.to("#{collectionKey}").emit 'moveToCollection', data 
         callback null

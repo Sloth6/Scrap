@@ -28,7 +28,7 @@ module.exports =
     return callback('invalid collectionKey') unless collectionKey?
     
     done = (user, collection) ->
-      collection.addUser(user).complete (err) ->
+      collection.addUser(user).done (err) ->
         return callback(err) if err?
         domain = 'http://tryScrap.com'
         title = "<a href=\"#{domain}s/#{collectionKey}\">#{collection.name}</a>"
@@ -41,17 +41,18 @@ module.exports =
         mail.send { to: email, subject: subject, text: html, html: html }
         callback null
 
-    models.Collection.find( where: { collectionKey }).then ( collection) ->
+    models.Collection.find( where: { collectionKey }).done (err, collection) ->
       return callback('cannot invite to stack') unless collection.hasCover
       return callback(err) if err?
       
-      models.User.find( where: { email }).then ( user) ->
+      models.User.find( where: { email }).done (err, user) ->
         return callback(err) if err?
-        return done user, collection
+        return done user, collection if user?
         # Else no user
-        models.User.createAndInitialize({ email, name:email }).then ( user) ->
+        console.log "\tCreating new user"
+        models.User.createAndInitialize { email, name:email }, (err, user) ->
           return callback(err) if err?
-          done email, collection
+          done user, collection
 
   newStack: (sio, socket, data, callback) ->
     # CollectionKey will be the parent of the new collection
@@ -73,7 +74,7 @@ module.exports =
         options =
           where: { collectionKey: parentCollectionKey }
           include: [ model: models.User, as: 'Creator' ]
-        models.Collection.find( options ).complete cb
+        models.Collection.find( options ).done cb
 
       # Create the new collection
       (parent, cb) ->
@@ -91,9 +92,9 @@ module.exports =
                       WHERE id = #{draggedId} or id = #{draggedOverId};
                       "
         collection.articleOrder = [draggedId, draggedOverId]
-        collection.save().complete (err) ->
+        collection.save().done (err) ->
           return cb(err) if err 
-          models.sequelize.query(updateQuery).complete (err) ->
+          models.sequelize.query(updateQuery).done (err) ->
             if err then cb err else cb null, collection, parent
 
       # Change article order
@@ -105,7 +106,7 @@ module.exports =
         draggedPosition = order.indexOf(draggedId)
         order[draggedOverPosition] = collection.id
         order.splice(draggedPosition, 1)
-        parent.save().complete (err) ->
+        parent.save().done (err) ->
           return cb(err) if err?
           cb null, parent, collection
     
@@ -129,7 +130,7 @@ module.exports =
         options =
           where: { CreatorId:userId, root: true }
           include: [ model: models.User, as: 'Creator' ]
-        models.Collection.find( options ).complete cb
+        models.Collection.find( options ).done cb
       
       # Create the new collection
       (parent, cb) ->
@@ -155,6 +156,6 @@ module.exports =
       # draggedPosition = order.indexOf(draggedId)
       # order.splice(draggedPosition, 1)
 
-      collection.destroy().complete (err) ->
+      collection.destroy().done (err) ->
         sio.to("#{parentCollectionKey}").emit 'deleteCollection', { collectionKey }
         callback null

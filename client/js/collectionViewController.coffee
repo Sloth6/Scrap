@@ -24,7 +24,7 @@ drawOpenCollection = ($collection, animate) ->
   $(document.body).css { width: sizeTotal }
   sizeTotal
 
-drawClosedStack = ($collection) ->
+drawClosedStack = ($collection, spacing = 15) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
   
@@ -47,11 +47,9 @@ drawClosedStack = ($collection) ->
       width(Math.min($(@).width(), 300))
     
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
-    translateX += 20
+    translateX += spacing
 
   $cover.find(".card").width sizeTotal
-  
-  # $collection.width sizeTotal
   contentModel.setSize $collection, sizeTotal
   sizeTotal
 
@@ -172,3 +170,8 @@ window.collectionViewController =
       $collectionCover.show()
       $collectionContent.removeClass 'draggable'
       collectionViewController.draw $collection
+
+  preview: ($collection) ->
+    $collectionContent = collectionModel.getContent $collection
+    drawClosedStack($collection, 50)
+    

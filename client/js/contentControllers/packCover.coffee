@@ -54,7 +54,7 @@ coverClick = (event) ->
   if $(@).hasClass('editing')
     event.stopPropagation()
 
-bindCoverControls = (cover) ->
+packCoverInit = (cover, collectionKey) ->
   cover.click coverClick
 
   rename = cover.find('.rename')
@@ -64,7 +64,6 @@ bindCoverControls = (cover) ->
   # submit on enter
   cover.find('.addUser').on 'submit', (event) ->
     event.preventDefault()
-    collectionKey = cover.data('content')
     input = $('input[name="user[email]"]', @)
     textField = $(@).children('label')
     
@@ -75,14 +74,15 @@ bindCoverControls = (cover) ->
       input.val ''
       $('<li>').
         addClass('user').
-        text('Joel Simon').
+        text(email).
         insertBefore cover.find('.user.add')
       textField.html 'An invite has been sent'
       addUser email, collectionKey
-    
-    cover.find('ul.menu').each () ->
-      cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'
-      cover.mouseleave () => $(@).removeClass 'open' if $(@).hasClass 'canOpen'
+  
+  cover.find('ul.menu').each () ->
+    console.log @
+    cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'
+    cover.mouseleave () => $(@).removeClass 'open' if $(@).hasClass 'canOpen'
 
   # dont open collection on clicking user field
   cover.find('.addUser input[name="user[email]"]').click (event) ->
@@ -91,11 +91,3 @@ bindCoverControls = (cover) ->
   # dont open collection on submit
   cover.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
-
-packCoverInit = (cover, data) ->
-  # cover.find('section.title').children('h1, h2, h3').text data.name
-  bindCoverControls cover
-  # cover.find('.card').css 'background-color', data.color
-  # for u in data.users
-  #   name = u.name or u.email
-  #   cover.find('ul.users').prepend "<li class='user'>#{name}</li>"

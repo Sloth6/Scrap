@@ -27,15 +27,18 @@ module.exports = (sequelize, DataTypes) ->
       createAndInitialize: (options, callback) ->
         User.create(options).done (err, user) ->
           return callback(err) if err?
+        
           Collection = sequelize.model('Collection')
-
+          
           collectionOptions = 
-            UserId: user.id
+            CreatorId: user.id
             name: user.name
             root: true
             publicRead: false
 
-          Collection.createAndInitialize collectionOptions, user, null, callback
+          Collection.createAndInitialize collectionOptions, user, null, (err) ->
+            return callback err if err?
+            callback null, user
 
 
     instanceMethods:

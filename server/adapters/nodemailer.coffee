@@ -4,7 +4,7 @@ nodemailer = require 'nodemailer'
 transporter = nodemailer.createTransport {
   service: 'Gmail'
   auth:
-    user: 'scrapcollections@gmail.com'
+    user: 'scrapspaces@gmail.com'
     pass: 'olabs123'
   }
 

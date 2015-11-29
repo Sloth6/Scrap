@@ -49,14 +49,16 @@ module.exports = (sequelize, DataTypes) ->
         Collection.create( params ).done (err, collection) ->
           return callback err if err?
           async.parallel [
-            (cb) -> collection.addUser(user).complete cb
-            (cb) -> collection.setCreator(user).complete cb
+            (cb) -> 
+              collection.addUser(user).done cb
+            (cb) -> 
+              collection.setCreator(user).done cb
             (cb) ->
               return cb(null) unless parent?
-              collection.setParent(parent).complete cb
+              collection.setParent(parent).done cb
             (cb) ->
               return cb(null) unless parent?
-              parent.addChildren(collection).complete cb
+              parent.addChildren(collection).done cb
           ], (err) ->
             callback err, collection
   }
