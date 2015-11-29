@@ -31,7 +31,7 @@ module.exports =
       collection.addUser(user).done (err) ->
         return callback(err) if err?
         domain = 'http://tryScrap.com'
-        title = "<a href=\"#{domain}s/#{collectionKey}\">#{collection.name}</a>"
+        title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
         subject = "#you were invited to #{collection.name} on Scrap."
         
         html = "
