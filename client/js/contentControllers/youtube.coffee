@@ -1,5 +1,5 @@
-initYoutube = (elems) ->
-  bindPlayableControls elems, (elem) ->
+initYoutube = ($content) ->
+  bindPlayableControls $content, (elem) ->
 		# Define how to create the iframe for youtube videos
     id = elem.data('content').id
     src = "http://www.youtube.com/embed/#{id}?autoplay=1"

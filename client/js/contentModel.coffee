@@ -1,5 +1,7 @@
 window.contentModel = 
   init: ($content) ->
+    $content.off() # remove old handlers
+    $collection = contentModel.getCollection $content
     makeDraggable $content
     makeDeletable $content
     # contentModel.setJumble $content
@@ -11,7 +13,7 @@ window.contentModel =
       when 'soundcloud' then initSoundCloud $content
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
-
+    
     # $content.mouseover( () ->
     #   x = xTransform $content
     #   return if x < edgeWidth or (x > $(window).width - edgeWidth)

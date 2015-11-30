@@ -1,5 +1,5 @@
-initSoundCloud = (elems) ->
-  bindPlayableControls elems, (elem) ->
+initSoundCloud = ($content) ->
+  bindPlayableControls $content, (elem) ->
     # define how to create the iframe for soundcloud
     iframe = $(elem.data('content').html)
     # manually add autoplay to iframe src

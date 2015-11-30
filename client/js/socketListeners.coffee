@@ -38,17 +38,16 @@ $ ->
   socket.on 'newCollection', (data) ->
     { draggedId, draggedOverId, collectionHTML } = data
     
-    console.log 'new data', data
     
     dragged = $("##{data.draggedId}")
     draggedOver = $("##{data.draggedOverId}")
     
+    # Make these elements no longer interactive.
+    # dragged.add(draggedOver).off()
+
     $stack = $(decodeURIComponent(data.collectionHTML))
     $stack.insertAfter draggedOver
     $stack.css { x: xTransform(draggedOver) }
-  
-    console.log 'draggedOver', draggedOver
-    console.log 'dragged', dragged
 
     collectionModel.appendContent $stack, draggedOver
     collectionModel.appendContent $stack, dragged

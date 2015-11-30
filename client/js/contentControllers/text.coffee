@@ -60,12 +60,12 @@ bindTextEvents = ($text) ->
         socket.emit 'updateArticle', { collectionKey, userId, articleId, content }
       ), 200
 
-initText = (elems) ->
-  elems.each () ->
+initText = ($content) ->
+  $content.each () ->
     editable = $(@).find '.editable'
     if editable.text().length < lengthForLong
       $(@).addClass 'short'
     else
       $(@).addClass 'long'
 
-  bindTextEvents elems
+  bindTextEvents $content

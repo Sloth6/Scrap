@@ -170,6 +170,7 @@ makeDraggable = ($content) ->
     return unless mouseDownEvent.which is 1 # only work for left click
     return if $(@).hasClass 'open'
     return unless collectionModel.getParent($content).hasClass 'open'
+    
     mousedownArticle = $content
     draggingArticle  = null
     

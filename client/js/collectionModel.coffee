@@ -8,6 +8,8 @@ window.collectionModel =
   init: ($collection) ->
     $cover        = collectionModel.getCover $collection
     collectionKey = collectionModel.getState($collection).collectionKey
+    $content      = collectionModel.getContent $collection
+    clickBlock    = (event) -> event.preventDefault()
 
     $collection.click (event) ->
       event.stopPropagation()
@@ -20,8 +22,7 @@ window.collectionModel =
       packCoverInit $cover, collectionKey
     else
       $collection.data 'contenttype', 'stack'
-      # console.log collectionModel.getContent($collection)
-      collectionModel.getContent($collection).removeClass('draggable')
+      $content.on 'click mouseup', clickBlock
       collectionViewController.draw $collection
 
   removeContent: ($collection) ->
@@ -31,7 +32,7 @@ window.collectionModel =
   # 
   # @param $collection [jquery array] 
   getState: ($collection) ->
-    open    = $collection.hasClass('.open')
+    open    = $collection.hasClass('open')
     size    = $collection.data('size')
     collectionKey = $collection.data('collectionkey')
     return { open, size, collectionKey }

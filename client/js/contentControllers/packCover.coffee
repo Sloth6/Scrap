@@ -80,7 +80,6 @@ packCoverInit = (cover, collectionKey) ->
       addUser email, collectionKey
   
   cover.find('ul.menu').each () ->
-    console.log @
     cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'
     cover.mouseleave () => $(@).removeClass 'open' if $(@).hasClass 'canOpen'
 

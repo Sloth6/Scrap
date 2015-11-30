@@ -12,7 +12,6 @@ window.navigationController =
       if $parentCollection.hasClass('root')
         $('header.main .backButton.main').velocity { translateX: 32 }
 
-
     collectionPath.unshift collectionKey
 
     # update the state object for this view so we can return to where we left
@@ -28,8 +27,9 @@ window.navigationController =
     history.pushState newState, "", "/s/#{collectionKey}"
 
     onContentLoaded = () ->
+      $collectionContent = collectionModel.getContent $collection
       # Initialize new content to make it interactive
-      collectionModel.getContent($collection).each () -> contentModel.init $(@)
+      $collectionContent.each () -> contentModel.init $(@)
       $addForm = collectionModel.getAddForm($collection)
       switch $addForm.data('contenttype')
         when 'addArticleForm' then addArticleController.init $addForm
@@ -50,10 +50,12 @@ window.navigationController =
     $parentCollection  = collectionModel.getParent  $collection
     $collectionContent = collectionModel.getContent $collection
 
-    $collectionContent.off()
-
     collectionViewController.close $collection
     collectionPath.shift()
+
+    # Remove event handlers so stack elements are not interactive
+    $collectionContent.off()
+    collectionModel.init $collection
 
     # If entering root collection, animate out back button
     if $parentCollection.hasClass 'root'

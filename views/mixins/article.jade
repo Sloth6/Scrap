@@ -25,6 +25,7 @@ mixin articleMixin(article)
             when 'image'
               - var content = JSON.parse(article.content)
               img(src= content.original_url)
+            
             when 'website'
               -var content = JSON.parse(article.content)
               -var url = decodeURIComponent(content.url)
