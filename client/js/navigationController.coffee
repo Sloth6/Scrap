@@ -4,6 +4,11 @@ window.navigationController =
     collectionKey      = collectionState.collectionKey
     $collectionContent = collectionModel.getContent $collection
 
+    # Cant open
+    if $collection.hasClass('velocity-animating')
+      console.log 'too soon to open!'
+      return
+
     #If leaving root collection, animate out back button
     if collectionModel.getParent($collection)?
       $parentCollection        = collectionModel.getParent($collection)
@@ -47,6 +52,11 @@ window.navigationController =
   # when it was opened. which is stored in the state object
   close: ($collection, state) ->
     return if $collection.hasClass('root')
+
+    if $collection.hasClass('velocity-animating')
+      console.log 'too soon to close!'
+      return
+
     $parentCollection  = collectionModel.getParent  $collection
     $collectionContent = collectionModel.getContent $collection
 

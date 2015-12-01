@@ -94,7 +94,6 @@ window.collectionViewController =
   open: ($collection, options = {}) ->
     console.log 'open', $collection.attr('class')
     throw 'no collection passed' unless $collection.length
-    throw 'cant open an open collection' if $collection.hasClass 'open'
 
     $cover             = collectionModel.getCover $collection
     $parentCollection  = collectionModel.getParent $collection
@@ -127,11 +126,13 @@ window.collectionViewController =
     $collection.removeClass 'draggable'
 
     # Mark collection as open. 
-    $collection.addClass('open').removeClass 'closed'
+    $collection.
+      addClass('open').
+      removeClass 'closed'
+    
     collectionViewController.draw $collection
 
   close: ($collection, options = {}) ->
-    console.log 'clossing', $collection.attr('class')
     return if $collection.hasClass 'root'
 
     $collectionCover   = collectionModel.getCover   $collection
@@ -147,8 +148,7 @@ window.collectionViewController =
 
     $collection.
       addClass('closed').
-      removeClass('open').
-      addClass('draggable')
+      removeClass('open')
 
     # the cover should have a transateX 0 relative to its collection
     $collectionCover.show().velocity { translateX: 0 }
