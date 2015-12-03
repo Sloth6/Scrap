@@ -20,16 +20,20 @@ window.navigationController =
     collectionPath.unshift collectionKey
 
     # update the state object for this view so we can return to where we left
+    # console.log 
     history.replaceState {
       scrollLeft : $(window).scrollLeft()
       width : $(window.document).width()
-      name: history.state.name
+      name: ''#history.state.name
     }, ""
 
     # The object that will hold the state of the opening collection
     newState = { name: collectionKey }
+    
     # Update the url.
-    history.pushState newState, "", "/s/#{collectionKey}"
+    console.log $collection.hasClass('root')
+    path = if $collection.hasClass('root') then '/' else "/s/#{collectionKey}"
+    history.pushState newState, "", path#"/s/#{collectionKey}"
 
     onContentLoaded = () ->
       $collectionContent = collectionModel.getContent $collection

@@ -50,7 +50,7 @@ $ ->
     event.preventDefault()
     history.back()
 
-  history.pushState { name: "home" }, "", "/"
+  # history.pushState { name: "home" }, "", "/"
 
   navigationController.open $('.collection.root')
 

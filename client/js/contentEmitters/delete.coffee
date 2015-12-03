@@ -15,6 +15,11 @@ onDelete = ($content) ->
 
 makeDeletable = ($content) ->
   $content.each () ->
-    $(@).find('.articleDeleteButton').click (event) =>
+    if $(@).hasClass('collection')
+      deleteButton = $(@).children('.cover').find('.articleDeleteButton')
+    else
+      deleteButton = $(@).find('.articleDeleteButton')
+
+    deleteButton.click (event) =>
       event.stopPropagation()
       onDelete $(@)
