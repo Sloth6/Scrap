@@ -1,4 +1,6 @@
 onDelete = ($content) ->
+  # console.log 'deleting', $content
+  # return
   if $content.hasClass('collection')
     if confirm('Delete everything?')
       collectionKey = collectionModel.getState($content).collectionKey

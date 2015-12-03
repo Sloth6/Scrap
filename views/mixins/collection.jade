@@ -23,7 +23,7 @@ mixin collectionMixin(collection)
     data-collectionkey = collection.collectionKey,
     data-hascover = collection.hasCover
   )
-    if collection.root == false && collection.hasCover
+    if collection.root == false
       article(class = 'cover', style='z-index:2;')
         .content
           .articleControls
