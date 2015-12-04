@@ -43,15 +43,19 @@ module.exports =
       params =
         where: { collectionKey }
         include: models.User
-      models.Collection.find( params ).then (collection) =>
+      models.Collection.find( params ).done (err, collection) ->
+        return callback err if err
         attributes.CollectionId = collection.id
-        models.Article.create(attributes).then (article) =>
-          collection.articleOrder.push(article.id)
-          collection.save()
-          html = articleRenderer collection, article
-          console.log 'emitting to ', collectionKey
-          sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
-          callback null
+        models.Article.create(attributes).done (err, article) ->
+          return callback err if err
+          collection.update({
+            articleOrder: models.sequelize.fn( 'array_append', models.sequelize.col('articleOrder'), "#{article.id}")
+          }).done (err) ->
+            return callback err if err
+            html = articleRenderer collection, article
+            console.log 'emitting to ', collectionKey
+            sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
+            callback null
     
     getType data.content, (contentType) ->
       console.log "\tcontentType: #{contentType}"
