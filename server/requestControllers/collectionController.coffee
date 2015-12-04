@@ -30,12 +30,12 @@ module.exports =
         if a instanceof models.Collection.Instance
           a_i = articleOrder.indexOf(a.collectionKey)
         else
-          a_i = articleOrder.indexOf(a.id)
+          a_i = articleOrder.indexOf("#{a.id}")
 
         if b instanceof models.Collection.Instance
           b_i = articleOrder.indexOf(b.collectionKey)
         else
-          b_i = articleOrder.indexOf(b.id)
+          b_i = articleOrder.indexOf("#{b.id}")
 
         if a_i > b_i then 1 else -1
 

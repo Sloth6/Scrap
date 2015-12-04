@@ -170,10 +170,11 @@ makeDraggable = ($content) ->
   $content.find('a,img,iframe').bind 'dragstart', () -> false
   
   $content.on 'mousedown', (mouseDownEvent) ->
-    # console.log 'mouseDownEvent', $(@)
     return unless mouseDownEvent.which is 1 # only work for left click
     return if $(@).hasClass 'open'
+    return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
+
     
     mousedownArticle = $content
     draggingArticle  = null

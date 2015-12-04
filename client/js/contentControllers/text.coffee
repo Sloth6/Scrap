@@ -2,15 +2,13 @@ lengthForLong = 20
 
 startEditingText = (elem) ->
   card = elem.find('.card')
-  elem.removeClass 'draggable'
-  card.addClass 'editing'
+  card.add(elem).addClass 'editing'
   elem.find('.editable').attr 'contentEditable', 'true'
   elem.find('.done').removeClass 'invisible'
 
 stopEditingText = (elem) ->
   card = elem.find('.card')
-  elem.addClass 'draggable'
-  card.removeClass 'editing'
+  card.add(elem).removeClass 'editing'
   elem.find('.editable').attr 'contentEditable', 'false'
   elem.find('.done').addClass 'invisible'
 
