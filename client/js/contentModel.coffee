@@ -32,7 +32,7 @@ window.contentModel =
     #   return if $content.hasClass 'dragging'
     #   return unless $content.data 'oldZIndex'
     #   $content.css 'zIndex', $content.data('oldZIndex')
-  
+
   setSize: ($contents, size) ->
     $contents.data 'size', size
 

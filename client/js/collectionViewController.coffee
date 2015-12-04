@@ -123,7 +123,6 @@ window.collectionViewController =
 
     # When opeing a collection, it no longer slides but is fixed to start
     $collection.velocity { translateX: 0 }
-    $collection.removeClass 'draggable'
 
     # Mark collection as open. 
     $collection.
@@ -168,7 +167,6 @@ window.collectionViewController =
         options: { complete: () -> $(@).remove() }
     else
       $collectionCover.show()
-      $collectionContent.removeClass 'draggable'
       collectionViewController.draw $collection
 
   preview: ($collection) ->

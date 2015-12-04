@@ -3,13 +3,20 @@ include addCollectionForm
 include addArticleForm
 
 mixin collectionContentMixin(collection)
-  if collection.Articles !== undefined
-    each article in collection.Articles
-      +articleMixin(article)
+  if collection.content !== undefined
+    each content in collection.content
+      if content.collectionKey !== undefined
+        +collectionMixin(content)
+      else
+        +articleMixin(content)
 
-  if collection.children !== undefined
-    each article in collection.children
-      +collectionMixin(article)
+  //- if collection.Articles !== undefined
+  //-   each article in collection.Articles
+  //-     +articleMixin(article)
+
+  //- if collection.children !== undefined
+  //-   each article in collection.children
+  //-     +collectionMixin(article)
 
 mixin collectionMixin(collection)
   - var classes = 'closed ' + collection.collectionKey
