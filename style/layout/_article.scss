@@ -9,8 +9,6 @@ body {
         backface-visibility: hidden;
         margin-right: -2pt;
         line-height: 1.5em;
-        //transform-origin:           center;
-        //-webkit-transform-origin:   center;
         
         // EVENTS
         
@@ -272,9 +270,6 @@ body {
             header {
                 border-top: 0;
                 padding: $cardPadding;
-                
-                h1 {
-                }
                 
                 .artist {
                     margin-top: $cell/2;

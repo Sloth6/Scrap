@@ -26,22 +26,22 @@ $cardHoverScaleMin: scale3d(1.015125, 1.015125, 1.015125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
 
 $cardBorderWidth:           1px;
-$cardBorderColor:           rgba(0,0,0,.125);
+$cardBorderColor:           $colorType; // rgba(0,0,0,.125);
 $cardBorderColorHover:      $colorType;
 $cardBorder:                $cardBorderWidth solid $cardBorderColor;
-$cardBoxShadowDimensions:   0 $cell/8 $cell/4 $cell/4;
-$cardBoxShadowColor:        rgba(0,0,0,.03125);
+$cardBoxShadowDimensions:   $cell $cell 0 0;
+$cardBoxShadowColor:        rgba(0,0,0,1);
 $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
-$cardBorderRadius:          $cell/4;
+$cardBorderRadius:          0; // $cell/4;
 
 @mixin cardStyle {
     background-color: $colorCardBackground;
     border: $cardBorder;
     padding: $cardPadding;
     border-radius: $cardBorderRadius;
-    //        transform-origin: center center;
-    //-webkit-transform-origin: center center;
+            transform-origin: right bottom;
+    -webkit-transform-origin: right bottom;
 }
 
 @mixin cardHover {
@@ -58,7 +58,8 @@ $cardBorderRadius:          $cell/4;
                                  
     &.hover {
         border-color: $cardBorderColorHover;
-//         @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+        @include transform(translate3d(-$cell, -$cell, 0));
 //         @include transform($cardHoverScaleMin);
         &.invertHover {
 //             @include box-shadow($cardBoxShadowDimensions white);
@@ -75,7 +76,13 @@ $cardBorderRadius:          $cell/4;
 @mixin cardEditing {
     border-style: dashed !important;
     border-color: $colorType !important;
-    background-color: $colorCardBackground !important;
+    background-color:  $colorCardBackground !important;
+    
+    &.hover {
+        @include transform(none);
+        @include box-shadow(none);
+
+    }
 }
 
 @mixin coverBackground {
@@ -101,10 +108,10 @@ $cardBorderRadius:          $cell/4;
 
 @mixin cardCover {
     position: relative;
-	width: $coverWidth;
-	height: $coverHeight;
-	cursor: pointer;
-	overflow: hidden;
+    	width: $coverWidth;
+    	height: $coverHeight;
+    	cursor: pointer;
+    	overflow: hidden;
 }
 
 @mixin button {
@@ -191,8 +198,10 @@ a, input[type=submit], input[type=button] {
 .newCard {
     border-style: dashed;
     
-    &:hover {
-    		  border-color: $colorType;
+    &.hover, &:hover {
+        border-style: solid;
+        @include transform(none);
+        @include box-shadow(none);
     }
 }
 
@@ -208,11 +217,9 @@ a, input[type=submit], input[type=button] {
 
 .backButton {
     a {
-        @include typeHeader;
         font-size: $typeHeaderSize * 2;
         font-weight: $fontWeightThin;
     }
-    
 }
 
 // Forms

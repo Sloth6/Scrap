@@ -13,6 +13,14 @@ window.contentModel =
       when 'soundcloud' then initSoundCloud $content
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
+      
+    $content.find('.card').mouseenter((event) ->
+      event.stopPropagation()
+      unless $content.hasClass 'dragging'
+        $(@).addClass 'hover'
+    ).mouseleave((event) ->
+      $(@).removeClass 'hover'
+    )
     
     # $content.mouseover( () ->
     #   x = xTransform $content

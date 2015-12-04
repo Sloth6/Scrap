@@ -4,6 +4,15 @@ $fontFamily:            'Neue Haas Unica W01', -apple-system, "Helvetica Neue", 
 // $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
 $fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
 
+
+@mixin proportionalNums {
+    font-variant-numeric: proportional-nums;
+    -moz-font-feature-settings: "pnum";
+    -ms-font-feature-settings: "pnum";
+    -webkit-font-feature-settings: "pnum";
+    font-feature-settings: "pnum";
+}
+
 $fontWeightThin:        100;
 $fontWeightExtraLight:  200;
 $fontWeightLight:       300;
@@ -50,10 +59,9 @@ $headerLeftMarginOffset:
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightExtraLight;
-    letter-spacing: -(1em / 24);
+    font-weight:    $fontWeightMedium;
+    letter-spacing: -(1em / 20);
     line-height:    $typeHeaderLeading;
-    
 }
 
 @mixin typeHeaderOutline {
@@ -143,7 +151,7 @@ $headerLeftMarginOffset:
 
 html {
     @include typeBody;
-    font-variant-numeric: oldstyle-num;
+    @include proportionalNums;
 }
 .typeTitle {
     @include typeTitle;
