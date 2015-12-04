@@ -4,11 +4,9 @@ header.main {
         top: 0;
         left: -50px;
         
-        &.visible {
-            &:hover {
-                a {
-                    @include transform(translate3d(12px, 0px, 0px));
-                }
+        &:hover {
+            a {
+                @include transform(translate3d(12px, 0px, 0px));
             }
         }
 

@@ -3,6 +3,7 @@ window.navigationController =
     collectionState    = collectionModel.getState $collection
     collectionKey      = collectionState.collectionKey
     $collectionContent = collectionModel.getContent $collection
+    $backButton = $('header.main .backButton.main')
 
     # Cant open
     if $collection.hasClass('velocity-animating')
@@ -15,7 +16,12 @@ window.navigationController =
       $parentCollectionContent = collectionModel.getContent($parentCollection)
       
       if $parentCollection.hasClass('root')
-        $('header.main .backButton.main').velocity { translateX: 32 }
+        $backButton.velocity {
+          translateX: 32
+        }, {
+          easing: openCollectionCurve
+          duration: openCollectionDuration
+        }
 
     collectionPath.unshift collectionKey
 
@@ -56,6 +62,7 @@ window.navigationController =
   # when it was opened. which is stored in the state object
   close: ($collection, state) ->
     return if $collection.hasClass('root')
+    $backButton = $('header.main .backButton.main')
 
     if $collection.hasClass('velocity-animating')
       console.log 'too soon to close!'
@@ -73,7 +80,12 @@ window.navigationController =
 
     # If entering root collection, animate out back button
     if $parentCollection.hasClass 'root'
-      $('header.main .backButton.main').velocity { translateX: 0 }
+      $backButton.velocity {
+        translateX: 0
+      }, {
+        easing: openCollectionCurve
+        duration: openCollectionDuration
+      }
 
     # return to the parents state last time we were there.
     $(document.body).css width: state.width
