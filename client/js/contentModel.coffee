@@ -13,18 +13,7 @@ window.contentModel =
       when 'soundcloud' then initSoundCloud $content
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
-    
-    # $content.mouseover( () ->
-    #   x = xTransform $content
-    #   return if x < edgeWidth or (x > $(window).width - edgeWidth)
-    #   return if $content.hasClass 'dragging'
-    #   $content.data 'oldZIndex', $content.css('zIndex')
-    #   $content.css 'zIndex', $.topZIndex('article')
-    # ).mouseout () ->
-    #   return if $content.hasClass 'dragging'
-    #   return unless $content.data 'oldZIndex'
-    #   $content.css 'zIndex', $content.data('oldZIndex')
-  
+
   setSize: ($contents, size) ->
     $contents.data 'size', size
 

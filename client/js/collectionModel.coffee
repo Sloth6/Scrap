@@ -97,6 +97,16 @@ window.collectionModel =
       $contentContainer.append $(data)
       callback()
 
+  getContentOrder: ($collection) ->
+    $content = collectionModel.getContent $collection
+    # return $content.get()
+    $content.get().map (content) ->
+      $content = $(content)
+      if $content.hasClass('collection')
+        collectionModel.getState($content).collectionKey
+      else
+        $content.attr('id')
+
   # Return the parent collection
   # 
   # @param $collection [jquery array] 

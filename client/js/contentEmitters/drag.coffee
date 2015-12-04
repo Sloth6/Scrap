@@ -130,9 +130,13 @@ stopDragging = (event, $dragging) ->
     $dragging.insertAfter padding
     padding.remove()
 
-    articles = collectionModel.getContent $('.collection.open')
-    articleOrder = JSON.stringify(articles.get().map (elem) -> +elem.id)
-    socket.emit 'reorderArticles', { articleOrder, collectionKey: collectionPath[0] }
+    $collection = $('.collection.open')
+    collectionOrder = collectionModel.getContentOrder $collection
+
+    socket.emit 'reorderArticles', {
+      articleOrder: collectionOrder
+      collectionKey: collectionPath[0]
+    }
   
   # Timeout to prevent click event after drag
   setTimeout (() ->

@@ -22,10 +22,23 @@ module.exports =
     }).done (err, collection) ->
       return callback(err, res) if err?
       return callback "No collection found for '#{collectionKey}'", res unless collection?
-      articleOrder = collection.articleOrder
-      collection.Articles.sort (a, b) ->
-        if articleOrder.indexOf(a.id) > articleOrder.indexOf(b.id) then 1 else -1
       
+      collection.content = collection.Articles.concat collection.children
+      articleOrder = collection.articleOrder      
+      
+      collection.content.sort (a, b) -> 
+        if a instanceof models.Collection.Instance
+          a_i = articleOrder.indexOf(a.collectionKey)
+        else
+          a_i = articleOrder.indexOf(a.id)
+
+        if b instanceof models.Collection.Instance
+          b_i = articleOrder.indexOf(b.collectionKey)
+        else
+          b_i = articleOrder.indexOf(b.id)
+
+        if a_i > b_i then 1 else -1
+
       app.render 'partials/collectionContent', { collection }, (err, html) ->
         return callback err if err?
         res.status(200).send html

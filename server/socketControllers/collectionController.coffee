@@ -10,9 +10,10 @@ toTitleCase = (str) ->
 module.exports =
   reorderArticles: (sio, socket, data) ->
     { collectionKey, articleOrder } = data
-    articleOrder = JSON.parse articleOrder
-    # console.log articleOrder
-    models.Collection.update({ articleOrder }, where: { collectionKey })
+    what = { articleOrder }
+    models.Collection.update(what, where:{ collectionKey }).done () ->
+      console.log 'Emit order to client'
+      # sio.to("#{parentCollectionKey}").emit 'newCollection', emitData
 
   rename: (sio, socket, data, callback) ->
     { collectionKey, name } = data
