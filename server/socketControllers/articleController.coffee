@@ -30,7 +30,8 @@ getType = (s, cb) ->
 module.exports =
   # create a new article and save it to db
   newArticle : (sio, socket, data, callback) =>
-    collectionKey = data.collectionkey
+    collectionKey = data.collectionKey
+    console.log collectionKey, typeof collectionKey
     data.content = decodeURIComponent data.content
     userId = socket.handshake.session.userId
     console.log 'Received content:'

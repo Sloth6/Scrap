@@ -15,7 +15,7 @@ $ ->
     console.log "new $article for #{collectionKey}", $article.attr('class')
     $collection = $('.collection.open')
 
-    if ''+$collection.data('collectionkey') == collectionKey
+    if collectionModel.getState($collection).collectionKey == collectionKey
       $addArticleForm = collectionModel.getAddForm $collection
       $article.css { x: xTransform($addArticleForm) }
       collectionModel.appendContent $collection, $article

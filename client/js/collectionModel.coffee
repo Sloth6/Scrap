@@ -34,7 +34,7 @@ window.collectionModel =
   getState: ($collection) ->
     open    = $collection.hasClass('open')
     size    = $collection.data('size')
-    collectionKey = $collection.data('collectionkey')
+    collectionKey = "#{$collection.data('collectionkey')}"
     return { open, size, collectionKey }
 
   # Return articles in a collection

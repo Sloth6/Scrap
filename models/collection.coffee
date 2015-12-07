@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) ->
       type: DataTypes.TEXT
       defaultValue: () -> uuid.v4().split('-')[0]
       allowNull: false
+      unique: true
     root:
       type: DataTypes.BOOLEAN
       defaultValue: false
