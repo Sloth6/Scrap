@@ -5,19 +5,23 @@ header.main {
         left: -50px;
         
         &:hover {
-            a {
+            a span {
                 @include transform(translate3d(12px, 0px, 0px));
             }
         }
 
         a {
             display: block;
-            padding: 0 12px 12px 24px;            
-            @include transform(translate3d(0px, 0px, 0px));
-            @include transition(.25s $defaultCurve);
-            @include transition-property(transform,
-                                 -webkit-transform,
-                                    -moz-transform);
+            padding: 0 12px 12px 24px;
+            
+            span {
+                display: inline-block;
+                @include transform(translate3d(0px, 0px, 0px));
+                @include transition(.25s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+            }
         }
     }
 }
