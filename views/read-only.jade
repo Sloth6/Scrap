@@ -1,0 +1,30 @@
+extends layout
+
+block scripts
+  title= title
+  script(src='/js/jquery/jquery.js')
+  script(src="/js/jquery/jquery-ui.min.js")
+  script(src="/js/jquery/jquery.transit.min.js")
+  script(src="/js/jquery/jquery-mousewheel.min.js")
+  
+  script(src="/js/lib/velocity.min.js")
+  script(src="/js/page/stackAnimation.js")
+  script(src="/js/page/readOnly.js")
+  script(src="/js/menuControllers/header.js")
+
+block content
+  section.readOnly.page
+    .collection.animateIn.center
+      header.card.cover.cardHover.colored.title.left
+        h1.typeTitle.typeOutlineClear!=collection.name
+        section.form
+          ul
+            include partials/logIn
+      section.card.small.right.hidden.logo
+        h1.typeTitle.typeOutlineClear Scrap
+      section.intro.card.small.hidden.right
+        - var text = "Joel shared "+collection.name+" with you on Scrap, a simple way to collect and organize stuff. Join Scrap or log in to view and edit it."
+        p!=text
+      .card.blank.cover.hidden.left
+      .card.blank.cover.hidden.left
+      .card.blank.cover.hidden.left

@@ -1,0 +1,70 @@
+extends layout
+
+
+block scripts
+  script(src='/js/jquery/jquery.js')
+  script(src="/js/jquery/jquery-ui.min.js")
+  script(src="/js/jquery/jquery.transit.min.js")
+  script(src="/js/jquery/jquery-mousewheel.min.js")
+  script(src='/js/jquery/jquery.fileupload.js')
+  script(src='/js/jquery/jquery.topzindex.min.js')
+
+  script(src='/js/jquery/custom.js')
+
+  script(src='/js/jquery/idraggable.js')
+
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/lib/soundcloud-api.js')
+  script(src='/js/lib/velocity.min.js')
+  
+  script(src="/js/uploadForm.js")
+
+  script(src="/js/card.js")
+  
+  script(src="/js/contentViewController.js")
+  script(src="/js/contentModel.js")
+  
+  script(src="/js/collectionViewController.js")
+  script(src="/js/collectionModel.js")
+
+  script(src="/js/navigationController.js")
+
+  script(src="/js/utilityFunctions.js")
+  script(src="/js/home.js")
+  script(src="/js/menuControllers/addCollection.js")
+  script(src="/js/menuControllers/addArticle.js")
+  script(src="/js/menuControllers/header.js")
+  script(src="/js/menuControllers/settings.js")
+
+  script(src="/js/socketListeners.js")
+
+  script(src="/js/contentEmitters/add.js")
+  script(src="/js/contentEmitters/delete.js")
+  script(src="/js/contentEmitters/drag.js")
+  script(src="/js/contentEmitters/upload.js")
+
+  script(src="/js/contentControllers/packCover.js")
+  script(src="/js/contentControllers/file.js")
+  script(src="/js/contentControllers/gif.js")
+  script(src="/js/contentControllers/soundCloud.js")
+  script(src="/js/contentControllers/video.js")
+  script(src="/js/contentControllers/text.js")
+  script(src="/js/contentControllers/youtube.js")
+  script(src="/js/contentControllers/playable.js")
+
+  script.
+    var userName = "!{user.name}";var userId = +"!{user.id}"
+
+include partials/collection
+
+block content
+  section.collection
+    header.main
+      .backButton.main
+        a(href="#")
+          span ‹
+      include partials/settingsMenu.jade
+    section.blur.blurAllCollections.content(style="position:fixed;")
+      .slidingContainer()
+        +collectionMixin(collection)
+        //- +collectionMixin(collection)

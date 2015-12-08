@@ -1,0 +1,528 @@
+$collectionOpenTransitionDuration: 1s;
+$hideImageWhiteBorder: -2px -1px -4px -2px;
+
+body {
+        
+    article {
+        color: $colorType;
+        position: absolute;
+        backface-visibility: hidden;
+        margin-right: -2pt;
+        line-height: 1.5em;
+        
+        // EVENTS
+        
+        &:hover, &.hover {
+            cursor: move;
+            cursor: -webkit-grab;
+            cursor: -moz-grab;;
+            cursor: grab;
+            
+            .articleControls {
+                opacity: 1;
+            }
+        }
+
+        &.dragging, &.ui-draggable-dragging, &.active, &:active {
+            cursor: -webkit-grabbing;
+            cursor: -moz-grabbing;
+            cursor: grabbing;
+
+            > .content .card {
+                @include cardDrag;
+            }
+        }
+        
+        &.locked {
+            opacity: .25;
+            -webkit-filter: grayscale(1);
+        }
+
+        &.resizing {
+            .card .ui-resizable-handle {
+                opacity: .5;
+            }
+        }
+                
+        // CONTENTS
+        
+        .articleControls {
+            @include transition(.25s $defaultCurve);
+            @include transition-property(opacity);
+            opacity: 0; 
+            top: -20px;
+            left: 0;
+            position: absolute;
+            z-index: 5000;
+            font-style: normal;
+            color: $colorType;
+            
+            .articleDeleteButton, author {
+                @include linkReset;
+                position: absolute;
+                display: block;
+                bottom: 0;
+            }
+            
+            .articleDeleteButton {
+                left: 0;
+            }
+            
+            author {
+                right:  0;
+                white-collection: nowrap;
+            }
+        }
+        
+        // CONTENT
+        /* 
+        > .content {
+            position: relative;
+                    transform-origin: bottom right;
+            -webkit-transform-origin: bottom right;
+        }
+        */
+        &.text {
+            font-style: normal;
+            
+            .card {
+                background-color: #ffffee;
+                width: $articleSideNarrow;
+            }
+            
+            * {
+                outline: none;
+            }
+            
+            em {
+                font-style: italic;
+            }
+            
+            strong {
+                font-weight: $fontWeightBold;
+            }
+            
+            .editable {
+//                 background: lime;
+                height: 100%;
+                margin-bottom: $broadMargin;
+            }                
+
+            &.short {
+                .editable {
+                    @include typeLarge;
+                    margin-top: -1pt;
+                }
+            }
+            
+            &.long {
+                .editable {
+                    @include typeBody;
+                    margin-top: $typeBodyLeading / 2.5;
+                }
+                
+                .card {
+//                     width: $articleSide;
+                                            
+                    .editable {
+//                         padding-left: $col / 2;
+//                         padding-right: $col / 4;
+                   
+/*
+                        * {
+                            &:first-child {
+                                @include typeHeader;
+                            }
+                        }
+*/
+                    }
+                }
+            }
+        }
+        
+        &.image {
+            
+            .content {
+                
+                .card {
+                    padding: 0px;
+                    width: $articleSide;
+                    max-height: $articleSideWide;
+                    overflow: hidden;
+                    
+                    img {
+                        margin: $hideImageWhiteBorder;
+                    }
+                }
+            }
+        }
+        
+        &.youtube {
+            width: intrinsic;
+            
+            .content {
+                
+                .card {
+                    max-width: $articleWidthVideo;
+                    width: intrinsic;
+                    padding: 0px;
+                    
+                    iframe {
+                        margin: $hideImageWhiteBorder;
+                    }
+                }
+            }
+        }
+        
+        &.file .content {
+            $foldWidth: 48px;
+            padding-right: $foldWidth;
+            height: $articleSide;
+            width: $articleSideNarrow;
+            position: relative;
+            
+            .decorative.fold {
+                z-index: 10;
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: $foldWidth;
+                background: url('/images/fileCorner.png') no-repeat top right;
+                background-size: $foldWidth $foldWidth;
+                
+                &:after {
+                    content: " ";
+                    left: -$cardBorderWidth;
+                    right: 0;
+                    top: $foldWidth;
+                    position: absolute;
+                    height: $articleSide - $foldWidth + $cell + $cardBorderWidth;
+                    width: $foldWidth;
+                    background: white;
+                    border: $cardBorder;
+                    border-left: 0;
+                    border-top: 0;
+                }
+            }
+            
+            .card {
+                height: 100%;
+                border-right: 0;
+                
+                header {
+                    h1 {
+                        word-wrap: break-word;
+                    }
+                }
+                
+            }
+        }
+        
+        &.playable .card {
+            width: $articleSide;
+            padding: 0;
+            position: relative;
+            
+            &:hover {
+                
+                .preview:after {
+                    opacity: 1;
+                    @include transform(scale(1)); 
+                }
+            }
+            
+            &:active {
+                .preview:after {
+                    -webkit-filter: invert(1);
+                    @include transform(scale(.95)); 
+                }
+            }
+
+            .preview {
+                position: relative;
+                cursor: pointer;
+                
+                &:after {
+                    content: '';
+                    background: url('/images/playButton.png') no-repeat;
+                    background-size: cover;
+                    height: 72px;
+                    width:  72px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-top: -36px;
+                    margin-left: -36px;
+                    z-index: 9000000;
+
+                    opacity: 0;
+                    @include transform(scale(0));
+                    @include transition(.1825s $defaultCurve);
+                    @include transition-property(opacity,
+                                                 transform,
+                                         -webkit-transform,
+                                            -moz-transform);
+                                            
+                }                
+            }
+            
+            header {
+                border-top: 0;
+                padding: $cardPadding;
+                
+                .artist {
+                    margin-top: $cell/2;
+                }
+                
+                .detail {
+                    margin-top: $midMargin; 
+                }
+            }
+        }
+        
+        .card {
+            position: relative;
+            overflow: hidden;
+            min-height: $articleMinHeight;
+            
+            &.website {
+                @include cardStyle;
+                width: $articleSideNarrow;
+                
+                &:hover {
+                    @include hoverLinkAnimation;
+                    
+                    .text {
+                        
+                        header {
+                            
+                            .url {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+                
+                a {
+                    border: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+                               
+                .text {
+
+                    header {
+                        position: absolute;
+                        top: $cell/2;
+                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition-property(top);
+
+                        h1 {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 4;
+                            -webkit-box-orient: vertical; 
+                            max-height: $typeHeaderLeading * 4;
+                            overflow: hidden;
+                            padding-bottom: .125em;
+                            margin-bottom: -.125em;
+                        }
+    
+                        .url {
+                            margin-top: $cell/2;
+                            @include transition(.25s $defaultCurve);
+                            @include transition-property(opacity);
+                        }
+                    }
+
+                    .description {
+                        margin-top: $articleSideNarrow - $col;
+                        margin-bottom: $cell/2;
+                        opacity: 1;
+                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition-property(opacity, margin-top);
+                    }
+                    
+                    img {
+                        margin-top: 0;
+                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition-property(margin-top);
+                    }
+                }
+            }
+
+            
+            &.caption, &.comment {                       
+                // background-color: $colorCardBackgroundLight;
+            }
+            
+            h1.headerType {
+                margin-left: $headerLeftMarginOffset;
+                margin-top: -.15em;
+            }
+
+            img {
+                width: 100%;
+                margin-bottom: -$cell/3;
+                background-color: $colorCardBackground;
+            }
+        }
+        
+        &.addArticleForm {
+
+            // Compact view
+            &.peek {
+                /*
+                &:hover {  
+                    .translate {
+                    		@include transform(translate(24px, -64px));
+                    		
+                    		.card:hover {
+                        		border-color: $colorType;
+                    		}
+                    }
+                }
+
+                .translate {
+                		@include transform(translate(0px, -64px));
+                		
+                    &:after {
+                    		@include transform(translate(0px, 0px));
+                    }
+                }
+                                
+                .card .editable {
+                		@include transform(translate(-128px, 0px));
+                }
+                */
+            }
+            
+            &.slideInFromSide {
+                z-index: 99999999 !important;
+                /*
+                .translate {
+                    @include transform(translate(320px, 0px));
+                }
+                */
+            }
+
+            &.typing {
+                z-index: 99999999 !important;    
+                              
+                .cardActions ul li {
+                    &.upload {
+                        opacity: 0;
+                    }
+                    
+                    &.done {
+                        opacity: 1;
+                    }
+                }
+            }
+            
+            .translate {
+                overflow-x: hidden;
+                position: relative;
+                cursor: pointer;
+                @include transform(translate(0px, 0px));
+                @include transition(1s $defaultCurve);
+                @include transition-property(transform,
+                                     -webkit-transform,
+                                        -moz-transform);
+
+                // Plus sign for compact view
+                &:after {
+                    content: "";
+                    height: 24px;
+                    width:  24px;
+                    font-weight: $fontWeightLight;
+                    background: url('/images/add.png') no-repeat;
+                    background-size: cover;
+                    position: absolute;
+                    top:    $cell*.75;
+                    right:  $cell*.75;
+                    //-webkit-transform-origin: center center;
+                    //        transform-origin: center center;
+                		@include transform(translate(36px, 0px));
+                    @include transition(.5s $defaultCurve);
+                    @include transition-property(transform,
+                                         -webkit-transform,
+                                            -moz-transform);
+                }
+
+                .card {
+                    overflow: visible;
+                    width: $articleSideNarrow;
+
+                    .editable {
+                        height: 100%;
+                    		@include transform(translate(0px, 0px));
+                        @include transition(.5s $defaultCurve);
+                        @include transition-property(transform,
+                                             -webkit-transform,
+                                                -moz-transform);                    
+                    }
+                        
+                    .cardActions {
+                        width: $articleSideNarrow;
+                        
+                        ul {
+                            
+                            li {
+
+                                &.upload {
+                                    opacity: 1;
+                                    display: inline-block;
+                                    width: $col * 1.5;
+                                    height: $leading;
+                                    overflow: hidden;
+                                    position: relative;
+                                    
+                                    &:hover {
+                                        a {
+                                            @include hoverLinkAnimation;
+                                        }
+                                    }
+                                    
+                                    form {
+                                        height: 100%;
+                                        width: 200%;
+                                        top: 0;
+                                        left: 0;
+                                        position: absolute;
+                                        
+                                        input {
+                                            height: 100%;
+                                            width: 100%;
+                                            position: absolute;
+                                            top: 0;
+                                            left: -50%;
+                                            opacity: 0;
+                                            cursor: pointer !important;
+                                        }
+                                    }
+                                }
+                                
+                                &.done {
+                                    display: inline-block;
+                                    height: $leading;
+                                    float: right;
+                                    width: intrinsic;
+            
+                                    a {
+                                        border: 0;
+                                        padding: 0;
+                                        margin-left: $cell;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }               
+        }
+    }
+}

@@ -1,0 +1,86 @@
+mixin articleMixin(article)
+  -
+    var classes =  [article.contentType]
+    if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
+      classes.push('playable')
+    }
+  article(id=article.id, style= posString,
+    class = classes,
+    data-contenttype= article.contentType, 
+    data-creatorid  = article.creatorId, 
+    data-content    = article.content
+  )
+    .content
+      .articleControls
+        // - if (typeof(collection.nameMap) !== "undefined") {
+        //   author!= collection.nameMap[article.creatorId].name
+        // - }    
+        a.articleDeleteButton.warning.bodyType.smallCaps Delete
+      case article.contentType
+        when 'file'
+          .decorative.fold
+      .transform
+        .card.cardHover.cardDrag(class=article.contentType)
+          case article.contentType
+            when 'image'
+              - var content = JSON.parse(article.content)
+              img(src= content.original_url)
+            
+            when 'website'
+              -var content = JSON.parse(article.content)
+              -var url = decodeURIComponent(content.url)
+              .text
+                header
+                  h1.headerType!=content.title
+                  .url.smallType.smallCaps!=content.domain
+                .description.smallType!=content.description
+              img(src=content.image)
+              a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
+      
+            when 'file'
+              header
+                - name = article.content.split('/').pop()
+                //- - extension = name.pop()
+                h1.headerType.title=name.split('.')[0]
+                p.extension.smallCaps.bodyType=name.split('.').pop()
+              ul.cardActions
+                li
+                  a.download.confirm(href='#') Download
+
+            when 'video'
+              video()
+                source(src=article.content)
+                //- img(src=article.content+'.png')
+            
+            when 'soundcloud'
+              -var content = JSON.parse(article.content)
+              //- title, description, thumbnail_url, html, author_name, author_url
+              .preview(title='Play “' + content.title + '”')
+                img.soundcloudThumbnail(src=content.thumbnail_url)
+              header
+                .top
+                  h1.headerType.title!=content.title
+                  .artist.smallType!=content.author_name
+                .detail
+                  .source.smallType.smallCaps SoundCloud
+            
+            when 'youtube'
+              -var content = JSON.parse(article.content)
+              .preview(title='Play “' + content.title + '”')
+                img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
+              header
+                .top
+                  h1.headerType.title!=content.title
+                  .artist.smallType Artist
+                .detail
+                  .source.smallType.smallCaps youtube
+
+            when 'text'
+              //- textarea.modify(name='content', style='height:300px')!=article.content
+              .editable(contentEditable="false", designmode="on")
+                | !{article.content}
+              ul.cardActions
+                li.right
+                  a.invisible.done.confirm(href='#') Done
+            default
+              p!=article.content
