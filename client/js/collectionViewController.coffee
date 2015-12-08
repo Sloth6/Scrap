@@ -113,10 +113,11 @@ window.collectionViewController =
     $collectionContent.css {'overflow': 'visible' }
     if $collection.data('contenttype') == 'pack'
       $collectionContent.add($collectionAddForm).velocity
-        opacity: [1, 0]
-        x: [ xTransform($cover), xOfSelf ]
+#         opacity: [1, 0]
+        translateY: 0
+#         x: [ xTransform($cover), xOfSelf ]
     else
-      $cover.hide()
+#       $cover.hide()
       # Show the add article Form.
       $collectionAddForm.show()
       $collectionContent.show()

@@ -1,4 +1,3 @@
-
 loadArticles = (collectionkey, callback) ->
   return callback 'ERR. collectionkey not passed to loadArticles' unless collectionkey  
   $.get "/collectionContent/#{collectionkey}", (data) ->
@@ -44,7 +43,7 @@ window.collectionModel =
     $contentContainer = $collection.children('.contentContainer')
     $contentContainer.children()
 
-  # The collection and article to partion around
+  # The collection and article to partition around
   getContentPartitioned: ($collection, $content) ->
     $contentsBefore = $([])
     $contentsAfter  = $([])
