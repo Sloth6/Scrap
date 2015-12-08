@@ -75,7 +75,7 @@ $headerLeftMarginOffset:
 @mixin typeBody {
     font-family:    $fontFamily;
     font-size:      $typeBodySize;
-    font-weight:    $fontWeightLight;
+    font-weight:    $fontWeightRegular;
     line-height:    $typeBodyLeading;
     letter-spacing: (1em / 64);
 }
@@ -83,14 +83,14 @@ $headerLeftMarginOffset:
 @mixin typeLarge {
     font-family:    $fontFamily;
     font-size:      $typeLargeSize;
-    font-weight:    $fontWeightExtraLight;
+    font-weight:    $fontWeightRegular;
     line-height:    $typeLargeLeading;
     letter-spacing: -(1em / 64);
 }
 
 @mixin typeSmall {
     font-size:      $typeSmallSize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
     line-height:    $typeSmallLeading;
     letter-spacing: (1em/32);
 }
@@ -104,7 +104,7 @@ $headerLeftMarginOffset:
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightMedium;
     letter-spacing: (1em/16);
 }
 
@@ -118,7 +118,7 @@ $headerLeftMarginOffset:
 @mixin typeSmallSmallCaps {
     @include        smallCaps;
     font-size:      $typeSmallSize * .7;
-    font-weight:    $fontWeightMedium;
+    font-weight:    $fontWeightBold;
     letter-spacing: (1em/6);
 }
 

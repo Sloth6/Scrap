@@ -1,4 +1,4 @@
-lengthForLong = 20
+lengthForLong = 500
 
 startEditingText = (elem) ->
   card = elem.find('.card')
