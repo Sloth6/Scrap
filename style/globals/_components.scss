@@ -281,20 +281,10 @@ input {
 }
 
 .slideIn {
-    li {
-//         opacity: 0;
-    }
-    
-    &.open {
-        li {
-            opacity: 1;
-            
-        }
-    }
-    
+  
     &.left {
         li, &.open li.hidden {
-            @include transform(translate3d(-$col * 2, 0.0, 0.0));
+            @include transform(translate3d(-$menuOffsetX, 0.0, 0.0));
             
             &.first {
                 @include transform(translate3d(0, 0, 0))
@@ -311,7 +301,7 @@ input {
     
     &.right {
         li, &.open li.hidden {
-            @include transform(translate3d($col * 2, 0.0, 0.0));
+            @include transform(translate3d($menuOffsetX, 0.0, 0.0));
             
             &.first {
                 @include transform(translate3d(0, 0, 0));
@@ -348,21 +338,21 @@ input {
         &.left {
             &.open {
                 > li.first {
-                    @include transform(translate3d(-$col * 2, 0.0, 0.0));
+                    @include transform(translate3d(-$menuOffsetX, 0.0, 0.0));
                     opacity: 0;
                 }
             }
         
             > li.first {
                 left: $cardPaddingRight;
-                @include transform(translate3d(-$col * 2, 0.0, 0.0));
+                @include transform(translate3d(-$menuOffsetX, 0.0, 0.0));
             }
         }
         
         &.right {            
             &.open {
                 > li.first {
-                    @include transform(translate3d($menuOffsetX + $col, 0.0, 0.0) rotate(0));
+                    @include transform(translate3d($menuOffsetX * 2, -$col, 0.0) rotate(0));
                     opacity: 0;
                 }
             }
@@ -429,6 +419,7 @@ ul.headerMenu {
         li {
             height: $menuItemHeight;
             margin-bottom: $cell;
+            @include transform(scaleY(1));
             
             a, form {
                 position: relative;
@@ -439,6 +430,9 @@ ul.headerMenu {
     li {
         height: 0;
         margin-bottom: 0;
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
+        @include transform(scaleY(0));
     }
 }
 
@@ -450,7 +444,7 @@ ul.menu {
     
     li {
         position: relative;
-        @include transition(.5s $defaultCurve);
+        @include transition(1s $defaultCurve);
         @include transition-property(left, right, height, opacity, margin-bottom,
                                      transform,
                              -webkit-transform,
