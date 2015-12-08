@@ -60,6 +60,7 @@ packCoverInit = ($cover, collectionKey) ->
   $addUserForm      = $userMenu.find('form.addUser')
   $renameButton     = $userMenu.find('.rename')
   $noticeField      = $userMenu.find('.notice')
+  $userListLabel    = $userMenu.find('li.user label')
   $instructionLabel = $userMenu.find('label.instruction')
   $submitButton     = $userMenu.find('input[type=submit]')
   $emailInput       = $userMenu.find('input[name="user[email]"]')
@@ -74,11 +75,17 @@ packCoverInit = ($cover, collectionKey) ->
   $submitButton.css 'opacity', 0
   $noticeField.css  'opacity', 0
   $emailInput.on 'focus', (event) ->
+    # Show submit button on email field focus
     $submitButton.velocity
       opacity: 1
+    $cover.data 'canCloseMenu', true
   $emailInput.on 'blur', (event) ->
-    $submitButton.velocity
-      opacity: 0
+    # If no email entered yet, hide button
+    if $emailInput.val() is ''
+      $submitButton.velocity
+        opacity: 0
+      $cover.data 'canCloseMenu', false
+      $userMenu.removeClass 'open'
   $addUserForm.on 'submit', (event) ->
     email = $emailInput.val()
     event.preventDefault()
@@ -93,7 +100,9 @@ packCoverInit = ($cover, collectionKey) ->
         addClass('user').
         text(email).
         insertBefore $cover.find('.user.add')
+      $userListLabel.removeClass 'invisible'
       $noticeField.html "Shared with #{email}" 
+      $cover.data 'canCloseMenu', false
       addUser email, collectionKey
     # Toggle label visibility after changing text
     $instructionLabel.velocity
@@ -102,16 +111,19 @@ packCoverInit = ($cover, collectionKey) ->
       opacity: 1
     # Reset notice
     setTimeout (() -> 
-      $noticeField.html "Shared with #{email}" 
       $instructionLabel.velocity
         opacity: 1
       $noticeField.velocity
-        opacity: 0
+        properties:
+          opacity: 0
+        options:
+          complete: () ->
+            $noticeField.html '' 
     ), 2000
       
   # Open/close user menu  
-  $card.mouseenter () -> $userMenu.addClass    'open'
-  $card.mouseleave () -> $userMenu.removeClass 'open'
+  $card.mouseover () -> $userMenu.addClass    'open'
+  $card.mouseout  () -> $userMenu.removeClass 'open' unless $cover.data('canCloseMenu')
 
   # dont open collection on clicking user field
   $cover.find('.addUser input[name="user[email]"]').click (event) ->

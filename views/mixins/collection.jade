@@ -62,8 +62,12 @@ mixin collectionMixin(collection)
                     a.smallType Rename
                 section.shareMenu
                   ul.users.menu.slideIn.left.canOpen.smallType
-                    if collection.Users != undefined
-                      li.user.smallType.smallCaps Shared with
+                    if collection.Users == undefined
+                      li.user
+                        label.smallType.smallCaps.invisible Shared with
+                    else
+                      li.user
+                        label.smallType.smallCaps Shared with
                       for user in collection.Users
                         li.user!=user.name
                     li.user.add
