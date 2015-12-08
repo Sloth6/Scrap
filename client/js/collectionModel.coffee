@@ -18,9 +18,11 @@ window.collectionModel =
 
     if $collection.data('hascover')
       $collection.data 'contenttype', 'pack'
+      $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
     else
       $collection.data 'contenttype', 'stack'
+      $collection.addClass 'stack'
       $content.on 'click mouseup', clickBlock
       collectionViewController.draw $collection
 

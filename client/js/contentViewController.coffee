@@ -12,7 +12,7 @@ calculatePercentToBorder = (x, e, border) ->
     percent = 0
   percent
 
-calculateX = ($content, scroll, percentToBorder) ->
+calculateX = ($content, margin, scroll, multiple) ->
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft() + margin
   maxX = $(window).width() - contentModel.getSize($content)
@@ -31,19 +31,18 @@ calculateX = ($content, scroll, percentToBorder) ->
   # x -= .0001825 * rawX
   x
 
-calculateY = ($content, jumble, percentToBorder) ->
-  jumble.translateY * percentToBorder
+calculateY = ($content, margin, jumble, multiple) ->
+  jumble.translateY * multiple
 
-calculateScale = ($content, jumble, percentToBorder) ->
+calculateScale = ($content, margin, jumble, multiple) ->
   rawX = $content.data('scrollOffset') - $(window).scrollLeft() + margin
   if rawX < sliderBorder
     1 + (rawX * .00001)
   else
     1
 
-calculateRotateZ = ($content, jumble, percentToBorder) ->
-  rotateZ = jumble.rotateZ * percentToBorder
-  rotateZ
+calculateRotateZ = ($content, margin, jumble, multiple) ->
+  jumble.rotateZ * multiple
 
 # If slider is at edge
 # if translateX + contentModel.getSize($content) < edgeWidth or translateX > $(window).width() - edgeWidth
@@ -75,14 +74,17 @@ calculateRotateZ = ($content, jumble, percentToBorder) ->
 window.contentViewController =
   draw: ($content, scroll,  options) ->
     animate = options.animate or false
-    jumble = $content.data('jumble')
+    margin = $content.data 'margin'
+    jumble = $content.data 'jumble'
+    isPack = $content.hasClass('cover') or $content.hasClass('pack')
     percentToBorder = calculatePercentToBorder(xTransform($content), $content, sliderBorder)
+    multiple = if isPack then 1 else percentToBorder
     
-    translateX = calculateX $content, scroll, percentToBorder
-    oldX       = xTransform $content, jumble, percentToBorder
-    translateY = calculateY $content, jumble, percentToBorder
-    scale      = calculateScale $content, jumble, percentToBorder
-    rotateZ    = calculateRotateZ $content, jumble, percentToBorder
+    translateX = calculateX       $content, margin, scroll, multiple
+    oldX       = xTransform       $content, margin, jumble, multiple
+    translateY = calculateY       $content, margin, jumble, multiple
+    scale      = calculateScale   $content, margin, jumble, multiple
+    rotateZ    = calculateRotateZ $content, margin, jumble, multiple
 
     velocityParams = 
       properties:

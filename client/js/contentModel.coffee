@@ -4,7 +4,7 @@ window.contentModel =
     $collection = contentModel.getCollection $content
     makeDraggable $content
     makeDeletable $content
-            
+    
     switch $content.data('contenttype')
       when 'text'       then initText $content
       when 'video'      then initVideo $content
@@ -51,13 +51,20 @@ window.contentModel =
     return collectionModel.getState($collection).collectionKey
 
   setJumble: ($content) ->
-    isCover           = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
-    normalTranslateY  = (Math.random() - .5) * $(window).height() / 12
+    isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
+    isPack = $content.hasClass('cover') or $content.hasClass('pack')
+    normalTranslateY  = (Math.random() - .5) * $(window).height() / 8
     normalRotateZ     = (Math.random() - .5) * 4
-    coverTranslateY   = (Math.random() - .5) * $(window).height()
-    coverRotateZ      = (Math.random() - .5) * 22
+    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 2) + $(window).height() / 8
+    coverRotateZ      = (Math.random() - .5) * 45
+    
+    margin =  if isPack then packMargin else articleMargin
+    $content.data 'margin', margin
+    console.log 'margin', margin
+    
     $content.data 'jumble', {
-      'translateY': if isCover then coverTranslateY else normalTranslateY
-      'rotateZ':    if isCover then coverRotateZ    else normalRotateZ
+      'translateY': if isPack then coverTranslateY else normalTranslateY
+      'rotateZ':    if isPack then coverRotateZ else normalRotateZ
       'scale': 1
     }
+

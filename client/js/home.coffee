@@ -1,11 +1,12 @@
 openCollectionCurve     = [20, 10]
 openCollectionDuration  = 1000
 
-marginTop    = $(window).height() * 0.125
-margin       = 32
-sliderBorder = $(window).width() * 0.15
-edgeWidth    = 48
-marginAfter  = $(window).width()/2
+marginTop       = $(window).height() * 0.125
+articleMargin   = 24
+packMargin      = 120
+sliderBorder    = $(window).width() * 0.15
+edgeWidth       = 48
+marginAfter     = $(window).width()/2
 
 collectionPath = []
 

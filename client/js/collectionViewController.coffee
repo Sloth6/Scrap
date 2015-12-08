@@ -18,7 +18,7 @@ drawOpenCollection = ($collection, animate) ->
     # else
     $(@).css { zIndex: zIndex++ }
     contentViewController.draw $(@), null, { animate }
-    sizeTotal += contentModel.getSize($(@)) + margin
+    sizeTotal += contentModel.getSize($(@)) + $(@).data 'margin'
   
   contentModel.setSize $collection, sizeTotal
   $(document.body).css { width: sizeTotal }
