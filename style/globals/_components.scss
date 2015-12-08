@@ -215,9 +215,25 @@ a, input[type=submit], input[type=button] {
 }
 
 .backButton {
+    &:hover {
+        a span {
+            @include transform(translate3d(12px, 0px, 0px));
+        }
+    }
+    
     a {
         font-size: $typeHeaderSize * 2;
         font-weight: $fontWeightThin;
+        display: block;
+        
+        span {
+            display: inline-block;
+            @include transform(translate3d(0px, 0px, 0px));
+            @include transition(.25s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
+        }
     }
 }
 
