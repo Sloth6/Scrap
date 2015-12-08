@@ -54,8 +54,8 @@ window.contentModel =
     isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     normalTranslateY  = (Math.random() - .5) * $(window).height() / 8
-    normalRotateZ     = (Math.random() - .5) * 4
-    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 2) + $(window).height() / 8
+    normalRotateZ     = (Math.random() - .5) * 20
+    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 8
     coverRotateZ      = (Math.random() - .5) * 45
     
     margin =  if isPack then packMargin else articleMargin

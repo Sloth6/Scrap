@@ -40,9 +40,10 @@ drawClosedStack = ($collection, spacing = 15) ->
   translateY = 0
   zIndex     = $content.length
   sizeTotal  = 0
+  rotateZ    = 0
   $content.each () ->
     $(@).
-      velocity({ translateX, translateY })
+      velocity({ translateX, translateY, rotateZ })
       # css({ zIndex: zIndex++, 'overflow': 'hidden' }).
       # width(Math.min($(@).width(), 300))
     
@@ -121,8 +122,11 @@ window.collectionViewController =
       $collectionContent.add($collectionAddForm).velocity
 #         opacity: [1, 0]
         translateY: 0
-#         x: [ xTransform($cover), xOfSelf ]
+#         translateX: [ xTransform($cover), xOfSelf ]
     else
+      $collection.velocity
+        properties:
+          rotateZ: 0
 #       $cover.hide()
       # Show the add article Form.
       $collectionAddForm.show()
@@ -166,11 +170,20 @@ window.collectionViewController =
     if $collection.data('contenttype') == 'pack'
       # The size of the collection will be reset to just the cover
       contentModel.setSize $collection, null
+      $collectionCover.css 'zIndex', 99999
       $collectionAddForm.velocity
-        properties: { opacity: [0, 1] }
+        properties:
+#           opacity: [0, 1]
+          rotateZ: 0
+          translateX: 0
+          translateY: 0
         options: { complete: () -> $(@).hide() }
       $collectionContent.velocity
-        properties: { opacity: [0, 1] }
+        properties:
+#           opacity: [0, 1]
+          rotateZ: 0
+          translateX: 0
+          translateY: 0
         options: { complete: () -> $(@).remove() }
     else
       $collectionCover.show()
