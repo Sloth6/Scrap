@@ -83,7 +83,7 @@ $headerLeftMarginOffset:
 @mixin typeLarge {
     font-family:    $fontFamily;
     font-size:      $typeLargeSize;
-    font-weight:    $fontWeightRegular;
+    font-weight:    $fontWeightLight;
     line-height:    $typeLargeLeading;
     letter-spacing: -(1em / 64);
 }
@@ -141,13 +141,13 @@ $headerLeftMarginOffset:
 }
 
 @mixin typeOutlineClear {
-    -webkit-text-stroke: .5pt $colorType;
+    -webkit-text-stroke: 1px $colorType;
     -webkit-text-fill-color: transparent;
 }
 
 @mixin typeOutlineFillBlack {
     -webkit-text-fill-color: $colorType !important;
-    -webkit-text-stroke: .5pt $colorType;
+    -webkit-text-stroke: 1px $colorType;
 }
 
 html {

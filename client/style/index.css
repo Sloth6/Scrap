@@ -648,7 +648,7 @@ html {
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
@@ -686,14 +686,14 @@ html {
 
 /* line 197, ../../style/globals/_type.scss */
 .typeOutlineClear {
-  -webkit-text-stroke: 0.5pt #000000;
+  -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
 /* line 202, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
-  -webkit-text-stroke: 0.5pt #000000;
+  -webkit-text-stroke: 1px #000000;
 }
 
 /* line 209, ../../style/globals/_type.scss */
@@ -1652,7 +1652,7 @@ body article.text .editable {
 body article.text.short .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24pt;
   letter-spacing: -0.01563em;
   margin-top: -1pt;
@@ -2114,7 +2114,7 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
 /* line 30, ../../style/layout/_home.scss */
 .cover .card.hover section.title h1.typeTitle, .cover .card.editing section.title h1.typeTitle, .cover.card.hover section.title h1.typeTitle, .cover.card.editing section.title h1.typeTitle {
   -webkit-text-fill-color: #000000 !important;
-  -webkit-text-stroke: 0.5pt #000000;
+  -webkit-text-stroke: 1px #000000;
 }
 /* line 37, ../../style/layout/_home.scss */
 .cover .card.hover ul.users, .cover.card.hover ul.users {
