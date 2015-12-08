@@ -35,11 +35,12 @@ calculateY = ($content, margin, jumble, multiple) ->
   jumble.translateY * multiple
 
 calculateScale = ($content, margin, jumble, multiple) ->
+  scale = 1 # jumble.scale
   rawX = $content.data('scrollOffset') - $(window).scrollLeft() + margin
   if rawX < sliderBorder
-    1 + (rawX * .00001)
+    scale + (rawX * .0001)
   else
-    1
+    scale
 
 calculateRotateZ = ($content, margin, jumble, multiple) ->
   jumble.rotateZ * multiple
@@ -78,7 +79,7 @@ window.contentViewController =
     jumble = $content.data 'jumble'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     percentToBorder = calculatePercentToBorder(xTransform($content), $content, sliderBorder)
-    multiple = if isPack then 1 else percentToBorder
+    multiple = if isPack then 1 else percentToBorder # don't straighten packs on scroll
     
     translateX = calculateX       $content, margin, scroll, multiple
     oldX       = xTransform       $content, margin, jumble, multiple

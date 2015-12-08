@@ -65,6 +65,6 @@ window.contentModel =
     $content.data 'jumble', {
       'translateY': if isPack then coverTranslateY else normalTranslateY
       'rotateZ':    if isPack then coverRotateZ else normalRotateZ
-      'scale': 1
+      'scale':     .95
     }
 

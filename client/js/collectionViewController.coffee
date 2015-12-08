@@ -105,7 +105,14 @@ window.collectionViewController =
     
     # The root collection has nothing to push off. 
     if $parentCollection
-      collectionViewController.pushOffScreen $parentCollection, $collection
+      collectionViewController.pushOffScreen $parentCollection, $collection      
+      if $parentCollection.hasClass 'root'
+        $parentCollection.velocity
+          properties:
+            scale: [1, .5]
+          options:
+            duration: openCollectionDuration
+            easing: openCollectionCurve
 
     # Make sure cover is above its children during transition
     $cover.css 'z-index': 999
@@ -122,6 +129,7 @@ window.collectionViewController =
       $collectionContent.add($collectionAddForm).velocity
 #         opacity: [1, 0]
         translateY: 0
+        rotateZ: 0
 #         translateX: [ xTransform($cover), xOfSelf ]
     else
       $collection.velocity
@@ -166,6 +174,10 @@ window.collectionViewController =
     $parentCollection.addClass('open').removeClass 'closed'
     $parentCollectionContent.show()
     $parentCollectionAddForm.show()
+    
+    if $parentCollection.hasClass 'root'
+      $parentCollection.velocity
+        scale: [.5, 1]
 
     if $collection.data('contenttype') == 'pack'
       # The size of the collection will be reset to just the cover

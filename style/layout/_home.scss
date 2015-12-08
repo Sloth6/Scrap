@@ -1,5 +1,12 @@
-.cover {
-	
+article.cover {
+    
+    
+    .scale {
+        @include transform(scale(2));
+        transform-origin: top left;
+        -webkit-transform-origin: top left;
+    }
+    
     &.root {
   	    display: none;
     }
@@ -56,7 +63,7 @@
 		}
 	          		
 		.background {
-    		@include coverBackground;
+      		@include coverBackground;
 		}
 	
 		section.title {
@@ -74,7 +81,7 @@
             margin-right: $cardPaddingRight/2;
             outline: 0;
             word-wrap: break-word;
-      		@include transform(translate(0px, 0px));
+          		@include transform(translate(0px, 0px));
             @include transition(.25s $defaultCurve);
             @include transition-property(transform,
                                  -webkit-transform,
