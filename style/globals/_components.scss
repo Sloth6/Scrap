@@ -132,10 +132,16 @@ $cardBorderRadius:          0; // $cell/4;
 
 a, input[type=submit], input[type=button] {
     @include linkReset;
+    @include transition(opacity .25s $defaultCurve);
+    
+    &:hover {
+        opacity: .25;
+    }
     
     &.action {
         &:hover {
             @include hoverLinkAnimation;
+            opacity: 1;
         }
     }
     
@@ -143,14 +149,18 @@ a, input[type=submit], input[type=button] {
         
         &:hover {
             @include hoverWarningAnimation;
+            opacity: 1;
         }
     }
     
+/*
     &.confirm {
         &:hover {
             @include hoverConfirmAnimation;
+            opacity: 1;
         }
     }
+*/
 }
 
 .invertHover {

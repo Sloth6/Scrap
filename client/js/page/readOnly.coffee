@@ -1,4 +1,25 @@
+initForm = () ->
+  $toggleButton = $('a.formToggle')
+  $forms        = $('section.form ul.form')
+  $logInForm    = $('section.form ul.form.logIn')
+  $signUpForm   = $('section.form ul.form.signUp')
+  $currentForm  = $logInForm
+  toggleForm = () ->
+    $forms.not($currentForm).hide()
+    $currentForm.show()
+    if $currentForm is $logInForm
+      $toggleButton.html('Create account')
+      $currentForm = $signUpForm
+    else
+      $toggleButton.html('Sign in')
+      $currentForm = $logInForm
+  toggleForm()
+  $toggleButton.on 'click', () ->
+    event.preventDefault()
+    toggleForm()
+
 $ ->
+  initForm();
   setTimeout( () ->
     $('section.form').velocity
       properties:
