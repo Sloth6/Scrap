@@ -11,9 +11,13 @@ mixin addArticleFormMixin(collection)
           ul
             li.button.closed.upload.bodyType
               a.label.action(href='#') Upload a file
-              form(action='http://scrap_images.s3.amazonaws.com',method='post',enctype='multipart/form-data',class='direct-upload')
+              form.upload(
+                action='http://scrap_images.s3.amazonaws.com',
+                method='post',
+                enctype='multipart/form-data',
+              )
                 input(type='hidden', name='key')
-                input(type='hidden', name='AWSAccessKeyId', value="AKIAJKJJR5OLTKWMMHSA")
+                input(type='hidden', name='AWSAccessKeyId', value="AKIAJJUKCX2M4XUDUEQA")
                 input(type='hidden', name='acl', value='public-read')
                 input(type='hidden', name='policy')
                 input(type='hidden', name='signature')

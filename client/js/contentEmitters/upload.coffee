@@ -1,9 +1,8 @@
 formatName = (name) ->
   name.split('/').pop().replace(/\s/g, '+')
 
-fileuploadOptions = (collection, collectionKey) ->
+fileuploadOptions = (collectionKey) ->
   multipart = false
-
   url: "http://scrapimagesteamnap.s3.amazonaws.com" # Grabs form's action src
   type: 'POST'
   autoUpload: true
@@ -19,9 +18,8 @@ fileuploadOptions = (collection, collectionKey) ->
         collectionKey: collectionKey
       async: false
       success: (success_data) ->
-        console.log success_data.path
+        console.log success_data
         # file_name = formatName(success_data.key)
-        # createLoadingArticle locations[file_name], file_name
 
         # Now that we have our data, we update the form so it contains all
         # the needed data to sign the request
@@ -45,8 +43,6 @@ fileuploadOptions = (collection, collectionKey) ->
     console.log 'fail', e, data
 
   success: (data) ->
-    # Find location value from XML response
-    content = decodeURIComponent $(data).find('Location').text()
-    # file_name = content.split('/').pop()
-    # { x, y } = locations[file_name]
-    emitNewArticle content, collectionKey
+    # Get the S3 url from XML response
+    url = decodeURIComponent $(data).find('Location').text()
+    emitNewArticle url, collectionKey

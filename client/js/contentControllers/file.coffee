@@ -1,14 +1,17 @@
-initFile = (elems) ->
-  elems.mousedown (e) ->
-    $(@).data 'lastX', e.clientX
-    $(@).data 'lastY', e.clientY
+initFile = (article) ->
+  button = article.find('a.download')
+  
+  button.mousedown (event) ->
+    $(@).data 'lastX', event.clientX
+    $(@).data 'lastY', event.clientY
 
-  elems.mouseup (e) ->
-    return if $(@).data('lastX') != e.clientX
-    return if $(@).data('lastY') != e.clientY
-    uri = $(@).data 'content'
+  button.mouseup (event) ->
+    return if $(@).data('lastX') != event.clientX
+    return if $(@).data('lastY') != event.clientY
+    event.preventDefault()
+    uri = article.data 'content'
     name = uri.split('/').pop()
-    link = document.createArticle "a"
+    link = document.createElement "a"
     link.download = name
     link.href = uri
     link.click()

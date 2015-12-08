@@ -4,10 +4,8 @@ uuid = require('node-uuid')
 moment = require('moment')
 async = require 'async'
 
-config = 
-  redirect_host:  "http://localhost:3000/" #Host to redirect after uploading
-  host:  "s3.amazonaws.com" #S3 provider host
-  max_filesize:  20971520 #Max filesize in bytes (default 20MB)
+config_path = __dirname+'/../config.json'
+config = JSON.parse(require('fs').readFileSync(config_path, 'utf8'))
 
 formatCollection = (collection) ->
   articles = collection.Articles or []
@@ -57,34 +55,33 @@ module.exports =
         callback null
 
   uploadFile : (req, res, app, callback) ->
-    { type, title, collectionKey } = req.query
+    { title, type, collectionKey } = req.query
     title = title or 'undefined'
-    console.log title, type, collectionKey
-
+    
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
-    file_key = uuid.v4() # Generate uuid for filename
+    file_key = uuid.v4().split('-')[0] # Generate uuid for filename
+    path = "collections/#{collectionKey}/#{file_key}/#{title}"
 
     # Creates the JSON policy according to Amazon S3's CORS uploads specfication (http://aws.amazon.com/articles/1434)
     policy = JSON.stringify({
       "expiration": expire
       "conditions": [
-        {"bucket": config.aws_bucket}
-        ["eq", "$key", collectionKey + "/" + file_key + "/" + title]
+        {"bucket": config.bucket}
+        ["eq", "$key", path]
         {"acl": "public-read"}
         {"success_action_status": "201"}
         ["starts-with", "$Content-Type", type]
-        ["content-length-range", 0, config.max_filesize]
+        ["content-length-range", 0, config.maxFilesize]
       ]
     })
-
-    base64policy = new Buffer(policy).toString('base64'); # Create base64 policy
-    signature = crypto.createHmac('sha1', config.aws_secret).update(base64policy).digest('base64'); # Create signature
+    base64policy = new Buffer(policy).toString('base64') # Create base64 policy
+    signature = crypto.createHmac('sha1', config.secretAccessKey).update(base64policy).digest('base64') # Create signature
 
     # Return JSON View
     res.json {
       policy: base64policy
       signature: signature
-      path: (collectionKey + "/" + file_key + "/" + title)
+      path: path
       success_action_redirect: "/"
       contentType: type
     }

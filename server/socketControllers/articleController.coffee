@@ -85,18 +85,18 @@ module.exports =
         WHERE \"id\"=:id
         RETURNING \"contentType\", content, \"CollectionId\"
       "
-    models.sequelize.query(q1, replacements: { id }).then (results) ->
+    models.sequelize.query(q1, replacements: { id }).done (err, results) ->
+      return console.log('error deleting article') if err?
+      
       console.log 'emiting deleteArticle', { id, collectionKey }
       sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
-      callback null
-      # type = results[0].contentType
-      # content = results[0].content
-      # if type in ['gif', 'image']
-      #   s3.deleteImage { collectionKey, key: content, type }, (err) ->
+      { contentType, content } = results[0][0]
+      # if contentType in ['gif', 'image']
+      #   s3.deleteImage { collectionKey, key: content, contentType }, (err) ->
       #     console.log err if err
-      # if type in ['file', 'video']
-      #   s3.delete {key: content}, (err) ->
-      #     console.log err if err
+      if contentType in ['file', 'video', 'image']
+        s3.delete content, (err) ->
+          console.log err if err
 
   moveToCollection: (sio, socket, data, callback) ->
     { elemId, collectionKey } = data

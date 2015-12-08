@@ -50,7 +50,7 @@ mixin articleMixin(article)
             when 'video'
               video()
                 source(src=article.content)
-                img(src=article.content+'.png')
+                //- img(src=article.content+'.png')
             
             when 'soundcloud'
               -var content = JSON.parse(article.content)

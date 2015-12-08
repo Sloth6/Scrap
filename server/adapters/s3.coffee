@@ -4,9 +4,6 @@ AWS.config.loadFromPath __dirname+'/../config.json'
 s3 = new AWS.S3()
 Bucket = 'scrapimagesteamnap'
 async = require 'async'
-
-# s3obj = new AWS.S3({params: {Bucket, Key: "#collectionKey/screenshot.jpg"}})
-# console.log s3obj.upload
 Stream = require('stream');
 
 module.exports = 
@@ -22,7 +19,8 @@ module.exports =
 
   # getImage: 
 
-  delete: ({key}, cb) ->
+  delete: (url, cb) ->
+    key = url.split('s3.amazonaws.com/')[1]
     s3.deleteObject { Bucket, Key: key }, cb
     
   uploadCollectionPreview: ({collectionKey, stream}, callback) ->
