@@ -2,7 +2,32 @@ include article
 include addCollectionForm
 include addArticleForm
 
+-
+  function formatCollection(collection) {
+    var articles = collection.Articles || []
+    var children = collection.children || []
+    var articleOrder = collection.articleOrder
+
+    collection.content = articles.concat(children)
+          
+    collection.content.sort(function(a, b){ 
+      if (a instanceof models.Collection.Instance) {
+        a_i = articleOrder.indexOf(a.collectionKey)
+      } else {
+        a_i = articleOrder.indexOf("#{a.id}")
+      }
+      if (b instanceof models.Collection.Instance){
+        b_i = articleOrder.indexOf(b.collectionKey)
+      } else {
+        b_i = articleOrder.indexOf("#{b.id}")
+      }
+      return ((a_i > b_i) ? 1 : -1)
+    })
+    return collection
+  }
+
 mixin collectionContentMixin(collection)
+  //- - collection = collection
   if collection.content !== undefined
     each content in collection.content
       if content.collectionKey !== undefined
