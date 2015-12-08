@@ -2232,7 +2232,7 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
 }
 /* line 131, ../../style/layout/_home.scss */
 .cover .card ul.users li.add, .cover.card ul.users li.add {
-  width: 50%;
+  width: 100%;
   margin-top: 8pt;
 }
 /* line 135, ../../style/layout/_home.scss */
@@ -2242,15 +2242,13 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
 /* line 139, ../../style/layout/_home.scss */
 .cover .card ul.users li.add input[type=email], .cover.card ul.users li.add input[type=email] {
   padding-right: 24pt;
-  width: auto;
+  float: left;
+  width: 50%;
 }
-/* line 144, ../../style/layout/_home.scss */
+/* line 145, ../../style/layout/_home.scss */
 .cover .card ul.users li.add input[type=submit], .cover.card ul.users li.add input[type=submit] {
-  position: absolute;
-  bottom: 0;
   height: 14pt;
   width: 32pt;
-  right: -32pt;
   padding-left: 8pt;
   opacity: .25;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -2258,7 +2256,7 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 154, ../../style/layout/_home.scss */
+/* line 152, ../../style/layout/_home.scss */
 .cover .card ul.users li.add input[type=submit]:hover, .cover.card ul.users li.add input[type=submit]:hover {
   opacity: 1;
 }

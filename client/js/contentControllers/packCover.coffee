@@ -79,7 +79,7 @@ packCoverInit = ($cover, collectionKey) ->
         addClass('user').
         text(email).
         insertBefore $cover.find('.user.add')
-      textField.html 'An invite has been sent'
+      textField.html "Shared with #{email}" 
       addUser email, collectionKey
       
   # Open/close user menu  

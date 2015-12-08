@@ -129,7 +129,7 @@
         @include transition(opacity .25s $defaultCurve);
         
         li.add {
-            width: 50%;
+            width: 100%;
             margin-top: $cell;
         
             label {
@@ -138,16 +138,14 @@
             
             input[type=email] {
                 padding-right: $cell * 3;
-                width: auto;
+                float: left;
+                width: 50%;
             }
             
             input[type=submit] {
-                position: absolute;
-                bottom: 0;
                 height: $typeSmallLeading + 2pt;
                 width: $cell * 4;
-                right: -$cell * 4;
-                padding-left: $cell;
+                padding-left: $cardPaddingLeft;
                 opacity: .25;
                 @include transition(opacity $defaultCurve .25s);
                 
