@@ -1,5 +1,5 @@
 models = require '../../../models'
-thumbnails = require '../../modules/thumbnails.coffee'
+# thumbnails = require '../../modules/thumbnails.coffee'
 
 module.exports = (collectionKey, attributes, callback) ->
   original_url = attributes.content

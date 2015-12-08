@@ -2,51 +2,51 @@ addUser = (email, collectionKey) ->
   console.log "inviting #{email} to #{collectionKey}"
   socket.emit 'inviteToCollection', { email, collectionKey }
 
-stopEditing = (cover) ->
-  return unless cover.hasClass('editing')
-  title  = cover.find('.collectionTitle')
-  card   = cover.find('.card')
-  collectionKey = cover.parent().data 'collectionkey'
-  rename   = cover.find('.rename')
-  userMenu = card.find('ul.menu')
+stopEditing = ($cover) ->
+  return unless $cover.hasClass('editing')
+  collectionKey = $cover.parent().data 'collectionkey'
+  $title        = $cover.find('.collectionTitle')
+  $card         = $coverCard
+  $renameButton = $cover.find('.rename')
+  $userMenu     = $card.find('ul.menu')
 
-  cover.removeClass 'editing'
-  cover.addClass 'colored'
-  card.removeClass 'editing'
-  card.removeClass 'hover'
-  rename.css('opacity', '')
+  $cover.removeClass  'editing'
+  $cover.addClass     'colored'
+  $card.removeClass   'editing'
+  $card.removeClass   'hover'
+  $renameButton.css('opacity', '')
   
   # Make user menu accessible after renaming
-  userMenu.addClass 'canOpen'
-  rename.children('a').text 'Rename'
-  title.attr 'contenteditable', false
-  socket.emit 'renameCover', { collectionKey, name: title.text() }
+  $userMenu.addClass 'canOpen'
+  $renameButton.children('a').text 'Rename'
+  $title.attr 'contenteditable', false
+  socket.emit 'renameCover', { collectionKey, name: $title.text() }
 
-startEditing = (cover) ->
-  title  = cover.find('.collectionTitle')
-  card   = cover.find('.card')
-  collectionKey = cover.parent().data 'collectionkey'
-  rename   = cover.find('.rename')
-  userMenu = card.find('ul.menu')
+startEditing = ($cover) ->
+  collectionKey   = $cover.parent().data 'collectionkey'
+  $title          = $cover.find('.collectionTitle')
+  $card           = $coverCard
+  $renameButton   = $cover.find('.rename')
+  $userMenu       = $card.find('ul.menu')
 
-  cover.addClass 'editing'
-  cover.removeClass 'colored'
-  card.addClass 'editing'
-  card.addClass 'hover'
-  rename.css('opacity', '1')
+  $cover.addClass 'editing'
+  $cover.removeClass 'colored'
+  $card.addClass 'editing'
+  $card.addClass 'hover'
+  $renameButton.css('opacity', '1')
     
   # Make user menu inaccessible during renaming
-  userMenu.removeClass 'canOpen'
-  userMenu.removeClass 'open'
+  $userMenu.removeClass 'canOpen'
+  $userMenu.removeClass 'open'
 
-  rename.children('a').text 'Save'
-  title.attr('contenteditable', true).focus()
-  # title.blur () ->
+  $renameButton.children('a').text 'Save'
+  $title.attr('contenteditable', true).focus()
+  # $title.blur () ->
   #   console.log 'blur'
-  #   stopEditing cover, title
-  cover.keypress (e) ->
+  #   stopEditing $cover, $title
+  $cover.keypress (e) ->
     if e.which == 13
-      stopEditing cover, title
+      stopEditing $cover, $title
       false
 
 coverClick = (event) ->
@@ -54,19 +54,22 @@ coverClick = (event) ->
   if $(@).hasClass('editing')
     event.stopPropagation()
 
-packCoverInit = (cover, collectionKey) ->
-  cover.click coverClick
+packCoverInit = ($cover, collectionKey) ->
+  $coverCard    = $cover.find('.card')
+  $userMenu     = $cover.find('.menu')
+  $renameButton = $cover.find('.rename')
 
-  rename = cover.find('.rename')
-  rename.find('a').click (event) ->
+  $cover.click coverClick
+        
+  # Renaming covers
+  $renameButton.find('a').click (event) ->
     event.stopPropagation()
-    if cover.hasClass('editing') then stopEditing cover else startEditing cover
+    if $cover.hasClass('editing') then stopEditing cover else startEditing $cover
   # submit on enter
-  cover.find('.addUser').on 'submit', (event) ->
+  $cover.find('.addUser').on 'submit', (event) ->
     event.preventDefault()
     input = $('input[name="user[email]"]', @)
     textField = $(@).children('label')
-    
     email = input.val()
     if !validateEmail(email) 
       textField.html 'Please enter a valid email'
@@ -75,18 +78,18 @@ packCoverInit = (cover, collectionKey) ->
       $('<li>').
         addClass('user').
         text(email).
-        insertBefore cover.find('.user.add')
+        insertBefore $cover.find('.user.add')
       textField.html 'An invite has been sent'
       addUser email, collectionKey
-  
-  cover.find('ul.menu').each () ->
-    cover.mouseenter () => $(@).addClass 'open' if $(@).hasClass 'canOpen'
-    cover.mouseleave () => $(@).removeClass 'open' if $(@).hasClass 'canOpen'
+      
+  # Open/close user menu  
+  $coverCard.mouseenter () -> $userMenu.addClass    'open'
+  $coverCard.mouseleave () -> $userMenu.removeClass 'open'
 
   # dont open collection on clicking user field
-  cover.find('.addUser input[name="user[email]"]').click (event) ->
+  $cover.find('.addUser input[name="user[email]"]').click (event) ->
     event.stopPropagation()
 
   # dont open collection on submit
-  cover.find('.addUser input:submit').click (event) ->
+  $cover.find('.addUser input:submit').click (event) ->
     event.stopPropagation()
