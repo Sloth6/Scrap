@@ -54,21 +54,23 @@ mixin collectionMixin(collection)
             a.articleDeleteButton.warning.bodyType.smallCaps Delete
           if collection.hasCover
             .transform
-              .card.cardHover.cardDrag.colored(style='background-color:'+collection.color)
+              .card.cover.cardHover.cardDrag.colored(style='background-color:'+collection.color)
                 section.title
                   h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name
                   h2.peekTitle.bodyType.typeBody.typeWeightBold!=collection.name
                   p.rename
                     a.smallType Rename
-                ul.users.menu.slideIn.left.canOpen
-                  if collection.Users != undefined
-                    for user in collection.Users
-                      li.user!=user.name
-                  li.user.add
-                    form.addUser(data-collectionkey=collection.collectionKey)
-                      input(type="email", name="user[email]", placeholder="email")
-                      input(type="submit", value="→")
-                      label.smallType.smallCaps Share this pack
+                section.shareMenu
+                  ul.users.menu.slideIn.left.canOpen.smallType
+                    if collection.Users != undefined
+                      li.user.smallType.smallCaps Shared with
+                      for user in collection.Users
+                        li.user!=user.name
+                    li.user.add
+                      form.addUser(data-collectionkey=collection.collectionKey)
+                        label.smallType.smallCaps Add someone to this Pack
+                        input.smallType(type="email", name="user[email]", placeholder="Mail")
+                        input.smallType(type="submit", value="Send")
 
     .contentContainer(style='z-index:1;')
       +collectionContentMixin(collection)

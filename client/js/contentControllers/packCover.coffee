@@ -6,7 +6,7 @@ stopEditing = ($cover) ->
   return unless $cover.hasClass('editing')
   collectionKey = $cover.parent().data 'collectionkey'
   $title        = $cover.find('.collectionTitle')
-  $card         = $coverCard
+  $card         = $cover.find('.card')
   $renameButton = $cover.find('.rename')
   $userMenu     = $card.find('ul.menu')
 
@@ -25,7 +25,7 @@ stopEditing = ($cover) ->
 startEditing = ($cover) ->
   collectionKey   = $cover.parent().data 'collectionkey'
   $title          = $cover.find('.collectionTitle')
-  $card           = $coverCard
+  $card           = $cover.find('.card')
   $renameButton   = $cover.find('.rename')
   $userMenu       = $card.find('ul.menu')
 
@@ -55,7 +55,7 @@ coverClick = (event) ->
     event.stopPropagation()
 
 packCoverInit = ($cover, collectionKey) ->
-  $coverCard    = $cover.find('.card')
+  $card         = $cover.find('.card')
   $userMenu     = $cover.find('.menu')
   $renameButton = $cover.find('.rename')
 
@@ -64,7 +64,7 @@ packCoverInit = ($cover, collectionKey) ->
   # Renaming covers
   $renameButton.find('a').click (event) ->
     event.stopPropagation()
-    if $cover.hasClass('editing') then stopEditing cover else startEditing $cover
+    if $cover.hasClass('editing') then stopEditing $cover else startEditing $cover
   # submit on enter
   $cover.find('.addUser').on 'submit', (event) ->
     event.preventDefault()
@@ -79,12 +79,12 @@ packCoverInit = ($cover, collectionKey) ->
         addClass('user').
         text(email).
         insertBefore $cover.find('.user.add')
-      textField.html 'An invite has been sent'
+      textField.html "Shared with #{email}" 
       addUser email, collectionKey
       
   # Open/close user menu  
-  $coverCard.mouseenter () -> $userMenu.addClass    'open'
-  $coverCard.mouseleave () -> $userMenu.removeClass 'open'
+  $card.mouseenter () -> $userMenu.addClass    'open'
+  $card.mouseleave () -> $userMenu.removeClass 'open'
 
   # dont open collection on clicking user field
   $cover.find('.addUser input[name="user[email]"]').click (event) ->
