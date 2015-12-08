@@ -78,14 +78,16 @@ window.collectionViewController =
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ (() -> -contentModel.getSize($(@))), xOfSelf ]
-        translateY: [yOfSelf, yOfSelf]
+        translateY: [0, yOfSelf]
+        rotateZ:    0
       options: { complete: () -> $(@).hide() }
 
     $contentsAfter.add($addForm).velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ $(window).width(), xOfSelf ]
-        translateY: [yOfSelf, yOfSelf]
+        translateY: [0, yOfSelf]
+        rotateZ:    0
       options: { complete: () -> $(@).hide() }
 
     # Mark collection so no longer being open 
@@ -112,6 +114,10 @@ window.collectionViewController =
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
     if $collection.data('contenttype') == 'pack'
+      $collection.velocity
+        properties:
+          translateY: 0
+          rotateZ: 0
       $collectionContent.add($collectionAddForm).velocity
 #         opacity: [1, 0]
         translateY: 0
@@ -122,7 +128,7 @@ window.collectionViewController =
       $collectionAddForm.show()
       $collectionContent.show()
 
-    # When opeing a collection, it no longer slides but is fixed to start
+    # When opening a collection, it no longer slides but is fixed to start
     $collection.velocity { translateX: 0 }
 
     # Mark collection as open. 
