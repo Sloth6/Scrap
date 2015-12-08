@@ -4,7 +4,6 @@ $cardPaddingTop:        $cell;
 $cardPaddingRight:      $cell;
 $cardPaddingBottom:     $cell;
 $cardPaddingLeft:       $cell;
-
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
@@ -12,15 +11,15 @@ $articleSideNarrow:     $col * 3;
 $articleSide:           $col * 4;
 $articleSideWide:       $col * 5;
 $articleWidthVideo:     $col * 24;
-
 $articleMinHeight:      $articleSideNarrow;
 
 $coverWidth:            $articleSide;
 $coverHeight:           $col * 6;
 
 
-$menuWidth: $articleSide;
-$menuItemHeight: $leading;
+$menuWidth:             $articleSideNarrow;
+$menuItemHeight:        $leading;
+$menuOffsetX:           $menuWidth * 1.5;
 
 $cardHoverScaleMin: scale3d(1.015125, 1.015125, 1.015125);
 $cardHoverScaleMax: scale3d(1.15,  1.15,  1.15);
@@ -283,14 +282,16 @@ input {
 
 .slideIn {
     li {
-        opacity: 0;
+//         opacity: 0;
     }
+    
     &.open {
         li {
             opacity: 1;
             
         }
     }
+    
     &.left {
         li, &.open li.hidden {
             @include transform(translate3d(-$col * 2, 0.0, 0.0));
@@ -339,21 +340,8 @@ input {
         > li {
 
             &.first {
-            position: absolute;
-            }
-        }
-        
-        &.right {            
-            &.open {
-                > li.first {
-                    @include transform(translate3d($col * 2, 0.0, 0.0));
-                    opacity: 0;
-                }
-            }
-        
-            > li.first {
-                right: $cardPaddingRight;
-                @include transform(translate3d(0.0, 0.0, 0.0));
+                position: absolute;
+                top: $gutter;
             }
         }
         
@@ -364,58 +352,77 @@ input {
                     opacity: 0;
                 }
             }
-
+        
             > li.first {
                 left: $cardPaddingRight;
                 @include transform(translate3d(-$col * 2, 0.0, 0.0));
+            }
+        }
+        
+        &.right {            
+            &.open {
+                > li.first {
+                    @include transform(translate3d($menuOffsetX + $col, 0.0, 0.0) rotate(0));
+                    opacity: 0;
+                }
+            }
+        
+            > li.first {
+                        transform-origin: $menuOffsetX top;
+                -webkit-transform-origin: $menuOffsetX top;
+                @include transform(translate3d(-$menuOffsetX, $col/2, 0.0) rotate(-11deg));
+                right: 0;
             }
         }
     }
 }
 
 ul.headerMenu {
+    overflow: visible;
     position: absolute;
     display: inline-block;
     white-collection: nowrap;
     border: $cardBorder;
     border-color: transparent;
     background: $colorCardBackground;
-    width: 0;
     top: -$cardBorderWidth;
+    width: $menuWidth;
     @include typeBody;
     @include transition(1s $defaultCurve);
-    @include transition-property(left, right, background, border, width, padding);
+    @include transition-property(left, right, background, border, width, padding, transform, -webkit-transform, -moz-transform);
         
     &.left {
         float: left;
-        left: -$cardBorderWidth * 2;
+                transform-origin: right top;
+        -webkit-transform-origin: right top;
+        left: 0;
+        @include transform(translate3d(-$menuOffsetX, -$col, 0.0) rotateZ(-11deg));
     }
     
     &.right {
-        right: -$cardBorderWidth * 2;
+                transform-origin: left top;
+        -webkit-transform-origin: left top;
+        right: 0;
+        @include transform(translate3d($menuOffsetX, -$col, 0.0) rotateZ(11deg));
     }
     
     &.hidden {
         
         &.left {
-            left: -$menuWidth * 1.5;
+            @include transform(translate3d(-$menuOffsetX, 0.0, 0.0) rotateZ(0));
         }
         
         &.right {
-            right: -$menuWidth * 1.5;
+            @include transform(translate3d($menuOffsetX, 0.0, 0.0) rotateZ(0));
         }
     }
     
     &.open {
         border-color: $cardBorderColor;
-        width: $articleSideNarrow;
         padding: $cardPadding;
+        @include transform(translate3d(0.0, 0.0, 0.0) scale3d(1.0, 1.0, 1.0));
         
-        &.wide {
-            width: $articleSideWide;
-        }
-        
-         &.paddingBottom{
+        &.paddingBottom{
             padding-bottom: $broadMargin;
         }
         
