@@ -9,9 +9,9 @@ $colorWashLightTrans40:     rgba(255,255,255,.4);
 $colorWashLightTrans20:     rgba(255,255,255,.2);
 
 $colorCardBackground:       $colorWashLight;
-$colorBackground:           $colorWashMediumLight;
+$colorBackground:           $colorWashLight;
 $colorCardBackgroundDark:   #333;
-$colorTypeLight:            white;
+$colorTypeLight:            $colorWashLight;
 
 $colorType:                 #000000;
 $colorAlert:                #ff0000;

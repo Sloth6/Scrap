@@ -468,6 +468,12 @@ ul.menu {
                                 
         &.backButton {
             padding-bottom: $typeBodyLeading;
+            
+            a {
+                &:hover, &:active, &:focus {
+                    left: 0;
+                }
+            }
         }
                                 
         &.input {
