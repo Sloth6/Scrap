@@ -1,9 +1,0 @@
-{
-  "accessKeyId"     : "AKIAJJUKCX2M4XUDUEQA", 
-  "secretAccessKey" : "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",
-  "region"          : "us-east-1",
-  "POSTGRES_URL"    : "postgres://fizz:derptopia@fizzdbinstance.cdzhdhngrg63.us-east-1.rds.amazonaws.com:5432/scrapdb",
-  "domain"          : "http://localhost:9001/",
-  "bucket"          : "scrapimagesteamnap",
-  "maxFilesize"     :  "20971520"
-}
