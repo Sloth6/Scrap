@@ -42,9 +42,9 @@ drawClosedStack = ($collection, spacing = 15) ->
   sizeTotal  = 0
   $content.each () ->
     $(@).
-      velocity({ translateX, translateY }).
-      css({ zIndex: zIndex++, 'overflow': 'hidden' }).
-      width(Math.min($(@).width(), 300))
+      velocity({ translateX, translateY })
+      # css({ zIndex: zIndex++, 'overflow': 'hidden' }).
+      # width(Math.min($(@).width(), 300))
     
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
