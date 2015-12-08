@@ -68,9 +68,13 @@ mixin collectionMixin(collection)
                         li.user!=user.name
                     li.user.add
                       form.addUser(data-collectionkey=collection.collectionKey)
-                        label.smallType.smallCaps Add someone to this Pack
-                        input.smallType(type="email", name="user[email]", placeholder="Mail")
-                        input.smallType(type="submit", value="Send")
+                        ul
+                          li
+                            label.instruction.smallType.smallCaps Add someone to this Pack
+                            p.notice.smallType
+                          li
+                            input.smallType(type="email", name="user[email]", placeholder="Mail")
+                            input.smallType(type="submit", value="Send")
 
     .contentContainer(style='z-index:1;')
       +collectionContentMixin(collection)

@@ -96,125 +96,125 @@ html *[contentEditable=true] {
   content: "";
 }
 
-/* line 48, ../../style/globals/_color.scss */
+/* line 49, ../../style/globals/_color.scss */
 body section.collection section.content article.color0 div.card.text.comment, body section.collection section.content article.color0 header {
   background-color: rgba(255, 59, 48, 0.9);
 }
-/* line 52, ../../style/globals/_color.scss */
+/* line 53, ../../style/globals/_color.scss */
 body section.collection section.content article.color1 div.card.text.comment, body section.collection section.content article.color1 header {
   background-color: rgba(255, 149, 0, 0.9);
 }
-/* line 56, ../../style/globals/_color.scss */
+/* line 57, ../../style/globals/_color.scss */
 body section.collection section.content article.color2 div.card.text.comment, body section.collection section.content article.color2 header {
   background-color: rgba(255, 204, 0, 0.9);
 }
-/* line 60, ../../style/globals/_color.scss */
+/* line 61, ../../style/globals/_color.scss */
 body section.collection section.content article.color3 div.card.text.comment, body section.collection section.content article.color3 header {
   background-color: rgba(76, 217, 100, 0.9);
   color: #fffbf1;
 }
-/* line 65, ../../style/globals/_color.scss */
+/* line 66, ../../style/globals/_color.scss */
 body section.collection section.content article.color4 div.card.text.comment, body section.collection section.content article.color4 header {
   background-color: rgba(0, 122, 255, 0.9);
 }
-/* line 69, ../../style/globals/_color.scss */
+/* line 70, ../../style/globals/_color.scss */
 body section.collection section.content article.color5 div.card.text.comment, body section.collection section.content article.color5 header {
   background-color: rgba(255, 45, 85, 0.9);
 }
-/* line 73, ../../style/globals/_color.scss */
+/* line 74, ../../style/globals/_color.scss */
 body section.collection section.content article.color6 div.card.text.comment, body section.collection section.content article.color6 header {
   background-color: rgba(135, 252, 112, 0.9);
 }
-/* line 77, ../../style/globals/_color.scss */
+/* line 78, ../../style/globals/_color.scss */
 body section.collection section.content article.color7 div.card.text.comment, body section.collection section.content article.color7 header {
   background-color: rgba(255, 19, 0, 0.9);
 }
-/* line 81, ../../style/globals/_color.scss */
+/* line 82, ../../style/globals/_color.scss */
 body section.collection section.content article.color8 div.card.text.comment, body section.collection section.content article.color8 header {
   background-color: rgba(239, 77, 182, 0.9);
 }
-/* line 85, ../../style/globals/_color.scss */
+/* line 86, ../../style/globals/_color.scss */
 body section.collection section.content article.color9 div.card.text.comment, body section.collection section.content article.color9 header {
   background-color: rgba(82, 237, 199, 0.9);
 }
 
-/* line 93, ../../style/globals/_color.scss */
+/* line 94, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color0 {
   border-color: #ff3b30;
 }
-/* line 96, ../../style/globals/_color.scss */
+/* line 97, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color0.online {
   background-color: #ff3b30;
 }
-/* line 101, ../../style/globals/_color.scss */
+/* line 102, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color1 {
   border-color: #ff9500;
 }
-/* line 104, ../../style/globals/_color.scss */
+/* line 105, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color1.online {
   background-color: #ff9500;
 }
-/* line 109, ../../style/globals/_color.scss */
+/* line 110, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color2 {
   border-color: #ffcc00;
 }
-/* line 112, ../../style/globals/_color.scss */
+/* line 113, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color2.online {
   background-color: #ffcc00;
 }
-/* line 117, ../../style/globals/_color.scss */
+/* line 118, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color3 {
   border-color: #4cd964;
 }
-/* line 120, ../../style/globals/_color.scss */
+/* line 121, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color3.online {
   background-color: #4cd964;
 }
-/* line 125, ../../style/globals/_color.scss */
+/* line 126, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color4 {
   border-color: #007aff;
 }
-/* line 128, ../../style/globals/_color.scss */
+/* line 129, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color4.online {
   background-color: #007aff;
 }
-/* line 133, ../../style/globals/_color.scss */
+/* line 134, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color5 {
   border-color: #ff2d55;
 }
-/* line 136, ../../style/globals/_color.scss */
+/* line 137, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color5.online {
   background-color: #ff2d55;
 }
-/* line 141, ../../style/globals/_color.scss */
+/* line 142, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color6 {
   border-color: #87fc70;
 }
-/* line 144, ../../style/globals/_color.scss */
+/* line 145, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color6.online {
   background-color: #87fc70;
 }
-/* line 149, ../../style/globals/_color.scss */
+/* line 150, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color7 {
   border-color: #ff1300;
 }
-/* line 152, ../../style/globals/_color.scss */
+/* line 153, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color7.online {
   background-color: #ff1300;
 }
-/* line 157, ../../style/globals/_color.scss */
+/* line 158, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color8 {
   border-color: #ef4db6;
 }
-/* line 160, ../../style/globals/_color.scss */
+/* line 161, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color8.online {
   background-color: #ef4db6;
 }
-/* line 165, ../../style/globals/_color.scss */
+/* line 166, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color9 {
   border-color: #52edc7;
 }
-/* line 168, ../../style/globals/_color.scss */
+/* line 169, ../../style/globals/_color.scss */
 .container > header ul.users li.user.color9.online {
   background-color: #52edc7;
 }
@@ -2230,35 +2230,46 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 131, ../../style/layout/_home.scss */
+/* line 133, ../../style/layout/_home.scss */
 .cover .card ul.users li.add, .cover.card ul.users li.add {
   width: 100%;
   margin-top: 8pt;
 }
-/* line 135, ../../style/layout/_home.scss */
-.cover .card ul.users li.add label, .cover.card ul.users li.add label {
+/* line 137, ../../style/layout/_home.scss */
+.cover .card ul.users li.add ul li, .cover.card ul.users li.add ul li {
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+/* line 142, ../../style/layout/_home.scss */
+.cover .card ul.users li.add ul li .notice, .cover.card ul.users li.add ul li .notice {
+  position: absolute;
+  bottom: 0;
+}
+/* line 147, ../../style/layout/_home.scss */
+.cover .card ul.users li.add ul li label, .cover.card ul.users li.add ul li label {
   display: block;
 }
-/* line 139, ../../style/layout/_home.scss */
-.cover .card ul.users li.add input[type=email], .cover.card ul.users li.add input[type=email] {
+/* line 151, ../../style/layout/_home.scss */
+.cover .card ul.users li.add ul li input[type=email], .cover.card ul.users li.add ul li input[type=email] {
   padding-right: 24pt;
   float: left;
   width: 50%;
 }
-/* line 145, ../../style/layout/_home.scss */
-.cover .card ul.users li.add input[type=submit], .cover.card ul.users li.add input[type=submit] {
+/* line 157, ../../style/layout/_home.scss */
+.cover .card ul.users li.add ul li input[type=submit], .cover.card ul.users li.add ul li input[type=submit] {
   height: 14pt;
   width: 32pt;
   padding-left: 8pt;
-  opacity: .25;
-  -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  color: rgba(0, 0, 0, 0.25);
+  -moz-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 152, ../../style/layout/_home.scss */
-.cover .card ul.users li.add input[type=submit]:hover, .cover.card ul.users li.add input[type=submit]:hover {
-  opacity: 1;
+/* line 164, ../../style/layout/_home.scss */
+.cover .card ul.users li.add ul li input[type=submit]:hover, .cover.card ul.users li.add ul li input[type=submit]:hover {
+  color: #000000;
 }
 
 /* line 1, ../../style/layout/_login.scss */

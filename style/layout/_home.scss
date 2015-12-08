@@ -128,29 +128,43 @@
         @include typeSmall;
         @include transition(opacity .25s $defaultCurve);
         
-        li.add {
-            width: 100%;
-            margin-top: $cell;
-        
-            label {
-                display: block;
-            }
+        li {
             
-            input[type=email] {
-                padding-right: $cell * 3;
-                float: left;
-                width: 50%;
-            }
-            
-            input[type=submit] {
-                height: $typeSmallLeading + 2pt;
-                width: $cell * 4;
-                padding-left: $cardPaddingLeft;
-                opacity: .25;
-                @include transition(opacity $defaultCurve .25s);
+            &.add {
+                width: 100%;
+                margin-top: $cell;
                 
-                &:hover {
-                    opacity: 1;
+                ul li {
+                    height: auto;
+                    padding: 0;
+                    margin: 0;
+                    
+                    .notice {
+                        position: absolute;
+                        bottom: 0;
+                    }
+                    
+                    label {
+                        display: block;
+                    }
+                    
+                    input[type=email] {
+                        padding-right: $cell * 3;
+                        float: left;
+                        width: 50%;
+                    }
+                    
+                    input[type=submit] {
+                        height: $typeSmallLeading + 2pt;
+                        width: $cell * 4;
+                        padding-left: $cardPaddingLeft;
+                        color: $colorTypeTrans;
+                        @include transition(color $defaultCurve .25s);
+                        
+                        &:hover {
+                            color: $colorType;
+                        }
+                    }
                 }
             }
         }
