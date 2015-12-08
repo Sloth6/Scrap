@@ -10,14 +10,6 @@ mixin collectionContentMixin(collection)
       else
         +articleMixin(content)
 
-  //- if collection.Articles !== undefined
-  //-   each article in collection.Articles
-  //-     +articleMixin(article)
-
-  //- if collection.children !== undefined
-  //-   each article in collection.children
-  //-     +collectionMixin(article)
-
 mixin collectionMixin(collection)
   - var classes = 'closed ' + collection.collectionKey
   - if(collection.root == true){

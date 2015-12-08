@@ -9,6 +9,28 @@ config =
   host:  "s3.amazonaws.com" #S3 provider host
   max_filesize:  20971520 #Max filesize in bytes (default 20MB)
 
+formatCollection = (collection) ->
+  articles = collection.Articles or []
+  children = collection.children or []
+
+  collection.content = articles.concat children
+  articleOrder       = collection.articleOrder      
+        
+  collection.content.sort (a, b) -> 
+    if a instanceof models.Collection.Instance
+      a_i = articleOrder.indexOf(a.collectionKey)
+    else
+      a_i = articleOrder.indexOf("#{a.id}")
+
+    if b instanceof models.Collection.Instance
+      b_i = articleOrder.indexOf(b.collectionKey)
+    else
+      b_i = articleOrder.indexOf("#{b.id}")
+
+    if a_i > b_i then 1 else -1
+
+  collection
+
 module.exports =
   collectionContent: (req, res, app, callback) ->
     { collectionKey } = req.params
@@ -23,21 +45,11 @@ module.exports =
       return callback(err, res) if err?
       return callback "No collection found for '#{collectionKey}'", res unless collection?
       
-      collection.content = collection.Articles.concat collection.children
-      articleOrder = collection.articleOrder      
-      
-      collection.content.sort (a, b) -> 
-        if a instanceof models.Collection.Instance
-          a_i = articleOrder.indexOf(a.collectionKey)
-        else
-          a_i = articleOrder.indexOf("#{a.id}")
+      formatCollection collection
 
-        if b instanceof models.Collection.Instance
-          b_i = articleOrder.indexOf(b.collectionKey)
-        else
-          b_i = articleOrder.indexOf("#{b.id}")
-
-        if a_i > b_i then 1 else -1
+      unless collection.root
+        for child in collection.children
+          formatCollection child
 
       app.render 'partials/collectionContent', { collection }, (err, html) ->
         return callback err if err?
