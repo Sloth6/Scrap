@@ -5,6 +5,7 @@ window.contentModel =
     makeDraggable $content
     makeDeletable $content
     
+    
     switch $content.data('contenttype')
       when 'text'       then initText $content
       when 'video'      then initVideo $content
@@ -13,7 +14,18 @@ window.contentModel =
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
       
-    $content.find('.card').mouseenter((event) ->
+    isCollection = $content.hasClass('collection')
+    isStack = isCollection and $content.hasClass('stack')
+    isPack = isCollection and $content.hasClass('pack')
+    
+    $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')
+    
+    
+    console.log $content.attr 'class'
+    
+
+      
+    $card.mouseenter((event) ->
       event.stopPropagation()
       unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')
         console.log 'stack', $content, $content.parent(), $content.parent().parent().hasClass('stack')
@@ -21,9 +33,6 @@ window.contentModel =
     ).mouseleave((event) ->
       $(@).removeClass 'hover'
     )
-    
-    isStack = $content.hasClass('collection') and $content.data('contentType') is 'stack'
-    isPack = $content.hasClass('cover') or $content.hasClass('pack')
     
     
 #     if $content.hasClass('pack')
@@ -42,11 +51,11 @@ window.contentModel =
 #               
 #       )
     
-    if $content.hasClass('stack')
-#       console.log('wowowowowo', $content)
-      $content.mouseenter((event) ->
-        console.log('wow')
-      ).css('opacity', .25)
+#     if $content.hasClass('stack')
+# #       console.log('wowowowowo', $content)
+#       $content.mouseenter((event) ->
+#         console.log('wow')
+#       ).css('opacity', .25)
     
     # $content.mouseover( () ->
     #   x = xTransform $content

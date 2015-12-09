@@ -144,6 +144,8 @@ stopDragging = (event, $dragging) ->
       zIndex $dragging.data('oldZIndex')
     endDragTransform $dragging
     collectionViewController.draw $('.collection.open'), { animate: true }
+#     $dragging.find('.card').removeClass('dragging')
+  
   ), 20
 
 startDragging = ($dragging, mouseDownEvent) ->
@@ -155,6 +157,8 @@ startDragging = ($dragging, mouseDownEvent) ->
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999
+    
+#   $dragging.find('.card').addClass('dragging')
     
  
   startDragTransform $dragging
@@ -193,17 +197,15 @@ makeDraggable = ($content) ->
         stopDragging(event, draggingArticle)
 
 
-startDragTransform = (e) ->
-#   e.find('.transform').velocity({
-#     # 'scale': draggingScale,
-#     'rotateZ': (Math.random() * 8) - 4
-#   }, dragOptions)
+startDragTransform = ($dragging) ->
+  $dragging.find('.transform').velocity({
+    'rotateZ': (Math.random() * .5) * 12
+  }, dragOptions)
 
-endDragTransform = (e) ->
-#   e.find('.transform').velocity({
-#     # 'scale': 1,
-#     'rotateZ': 0
-#   }, dragOptions)
+endDragTransform = ($dragging) ->
+  $dragging.find('.transform').velocity({
+    'rotateZ': 0
+  }, dragOptions)
 
 $ ->
   window.padding = $('<article>').addClass('slider sliding padding')
