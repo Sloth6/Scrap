@@ -1,11 +1,11 @@
 form(id="logIn")
+  li(id="errorField")
   li.input.inputText.mail
     input(id="email",type="email", name="user[email]", placeholder="Mail")
   li.input.inputText.password
     input(id="password",type="password", name="user[password]", placeholder="Password")
   li.input.submit
     input.confirm.offset(type="submit", value="Sign in")
-  li(id="errorField")
 script.
   function onError(res) {
     $('#logIn #errorField').text(res.responseText);

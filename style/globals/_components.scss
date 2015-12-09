@@ -132,10 +132,20 @@ $cardBorderRadius:          0; // $cell/4;
 
 a, input[type=submit], input[type=button] {
     @include linkReset;
+    @include transition(opacity .25s $defaultCurve);
+    
+    &:hover, &:focus {
+        opacity: .25;
+    }
+    
+    &:active {
+        opacity: .125;
+    }
     
     &.action {
         &:hover {
             @include hoverLinkAnimation;
+            opacity: 1;
         }
     }
     
@@ -143,14 +153,18 @@ a, input[type=submit], input[type=button] {
         
         &:hover {
             @include hoverWarningAnimation;
+            opacity: 1;
         }
     }
     
+/*
     &.confirm {
         &:hover {
             @include hoverConfirmAnimation;
+            opacity: 1;
         }
     }
+*/
 }
 
 .invertHover {
@@ -376,7 +390,7 @@ input {
             > li.first {
                         transform-origin: $menuOffsetX top;
                 -webkit-transform-origin: $menuOffsetX top;
-                @include transform(translate3d(-$menuOffsetX, $col/2, 0.0) rotate(-11deg));
+                @include transform(translate3d(-$menuOffsetX, $col/3, 0.0) rotate(-11deg));
                 right: 0;
             }
         }

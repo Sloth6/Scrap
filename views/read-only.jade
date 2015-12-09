@@ -18,12 +18,15 @@ block content
       header.card.cover.cardHover.colored.title.left
         h1.typeTitle.typeOutlineClear!=collection.name
         section.form
-          ul
+          a.formToggle(href='#') Create Account
+          ul.form.logIn
             include partials/logIn
+          ul.form.signUp
+            include partials/signUp
       section.card.small.right.hidden.logo
         h1.typeTitle.typeOutlineClear Scrap
       section.intro.card.small.hidden.right
-        - var text = "Joel shared "+collection.name+" with you on Scrap, a simple way to collect and organize stuff. Join Scrap or log in to view and edit it."
+        - var text = "Joel shared "+collection.name+" with you on Scrap, a simple way to collect and organize stuff. Create an account or sign in to see it."
         p!=text
       .card.blank.cover.hidden.left
       .card.blank.cover.hidden.left

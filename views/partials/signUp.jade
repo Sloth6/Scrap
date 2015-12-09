@@ -1,5 +1,6 @@
 ul.right
   form(id="signUp")
+    li(id="errorField")
     li.name
       input(id="name",type="text", name="user[name]", placeholder="First and last name")
     li.mail
@@ -8,7 +9,6 @@ ul.right
       input(id="password",type="password", name="user[password]", placeholder="Password")
     li.submit
       input.confirm.offset(type="submit", value="Sign up")
-    li(id="errorField")
 script.
   function onError(res) {
     $('#signUp errorField').text(res.responseText);

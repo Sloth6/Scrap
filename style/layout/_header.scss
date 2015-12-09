@@ -1,7 +1,7 @@
 header.main {
     .backButton.main {
         position: absolute;
-        top: 0;
+        top: $cell/2;
         left: -50px;
         
         a {
