@@ -12,9 +12,9 @@ calculatePercentToBorder = (x, e, border) ->
     percent = 0
   percent
 
-calculateX = ($content, margin, scroll, multiple) ->
+calculateX = ($content, margin, scroll) ->
   border = sliderBorder
-  x = $content.data('scrollOffset') - $(window).scrollLeft() + margin
+  x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
   maxX = $(window).width() - contentModel.getSize($content)
   right_start = $(window).width() - border
   left_min = - contentModel.getSize($content) + edgeWidth
@@ -32,7 +32,10 @@ calculateX = ($content, margin, scroll, multiple) ->
   x
 
 calculateY = ($content, margin, jumble, multiple) ->
-  jumble.translateY * multiple
+  if jumble?
+    jumble.translateY * multiple
+  else 
+    0
 
 calculateScale = ($content, margin, jumble, multiple) ->
   rawX = $content.data('scrollOffset') - $(window).scrollLeft() + margin
@@ -42,6 +45,7 @@ calculateScale = ($content, margin, jumble, multiple) ->
     1
 
 calculateRotateZ = ($content, margin, jumble, multiple) ->
+  return 0 unless jumble?
   jumble.rotateZ * multiple
 
 # If slider is at edge
@@ -74,14 +78,16 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 window.contentViewController =
   draw: ($content, scroll,  options) ->
     animate = options.animate or false
-    margin = $content.data 'margin'
+    margin = 0#$content.data('margin') or 0
     jumble = $content.data 'jumble'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
-    percentToBorder = calculatePercentToBorder(xTransform($content), $content, sliderBorder)
-    multiple = if isPack then 1 else percentToBorder
     
-    translateX = calculateX       $content, margin, scroll, multiple
-    oldX       = xTransform       $content, margin, jumble, multiple
+    translateX = calculateX       $content, margin, scroll
+    
+    percentToBorder = calculatePercentToBorder(translateX, $content, sliderBorder)
+    multiple = if isPack then 1 else percentToBorder
+        
+    oldX       = xTransform $content
     translateY = calculateY       $content, margin, jumble, multiple
     scale      = calculateScale   $content, margin, jumble, multiple
     rotateZ    = calculateRotateZ $content, margin, jumble, multiple
@@ -94,11 +100,11 @@ window.contentViewController =
         rotateZ: rotateZ
         scale: scale
 
-    # Velocity cannot actually haae 0 duratiom
+    # Velocity cannot actually have 0 duration
     if !animate
       velocityParams.options = { duration: 1 }
 
-    # Only call animate if change is noticable.
+    # Only call animate if change is noticeable.
     if Math.abs(translateX - oldX) > 1
       $content.velocity velocityParams
 
