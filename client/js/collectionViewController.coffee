@@ -116,12 +116,19 @@ window.collectionViewController =
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
     if $collection.data('contenttype') == 'pack'
+      $collection.children('.contentContainer').velocity
+        properties:
+          translateZ: 0
+          opacity: [1, 0]
+        options:
+          duration: openCollectionDuration
+          easing: openCollectionCurve
       $collection.velocity
         properties:
           translateY: 0
           rotateZ: 0
       $collectionContent.add($collectionAddForm).velocity
-#         opacity: [1, 0]
+        opacity: [1, 0]
         translateY: 0
 #         translateX: [ xTransform($cover), xOfSelf ]
     else
@@ -172,6 +179,9 @@ window.collectionViewController =
       # The size of the collection will be reset to just the cover
       contentModel.setSize $collection, null
       $collectionCover.css 'zIndex', 99999
+      $collection.children('.contentContainer').velocity
+        translateZ: 0
+        opacity: [0, 1]
       $collectionAddForm.velocity
         properties:
 #           opacity: [0, 1]
