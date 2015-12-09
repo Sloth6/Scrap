@@ -15,8 +15,8 @@ calculatePercentToBorder = (x, e, border) ->
 calculateX = ($content, margin, scroll) ->
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
-  maxX = $(window).width() - contentModel.getSize($content)
-  right_start = $(window).width() - border
+  maxX = ($(window).width() * 2) - contentModel.getSize($content)
+  right_start = ($(window).width() * 2) - border
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
 
@@ -79,7 +79,7 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 window.contentViewController =
   draw: ($content, scroll,  options) ->
     animate = options.animate or false
-    margin = 0#$content.data('margin') or 0
+    margin = $content.data('margin')
     jumble = $content.data 'jumble'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     

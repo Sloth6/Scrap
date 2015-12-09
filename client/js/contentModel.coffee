@@ -58,7 +58,7 @@ window.contentModel =
   setJumble: ($content) ->
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     normalTranslateY  = (Math.random() - .5) * $(window).height() / 8
-    normalRotateZ     = (Math.random() - .5) * 20
+    normalRotateZ     = (Math.random() - .5) * 11
     coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 8
     coverRotateZ      = (Math.random() - .5) * 45
     
