@@ -10,20 +10,21 @@ drawOpenCollection = ($collection, animate) ->
 
   $contents.add($addForm).each () ->
     $(@).data 'scrollOffset', sizeTotal
+    $(@).css { zIndex: zIndex++ }
+    contentViewController.draw $(@), null, { animate }
+    sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
+  
+  contentModel.setSize $collection, sizeTotal
+  $(document.body).css { width: sizeTotal }
+  sizeTotal
+
     # if $(@).hasClass('cover') and $(@).hasClass('open')
     #   $(@).css { zIndex: ($contents.length*3) }
     # # If at root level and elem is add article form, to prevent form from being on top at root level
     # else if $(@).hasClass('addArticleForm') and not $('.root.open').length # (puts add article card at back on root level
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
-    $(@).css { zIndex: zIndex++ }
-    contentViewController.draw $(@), null, { animate }
-    sizeTotal += contentModel.getSize($(@)) + $(@).data 'margin'
-  
-  contentModel.setSize $collection, sizeTotal
-  $(document.body).css { width: sizeTotal }
-  sizeTotal
-
+    
 drawClosedStack = ($collection, spacing = 15) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
@@ -148,7 +149,7 @@ window.collectionViewController =
       addClass('open').
       removeClass 'closed'
     
-    collectionViewController.draw $collection
+    collectionViewController.draw $collection, {animate: true}
 
   close: ($collection, options = {}) ->
     return if $collection.hasClass 'root'

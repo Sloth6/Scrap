@@ -51,7 +51,6 @@ drag = (event, $dragging) ->
   
   # The content we are moused over
   $content = collectionModel.getContentAt $collection, x
-  
   # When dragging is the only content
   return if $content.length == 0    
   return if $content.is padding
@@ -65,7 +64,7 @@ drag = (event, $dragging) ->
   switch LCR
     when 'left'  then padding.insertBefore $content
     when 'right' then padding.insertAfter $content
-    
+
   if LCR isnt 'center'
     collectionViewController.draw $collection, { animate: true }
   
@@ -148,7 +147,6 @@ stopDragging = (event, $dragging) ->
   ), 20
 
 startDragging = ($dragging, mouseDownEvent) ->
-  # console.log 'start dragging', $dragging[0]
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
 
@@ -157,11 +155,14 @@ startDragging = ($dragging, mouseDownEvent) ->
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999
-  
+    
+ 
   startDragTransform $dragging
-  contentModel.setSize padding, contentModel.getSize($dragging)
+  
   padding.insertAfter $dragging
-  # $dragging.insertAfter $('.slidingContainer')
+  contentModel.setSize padding, contentModel.getSize($dragging)
+  padding.data 'margin', articleMargin
+  
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
   collectionViewController.draw $('.collection.open')
@@ -193,17 +194,17 @@ makeDraggable = ($content) ->
 
 
 startDragTransform = (e) ->
-  e.find('.transform').velocity({
-    # 'scale': draggingScale,
-    'rotateZ': (Math.random() * 8) - 4
-  }, dragOptions)
+#   e.find('.transform').velocity({
+#     # 'scale': draggingScale,
+#     'rotateZ': (Math.random() * 8) - 4
+#   }, dragOptions)
 
 endDragTransform = (e) ->
-  e.find('.transform').velocity({
-    # 'scale': 1,
-    'rotateZ': 0
-  }, dragOptions)
+#   e.find('.transform').velocity({
+#     # 'scale': 1,
+#     'rotateZ': 0
+#   }, dragOptions)
 
 $ ->
   window.padding = $('<article>').addClass('slider sliding padding')
-  contentModel.setSize padding, 200
+  padding.css 'background-color', 'red'  

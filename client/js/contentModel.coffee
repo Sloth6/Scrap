@@ -1,5 +1,6 @@
 window.contentModel = 
   init: ($content) ->
+    isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
     $content.off() # remove old handlers
     $collection = contentModel.getCollection $content
     makeDraggable $content
@@ -20,6 +21,10 @@ window.contentModel =
     ).mouseleave((event) ->
       $(@).removeClass 'hover'
     )
+    
+#     if isStack.mouseenter((event) ->
+#       
+#     )
     
     # $content.mouseover( () ->
     #   x = xTransform $content
@@ -51,7 +56,6 @@ window.contentModel =
     return collectionModel.getState($collection).collectionKey
 
   setJumble: ($content) ->
-    isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     normalTranslateY  = (Math.random() - .5) * $(window).height() / 8
     normalRotateZ     = (Math.random() - .5) * 20
@@ -60,8 +64,7 @@ window.contentModel =
     
     margin =  if isPack then packMargin else articleMargin
     $content.data 'margin', margin
-    console.log 'margin', margin
-    
+
     $content.data 'jumble', {
       'translateY': if isPack then coverTranslateY else normalTranslateY
       'rotateZ':    if isPack then coverRotateZ else normalRotateZ
