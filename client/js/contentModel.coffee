@@ -1,10 +1,10 @@
 window.contentModel = 
   init: ($content) ->
-    isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
     $content.off() # remove old handlers
     $collection = contentModel.getCollection $content
     makeDraggable $content
     makeDeletable $content
+    
     
     switch $content.data('contenttype')
       when 'text'       then initText $content
@@ -14,17 +14,48 @@ window.contentModel =
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
       
-    $content.find('.card').mouseenter((event) ->
+    isCollection = $content.hasClass('collection')
+    isStack = isCollection and $content.hasClass('stack')
+    isPack = isCollection and $content.hasClass('pack')
+    
+    $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')
+    
+    
+    console.log $content.attr 'class'
+    
+
+      
+    $card.mouseenter((event) ->
       event.stopPropagation()
-      unless $content.hasClass 'dragging'
+      unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')
+        console.log 'stack', $content, $content.parent(), $content.parent().parent().hasClass('stack')
         $(@).addClass 'hover'
     ).mouseleave((event) ->
       $(@).removeClass 'hover'
     )
     
-#     if isStack.mouseenter((event) ->
-#       
-#     )
+    
+#     if $content.hasClass('pack')
+#       $content.mouseover((event) ->
+#         if $content.hasClass('closed')
+#           $content.velocity
+#             properties:
+#               rotateZ: $content.data('jumble').rotateZ/2
+#             options:
+#               duration: 500
+#       ).mouseleave((event) ->
+#         if $content.hasClass('closed')
+#           $content.velocity
+#             properties:
+#               rotateZ: $content.data('jumble').rotateZ
+#               
+#       )
+    
+#     if $content.hasClass('stack')
+# #       console.log('wowowowowo', $content)
+#       $content.mouseenter((event) ->
+#         console.log('wow')
+#       ).css('opacity', .25)
     
     # $content.mouseover( () ->
     #   x = xTransform $content
@@ -59,9 +90,9 @@ window.contentModel =
 
   setJumble: ($content) ->
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
-    normalTranslateY  = (Math.random() - .5) * $(window).height() / 8
-    normalRotateZ     = (Math.random() - .5) * 11
-    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 8
+    normalTranslateY  = (Math.random() - .5) * $(window).height() / 16
+    normalRotateZ     = (Math.random() - .5) * 8
+    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16
     coverRotateZ      = (Math.random() - .5) * 45
     
     margin =  if isPack then packMargin else articleMargin

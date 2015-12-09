@@ -34,6 +34,20 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 $cardBorderRadius:          0; // $cell/4;
 
+@mixin cursorGrab {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+@mixin cursorGrabbing {
+    cursor: move;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+}
+
 @mixin cardStyle {
     background-color: $colorCardBackground;
     border: $cardBorder;
@@ -66,10 +80,13 @@ $cardBorderRadius:          0; // $cell/4;
     }
 }
 
-@mixin cardDrag {
-    &.dragging {
-        // @include transform(rotate(4deg));
-    }
+@mixin cardDraggable {
+    @include cursorGrab;
+}
+
+@mixin cardDragging {
+    @include cardHover;
+    @include cursorGrabbing;
 }
 
 @mixin cardEditing {
@@ -189,7 +206,7 @@ a, input[type=submit], input[type=button] {
 }
 
 .cardDrag {
-    @include cardHover;
+    @include cardDraggable;
 }
 
 .card.editing {
