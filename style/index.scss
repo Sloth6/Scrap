@@ -186,11 +186,26 @@ section.readOnly {
         z-index: 10;
         position: relative;
         opacity: 1;
+        cursor: default;
         
         section.form {
             position: absolute;
-            bottom: 0;
+            bottom: $cardPaddingBottom;
             opacity: 0;
+            width: 100%;
+            
+            ul.form {
+                li.submit {
+//                     padding-bottom: 0;
+                }
+            }
+                        
+            .formToggle {
+                position: absolute;
+                z-index: 10;
+                bottom: 0;
+                right: $cardPaddingRight;
+            }
         }
     }
     

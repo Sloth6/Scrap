@@ -706,8 +706,28 @@ a, input[type=submit], input[type=button] {
   color: #000000;
   text-decoration: none;
   border: 0;
+  -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  /*
+      &.confirm {
+          &:hover {
+              @include hoverConfirmAnimation;
+              opacity: 1;
+          }
+      }
+  */
 }
 /* line 137, ../../style/globals/_components.scss */
+a:hover, a:focus, input[type=submit]:hover, input[type=submit]:focus, input[type=button]:hover, input[type=button]:focus {
+  opacity: .25;
+}
+/* line 141, ../../style/globals/_components.scss */
+a:active, input[type=submit]:active, input[type=button]:active {
+  opacity: .125;
+}
+/* line 146, ../../style/globals/_components.scss */
 a.action:hover, input[type=submit].action:hover, input[type=button].action:hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -717,8 +737,9 @@ a.action:hover, input[type=submit].action:hover, input[type=button].action:hover
       color: blue;
       border-color: blue;
   */
+  opacity: 1;
 }
-/* line 144, ../../style/globals/_components.scss */
+/* line 154, ../../style/globals/_components.scss */
 a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:hover {
   -webkit-animation: hoverWarningFlicker 20s infinite linear;
   -moz-animation: hoverWarningFlicker 20s infinite linear;
@@ -728,25 +749,15 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
       color: $colorAccent;
       border-color: $colorAccent;
   */
-}
-/* line 150, ../../style/globals/_components.scss */
-a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:hover {
-  -webkit-animation: hoverConfirmFlicker 20s infinite linear;
-  -moz-animation: hoverConfirmFlicker 20s infinite linear;
-  -o-animation: hoverConfirmFlicker 20s infinite linear;
-  animation: hoverConfirmFlicker 20s infinite linear;
-  /*
-      color: $colorAccent;
-      border-color: $colorAccent;
-  */
+  opacity: 1;
 }
 
-/* line 157, ../../style/globals/_components.scss */
+/* line 171, ../../style/globals/_components.scss */
 .invertHover:hover {
   -webkit-filter: invert(1);
 }
 
-/* line 163, ../../style/globals/_components.scss */
+/* line 177, ../../style/globals/_components.scss */
 .blackHover:hover {
   background-color: #000000 !important;
   color: white !important;
@@ -759,7 +770,7 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   box-shadow: 8pt 8pt 0 0 black;
 }
 
-/* line 168, ../../style/globals/_components.scss */
+/* line 182, ../../style/globals/_components.scss */
 .card {
   background-color: white;
   border: 1px solid #000000;
@@ -770,7 +781,7 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   display: block;
 }
 
-/* line 173, ../../style/globals/_components.scss */
+/* line 187, ../../style/globals/_components.scss */
 .cardHover {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -793,7 +804,7 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   transform: translate3d(-8pt, -8pt, 0);
 }
 
-/* line 177, ../../style/globals/_components.scss */
+/* line 191, ../../style/globals/_components.scss */
 .cardDrag {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -816,7 +827,7 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   transform: translate3d(-8pt, -8pt, 0);
 }
 
-/* line 181, ../../style/globals/_components.scss */
+/* line 195, ../../style/globals/_components.scss */
 .card.editing {
   border-style: dashed !important;
   border-color: #000000 !important;
@@ -833,7 +844,7 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   box-shadow: none;
 }
 
-/* line 185, ../../style/globals/_components.scss */
+/* line 199, ../../style/globals/_components.scss */
 .cardActions {
   position: absolute;
   bottom: 4pt;
@@ -845,16 +856,16 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 192, ../../style/globals/_components.scss */
+/* line 206, ../../style/globals/_components.scss */
 .cardActions li.right {
   float: right;
 }
 
-/* line 197, ../../style/globals/_components.scss */
+/* line 211, ../../style/globals/_components.scss */
 .newCard {
   border-style: dashed;
 }
-/* line 200, ../../style/globals/_components.scss */
+/* line 214, ../../style/globals/_components.scss */
 .newCard.hover, .newCard:hover {
   border-style: solid;
   -moz-transform: none;
@@ -866,7 +877,7 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   box-shadow: none;
 }
 
-/* line 207, ../../style/globals/_components.scss */
+/* line 221, ../../style/globals/_components.scss */
 .card.cover, .cover .card {
   position: relative;
   width: 224pt;
@@ -875,25 +886,25 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   overflow: hidden;
 }
 
-/* line 213, ../../style/globals/_components.scss */
+/* line 227, ../../style/globals/_components.scss */
 .invisible {
   opacity: 0;
 }
 
-/* line 219, ../../style/globals/_components.scss */
+/* line 233, ../../style/globals/_components.scss */
 .backButton:hover a span {
   -moz-transform: translate3d(12px, 0px, 0px);
   -ms-transform: translate3d(12px, 0px, 0px);
   -webkit-transform: translate3d(12px, 0px, 0px);
   transform: translate3d(12px, 0px, 0px);
 }
-/* line 224, ../../style/globals/_components.scss */
+/* line 238, ../../style/globals/_components.scss */
 .backButton a {
   font-size: 48pt;
   font-weight: 100;
   display: block;
 }
-/* line 229, ../../style/globals/_components.scss */
+/* line 243, ../../style/globals/_components.scss */
 .backButton a span {
   display: inline-block;
   -moz-transform: translate3d(0px, 0px, 0px);
@@ -910,17 +921,17 @@ a.confirm:hover, input[type=submit].confirm:hover, input[type=button].confirm:ho
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 
-/* line 242, ../../style/globals/_components.scss */
+/* line 256, ../../style/globals/_components.scss */
 form {
   position: relative;
 }
-/* line 245, ../../style/globals/_components.scss */
+/* line 259, ../../style/globals/_components.scss */
 form li {
   list-style: none;
   margin-top: 16pt;
 }
 
-/* line 252, ../../style/globals/_components.scss */
+/* line 266, ../../style/globals/_components.scss */
 label {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -930,27 +941,27 @@ label {
   letter-spacing: 0.0625em;
 }
 
-/* line 260, ../../style/globals/_components.scss */
+/* line 274, ../../style/globals/_components.scss */
 ::-webkit-input-placeholder {
   color: #000000;
 }
 
-/* line 264, ../../style/globals/_components.scss */
+/* line 278, ../../style/globals/_components.scss */
 :-moz-placeholder {
   color: #000000;
 }
 
-/* line 267, ../../style/globals/_components.scss */
+/* line 281, ../../style/globals/_components.scss */
 ::-moz-placeholder {
   color: #000000;
 }
 
-/* line 270, ../../style/globals/_components.scss */
+/* line 284, ../../style/globals/_components.scss */
 :-ms-input-placeholder {
   color: #000000;
 }
 
-/* line 274, ../../style/globals/_components.scss */
+/* line 288, ../../style/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -967,75 +978,75 @@ input {
   max-width: 100%;
   border-radius: 0;
 }
-/* line 286, ../../style/globals/_components.scss */
+/* line 300, ../../style/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
   text-align: left;
 }
-/* line 292, ../../style/globals/_components.scss */
+/* line 306, ../../style/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
 
-/* line 302, ../../style/globals/_components.scss */
+/* line 316, ../../style/globals/_components.scss */
 .slideIn.left li, .slideIn.left.open li.hidden {
   -moz-transform: translate3d(-252pt, 0, 0);
   -ms-transform: translate3d(-252pt, 0, 0);
   -webkit-transform: translate3d(-252pt, 0, 0);
   transform: translate3d(-252pt, 0, 0);
 }
-/* line 305, ../../style/globals/_components.scss */
+/* line 319, ../../style/globals/_components.scss */
 .slideIn.left li.first, .slideIn.left.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 312, ../../style/globals/_components.scss */
+/* line 326, ../../style/globals/_components.scss */
 .slideIn.left.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 319, ../../style/globals/_components.scss */
+/* line 333, ../../style/globals/_components.scss */
 .slideIn.right li, .slideIn.right.open li.hidden {
   -moz-transform: translate3d(252pt, 0, 0);
   -ms-transform: translate3d(252pt, 0, 0);
   -webkit-transform: translate3d(252pt, 0, 0);
   transform: translate3d(252pt, 0, 0);
 }
-/* line 322, ../../style/globals/_components.scss */
+/* line 336, ../../style/globals/_components.scss */
 .slideIn.right li.first, .slideIn.right.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 326, ../../style/globals/_components.scss */
+/* line 340, ../../style/globals/_components.scss */
 .slideIn.right li.first a:hover, .slideIn.right.open li.hidden.first a:hover {
   left: -8pt;
 }
-/* line 332, ../../style/globals/_components.scss */
+/* line 346, ../../style/globals/_components.scss */
 .slideIn.right li input, .slideIn.right.open li.hidden input {
   text-align: left;
 }
-/* line 339, ../../style/globals/_components.scss */
+/* line 353, ../../style/globals/_components.scss */
 .slideIn.right.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 348, ../../style/globals/_components.scss */
+/* line 362, ../../style/globals/_components.scss */
 .slideIn.hideFirst > li.first {
   position: absolute;
   top: 8pt;
 }
-/* line 356, ../../style/globals/_components.scss */
+/* line 370, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left.open > li.first {
   -moz-transform: translate3d(-252pt, 0, 0);
   -ms-transform: translate3d(-252pt, 0, 0);
@@ -1043,7 +1054,7 @@ input[type=checkbox] {
   transform: translate3d(-252pt, 0, 0);
   opacity: 0;
 }
-/* line 362, ../../style/globals/_components.scss */
+/* line 376, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left > li.first {
   left: 8pt;
   -moz-transform: translate3d(-252pt, 0, 0);
@@ -1051,7 +1062,7 @@ input[type=checkbox] {
   -webkit-transform: translate3d(-252pt, 0, 0);
   transform: translate3d(-252pt, 0, 0);
 }
-/* line 370, ../../style/globals/_components.scss */
+/* line 384, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right.open > li.first {
   -moz-transform: translate3d(504pt, -56pt, 0) rotate(0);
   -ms-transform: translate3d(504pt, -56pt, 0) rotate(0);
@@ -1059,18 +1070,18 @@ input[type=checkbox] {
   transform: translate3d(504pt, -56pt, 0) rotate(0);
   opacity: 0;
 }
-/* line 376, ../../style/globals/_components.scss */
+/* line 390, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right > li.first {
   transform-origin: 252pt top;
   -webkit-transform-origin: 252pt top;
-  -moz-transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
-  -ms-transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
-  -webkit-transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
-  transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
+  -moz-transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
+  -ms-transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
+  -webkit-transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
+  transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
   right: 0;
 }
 
-/* line 386, ../../style/globals/_components.scss */
+/* line 400, ../../style/globals/_components.scss */
 ul.headerMenu {
   overflow: visible;
   position: absolute;
@@ -1095,7 +1106,7 @@ ul.headerMenu {
   -webkit-transition-property: left, right, background, border, width, padding, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, background, border, width, padding, transform, -webkit-transform, -moz-transform;
 }
-/* line 400, ../../style/globals/_components.scss */
+/* line 414, ../../style/globals/_components.scss */
 ul.headerMenu.left {
   float: left;
   transform-origin: right top;
@@ -1106,7 +1117,7 @@ ul.headerMenu.left {
   -webkit-transform: translate3d(-252pt, -56pt, 0) rotateZ(-11deg);
   transform: translate3d(-252pt, -56pt, 0) rotateZ(-11deg);
 }
-/* line 408, ../../style/globals/_components.scss */
+/* line 422, ../../style/globals/_components.scss */
 ul.headerMenu.right {
   transform-origin: left top;
   -webkit-transform-origin: left top;
@@ -1116,21 +1127,21 @@ ul.headerMenu.right {
   -webkit-transform: translate3d(252pt, -56pt, 0) rotateZ(11deg);
   transform: translate3d(252pt, -56pt, 0) rotateZ(11deg);
 }
-/* line 417, ../../style/globals/_components.scss */
+/* line 431, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.left {
   -moz-transform: translate3d(-252pt, 0, 0) rotateZ(0);
   -ms-transform: translate3d(-252pt, 0, 0) rotateZ(0);
   -webkit-transform: translate3d(-252pt, 0, 0) rotateZ(0);
   transform: translate3d(-252pt, 0, 0) rotateZ(0);
 }
-/* line 421, ../../style/globals/_components.scss */
+/* line 435, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.right {
   -moz-transform: translate3d(252pt, 0, 0) rotateZ(0);
   -ms-transform: translate3d(252pt, 0, 0) rotateZ(0);
   -webkit-transform: translate3d(252pt, 0, 0) rotateZ(0);
   transform: translate3d(252pt, 0, 0) rotateZ(0);
 }
-/* line 426, ../../style/globals/_components.scss */
+/* line 440, ../../style/globals/_components.scss */
 ul.headerMenu.open {
   border-color: #000000;
   padding: 4pt 4pt 4pt 4pt;
@@ -1139,11 +1150,11 @@ ul.headerMenu.open {
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
 }
-/* line 431, ../../style/globals/_components.scss */
+/* line 445, ../../style/globals/_components.scss */
 ul.headerMenu.open.paddingBottom {
   padding-bottom: 40pt;
 }
-/* line 435, ../../style/globals/_components.scss */
+/* line 449, ../../style/globals/_components.scss */
 ul.headerMenu.open li {
   height: 16pt;
   margin-bottom: 8pt;
@@ -1152,11 +1163,11 @@ ul.headerMenu.open li {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
 }
-/* line 440, ../../style/globals/_components.scss */
+/* line 454, ../../style/globals/_components.scss */
 ul.headerMenu.open li a, ul.headerMenu.open li form {
   position: relative;
 }
-/* line 446, ../../style/globals/_components.scss */
+/* line 460, ../../style/globals/_components.scss */
 ul.headerMenu li {
   height: 0;
   margin-bottom: 0;
@@ -1168,11 +1179,11 @@ ul.headerMenu li {
   transform: scaleY(0);
 }
 
-/* line 457, ../../style/globals/_components.scss */
+/* line 471, ../../style/globals/_components.scss */
 ul.menu section {
   padding-bottom: 16pt;
 }
-/* line 461, ../../style/globals/_components.scss */
+/* line 475, ../../style/globals/_components.scss */
 ul.menu li {
   position: relative;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1270,19 +1281,19 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-duration(1.9s); }
   */
 }
-/* line 469, ../../style/globals/_components.scss */
+/* line 483, ../../style/globals/_components.scss */
 ul.menu li.backButton {
   padding-bottom: 16pt;
 }
-/* line 473, ../../style/globals/_components.scss */
+/* line 487, ../../style/globals/_components.scss */
 ul.menu li.backButton a:hover, ul.menu li.backButton a:active, ul.menu li.backButton a:focus {
   left: 0;
 }
-/* line 479, ../../style/globals/_components.scss */
+/* line 493, ../../style/globals/_components.scss */
 ul.menu li.input {
   margin-top: 24pt;
 }
-/* line 483, ../../style/globals/_components.scss */
+/* line 497, ../../style/globals/_components.scss */
 ul.menu li.heading {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -1291,14 +1302,14 @@ ul.menu li.heading {
   font-weight: 500;
   letter-spacing: 0.0625em;
 }
-/* line 487, ../../style/globals/_components.scss */
+/* line 501, ../../style/globals/_components.scss */
 ul.menu li.hidden {
   height: 0;
   margin: 0;
   opacity: 0;
   padding: 0;
 }
-/* line 494, ../../style/globals/_components.scss */
+/* line 508, ../../style/globals/_components.scss */
 ul.menu li.first {
   opacity: 1;
   height: 16pt;
@@ -1306,7 +1317,7 @@ ul.menu li.first {
   margin-top: 4pt;
   white-space: nowrap;
 }
-/* line 502, ../../style/globals/_components.scss */
+/* line 516, ../../style/globals/_components.scss */
 ul.menu li input {
   width: 100%;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1318,7 +1329,7 @@ ul.menu li input {
   -webkit-transition-property: width;
   transition-property: width;
 }
-/* line 508, ../../style/globals/_components.scss */
+/* line 522, ../../style/globals/_components.scss */
 ul.menu li a {
   position: relative;
   left: 0;
@@ -1327,11 +1338,11 @@ ul.menu li a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 513, ../../style/globals/_components.scss */
+/* line 527, ../../style/globals/_components.scss */
 ul.menu li a:hover, ul.menu li a:active, ul.menu li a:focus {
   left: 8pt;
 }
-/* line 518, ../../style/globals/_components.scss */
+/* line 532, ../../style/globals/_components.scss */
 ul.menu li > a {
   display: block;
   width: 100%;
@@ -1341,140 +1352,140 @@ ul.menu li > a {
   -webkit-transition-property: left, right, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, transform, -webkit-transform, -moz-transform;
 }
-/* line 571, ../../style/globals/_components.scss */
+/* line 585, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(1) {
   -moz-transition-delay: 0.05s;
   -o-transition-delay: 0.05s;
   -webkit-transition-delay: 0.05s;
   transition-delay: 0.05s;
 }
-/* line 572, ../../style/globals/_components.scss */
+/* line 586, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 573, ../../style/globals/_components.scss */
+/* line 587, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 574, ../../style/globals/_components.scss */
+/* line 588, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 575, ../../style/globals/_components.scss */
+/* line 589, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.25s;
   -o-transition-delay: 0.25s;
   -webkit-transition-delay: 0.25s;
   transition-delay: 0.25s;
 }
-/* line 576, ../../style/globals/_components.scss */
+/* line 590, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 577, ../../style/globals/_components.scss */
+/* line 591, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.35s;
   -o-transition-delay: 0.35s;
   -webkit-transition-delay: 0.35s;
   transition-delay: 0.35s;
 }
-/* line 578, ../../style/globals/_components.scss */
+/* line 592, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 579, ../../style/globals/_components.scss */
+/* line 593, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.45s;
   -o-transition-delay: 0.45s;
   -webkit-transition-delay: 0.45s;
   transition-delay: 0.45s;
 }
-/* line 580, ../../style/globals/_components.scss */
+/* line 594, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
-/* line 581, ../../style/globals/_components.scss */
+/* line 595, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.55s;
   -o-transition-delay: 0.55s;
   -webkit-transition-delay: 0.55s;
   transition-delay: 0.55s;
 }
-/* line 582, ../../style/globals/_components.scss */
+/* line 596, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.6s;
   -o-transition-delay: 0.6s;
   -webkit-transition-delay: 0.6s;
   transition-delay: 0.6s;
 }
-/* line 583, ../../style/globals/_components.scss */
+/* line 597, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.65s;
   -o-transition-delay: 0.65s;
   -webkit-transition-delay: 0.65s;
   transition-delay: 0.65s;
 }
-/* line 584, ../../style/globals/_components.scss */
+/* line 598, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.7s;
   -o-transition-delay: 0.7s;
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-/* line 585, ../../style/globals/_components.scss */
+/* line 599, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.75s;
   -o-transition-delay: 0.75s;
   -webkit-transition-delay: 0.75s;
   transition-delay: 0.75s;
 }
-/* line 586, ../../style/globals/_components.scss */
+/* line 600, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.8s;
   -o-transition-delay: 0.8s;
   -webkit-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
-/* line 587, ../../style/globals/_components.scss */
+/* line 601, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.85s;
   -o-transition-delay: 0.85s;
   -webkit-transition-delay: 0.85s;
   transition-delay: 0.85s;
 }
-/* line 588, ../../style/globals/_components.scss */
+/* line 602, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.9s;
   -o-transition-delay: 0.9s;
   -webkit-transition-delay: 0.9s;
   transition-delay: 0.9s;
 }
-/* line 589, ../../style/globals/_components.scss */
+/* line 603, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.95s;
   -o-transition-delay: 0.95s;
   -webkit-transition-delay: 0.95s;
   transition-delay: 0.95s;
 }
-/* line 590, ../../style/globals/_components.scss */
+/* line 604, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 1s;
   -o-transition-delay: 1s;
@@ -1482,7 +1493,7 @@ ul.menu li:nth-of-type(20) {
   transition-delay: 1s;
 }
 
-/* line 640, ../../style/globals/_components.scss */
+/* line 654, ../../style/globals/_components.scss */
 .mask {
   height: 100vh;
   width: 100vw;
@@ -1492,7 +1503,7 @@ ul.menu li:nth-of-type(20) {
   background: transparent;
 }
 
-/* line 650, ../../style/globals/_components.scss */
+/* line 664, ../../style/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -1517,7 +1528,7 @@ body {
 /* line 2, ../../style/layout/_header.scss */
 header.main .backButton.main {
   position: absolute;
-  top: 0;
+  top: 4pt;
   left: -50px;
 }
 /* line 7, ../../style/layout/_header.scss */
@@ -2489,23 +2500,32 @@ section.readOnly header.card {
   z-index: 10;
   position: relative;
   opacity: 1;
+  cursor: default;
 }
-/* line 190, ../../style/index.scss */
+/* line 191, ../../style/index.scss */
 section.readOnly header.card section.form {
   position: absolute;
-  bottom: 0;
+  bottom: 8pt;
   opacity: 0;
+  width: 100%;
 }
-/* line 197, ../../style/index.scss */
+/* line 203, ../../style/index.scss */
+section.readOnly header.card section.form .formToggle {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  right: 8pt;
+}
+/* line 212, ../../style/index.scss */
 section.readOnly .card {
   position: absolute;
   top: 0;
 }
-/* line 201, ../../style/index.scss */
+/* line 216, ../../style/index.scss */
 section.readOnly .card.blank {
   z-index: 0;
 }
-/* line 205, ../../style/index.scss */
+/* line 220, ../../style/index.scss */
 section.readOnly .card.logo {
   border: 0;
   background: transparent;
