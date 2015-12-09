@@ -42,6 +42,8 @@ window.contentModel =
 
   getSize: ($content) ->
     return $content.data('size') if $content.data('size')?
+    # Check if pack because pack covers are scaled
+    return $content.find('.card').width() * 2 if $content.find('.card').width() and $content.hasClass('pack')
     return $content.find('.card').width() if $content.find('.card').width()
     0
 

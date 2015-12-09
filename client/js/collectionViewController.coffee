@@ -79,7 +79,7 @@ window.collectionViewController =
     $contentsBefore.add($openingCover).velocity
       properties:
         translateZ: [ 0, 0 ]
-        translateX: [ (() -> -contentModel.getSize($(@))), xOfSelf ]
+        translateX: [ (() -> -contentModel.getSize($(@)) * 2), xOfSelf ]
         translateY: [0, yOfSelf]
         rotateZ:    0
       options: { complete: () -> $(@).hide() }
