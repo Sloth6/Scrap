@@ -193,7 +193,7 @@ window.collectionViewController =
         $collectionContent.velocity
           properties:
   #           opacity: [0, 1]
-            rotateZ: if $collectionContent.data('jumble') then $collectionContent.data('jumble').rotateZ else 0
+            rotateZ: if $collectionContent.data('jumble') then $collectionContent.data('jumble').rotateZ * 2 else 0
             translateX: 0
             translateY: 0
           options: { complete: () -> $(@).remove() }

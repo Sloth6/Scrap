@@ -1,6 +1,5 @@
 window.contentModel = 
   init: ($content) ->
-    isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
     $content.off() # remove old handlers
     $collection = contentModel.getCollection $content
     makeDraggable $content
@@ -21,6 +20,25 @@ window.contentModel =
     ).mouseleave((event) ->
       $(@).removeClass 'hover'
     )
+    
+    isStack = $content.hasClass('.collection') and $content.data('contentType') is 'stack'
+    isPack = $content.hasClass('cover') or $content.hasClass('pack')
+    
+    if $content.hasClass('pack')
+      $content.mouseover((event) ->
+        if $content.hasClass('closed')
+          $content.velocity
+            properties:
+              rotateZ: $content.data('jumble').rotateZ/2
+            options:
+              duration: 500
+      ).mouseleave((event) ->
+        if $content.hasClass('closed')
+          $content.velocity
+            properties:
+              rotateZ: $content.data('jumble').rotateZ
+              
+      )
     
 #     if isStack.mouseenter((event) ->
 #       
