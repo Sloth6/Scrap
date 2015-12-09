@@ -143,9 +143,7 @@ stopDragging = (event, $dragging) ->
       removeClass('dragging').
       zIndex $dragging.data('oldZIndex')
     endDragTransform $dragging
-    collectionViewController.draw $('.collection.open'), { animate: true }
-#     $dragging.find('.card').removeClass('dragging')
-  
+    collectionViewController.draw $('.collection.open'), { animate: true }  
   ), 20
 
 startDragging = ($dragging, mouseDownEvent) ->
@@ -156,10 +154,7 @@ startDragging = ($dragging, mouseDownEvent) ->
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
-    zIndex 9999
-    
-#   $dragging.find('.card').addClass('dragging')
-    
+    zIndex 9999 
  
   startDragTransform $dragging
   
@@ -180,7 +175,6 @@ makeDraggable = ($content) ->
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
 
-    
     mousedownArticle = $content
     draggingArticle  = null
     

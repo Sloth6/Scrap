@@ -90,7 +90,7 @@ window.contentViewController =
     oldX       = xTransform $content
     translateY = calculateY       $content, margin, jumble, multiple
     scale      = calculateScale   $content, margin, jumble, multiple
-    rotateZ    = calculateRotateZ $content, margin, jumble, multiple
+    rotateZ    = calculateRotateZ $content, margin, jumble, percentToBorder
 
     velocityParams = 
       properties:

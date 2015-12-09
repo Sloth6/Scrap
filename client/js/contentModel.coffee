@@ -88,10 +88,10 @@ window.contentModel =
 
   setJumble: ($content) ->
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
-    normalTranslateY  = (Math.random() - .5) * $(window).height() / 8
+    normalTranslateY  = (Math.random() - .5) * $(window).height() / 16
     normalRotateZ     = (Math.random() - .5) * 8
-    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 8
-    coverRotateZ      = (Math.random() - .5) * 22.5
+    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16
+    coverRotateZ      = (Math.random() - .5) * 45
     
     margin =  if isPack then packMargin else articleMargin
     $content.data 'margin', margin

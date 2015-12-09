@@ -115,7 +115,9 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
+    console.log('hi', $collectionContent)
     if $collection.data('contenttype') == 'pack'
+      # Container around articles
       $collection.children('.contentContainer').velocity
         properties:
           translateZ: 0
@@ -123,14 +125,23 @@ window.collectionViewController =
         options:
           duration: openCollectionDuration/2
           easing: openCollectionCurve
+      # Each article
+      $collectionContent.add($collectionAddForm).each () ->
+        $(@).velocity
+          properties:
+            translateZ: 0
+            translateY: 0
+        $(@).find('.card').each () ->
+          $(@).velocity
+            properties:
+              translateZ: 0
+              rotateZ: [0, (Math.random() - .5) * 90]
+              scale: [1, .5]
       $collection.velocity
         properties:
+          translateZ: 0
           translateY: 0
           rotateZ: 0
-      $collectionContent.add($collectionAddForm).velocity
-        opacity: [1, 0]
-        translateY: 0
-#         translateX: [ xTransform($cover), xOfSelf ]
     else
       $collection.velocity
         properties:
@@ -180,23 +191,29 @@ window.collectionViewController =
       contentModel.setSize $collection, null
       $collectionCover.css 'zIndex', 99999
       $collection.children('.contentContainer').velocity
-        translateZ: 0
-        opacity: [0, 1]
+        properties:
+          translateZ: 0
+          opacity: [0, 1]
+        options:
+          duration: openCollectionDuration / 2
       $collectionAddForm.velocity
         properties:
-#           opacity: [0, 1]
+          opacity: [0, 1]
           rotateZ: $collectionAddForm.data('jumble').rotateZ
           translateX: 0
           translateY: 0
+          scale: [.5, 1]
         options: { complete: () -> $(@).hide() }
       if $collectionContent?
-        $collectionContent.velocity
-          properties:
-  #           opacity: [0, 1]
-            rotateZ: if $collectionContent.data('jumble') then $collectionContent.data('jumble').rotateZ * 2 else 0
-            translateX: 0
-            translateY: 0
-          options: { complete: () -> $(@).remove() }
+        $collectionContent.each () ->
+          $(@).velocity
+            properties:
+              translateX: 0
+              translateY: $(@).height() / 4
+              rotateZ: (Math.random() - .5) * 90
+              scale: [.5, 1]
+            options: { complete: () -> $(@).remove() }
+              
     else
       $collectionCover.show()
       collectionViewController.draw $collection
