@@ -121,7 +121,7 @@ window.collectionViewController =
           translateZ: 0
           opacity: [1, 0]
         options:
-          duration: openCollectionDuration
+          duration: openCollectionDuration/2
           easing: openCollectionCurve
       $collection.velocity
         properties:
@@ -185,17 +185,18 @@ window.collectionViewController =
       $collectionAddForm.velocity
         properties:
 #           opacity: [0, 1]
-          rotateZ: 0
+          rotateZ: $collectionAddForm.data('jumble').rotateZ
           translateX: 0
           translateY: 0
         options: { complete: () -> $(@).hide() }
-      $collectionContent.velocity
-        properties:
-#           opacity: [0, 1]
-          rotateZ: 0
-          translateX: 0
-          translateY: 0
-        options: { complete: () -> $(@).remove() }
+      if $collectionContent?
+        $collectionContent.velocity
+          properties:
+  #           opacity: [0, 1]
+            rotateZ: if $collectionContent.data('jumble') then $collectionContent.data('jumble').rotateZ else 0
+            translateX: 0
+            translateY: 0
+          options: { complete: () -> $(@).remove() }
     else
       $collectionCover.show()
       collectionViewController.draw $collection
