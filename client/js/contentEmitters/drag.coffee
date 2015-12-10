@@ -43,11 +43,22 @@ drag = (event, $dragging) ->
   x = event.clientX
   y = event.clientY
   $collection = $('.collection.open')
+  
+  isPack = $dragging.hasClass 'pack'
+
+#   console.log x,y 
+    
+  translateX = x - $dragging.data('mouseOffsetX')
+  translateY = y - $dragging.data('mouseOffsetY')
+  
 
   $dragging.velocity {
-    translateX: x - $dragging.data('mouseOffsetX')
-    translateY: y - $dragging.data('mouseOffsetY')
+    translateX #: if isPack then translateX - $dragging.data('startX')/2 else translateX
+    translateY #: if isPack then translateY - $dragging.data('startY')/2 else translateY
   }, { duration: 1 }
+  
+#   $.Velocity.hook $dragging, 'translateX', translateX
+#   $.Velocity.hook $dragging, 'translateY', translateY
   
   # The content we are moused over
   $content = collectionModel.getContentAt $collection, x
@@ -149,6 +160,8 @@ stopDragging = (event, $dragging) ->
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
+  $dragging.data 'startX', parseFloat $.Velocity.hook $dragging, 'translateX' # Hook values are strings
+  $dragging.data 'startY', parseFloat $.Velocity.hook $dragging, 'translateY'
 
   $dragging.
     addClass('dragging').
@@ -192,15 +205,17 @@ makeDraggable = ($content) ->
 
 
 startDragTransform = ($dragging) ->
-  $dragging.find('.transform').velocity({
-    'rotateZ': (Math.random() * .5) * 12
-    scale: if $dragging.hasClass 'pack' then .5 else 1
+  isPack = $dragging.hasClass 'pack' 
+  $transform = if isPack then $dragging else $dragging.find('.transform')
+  $transform.velocity({
+    rotateZ: '*=((Math.random() - .5) * 4)'
   }, dragOptions)
 
 endDragTransform = ($dragging) ->
-  $dragging.find('.transform').velocity({
-    'rotateZ': 0
-    scale: if $dragging.hasClass 'pack' then .5 else 1 
+  isPack = $dragging.hasClass 'pack'
+  $transform = if isPack then $dragging else $dragging.find('.transform')
+  $transform.velocity({
+    rotateZ: 0
   }, dragOptions)
 
 $ ->
