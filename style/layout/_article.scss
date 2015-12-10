@@ -176,10 +176,15 @@ body {
         
         &.file .content {
             $foldWidth: 48px;
-            padding-right: $foldWidth;
-            height: $articleSide;
-            width: $articleSideNarrow;
             position: relative;
+            
+            .fakeCard {
+                @include cardStyle;
+                height: $articleSide;
+                width: $articleSideNarrow - $foldWidth - $cardPaddingRight;
+                border-right: 0;
+                position: relative;
+            }
             
             .decorative.fold {
                 z-index: 10;
@@ -188,7 +193,7 @@ body {
                 right: 0;
                 height: 100%;
                 width: $foldWidth;
-                background: url('/images/fileCorner.png') no-repeat top right;
+                background: transparent url('/images/fileCorner.png') no-repeat top right;
                 background-size: $foldWidth $foldWidth;
                 
                 &:after {
@@ -207,8 +212,11 @@ body {
             }
             
             .card {
-                height: 100%;
-                border-right: 0;
+                width: $articleSideNarrow;
+                // reset card style
+                border: 0;
+                background: transparent;
+                padding: 0;
                 
                 header {
                     h1 {

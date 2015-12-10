@@ -11,9 +11,6 @@ mixin articleMixin(article)
     data-content    = article.content
   )
     .content
-      case article.contentType
-        when 'file'
-          .decorative.fold
       .transform
         .articleControls
 
@@ -39,14 +36,16 @@ mixin articleMixin(article)
               a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
       
             when 'file'
-              header
-                - name = article.content.split('/').pop()
-                //- - extension = name.pop()
-                h1.headerType.title=name.split('.')[0]
-                p.extension.smallCaps.bodyType=name.split('.').pop()
-              ul.cardActions
-                li
-                  a.download.confirm(href='#') Download
+              .fakeCard
+                header
+                  - name = article.content.split('/').pop()
+                  //- - extension = name.pop()
+                  h1.headerType.title=name.split('.')[0]
+                  p.extension.smallCaps.bodyType=name.split('.').pop()
+                ul.cardActions
+                  li
+                    a.download.confirm(href='#') Download
+              .decorative.fold
 
             when 'video'
               video()
