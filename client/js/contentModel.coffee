@@ -16,7 +16,7 @@ window.contentModel =
       
     isCollection = $content.hasClass('collection')
     isStack = isCollection and $content.hasClass('stack')
-    isPack = isCollection and $content.hasClass('pack')
+    isPack  = isCollection and $content.hasClass('pack')
     
     $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')   
       
@@ -69,7 +69,7 @@ window.contentModel =
   getSize: ($content) ->
     return $content.data('size') if $content.data('size')?
     # Check if pack because pack covers are scaled
-    return $content.find('.card').width() * 2 if $content.find('.card').width() and $content.hasClass('pack')
+#     return $content.find('.card').width() * 2 if $content.find('.card').width() and $content.hasClass('pack')
     return $content.find('.card').width() if $content.find('.card').width()
     0
 

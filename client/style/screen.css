@@ -2097,14 +2097,6 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
   margin-left: 8pt;
 }
 
-/* line 1, ../../style/layout/_home.scss */
-.collection.root {
-  -moz-transform: scale(0.5);
-  -ms-transform: scale(0.5);
-  -webkit-transform: scale(0.5);
-  transform: scale(0.5);
-}
-
 /* line 7, ../../style/layout/_home.scss */
 .collection.stack, .collection article, .collection .card {
   cursor: move;

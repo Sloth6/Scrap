@@ -1,5 +1,5 @@
 openCollectionCurve     = [20, 10]
-openCollectionDuration  = 1000
+openCollectionDuration  = 2000
 
 marginTop       = $(window).height() * 0.125
 articleMargin   = 24

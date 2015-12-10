@@ -15,8 +15,8 @@ calculatePercentToBorder = (x, e, border) ->
 calculateX = ($content, margin, scroll) ->
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
-  maxX = ($(window).width() * 2) - contentModel.getSize($content)
-  right_start = ($(window).width() * 2) - border
+  maxX = ($(window).width()) - contentModel.getSize($content)
+  right_start = ($(window).width()) - border
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
 

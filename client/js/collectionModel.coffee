@@ -19,24 +19,24 @@ window.collectionModel =
 
     if $collection.data('hascover') # is pack
       # Wrapper to scale collection
-#       $collection.append $('<div class="collectionScale"></div>')
-#       $collectionScale = $collection.find('.collectionScale')
+#       $collection.append $('<div class="collectionScale translate"></div>')
+      $collectionScale = $collection.find('.collectionScale')
 #       $collection.children().each () ->
 #         $collectionScale.append $(@)
-#       $collectionScale.velocity
-#         properties:
-#           scale: .5
-#         options:
-#           duration: 1
-
-      $collection.data 'contenttype', 'pack'
-      $collection.addClass 'pack'
-      packCoverInit $cover, collectionKey
-      $parentCollection.velocity
+      $collectionScale.velocity
         properties:
           scale: .5
         options:
           duration: 1
+
+      $collection.data 'contenttype', 'pack'
+      $collection.addClass 'pack'
+      packCoverInit $cover, collectionKey
+#       $parentCollection.velocity
+#         properties:
+#           scale: .5
+#         options:
+#           duration: 1
     else
       $collection.data 'contenttype', 'stack'
       $collection.addClass 'stack'
@@ -44,7 +44,7 @@ window.collectionModel =
       collectionViewController.draw $collection
 
   removeContent: ($collection) ->
-    $collection.children('.contentContainer').empty()
+    $collection.children('.transform').children('.contentContainer').empty()
 
   # Return all state attributess
   # 
@@ -59,7 +59,7 @@ window.collectionModel =
   # 
   # @param $collection [jquery array] 
   getContent: ($collection) ->
-    $contentContainer = $collection.children('.contentContainer')
+    $contentContainer = $collection.children('.transform').children('.contentContainer')
     $contentContainer.children()
 
   # The collection and article to partition around
@@ -88,7 +88,7 @@ window.collectionModel =
     $content
 
   appendContent: ($collection, $content) ->
-    $collection.children('.contentContainer').append $content
+    $collection.children('.translate').children('.contentContainer').append $content
 
   getFinalContent: ($collection) ->
     $contents = collectionModel.getContent $collection
@@ -98,16 +98,16 @@ window.collectionModel =
   # 
   # @param $collection [jquery array] 
   getCover: ($collection) ->
-    $collection.children '.cover'
+    $collection.children('.transform').children('.cover')
 
   getAddForm: ($collection) ->
     $contents = collectionModel.getContent $collection
     $contents.filter('.addArticleForm')
-    $collection.children('.addArticleForm,.addProjectForm')
+    $collection.children('.transform').children('.addArticleForm,.addProjectForm')
 
   loadContent: ($collection, callback) ->
     collectionKey = collectionModel.getState($collection).collectionKey
-    $contentContainer = $collection.children('.contentContainer')
+    $contentContainer = $collection.children('.transform').children('.contentContainer')
     
     # A stack will already have content
     $.get "/collectionContent/#{collectionKey}", (data) ->
@@ -132,4 +132,7 @@ window.collectionModel =
     if $collection.hasClass 'root'
       null
     else 
-      $collection.parent().parent()
+      $collection.parent().parent().parent()
+      
+  getTransform: ($collection) ->
+    $collection.children('.transform')

@@ -77,20 +77,34 @@ window.collectionViewController =
 
     # Animate content offscreen in either direction, hide when done
     $contentsBefore.add($openingCover).velocity
+#     $contentsBefore.velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ (() -> -contentModel.getSize($(@)) * 2 - articleMargin * 2), xOfSelf ]
         translateY: [0, yOfSelf]
         rotateZ:    0
+#         scale:      if $contentsBefore.hasClass 'pack' then 2 else 1
       options: { complete: () -> $(@).hide() }
-
+      $contentsBefore.add($openingCover).each () ->
+        if $(@).hasClass 'pack'
+          $collectionTransform  = collectionModel.getTransform $(@)
+          $collectionTransform.velocity
+            scale: 1
+      
     $contentsAfter.add($addForm).velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ $(window).width(), xOfSelf ]
         translateY: [0, yOfSelf]
         rotateZ:    0
+#         scale:      if $contentsBefore.hasClass 'pack' then 2 else 1
       options: { complete: () -> $(@).hide() }
+      $contentsAfter.each () ->
+        if $(@).hasClass 'pack'
+          $collectionTransform  = collectionModel.getTransform $(@)
+          $collectionTransform.velocity
+            scale: 1
+    
 
     # Mark collection so no longer being open 
     $collection.removeClass('open').addClass 'closed'
@@ -98,21 +112,22 @@ window.collectionViewController =
   open: ($collection, options = {}) ->
     throw 'no collection passed' unless $collection.length
 
-    $cover             = collectionModel.getCover $collection
-    $parentCollection  = collectionModel.getParent $collection
-    $collectionContent = collectionModel.getContent $collection
-    $collectionAddForm = collectionModel.getAddForm $collection
+    $cover                = collectionModel.getCover $collection
+    $parentCollection     = collectionModel.getParent $collection
+    $collectionContent    = collectionModel.getContent $collection
+    $collectionAddForm    = collectionModel.getAddForm $collection
+    $collectionTransform  = collectionModel.getTransform $collection
     
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection      
-      if $parentCollection.hasClass 'root'
-        $parentCollection.velocity
-          properties:
-            scale: [1, .5]
-          options:
-            duration: openCollectionDuration
-            easing: openCollectionCurve
+#       if $parentCollection.hasClass 'root'
+#         $parentCollection.velocity
+#           properties:
+#             scale: [1, .5]
+#           options:
+#             duration: openCollectionDuration
+#             easing: openCollectionCurve
 
     # Make sure cover is above its children during transition
     $cover.css 'z-index': 999
@@ -155,7 +170,13 @@ window.collectionViewController =
           translateZ: 0
           translateY: 0
           rotateZ: 0
-    else
+      $collectionTransform.velocity
+        properties:
+          scale: 1
+        options:
+          duration: openCollectionDuration
+          easing: openCollectionCurve
+    else # if stack
       $collection.velocity
         properties:
           rotateZ: 0
@@ -181,6 +202,7 @@ window.collectionViewController =
     $collectionState   = collectionModel.getState   $collection
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
+    $collectionTransform = collectionModel.getTransform $collection
 
     $parentCollection         = collectionModel.getParent  $collection
     $parentCollectionCover    = collectionModel.getCover   $parentCollection
@@ -199,9 +221,9 @@ window.collectionViewController =
     $parentCollectionContent.show()
     $parentCollectionAddForm.show()
     
-    if $parentCollection.hasClass 'root'
-      $parentCollection.velocity
-        scale: [.5, 1]
+    if $collection.hasClass 'root'
+      $collection.velocity
+        scale: [1, 2]
 
     if $collection.data('contenttype') == 'pack'
       # The size of the collection will be reset to just the cover
@@ -232,8 +254,16 @@ window.collectionViewController =
               properties:
                 rotateZ: (Math.random() - .5) * 45
                 scale: [.75, 1]
-              
-    else
+      $parentCollectionContent.add($parentCollectionAddForm).each () ->
+        if $(@).hasClass 'pack'
+          $collectionTransform = collectionModel.getTransform $(@)
+          $collectionTransform.velocity
+            properties: 
+              scale: .5
+      $collectionTransform.velocity
+        properties:
+          scale: .5
+    else # if stack
       $collectionCover.show()
       collectionViewController.draw $collection
 
