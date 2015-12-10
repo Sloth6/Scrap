@@ -2111,7 +2111,7 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
 }
 
 /* line 4, ../../style/layout/_home.scss */
-article.cover .scale {
+article.cover .coverScale {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
   -webkit-transform: scale(2);

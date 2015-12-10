@@ -54,7 +54,7 @@ mixin collectionMixin(collection)
             a.articleDeleteButton.warning.bodyType.smallCaps Delete
           if collection.hasCover
             .transform
-              .scale
+              .coverScale
                 .card.cover.cardHover.cardDrag.colored(style='background-color:'+collection.color)
                   section.title
                     h1.collectionTitle.typeTitle.typeOutlineClear!=collection.name

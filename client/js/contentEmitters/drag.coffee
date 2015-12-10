@@ -194,6 +194,7 @@ makeDraggable = ($content) ->
 startDragTransform = ($dragging) ->
   $dragging.find('.transform').velocity({
     'rotateZ': (Math.random() * .5) * 12
+    scale: if $dragging hasClass 'pack' then .5 else 1
   }, dragOptions)
 
 endDragTransform = ($dragging) ->

@@ -1,7 +1,7 @@
 article.cover {
     
     
-    .scale {
+    .coverScale {
         @include transform(scale(2));
         transform-origin: top left;
         -webkit-transform-origin: top left;

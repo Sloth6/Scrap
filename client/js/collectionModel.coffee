@@ -16,7 +16,11 @@ window.collectionModel =
       return if $(@).hasClass 'open'
       navigationController.open $(@)
 
-    if $collection.data('hascover')
+    if $collection.data('hascover') # is pack
+      # Wrapper to scale collection
+#       $collectionScale = $('<div class="collectionScale"></div>')
+#       $collection.wrap $collectionScale
+
       $collection.data 'contenttype', 'pack'
       $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
