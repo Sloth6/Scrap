@@ -76,29 +76,34 @@ window.collectionViewController =
     { $contentsBefore, $contentsAfter } = partition
 
     # Animate content offscreen in either direction, hide when done
-    $contentsBefore.add($openingCover).velocity
-#     $contentsBefore.velocity
-      properties:
-        translateZ: [ 0, 0 ]
-        translateX: [ (() -> -contentModel.getSize($(@)) * 2 - articleMargin * 2), xOfSelf ]
-        translateY: [0, yOfSelf]
-        rotateZ:    0
-#         scale:      if $contentsBefore.hasClass 'pack' then 2 else 1
-      options: { complete: () -> $(@).hide() }
-      $contentsBefore.add($openingCover).each () ->
-        if $(@).hasClass 'pack'
-          $collectionTransform  = collectionModel.getTransform $(@)
-          $collectionTransform.velocity
-            scale: 1
+    $contentsBefore.add($openingCover).each () ->
+      isCover = $(@).hasClass 'cover'
+      currentX = parseFloat $.Velocity.hook $(@), 'translateX'
+      width = contentModel.getSize($(@))
+      offLeftEdgeX = -width * 2 - articleMargin * 2
+      $(@).velocity
+        properties:
+          translateZ: [ 0, 0 ]
+          translateX: if isCover then offLeftEdgeX else offLeftEdgeX - Math.abs(currentX * 2)
+          translateY: 0
+          rotateZ:    if isCover then 0 else (Math.random() - .5) * 45
+        options: { complete: () -> $(@).hide() }
+        $contentsBefore.add($openingCover).each () ->
+          if $(@).hasClass 'pack'
+            $collectionTransform  = collectionModel.getTransform $(@)
+            $collectionTransform.velocity
+              scale: 1
       
-    $contentsAfter.add($addForm).velocity
-      properties:
-        translateZ: [ 0, 0 ]
-        translateX: [ $(window).width(), xOfSelf ]
-        translateY: [0, yOfSelf]
-        rotateZ:    0
-#         scale:      if $contentsBefore.hasClass 'pack' then 2 else 1
-      options: { complete: () -> $(@).hide() }
+    $contentsAfter.add($addForm).each () ->
+      currentX = parseFloat $.Velocity.hook $(@), 'translateX'
+#       translateX = $(window).width() + currentX
+      $(@).velocity
+        properties:
+          translateZ: [ 0, 0 ]
+          translateX: $(window).width() + currentX / 2
+          translateY: 0
+          rotateZ:    (Math.random() - .5) * 45
+        options: { complete: () -> $(@).hide() }
       $contentsAfter.each () ->
         if $(@).hasClass 'pack'
           $collectionTransform  = collectionModel.getTransform $(@)
@@ -156,7 +161,7 @@ window.collectionViewController =
               translateZ: 0
               translateY: [0, $cover.height() - $(@).height() / 2]
               rotateZ: [0, (Math.random() - .5) * 45]
-              scale: [1, .75]
+#               scale: [1, .75]
             options:
               complete: () ->
                 $(@).css {
@@ -246,14 +251,14 @@ window.collectionViewController =
         $collectionContent.each () ->
           $(@).velocity
             properties:
-              translateX: 0
-              translateY: 0
+              translateX: $collectionCover.width()  - $(@).width()  / 2
+              translateY: $collectionCover.height() - $(@).height() / 2
             options: { complete: () -> $(@).remove() }
           $(@).find('.card').each () ->
             $(@).velocity
               properties:
                 rotateZ: (Math.random() - .5) * 45
-                scale: [.75, 1]
+#                 scale: [.75, 1]
       $parentCollectionContent.add($parentCollectionAddForm).each () ->
         if $(@).hasClass 'pack'
           $collectionTransform = collectionModel.getTransform $(@)
