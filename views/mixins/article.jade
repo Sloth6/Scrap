@@ -16,11 +16,11 @@ mixin articleMixin(article)
           .decorative.fold
       .transform
         .articleControls
-          // - if (typeof(collection.nameMap) !== "undefined") {
-          //   author!= collection.nameMap[article.creatorId].name
-          // - }    
+
           a.articleDeleteButton.warning.bodyType.smallCaps Delete
-          author.smallType Author Name 
+          - if(article.Creator !== undefined)
+            author.smallType!=article.Creator.name
+          
         .card.cardHover.cardDrag(class=article.contentType)
           case article.contentType
             when 'image'
