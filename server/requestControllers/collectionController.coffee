@@ -36,8 +36,10 @@ module.exports =
     models.Collection.find({
       where: { collectionKey }
       include:[
-        { model:models.Article }
-        { model:models.Collection, as: 'children', include: [model:models.Article] }
+        { model:models.Article, include: [ model:models.User, as: 'Creator' ] }
+        { model:models.Collection, as: 'children', include: [
+          { model:models.Article, include: [ model:models.User, as: 'Creator' ]} 
+        ] }
       ]
     }).done (err, collection) ->
       return callback(err, res) if err?
