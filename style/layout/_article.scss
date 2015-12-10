@@ -51,7 +51,8 @@ body {
             @include transition-property(opacity);
             opacity: 0; 
             top: -20px;
-            left: 0;
+            left: -$cell;
+            right: $cell;
             position: absolute;
             z-index: 5000;
             font-style: normal;
