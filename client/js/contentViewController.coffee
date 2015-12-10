@@ -38,7 +38,7 @@ calculateY = ($content, margin, jumble, multiple) ->
     0
 
 calculateScale = ($content, margin, jumble, multiple) ->
-  scale = 1 # jumble.scale
+  scale = jumble.scale
   rawX = $content.data('scrollOffset') - $(window).scrollLeft() + margin
   if rawX < sliderBorder
     scale + (rawX * .00001)
