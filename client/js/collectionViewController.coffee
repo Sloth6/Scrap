@@ -96,7 +96,6 @@ window.collectionViewController =
     $collection.removeClass('open').addClass 'closed'
 
   open: ($collection, options = {}) ->
-    console.log 'open', $collection.attr('class')
     throw 'no collection passed' unless $collection.length
 
     $cover             = collectionModel.getCover $collection
@@ -122,7 +121,6 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
-    console.log('hi', $collectionContent)
     if $collection.data('contenttype') == 'pack'
       # Container around articles
 #       $collection.children('.contentContainer').velocity
@@ -143,6 +141,7 @@ window.collectionViewController =
               translateZ: 0
               translateY: [0, $cover.height() - $(@).height() / 2]
               rotateZ: [0, (Math.random() - .5) * 45]
+              scale: [1, .75]
             options:
               complete: () ->
                 $(@).css {
@@ -225,13 +224,14 @@ window.collectionViewController =
         $collectionContent.each () ->
           $(@).velocity
             properties:
-              translateX: $collectionCover.width()  / 2
-              translateY: $collectionCover.height() / 2
+              translateX: 0
+              translateY: 0
             options: { complete: () -> $(@).remove() }
           $(@).find('.card').each () ->
             $(@).velocity
               properties:
                 rotateZ: (Math.random() - .5) * 45
+                scale: [.75, 1]
               
     else
       $collectionCover.show()

@@ -1,5 +1,20 @@
-article.cover {
+.collection.root {
+    @include transform(scale(.5));
+}
+
+
+.collection {
+    &.stack, article, .card {
+        @include cursorGrab;
+    }
+}
+
+.addProjectForm {
     
+}
+
+
+article.cover {
     
     .coverScale {
         @include transform(scale(2));

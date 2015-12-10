@@ -9,6 +9,7 @@ window.collectionModel =
     collectionKey = collectionModel.getState($collection).collectionKey
     $content      = collectionModel.getContent $collection
     clickBlock    = (event) -> event.preventDefault()
+    $parentCollection = $collection.parent().parent()
 
     $collection.click (event) ->
       event.stopPropagation()
@@ -18,12 +19,24 @@ window.collectionModel =
 
     if $collection.data('hascover') # is pack
       # Wrapper to scale collection
-#       $collectionScale = $('<div class="collectionScale"></div>')
-#       $collection.wrap $collectionScale
+#       $collection.append $('<div class="collectionScale"></div>')
+#       $collectionScale = $collection.find('.collectionScale')
+#       $collection.children().each () ->
+#         $collectionScale.append $(@)
+#       $collectionScale.velocity
+#         properties:
+#           scale: .5
+#         options:
+#           duration: 1
 
       $collection.data 'contenttype', 'pack'
       $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
+      $parentCollection.velocity
+        properties:
+          scale: .5
+        options:
+          duration: 1
     else
       $collection.data 'contenttype', 'stack'
       $collection.addClass 'stack'

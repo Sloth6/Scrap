@@ -1,9 +1,9 @@
 openCollectionCurve     = [20, 10]
-openCollectionDuration  = 2000
+openCollectionDuration  = 1000
 
 marginTop       = $(window).height() * 0.125
 articleMargin   = 24
-packMargin      = 120
+packMargin      = 60
 sliderBorder    = $(window).width() * 0.15
 edgeWidth       = 48
 marginAfter     = $(window).width()/2

@@ -2,12 +2,6 @@ $collectionOpenTransitionDuration: 1s;
 $hideImageWhiteBorder: -2px -1px -4px -2px;
 
 body {
-  
-    .collection {
-        &.stack {
-            @include cursorGrab;
-        }
-    }
         
     article {
         color: $colorType;
@@ -18,9 +12,7 @@ body {
         
         // EVENTS
         
-        &.hover {
-            @include cursorGrab;
-            
+        &.hover {            
             .articleControls {
                 opacity: 1;
             }

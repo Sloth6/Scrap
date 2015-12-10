@@ -18,12 +18,7 @@ window.contentModel =
     isStack = isCollection and $content.hasClass('stack')
     isPack = isCollection and $content.hasClass('pack')
     
-    $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')
-    
-    
-    console.log $content.attr 'class'
-    
-
+    $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')   
       
     $card.mouseenter((event) ->
       event.stopPropagation()
@@ -94,13 +89,12 @@ window.contentModel =
     normalRotateZ     = (Math.random() - .5) * 8
     coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16
     coverRotateZ      = (Math.random() - .5) * 10
-    
     margin =  if isPack then packMargin else articleMargin
     $content.data 'margin', margin
 
     $content.data 'jumble', {
       'translateY': if isPack then coverTranslateY else normalTranslateY
       'rotateZ':    if isPack then coverRotateZ else normalRotateZ
-      'scale':     .95
+      'scale':      .95
     }
 
