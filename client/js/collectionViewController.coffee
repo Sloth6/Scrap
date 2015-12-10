@@ -79,7 +79,7 @@ window.collectionViewController =
     $contentsBefore.add($openingCover).velocity
       properties:
         translateZ: [ 0, 0 ]
-        translateX: [ (() -> -contentModel.getSize($(@)) * 2), xOfSelf ]
+        translateX: [ (() -> -contentModel.getSize($(@)) * 2 - articleMargin * 2), xOfSelf ]
         translateY: [0, yOfSelf]
         rotateZ:    0
       options: { complete: () -> $(@).hide() }
@@ -125,25 +125,24 @@ window.collectionViewController =
     console.log('hi', $collectionContent)
     if $collection.data('contenttype') == 'pack'
       # Container around articles
-      $collection.children('.contentContainer').velocity
-        properties:
-          translateZ: 0
-          opacity: [1, 0]
-        options:
-          duration: openCollectionDuration/2
-          easing: openCollectionCurve
+#       $collection.children('.contentContainer').velocity
+#         properties:
+#           translateZ: 0
+#           opacity: [1, 0]
+#         options:
+#           duration: openCollectionDuration/2
+#           easing: openCollectionCurve
       # Each article
       $collectionContent.add($collectionAddForm).each () ->
         $(@).velocity
           properties:
             translateZ: 0
-            translateY: 0
         $(@).find('.card').each () ->
           $(@).velocity
             properties:
               translateZ: 0
-              rotateZ: [0, (Math.random() - .5) * 90]
-              scale: [1, .5]
+              translateY: [0, $cover.height() - $(@).height() / 2]
+              rotateZ: [0, (Math.random() - .5) * 45]
       $collection.velocity
         properties:
           translateZ: 0
@@ -201,29 +200,30 @@ window.collectionViewController =
       # The size of the collection will be reset to just the cover
       contentModel.setSize $collection, null
       $collectionCover.css 'zIndex', 99999
-      $collection.children('.contentContainer').velocity
-        properties:
-          translateZ: 0
-          opacity: [0, 1]
-        options:
-          duration: openCollectionDuration / 2
+#       $collection.children('.contentContainer').velocity
+#         properties:
+#           translateZ: 0
+#           opacity: [0, 1]
+#         options:
+#           duration: openCollectionDuration / 2
       $collectionAddForm.velocity
         properties:
           opacity: [0, 1]
           rotateZ: $collectionAddForm.data('jumble').rotateZ
           translateX: 0
           translateY: 0
-          scale: [.5, 1]
         options: { complete: () -> $(@).hide() }
       if $collectionContent?
         $collectionContent.each () ->
           $(@).velocity
             properties:
-              translateX: 0
-              translateY: $(@).height() / 4
-              rotateZ: (Math.random() - .5) * 90
-              scale: [.5, 1]
+              translateX: $collectionCover.width()  / 2
+              translateY: $collectionCover.height() / 2
             options: { complete: () -> $(@).remove() }
+          $(@).find('.card').each () ->
+            $(@).velocity
+              properties:
+                rotateZ: (Math.random() - .5) * 45
               
     else
       $collectionCover.show()

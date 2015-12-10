@@ -93,7 +93,7 @@ window.contentModel =
     normalTranslateY  = (Math.random() - .5) * $(window).height() / 16
     normalRotateZ     = (Math.random() - .5) * 8
     coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16
-    coverRotateZ      = (Math.random() - .5) * 45
+    coverRotateZ      = (Math.random() - .5) * 10
     
     margin =  if isPack then packMargin else articleMargin
     $content.data 'margin', margin

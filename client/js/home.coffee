@@ -3,7 +3,7 @@ openCollectionDuration  = 2000
 
 marginTop       = $(window).height() * 0.125
 articleMargin   = 24
-packMargin      = 480
+packMargin      = 240
 sliderBorder    = $(window).width() * 0.15
 edgeWidth       = 48
 marginAfter     = $(window).width()/2
