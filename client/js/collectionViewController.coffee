@@ -143,6 +143,14 @@ window.collectionViewController =
               translateZ: 0
               translateY: [0, $cover.height() - $(@).height() / 2]
               rotateZ: [0, (Math.random() - .5) * 45]
+            options:
+              complete: () ->
+                $(@).css {
+                  '-webkit-transform' : ''
+                  '-moz-transform' : ''
+                  '-ms-transform' : ''
+                  'transform' : ''
+                }
       $collection.velocity
         properties:
           translateZ: 0
