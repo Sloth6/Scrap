@@ -81,6 +81,9 @@ window.footerController =
           opacity: 1
       
   drop: ($content, action) ->
+    $content.velocity
+      properties:
+        opacity: 1
     switch action
       when 'delete'
         $content.data 'deleting', true
