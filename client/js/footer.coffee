@@ -31,7 +31,7 @@ window.footerController =
   show: ($content) ->
     $footer = $('footer.main')
     $actions = $footer.find('ul.actions li.action')
-    isDownloadable = $content.hasClass 'file'
+    isDownloadable = $content.hasClass('file') or $content.hasClass('image') or $content.hasClass('video')
     if isDownloadable
       $footer.find('li.download').show()
     else
@@ -94,7 +94,7 @@ window.footerController =
         console.log '🚫!', $content
         onDelete $content
       when 'download'
-        url = $content.data 'content'
+        url = if $content.hasClass 'image' then $content.data('content').original_url else $content.data 'content'
         $collection = contentModel.getCollection $content
         window.open(url, '_blank')
         collectionViewController.draw $collection, { animate: true }
