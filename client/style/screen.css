@@ -2328,22 +2328,29 @@ footer.main {
   left: 0;
   right: 0;
   text-align: right;
-  height: 56pt;
 }
-/* line 10, ../../style/layout/_footer.scss */
+/* line 9, ../../style/layout/_footer.scss */
 footer.main ul.actions {
   list-style: none;
 }
-/* line 14, ../../style/layout/_footer.scss */
+/* line 13, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action {
-  vertical-align: middle;
   position: relative;
-  top: 50%;
   display: inline-block;
-  margin-right: 24pt;
+  padding-left: 8pt;
+  padding-right: 8pt;
+  padding-bottom: 16pt;
   margin-top: 0;
 }
-/* line 34, ../../style/layout/_footer.scss */
+/* line 21, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action:last-of-type {
+  padding-right: 16pt;
+}
+/* line 24, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action:last-of-type label {
+  right: 8pt;
+}
+/* line 30, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.delete.active {
   -webkit-animation: hoverWarningFlicker 20s infinite linear;
   -moz-animation: hoverWarningFlicker 20s infinite linear;
@@ -2354,15 +2361,15 @@ footer.main ul.actions li.action.delete.active {
       border-color: $colorAccent;
   */
 }
-/* line 37, ../../style/layout/_footer.scss */
+/* line 33, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.delete.active .target {
   background-image: url("/images/deleteActive.svg");
 }
-/* line 42, ../../style/layout/_footer.scss */
+/* line 38, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.delete .target {
   background-image: url("/images/delete.svg");
 }
-/* line 48, ../../style/layout/_footer.scss */
+/* line 44, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.download.active {
   -webkit-animation: hoverConfirmFlicker 20s infinite linear;
   -moz-animation: hoverConfirmFlicker 20s infinite linear;
@@ -2373,15 +2380,15 @@ footer.main ul.actions li.action.download.active {
       border-color: $colorAccent;
   */
 }
-/* line 51, ../../style/layout/_footer.scss */
+/* line 47, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.download.active .target {
   background-image: url("/images/downloadActive.svg");
 }
-/* line 56, ../../style/layout/_footer.scss */
+/* line 52, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.download .target {
   background-image: url("/images/download.svg");
 }
-/* line 61, ../../style/layout/_footer.scss */
+/* line 57, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action .target {
   height: 32pt;
   width: 32pt;
@@ -2397,14 +2404,14 @@ footer.main ul.actions li.action .target {
   background-position: center center;
   background-size: 32pt 32pt;
 }
-/* line 73, ../../style/layout/_footer.scss */
+/* line 69, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action label {
   position: absolute;
-  width: 48pt;
+  left: 0;
+  right: 0;
   text-align: center;
-  left: 16pt;
-  margin-left: -23pt;
-  bottom: -12pt;
+  margin-left: 1pt;
+  bottom: 4pt;
 }
 
 /* line 1, ../../style/layout/_login.scss */

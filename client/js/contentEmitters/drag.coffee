@@ -43,7 +43,7 @@ drag = (event, $dragging) ->
   x = event.clientX
   y = event.clientY
   scaleThreshhold = $(window).height() / 2
-  scale = if y > scaleThreshhold then 1 - ((y - scaleThreshhold) / scaleThreshhold) else 1
+  scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
   $collection = $('.collection.open')
   
   $dragging.velocity {
