@@ -42,19 +42,14 @@ dragOptions =  {
 drag = (event, $dragging) ->
   x = event.clientX
   y = event.clientY
+  scaleThreshhold = $(window).height() / 2
+  scale = if y > scaleThreshhold then 1 - ((y - scaleThreshhold) / scaleThreshhold) else 1
   $collection = $('.collection.open')
   
-  isPack = $dragging.hasClass 'pack'
-
-#   console.log x,y 
-    
-  translateX = x - $dragging.data('mouseOffsetX')
-  translateY = y - $dragging.data('mouseOffsetY')
-  
-
   $dragging.velocity {
-    translateX #: if isPack then translateX - $dragging.data('startX')/2 else translateX
-    translateY #: if isPack then translateY - $dragging.data('startY')/2 else translateY
+    translateX: x - $dragging.data('mouseOffsetX')
+    translateY: y - $dragging.data('mouseOffsetY')
+    scale: scale
   }, { duration: 1 }
   
 #   $.Velocity.hook $dragging, 'translateX', translateX
