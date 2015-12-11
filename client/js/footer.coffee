@@ -72,19 +72,13 @@ window.footerController =
   in: ($content, action) ->
     $content.velocity
       properties:
-        scale: 1/2
-      options:
-        duration: defaultDuration
-        easing: bouncyCurve
+        opacity: .25
       
   out: ($content, action) ->
     unless $content.data 'deleting'
       $content.velocity
         properties:
-          scale: 1
-        options:
-          duration: defaultDuration
-          easing: bouncyCurve
+          opacity: 1
       
   drop: ($content, action) ->
     switch action
