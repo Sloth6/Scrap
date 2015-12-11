@@ -2323,6 +2323,10 @@ footer.main ul.actions li.action {
 footer.main ul.actions li.action:last-of-type {
   margin-right: 0;
 }
+/* line 27, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.active {
+  background-color: lime;
+}
 
 /* line 1, ../../style/layout/_login.scss */
 .card.login {

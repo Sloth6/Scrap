@@ -14,11 +14,10 @@ window.footerController =
     $actions.each () ->
       $action = $(@)
       $action.mouseenter () ->
-        console.log 'hiiii', $('.dragging').data 'originalCollection'
+        $action.addClass 'active'
       $action.mouseleave () ->
-        console.log 'out ', $('.dragging').attr 'class'
+        $action.removeClass 'active'
       $action.mouseup () ->
-        console.log 'up ', $('.dragging').attr 'class'
         footerController.drop $('.dragging'), $action.data 'action'
         
   show: ($footer) ->
@@ -34,11 +33,12 @@ window.footerController =
       translateY: $footer.height()
       
   drop: ($content, action) ->
+    $content.addClass 'deleting'
+    $content.data 'deleting', true
     switch action
       when 'delete'
         console.log '🚫!', $content
         onDelete $content
       when 'download'
         console.log '⬇️!'
-      #         onDelete $content
     

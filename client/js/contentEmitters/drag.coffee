@@ -144,7 +144,8 @@ stopDragging = (event, $dragging) ->
       removeClass('dragging').
       zIndex $dragging.data('oldZIndex')
     endDragTransform $dragging
-    collectionViewController.draw $('.collection.open'), { animate: true }
+    unless $dragging.data 'deleting'
+      collectionViewController.draw $('.collection.open'), { animate: true }
   ), 20
   
   footerController.hide $('footer.main')
