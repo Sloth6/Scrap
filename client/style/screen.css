@@ -721,11 +721,11 @@ a, input[type=submit], input[type=button] {
 }
 /* line 154, ../../style/globals/_components.scss */
 a:hover, a:focus, input[type=submit]:hover, input[type=submit]:focus, input[type=button]:hover, input[type=button]:focus {
-  opacity: .25;
+  opacity: .5;
 }
 /* line 158, ../../style/globals/_components.scss */
 a:active, input[type=submit]:active, input[type=button]:active {
-  opacity: .125;
+  opacity: .25;
 }
 /* line 163, ../../style/globals/_components.scss */
 a.action:hover, input[type=submit].action:hover, input[type=button].action:hover {
@@ -878,10 +878,10 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
 
 /* line 250, ../../style/globals/_components.scss */
 .backButton:hover a span {
-  -moz-transform: translate3d(12px, 0px, 0px);
-  -ms-transform: translate3d(12px, 0px, 0px);
-  -webkit-transform: translate3d(12px, 0px, 0px);
-  transform: translate3d(12px, 0px, 0px);
+  -moz-transform: translate3d(-4pt, 0px, 0px);
+  -ms-transform: translate3d(-4pt, 0px, 0px);
+  -webkit-transform: translate3d(-4pt, 0px, 0px);
+  transform: translate3d(-4pt, 0px, 0px);
 }
 /* line 255, ../../style/globals/_components.scss */
 .backButton a {

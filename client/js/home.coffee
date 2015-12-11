@@ -14,11 +14,16 @@ marginAfter     = $(window).width()/2
 
 collectionPath = []
 
+history.scrollRestoration = 'manual'
+# console.log history.scrollRestoration
+
 # Main scroll event
 onScroll = ->
   return if $('.velocity-animating').length
+  # console.log 'on scrolla', $(window).scrollLeft()
   collectionViewController.draw $('.open.collection')
   $('.hover').removeClass 'hover'
+  # console.log 'on scrollb', $(window).scrollLeft()
 
 # Enable the user to scroll vertically and map it to horizontal scroll
 onMousewheel = (event) ->
@@ -30,7 +35,10 @@ onMousewheel = (event) ->
 # Close the open collection.
 window.onpopstate = (event) -> 
   throw 'No event state object' unless event.state
+  event.preventDefault()
   navigationController.close $('.collection.open'), event.state
+  
+
 
 $ ->
   window.socket = io.connect()
@@ -39,16 +47,12 @@ $ ->
   $.Velocity.defaults.easing   = openCollectionCurve
   $.Velocity.defaults.queue    = false
 
-  #TODO reimpelment this
-  #, {}, () -> hyphenateText()
   $('.slidingContainer').css y: marginTop
-  # $('.content').css y: marginTop
-  # $('.content').velocity { translateY: marginTop}, {duration: 1}
-  
+
   onScroll()
   $(window).scroll onScroll
   $(window).resize onScroll
-  $(window).mousewheel (event) -> onMousewheel(event)
+  $(window).mousewheel onMousewheel
 
   # Trigger the history back event.
   $('.backButton').click (event) ->
@@ -56,8 +60,6 @@ $ ->
     history.back()
     
   footerController.init $('footer.main')
-
-  # history.pushState { name: "home" }, "", "/"
 
   navigationController.open $('.collection.root')
 

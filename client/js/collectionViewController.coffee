@@ -1,7 +1,7 @@
 drawOpenCollection = ($collection, animate) ->
-  return if drawTimeout?
-  clearTimeout drawTimeout
-  drawTimeout = setTimeout (() -> drawTimeout = null), 100
+  # return if drawTimeout?
+  # clearTimeout drawTimeout
+  # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
   leftMargin = $(window).width()/2 - $contents.first().find('.card').width() / 2
@@ -9,15 +9,18 @@ drawOpenCollection = ($collection, animate) ->
   sizeTotal  = leftMargin
   maxX       = -Infinity
   zIndex     = $contents.length
+  
+  console.log 'size', sizeTotal
 
   $contents.add($addForm).each () ->
-    $(@).data 'scrollOffset', sizeTotal
-    $(@).css { zIndex: zIndex++ }
+    $(@).
+      data('scrollOffset', sizeTotal).
+      css { zIndex: zIndex++ }
     contentViewController.draw $(@), null, { animate }
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
+  sizeTotal += rightMargin
   
   contentModel.setSize $collection, sizeTotal
-  $(document.body).css { width: sizeTotal + rightMargin }
   sizeTotal
 
     # if $(@).hasClass('cover') and $(@).hasClass('open')
@@ -31,7 +34,7 @@ drawClosedStack = ($collection, spacing = 15) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
   
-  # With a new stack, the dragged over element hides whiel waiting for a 
+  # With a new stack, the dragged over element hides while waiting for a 
   # server resposse
   $content.show()
   
@@ -47,9 +50,7 @@ drawClosedStack = ($collection, spacing = 15) ->
   $content.each () ->
     $(@).
       velocity({ translateX, translateY, rotateZ })
-      # css({ zIndex: zIndex++, 'overflow': 'hidden' }).
-      # width(Math.min($(@).width(), 300))
-    
+
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
 
@@ -193,6 +194,8 @@ window.collectionViewController =
       $collectionContent.show()
 
     # When opening a collection, it no longer slides but is fixed to start
+    $collection.velocity { translateX: 0 }
+    $collection.velocity { translateX: 0 }
     $collection.velocity { translateX: 0 }
 
     # Mark collection as open. 
