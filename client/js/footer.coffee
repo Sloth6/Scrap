@@ -31,7 +31,7 @@ window.footerController =
   show: ($content) ->
     $footer = $('footer.main')
     $actions = $footer.find('ul.actions li.action')
-    isDownloadable = $content.hasClass 'text'
+    isDownloadable = $content.hasClass 'file'
     if isDownloadable
       $footer.find('li.download').show()
     else
@@ -87,12 +87,16 @@ window.footerController =
           easing: bouncyCurve
       
   drop: ($content, action) ->
-    $content.data 'deleting', true
-    $content.addClass 'deleting'
     switch action
       when 'delete'
+        $content.data 'deleting', true
+        $content.addClass 'deleting'
         console.log '🚫!', $content
         onDelete $content
       when 'download'
+        url = $content.data 'content'
+        $collection = contentModel.getCollection $content
+        window.open(url, '_blank')
+        collectionViewController.draw $collection, { animate: true }
         console.log '⬇️!'
     

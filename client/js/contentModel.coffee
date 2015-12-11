@@ -28,7 +28,7 @@ window.contentModel =
     $card.mouseenter((event) ->
       event.stopPropagation()
       unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')
-        console.log 'stack', $content, $content.parent(), $content.parent().parent().hasClass('stack')
+#         console.log 'stack', $content, $content.parent(), $content.parent().parent().hasClass('stack')
         $(@).addClass 'hover'
     ).mouseleave((event) ->
       $(@).removeClass 'hover'
