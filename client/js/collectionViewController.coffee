@@ -4,7 +4,9 @@ drawOpenCollection = ($collection, animate) ->
   drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  sizeTotal  = 0
+  leftMargin = $(window).width()/2 - $contents.first().find('.card').width() / 2
+  rightMargin = $(window).width()/2 - $contents.last().find('.card').width() / 2
+  sizeTotal  = leftMargin
   maxX       = -Infinity
   zIndex     = $contents.length
 
@@ -15,7 +17,7 @@ drawOpenCollection = ($collection, animate) ->
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
   
   contentModel.setSize $collection, sizeTotal
-  $(document.body).css { width: sizeTotal }
+  $(document.body).css { width: sizeTotal + rightMargin }
   sizeTotal
 
     # if $(@).hasClass('cover') and $(@).hasClass('open')
