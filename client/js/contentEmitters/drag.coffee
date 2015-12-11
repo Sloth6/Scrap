@@ -51,7 +51,6 @@ drag = (event, $dragging) ->
   
   # The content we are moused over
   $content = collectionModel.getContentAt $collection, x
-  
   # When dragging is the only content
   return if $content.length == 0    
   return if $content.is padding
@@ -65,7 +64,7 @@ drag = (event, $dragging) ->
   switch LCR
     when 'left'  then padding.insertBefore $content
     when 'right' then padding.insertAfter $content
-    
+
   if LCR isnt 'center'
     collectionViewController.draw $collection, { animate: true }
   
@@ -151,7 +150,6 @@ stopDragging = (event, $dragging) ->
   footerController.hide $('footer.main')
 
 startDragging = ($dragging, mouseDownEvent) ->
-  # console.log 'start dragging', $dragging[0]
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
 
@@ -159,12 +157,14 @@ startDragging = ($dragging, mouseDownEvent) ->
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
-    zIndex 9999
-  
+    zIndex 9999 
+ 
   startDragTransform $dragging
-  contentModel.setSize padding, contentModel.getSize($dragging)
+  
   padding.insertAfter $dragging
-  # $dragging.insertAfter $('.slidingContainer')
+  contentModel.setSize padding, contentModel.getSize($dragging)
+  padding.data 'margin', articleMargin
+  
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
   collectionViewController.draw $('.collection.open')
@@ -178,7 +178,6 @@ makeDraggable = ($content) ->
     return if $(@).hasClass 'open'
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
-    
     $content.data 'originalCollection', contentModel.getCollection $content
 
     mousedownArticle = $content
@@ -197,18 +196,16 @@ makeDraggable = ($content) ->
         stopDragging(event, draggingArticle)
 
 
-startDragTransform = (e) ->
-  e.find('.transform').velocity({
-    # 'scale': draggingScale,
-    'rotateZ': (Math.random() * 8) - 4
+startDragTransform = ($dragging) ->
+  $dragging.find('.transform').velocity({
+    'rotateZ': (Math.random() * .5) * 12
   }, dragOptions)
 
-endDragTransform = (e) ->
-  e.find('.transform').velocity({
-    # 'scale': 1,
+endDragTransform = ($dragging) ->
+  $dragging.find('.transform').velocity({
     'rotateZ': 0
   }, dragOptions)
 
 $ ->
   window.padding = $('<article>').addClass('slider sliding padding')
-  contentModel.setSize padding, 200
+  padding.css 'background-color', 'red'  

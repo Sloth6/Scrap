@@ -5,11 +5,12 @@ defaultDuration         = 500
 bouncyCurve             = [60, 10]
 fastDuration            = 250
 
-marginTop    = $(window).height() * 0.125
-margin       = 32
-sliderBorder = $(window).width() * 0.15
-edgeWidth    = 48
-marginAfter  = $(window).width()/2
+marginTop       = $(window).height() * 0.125
+articleMargin   = 24
+packMargin      = 72
+sliderBorder    = $(window).width() * 0.15
+edgeWidth       = 48
+marginAfter     = $(window).width()/2
 
 collectionPath = []
 

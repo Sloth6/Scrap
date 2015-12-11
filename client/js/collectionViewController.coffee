@@ -10,20 +10,21 @@ drawOpenCollection = ($collection, animate) ->
 
   $contents.add($addForm).each () ->
     $(@).data 'scrollOffset', sizeTotal
+    $(@).css { zIndex: zIndex++ }
+    contentViewController.draw $(@), null, { animate }
+    sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
+  
+  contentModel.setSize $collection, sizeTotal
+  $(document.body).css { width: sizeTotal }
+  sizeTotal
+
     # if $(@).hasClass('cover') and $(@).hasClass('open')
     #   $(@).css { zIndex: ($contents.length*3) }
     # # If at root level and elem is add article form, to prevent form from being on top at root level
     # else if $(@).hasClass('addArticleForm') and not $('.root.open').length # (puts add article card at back on root level
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
-    $(@).css { zIndex: zIndex++ }
-    contentViewController.draw $(@), null, { animate }
-    sizeTotal += contentModel.getSize($(@)) + margin
-  
-  contentModel.setSize $collection, sizeTotal
-  $(document.body).css { width: sizeTotal }
-  sizeTotal
-
+    
 drawClosedStack = ($collection, spacing = 15) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
@@ -40,9 +41,10 @@ drawClosedStack = ($collection, spacing = 15) ->
   translateY = 0
   zIndex     = $content.length
   sizeTotal  = 0
+  rotateZ    = 0
   $content.each () ->
     $(@).
-      velocity({ translateX, translateY })
+      velocity({ translateX, translateY, rotateZ })
       # css({ zIndex: zIndex++, 'overflow': 'hidden' }).
       # width(Math.min($(@).width(), 300))
     
@@ -78,14 +80,16 @@ window.collectionViewController =
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ (() -> -contentModel.getSize($(@))), xOfSelf ]
-        translateY: [yOfSelf, yOfSelf]
+        translateY: [0, yOfSelf]
+        rotateZ:    0
       options: { complete: () -> $(@).hide() }
 
     $contentsAfter.add($addForm).velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ $(window).width(), xOfSelf ]
-        translateY: [yOfSelf, yOfSelf]
+        translateY: [0, yOfSelf]
+        rotateZ:    0
       options: { complete: () -> $(@).hide() }
 
     # Mark collection so no longer being open 
@@ -111,17 +115,51 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
+    console.log('hi', $collectionContent)
     if $collection.data('contenttype') == 'pack'
-      $collectionContent.add($collectionAddForm).velocity
-        opacity: [1, 0]
-        x: [ xTransform($cover), xOfSelf ]
+      # Container around articles
+      $collection.children('.contentContainer').velocity
+        properties:
+          translateZ: 0
+          opacity: [1, 0]
+        options:
+          duration: openCollectionDuration/2
+          easing: openCollectionCurve
+      # Each article
+      $collectionContent.add($collectionAddForm).each () ->
+        $(@).velocity
+          properties:
+            translateZ: 0
+            translateY: 0
+        $(@).find('.card').each () ->
+          $(@).velocity
+            properties:
+              translateZ: 0
+              rotateZ: [0, (Math.random() - .5) * 90]
+              scale: [1, .5]
+            options:
+              complete: () ->
+                $(@).css {
+                  '-webkit-transform' : ''
+                  '-moz-transform' : ''
+                  '-ms-transform' : ''
+                  'transform' : ''
+                }
+      $collection.velocity
+        properties:
+          translateZ: 0
+          translateY: 0
+          rotateZ: 0
     else
-      $cover.hide()
+      $collection.velocity
+        properties:
+          rotateZ: 0
+#       $cover.hide()
       # Show the add article Form.
       $collectionAddForm.show()
       $collectionContent.show()
 
-    # When opeing a collection, it no longer slides but is fixed to start
+    # When opening a collection, it no longer slides but is fixed to start
     $collection.velocity { translateX: 0 }
 
     # Mark collection as open. 
@@ -129,7 +167,7 @@ window.collectionViewController =
       addClass('open').
       removeClass 'closed'
     
-    collectionViewController.draw $collection
+    collectionViewController.draw $collection, {animate: true}
 
   close: ($collection, options = {}) ->
     return if $collection.hasClass 'root'
@@ -159,12 +197,31 @@ window.collectionViewController =
     if $collection.data('contenttype') == 'pack'
       # The size of the collection will be reset to just the cover
       contentModel.setSize $collection, null
+      $collectionCover.css 'zIndex', 99999
+      $collection.children('.contentContainer').velocity
+        properties:
+          translateZ: 0
+          opacity: [0, 1]
+        options:
+          duration: openCollectionDuration / 2
       $collectionAddForm.velocity
-        properties: { opacity: [0, 1] }
+        properties:
+          opacity: [0, 1]
+          rotateZ: $collectionAddForm.data('jumble').rotateZ
+          translateX: 0
+          translateY: 0
+          scale: [.5, 1]
         options: { complete: () -> $(@).hide() }
-      $collectionContent.velocity
-        properties: { opacity: [0, 1] }
-        options: { complete: () -> $(@).remove() }
+      if $collectionContent?
+        $collectionContent.each () ->
+          $(@).velocity
+            properties:
+              translateX: 0
+              translateY: $(@).height() / 4
+              rotateZ: (Math.random() - .5) * 90
+              scale: [.5, 1]
+            options: { complete: () -> $(@).remove() }
+              
     else
       $collectionCover.show()
       collectionViewController.draw $collection

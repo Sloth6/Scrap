@@ -2,6 +2,12 @@ $collectionOpenTransitionDuration: 1s;
 $hideImageWhiteBorder: -2px -1px -4px -2px;
 
 body {
+  
+    .collection {
+        &.stack {
+            @include cursorGrab;
+        }
+    }
         
     article {
         color: $colorType;
@@ -15,11 +21,8 @@ body {
         
         // EVENTS
         
-        &:hover, &.hover {
-            cursor: move;
-            cursor: -webkit-grab;
-            cursor: -moz-grab;;
-            cursor: grab;
+        &.hover {
+            @include cursorGrab;
             
             .articleControls {
                 opacity: 1;
@@ -27,12 +30,9 @@ body {
         }
 
         &.dragging, &.ui-draggable-dragging, &.active, &:active {
-            cursor: -webkit-grabbing;
-            cursor: -moz-grabbing;
-            cursor: grabbing;
 
             > .content .card {
-                @include cardDrag;
+                @include cardDragging;
             }
         }
         
@@ -229,7 +229,7 @@ body {
             padding: 0;
             position: relative;
             
-            &:hover {
+            &.hover {
                 
                 .preview:after {
                     opacity: 1;
@@ -295,7 +295,7 @@ body {
                 @include cardStyle;
                 width: $articleSideNarrow;
                 
-                &:hover {
+                &.hover {
                     @include hoverLinkAnimation;
                     
                     .text {

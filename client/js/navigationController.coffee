@@ -46,8 +46,11 @@ window.navigationController =
     onContentLoaded = () ->
       $collectionContent = collectionModel.getContent $collection
       # Initialize new content to make it interactive
-      $collectionContent.each () -> contentModel.init $(@)
+      $collectionContent.each () ->
+        contentModel.init $(@)
+        contentModel.setJumble $(@)
       $addForm = collectionModel.getAddForm($collection)
+      contentModel.setJumble $addForm
       switch $addForm.data('contenttype')
         when 'addArticleForm' then addArticleController.init $addForm
         when 'addProjectForm' then addProjectController.init $addForm

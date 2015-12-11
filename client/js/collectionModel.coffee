@@ -1,4 +1,3 @@
-
 loadArticles = (collectionkey, callback) ->
   return callback 'ERR. collectionkey not passed to loadArticles' unless collectionkey  
   $.get "/collectionContent/#{collectionkey}", (data) ->
@@ -19,9 +18,11 @@ window.collectionModel =
 
     if $collection.data('hascover')
       $collection.data 'contenttype', 'pack'
+      $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
     else
       $collection.data 'contenttype', 'stack'
+      $collection.addClass 'stack'
       $content.on 'click mouseup', clickBlock
       collectionViewController.draw $collection
 
@@ -44,7 +45,7 @@ window.collectionModel =
     $contentContainer = $collection.children('.contentContainer')
     $contentContainer.children()
 
-  # The collection and article to partion around
+  # The collection and article to partition around
   getContentPartitioned: ($collection, $content) ->
     $contentsBefore = $([])
     $contentsAfter  = $([])

@@ -1,4 +1,4 @@
-percentToBorder = (x, e, border) ->
+calculatePercentToBorder = (x, e, border) ->
   maxX = $(window).width() - e.width()
   right_start = $(window).width() - border
   left_min = - e.width() + edgeWidth
@@ -12,9 +12,9 @@ percentToBorder = (x, e, border) ->
     percent = 0
   percent
 
-calculateX = ($content, scroll) ->
+calculateX = ($content, margin, scroll) ->
   border = sliderBorder
-  x = $content.data('scrollOffset') - $(window).scrollLeft() + margin
+  x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
   maxX = $(window).width() - contentModel.getSize($content)
   right_start = $(window).width() - border
   left_min = - contentModel.getSize($content) + edgeWidth
@@ -31,19 +31,22 @@ calculateX = ($content, scroll) ->
   # x -= .0001825 * rawX
   x
 
-calculateY = ($content) ->
-  0
+calculateY = ($content, margin, jumble, multiple) ->
+  if jumble?
+    jumble.translateY * multiple
+  else 
+    0
 
-calculateScale = ($content) ->
+calculateScale = ($content, margin, jumble, multiple) ->
   rawX = $content.data('scrollOffset') - $(window).scrollLeft() + margin
   if rawX < sliderBorder
     1 + (rawX * .00001)
   else
     1
 
-calculateRotateZ = ($content) ->
-  percentFromBorder = percentToBorder(xTransform($content), $content, sliderBorder)
-  $content.data('rotateZ') * percentFromBorder
+calculateRotateZ = ($content, margin, jumble, multiple) ->
+  return 0 unless jumble?
+  jumble.rotateZ * multiple
 
 # If slider is at edge
 # if translateX + contentModel.getSize($content) < edgeWidth or translateX > $(window).width() - edgeWidth
@@ -75,12 +78,19 @@ calculateRotateZ = ($content) ->
 window.contentViewController =
   draw: ($content, scroll,  options) ->
     animate = options.animate or false
-
-    translateX = calculateX $content, scroll
+    margin = 0#$content.data('margin') or 0
+    jumble = $content.data 'jumble'
+    isPack = $content.hasClass('cover') or $content.hasClass('pack')
+    
+    translateX = calculateX       $content, margin, scroll
+    
+    percentToBorder = calculatePercentToBorder(translateX, $content, sliderBorder)
+    multiple = if isPack then 1 else percentToBorder
+        
     oldX       = xTransform $content
-    translateY = calculateY $content
-    scale      = calculateScale $content
-    rotateZ    = calculateRotateZ $content
+    translateY = calculateY       $content, margin, jumble, multiple
+    scale      = calculateScale   $content, margin, jumble, multiple
+    rotateZ    = calculateRotateZ $content, margin, jumble, percentToBorder
 
     velocityParams = 
       properties:
@@ -90,11 +100,11 @@ window.contentViewController =
         rotateZ: rotateZ
         scale: scale
 
-    # Velocity cannot actually haae 0 duratiom
+    # Velocity cannot actually have 0 duration
     if !animate
       velocityParams.options = { duration: 1 }
 
-    # Only call animate if change is noticable.
+    # Only call animate if change is noticeable.
     if Math.abs(translateX - oldX) > 1
       $content.velocity velocityParams
 
