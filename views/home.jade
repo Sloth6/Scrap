@@ -72,5 +72,9 @@ block content
         //- +collectionMixin(collection)
     footer.main
       ul.actions
-        li.action.delete(data-action="delete") Delete
-        li.action.download(data-action="download") Download
+        li.action.download(data-action="download")
+          .target
+            label.smallType.smallCaps Download
+        li.action.delete(data-action="delete")
+          .target
+            label.smallType.smallCaps Delete

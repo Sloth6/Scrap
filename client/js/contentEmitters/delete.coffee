@@ -1,3 +1,7 @@
+nullifyDeleteState = ($content) ->
+  $content.data         'deleting', false
+  $content.removeClass  'deleting'
+
 onDelete = ($content) ->
 #   console.log 'about to delete', $content
   if $content.hasClass('collection')
@@ -7,15 +11,13 @@ onDelete = ($content) ->
       parentCollectionKey = collectionPath[1]  
       socket.emit 'deleteCollection', { collectionKey }
     else
-      setTimeout () ->
-        collectionViewController.draw parentCollection, { animate: true }
-      , defaultDuration
+      nullifyDeleteState $content
+      collectionViewController.draw parentCollection, { animate: true }
   else
     articleId = $content.attr 'id'
     $collection = contentModel.getCollection $content
     collectionKey  = $collection.data 'collectionkey'
     parentCollectionKey = collectionPath[1]
-    console.log 'deleting!', $content, $collection, articleId, collectionKey, parentCollectionKey 
     socket.emit 'deleteArticle', { articleId, collectionKey, parentCollectionKey }
 
 # makeDeletable = ($content) ->

@@ -588,7 +588,7 @@ body section.collection section.content article.color9 div.card.text.comment, bo
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 153, ../../style/globals/_type.scss */
+/* line 156, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -602,7 +602,7 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 157, ../../style/globals/_type.scss */
+/* line 160, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -610,7 +610,7 @@ html {
   line-height: 48pt;
 }
 
-/* line 161, ../../style/globals/_type.scss */
+/* line 164, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -618,7 +618,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 165, ../../style/globals/_type.scss */
+/* line 168, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -626,7 +626,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 169, ../../style/globals/_type.scss */
+/* line 172, ../../style/globals/_type.scss */
 .bodyType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -634,7 +634,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 172, ../../style/globals/_type.scss */
+/* line 175, ../../style/globals/_type.scss */
 .bodyType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -644,7 +644,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 177, ../../style/globals/_type.scss */
+/* line 180, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -652,7 +652,7 @@ html {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 180, ../../style/globals/_type.scss */
+/* line 183, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -662,14 +662,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 185, ../../style/globals/_type.scss */
+/* line 188, ../../style/globals/_type.scss */
 .smallType {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 188, ../../style/globals/_type.scss */
+/* line 191, ../../style/globals/_type.scss */
 .smallType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -679,24 +679,24 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 193, ../../style/globals/_type.scss */
+/* line 196, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 197, ../../style/globals/_type.scss */
+/* line 200, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 202, ../../style/globals/_type.scss */
+/* line 205, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 209, ../../style/globals/_type.scss */
+/* line 212, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -2323,31 +2323,84 @@ footer.main {
   bottom: 0;
   left: 0;
   right: 0;
-  background: yellow;
-  opacity: .3;
-  text-align: center;
+  text-align: right;
+  height: 56pt;
 }
-/* line 11, ../../style/layout/_footer.scss */
+/* line 10, ../../style/layout/_footer.scss */
 footer.main ul.actions {
   list-style: none;
 }
-/* line 15, ../../style/layout/_footer.scss */
+/* line 14, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action {
-  text-indent: -9999em;
+  vertical-align: middle;
+  position: relative;
+  top: 50%;
   display: inline-block;
-  background-color: blue;
-  border: red 1px solid;
-  height: 48pt;
+  margin-right: 24pt;
+  margin-top: 0;
+}
+/* line 34, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.delete.active {
+  -webkit-animation: hoverWarningFlicker 20s infinite linear;
+  -moz-animation: hoverWarningFlicker 20s infinite linear;
+  -o-animation: hoverWarningFlicker 20s infinite linear;
+  animation: hoverWarningFlicker 20s infinite linear;
+  /*
+      color: $colorAccent;
+      border-color: $colorAccent;
+  */
+}
+/* line 37, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.delete.active .target {
+  background-image: url("/images/deleteActive.svg");
+}
+/* line 42, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.delete .target {
+  background-image: url("/images/delete.svg");
+}
+/* line 48, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.download.active {
+  -webkit-animation: hoverConfirmFlicker 20s infinite linear;
+  -moz-animation: hoverConfirmFlicker 20s infinite linear;
+  -o-animation: hoverConfirmFlicker 20s infinite linear;
+  animation: hoverConfirmFlicker 20s infinite linear;
+  /*
+      color: $colorAccent;
+      border-color: $colorAccent;
+  */
+}
+/* line 51, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.download.active .target {
+  background-image: url("/images/downloadActive.svg");
+}
+/* line 56, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.download .target {
+  background-image: url("/images/download.svg");
+}
+/* line 61, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action .target {
+  height: 32pt;
+  width: 32pt;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -moz-transition-property: height, width;
+  -o-transition-property: height, width;
+  -webkit-transition-property: height, width;
+  transition-property: height, width;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 32pt 32pt;
+}
+/* line 73, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action label {
+  position: absolute;
   width: 48pt;
-  margin: 8pt 0 8pt 8pt;
-}
-/* line 24, ../../style/layout/_footer.scss */
-footer.main ul.actions li.action:last-of-type {
-  margin-right: 0;
-}
-/* line 28, ../../style/layout/_footer.scss */
-footer.main ul.actions li.action.active {
-  background-color: lime;
+  text-align: center;
+  left: 16pt;
+  margin-left: -23pt;
+  bottom: -12pt;
 }
 
 /* line 1, ../../style/layout/_login.scss */

@@ -147,7 +147,7 @@ stopDragging = (event, $dragging) ->
       collectionViewController.draw $('.collection.open'), { animate: true }
   ), 20
   
-  footerController.hide $('footer.main')
+  footerController.hide()
 
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
@@ -168,7 +168,7 @@ startDragging = ($dragging, mouseDownEvent) ->
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
   collectionViewController.draw $('.collection.open')
-  footerController.show $('footer.main')
+  footerController.show $dragging
  
 makeDraggable = ($content) ->
   $content.find('a,img,iframe').bind 'dragstart', () -> false
