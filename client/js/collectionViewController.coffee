@@ -1,34 +1,34 @@
 drawOpenCollection = ($collection, animate) ->
-  return if drawTimeout?
-  clearTimeout drawTimeout
-  drawTimeout = setTimeout (() -> drawTimeout = null), 100
+  # return if drawTimeout?
+  # clearTimeout drawTimeout
+  # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  sizeTotal  = 0
-  maxX       = -Infinity
   zIndex     = $contents.length
+  sizeTotal  = 0
 
   $contents.add($addForm).each () ->
-    $(@).data 'scrollOffset', sizeTotal
+    $(@).
+      data('scrollOffset', sizeTotal).
+      css { zIndex: zIndex++ }
+    contentViewController.draw $(@), null, { animate }
+    sizeTotal += contentModel.getSize($(@)) + margin
+  
+  contentModel.setSize $collection, sizeTotal
+  sizeTotal
+
     # if $(@).hasClass('cover') and $(@).hasClass('open')
     #   $(@).css { zIndex: ($contents.length*3) }
     # # If at root level and elem is add article form, to prevent form from being on top at root level
     # else if $(@).hasClass('addArticleForm') and not $('.root.open').length # (puts add article card at back on root level
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
-    $(@).css { zIndex: zIndex++ }
-    contentViewController.draw $(@), null, { animate }
-    sizeTotal += contentModel.getSize($(@)) + margin
-  
-  contentModel.setSize $collection, sizeTotal
-  $(document.body).css { width: sizeTotal }
-  sizeTotal
 
 drawClosedStack = ($collection, spacing = 15) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
   
-  # With a new stack, the dragged over element hides whiel waiting for a 
+  # With a new stack, the dragged over element hides while waiting for a 
   # server resposse
   $content.show()
   
@@ -41,11 +41,8 @@ drawClosedStack = ($collection, spacing = 15) ->
   zIndex     = $content.length
   sizeTotal  = 0
   $content.each () ->
-    $(@).
-      velocity({ translateX, translateY })
-      # css({ zIndex: zIndex++, 'overflow': 'hidden' }).
-      # width(Math.min($(@).width(), 300))
-    
+    $(@).velocity({ translateX, translateY })
+
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
 
@@ -92,7 +89,6 @@ window.collectionViewController =
     $collection.removeClass('open').addClass 'closed'
 
   open: ($collection, options = {}) ->
-    console.log 'open', $collection.attr('class')
     throw 'no collection passed' unless $collection.length
 
     $cover             = collectionModel.getCover $collection
@@ -122,6 +118,8 @@ window.collectionViewController =
       $collectionContent.show()
 
     # When opeing a collection, it no longer slides but is fixed to start
+    $collection.velocity { translateX: 0 }
+    $collection.velocity { translateX: 0 }
     $collection.velocity { translateX: 0 }
 
     # Mark collection as open. 

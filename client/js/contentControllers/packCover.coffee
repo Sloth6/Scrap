@@ -50,11 +50,11 @@ startEditing = ($cover) ->
       false
 
 coverClick = (event) ->
-  # navigationController.goToEnd $collection    
   if $(@).hasClass('editing')
     event.stopPropagation()
 
 packCoverInit = ($cover, collectionKey) ->
+  console.log 'pack cover init'
   $card             = $cover.find('.card')
   $userMenu         = $cover.find('.menu')
   $renameButton     = $cover.find('.rename')
