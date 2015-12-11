@@ -42,11 +42,14 @@ dragOptions =  {
 drag = (event, $dragging) ->
   x = event.clientX
   y = event.clientY
+  scaleThreshhold = $(window).height() / 2
+  scale = if y > scaleThreshhold then 1 - ((y - scaleThreshhold) / scaleThreshhold) else 1
   $collection = $('.collection.open')
 
   $dragging.velocity {
     translateX: x - $dragging.data('mouseOffsetX')
     translateY: y - $dragging.data('mouseOffsetY')
+    scale: scale
   }, { duration: 1 }
   
   # The content we are moused over
