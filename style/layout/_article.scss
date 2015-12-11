@@ -9,6 +9,9 @@ body {
         backface-visibility: hidden;
         margin-right: -2pt;
         line-height: 1.5em;
+        transform-origin: center center;
+        -webkit-transform-origin: center center;
+        -moz-transform-origin: center center;
         
         // EVENTS
         
@@ -68,13 +71,7 @@ body {
         }
         
         // CONTENT
-        /* 
-        > .content {
-            position: relative;
-                    transform-origin: bottom right;
-            -webkit-transform-origin: bottom right;
-        }
-        */
+        
         &.text {
             font-style: normal;
             

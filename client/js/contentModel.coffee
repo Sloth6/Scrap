@@ -3,7 +3,7 @@ window.contentModel =
     $content.off() # remove old handlers
     $collection = contentModel.getCollection $content
     makeDraggable $content
-    makeDeletable $content
+#     makeDeletable $content
     
     
     switch $content.data('contenttype')
@@ -23,7 +23,7 @@ window.contentModel =
     $card.mouseenter((event) ->
       event.stopPropagation()
       unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')
-        console.log 'stack', $content, $content.parent(), $content.parent().parent().hasClass('stack')
+#         console.log 'stack', $content, $content.parent(), $content.parent().parent().hasClass('stack')
         $(@).addClass 'hover'
     ).mouseleave((event) ->
       $(@).removeClass 'hover'
@@ -75,9 +75,11 @@ window.contentModel =
 
   getCollection: ($content) ->
     if $content.hasClass('cover')
-      $content.parent()
-    else
       $content.parent().parent()
+    else if $content.hasClass 'dragging'
+      $content.data 'originalCollection'
+    else
+      $content.parent().parent().parent()
 
   getCollectionkey: ($content) ->
     $collection = contentModel.getCollection $content

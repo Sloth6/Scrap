@@ -1,0 +1,83 @@
+footer.main {
+    $footerHeight: $col; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+    height: $footerHeight;
+    
+    ul.actions {
+        list-style: none;
+        $actionSide: $cell * 4;
+        
+        li.action {
+            vertical-align: middle;
+            position: relative;
+            top: 50%;
+            display: inline-block;
+            margin-right: $cell * 3;
+            margin-top: 0;
+          
+            &:first-of-type {
+//                 margin-left: 0;
+            }
+                        
+            &.active {
+                
+                .target {
+                }
+                
+            }
+            
+            &.delete {
+                &.active {
+                    @include hoverWarningAnimation;
+                    
+                    .target {
+                        background-image: url('/images/deleteActive.svg');
+                    }
+                }
+                
+                .target {
+                    background-image: url('/images/delete.svg');
+                }
+            }
+            
+            &.download {
+                &.active {
+                    @include hoverConfirmAnimation;
+                    
+                    .target {
+                        background-image: url('/images/downloadActive.svg');
+                    }
+                }
+                
+                .target {
+                    background-image: url('/images/download.svg');
+                }
+            }
+            
+            .target {
+                height: $actionSide;
+                width: $actionSide;
+                @include transition(.25s $defaultCurve);
+                @include transition-property(height, width);
+//                 border: $cardBorder;
+//                 border-radius: $actionSide;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: $actionSide $actionSide;
+            }
+            
+            label {
+                position: absolute;
+                width: $actionSide * 1.5;
+                text-align: center;
+                left: $actionSide / 2;
+                margin-left: (-($actionSide * 1.5) / 2) + 1pt; // 1pt to offset wide tracking on last character
+                bottom: -$typeSmallLeading;
+            }
+        }
+    }
+}

@@ -588,7 +588,7 @@ body section.collection section.content article.color9 div.card.text.comment, bo
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 153, ../../style/globals/_type.scss */
+/* line 156, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -602,7 +602,7 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 157, ../../style/globals/_type.scss */
+/* line 160, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -610,7 +610,7 @@ html {
   line-height: 48pt;
 }
 
-/* line 161, ../../style/globals/_type.scss */
+/* line 164, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -618,7 +618,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 165, ../../style/globals/_type.scss */
+/* line 168, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -626,7 +626,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 169, ../../style/globals/_type.scss */
+/* line 172, ../../style/globals/_type.scss */
 .bodyType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -634,7 +634,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 172, ../../style/globals/_type.scss */
+/* line 175, ../../style/globals/_type.scss */
 .bodyType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -644,7 +644,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 177, ../../style/globals/_type.scss */
+/* line 180, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -652,7 +652,7 @@ html {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 180, ../../style/globals/_type.scss */
+/* line 183, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -662,14 +662,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 185, ../../style/globals/_type.scss */
+/* line 188, ../../style/globals/_type.scss */
 .smallType {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 188, ../../style/globals/_type.scss */
+/* line 191, ../../style/globals/_type.scss */
 .smallType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -679,24 +679,24 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 193, ../../style/globals/_type.scss */
+/* line 196, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 197, ../../style/globals/_type.scss */
+/* line 200, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 202, ../../style/globals/_type.scss */
+/* line 205, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 209, ../../style/globals/_type.scss */
+/* line 212, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1548,19 +1548,15 @@ body article {
   backface-visibility: hidden;
   margin-right: -2pt;
   line-height: 1.5em;
-  /* 
-  > .content {
-      position: relative;
-              transform-origin: bottom right;
-      -webkit-transform-origin: bottom right;
-  }
-  */
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
 }
-/* line 16, ../../style/layout/_article.scss */
+/* line 19, ../../style/layout/_article.scss */
 body article.hover .articleControls {
   opacity: 1;
 }
-/* line 23, ../../style/layout/_article.scss */
+/* line 26, ../../style/layout/_article.scss */
 body article.dragging > .content .card, body article.ui-draggable-dragging > .content .card, body article.active > .content .card, body article:active > .content .card {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1586,16 +1582,16 @@ body article.dragging > .content .card.hover, body article.ui-draggable-dragging
   -webkit-transform: translate3d(-8pt, -8pt, 0);
   transform: translate3d(-8pt, -8pt, 0);
 }
-/* line 28, ../../style/layout/_article.scss */
+/* line 31, ../../style/layout/_article.scss */
 body article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
-/* line 34, ../../style/layout/_article.scss */
+/* line 37, ../../style/layout/_article.scss */
 body article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 41, ../../style/layout/_article.scss */
+/* line 44, ../../style/layout/_article.scss */
 body article .articleControls {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1614,7 +1610,7 @@ body article .articleControls {
   font-style: normal;
   color: #000000;
 }
-/* line 53, ../../style/layout/_article.scss */
+/* line 56, ../../style/layout/_article.scss */
 body article .articleControls .articleDeleteButton, body article .articleControls author {
   color: #000000;
   text-decoration: none;
@@ -1623,42 +1619,42 @@ body article .articleControls .articleDeleteButton, body article .articleControl
   display: block;
   bottom: 0;
 }
-/* line 60, ../../style/layout/_article.scss */
+/* line 63, ../../style/layout/_article.scss */
 body article .articleControls .articleDeleteButton {
   left: 0;
 }
-/* line 64, ../../style/layout/_article.scss */
+/* line 67, ../../style/layout/_article.scss */
 body article .articleControls author {
   right: 0;
   white-collection: nowrap;
 }
-/* line 78, ../../style/layout/_article.scss */
+/* line 75, ../../style/layout/_article.scss */
 body article.text {
   font-style: normal;
 }
-/* line 81, ../../style/layout/_article.scss */
+/* line 78, ../../style/layout/_article.scss */
 body article.text .card {
   background-color: #ffffee;
   width: 168pt;
 }
-/* line 86, ../../style/layout/_article.scss */
+/* line 83, ../../style/layout/_article.scss */
 body article.text * {
   outline: none;
 }
-/* line 90, ../../style/layout/_article.scss */
+/* line 87, ../../style/layout/_article.scss */
 body article.text em {
   font-style: italic;
 }
-/* line 94, ../../style/layout/_article.scss */
+/* line 91, ../../style/layout/_article.scss */
 body article.text strong {
   font-weight: 700;
 }
-/* line 98, ../../style/layout/_article.scss */
+/* line 95, ../../style/layout/_article.scss */
 body article.text .editable {
   height: 100%;
   margin-bottom: 40pt;
 }
-/* line 104, ../../style/layout/_article.scss */
+/* line 101, ../../style/layout/_article.scss */
 body article.text.short .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -1667,7 +1663,7 @@ body article.text.short .editable {
   letter-spacing: -0.01563em;
   margin-top: -1pt;
 }
-/* line 111, ../../style/layout/_article.scss */
+/* line 108, ../../style/layout/_article.scss */
 body article.text.long .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -1676,7 +1672,7 @@ body article.text.long .editable {
   letter-spacing: 0.01563em;
   margin-top: 6.4pt;
 }
-/* line 119, ../../style/layout/_article.scss */
+/* line 116, ../../style/layout/_article.scss */
 body article.text.long .card .editable {
   /*
                           * {
@@ -1686,36 +1682,36 @@ body article.text.long .card .editable {
                           }
   */
 }
-/* line 139, ../../style/layout/_article.scss */
+/* line 136, ../../style/layout/_article.scss */
 body article.image .content .card {
   padding: 0px;
   width: 224pt;
   max-height: 280pt;
   overflow: hidden;
 }
-/* line 145, ../../style/layout/_article.scss */
+/* line 142, ../../style/layout/_article.scss */
 body article.image .content .card img {
   margin: -2px -1px -4px -2px;
 }
-/* line 152, ../../style/layout/_article.scss */
+/* line 149, ../../style/layout/_article.scss */
 body article.youtube {
   width: intrinsic;
 }
-/* line 157, ../../style/layout/_article.scss */
+/* line 154, ../../style/layout/_article.scss */
 body article.youtube .content .card {
   max-width: 1344pt;
   width: intrinsic;
   padding: 0px;
 }
-/* line 162, ../../style/layout/_article.scss */
+/* line 159, ../../style/layout/_article.scss */
 body article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 169, ../../style/layout/_article.scss */
+/* line 166, ../../style/layout/_article.scss */
 body article.file .content {
   position: relative;
 }
-/* line 173, ../../style/layout/_article.scss */
+/* line 170, ../../style/layout/_article.scss */
 body article.file .content .fakeCard {
   background-color: white;
   border: 1px solid #000000;
@@ -1728,7 +1724,7 @@ body article.file .content .fakeCard {
   border-right: 0;
   position: relative;
 }
-/* line 181, ../../style/layout/_article.scss */
+/* line 178, ../../style/layout/_article.scss */
 body article.file .content .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1739,7 +1735,7 @@ body article.file .content .decorative.fold {
   background: transparent url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 191, ../../style/layout/_article.scss */
+/* line 188, ../../style/layout/_article.scss */
 body article.file .content .decorative.fold:after {
   content: " ";
   left: -1px;
@@ -1753,24 +1749,24 @@ body article.file .content .decorative.fold:after {
   border-left: 0;
   border-top: 0;
 }
-/* line 206, ../../style/layout/_article.scss */
+/* line 203, ../../style/layout/_article.scss */
 body article.file .content .card {
   width: 168pt;
   border: 0;
   background: transparent;
   padding: 0;
 }
-/* line 214, ../../style/layout/_article.scss */
+/* line 211, ../../style/layout/_article.scss */
 body article.file .content .card header h1 {
   word-wrap: break-word;
 }
-/* line 222, ../../style/layout/_article.scss */
+/* line 219, ../../style/layout/_article.scss */
 body article.playable .card {
   width: 224pt;
   padding: 0;
   position: relative;
 }
-/* line 229, ../../style/layout/_article.scss */
+/* line 226, ../../style/layout/_article.scss */
 body article.playable .card.hover .preview:after {
   opacity: 1;
   -moz-transform: scale(1);
@@ -1778,7 +1774,7 @@ body article.playable .card.hover .preview:after {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-/* line 236, ../../style/layout/_article.scss */
+/* line 233, ../../style/layout/_article.scss */
 body article.playable .card:active .preview:after {
   -webkit-filter: invert(1);
   -moz-transform: scale(0.95);
@@ -1786,12 +1782,12 @@ body article.playable .card:active .preview:after {
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
-/* line 242, ../../style/layout/_article.scss */
+/* line 239, ../../style/layout/_article.scss */
 body article.playable .card .preview {
   position: relative;
   cursor: pointer;
 }
-/* line 246, ../../style/layout/_article.scss */
+/* line 243, ../../style/layout/_article.scss */
 body article.playable .card .preview:after {
   content: '';
   background: url("/images/playButton.png") no-repeat;
@@ -1818,26 +1814,26 @@ body article.playable .card .preview:after {
   -webkit-transition-property: opacity, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: opacity, transform, -webkit-transform, -moz-transform;
 }
-/* line 270, ../../style/layout/_article.scss */
+/* line 267, ../../style/layout/_article.scss */
 body article.playable .card header {
   border-top: 0;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 274, ../../style/layout/_article.scss */
+/* line 271, ../../style/layout/_article.scss */
 body article.playable .card header .artist {
   margin-top: 4pt;
 }
-/* line 278, ../../style/layout/_article.scss */
+/* line 275, ../../style/layout/_article.scss */
 body article.playable .card header .detail {
   margin-top: 24pt;
 }
-/* line 284, ../../style/layout/_article.scss */
+/* line 281, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
   overflow: hidden;
   min-height: 168pt;
 }
-/* line 289, ../../style/layout/_article.scss */
+/* line 286, ../../style/layout/_article.scss */
 body article .card.website {
   background-color: white;
   border: 1px solid #000000;
@@ -1847,7 +1843,7 @@ body article .card.website {
   -webkit-transform-origin: right bottom;
   width: 168pt;
 }
-/* line 293, ../../style/layout/_article.scss */
+/* line 290, ../../style/layout/_article.scss */
 body article .card.website.hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1858,11 +1854,11 @@ body article .card.website.hover {
       border-color: blue;
   */
 }
-/* line 300, ../../style/layout/_article.scss */
+/* line 297, ../../style/layout/_article.scss */
 body article .card.website.hover .text header .url {
   opacity: 1;
 }
-/* line 307, ../../style/layout/_article.scss */
+/* line 304, ../../style/layout/_article.scss */
 body article .card.website a {
   border: 0;
   position: absolute;
@@ -1871,7 +1867,7 @@ body article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 318, ../../style/layout/_article.scss */
+/* line 315, ../../style/layout/_article.scss */
 body article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1884,7 +1880,7 @@ body article .card.website .text header {
   -webkit-transition-property: top;
   transition-property: top;
 }
-/* line 324, ../../style/layout/_article.scss */
+/* line 321, ../../style/layout/_article.scss */
 body article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1894,7 +1890,7 @@ body article .card.website .text header h1 {
   padding-bottom: .125em;
   margin-bottom: -.125em;
 }
-/* line 334, ../../style/layout/_article.scss */
+/* line 331, ../../style/layout/_article.scss */
 body article .card.website .text header .url {
   margin-top: 4pt;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1906,7 +1902,7 @@ body article .card.website .text header .url {
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 341, ../../style/layout/_article.scss */
+/* line 338, ../../style/layout/_article.scss */
 body article .card.website .text .description {
   margin-top: 112pt;
   margin-bottom: 4pt;
@@ -1920,7 +1916,7 @@ body article .card.website .text .description {
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 349, ../../style/layout/_article.scss */
+/* line 346, ../../style/layout/_article.scss */
 body article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1932,18 +1928,18 @@ body article .card.website .text img {
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 362, ../../style/layout/_article.scss */
+/* line 359, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 367, ../../style/layout/_article.scss */
+/* line 364, ../../style/layout/_article.scss */
 body article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
-/* line 377, ../../style/layout/_article.scss */
+/* line 374, ../../style/layout/_article.scss */
 body article.addArticleForm.peek {
                 /*
                 &:hover {  
@@ -1969,7 +1965,7 @@ body article.addArticleForm.peek {
                 }
                 */
 }
-/* line 403, ../../style/layout/_article.scss */
+/* line 400, ../../style/layout/_article.scss */
 body article.addArticleForm.slideInFromSide {
   z-index: 99999999 !important;
   /*
@@ -1978,19 +1974,19 @@ body article.addArticleForm.slideInFromSide {
   }
   */
 }
-/* line 412, ../../style/layout/_article.scss */
+/* line 409, ../../style/layout/_article.scss */
 body article.addArticleForm.typing {
   z-index: 99999999 !important;
 }
-/* line 416, ../../style/layout/_article.scss */
+/* line 413, ../../style/layout/_article.scss */
 body article.addArticleForm.typing .cardActions ul li.upload {
   opacity: 0;
 }
-/* line 420, ../../style/layout/_article.scss */
+/* line 417, ../../style/layout/_article.scss */
 body article.addArticleForm.typing .cardActions ul li.done {
   opacity: 1;
 }
-/* line 426, ../../style/layout/_article.scss */
+/* line 423, ../../style/layout/_article.scss */
 body article.addArticleForm .translate {
   overflow-x: hidden;
   position: relative;
@@ -2008,7 +2004,7 @@ body article.addArticleForm .translate {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 437, ../../style/layout/_article.scss */
+/* line 434, ../../style/layout/_article.scss */
 body article.addArticleForm .translate:after {
   content: "";
   height: 24px;
@@ -2032,12 +2028,12 @@ body article.addArticleForm .translate:after {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 456, ../../style/layout/_article.scss */
+/* line 453, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card {
   overflow: visible;
   width: 168pt;
 }
-/* line 460, ../../style/layout/_article.scss */
+/* line 457, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .editable {
   height: 100%;
   -moz-transform: translate(0px, 0px);
@@ -2053,11 +2049,11 @@ body article.addArticleForm .translate .card .editable {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 469, ../../style/layout/_article.scss */
+/* line 466, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions {
   width: 168pt;
 }
-/* line 476, ../../style/layout/_article.scss */
+/* line 473, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -2066,7 +2062,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload {
   overflow: hidden;
   position: relative;
 }
-/* line 485, ../../style/layout/_article.scss */
+/* line 482, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -2077,7 +2073,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
       border-color: blue;
   */
 }
-/* line 490, ../../style/layout/_article.scss */
+/* line 487, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -2085,7 +2081,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload form {
   left: 0;
   position: absolute;
 }
-/* line 497, ../../style/layout/_article.scss */
+/* line 494, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2095,21 +2091,21 @@ body article.addArticleForm .translate .card .cardActions ul li.upload form inpu
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 509, ../../style/layout/_article.scss */
+/* line 506, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 515, ../../style/layout/_article.scss */
+/* line 512, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;
   margin-left: 8pt;
 }
 
-/* line 7, ../../style/layout/_home.scss */
+/* line 2, ../../style/layout/_home.scss */
 .collection.stack, .collection article, .collection .card {
   cursor: move;
   cursor: -webkit-grab;
@@ -2117,7 +2113,7 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
   cursor: grab;
 }
 
-/* line 19, ../../style/layout/_home.scss */
+/* line 9, ../../style/layout/_home.scss */
 article.cover .coverScale {
   -moz-transform: scale(2);
   -ms-transform: scale(2);
@@ -2126,53 +2122,67 @@ article.cover .coverScale {
   transform-origin: top left;
   -webkit-transform-origin: top left;
 }
-/* line 25, ../../style/layout/_home.scss */
-article.cover.root {
+
+/* line 17, ../../style/layout/_home.scss */
+.collection {
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+}
+/* line 22, ../../style/layout/_home.scss */
+.collection.pack {
+  transform-origin: 112pt 168pt;
+  -moz-transform-origin: 112pt 168pt;
+  -webkit-transform-origin: 112pt 168pt;
+}
+
+/* line 33, ../../style/layout/_home.scss */
+.cover.root {
   display: none;
 }
-/* line 31, ../../style/layout/_home.scss */
-article.cover.peek.open .card .background {
+/* line 39, ../../style/layout/_home.scss */
+.cover.peek.open .card .background {
   opacity: .125;
   -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
-/* line 36, ../../style/layout/_home.scss */
-article.cover.peek.open .card section.title h1 {
+/* line 44, ../../style/layout/_home.scss */
+.cover.peek.open .card section.title h1 {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
-/* line 40, ../../style/layout/_home.scss */
-article.cover.peek.open .card section.title h2 {
+/* line 48, ../../style/layout/_home.scss */
+.cover.peek.open .card section.title h2 {
   -moz-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
-/* line 52, ../../style/layout/_home.scss */
+/* line 60, ../../style/layout/_home.scss */
 .cover .card.hover section.title h1.typeTitle, .cover .card.editing section.title h1.typeTitle, .cover.card.hover section.title h1.typeTitle, .cover.card.editing section.title h1.typeTitle {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
-/* line 59, ../../style/layout/_home.scss */
+/* line 67, ../../style/layout/_home.scss */
 .cover .card.hover ul.users, .cover.card.hover ul.users {
   opacity: 1;
 }
-/* line 64, ../../style/layout/_home.scss */
+/* line 72, ../../style/layout/_home.scss */
 .cover .card.hover section.title .rename a, .cover.card.hover section.title .rename a {
   opacity: .25;
 }
-/* line 69, ../../style/layout/_home.scss */
+/* line 77, ../../style/layout/_home.scss */
 .cover .card.hover .background, .cover.card.hover .background {
   opacity: .125;
   -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
-/* line 75, ../../style/layout/_home.scss */
+/* line 83, ../../style/layout/_home.scss */
 .cover .card.editing section.title .rename a, .cover.card.editing section.title .rename a {
   opacity: .5;
 }
-/* line 80, ../../style/layout/_home.scss */
+/* line 88, ../../style/layout/_home.scss */
 .cover .card .background, .cover.card .background {
   position: absolute;
   top: 0;
@@ -2184,11 +2194,11 @@ article.cover.peek.open .card section.title h2 {
   mix-blend-mode: multiply;
   -webkit-filter: brightness(2) contrast(1) grayscale(1);
 }
-/* line 88, ../../style/layout/_home.scss */
+/* line 96, ../../style/layout/_home.scss */
 .cover .card section.title:hover .rename a, .cover.card section.title:hover .rename a {
   opacity: .5;
 }
-/* line 93, ../../style/layout/_home.scss */
+/* line 101, ../../style/layout/_home.scss */
 .cover .card section.title h1, .cover.card section.title h1 {
   margin-top: -0.125em;
   margin-left: -0.03125em;
@@ -2208,7 +2218,7 @@ article.cover.peek.open .card section.title h2 {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
   transition-property: transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
 }
-/* line 109, ../../style/layout/_home.scss */
+/* line 117, ../../style/layout/_home.scss */
 .cover .card section.title h2, .cover.card section.title h2 {
   width: 336pt;
   white-space: nowrap;
@@ -2229,13 +2239,13 @@ article.cover.peek.open .card section.title h2 {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 125, ../../style/layout/_home.scss */
+/* line 133, ../../style/layout/_home.scss */
 .cover .card section.title .rename, .cover.card section.title .rename {
   z-index: 20;
   position: relative;
   margin-top: 8pt;
 }
-/* line 130, ../../style/layout/_home.scss */
+/* line 138, ../../style/layout/_home.scss */
 .cover .card section.title .rename a, .cover.card section.title .rename a {
   display: inline-block;
   padding: 16pt 16pt 16pt 8pt;
@@ -2251,11 +2261,11 @@ article.cover.peek.open .card section.title h2 {
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 139, ../../style/layout/_home.scss */
+/* line 147, ../../style/layout/_home.scss */
 .cover .card section.title .rename a:hover, .cover.card section.title .rename a:hover {
   opacity: 1;
 }
-/* line 146, ../../style/layout/_home.scss */
+/* line 154, ../../style/layout/_home.scss */
 .cover .card ul.users, .cover.card ul.users {
   position: absolute;
   width: 100%;
@@ -2269,33 +2279,33 @@ article.cover.peek.open .card section.title h2 {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 155, ../../style/layout/_home.scss */
+/* line 163, ../../style/layout/_home.scss */
 .cover .card ul.users li.add, .cover.card ul.users li.add {
   width: 100%;
   margin-top: 8pt;
 }
-/* line 159, ../../style/layout/_home.scss */
+/* line 167, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li, .cover.card ul.users li.add ul li {
   height: auto;
   padding: 0;
   margin: 0;
 }
-/* line 164, ../../style/layout/_home.scss */
+/* line 172, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li .notice, .cover.card ul.users li.add ul li .notice {
   position: absolute;
   bottom: 0;
 }
-/* line 169, ../../style/layout/_home.scss */
+/* line 177, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li label, .cover.card ul.users li.add ul li label {
   display: block;
 }
-/* line 173, ../../style/layout/_home.scss */
+/* line 181, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li input[type=email], .cover.card ul.users li.add ul li input[type=email] {
   padding-right: 24pt;
   float: left;
   width: 50%;
 }
-/* line 179, ../../style/layout/_home.scss */
+/* line 187, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li input[type=submit], .cover.card ul.users li.add ul li input[type=submit] {
   height: 14pt;
   width: 32pt;
@@ -2306,9 +2316,95 @@ article.cover.peek.open .card section.title h2 {
   -webkit-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 186, ../../style/layout/_home.scss */
+/* line 194, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li input[type=submit]:hover, .cover.card ul.users li.add ul li input[type=submit]:hover {
   color: #000000;
+}
+
+/* line 1, ../../style/layout/_footer.scss */
+footer.main {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: right;
+  height: 56pt;
+}
+/* line 10, ../../style/layout/_footer.scss */
+footer.main ul.actions {
+  list-style: none;
+}
+/* line 14, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action {
+  vertical-align: middle;
+  position: relative;
+  top: 50%;
+  display: inline-block;
+  margin-right: 24pt;
+  margin-top: 0;
+}
+/* line 34, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.delete.active {
+  -webkit-animation: hoverWarningFlicker 20s infinite linear;
+  -moz-animation: hoverWarningFlicker 20s infinite linear;
+  -o-animation: hoverWarningFlicker 20s infinite linear;
+  animation: hoverWarningFlicker 20s infinite linear;
+  /*
+      color: $colorAccent;
+      border-color: $colorAccent;
+  */
+}
+/* line 37, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.delete.active .target {
+  background-image: url("/images/deleteActive.svg");
+}
+/* line 42, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.delete .target {
+  background-image: url("/images/delete.svg");
+}
+/* line 48, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.download.active {
+  -webkit-animation: hoverConfirmFlicker 20s infinite linear;
+  -moz-animation: hoverConfirmFlicker 20s infinite linear;
+  -o-animation: hoverConfirmFlicker 20s infinite linear;
+  animation: hoverConfirmFlicker 20s infinite linear;
+  /*
+      color: $colorAccent;
+      border-color: $colorAccent;
+  */
+}
+/* line 51, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.download.active .target {
+  background-image: url("/images/downloadActive.svg");
+}
+/* line 56, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action.download .target {
+  background-image: url("/images/download.svg");
+}
+/* line 61, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action .target {
+  height: 32pt;
+  width: 32pt;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -moz-transition-property: height, width;
+  -o-transition-property: height, width;
+  -webkit-transition-property: height, width;
+  transition-property: height, width;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 32pt 32pt;
+}
+/* line 73, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action label {
+  position: absolute;
+  width: 48pt;
+  text-align: center;
+  left: 16pt;
+  margin-left: -23pt;
+  bottom: -12pt;
 }
 
 /* line 1, ../../style/layout/_login.scss */
