@@ -36,8 +36,10 @@ window.navigationController =
     # The object that will hold the state of the opening collection
     newState = { name: collectionKey }
     
+    #Begin on the left side 
+    $(window).scrollLeft(0)
+
     # Update the url.
-    console.log $collection.hasClass('root')
     path = if $collection.hasClass('root') then '/' else "/s/#{collectionKey}"
     history.pushState newState, "", path#"/s/#{collectionKey}"
 
