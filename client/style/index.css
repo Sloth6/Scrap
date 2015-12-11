@@ -2296,6 +2296,34 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
   color: #000000;
 }
 
+/* line 1, ../../style/layout/_footer.scss */
+footer.main {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: yellow;
+  text-align: center;
+}
+/* line 10, ../../style/layout/_footer.scss */
+footer.main ul.actions {
+  list-style: none;
+}
+/* line 14, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action {
+  text-indent: -9999em;
+  display: inline-block;
+  background-color: blue;
+  border: red 1px solid;
+  height: 48pt;
+  width: 48pt;
+  margin: 8pt 0 8pt 8pt;
+}
+/* line 23, ../../style/layout/_footer.scss */
+footer.main ul.actions li.action:last-of-type {
+  margin-right: 0;
+}
+
 /* line 1, ../../style/layout/_login.scss */
 .card.login {
   padding-left: 16pt !important;

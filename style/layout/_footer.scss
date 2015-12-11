@@ -1,0 +1,28 @@
+footer.main {
+    $footerHeight: $col; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: yellow;
+    text-align: center;
+    
+    ul.actions {
+        list-style: none;
+        $actionSide: $cell * 6;
+        
+        li.action {
+            text-indent: -9999em;
+            display: inline-block;
+            background-color: blue;
+            border: red 1px solid;
+            height: $actionSide;
+            width: $actionSide;
+            margin: $cell 0 $cell $cell;
+            
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+}

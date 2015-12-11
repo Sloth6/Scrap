@@ -44,6 +44,8 @@ window.contentModel =
   getCollection: ($content) ->
     if $content.hasClass('cover')
       $content.parent()
+    else if $content.hasClass 'dragging'
+      $content.data 'originalCollection'
     else
       $content.parent().parent()
 

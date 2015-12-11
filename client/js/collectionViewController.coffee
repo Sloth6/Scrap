@@ -92,7 +92,7 @@ window.collectionViewController =
     $collection.removeClass('open').addClass 'closed'
 
   open: ($collection, options = {}) ->
-    console.log 'open', $collection.attr('class')
+#     console.log 'open', $collection.attr('class')
     throw 'no collection passed' unless $collection.length
 
     $cover             = collectionModel.getCover $collection

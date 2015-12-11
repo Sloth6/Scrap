@@ -1,6 +1,5 @@
 onDelete = ($content) ->
-  # console.log 'deleting', $content
-  # return
+#   console.log 'about to delete', $content
   if $content.hasClass('collection')
     if confirm('Delete everything?')
       collectionKey = collectionModel.getState($content).collectionKey
@@ -11,6 +10,7 @@ onDelete = ($content) ->
     $collection = contentModel.getCollection $content
     collectionKey  = $collection.data 'collectionkey'
     parentCollectionKey = collectionPath[1]
+    console.log 'deleting!', $content, $collection, articleId, collectionKey, parentCollectionKey 
     socket.emit 'deleteArticle', { articleId, collectionKey, parentCollectionKey }
 
 makeDeletable = ($content) ->

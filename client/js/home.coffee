@@ -1,5 +1,7 @@
 openCollectionCurve     = [20, 10]
 openCollectionDuration  = 1000
+defaultCurve            = [20, 10]
+defaultDuration         = 500
 
 marginTop    = $(window).height() * 0.125
 margin       = 32
@@ -49,8 +51,11 @@ $ ->
   $('.backButton').click (event) ->
     event.preventDefault()
     history.back()
+    
+  footerController.init $('footer.main')
 
   # history.pushState { name: "home" }, "", "/"
 
   navigationController.open $('.collection.root')
+
 
