@@ -2324,13 +2324,14 @@ footer.main {
   left: 0;
   right: 0;
   background: yellow;
+  opacity: .3;
   text-align: center;
 }
-/* line 10, ../../style/layout/_footer.scss */
+/* line 11, ../../style/layout/_footer.scss */
 footer.main ul.actions {
   list-style: none;
 }
-/* line 14, ../../style/layout/_footer.scss */
+/* line 15, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action {
   text-indent: -9999em;
   display: inline-block;
@@ -2340,11 +2341,11 @@ footer.main ul.actions li.action {
   width: 48pt;
   margin: 8pt 0 8pt 8pt;
 }
-/* line 23, ../../style/layout/_footer.scss */
+/* line 24, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action:last-of-type {
   margin-right: 0;
 }
-/* line 27, ../../style/layout/_footer.scss */
+/* line 28, ../../style/layout/_footer.scss */
 footer.main ul.actions li.action.active {
   background-color: lime;
 }

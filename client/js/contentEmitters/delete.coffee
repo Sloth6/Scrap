@@ -1,10 +1,15 @@
 onDelete = ($content) ->
 #   console.log 'about to delete', $content
   if $content.hasClass('collection')
-    if confirm('Delete everything?')
+    parentCollection = contentModel.getCollection $content
+    if confirm('Are you sure you want to delete everything in this Pack?')
       collectionKey = collectionModel.getState($content).collectionKey
       parentCollectionKey = collectionPath[1]  
       socket.emit 'deleteCollection', { collectionKey }
+    else
+      setTimeout () ->
+        collectionViewController.draw parentCollection, { animate: true }
+      , defaultDuration
   else
     articleId = $content.attr 'id'
     $collection = contentModel.getCollection $content
