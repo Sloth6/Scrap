@@ -16,7 +16,7 @@ window.footerController =
       $action.velocity
         properties:
           translateY: $footer.height()
-          scale: 0
+          scale: .5
         options:
           duration: 1
       $action.mouseenter () ->
@@ -44,8 +44,8 @@ window.footerController =
           scale: 1
         options:
           duration: defaultDuration * 2
-          easing: defaultCurve
-          delay: $(@).index() * 125
+          easing: bouncyCurve
+          delay: $(@).index() * (defaultDuration / 4)
     $footer.velocity
       properties:
         translateY: 0
@@ -61,9 +61,11 @@ window.footerController =
         properties:
           translateZ: 0
           translateY: $footer.height()
-          scale: 0
+          scale: .5
         options:
-          delay: $(@).index() * 125
+          delay: $(@).index() * (defaultDuration / 4)
+          duration: defaultDuration * 2
+          easing: bouncyCurve
     $footer.velocity
       translateY: $footer.height()
       

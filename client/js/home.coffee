@@ -2,7 +2,7 @@ openCollectionCurve     = [20, 10]
 openCollectionDuration  = 1000
 defaultCurve            = [20, 10]
 defaultDuration         = 500
-bouncyCurve             = [60, 10]
+bouncyCurve             = [100, 10]
 fastDuration            = 250
 
 marginTop       = $(window).height() * 0.125
