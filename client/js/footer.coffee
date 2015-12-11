@@ -15,8 +15,10 @@ window.footerController =
       $action = $(@)
       $action.mouseenter () ->
         $action.addClass 'active'
+        footerController.in $('.dragging'), $action.data 'action'
       $action.mouseleave () ->
         $action.removeClass 'active'
+        footerController.out $('.dragging'), $action.data 'action'
       $action.mouseup () ->
         footerController.drop $('.dragging'), $action.data 'action'
         
@@ -31,6 +33,22 @@ window.footerController =
   hide: ($footer) ->
     $footer.velocity
       translateY: $footer.height()
+      
+  in: ($content, action) ->
+    $content.velocity
+      properties:
+        scale: 1/3
+      options:
+        duration: defaultDuration
+        easing: bouncyCurve
+      
+  out: ($content, action) ->
+    $content.velocity
+      properties:
+        scale: 1
+      options:
+        duration: defaultDuration
+        easing: bouncyCurve
       
   drop: ($content, action) ->
     $content.addClass 'deleting'
