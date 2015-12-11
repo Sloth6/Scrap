@@ -3,7 +3,7 @@ window.contentModel =
     $content.off() # remove old handlers
     $collection = contentModel.getCollection $content
     makeDraggable $content
-    makeDeletable $content
+#     makeDeletable $content
     
     
     switch $content.data('contenttype')

@@ -18,13 +18,13 @@ onDelete = ($content) ->
     console.log 'deleting!', $content, $collection, articleId, collectionKey, parentCollectionKey 
     socket.emit 'deleteArticle', { articleId, collectionKey, parentCollectionKey }
 
-makeDeletable = ($content) ->
-  $content.each () ->
-    if $(@).hasClass('collection')
-      deleteButton = $(@).children('.cover').find('.articleDeleteButton')
-    else
-      deleteButton = $(@).find('.articleDeleteButton')
-
-    deleteButton.click (event) =>
-      event.stopPropagation()
-      onDelete $(@)
+# makeDeletable = ($content) ->
+#   $content.each () ->
+#     if $(@).hasClass('collection')
+#       deleteButton = $(@).children('.cover').find('.articleDeleteButton')
+#     else
+#       deleteButton = $(@).find('.articleDeleteButton')
+# 
+#     deleteButton.click (event) =>
+#       event.stopPropagation()
+#       onDelete $(@)
