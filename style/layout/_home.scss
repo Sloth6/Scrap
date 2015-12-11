@@ -1,3 +1,17 @@
+.collection {
+    transform-origin: center center;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    
+    &.pack {
+        $x: $coverWidth/2;
+        $y: $coverHeight/2;
+                transform-origin: $x $y;
+           -moz-transform-origin: $x $y;
+        -webkit-transform-origin: $x $y;
+    }
+}
+
 .cover {
 	
     &.root {

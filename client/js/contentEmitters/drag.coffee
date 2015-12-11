@@ -143,8 +143,11 @@ stopDragging = (event, $dragging) ->
       removeClass('dragging').
       zIndex $dragging.data('oldZIndex')
     endDragTransform $dragging
-    collectionViewController.draw $('.collection.open'), { animate: true }  
+    unless $dragging.data 'deleting'
+      collectionViewController.draw $('.collection.open'), { animate: true }
   ), 20
+  
+  footerController.hide()
 
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
@@ -165,6 +168,7 @@ startDragging = ($dragging, mouseDownEvent) ->
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
   collectionViewController.draw $('.collection.open')
+  footerController.show $dragging
  
 makeDraggable = ($content) ->
   $content.find('a,img,iframe').bind 'dragstart', () -> false
@@ -174,10 +178,11 @@ makeDraggable = ($content) ->
     return if $(@).hasClass 'open'
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
+    $content.data 'originalCollection', contentModel.getCollection $content
 
     mousedownArticle = $content
     draggingArticle  = null
-    
+        
     $(window).mousemove (event) ->
       if draggingArticle == null
         draggingArticle = mousedownArticle

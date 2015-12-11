@@ -13,8 +13,6 @@ mixin articleMixin(article)
     .content
       .transform
         .articleControls
-
-          a.articleDeleteButton.warning.bodyType.smallCaps Delete
           - if(article.Creator !== undefined)
             author.smallType!=article.Creator.name
           
