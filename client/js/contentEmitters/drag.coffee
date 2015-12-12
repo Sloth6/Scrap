@@ -155,12 +155,19 @@ stopDragging = (event, $dragging) ->
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
+  $collection =  $('.collection.open')
 
   $dragging.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999 
+
+  if $dragging.hasClass 'collection'
+    console.log 'hasclass collectoin'
+    $dragging.data 'previewState', 'compact'
+    collectionViewController.draw $dragging, { animate:true }
+    collectionViewController.draw $collection, { animate:true }
  
   startDragTransform $dragging
   
@@ -170,7 +177,7 @@ startDragging = ($dragging, mouseDownEvent) ->
   
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
-  collectionViewController.draw $('.collection.open')
+  collectionViewController.draw $collection
   footerController.show $dragging
  
 makeDraggable = ($content) ->

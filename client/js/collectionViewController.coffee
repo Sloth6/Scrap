@@ -30,10 +30,9 @@ drawOpenCollection = ($collection, animate) ->
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
     
-drawClosedStack = ($collection, spacing = 15) ->
+drawClosedStack = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
-  
   # With a new stack, the dragged over element hides while waiting for a 
   # server resposse
   $content.show()
@@ -47,9 +46,13 @@ drawClosedStack = ($collection, spacing = 15) ->
   zIndex     = $content.length
   sizeTotal  = 0
   rotateZ    = 0
+  spacing    = 0
+  switch $collection.data 'previewState'
+    when 'compact' then spacing = 10
+    when 'expanded' then spacing = 100
+  console.log 'previewState',  $collection.data('previewState'), spacing
   $content.each () ->
-    $(@).
-      velocity({ translateX, translateY, rotateZ })
+    $(@).velocity({ translateX, translateY, rotateZ })
 
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
@@ -67,7 +70,7 @@ window.collectionViewController =
       drawOpenCollection $collection, animate
 
     else if $collection.data('contenttype') == 'stack'
-      drawClosedStack($collection)
+      drawClosedStack $collection, animate
 
   # This function is only called from collectionViewController.open
   pushOffScreen: ($collection, $openingCollection) ->

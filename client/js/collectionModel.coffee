@@ -5,10 +5,11 @@ loadArticles = (collectionkey, callback) ->
 
 window.collectionModel =
   init: ($collection) ->
-    $cover        = collectionModel.getCover $collection
-    collectionKey = collectionModel.getState($collection).collectionKey
-    $content      = collectionModel.getContent $collection
-    clickBlock    = (event) -> event.preventDefault()
+    $cover            = collectionModel.getCover $collection
+    $parentCollection = contentModel.getCollection $collection
+    collectionKey     = collectionModel.getState($collection).collectionKey
+    $content          = collectionModel.getContent $collection
+    clickBlock        = (event) -> event.preventDefault()
 
     $collection.click (event) ->
       event.stopPropagation()
@@ -24,6 +25,17 @@ window.collectionModel =
       $collection.data 'contenttype', 'stack'
       $collection.addClass 'stack'
       $content.on 'click mouseup', clickBlock
+      $collection.data 'previewState', 'compact'
+      $collection.mouseenter () ->
+        unless $collection.hasClass 'dragging'
+          $collection.data 'previewState', 'expanded'
+          collectionViewController.draw $collection, { animate:true }
+          collectionViewController.draw $parentCollection, { animate:true }
+      $collection.mouseleave () -> 
+        $collection.data 'previewState', 'compact'
+        collectionViewController.draw $collection, { animate:true }
+        collectionViewController.draw $parentCollection, { animate:true }
+        
       collectionViewController.draw $collection
 
   removeContent: ($collection) ->
