@@ -15,7 +15,6 @@ marginAfter     = $(window).width()/2
 collectionPath = []
 
 history.scrollRestoration = 'manual'
-# console.log history.scrollRestoration
 
 # Main scroll event
 onScroll = ->
@@ -38,8 +37,6 @@ window.onpopstate = (event) ->
   event.preventDefault()
   navigationController.close $('.collection.open'), event.state
   
-
-
 $ ->
   window.socket = io.connect()
   
@@ -60,7 +57,5 @@ $ ->
     history.back()
     
   footerController.init $('footer.main')
-
   navigationController.open $('.collection.root')
-
 
