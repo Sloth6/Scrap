@@ -84,6 +84,14 @@ window.contentModel =
     else
       $content.parent().parent()
 
+  getContentContainer: ($content) ->
+    if $content.hasClass('cover')
+      return
+    else if $content.hasClass 'dragging'
+      $content.data('originalCollection').children('.contentContainer')
+    else
+      $content.parent()
+
   getCollectionkey: ($content) ->
     $collection = contentModel.getCollection $content
     return collectionModel.getState($collection).collectionKey

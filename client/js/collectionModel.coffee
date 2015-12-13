@@ -2,6 +2,23 @@ loadArticles = (collectionkey, callback) ->
   return callback 'ERR. collectionkey not passed to loadArticles' unless collectionkey  
   $.get "/collectionContent/#{collectionkey}", (data) ->
     callback $(data)
+    
+redrawCollections = ($collection, $parentCollection) ->
+  collectionViewController.draw $collection, { animate:true }
+  collectionViewController.draw $parentCollection, { animate:true }
+  
+closePackPreview = ($collection, $parentCollection) ->
+  unless $collection.hasClass('open') or $collection.data('previewState') is 'expanded'
+    $collection.data 'previewState', 'none'
+    $collection.velocity
+      properties:
+        rotateZ: $collection.data 'rotateZTemp'
+        translateX: xTransform($collection)
+    redrawCollections $collection, $parentCollection
+    setTimeout () ->
+      collectionModel.removeContent $collection
+      redrawCollections $collection, $parentCollection
+    , openCollectionDuration/4
 
 window.collectionModel =
   init: ($collection) ->
@@ -21,6 +38,39 @@ window.collectionModel =
       $collection.data 'contenttype', 'pack'
       $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
+      $cover = $collection.find('.cover')
+      $collection.data 'previewState', 'none'
+      redrawCollections $collection, $parentCollection
+      $cover.mouseenter () ->
+        unless $collection.hasClass 'open'
+          $collection.data 'previewState', 'none'
+          redrawCollections $collection, $parentCollection
+          collectionModel.loadContent $collection, () ->
+            unless $collection.data 'contentLoaded'
+              $collection.data 'contentLoaded', true
+            $collection.data 'previewState', 'compactReverse'
+            $collection.data 'rotateZTemp', getRotateZ($collection)
+            redrawCollections $collection, $parentCollection
+      $collection.find('.contentContainer').mouseenter () ->
+        unless $collection.hasClass 'open'
+          $collection.data 'previewState', 'expanded'
+          redrawCollections $collection, $parentCollection
+          $collection.velocity
+            properties:
+              rotateZ: 0
+              translateX: if $collection.offset().left < $cover.width() then 0 else xTransform($collection)
+          redrawCollections $collection, $parentCollection
+          $cover.off('mouseleave')
+      $collection.find('.contentContainer').mouseleave () ->
+        $collection.data 'previewState', 'compactReverse'
+        $collection.velocity
+          properties:
+            rotateZ: $collection.data 'rotateZTemp'
+            translateX: xTransform($collection)
+        redrawCollections $collection, $parentCollection
+        $cover.on('mouseleave', () -> closePackPreview($collection, $parentCollection))
+      $cover.mouseleave () ->
+        closePackPreview($collection, $parentCollection)
     else
       $collection.data 'contenttype', 'stack'
       $collection.addClass 'stack'
@@ -29,13 +79,10 @@ window.collectionModel =
       $collection.mouseenter () ->
         unless $collection.hasClass 'dragging'
           $collection.data 'previewState', 'expanded'
-          collectionViewController.draw $collection, { animate:true }
-          collectionViewController.draw $parentCollection, { animate:true }
+          redrawCollections $collection, $parentCollection
       $collection.mouseleave () -> 
         $collection.data 'previewState', 'compact'
-        collectionViewController.draw $collection, { animate:true }
-        collectionViewController.draw $parentCollection, { animate:true }
-        
+        redrawCollections $collection, $parentCollection
       collectionViewController.draw $collection
 
   removeContent: ($collection) ->

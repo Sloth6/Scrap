@@ -9,8 +9,6 @@ drawOpenCollection = ($collection, animate) ->
   sizeTotal  = leftMargin
   maxX       = -Infinity
   zIndex     = $contents.length
-  
-  console.log 'size', sizeTotal
 
   $contents.add($addForm).each () ->
     $(@).
@@ -30,34 +28,56 @@ drawOpenCollection = ($collection, animate) ->
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
     
-drawClosedStack = ($collection, animate) ->
+getWidestArticle = ($content) ->
+  widest = 0
+  $content.each () ->
+    if $(@).width() > widest
+      widest = $(@).width()
+  widest
+
+drawCollectionPreview = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
+  $contentContainer = contentModel.getContentContainer $content
   # With a new stack, the dragged over element hides while waiting for a 
-  # server resposse
+  # server response
   $content.show()
   
   collectionModel.getAddForm($collection).hide()
-  $content.find('.articleControls').hide()
-  $cover.zIndex 0
+  $cover.zIndex 9999
 
-  translateX = 0
+  translateX = if $collection.data('contenttype') is 'pack' then $cover.width() else 0
   translateY = 0
   zIndex     = $content.length
   sizeTotal  = 0
-  rotateZ    = 0
-  spacing    = 0
-  switch $collection.data 'previewState'
-    when 'compact' then spacing = 10
-    when 'expanded' then spacing = 100
-  console.log 'previewState',  $collection.data('previewState'), spacing
+  widest     = getWidestArticle($content)
   $content.each () ->
-    $(@).velocity({ translateX, translateY, rotateZ })
-
-    sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
+    switch $collection.data('previewState')
+      when 'compact'
+        spacing = 10 #2 * Math.exp(($(@).index() + 1), 2)
+        rotateZ = 0 #(Math.random() - .5) * 10
+        rightAlignOffset = 0
+      when 'expanded'
+        spacing = 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
+        rotateZ = 0
+        rightAlignOffset = 0
+      when 'compactReverse'
+        spacing = -10
+        rotateZ = 0 #(Math.random() - .5) * 10
+        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+      when 'none'
+        spacing = 0
+        rotateZ = 0
+        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+    $(@).velocity
+      translateX: translateX + rightAlignOffset
+      translateY: translateY
+      rotateZ: rotateZ
+    sizeTotal += Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
 
-  $cover.find(".card").width sizeTotal
+#   $cover.find(".card").width sizeTotal
+  sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
   contentModel.setSize $collection, sizeTotal
   sizeTotal
 
@@ -70,7 +90,10 @@ window.collectionViewController =
       drawOpenCollection $collection, animate
 
     else if $collection.data('contenttype') == 'stack'
-      drawClosedStack $collection, animate
+      drawCollectionPreview $collection, animate
+      
+    else if $collection.data('contenttype') == 'pack'
+      drawCollectionPreview $collection, animate
 
   # This function is only called from collectionViewController.open
   pushOffScreen: ($collection, $openingCollection) ->
@@ -120,7 +143,6 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
-    console.log('hi', $collectionContent)
     if $collection.data('contenttype') == 'pack'
       # Container around articles
       $collection.children('.contentContainer').velocity
@@ -235,5 +257,5 @@ window.collectionViewController =
 
   preview: ($collection) ->
     $collectionContent = collectionModel.getContent $collection
-    drawClosedStack($collection, 50)
+    drawCollectionPreview($collection, 50)
     

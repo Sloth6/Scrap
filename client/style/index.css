@@ -781,29 +781,6 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   display: block;
 }
 
-/* line 204, ../../style/globals/_components.scss */
-.cardHover {
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
-  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
-  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
-  transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color;
-}
-/* line 72, ../../style/globals/_components.scss */
-.cardHover.hover {
-  border-color: #000000;
-  -moz-box-shadow: 8pt 8pt 0 0 black;
-  -webkit-box-shadow: 8pt 8pt 0 0 black;
-  box-shadow: 8pt 8pt 0 0 black;
-  -moz-transform: translate3d(-8pt, -8pt, 0);
-  -ms-transform: translate3d(-8pt, -8pt, 0);
-  -webkit-transform: translate3d(-8pt, -8pt, 0);
-  transform: translate3d(-8pt, -8pt, 0);
-}
-
 /* line 208, ../../style/globals/_components.scss */
 .cardDrag {
   cursor: move;
