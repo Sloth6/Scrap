@@ -19,12 +19,6 @@ window.contentModel =
     isPack = isCollection and $content.hasClass('pack')
     
     $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')
-    
-    
-    console.log $content.attr 'class'
-    
-
-      
     $card.mouseenter((event) ->
       event.stopPropagation()
       unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')

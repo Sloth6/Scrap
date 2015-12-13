@@ -43,47 +43,64 @@ drawCollectionPreview = ($collection, animate) ->
   # server response
   $content.show()
   
+  $contentContainer.css 'background', 'red'
+  
   collectionModel.getAddForm($collection).hide()
   $cover.zIndex 9999
+  
+#   $content.each () ->
+#     $(@).css 'max-width', $cover.width()
 
-  translateX = if $collection.data('contenttype') is 'pack' then $cover.width() else 0
-  translateY = 0
-  zIndex     = $content.length
-  sizeTotal  = 0
-  widest     = getWidestArticle($content)
+  translateX  = if $collection.data('contenttype') is 'pack' then $cover.width() else 0
+  translateY  = 0
+  zIndex      = $content.length
+  sizeTotal   = 0
+  widest      = getWidestArticle($content)
+  duration    = if $collection.data('drawInstant') then 1 else openCollectionDuration
+  rightAlignOffset = 0
+  rightAlignOffsetSizeTotal = 0
+  spacing = 0
+#   console.log 'widest', widest
   $content.each () ->
     switch $collection.data('previewState')
       when 'compact'
         spacing = 10 #2 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0 #(Math.random() - .5) * 10
-        rightAlignOffset = 0
       when 'expanded'
         spacing = 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0
-        rightAlignOffset = 0
       when 'compactReverse'
         spacing = -10
         rotateZ = 0 #(Math.random() - .5) * 10
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+        rightAlignOffsetSizeTotal = -$cover.width()
       when 'none'
         spacing = 0
         rotateZ = 0
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+        rightAlignOffsetSizeTotal = -$cover.width()
+#         coverOffset = 0
     $(@).velocity
-      translateX: translateX + rightAlignOffset
-      translateY: translateY
-      rotateZ: rotateZ
-    sizeTotal += Math.max(sizeTotal, translateX + $(@).width())
+      properties:
+        translateX: translateX + rightAlignOffset
+        translateY: translateY
+        rotateZ: rotateZ
+      options:
+        duration: duration
+    contentWidth = if $collection.data('contenttype') is 'pack' then 0 else $(@).width()
+    sizeTotal += Math.max(sizeTotal, translateX + contentWidth + rightAlignOffsetSizeTotal)
     translateX += spacing
-
+    
 #   $cover.find(".card").width sizeTotal
   sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
   contentModel.setSize $collection, sizeTotal
+#   console.log sizeTotal
   sizeTotal
 
 window.collectionViewController =
 
   draw: ($collection, options = {}) ->
+#     console.log 'draw!'
     animate = options.animate or false
     
     if $collection.hasClass('open')
@@ -196,7 +213,7 @@ window.collectionViewController =
       addClass('open').
       removeClass 'closed'
     
-    collectionViewController.draw $collection, {animate: true}
+    collectionViewController.draw $collection #, {animate: true}
 
   close: ($collection, options = {}) ->
     return if $collection.hasClass 'root'
