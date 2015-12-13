@@ -1,5 +1,5 @@
 openCollectionCurve     = [20, 10]
-openCollectionDuration  = 1000
+openCollectionDuration  = 2000
 defaultCurve            = [20, 10]
 defaultDuration         = 500
 bouncyCurve             = [100, 10]
@@ -7,7 +7,7 @@ fastDuration            = 250
 
 marginTop       = $(window).height() * 0.125
 articleMargin   = 24
-packMargin      = 72
+packMargin      = 120
 sliderBorder    = $(window).width() * 0.15
 edgeWidth       = 48
 marginAfter     = $(window).width()/2

@@ -20,10 +20,29 @@ closePackPreview = ($collection, $parentCollection) ->
         rotateZ: $collection.data 'rotateZTemp'
         translateX: xTransform($collection)
     redrawCollections $collection, $parentCollection
-#     setTimeout () ->
+    setTimeout () ->
 #       collectionModel.removeContent $collection
-#       redrawCollections $collection, $parentCollection
-#     , openCollectionDuration
+      redrawCollections $collection, $parentCollection
+    , openCollectionDuration
+    
+drawPackPreview = ($collection, $parentCollection, $contentContainer) ->
+  $collection.data 'rotateZTemp', getRotateZ($collection)
+  unless $collection.data('previewState') is 'compactReverse'
+    console.log 'not expanded'
+    $contentContainer.css 'opacity', 0
+    $collection.data 'previewState', 'none'
+    $collection.data 'drawInstant', true
+    redrawCollections $collection, $parentCollection, false
+    $collection.data('drawInstant', false)
+    setTimeout () ->
+      $contentContainer.css 'opacity', 1
+      $collection.data 'previewState', 'compactReverse'
+      redrawCollections $collection, $parentCollection, true
+    , 100
+  else
+    console.log 'is expanded', $collection.data('previewState')
+    $collection.data 'previewState', 'compactReverse'
+    redrawCollections $collection, $parentCollection, true
 
 window.collectionModel =
   init: ($collection) ->
@@ -47,25 +66,16 @@ window.collectionModel =
       $cover = $collection.find('.cover')
       $collection.data 'previewState', 'none'
       $cover.mouseenter () ->
+        console.log 'mouseenter cover'
         unless $collection.hasClass 'open'
-          collectionModel.loadContent $collection, () ->
-            unless $collection.data 'contentLoaded'
-              $collection.data 'contentLoaded', true
-            $collection.data 'rotateZTemp', getRotateZ($collection)
-            $contentContainer.css 'opacity', 0
-            $collection.data 'previewState', 'none'
-            $collection.data 'drawInstant', true
-            redrawCollections $collection, $parentCollection, false
-            $collection.data('drawInstant', false)
-            setTimeout () ->
-              $contentContainer.css 'opacity', 1
-              $collection.data 'previewState', 'compactReverse'
-              redrawCollections $collection, $parentCollection, true
-            , 100
-#             $cover.mouseover () ->
-#               $collection.data 'previewState', 'compactReverse'
-#               redrawCollections $collection, $parentCollection, true
+          unless $collection.data 'contentLoaded'
+            $collection.data 'contentLoaded', true
+            collectionModel.loadContent $collection, () ->
+              drawPackPreview($collection, $parentCollection, $contentContainer)
+          else
+            drawPackPreview($collection, $parentCollection, $contentContainer)
       $contentContainer.mouseenter () ->
+        console.log 'mouseenter container'
         unless $collection.hasClass 'open'
           $collection.data 'previewState', 'expanded'
           redrawCollections $collection, $parentCollection, true
@@ -76,6 +86,7 @@ window.collectionModel =
           redrawCollections $collection, $parentCollection, true
           $cover.off('mouseleave')
       $contentContainer.mouseleave () ->
+        console.log 'mouseleave container'
         # if mouse is over cover
         if $collection.is(":hover")
           $collection.data 'previewState', 'compactReverse'

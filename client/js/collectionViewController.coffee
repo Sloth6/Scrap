@@ -93,13 +93,15 @@ drawCollectionPreview = ($collection, animate) ->
       options:
         duration: duration
     contentWidth = if $collection.data('contenttype') is 'pack' then 0 else $(@).width()
-    sizeTotal += Math.max(sizeTotal, translateX + contentWidth + rightAlignOffsetSizeTotal)
+    sizeTotal += Math.max(sizeTotal, Math.abs(translateX * 1.01) + contentWidth + rightAlignOffsetSizeTotal)
     translateX += spacing
     
 #   $cover.find(".card").width sizeTotal
   sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
-  contentModel.setSize $collection, sizeTotal
 #   console.log sizeTotal
+  if $collection.data('previewState') is 'none'
+    sizeTotal = $cover.width() - 10
+  contentModel.setSize $collection, sizeTotal
   sizeTotal
 
 window.collectionViewController =
@@ -159,7 +161,7 @@ window.collectionViewController =
       collectionViewController.pushOffScreen $parentCollection, $collection
 
     # Make sure cover is above its children during transition
-    $cover.css 'z-index': 999
+    $cover.css 'z-index': 9999
     
     # Animate in content, content appears from behind its cover
     $collectionAddForm.show()
