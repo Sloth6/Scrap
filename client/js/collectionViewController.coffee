@@ -4,8 +4,8 @@ drawOpenCollection = ($collection, animate) ->
   # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  leftMargin = $(window).width()/2 - $contents.first().find('.card').width() / 2
-  rightMargin = $(window).width()/2 - $contents.last().find('.card').width() / 2
+  leftMargin = $(window).width() / 2 - $contents.first().find('.card').width() / 2
+  rightMargin = $(window).width() / 2 - $contents.last().find('.card').width() / 2
   sizeTotal  = leftMargin
   maxX       = -Infinity
   zIndex     = $contents.length
@@ -14,8 +14,13 @@ drawOpenCollection = ($collection, animate) ->
     $(@).
       data('scrollOffset', sizeTotal).
       css { zIndex: zIndex++ }
-    contentViewController.draw $(@), null, { animate }
+    
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
+    if isNaN(sizeTotal)
+      console.log contentModel.getSize($(@)), $(@).data('margin')
+      throw 'shit'
+    contentViewController.draw $(@), { animate }
+
   sizeTotal += rightMargin
   
   contentModel.setSize $collection, sizeTotal
@@ -160,6 +165,7 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
+
     if $collection.data('contenttype') == 'pack'
       # Container around articles
       $collection.children('.contentContainer').velocity

@@ -12,7 +12,7 @@ calculatePercentToBorder = (x, e, border) ->
     percent = 0
   percent
 
-calculateX = ($content, margin, scroll) ->
+calculateX = ($content, margin) ->
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
   maxX = $(window).width() - contentModel.getSize($content)
@@ -76,13 +76,13 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 # On open/close or load
 
 window.contentViewController =
-  draw: ($content, scroll,  options) ->
+  draw: ($content,  options) ->
     animate = options.animate or false
     margin = 0#$content.data('margin') or 0
     jumble = $content.data 'jumble'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     
-    translateX = calculateX       $content, margin, scroll
+    translateX = calculateX $content, margin
     
     percentToBorder = calculatePercentToBorder(translateX, $content, sliderBorder)
     multiple = if isPack then 1 else percentToBorder

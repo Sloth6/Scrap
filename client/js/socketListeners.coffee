@@ -13,8 +13,8 @@ $ ->
     $article = $(decodeURIComponent(html))
 
     console.log "new $article for #{collectionKey}", $article.attr('class')
+    
     $collection = $('.collection.open')
-
     if collectionModel.getState($collection).collectionKey == collectionKey
       $addArticleForm = collectionModel.getAddForm $collection
       $article.css { x: xTransform($addArticleForm) }
@@ -22,7 +22,6 @@ $ ->
       contentModel.init $article
       collectionViewController.draw $collection, { animate: true }
 
-  
   socket.on 'newPack', (data) ->
     { collectionHTML } = data
     $collection = $(decodeURIComponent(collectionHTML))
