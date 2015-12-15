@@ -13,12 +13,13 @@ addProjectController =
   init: ($elem) ->
     $elem.data 'sent', false
     $elem.click () ->
-      $elem.addClass 'slideInFromSide'
       title  = $elem.find('.collectionTitle')
       card   = $elem.children('.card')
       $elem.find('h1,h2,h3,h4').text('')
       card.addClass 'editing'
       card.addClass 'hover'
+      $elem.addClass 'slideInFromSide'
+      $elem.addClass 'typing'
       title.attr('contenteditable', true).focus()
       # $elem.keyup (e) -> check_charcount $elem, e
       $elem.keydown (e) ->
@@ -32,6 +33,8 @@ addProjectController =
           socket.emit 'newPack', { name: title.text() }
         else if e.which != 8 && $elem.text().length > max
           e.preventDefault()
+      console.log 'init', $elem
+#     $elem.mouseleave () ->
     $('body').click (event) ->
       event.stopPropagation()
       addProjectController.reset $elem
@@ -39,6 +42,7 @@ addProjectController =
   reset: ($elem) ->
     title  = $elem.find('.collectionTitle')
     card   = $elem.children('.card')
+    $elem.removeClass 'slideInFromSide'
+    $elem.removeClass 'typing'
     title.text $elem.data('defaulttext')
     $elem.data('sent', false)
-    $elem.removeClass 'slideInFromSide'

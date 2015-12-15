@@ -378,6 +378,18 @@ body {
     }
 }
 
+.addArticleForm {
+    .card {
+        width: $articleSideNarrow;
+    }
+}
+
+.addProjectForm {
+    .card {
+        width: $coverWidth;
+    }
+}
+
 .addArticleForm, .addProjectForm {
     // Compact view
     &.peek {
@@ -425,7 +437,13 @@ body {
         .translate, &.onEdge:hover .translate {
             @include transform(translate(-$articleSideNarrow, 0px));
         }
-       
+        
+        &.cover {
+        
+            .translate, &.onEdge:hover .translate {
+                @include transform(translate(-$coverWidth, 0px));
+            }   
+        }
     }
 
     &.typing, &.typing:hover {
@@ -485,7 +503,6 @@ body {
 
         .card {
             overflow: visible;
-            width: $articleSideNarrow;
                 
             .cardActions {
                 width: $articleSideNarrow;

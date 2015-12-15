@@ -1954,14 +1954,24 @@ body article .card img {
   background-color: white;
 }
 
-/* line 386, ../../style/layout/_article.scss */
+/* line 382, ../../style/layout/_article.scss */
+.addArticleForm .card {
+  width: 168pt;
+}
+
+/* line 388, ../../style/layout/_article.scss */
+.addProjectForm .card {
+  width: 224pt;
+}
+
+/* line 398, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge:hover .translate, .addProjectForm.peek.onEdge:hover .translate {
   -moz-transform: translate(-28pt, 0px);
   -ms-transform: translate(-28pt, 0px);
   -webkit-transform: translate(-28pt, 0px);
   transform: translate(-28pt, 0px);
 }
-/* line 392, ../../style/layout/_article.scss */
+/* line 404, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge .translate .card .editable, .addArticleForm.peek.onEdge .translate .card .cardActions, .addProjectForm.peek.onEdge .translate .card .editable, .addProjectForm.peek.onEdge .translate .card .cardActions {
   opacity: 0;
   -moz-transform: translate(168pt, 0px);
@@ -1969,28 +1979,28 @@ body article .card img {
   -webkit-transform: translate(168pt, 0px);
   transform: translate(168pt, 0px);
 }
-/* line 397, ../../style/layout/_article.scss */
+/* line 409, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge .translate:after, .addProjectForm.peek.onEdge .translate:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 403, ../../style/layout/_article.scss */
+/* line 415, ../../style/layout/_article.scss */
 .addArticleForm.peek .translate, .addProjectForm.peek .translate {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 406, ../../style/layout/_article.scss */
+/* line 418, ../../style/layout/_article.scss */
 .addArticleForm.peek .translate:after, .addProjectForm.peek .translate:after {
   -moz-transform: translate(-48px, 0px);
   -ms-transform: translate(-48px, 0px);
   -webkit-transform: translate(-48px, 0px);
   transform: translate(-48px, 0px);
 }
-/* line 411, ../../style/layout/_article.scss */
+/* line 423, ../../style/layout/_article.scss */
 .addArticleForm.peek .card .editable, .addArticleForm.peek .card .cardActions, .addProjectForm.peek .card .editable, .addProjectForm.peek .card .cardActions {
   opacity: 1;
   display: block;
@@ -2007,29 +2017,36 @@ body article .card img {
   -webkit-transition-property: opacity, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: opacity, transform, -webkit-transform, -moz-transform;
 }
-/* line 422, ../../style/layout/_article.scss */
+/* line 434, ../../style/layout/_article.scss */
 .addArticleForm.slideInFromSide, .addProjectForm.slideInFromSide {
   z-index: 99999999 !important;
 }
-/* line 425, ../../style/layout/_article.scss */
+/* line 437, ../../style/layout/_article.scss */
 .addArticleForm.slideInFromSide .translate, .addArticleForm.slideInFromSide.onEdge:hover .translate, .addProjectForm.slideInFromSide .translate, .addProjectForm.slideInFromSide.onEdge:hover .translate {
   -moz-transform: translate(-168pt, 0px);
   -ms-transform: translate(-168pt, 0px);
   -webkit-transform: translate(-168pt, 0px);
   transform: translate(-168pt, 0px);
 }
-/* line 431, ../../style/layout/_article.scss */
+/* line 443, ../../style/layout/_article.scss */
+.addArticleForm.slideInFromSide.cover .translate, .addArticleForm.slideInFromSide.cover.onEdge:hover .translate, .addProjectForm.slideInFromSide.cover .translate, .addProjectForm.slideInFromSide.cover.onEdge:hover .translate {
+  -moz-transform: translate(-224pt, 0px);
+  -ms-transform: translate(-224pt, 0px);
+  -webkit-transform: translate(-224pt, 0px);
+  transform: translate(-224pt, 0px);
+}
+/* line 449, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover, .addProjectForm.typing, .addProjectForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 435, ../../style/layout/_article.scss */
+/* line 453, ../../style/layout/_article.scss */
 .addArticleForm.typing .translate:after, .addArticleForm.typing .translate:hover:after, .addArticleForm.typing:hover .translate:after, .addArticleForm.typing:hover .translate:hover:after, .addProjectForm.typing .translate:after, .addProjectForm.typing .translate:hover:after, .addProjectForm.typing:hover .translate:after, .addProjectForm.typing:hover .translate:hover:after {
   -moz-transform: translate(-48px, 0px);
   -ms-transform: translate(-48px, 0px);
   -webkit-transform: translate(-48px, 0px);
   transform: translate(-48px, 0px);
 }
-/* line 439, ../../style/layout/_article.scss */
+/* line 457, ../../style/layout/_article.scss */
 .addArticleForm.typing .translate .card .editable, .addArticleForm.typing .translate .card .cardActions, .addArticleForm.typing .translate:hover .card .editable, .addArticleForm.typing .translate:hover .card .cardActions, .addArticleForm.typing:hover .translate .card .editable, .addArticleForm.typing:hover .translate .card .cardActions, .addArticleForm.typing:hover .translate:hover .card .editable, .addArticleForm.typing:hover .translate:hover .card .cardActions, .addProjectForm.typing .translate .card .editable, .addProjectForm.typing .translate .card .cardActions, .addProjectForm.typing .translate:hover .card .editable, .addProjectForm.typing .translate:hover .card .cardActions, .addProjectForm.typing:hover .translate .card .editable, .addProjectForm.typing:hover .translate .card .cardActions, .addProjectForm.typing:hover .translate:hover .card .editable, .addProjectForm.typing:hover .translate:hover .card .cardActions {
   opacity: 1;
   -moz-transform: translate(0px, 0px);
@@ -2037,15 +2054,15 @@ body article .card img {
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 446, ../../style/layout/_article.scss */
+/* line 464, ../../style/layout/_article.scss */
 .addArticleForm.typing .cardActions ul li.upload, .addArticleForm.typing:hover .cardActions ul li.upload, .addProjectForm.typing .cardActions ul li.upload, .addProjectForm.typing:hover .cardActions ul li.upload {
   opacity: 0;
 }
-/* line 450, ../../style/layout/_article.scss */
+/* line 468, ../../style/layout/_article.scss */
 .addArticleForm.typing .cardActions ul li.done, .addArticleForm.typing:hover .cardActions ul li.done, .addProjectForm.typing .cardActions ul li.done, .addProjectForm.typing:hover .cardActions ul li.done {
   opacity: 1;
 }
-/* line 456, ../../style/layout/_article.scss */
+/* line 474, ../../style/layout/_article.scss */
 .addArticleForm .translate, .addProjectForm .translate {
   overflow-x: hidden;
   position: relative;
@@ -2063,7 +2080,7 @@ body article .card img {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 467, ../../style/layout/_article.scss */
+/* line 485, ../../style/layout/_article.scss */
 .addArticleForm .translate:after, .addProjectForm .translate:after {
   content: "";
   height: 24px;
@@ -2087,16 +2104,15 @@ body article .card img {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 486, ../../style/layout/_article.scss */
+/* line 504, ../../style/layout/_article.scss */
 .addArticleForm .translate .card, .addProjectForm .translate .card {
   overflow: visible;
-  width: 168pt;
 }
-/* line 490, ../../style/layout/_article.scss */
+/* line 507, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions, .addProjectForm .translate .card .cardActions {
   width: 168pt;
 }
-/* line 497, ../../style/layout/_article.scss */
+/* line 514, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload, .addProjectForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -2105,7 +2121,7 @@ body article .card img {
   overflow: hidden;
   position: relative;
 }
-/* line 506, ../../style/layout/_article.scss */
+/* line 523, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload:hover a, .addProjectForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -2116,7 +2132,7 @@ body article .card img {
       border-color: blue;
   */
 }
-/* line 511, ../../style/layout/_article.scss */
+/* line 528, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload form, .addProjectForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -2124,7 +2140,7 @@ body article .card img {
   left: 0;
   position: absolute;
 }
-/* line 518, ../../style/layout/_article.scss */
+/* line 535, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload form input, .addProjectForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2134,14 +2150,14 @@ body article .card img {
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 530, ../../style/layout/_article.scss */
+/* line 547, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.done, .addProjectForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 536, ../../style/layout/_article.scss */
+/* line 553, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.done a, .addProjectForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;
