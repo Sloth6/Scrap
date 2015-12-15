@@ -4,7 +4,7 @@ drawOpenCollection = ($collection, animate) ->
   # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  zIndex     = $contents.length
+  zIndex     = 0#$contents.length
   sizeTotal  = 0
 
   $contents.add($addForm).each () ->
@@ -31,18 +31,18 @@ drawClosedStack = ($collection, spacing = 15) ->
   # With a new stack, the dragged over element hides while waiting for a 
   # server resposse
   $content.show()
-  
+
   collectionModel.getAddForm($collection).hide()
   $content.find('.articleControls').hide()
   $cover.zIndex 0
 
   translateX = 0
   translateY = 0
-  zIndex     = $content.length
+  zIndex     = 0#s$content.length
   sizeTotal  = 0
   $content.each () ->
     $(@).velocity({ translateX, translateY })
-
+    $(@).css { zIndex: zIndex++ }
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
 
