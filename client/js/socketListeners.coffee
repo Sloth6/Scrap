@@ -21,6 +21,8 @@ $ ->
       collectionModel.appendContent $collection, $article
       contentModel.init $article
       collectionViewController.draw $collection, { animate: true }
+      size = contentModel.getSize $collection
+      $(document.body).css { width: size }
 
   
   socket.on 'newPack', (data) ->
@@ -64,6 +66,8 @@ $ ->
     $collection.fadeOut ->
       $collection.remove()
       collectionViewController.draw $('.collection.open'), {animate: true}
+      size = contentModel.getSize $('.collection.open')
+      $(document.body).css { width: size }
 
   socket.on 'deleteArticle', (data) ->
     console.log 'deleteArticle', data, $("\##{data.id}")
@@ -73,6 +77,9 @@ $ ->
     toRemove.fadeOut ->
       toRemove.remove()
       collectionViewController.draw $('.collection.open'), {animate: true}
+      size = contentModel.getSize $('.collection.open')
+      $(document.body).css { width: size }
+
 
   socket.on 'updateArticle', ({ collectionKey, userId, articleId, content }) ->
     return if data.userId is window.userId
