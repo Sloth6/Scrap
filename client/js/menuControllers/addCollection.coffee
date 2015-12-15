@@ -12,10 +12,12 @@ addCollection = () ->
 addProjectController =
   init: ($elem) ->
     $elem.data 'sent', false
-    $elem.click () ->
+    $elem.click (event) ->
+      event.stopPropagation()
       title  = $elem.find('.collectionTitle')
       card   = $elem.children('.card')
       $elem.find('h1,h2,h3,h4').text('')
+      console.log 'h1',  $elem.find('h1,h2,h3,h4')
       card.addClass 'editing'
       card.addClass 'hover'
       $elem.addClass 'slideInFromSide'
@@ -36,7 +38,6 @@ addProjectController =
       console.log 'init', $elem
 #     $elem.mouseleave () ->
     $('body').click (event) ->
-      event.stopPropagation()
       addProjectController.reset $elem
 
   reset: ($elem) ->

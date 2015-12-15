@@ -21,7 +21,8 @@ $ ->
       subMenuIsOpen = false
       
     # Close menu when clicking outside
-    $(document).click ->
+    $('body').click ->
+      console.log 'hi'
       if $menu.hasClass 'open'
         closeMenu()
     
