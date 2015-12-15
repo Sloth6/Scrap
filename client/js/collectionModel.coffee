@@ -9,7 +9,7 @@ redrawCollections = ($collection, $parentCollection, animate) ->
     collectionViewController.draw $collection, { animate: true }
     collectionViewController.draw $parentCollection, { animate: true }
   else
-    collectionViewController.draw $collection
+    collectionViewController.draw $collection, {animate: true}
     collectionViewController.draw $parentCollection, { animate: true }
   
 closePackPreview = ($collection, $parentCollection) ->
@@ -48,11 +48,11 @@ window.collectionModel =
   init: ($collection) ->
     $cover            = collectionModel.getCover $collection
     $parentCollection = contentModel.getCollection $collection
-    $contentContainer = $collection.find('.contentContainer')
+    $contentContainer = $collection.find('.contentContainer').first()
     collectionKey     = collectionModel.getState($collection).collectionKey
     $content          = collectionModel.getContent $collection
     clickBlock        = (event) -> event.preventDefault()
-
+      
     $collection.click (event) ->
       event.stopPropagation()
       return if $(@).hasClass 'dragging'
@@ -66,7 +66,7 @@ window.collectionModel =
       $cover = $collection.find('.cover')
       $collection.data 'previewState', 'none'
       $cover.mouseenter () ->
-        console.log 'mouseenter cover'
+#         console.log 'mouseenter cover'
         unless $collection.hasClass 'open'
           unless $collection.data 'contentLoaded'
             $collection.data 'contentLoaded', true
@@ -75,7 +75,7 @@ window.collectionModel =
           else
             drawPackPreview($collection, $parentCollection, $contentContainer)
       $contentContainer.mouseenter () ->
-        console.log 'mouseenter container'
+#         console.log 'mouseenter container'
         unless $collection.hasClass 'open'
           $collection.data 'previewState', 'expanded'
           redrawCollections $collection, $parentCollection, true
@@ -86,7 +86,7 @@ window.collectionModel =
           redrawCollections $collection, $parentCollection, true
           $cover.off('mouseleave')
       $contentContainer.mouseleave () ->
-        console.log 'mouseleave container'
+#         console.log 'mouseleave container'
         # if mouse is over cover
         if $collection.is(":hover")
           $collection.data 'previewState', 'compactReverse'
@@ -106,6 +106,7 @@ window.collectionModel =
       $content.on 'click mouseup', clickBlock
       $collection.data 'previewState', 'compact'
       $collection.mouseenter () ->
+        console.log $collection.data 'contenttype'
         unless $collection.hasClass 'dragging'
           $collection.data 'previewState', 'expanded'
           redrawCollections $collection, $parentCollection, true

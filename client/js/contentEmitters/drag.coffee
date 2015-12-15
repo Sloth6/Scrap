@@ -17,6 +17,7 @@ dragOptions =  {
   easing: [100, 10],
   duration: 500
 }
+dragThreshold = 35 #number of pixels in any direction before drag event
 
 # scrollWindow = (event) ->
 #   border = sliderBorder
@@ -38,6 +39,7 @@ dragOptions =  {
 #         $(window).scrollLeft($(window).scrollLeft() + speed)
 #     ), 5
 
+
 # Take mousemove event while dragging
 drag = (event, $dragging) ->
   x = event.clientX
@@ -46,9 +48,29 @@ drag = (event, $dragging) ->
   scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
   $collection = $('.collection.open')
 
+  w = contentModel.getSize($dragging)
+  h = Math.max($dragging.find('.content').height(), 200)
+
+  console.log w, h
+  
+  offsetPercentX = ($dragging.data('mouseOffsetX') - (w / 2)) / (w/2)
+  offsetPercentY = ($dragging.data('mouseOffsetY') - (h / 2)) / (h/2)
+  
+  scaleOffsetX = (w/2)*(1-scale)*offsetPercentX
+  scaleOffsetY = (h/2)*(1-scale)*offsetPercentY
+
+  fudgeY = -.1
+  fudgeX = 0
+  if $dragging.data('contenttype') == 'stack'
+    fudgeX = .1
+    fudgeY = -.05
+
+  offsetX = - $dragging.data('mouseOffsetX')
+  offsetY = - $dragging.data('mouseOffsetY')
+
   $dragging.velocity {
-    translateX: x - $dragging.data('mouseOffsetX')
-    translateY: y - $dragging.data('mouseOffsetY')
+    translateX: x + offsetX + scaleOffsetX + fudgeX*x
+    translateY: y + offsetY + scaleOffsetY + fudgeY*y
     scale: scale
   }, { duration: 1 }
   
@@ -189,12 +211,19 @@ makeDraggable = ($content) ->
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
     $content.data 'originalCollection', contentModel.getCollection $content
-
+    startX = mouseDownEvent.clientX
+    startY = mouseDownEvent.clientY
+    
     mousedownArticle = $content
     draggingArticle  = null
         
     $(window).mousemove (event) ->
       if draggingArticle == null
+        dX = Math.abs(startX - event.clientX)
+        dY = Math.abs(startY - event.clientY)
+        if dX < dragThreshold and dY < dragThreshold
+          return
+
         draggingArticle = mousedownArticle
         startDragging draggingArticle, mouseDownEvent
       drag event, draggingArticle
