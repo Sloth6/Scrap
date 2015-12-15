@@ -14,6 +14,7 @@ calculatePercentToBorder = (x, e, border) ->
 
 calculateX = ($content, margin) ->
   $collection = contentModel.getCollection $content
+  isForm = $content.hasClass('addArticleForm') or $content.hasClass('addProjectForm')
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
   maxX = $(window).width() - contentModel.getSize($content)
@@ -21,15 +22,16 @@ calculateX = ($content, margin) ->
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
   
-  if $content.hasClass('addArticleForm') or $content.hasClass('addProjectForm')
-    console.log 'form at edge'
-    border = 50
-    $content.addClass 'onEdge'
+  if isForm
+#     console.log 'form at edge'
+    border = 132
 
   # is piling up on right
   if x > right_start
     percent = (x - right_start) / border
     x = right_start + (logisticFunction(percent)-0.5)*2 * border
+    $content.addClass 'onEdge'
+    console.log 'onEdge'
   
   # is piling up on left
   else if x < left_start

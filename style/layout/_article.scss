@@ -380,13 +380,9 @@ body {
 
             // Compact view
             &.peek {
-                &:hover {  
+                &.onEdge:hover {
                     .translate {
-                    		@include transform(translate(-$col/2, 0px));
-                    		
-                    		.card:hover {
-                        		border-color: $colorType;
-                    		}
+                      		@include transform(translate(-$col/2, 0px));
                     }
                 }
 

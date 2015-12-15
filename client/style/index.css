@@ -1954,31 +1954,27 @@ body article .card img {
   background-color: white;
 }
 /* line 384, ../../style/layout/_article.scss */
-body article.addArticleForm.peek:hover .translate {
+body article.addArticleForm.peek.onEdge:hover .translate {
   -moz-transform: translate(-28pt, 0px);
   -ms-transform: translate(-28pt, 0px);
   -webkit-transform: translate(-28pt, 0px);
   transform: translate(-28pt, 0px);
 }
-/* line 387, ../../style/layout/_article.scss */
-body article.addArticleForm.peek:hover .translate .card:hover {
-  border-color: #000000;
-}
-/* line 393, ../../style/layout/_article.scss */
+/* line 389, ../../style/layout/_article.scss */
 body article.addArticleForm.peek .translate {
   -moz-transform: translate(0px, 0);
   -ms-transform: translate(0px, 0);
   -webkit-transform: translate(0px, 0);
   transform: translate(0px, 0);
 }
-/* line 396, ../../style/layout/_article.scss */
+/* line 392, ../../style/layout/_article.scss */
 body article.addArticleForm.peek .translate:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 401, ../../style/layout/_article.scss */
+/* line 397, ../../style/layout/_article.scss */
 body article.addArticleForm.peek .card .editable, body article.addArticleForm.peek .card .cardActions {
   opacity: 0;
   display: block;
@@ -1995,29 +1991,29 @@ body article.addArticleForm.peek .card .editable, body article.addArticleForm.pe
   -webkit-transform: translate(128px, 0px);
   transform: translate(128px, 0px);
 }
-/* line 412, ../../style/layout/_article.scss */
+/* line 408, ../../style/layout/_article.scss */
 body article.addArticleForm.slideInFromSide {
   z-index: 99999999 !important;
 }
-/* line 415, ../../style/layout/_article.scss */
+/* line 411, ../../style/layout/_article.scss */
 body article.addArticleForm.slideInFromSide .translate, body article.addArticleForm.slideInFromSide:hover .translate {
   -moz-transform: translate(-168pt, 0px);
   -ms-transform: translate(-168pt, 0px);
   -webkit-transform: translate(-168pt, 0px);
   transform: translate(-168pt, 0px);
 }
-/* line 421, ../../style/layout/_article.scss */
+/* line 417, ../../style/layout/_article.scss */
 body article.addArticleForm.typing, body article.addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 425, ../../style/layout/_article.scss */
+/* line 421, ../../style/layout/_article.scss */
 body article.addArticleForm.typing .translate:after, body article.addArticleForm.typing .translate:hover:after, body article.addArticleForm.typing:hover .translate:after, body article.addArticleForm.typing:hover .translate:hover:after {
   -moz-transform: translate(-48px, 0px);
   -ms-transform: translate(-48px, 0px);
   -webkit-transform: translate(-48px, 0px);
   transform: translate(-48px, 0px);
 }
-/* line 429, ../../style/layout/_article.scss */
+/* line 425, ../../style/layout/_article.scss */
 body article.addArticleForm.typing .translate .card .editable, body article.addArticleForm.typing .translate .card .cardActions, body article.addArticleForm.typing .translate:hover .card .editable, body article.addArticleForm.typing .translate:hover .card .cardActions, body article.addArticleForm.typing:hover .translate .card .editable, body article.addArticleForm.typing:hover .translate .card .cardActions, body article.addArticleForm.typing:hover .translate:hover .card .editable, body article.addArticleForm.typing:hover .translate:hover .card .cardActions {
   opacity: 1;
   -moz-transform: translate(0px, 0px);
@@ -2025,15 +2021,15 @@ body article.addArticleForm.typing .translate .card .editable, body article.addA
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 436, ../../style/layout/_article.scss */
+/* line 432, ../../style/layout/_article.scss */
 body article.addArticleForm.typing .cardActions ul li.upload, body article.addArticleForm.typing:hover .cardActions ul li.upload {
   opacity: 0;
 }
-/* line 440, ../../style/layout/_article.scss */
+/* line 436, ../../style/layout/_article.scss */
 body article.addArticleForm.typing .cardActions ul li.done, body article.addArticleForm.typing:hover .cardActions ul li.done {
   opacity: 1;
 }
-/* line 446, ../../style/layout/_article.scss */
+/* line 442, ../../style/layout/_article.scss */
 body article.addArticleForm .translate {
   overflow-x: hidden;
   position: relative;
@@ -2051,7 +2047,7 @@ body article.addArticleForm .translate {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 457, ../../style/layout/_article.scss */
+/* line 453, ../../style/layout/_article.scss */
 body article.addArticleForm .translate:after {
   content: "";
   height: 24px;
@@ -2075,16 +2071,16 @@ body article.addArticleForm .translate:after {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 476, ../../style/layout/_article.scss */
+/* line 472, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card {
   overflow: visible;
   width: 168pt;
 }
-/* line 480, ../../style/layout/_article.scss */
+/* line 476, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions {
   width: 168pt;
 }
-/* line 487, ../../style/layout/_article.scss */
+/* line 483, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -2093,7 +2089,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload {
   overflow: hidden;
   position: relative;
 }
-/* line 496, ../../style/layout/_article.scss */
+/* line 492, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -2104,7 +2100,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
       border-color: blue;
   */
 }
-/* line 501, ../../style/layout/_article.scss */
+/* line 497, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -2112,7 +2108,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload form {
   left: 0;
   position: absolute;
 }
-/* line 508, ../../style/layout/_article.scss */
+/* line 504, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2122,14 +2118,14 @@ body article.addArticleForm .translate .card .cardActions ul li.upload form inpu
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 520, ../../style/layout/_article.scss */
+/* line 516, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 526, ../../style/layout/_article.scss */
+/* line 522, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;
