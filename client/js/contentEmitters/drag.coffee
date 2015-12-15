@@ -17,6 +17,7 @@ dragOptions =  {
   easing: [100, 10],
   duration: 500
 }
+dragThreshold = 35 #number of pixels in any direction before drag event
 
 # scrollWindow = (event) ->
 #   border = sliderBorder
@@ -203,12 +204,19 @@ makeDraggable = ($content) ->
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
     $content.data 'originalCollection', contentModel.getCollection $content
-
+    startX = mouseDownEvent.clientX
+    startY = mouseDownEvent.clientY
+    
     mousedownArticle = $content
     draggingArticle  = null
         
     $(window).mousemove (event) ->
       if draggingArticle == null
+        dX = Math.abs(startX - event.clientX)
+        dY = Math.abs(startY - event.clientY)
+        if dX < dragThreshold and dY < dragThreshold
+          return
+
         draggingArticle = mousedownArticle
         startDragging draggingArticle, mouseDownEvent
       drag event, draggingArticle
