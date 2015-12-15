@@ -20,17 +20,26 @@ calculateX = ($content, margin) ->
   right_start = $(window).width() - border
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
+  
+  if $content.hasClass('addArticleForm') or $content.hasClass('addProjectForm')
+    console.log 'form at edge'
+    border = 50
+    $content.addClass 'onEdge'
 
+  # is piling up on right
   if x > right_start
     percent = (x - right_start) / border
     x = right_start + (logisticFunction(percent)-0.5)*2 * border
   
+  # is piling up on left
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x = left_start - ((logisticFunction(percent)-0.5)*2 * border)
     
-  if $content.hasClass('cover')# and not $collection.hasClass('root')
-    console.log 'cover',  $collection.attr 'class'
+#   if $content.hasClass('cover')# and not $collection.hasClass('root')
+#     console.log 'cover',  $collection.attr 'class'
+    
+    
   # Prevent stack from shifting to right when growing
   # x -= .0001825 * rawX
   x
@@ -49,6 +58,8 @@ calculateScale = ($content, margin, jumble, multiple) ->
     1
 
 calculateRotateZ = ($content, margin, jumble, multiple) ->
+  if $content.hasClass('addArticleForm') or $content.hasClass('addProjectForm')
+    return 0
   return 0 unless jumble?
   jumble.rotateZ * multiple
 

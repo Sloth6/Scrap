@@ -380,10 +380,9 @@ body {
 
             // Compact view
             &.peek {
-                /*
                 &:hover {  
                     .translate {
-                    		@include transform(translate(24px, -64px));
+                    		@include transform(translate(-$col/2, 0px));
                     		
                     		.card:hover {
                         		border-color: $colorType;
@@ -392,31 +391,47 @@ body {
                 }
 
                 .translate {
-                		@include transform(translate(0px, -64px));
+                  		@include transform(translate(0px, 0));
                 		
                     &:after {
-                    		@include transform(translate(0px, 0px));
+                      		@include transform(translate(0px, 0px));
                     }
                 }
                                 
-                .card .editable {
-                		@include transform(translate(-128px, 0px));
+                .card .editable, .card .cardActions {
+                    opacity: 0;
+                    display: block;
+                    @include transition(1s $defaultCurve);
+                  		@include transition-property(opacity, transform,
+                  		                     -webkit-transform,
+                  		                        -moz-transform);
+                  		@include transform(translate(128px, 0px));
                 }
-                */
             }
             
             &.slideInFromSide {
                 z-index: 99999999 !important;
-                /*
-                .translate {
-                    @include transform(translate(320px, 0px));
+                
+                .translate, &:hover .translate {
+                    @include transform(translate(-$articleSideNarrow, 0px));
                 }
-                */
+               
             }
 
-            &.typing {
+            &.typing, &.typing:hover {
                 z-index: 99999999 !important;    
-                              
+                
+                .translate, .translate:hover {
+                    &:after {
+                        @include transform(translate(-48px, 0px));
+                    }
+                    
+                  		.card .editable, .card .cardActions {
+                      		opacity: 1;
+                  		  		@include transform(translate(0px, 0px));
+                  		}
+                }
+                
                 .cardActions ul li {
                     &.upload {
                         opacity: 0;
@@ -447,12 +462,12 @@ body {
                     background: url('/images/add.png') no-repeat;
                     background-size: cover;
                     position: absolute;
-                    top:    $cell*.75;
-                    right:  $cell*.75;
+                    left:    $cell*.75;
+                    top:  $cell*.75;
                     //-webkit-transform-origin: center center;
                     //        transform-origin: center center;
-                		@include transform(translate(36px, 0px));
-                    @include transition(.5s $defaultCurve);
+                  		@include transform(translate(0px, 0px));
+                    @include transition(1s $defaultCurve);
                     @include transition-property(transform,
                                          -webkit-transform,
                                             -moz-transform);
@@ -461,15 +476,6 @@ body {
                 .card {
                     overflow: visible;
                     width: $articleSideNarrow;
-
-                    .editable {
-                        height: 100%;
-                    		@include transform(translate(0px, 0px));
-                        @include transition(.5s $defaultCurve);
-                        @include transition-property(transform,
-                                             -webkit-transform,
-                                                -moz-transform);                    
-                    }
                         
                     .cardActions {
                         width: $articleSideNarrow;

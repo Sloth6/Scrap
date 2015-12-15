@@ -1953,54 +1953,87 @@ body article .card img {
   margin-bottom: -2.66667pt;
   background-color: white;
 }
-/* line 382, ../../style/layout/_article.scss */
-body article.addArticleForm.peek {
-                /*
-                &:hover {  
-                    .translate {
-                    		@include transform(translate(24px, -64px));
-                    		
-                    		.card:hover {
-                        		border-color: $colorType;
-                    		}
-                    }
-                }
-
-                .translate {
-                		@include transform(translate(0px, -64px));
-                		
-                    &:after {
-                    		@include transform(translate(0px, 0px));
-                    }
-                }
-                                
-                .card .editable {
-                		@include transform(translate(-128px, 0px));
-                }
-                */
+/* line 384, ../../style/layout/_article.scss */
+body article.addArticleForm.peek:hover .translate {
+  -moz-transform: translate(-28pt, 0px);
+  -ms-transform: translate(-28pt, 0px);
+  -webkit-transform: translate(-28pt, 0px);
+  transform: translate(-28pt, 0px);
 }
-/* line 408, ../../style/layout/_article.scss */
+/* line 387, ../../style/layout/_article.scss */
+body article.addArticleForm.peek:hover .translate .card:hover {
+  border-color: #000000;
+}
+/* line 393, ../../style/layout/_article.scss */
+body article.addArticleForm.peek .translate {
+  -moz-transform: translate(0px, 0);
+  -ms-transform: translate(0px, 0);
+  -webkit-transform: translate(0px, 0);
+  transform: translate(0px, 0);
+}
+/* line 396, ../../style/layout/_article.scss */
+body article.addArticleForm.peek .translate:after {
+  -moz-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+}
+/* line 401, ../../style/layout/_article.scss */
+body article.addArticleForm.peek .card .editable, body article.addArticleForm.peek .card .cardActions {
+  opacity: 0;
+  display: block;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -moz-transition-property: opacity, -moz-transform, -webkit-transform, -moz-transform;
+  -o-transition-property: opacity, -o-transform, -webkit-transform, -moz-transform;
+  -webkit-transition-property: opacity, -webkit-transform, -webkit-transform, -moz-transform;
+  transition-property: opacity, transform, -webkit-transform, -moz-transform;
+  -moz-transform: translate(128px, 0px);
+  -ms-transform: translate(128px, 0px);
+  -webkit-transform: translate(128px, 0px);
+  transform: translate(128px, 0px);
+}
+/* line 412, ../../style/layout/_article.scss */
 body article.addArticleForm.slideInFromSide {
   z-index: 99999999 !important;
-  /*
-  .translate {
-      @include transform(translate(320px, 0px));
-  }
-  */
 }
-/* line 417, ../../style/layout/_article.scss */
-body article.addArticleForm.typing {
-  z-index: 99999999 !important;
+/* line 415, ../../style/layout/_article.scss */
+body article.addArticleForm.slideInFromSide .translate, body article.addArticleForm.slideInFromSide:hover .translate {
+  -moz-transform: translate(-168pt, 0px);
+  -ms-transform: translate(-168pt, 0px);
+  -webkit-transform: translate(-168pt, 0px);
+  transform: translate(-168pt, 0px);
 }
 /* line 421, ../../style/layout/_article.scss */
-body article.addArticleForm.typing .cardActions ul li.upload {
-  opacity: 0;
+body article.addArticleForm.typing, body article.addArticleForm.typing:hover {
+  z-index: 99999999 !important;
 }
 /* line 425, ../../style/layout/_article.scss */
-body article.addArticleForm.typing .cardActions ul li.done {
+body article.addArticleForm.typing .translate:after, body article.addArticleForm.typing .translate:hover:after, body article.addArticleForm.typing:hover .translate:after, body article.addArticleForm.typing:hover .translate:hover:after {
+  -moz-transform: translate(-48px, 0px);
+  -ms-transform: translate(-48px, 0px);
+  -webkit-transform: translate(-48px, 0px);
+  transform: translate(-48px, 0px);
+}
+/* line 429, ../../style/layout/_article.scss */
+body article.addArticleForm.typing .translate .card .editable, body article.addArticleForm.typing .translate .card .cardActions, body article.addArticleForm.typing .translate:hover .card .editable, body article.addArticleForm.typing .translate:hover .card .cardActions, body article.addArticleForm.typing:hover .translate .card .editable, body article.addArticleForm.typing:hover .translate .card .cardActions, body article.addArticleForm.typing:hover .translate:hover .card .editable, body article.addArticleForm.typing:hover .translate:hover .card .cardActions {
+  opacity: 1;
+  -moz-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+}
+/* line 436, ../../style/layout/_article.scss */
+body article.addArticleForm.typing .cardActions ul li.upload, body article.addArticleForm.typing:hover .cardActions ul li.upload {
+  opacity: 0;
+}
+/* line 440, ../../style/layout/_article.scss */
+body article.addArticleForm.typing .cardActions ul li.done, body article.addArticleForm.typing:hover .cardActions ul li.done {
   opacity: 1;
 }
-/* line 431, ../../style/layout/_article.scss */
+/* line 446, ../../style/layout/_article.scss */
 body article.addArticleForm .translate {
   overflow-x: hidden;
   position: relative;
@@ -2018,7 +2051,7 @@ body article.addArticleForm .translate {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 442, ../../style/layout/_article.scss */
+/* line 457, ../../style/layout/_article.scss */
 body article.addArticleForm .translate:after {
   content: "";
   height: 24px;
@@ -2027,47 +2060,31 @@ body article.addArticleForm .translate:after {
   background: url("/images/add.png") no-repeat;
   background-size: cover;
   position: absolute;
+  left: 6pt;
   top: 6pt;
-  right: 6pt;
-  -moz-transform: translate(36px, 0px);
-  -ms-transform: translate(36px, 0px);
-  -webkit-transform: translate(36px, 0px);
-  transform: translate(36px, 0px);
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
-  -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
-  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
-  transition-property: transform, -webkit-transform, -moz-transform;
-}
-/* line 461, ../../style/layout/_article.scss */
-body article.addArticleForm .translate .card {
-  overflow: visible;
-  width: 168pt;
-}
-/* line 465, ../../style/layout/_article.scss */
-body article.addArticleForm .translate .card .editable {
-  height: 100%;
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
   -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 474, ../../style/layout/_article.scss */
+/* line 476, ../../style/layout/_article.scss */
+body article.addArticleForm .translate .card {
+  overflow: visible;
+  width: 168pt;
+}
+/* line 480, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions {
   width: 168pt;
 }
-/* line 481, ../../style/layout/_article.scss */
+/* line 487, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -2076,7 +2093,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload {
   overflow: hidden;
   position: relative;
 }
-/* line 490, ../../style/layout/_article.scss */
+/* line 496, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -2087,7 +2104,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload:hover a {
       border-color: blue;
   */
 }
-/* line 495, ../../style/layout/_article.scss */
+/* line 501, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -2095,7 +2112,7 @@ body article.addArticleForm .translate .card .cardActions ul li.upload form {
   left: 0;
   position: absolute;
 }
-/* line 502, ../../style/layout/_article.scss */
+/* line 508, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2105,14 +2122,14 @@ body article.addArticleForm .translate .card .cardActions ul li.upload form inpu
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 514, ../../style/layout/_article.scss */
+/* line 520, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 520, ../../style/layout/_article.scss */
+/* line 526, ../../style/layout/_article.scss */
 body article.addArticleForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;

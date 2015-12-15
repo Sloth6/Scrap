@@ -104,7 +104,7 @@ window.collectionViewController =
       properties:
         translateZ: 0
         translateX: [28-$openingCover.width(), xOfSelf]
-
+        
     # Mark collection so no longer being open 
     $collection.removeClass('open').addClass 'closed'
 
