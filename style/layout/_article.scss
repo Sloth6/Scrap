@@ -400,6 +400,31 @@ body {
                 }
             }
             
+            &.slideInFromSide, &.slideInFromSide:hover {
+                z-index: 99999999 !important;
+
+                .translate {
+                    		@include transform(translate(-$articleSideNarrow, 0px));
+                    		
+                    		.card .editable, .card .cardActions {
+                    				opacity: 1;
+                      		  @include transform(translate(0px, 0px));
+                  		  }
+
+                            		
+                      &:after {
+                        		@include transform(translate(-48px, 0px));
+                      }
+                }
+                
+                &.cover {
+                
+                    .translate, &.onEdge:hover .translate {
+                        @include transform(translate(-$coverWidth, 0px));
+                    }   
+                }
+            }
+            
             .translate {                
               		.card .editable, .card .cardActions {
               				opacity: 0;
@@ -419,7 +444,7 @@ body {
               		@include transform(translate(-48px, 0px));
             }
         }
-                        
+        
         .card .editable, .card .cardActions {
             opacity: 1;
             display: block;
@@ -431,21 +456,6 @@ body {
         }
     }
     
-    &.slideInFromSide {
-        z-index: 99999999 !important;
-        
-        .translate, &.onEdge:hover .translate {
-            @include transform(translate(-$articleSideNarrow, 0px));
-        }
-        
-        &.cover {
-        
-            .translate, &.onEdge:hover .translate {
-                @include transform(translate(-$coverWidth, 0px));
-            }   
-        }
-    }
-
     &.typing, &.typing:hover {
         z-index: 99999999 !important;    
         

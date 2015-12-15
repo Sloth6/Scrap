@@ -5,25 +5,31 @@ addArticleController =
   init: ($menu) ->
     
     collectionkey = $menu.data 'collectionkey'
-    input    = $menu.find '.editable'
+    input         = $menu.find '.editable'
 
     # function to get content of form
     content = () ->
       input.html()
       
+    console.log 'add article controller init'
+      
     $menu.click (event) ->
-      event.stopPropagation()
-      $menu.addClass('slideInFromSide')
-      $menu.addClass('typing')
-      addArticleController.focus $menu
+#       event.stopPropagation()
+      console.log $menu
+      if $menu.hasClass 'onEdge'
+        if $menu.hasClass 'slideInFromSide'
+          addArticleController.focus $menu
+          console.log 'slideInFromSide'
+        else
+          $menu.addClass('slideInFromSide')
+      else
+        addArticleController.focus $menu
+
       
     $('body').click (event) ->
       event.stopPropagation()
       $menu.removeClass('slideInFromSide')
     
-    input.on 'focus', () ->
-      addArticleController.focus $menu
-
     input.on 'blur', () ->
       console.log 'pn vblur'
       #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
@@ -49,13 +55,14 @@ addArticleController =
     # Bind submit event
     $menu.find('a.submit').click (event) ->
       $menu.removeClass 'focus'
-      addArticleController.reset $menu
       # slideBackToSide()
       emitNewArticle content(), collectionkey
+      addArticleController.reset $menu
       event.preventDefault()
 
     # Bind cancel event
     $menu.find('a.cancel').click (event) ->
+      event.stopPropagation()
       addArticleController.reset $menu
       event.preventDefault()
 
@@ -64,20 +71,28 @@ addArticleController =
   focus: ($menu) ->
     $menu.addClass 'focus'
     $menu.find('.card').addClass 'editing'
+    $menu.addClass('typing')
     $menu.find('.done').removeClass 'invisible'
     $menu.find('.upload').hide()
-    $menu.find('.editable').get(0).focus()
+#     $menu.find('.editable').bind 'focusin focus', (event) ->
+#       event.preventDefault()
+    if $menu.hasClass 'slideInFromSide'
+      $menu.find('.editable').on 'focus', (event) ->
+        event.preventDefault()
+    else
+      $menu.find('.editable').focus()
     return false
     
   reset: ($menu) ->
-    console.log 'hiiii'
     $menu.find('.editable').html('')
     $menu.find('.editable').get(0).blur()
     $menu.removeClass 'focus'
     $menu.removeClass 'slideInFromSide'
     $menu.removeClass 'typing'
     $menu.find('.card').removeClass 'editing'
+    $menu.find('.upload').show()
+    $menu.find('.done').hide()
      
-$ ->
-  $('.addArticleForm').each () ->
-    addArticleController.init $(@)
+# $ ->
+#   $('.addArticleForm').each () ->
+#     addArticleController.init $(@)
