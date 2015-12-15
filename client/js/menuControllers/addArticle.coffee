@@ -14,12 +14,9 @@ addArticleController =
     console.log 'add article controller init'
       
     $menu.click (event) ->
-#       event.stopPropagation()
-      console.log $menu
       if $menu.hasClass 'onEdge'
         if $menu.hasClass 'slideInFromSide'
           addArticleController.focus $menu
-          console.log 'slideInFromSide'
         else
           $menu.addClass('slideInFromSide')
       else
@@ -76,22 +73,23 @@ addArticleController =
     $menu.find('.upload').hide()
 #     $menu.find('.editable').bind 'focusin focus', (event) ->
 #       event.preventDefault()
-    if $menu.hasClass 'slideInFromSide'
-      $menu.find('.editable').on 'focus', (event) ->
-        event.preventDefault()
-    else
-      $menu.find('.editable').focus()
+#     if $menu.hasClass 'slideInFromSide'
+#       $menu.find('.editable').on 'focus', (event) ->
+#         event.preventDefault()
+#     else
+#       $menu.find('.editable').focus()
+    $menu.find('.editable').focus()
     return false
     
   reset: ($menu) ->
     $menu.find('.editable').html('')
     $menu.find('.editable').get(0).blur()
-    $menu.removeClass 'focus'
-    $menu.removeClass 'slideInFromSide'
-    $menu.removeClass 'typing'
     $menu.find('.card').removeClass 'editing'
     $menu.find('.upload').show()
     $menu.find('.done').hide()
+    $menu.removeClass 'focus'
+    $menu.removeClass 'slideInFromSide'
+    $menu.removeClass 'typing'
      
 # $ ->
 #   $('.addArticleForm').each () ->
