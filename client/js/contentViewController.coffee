@@ -12,21 +12,39 @@ calculatePercentToBorder = (x, e, border) ->
     percent = 0
   percent
 
-calculateX = ($content, margin, scroll) ->
+calculateX = ($content, margin) ->
+  $collection = contentModel.getCollection $content
+  isForm = $content.hasClass('addArticleForm') or $content.hasClass('addProjectForm')
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
   maxX = ($(window).width()) - contentModel.getSize($content)
   right_start = ($(window).width()) - border
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
+  
+  if isForm
+#     console.log 'form at edge'
+    border = 132
 
+  # is piling up on right
   if x > right_start
     percent = (x - right_start) / border
     x = right_start + (logisticFunction(percent)-0.5)*2 * border
-  
+    if isForm
+      $content.addClass 'onEdge'
+  # is piling up on left
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x = left_start - ((logisticFunction(percent)-0.5)*2 * border)
+  else
+    if isForm
+      $content.removeClass 'onEdge'
+    
+    
+#   if $content.hasClass('cover')# and not $collection.hasClass('root')
+#     console.log 'cover',  $collection.attr 'class'
+    
+    
   # Prevent stack from shifting to right when growing
   # x -= .0001825 * rawX
   x
@@ -46,6 +64,8 @@ calculateScale = ($content, margin, jumble, multiple) ->
     scale
 
 calculateRotateZ = ($content, margin, jumble, multiple) ->
+  if $content.hasClass('addArticleForm') or $content.hasClass('addProjectForm')
+    return 0
   return 0 unless jumble?
   jumble.rotateZ * multiple
 
@@ -73,17 +93,16 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 
 # percentFromCenter = percentToBorder((translateX), $content, $(window).width()/2)
 
-
 # On open/close or load
 
 window.contentViewController =
-  draw: ($content, scroll,  options) ->
+  draw: ($content,  options) ->
     animate = options.animate or false
     margin = $content.data('margin')
     jumble = $content.data 'jumble'
     isPack = $content.hasClass('cover') or $content.hasClass('pack')
     
-    translateX = calculateX       $content, margin, scroll
+    translateX = calculateX $content, margin
     
     percentToBorder = calculatePercentToBorder(translateX, $content, sliderBorder)
     multiple = if isPack then 1 else percentToBorder

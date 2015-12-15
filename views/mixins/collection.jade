@@ -49,7 +49,7 @@ mixin collectionMixin(collection)
   )
     .transform.collectionScale
       if collection.root == false
-        article(class = 'cover', style='z-index:2;')
+        article(class = 'cover peek', style='z-index:2;')
           .content
             .articleControls
               a.articleDeleteButton.warning.bodyType.smallCaps Delete
@@ -87,3 +87,4 @@ mixin collectionMixin(collection)
         +addCollectionFormMixin(collection)
       else
         +addArticleFormMixin(collection)
+        

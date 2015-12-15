@@ -4,20 +4,24 @@ drawOpenCollection = ($collection, animate) ->
   # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  leftMargin = $(window).width()/2 - $contents.first().find('.card').width() / 2
-  rightMargin = $(window).width()/2 - $contents.last().find('.card').width() / 2
+  leftMargin = $(window).width() / 2 - $contents.first().find('.card').width() / 2
+  rightMargin = $(window).width() / 2 - $contents.last().find('.card').width() / 2
   sizeTotal  = leftMargin
   maxX       = -Infinity
-  zIndex     = $contents.length
+  zIndex     = 0#$contents.length
+  sizeTotal  = 0
   
-  console.log 'size', sizeTotal
-
   $contents.add($addForm).each () ->
     $(@).
       data('scrollOffset', sizeTotal).
       css { zIndex: zIndex++ }
-    contentViewController.draw $(@), null, { animate }
+    
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
+    if isNaN(sizeTotal)
+      console.log contentModel.getSize($(@)), $(@).data('margin')
+      throw 'shit'
+    contentViewController.draw $(@), { animate }
+
   sizeTotal += rightMargin
   
   contentModel.setSize $collection, sizeTotal
@@ -37,20 +41,19 @@ drawClosedStack = ($collection, spacing = 15) ->
   # With a new stack, the dragged over element hides while waiting for a 
   # server resposse
   $content.show()
-  
+
   collectionModel.getAddForm($collection).hide()
   $content.find('.articleControls').hide()
   $cover.zIndex 0
 
   translateX = 0
   translateY = 0
-  zIndex     = $content.length
+  zIndex     = 0#s$content.length
   sizeTotal  = 0
   rotateZ    = 0
   $content.each () ->
-    $(@).
-      velocity({ translateX, translateY, rotateZ })
-
+    $(@).velocity({ translateX, translateY, rotateZ })
+    $(@).css { zIndex: zIndex++ }
     sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
     translateX += spacing
 
@@ -112,8 +115,6 @@ window.collectionViewController =
           $collectionTransform  = collectionModel.getTransform $(@)
           $collectionTransform.velocity
             scale: 1
-    
-
     # Mark collection so no longer being open 
     $collection.removeClass('open').addClass 'closed'
 
@@ -144,6 +145,7 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
+
     if $collection.data('contenttype') == 'pack'
       # Container around articles
 #       $collection.children('.contentContainer').velocity
@@ -223,6 +225,8 @@ window.collectionViewController =
     $collection.
       addClass('closed').
       removeClass('open')
+      
+    $collectionCover.removeClass('onEdge open')
 
     # the cover should have a transateX 0 relative to its collection
     $collectionCover.show().velocity { translateX: 0 }

@@ -1,3 +1,4 @@
+
 .collection {
     &.stack, article, .card {
         @include cursorGrab;
@@ -15,6 +16,7 @@ article.cover {
 }
     
 .collection {
+  position: absolute;
     transform-origin: center center;
     -webkit-transform-origin: center center;
     -moz-transform-origin: center center;
@@ -27,29 +29,28 @@ article.cover {
         -webkit-transform-origin: $x $y;
     }
 }
-
 .cover {
 	
     &.root {
-  	    display: none;
+    	    display: none;
     }
 
     &.peek.open {
-  	    .card {
-      	    .background {
-          	    @include coverBackgroundDull;
-      	    }
-      	    
-        		section.title {
-            		h1 {
-                		@include transform(translate(-128px, 0px));
-            		}
-            		
-            		h2 {
-                		@include transform(rotate(270deg));
-            		}
-        		}
-  	    }
+    	    .card {
+        	    .background {
+            	    @include coverBackgroundDull;
+        	    }
+        	    
+          		section.title {
+              		h1 {
+                  		@include transform(translate(-128px, 0px));
+              		}
+              		
+              		h2 {
+                  		@include transform(rotate(270deg));
+              		}
+          		}
+    	    }
     }
 }
     	
@@ -115,19 +116,19 @@ article.cover {
         }
 
   		h2 {
-          //transform-origin:           bottom right;
-          //-webkit-transform-origin:   bottom right;
-            width: $coverHeight;
-            white-space: nowrap;
-            text-align: right;
-            position: absolute;
-            top: -$cell*1.25;
-            right: $cell/2.5;
-            @include transform(rotate(270deg) translate(0px, 36px));
-            @include transition(.5s $defaultCurve);
-            @include transition-property(transform,
-                               -webkit-transform,
-                                  -moz-transform);
+        transform-origin:           bottom right;
+        -webkit-transform-origin:   bottom right;
+        width: $coverHeight;
+        white-space: nowrap;
+        text-align: right;
+        position: absolute;
+        top: -$cell * 1.25;
+        right: $cell / 4;
+        @include transform(rotate(270deg) translate(0px, 36px));
+        @include transition(.5s $defaultCurve);
+        @include transition-property(transform,
+                           -webkit-transform,
+                              -moz-transform);
   		}
     
         .rename {
