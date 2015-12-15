@@ -375,161 +375,173 @@ body {
                 background-color: $colorCardBackground;
             }
         }
-        
-        &.addArticleForm {
+    }
+}
 
-            // Compact view
-            &.peek {
-                &.onEdge:hover {
-                    .translate {
-                      		@include transform(translate(-$col/2, 0px));
-                    }
-                }
-
+.addArticleForm, .addProjectForm {
+    // Compact view
+    &.peek {
+        &.onEdge {
+            &:hover {
                 .translate {
-                  		@include transform(translate(0px, 0));
-                		
-                    &:after {
-                      		@include transform(translate(0px, 0px));
-                    }
-                }
-                                
-                .card .editable, .card .cardActions {
-                    opacity: 0;
-                    display: block;
-                    @include transition(1s $defaultCurve);
-                  		@include transition-property(opacity, transform,
-                  		                     -webkit-transform,
-                  		                        -moz-transform);
-                  		@include transform(translate(128px, 0px));
+                  		@include transform(translate(-$col/2, 0px));
                 }
             }
             
-            &.slideInFromSide {
-                z-index: 99999999 !important;
+            .translate {                
+              		.card .editable, .card .cardActions {
+              				opacity: 0;
+                		  @include transform(translate($articleSideNarrow, 0px));
+            		  }
                 
-                .translate, &.onEdge:hover .translate {
-                    @include transform(translate(-$articleSideNarrow, 0px));
-                }
-               
-            }
-
-            &.typing, &.typing:hover {
-                z-index: 99999999 !important;    
-                
-                .translate, .translate:hover {
-                    &:after {
-                        @include transform(translate(-48px, 0px));
-                    }
-                    
-                  		.card .editable, .card .cardActions {
-                      		opacity: 1;
-                  		  		@include transform(translate(0px, 0px));
-                  		}
-                }
-                
-                .cardActions ul li {
-                    &.upload {
-                        opacity: 0;
-                    }
-                    
-                    &.done {
-                        opacity: 1;
-                    }
-                }
-            }
-            
-            .translate {
-                overflow-x: hidden;
-                position: relative;
-                cursor: pointer;
-                @include transform(translate(0px, 0px));
-                @include transition(1s $defaultCurve);
-                @include transition-property(transform,
-                                     -webkit-transform,
-                                        -moz-transform);
-
-                // Plus sign for compact view
                 &:after {
-                    content: "";
-                    height: 24px;
-                    width:  24px;
-                    font-weight: $fontWeightLight;
-                    background: url('/images/add.png') no-repeat;
-                    background-size: cover;
-                    position: absolute;
-                    left:    $cell*.75;
-                    top:  $cell*.75;
-                    //-webkit-transform-origin: center center;
-                    //        transform-origin: center center;
                   		@include transform(translate(0px, 0px));
-                    @include transition(1s $defaultCurve);
-                    @include transition-property(transform,
-                                         -webkit-transform,
-                                            -moz-transform);
                 }
+            }
+        }
 
-                .card {
-                    overflow: visible;
-                    width: $articleSideNarrow;
+        .translate {
+          		@include transform(translate(0px, 0px));
+        		
+            &:after {
+              		@include transform(translate(-48px, 0px));
+            }
+        }
                         
-                    .cardActions {
-                        width: $articleSideNarrow;
-                        
-                        ul {
-                            
-                            li {
+        .card .editable, .card .cardActions {
+            opacity: 1;
+            display: block;
+          		@include transform(translate(0px, 0px));
+            @include transition(1s $defaultCurve);
+          		@include transition-property(opacity, transform,
+          		                     -webkit-transform,
+          		                        -moz-transform);
+        }
+    }
+    
+    &.slideInFromSide {
+        z-index: 99999999 !important;
+        
+        .translate, &.onEdge:hover .translate {
+            @include transform(translate(-$articleSideNarrow, 0px));
+        }
+       
+    }
 
-                                &.upload {
-                                    opacity: 1;
-                                    display: inline-block;
-                                    width: $col * 1.5;
-                                    height: $leading;
-                                    overflow: hidden;
-                                    position: relative;
-                                    
-                                    &:hover {
-                                        a {
-                                            @include hoverLinkAnimation;
-                                        }
-                                    }
-                                    
-                                    form {
-                                        height: 100%;
-                                        width: 200%;
-                                        top: 0;
-                                        left: 0;
-                                        position: absolute;
-                                        
-                                        input {
-                                            height: 100%;
-                                            width: 100%;
-                                            position: absolute;
-                                            top: 0;
-                                            left: -50%;
-                                            opacity: 0;
-                                            cursor: pointer !important;
-                                        }
-                                    }
-                                }
-                                
-                                &.done {
-                                    display: inline-block;
-                                    height: $leading;
-                                    float: right;
-                                    width: intrinsic;
+    &.typing, &.typing:hover {
+        z-index: 99999999 !important;    
+        
+        .translate, .translate:hover {
+            &:after {
+                @include transform(translate(-48px, 0px));
+            }
             
-                                    a {
-                                        border: 0;
-                                        padding: 0;
-                                        margin-left: $cell;
-                                    }
+          		.card .editable, .card .cardActions {
+              		opacity: 1;
+          		  		@include transform(translate(0px, 0px));
+          		}
+        }
+        
+        .cardActions ul li {
+            &.upload {
+                opacity: 0;
+            }
+            
+            &.done {
+                opacity: 1;
+            }
+        }
+    }
+    
+    .translate {
+        overflow-x: hidden;
+        position: relative;
+        cursor: pointer;
+        @include transform(translate(0px, 0px));
+        @include transition(1s $defaultCurve);
+        @include transition-property(transform,
+                             -webkit-transform,
+                                -moz-transform);
+
+        // Plus sign for compact view
+        &:after {
+            content: "";
+            height: 24px;
+            width:  24px;
+            font-weight: $fontWeightLight;
+            background: url('/images/add.png') no-repeat;
+            background-size: cover;
+            position: absolute;
+            left:    $cell*.75;
+            top:  $cell*.75;
+            //-webkit-transform-origin: center center;
+            //        transform-origin: center center;
+          		@include transform(translate(0px, 0px));
+            @include transition(1s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform);
+        }
+
+        .card {
+            overflow: visible;
+            width: $articleSideNarrow;
+                
+            .cardActions {
+                width: $articleSideNarrow;
+                
+                ul {
+                    
+                    li {
+
+                        &.upload {
+                            opacity: 1;
+                            display: inline-block;
+                            width: $col * 1.5;
+                            height: $leading;
+                            overflow: hidden;
+                            position: relative;
+                            
+                            &:hover {
+                                a {
+                                    @include hoverLinkAnimation;
                                 }
+                            }
+                            
+                            form {
+                                height: 100%;
+                                width: 200%;
+                                top: 0;
+                                left: 0;
+                                position: absolute;
+                                
+                                input {
+                                    height: 100%;
+                                    width: 100%;
+                                    position: absolute;
+                                    top: 0;
+                                    left: -50%;
+                                    opacity: 0;
+                                    cursor: pointer !important;
+                                }
+                            }
+                        }
+                        
+                        &.done {
+                            display: inline-block;
+                            height: $leading;
+                            float: right;
+                            width: intrinsic;
+    
+                            a {
+                                border: 0;
+                                padding: 0;
+                                margin-left: $cell;
                             }
                         }
                     }
                 }
-            }               
+            }
         }
-    }
+    }               
 }
