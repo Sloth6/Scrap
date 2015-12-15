@@ -1059,10 +1059,10 @@ input[type=checkbox] {
 .slideIn.hideFirst.right > li.first {
   transform-origin: 252pt top;
   -webkit-transform-origin: 252pt top;
-  -moz-transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
-  -ms-transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
-  -webkit-transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
-  transform: translate3d(-252pt, 18.66667pt, 0) rotate(-11deg);
+  -moz-transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
+  -ms-transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
+  -webkit-transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
+  transform: translate3d(-252pt, 28pt, 0) rotate(-11deg);
   right: 0;
 }
 
