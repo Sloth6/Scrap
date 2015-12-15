@@ -43,7 +43,7 @@ getWidestArticle = ($content) ->
 drawCollectionPreview = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent $collection
-#   $content = $content.filter('article').not('.addArticleForm')
+  $content = $content.filter('article').not('.addArticleForm')
   $contentContainer = contentModel.getContentContainer $content
   # With a new stack, the dragged over element hides while waiting for a 
   # server response
