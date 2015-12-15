@@ -13,6 +13,7 @@ calculatePercentToBorder = (x, e, border) ->
   percent
 
 calculateX = ($content, margin) ->
+  $collection = contentModel.getCollection $content
   border = sliderBorder
   x = $content.data('scrollOffset') - $(window).scrollLeft()# + margin
   maxX = $(window).width() - contentModel.getSize($content)
@@ -27,6 +28,9 @@ calculateX = ($content, margin) ->
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x = left_start - ((logisticFunction(percent)-0.5)*2 * border)
+    
+  if $content.hasClass('cover')# and not $collection.hasClass('root')
+    console.log 'cover',  $collection.attr 'class'
   # Prevent stack from shifting to right when growing
   # x -= .0001825 * rawX
   x
@@ -71,7 +75,6 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 #     $content.removeClass 'peek'
 
 # percentFromCenter = percentToBorder((translateX), $content, $(window).width()/2)
-
 
 # On open/close or load
 

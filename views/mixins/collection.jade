@@ -48,7 +48,7 @@ mixin collectionMixin(collection)
     data-hascover = collection.hasCover
   )
     if collection.root == false
-      article(class = 'cover', style='z-index:2;')
+      article(class = 'cover peek', style='z-index:2;')
         .content
           .articleControls
             a.articleDeleteButton.warning.bodyType.smallCaps Delete

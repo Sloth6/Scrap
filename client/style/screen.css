@@ -2216,12 +2216,14 @@ body article.addArticleForm .translate .card .cardActions ul li.done a {
 }
 /* line 101, ../../style/layout/_home.scss */
 .cover .card section.title h2, .cover.card section.title h2 {
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
   width: 336pt;
   white-space: nowrap;
   text-align: right;
   position: absolute;
   top: -10pt;
-  right: 3.2pt;
+  right: 2pt;
   -moz-transform: rotate(270deg) translate(0px, 36px);
   -ms-transform: rotate(270deg) translate(0px, 36px);
   -webkit-transform: rotate(270deg) translate(0px, 36px);
