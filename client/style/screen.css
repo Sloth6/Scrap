@@ -2164,36 +2164,37 @@ body article .card img {
   margin-left: 8pt;
 }
 
-/* line 1, ../../style/layout/_home.scss */
+/* line 2, ../../style/layout/_home.scss */
 .collection {
+  position: absolute;
   transform-origin: center center;
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
 }
-/* line 6, ../../style/layout/_home.scss */
+/* line 8, ../../style/layout/_home.scss */
 .collection.pack {
   transform-origin: 112pt 168pt;
   -moz-transform-origin: 112pt 168pt;
   -webkit-transform-origin: 112pt 168pt;
 }
 
-/* line 17, ../../style/layout/_home.scss */
+/* line 18, ../../style/layout/_home.scss */
 .cover.root {
   display: none;
 }
-/* line 23, ../../style/layout/_home.scss */
+/* line 24, ../../style/layout/_home.scss */
 .cover.peek.open .card .background {
   opacity: .125;
   -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
-/* line 28, ../../style/layout/_home.scss */
+/* line 29, ../../style/layout/_home.scss */
 .cover.peek.open .card section.title h1 {
   -moz-transform: translate(-128px, 0px);
   -ms-transform: translate(-128px, 0px);
   -webkit-transform: translate(-128px, 0px);
   transform: translate(-128px, 0px);
 }
-/* line 32, ../../style/layout/_home.scss */
+/* line 33, ../../style/layout/_home.scss */
 .cover.peek.open .card section.title h2 {
   -moz-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
@@ -2201,29 +2202,29 @@ body article .card img {
   transform: rotate(270deg);
 }
 
-/* line 44, ../../style/layout/_home.scss */
+/* line 45, ../../style/layout/_home.scss */
 .cover .card.hover section.title h1.typeTitle, .cover .card.editing section.title h1.typeTitle, .cover.card.hover section.title h1.typeTitle, .cover.card.editing section.title h1.typeTitle {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
-/* line 51, ../../style/layout/_home.scss */
+/* line 52, ../../style/layout/_home.scss */
 .cover .card.hover ul.users, .cover.card.hover ul.users {
   opacity: 1;
 }
-/* line 56, ../../style/layout/_home.scss */
+/* line 57, ../../style/layout/_home.scss */
 .cover .card.hover section.title .rename a, .cover.card.hover section.title .rename a {
   opacity: .25;
 }
-/* line 61, ../../style/layout/_home.scss */
+/* line 62, ../../style/layout/_home.scss */
 .cover .card.hover .background, .cover.card.hover .background {
   opacity: .125;
   -webkit-filter: brightness(1) contrast(1) grayscale(1) invert(1);
 }
-/* line 67, ../../style/layout/_home.scss */
+/* line 68, ../../style/layout/_home.scss */
 .cover .card.editing section.title .rename a, .cover.card.editing section.title .rename a {
   opacity: .5;
 }
-/* line 72, ../../style/layout/_home.scss */
+/* line 73, ../../style/layout/_home.scss */
 .cover .card .background, .cover.card .background {
   position: absolute;
   top: 0;
@@ -2235,11 +2236,11 @@ body article .card img {
   mix-blend-mode: multiply;
   -webkit-filter: brightness(2) contrast(1) grayscale(1);
 }
-/* line 80, ../../style/layout/_home.scss */
+/* line 81, ../../style/layout/_home.scss */
 .cover .card section.title:hover .rename a, .cover.card section.title:hover .rename a {
   opacity: .5;
 }
-/* line 85, ../../style/layout/_home.scss */
+/* line 86, ../../style/layout/_home.scss */
 .cover .card section.title h1, .cover.card section.title h1 {
   margin-top: -0.125em;
   margin-left: -0.03125em;
@@ -2259,7 +2260,7 @@ body article .card img {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
   transition-property: transform, -webkit-transform, -moz-transform, -webkit-text-fill-color, -webkit-text-stroke, color;
 }
-/* line 101, ../../style/layout/_home.scss */
+/* line 102, ../../style/layout/_home.scss */
 .cover .card section.title h2, .cover.card section.title h2 {
   transform-origin: bottom right;
   -webkit-transform-origin: bottom right;
@@ -2282,13 +2283,13 @@ body article .card img {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 117, ../../style/layout/_home.scss */
+/* line 118, ../../style/layout/_home.scss */
 .cover .card section.title .rename, .cover.card section.title .rename {
   z-index: 20;
   position: relative;
   margin-top: 8pt;
 }
-/* line 122, ../../style/layout/_home.scss */
+/* line 123, ../../style/layout/_home.scss */
 .cover .card section.title .rename a, .cover.card section.title .rename a {
   display: inline-block;
   padding: 16pt 16pt 16pt 8pt;
@@ -2304,11 +2305,11 @@ body article .card img {
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 131, ../../style/layout/_home.scss */
+/* line 132, ../../style/layout/_home.scss */
 .cover .card section.title .rename a:hover, .cover.card section.title .rename a:hover {
   opacity: 1;
 }
-/* line 138, ../../style/layout/_home.scss */
+/* line 139, ../../style/layout/_home.scss */
 .cover .card ul.users, .cover.card ul.users {
   position: absolute;
   width: 100%;
@@ -2322,33 +2323,33 @@ body article .card img {
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 147, ../../style/layout/_home.scss */
+/* line 148, ../../style/layout/_home.scss */
 .cover .card ul.users li.add, .cover.card ul.users li.add {
   width: 100%;
   margin-top: 8pt;
 }
-/* line 151, ../../style/layout/_home.scss */
+/* line 152, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li, .cover.card ul.users li.add ul li {
   height: auto;
   padding: 0;
   margin: 0;
 }
-/* line 156, ../../style/layout/_home.scss */
+/* line 157, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li .notice, .cover.card ul.users li.add ul li .notice {
   position: absolute;
   bottom: 0;
 }
-/* line 161, ../../style/layout/_home.scss */
+/* line 162, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li label, .cover.card ul.users li.add ul li label {
   display: block;
 }
-/* line 165, ../../style/layout/_home.scss */
+/* line 166, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li input[type=email], .cover.card ul.users li.add ul li input[type=email] {
   padding-right: 24pt;
   float: left;
   width: 50%;
 }
-/* line 171, ../../style/layout/_home.scss */
+/* line 172, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li input[type=submit], .cover.card ul.users li.add ul li input[type=submit] {
   height: 14pt;
   width: 32pt;
@@ -2359,7 +2360,7 @@ body article .card img {
   -webkit-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 178, ../../style/layout/_home.scss */
+/* line 179, ../../style/layout/_home.scss */
 .cover .card ul.users li.add ul li input[type=submit]:hover, .cover.card ul.users li.add ul li input[type=submit]:hover {
   color: #000000;
 }
