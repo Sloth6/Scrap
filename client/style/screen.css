@@ -1996,7 +1996,7 @@ body article.addArticleForm.slideInFromSide {
   z-index: 99999999 !important;
 }
 /* line 411, ../../style/layout/_article.scss */
-body article.addArticleForm.slideInFromSide .translate, body article.addArticleForm.slideInFromSide:hover .translate {
+body article.addArticleForm.slideInFromSide .translate, body article.addArticleForm.slideInFromSide.onEdge:hover .translate {
   -moz-transform: translate(-168pt, 0px);
   -ms-transform: translate(-168pt, 0px);
   -webkit-transform: translate(-168pt, 0px);

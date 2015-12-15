@@ -11,7 +11,8 @@ addArticleController =
     content = () ->
       input.html()
       
-    $menu.click () ->
+    $menu.click (event) ->
+      event.stopPropagation()
       $menu.addClass('slideInFromSide')
       $menu.addClass('typing')
       addArticleController.focus $menu
@@ -69,8 +70,7 @@ addArticleController =
     return false
     
   reset: ($menu) ->
-    input = $menu.find '.editable'
-    input.html('')
+    $menu.find('.editable').html('')
     $menu.find('.editable').get(0).blur()
     $menu.removeClass 'focus'
     $menu.removeClass 'slideInFromSide'

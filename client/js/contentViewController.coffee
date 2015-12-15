@@ -30,13 +30,16 @@ calculateX = ($content, margin) ->
   if x > right_start
     percent = (x - right_start) / border
     x = right_start + (logisticFunction(percent)-0.5)*2 * border
-    $content.addClass 'onEdge'
-    console.log 'onEdge'
-  
+    if isForm
+      $content.addClass 'onEdge'
   # is piling up on left
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x = left_start - ((logisticFunction(percent)-0.5)*2 * border)
+  else
+    if isForm
+      $content.removeClass 'onEdge'
+    
     
 #   if $content.hasClass('cover')# and not $collection.hasClass('root')
 #     console.log 'cover',  $collection.attr 'class'
