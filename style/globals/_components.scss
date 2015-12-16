@@ -407,7 +407,7 @@ input {
             > li.first {
                         transform-origin: $menuOffsetX top;
                 -webkit-transform-origin: $menuOffsetX top;
-                @include transform(translate3d(-$menuOffsetX, $col/3, 0.0) rotate(-11deg));
+                @include transform(translate3d(-$menuOffsetX, $col/2, 0.0) rotate(-11deg));
                 right: 0;
             }
         }

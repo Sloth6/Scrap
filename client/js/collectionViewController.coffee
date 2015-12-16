@@ -6,10 +6,10 @@ drawOpenCollection = ($collection, animate) ->
   $addForm   = collectionModel.getAddForm $collection
   leftMargin = $(window).width() / 2 - $contents.first().find('.card').width() / 2
   rightMargin = $(window).width() / 2 - $contents.last().find('.card').width() / 2
-  sizeTotal  = leftMargin
+  sizeTotal  = if $collection.hasClass 'root' then leftMargin else 50
   maxX       = -Infinity
-  zIndex     = $contents.length
-
+  zIndex     = 0#$contents.length
+  
   $contents.add($addForm).each () ->
     $(@).
       data('scrollOffset', sizeTotal).

@@ -19,6 +19,12 @@ calculateX = ($content, margin) ->
   right_start = $(window).width() - border
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
+#   if $collection.hasClass 'root'
+#     left_start = $(window).width() / 2
+  
+  if isForm
+#     console.log 'form at edge'
+    border = 132
 
   if x > right_start
     percent = (x - right_start) / border
