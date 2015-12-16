@@ -588,9 +588,9 @@ body section.collection section.content article.color9 div.card.text.comment, bo
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 156, ../../style/globals/_type.scss */
+/* line 157, ../../style/globals/_type.scss */
 html {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -602,7 +602,7 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 160, ../../style/globals/_type.scss */
+/* line 161, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -610,7 +610,7 @@ html {
   line-height: 48pt;
 }
 
-/* line 164, ../../style/globals/_type.scss */
+/* line 165, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -618,7 +618,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 168, ../../style/globals/_type.scss */
+/* line 169, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -626,15 +626,15 @@ html {
   line-height: 24pt;
 }
 
-/* line 172, ../../style/globals/_type.scss */
+/* line 173, ../../style/globals/_type.scss */
 .bodyType {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 175, ../../style/globals/_type.scss */
+/* line 176, ../../style/globals/_type.scss */
 .bodyType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -644,15 +644,15 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 180, ../../style/globals/_type.scss */
+/* line 181, ../../style/globals/_type.scss */
 .largeType {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
   font-weight: 300;
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 183, ../../style/globals/_type.scss */
+/* line 184, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -662,14 +662,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 188, ../../style/globals/_type.scss */
+/* line 189, ../../style/globals/_type.scss */
 .smallType {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 191, ../../style/globals/_type.scss */
+/* line 192, ../../style/globals/_type.scss */
 .smallType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -679,24 +679,24 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 196, ../../style/globals/_type.scss */
+/* line 197, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 200, ../../style/globals/_type.scss */
+/* line 201, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 205, ../../style/globals/_type.scss */
+/* line 206, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 212, ../../style/globals/_type.scss */
+/* line 213, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -835,7 +835,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   bottom: 4pt;
   left: 4pt;
   right: 4pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -953,7 +953,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -1077,7 +1077,7 @@ ul.headerMenu {
   background: white;
   top: -1px;
   width: 168pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -1495,7 +1495,7 @@ textarea {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -1670,7 +1670,7 @@ body article.text .editable {
 }
 /* line 109, ../../style/layout/_article.scss */
 body article.text.short .editable {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
   font-weight: 300;
   line-height: 24pt;
@@ -1679,7 +1679,7 @@ body article.text.short .editable {
 }
 /* line 116, ../../style/layout/_article.scss */
 body article.text.long .editable {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
