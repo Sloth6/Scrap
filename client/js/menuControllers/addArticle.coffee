@@ -62,6 +62,9 @@ addArticleController =
       event.stopPropagation()
       addArticleController.reset $menu
       event.preventDefault()
+      
+    $menu.find('input.file-input').click (event) ->
+      event.stopPropagation()
 
     $menu.find('form.upload').fileupload fileuploadOptions(collectionkey)
     
