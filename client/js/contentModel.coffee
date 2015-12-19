@@ -1,65 +1,38 @@
 window.contentModel = 
   init: ($content) ->
-    $content.off() # remove old handlers
+    isStack = $content.hasClass 'stack'
+    isPack  = $content.hasClass 'pack'
     $collection = contentModel.getCollection $content
-    makeDraggable $content
+    $card = contentModel.getCard($content)
 
-    switch $content.data('contenttype')
+    $content.off() # remove old handlers
+    makeDraggable $content
+    contentModel.setJumble $content
+
+    # Stacks will not have a cover
+    if $card?
+      $card.mouseenter((event) ->
+        unless isStack or $content.hasClass 'dragging'
+          $content.add($card).addClass 'hover'
+        event.stopPropagation()
+      ).mouseleave (event) ->
+        $content.add($card).removeClass 'hover'
+
+    switch $content.data 'contenttype'
       when 'text'       then initText $content
       when 'video'      then initVideo $content
       when 'file'       then initFile $content
       when 'soundcloud' then initSoundCloud $content
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
-      
-    isCollection = $content.hasClass('collection')
-    isStack = isCollection and $content.hasClass('stack')
-    isPack = isCollection and $content.hasClass('pack')
-    
-    $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')
-      
-  
-    $card.mouseenter((event) ->
-      event.stopPropagation()
-      unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')
-        $(@).addClass 'hover'
-    ).mouseleave((event) ->
-      $(@).removeClass 'hover'
-    )
-    contentModel.setJumble $content
-    
-#     if $content.hasClass('pack')
-#       $content.mouseover((event) ->
-#         if $content.hasClass('closed')
-#           $content.velocity
-#             properties:
-#               rotateZ: $content.data('jumble').rotateZ/2
-#             options:
-#               duration: 500
-#       ).mouseleave((event) ->
-#         if $content.hasClass('closed')
-#           $content.velocity
-#             properties:
-#               rotateZ: $content.data('jumble').rotateZ
-#               
-#       )
-    
-#     if $content.hasClass('stack')
-# #       console.log('wowowowowo', $content)
-#       $content.mouseenter((event) ->
-#         console.log('wow')
-#       ).css('opacity', .25)
-    
-    # $content.mouseover( () ->
-    #   x = xTransform $content
-    #   return if x < edgeWidth or (x > $(window).width - edgeWidth)
-    #   return if $content.hasClass 'dragging'
-    #   $content.data 'oldZIndex', $content.css('zIndex')
-    #   $content.css 'zIndex', $.topZIndex('article')
-    # ).mouseout () ->
-    #   return if $content.hasClass 'dragging'
-    #   return unless $content.data 'oldZIndex'
-    #   $content.css 'zIndex', $content.data('oldZIndex')
+
+
+  getCard: ($content) ->
+    return null if $content.hasClass 'stack'
+    if $content.hasClass 'pack'
+      collectionModel.getCover($content).find '.card'
+    else
+      $content.children('.content').children('.transform').children('.card')
 
   setSize: ($contents, size) ->
     $contents.data 'size', size
@@ -96,4 +69,39 @@ window.contentModel =
       'rotateZ':    if isPack then coverRotateZ else normalRotateZ
       'scale': 1.5
     }
+
+    
+    
+#     if $content.hasClass('pack')
+#       $content.mouseover((event) ->
+#         if $content.hasClass('closed')
+#           $content.velocity
+#             properties:
+#               rotateZ: $content.data('jumble').rotateZ/2
+#             options:
+#               duration: 500
+#       ).mouseleave((event) ->
+#         if $content.hasClass('closed')
+#           $content.velocity
+#             properties:
+#               rotateZ: $content.data('jumble').rotateZ
+#               
+#       )
+    
+#     if $content.hasClass('stack')
+# #       console.log('wowowowowo', $content)
+#       $content.mouseenter((event) ->
+#         console.log('wow')
+#       ).css('opacity', .25)
+    
+    # $content.mouseover( () ->
+    #   x = xTransform $content
+    #   return if x < edgeWidth or (x > $(window).width - edgeWidth)
+    #   return if $content.hasClass 'dragging'
+    #   $content.data 'oldZIndex', $content.css('zIndex')
+    #   $content.css 'zIndex', $.topZIndex('article')
+    # ).mouseout () ->
+    #   return if $content.hasClass 'dragging'
+    #   return unless $content.data 'oldZIndex'
+    #   $content.css 'zIndex', $content.data('oldZIndex')
 

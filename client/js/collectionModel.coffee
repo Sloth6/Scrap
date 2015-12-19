@@ -17,12 +17,8 @@ window.collectionModel =
       navigationController.open $(@)
 
     if $collection.data('hascover')
-      $collection.data 'contenttype', 'pack'
-      $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
     else
-      $collection.data 'contenttype', 'stack'
-      $collection.addClass 'stack'
       $content.on 'click mouseup', clickBlock
       collectionViewController.draw $collection
 
@@ -81,7 +77,7 @@ window.collectionModel =
   # 
   # @param $collection [jquery array] 
   getCover: ($collection) ->
-    $collection.children '.cover'
+    $collection.children 'article.cover'
 
   getAddForm: ($collection) ->
     $contents = collectionModel.getContent $collection

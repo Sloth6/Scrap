@@ -40,10 +40,19 @@ mixin collectionMixin(collection)
   - if(collection.root == true){
     - classes = classes+' root'
   - }
+  
+  - if(collection.hasCover == true){
+  -   classes = classes+' pack'
+  -   var collectiontype = 'pack'
+  - } else {
+  -   classes = classes+' stack'
+  -   var collectiontype = 'stack'
+  - }
 
   .collection(
-    class         = classes
-    data-contenttype= "collection"
+    class = classes
+    data-contenttype= 'collection',
+    data-collectiontype = collectiontype,
     data-collectionkey = collection.collectionKey,
     data-hascover = collection.hasCover
   )
