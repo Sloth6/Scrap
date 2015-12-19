@@ -46,28 +46,33 @@ module.exports =
 
   # verify login creds, redirect to first collection
   login : (req, res, app, callback) ->
-    email = req.body.email
-    password = req.body.password
-    console.log 'trying login', email, password
+    { email, password } = req.body
+    
     models.User.find(
       where: { email }
       include: [ models.Collection ]
     ).done (err, user) ->
-      return res.status(400).send if err?
-      return res.status(400).send "No account found for that email" if not user?
-      return res.status(400).send "Sign up to activate this account" if user? and !user.password
+      
+      err = "No account found for that email"  if not user?
+      err = "Sign up to activate this account" if user? and !user.password
+
+      if err?
+        console.log "LOGIN FAILED\n\temail: #{email}\n\terr: #{err}"
+        return res.status(400).send err
+      
       user.verifyPassword password, (err, result) ->
-        return res.status(400).send err if err?
+        err = 'Incorrect password' if !err and !result
+        if err?
+          console.log "LOGIN FAILED\n\temail: #{email}\n\terr: #{err}"
+          return res.status(400).send err
+
         # render first collection on success
-        if result
-          req.session.currentUserId = user.id
-          req.session.userName = user.name
-          req.session.userEmail = user.email
-          res.send "/"#"/s/" + user.collections[0].collectionKey
-          callback()
-        else
-          callback null
-          return res.status(400).send 'Incorrect password.'
+        console.log "LOGIN SUCCESSFULL\n\temail:#{email}"
+        req.session.currentUserId = user.id
+        req.session.userName = user.name
+        req.session.userEmail = user.email
+        res.send "/"#"/s/" + user.collections[0].collectionKey
+        callback null
 
   logout : (req, res, app, callback) ->
     req.session.destroy (err) ->
