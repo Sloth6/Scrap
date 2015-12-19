@@ -52,9 +52,28 @@ addArticleController =
       menu.removeClass 'focus'
       addArticleController.reset menu
       event.preventDefault()
+      
+    $menu.find('input.file-input').click (event) ->
+      event.stopPropagation()
 
-    menu.find('form.upload').fileupload fileuploadOptions(collectionkey)
-
+    $menu.find('form.upload').fileupload fileuploadOptions(collectionkey)
+    
+  focus: ($menu) ->
+    $menu.addClass 'focus'
+    $menu.find('.card').addClass 'editing'
+    $menu.addClass('typing')
+    $menu.find('.done').show()
+    $menu.find('.done').removeClass 'invisible'
+    $menu.find('.upload').hide()
+#     $menu.find('.editable').bind 'focusin focus', (event) ->
+#       event.preventDefault()
+#     if $menu.hasClass 'slideInFromSide'
+#       $menu.find('.editable').on 'focus', (event) ->
+#         event.preventDefault()
+#     else
+#       $menu.find('.editable').focus()
+    $menu.find('.editable').focus()
+    return false
     
   reset: (menu) ->
     input = menu.find '.editable'

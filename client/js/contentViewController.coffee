@@ -22,9 +22,9 @@ calculateX = ($content, margin) ->
 #   if $collection.hasClass 'root'
 #     left_start = $(window).width() / 2
   
-  if isForm
+#   if isForm
 #     console.log 'form at edge'
-    border = 132
+#     border = 132
 
   if x > right_start
     percent = (x - right_start) / border
