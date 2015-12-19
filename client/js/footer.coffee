@@ -1,3 +1,29 @@
+dragIn = ($content, action) ->
+  $content.velocity
+    properties:
+      opacity: .25
+    
+dragOut = ($content, action) ->
+  unless $content.data 'deleting'
+    $content.velocity
+      properties:
+        opacity: 1
+  
+drop = ($content, action) ->
+  $content.velocity
+    properties:
+      opacity: 1
+  switch action
+    when 'delete'
+      $content.data 'deleting', true
+      $content.addClass 'deleting'
+      onDelete $content
+    when 'download'
+      url = if $content.hasClass 'image' then $content.data('content').original_url else $content.data 'content'
+      $collection = contentModel.getCollection $content
+      window.open(url, '_blank')
+      collectionViewController.draw $collection, { animate: true }
+  
 window.footerController =
   init: ($footer) ->
     $actions = $footer.find('ul.actions li.action')
@@ -18,12 +44,12 @@ window.footerController =
           duration: 1
       $action.mouseenter () ->
         $action.addClass 'active'
-        footerController.in $('.dragging'), $action.data 'action'
+        dragIn $('.dragging'), $action.data 'action'
       $action.mouseleave () ->
         $action.removeClass 'active'
-        footerController.out $('.dragging'), $action.data 'action'
+        dragOut $('.dragging'), $action.data 'action'
       $action.mouseup () ->
-        footerController.drop $('.dragging'), $action.data 'action'
+        drop $('.dragging'), $action.data 'action'
         
   show: ($content) ->
     $footer = $('footer.main')
@@ -65,30 +91,3 @@ window.footerController =
           easing: bouncyCurve
     $footer.velocity
       translateY: $footer.height()
-      
-  in: ($content, action) ->
-    $content.velocity
-      properties:
-        opacity: .25
-      
-  out: ($content, action) ->
-    unless $content.data 'deleting'
-      $content.velocity
-        properties:
-          opacity: 1
-      
-  drop: ($content, action) ->
-    $content.velocity
-      properties:
-        opacity: 1
-    switch action
-      when 'delete'
-        $content.data 'deleting', true
-        $content.addClass 'deleting'
-        onDelete $content
-      when 'download'
-        url = if $content.hasClass 'image' then $content.data('content').original_url else $content.data 'content'
-        $collection = contentModel.getCollection $content
-        window.open(url, '_blank')
-        collectionViewController.draw $collection, { animate: true }
-    
