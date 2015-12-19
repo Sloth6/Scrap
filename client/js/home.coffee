@@ -23,7 +23,7 @@ onScroll = ->
 # Enable the user to scroll vertically and map it to horizontal scroll
 onMousewheel = (event) ->
   return false if $('.velocity-animating').length
-  if Math.abs(event.deltaY) > 2
+  if Math.abs(event.deltaY) > Math.abs(event.deltaX)
     $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
     event.preventDefault()
 
