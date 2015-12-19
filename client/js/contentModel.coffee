@@ -55,8 +55,7 @@ window.contentModel =
     return collectionModel.getState($collection).collectionKey
 
   setJumble: ($content) ->
-    isPack = $content.data('contenttype') is 'pack'
-    console.log 'ispack', $content.data('contenttype') 
+    isPack = $content.data('collectiontype') is 'pack'
     normalTranslateY  = (Math.random() - .5) * $(window).height() / 16
     normalRotateZ     = (Math.random() - .5) * 8
     coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16

@@ -11,8 +11,6 @@ addArticleController =
     content = () ->
       input.html()
       
-    console.log 'add article controller init'
-      
     $menu.click (event) ->
       if $menu.hasClass 'onEdge'
         if $menu.hasClass 'slideInFromSide'
