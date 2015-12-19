@@ -108,9 +108,9 @@ window.contentViewController =
 
     # Velocity cannot actually have 0 duration
     if !animate
+      # $content.css "-webkit-transform", "translate3d(#{translateX}px, #{translateY}px, 0px) rotateZ(#{rotateZ})"
       velocityParams.options = { duration: 1 }
 
     # Only call animate if change is noticeable.
     if Math.abs(translateX - oldX) > 1
       $content.velocity velocityParams
-
