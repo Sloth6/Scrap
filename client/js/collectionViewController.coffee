@@ -117,10 +117,10 @@ window.collectionViewController =
     if $collection.hasClass('open')
       drawOpenCollection $collection, animate
 
-    else if $collection.data('contenttype') == 'stack'
+    else if $collection.data('collectiontype') == 'stack'
       drawCollectionPreview $collection, animate
       
-    else if $collection.data('contenttype') == 'pack'
+    else if $collection.data('collectiontype') == 'pack'
       drawCollectionPreview $collection, animate
 
   # This function is only called from collectionViewController.open
@@ -172,7 +172,7 @@ window.collectionViewController =
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
 
-    if $collection.data('contenttype') == 'pack'
+    if $collection.data('collectiontype') == 'pack'
       # Container around articles
       $collection.children('.contentContainer').velocity
         properties:
@@ -252,7 +252,7 @@ window.collectionViewController =
     $parentCollectionContent.show()
     $parentCollectionAddForm.show()
 
-    if $collection.data('contenttype') == 'pack'
+    if $collection.data('collectiontype') == 'pack'
       # The size of the collection will be reset to just the cover
       contentModel.setSize $collection, null
       $collectionCover.css 'zIndex', 99999

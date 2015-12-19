@@ -10,6 +10,20 @@ addArticleController =
     # function to get content of form
     content = () ->
       input.html()
+
+    $menu.click (event) ->
+      if $menu.hasClass 'onEdge'
+        if $menu.hasClass 'slideInFromSide'
+          addArticleController.focus $menu
+        else
+          $menu.addClass('slideInFromSide')
+      else
+        addArticleController.focus $menu
+
+      
+    $('body').click (event) ->
+      event.stopPropagation()
+      $menu.removeClass('slideInFromSide')
     
     input.on 'focus', () ->
       menu.addClass 'focus'

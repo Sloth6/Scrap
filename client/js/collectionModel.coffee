@@ -60,8 +60,6 @@ window.collectionModel =
       navigationController.open $(@)
 
     if $collection.data('hascover')
-      $collection.data 'contenttype', 'pack'
-      $collection.addClass 'pack'
       packCoverInit $cover, collectionKey
       $cover = $collection.find('.cover')
       $collection.data 'previewState', 'none'
@@ -101,8 +99,6 @@ window.collectionModel =
       $cover.mouseleave () ->
         closePackPreview($collection, $parentCollection)
     else
-      $collection.data 'contenttype', 'stack'
-      $collection.addClass 'stack'
       $content.on 'click mouseup', clickBlock
       $collection.data 'previewState', 'compact'
       $collection.mouseenter () ->
@@ -169,7 +165,7 @@ window.collectionModel =
   # 
   # @param $collection [jquery array] 
   getCover: ($collection) ->
-    $collection.children '.cover'
+    $collection.children 'article.cover'
 
   getAddForm: ($collection) ->
     $contents = collectionModel.getContent $collection
