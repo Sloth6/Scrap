@@ -72,6 +72,7 @@ addArticleController =
     $menu.addClass 'focus'
     $menu.find('.card').addClass 'editing'
     $menu.addClass('typing')
+    $menu.find('.done').show()
     $menu.find('.done').removeClass 'invisible'
     $menu.find('.upload').hide()
 #     $menu.find('.editable').bind 'focusin focus', (event) ->
