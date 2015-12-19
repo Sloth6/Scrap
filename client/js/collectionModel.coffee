@@ -28,7 +28,6 @@ closePackPreview = ($collection, $parentCollection) ->
 drawPackPreview = ($collection, $parentCollection, $contentContainer) ->
   $collection.data 'rotateZTemp', getRotateZ($collection)
   unless $collection.data('previewState') is 'compactReverse'
-    console.log 'not expanded'
     $contentContainer.css 'opacity', 0
     $collection.data 'previewState', 'none'
     $collection.data 'drawInstant', true
@@ -40,9 +39,52 @@ drawPackPreview = ($collection, $parentCollection, $contentContainer) ->
       redrawCollections $collection, $parentCollection, true
     , 100
   else
-    console.log 'is expanded', $collection.data('previewState')
     $collection.data 'previewState', 'compactReverse'
     redrawCollections $collection, $parentCollection, true
+
+bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cover) ->
+  $cover.mouseenter () ->
+    unless $collection.hasClass 'open'
+      unless $collection.data 'contentLoaded'
+        $collection.data 'contentLoaded', true
+        collectionModel.loadContent $collection, () ->
+          drawPackPreview($collection, $parentCollection, $contentContainer)
+      else
+        drawPackPreview($collection, $parentCollection, $contentContainer)
+  $contentContainer.mouseenter () ->
+    unless $collection.hasClass 'open'
+      $collection.data 'previewState', 'expanded'
+      redrawCollections $collection, $parentCollection, true
+      $collection.velocity
+        properties:
+          rotateZ: 0
+          translateX: if $collection.offset().left < $cover.width() then 0 else xTransform($collection)
+      redrawCollections $collection, $parentCollection, true
+      $cover.off('mouseleave')
+  $contentContainer.mouseleave () ->
+    # if mouse is over cover
+    if $collection.is(":hover")
+      $collection.data 'previewState', 'compactReverse'
+      $collection.velocity
+        properties:
+          rotateZ: $collection.data 'rotateZTemp'
+          translateX: xTransform($collection)
+    else
+      $collection.data 'previewState', 'none'
+    redrawCollections $collection, $parentCollection, true
+    $cover.on('mouseleave', () -> closePackPreview($collection, $parentCollection))
+  $cover.mouseleave () ->
+    closePackPreview($collection, $parentCollection)
+
+bindStackPreviewEvents = ($collection, $parentCollection) ->
+  $collection.mouseenter () ->
+    unless $collection.hasClass 'dragging'
+      $collection.data 'previewState', 'expanded'
+      redrawCollections $collection, $parentCollection, true
+  $collection.mouseleave () -> 
+    $collection.data 'previewState', 'compact'
+    redrawCollections $collection, $parentCollection, true
+
 
 window.collectionModel =
   init: ($collection) ->
@@ -59,55 +101,15 @@ window.collectionModel =
       return if $(@).hasClass 'open'
       navigationController.open $(@)
 
-    if $collection.data('hascover')
+    if $collection.data('collectiontype') is 'pack'
       packCoverInit $cover, collectionKey
       $cover = $collection.find('.cover')
       $collection.data 'previewState', 'none'
-      $cover.mouseenter () ->
-        console.log 'mouseenter cover'
-        unless $collection.hasClass 'open'
-          unless $collection.data 'contentLoaded'
-            $collection.data 'contentLoaded', true
-            collectionModel.loadContent $collection, () ->
-              drawPackPreview($collection, $parentCollection, $contentContainer)
-          else
-            drawPackPreview($collection, $parentCollection, $contentContainer)
-      $contentContainer.mouseenter () ->
-        console.log 'mouseenter container'
-        unless $collection.hasClass 'open'
-          $collection.data 'previewState', 'expanded'
-          redrawCollections $collection, $parentCollection, true
-          $collection.velocity
-            properties:
-              rotateZ: 0
-              translateX: if $collection.offset().left < $cover.width() then 0 else xTransform($collection)
-          redrawCollections $collection, $parentCollection, true
-          $cover.off('mouseleave')
-      $contentContainer.mouseleave () ->
-        console.log 'mouseleave container'
-        # if mouse is over cover
-        if $collection.is(":hover")
-          $collection.data 'previewState', 'compactReverse'
-          $collection.velocity
-            properties:
-              rotateZ: $collection.data 'rotateZTemp'
-              translateX: xTransform($collection)
-        else
-          $collection.data 'previewState', 'none'
-        redrawCollections $collection, $parentCollection, true
-        $cover.on('mouseleave', () -> closePackPreview($collection, $parentCollection))
-      $cover.mouseleave () ->
-        closePackPreview($collection, $parentCollection)
-    else
+      bindPackPreviewEvents($collection, $parentCollection, $contentContainer, $cover)
+    else # is stack
       $content.on 'click mouseup', clickBlock
       $collection.data 'previewState', 'compact'
-      $collection.mouseenter () ->
-        unless $collection.hasClass 'dragging'
-          $collection.data 'previewState', 'expanded'
-          redrawCollections $collection, $parentCollection, true
-      $collection.mouseleave () -> 
-        $collection.data 'previewState', 'compact'
-        redrawCollections $collection, $parentCollection, true
+      bindStackPreviewEvents($collection, $parentCollection)
       collectionViewController.draw $collection
 
   removeContent: ($collection) ->
