@@ -28,9 +28,7 @@ window.collectionModel =
           scale: .5
         options:
           duration: 1
-
-      $collection.data 'contenttype', 'pack'
-      $collection.addClass 'pack'
+    if $collection.data('hascover')
       packCoverInit $cover, collectionKey
 #       $parentCollection.velocity
 #         properties:
@@ -38,8 +36,6 @@ window.collectionModel =
 #         options:
 #           duration: 1
     else
-      $collection.data 'contenttype', 'stack'
-      $collection.addClass 'stack'
       $content.on 'click mouseup', clickBlock
       collectionViewController.draw $collection
 
@@ -98,7 +94,7 @@ window.collectionModel =
   # 
   # @param $collection [jquery array] 
   getCover: ($collection) ->
-    $collection.children('.transform').children('.cover')
+    $collection.children 'article.cover'
 
   getAddForm: ($collection) ->
     $contents = collectionModel.getContent $collection

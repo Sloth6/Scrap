@@ -1,32 +1,76 @@
 window.contentModel = 
   init: ($content) ->
-    $content.off() # remove old handlers
+    isStack = $content.hasClass 'stack'
+    isPack  = $content.hasClass 'pack'
     $collection = contentModel.getCollection $content
-    makeDraggable $content
+    $card = contentModel.getCard($content)
 
-    switch $content.data('contenttype')
+    $content.off() # remove old handlers
+    makeDraggable $content
+    contentModel.setJumble $content
+
+    # Stacks will not have a cover
+    if $card?
+      $card.mouseenter((event) ->
+        unless isStack or $content.hasClass 'dragging'
+          $content.add($card).addClass 'hover'
+        event.stopPropagation()
+      ).mouseleave (event) ->
+        $content.add($card).removeClass 'hover'
+
+    switch $content.data 'contenttype'
       when 'text'       then initText $content
       when 'video'      then initVideo $content
       when 'file'       then initFile $content
       when 'soundcloud' then initSoundCloud $content
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
-      
-    isCollection = $content.hasClass('collection')
-    isStack = isCollection and $content.hasClass('stack')
-    isPack  = isCollection and $content.hasClass('pack')
 
-    $card = if isPack then $content.children('article').children('.content').children('.transform').children('.card') else $content.children('.content').children('.transform').children('.card')
-      
-  
-    $card.mouseenter((event) ->
-      event.stopPropagation()
-      unless $content.hasClass('dragging') or $content.hasClass('stack') or $content.parent().parent().hasClass('stack')
-        $(@).addClass 'hover'
-    ).mouseleave((event) ->
-      $(@).removeClass 'hover'
-    )
-    contentModel.setJumble $content
+  getCard: ($content) ->
+    return null if $content.hasClass 'stack'
+    if $content.hasClass 'pack'
+      collectionModel.getCover($content).find '.card'
+    else
+      $content.children('.content').children('.transform').children('.card')
+
+  setSize: ($contents, size) ->
+    $contents.data 'size', size
+
+  getSize: ($content) ->
+    return $content.data('size') if $content.data('size')?
+    # Check if pack because pack covers are scaled
+#     return $content.find('.card').width() * 2 if $content.find('.card').width() and $content.hasClass('pack')
+    return $content.find('.card').width() if $content.find('.card').width()
+    0
+
+  getCollection: ($content) ->
+    if $content.hasClass('cover')
+      $content.parent().parent()
+    else if $content.hasClass 'dragging'
+      $content.data 'originalCollection'
+    else
+      $content.parent().parent().parent()
+
+  getCollectionkey: ($content) ->
+    $collection = contentModel.getCollection $content
+    return collectionModel.getState($collection).collectionKey
+
+  setJumble: ($content) ->
+    isPack = $content.data('collectiontype') is 'pack'
+    normalTranslateY  = (Math.random() - .5) * $(window).height() / 16
+    normalRotateZ     = (Math.random() - .5) * 8
+    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16
+    coverRotateZ      = (Math.random() - .5) * 25
+    margin = if isPack then packMargin else articleMargin
+    
+    $content.data 'margin', margin
+    $content.data 'jumble', {
+      'translateY': if isPack then coverTranslateY else normalTranslateY
+      'rotateZ':    if isPack then coverRotateZ else normalRotateZ
+      'scale':      .95
+    }
+
+    
     
 #     if $content.hasClass('pack')
 #       $content.mouseover((event) ->
@@ -60,42 +104,4 @@ window.contentModel =
     #   return if $content.hasClass 'dragging'
     #   return unless $content.data 'oldZIndex'
     #   $content.css 'zIndex', $content.data('oldZIndex')
-
-  setSize: ($contents, size) ->
-    $contents.data 'size', size
-
-  getSize: ($content) ->
-    return $content.data('size') if $content.data('size')?
-    # Check if pack because pack covers are scaled
-#     return $content.find('.card').width() * 2 if $content.find('.card').width() and $content.hasClass('pack')
-    return $content.find('.card').width() if $content.find('.card').width()
-    0
-
-  getCollection: ($content) ->
-    if $content.hasClass('cover')
-      $content.parent().parent()
-    else if $content.hasClass 'dragging'
-      $content.data 'originalCollection'
-    else
-      $content.parent().parent().parent()
-
-  getCollectionkey: ($content) ->
-    $collection = contentModel.getCollection $content
-    return collectionModel.getState($collection).collectionKey
-
-  setJumble: ($content) ->
-    isPack = $content.data('contenttype') is 'pack'
-    console.log 'ispack', $content.data('contenttype') 
-    normalTranslateY  = (Math.random() - .5) * $(window).height() / 16
-    normalRotateZ     = (Math.random() - .5) * 8
-    coverTranslateY   = ((Math.random() - .5) * $(window).height() / 3) + $(window).height() / 16
-    coverRotateZ      = (Math.random() - .5) * 25
-    margin = if isPack then packMargin else articleMargin
-    
-    $content.data 'margin', margin
-    $content.data 'jumble', {
-      'translateY': if isPack then coverTranslateY else normalTranslateY
-      'rotateZ':    if isPack then coverRotateZ else normalRotateZ
-      'scale':      .95
-    }
 

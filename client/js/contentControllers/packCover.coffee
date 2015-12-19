@@ -54,7 +54,6 @@ coverClick = (event) ->
     event.stopPropagation()
 
 packCoverInit = ($cover, collectionKey) ->
-  console.log 'pack cover init'
   $card             = $cover.find('.card')
   $userMenu         = $cover.find('.menu')
   $renameButton     = $cover.find('.rename')
