@@ -14,7 +14,7 @@ history.scrollRestoration = 'manual'
 
 # Main scroll event
 onScroll = ->
-  return if $('.velocity-animating').length
+  # return if $('.velocity-animating').length
   # console.log 'on scrolla', $(window).scrollLeft()
   collectionViewController.draw $('.open.collection')
   $('.hover').removeClass 'hover'
@@ -23,6 +23,7 @@ onScroll = ->
 # Enable the user to scroll vertically and map it to horizontal scroll
 onMousewheel = (event) ->
   return false if $('.velocity-animating').length
+  # dont get triggered by deltaX events
   if Math.abs(event.deltaY) > Math.abs(event.deltaX)
     $(window).scrollLeft($(window).scrollLeft() + event.deltaY)
     event.preventDefault()
