@@ -2,9 +2,6 @@ window.footerController =
   init: ($footer) ->
     $actions = $footer.find('ul.actions li.action')
     
-    console.log $footer, $actions, 'hi'
-    foo = 'wowo'
-    
     $footer.velocity
       properties:
         translateY: $footer.height()
@@ -88,12 +85,10 @@ window.footerController =
       when 'delete'
         $content.data 'deleting', true
         $content.addClass 'deleting'
-        console.log '🚫!', $content
         onDelete $content
       when 'download'
         url = if $content.hasClass 'image' then $content.data('content').original_url else $content.data 'content'
         $collection = contentModel.getCollection $content
         window.open(url, '_blank')
         collectionViewController.draw $collection, { animate: true }
-        console.log '⬇️!'
     
