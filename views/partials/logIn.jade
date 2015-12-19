@@ -7,24 +7,25 @@ form(id="logIn")
   li.input.submit
     input.confirm.offset(type="submit", value="Sign in")
 script.
-  function onError(res) {
-    $('#logIn #errorField').text(res.responseText);
-  }
-  
-  function validateName(name) {
-    return name.match(/^[a-zA-Z]{2,} [a-zA-Z]{2,}$/i);
-  }
-
-  $("#logIn").submit(function(e) {
-    e.preventDefault();
-    var url = '/login';
-    var fields = {
-      email: $('#logIn #email').val(),
-      password: $('#logIn #password').val()
-    }
+  (function(){
+    function onError(res) {
+      console.log('Error!', res);
+      $('#logIn #errorField').text(res.responseText);
+    };
     
-    $.post(url, fields).error(onError).success(function(path){
-      location.pathname = path;
-    });
+    function validateName(name) {
+      return name.match(/^[a-zA-Z]{2,} [a-zA-Z]{2,}$/i);
+    };
 
-  });
+    $("#logIn").submit(function(e) {
+      e.preventDefault();
+      var url = '/login';
+      var fields = {
+        email: $('#logIn #email').val(),
+        password: $('#logIn #password').val()
+      };
+      $.post(url, fields).fail(onError).done(function(path){
+        location.pathname = path;
+      });
+    });
+  })()
