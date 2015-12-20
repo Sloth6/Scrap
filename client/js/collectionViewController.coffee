@@ -113,9 +113,9 @@ drawCollectionPreview = ($collection, animate) ->
       options:
         duration: duration
 
-    sizeTotal = Math.abs(previewWidth) + contentWidth
-    translateX += spacing
     previewWidth += Math.abs(spacing)
+    sizeTotal = previewWidth + contentWidth
+    translateX += spacing
     
   contentModel.setSize $collection, sizeTotal
   sizeTotal
