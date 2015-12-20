@@ -2,41 +2,24 @@ dragging = null
 padding = null
 lastDraggingOver = null
 
-collectionOpenByDragTimeout = null
-collectionOpenByDragTime = 500
-
-collectionCloseByDragTopTimeout = null
-collectionCloseByDragTopTime = 500
-
-scrollInterval = null
-draggingOnBorder = false
 draggingOnEdgeSpeed = .1
 draggingScale = 0.5
 
-dragOptions =  {
+dragOptions =
   easing: [100, 10],
   duration: 500
-}
 
-# scrollWindow = (event) ->
-#   border = sliderBorder
-#   speed = 0
-#   if scrollInterval
-#     clearInterval scrollInterval
-#     draggingOnBorder = false
-#     scrollInterval = null
+dragThreshold = 35 #number of pixels in any direction before drag event
 
-#   if event.clientX < border
-#     speed = - (border - event.clientX) * draggingOnEdgeSpeed
-#   else if event.clientX > $(window).width() - border
-#     speed = (event.clientX - $(window).width() + border) * draggingOnEdgeSpeed
-  
-#   if speed 
-#     draggingOnBorder = true
-#     scrollInterval = setInterval (() ->
-#       if $('.velocity-animating').length == 0
-#         $(window).scrollLeft($(window).scrollLeft() + speed)
-#     ), 5
+startDragTransform = ($dragging) ->
+  $dragging.velocity({
+    'rotateZ': (Math.random() * .5) * 12
+  }, dragOptions)
+
+endDragTransform = ($dragging) ->
+  $dragging.velocity({
+    'rotateZ': 0
+  }, dragOptions)
 
 # Take mousemove event while dragging
 drag = (event, $dragging) ->
@@ -45,6 +28,24 @@ drag = (event, $dragging) ->
   scaleThreshhold = $(window).height() / 2
   scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
   $collection = $('.collection.open')
+
+  w = contentModel.getSize($dragging)
+  h = Math.max($dragging.find('.content').height(), 200)
+  
+  offsetPercentX = ($dragging.data('mouseOffsetX') - (w / 2)) / (w/2)
+  offsetPercentY = ($dragging.data('mouseOffsetY') - (h / 2)) / (h/2)
+  
+  scaleOffsetX = (w/2)*(1-scale)*offsetPercentX
+  scaleOffsetY = (h/2)*(1-scale)*offsetPercentY
+
+  fudgeY = -.1
+  fudgeX = 0
+  if $dragging.data('contenttype') == 'stack'
+    fudgeX = .1
+    fudgeY = -.05
+
+  offsetX = - $dragging.data('mouseOffsetX')
+  offsetY = - $dragging.data('mouseOffsetY')
 
   $dragging.velocity {
     translateX: x - $dragging.data('mouseOffsetX')
@@ -73,6 +74,7 @@ drag = (event, $dragging) ->
   
   lastDraggingOver = $content.attr('id') + LCR
 
+# utility function
 leftCenterRight = ($content, x) ->
   center = .30
   left  = xTransform $content
@@ -86,7 +88,7 @@ leftCenterRight = ($content, x) ->
   else
     'center'
 
-checkForAddToStack = (event, $dragging) ->
+moveToChild = (event, $dragging) ->
   $(window).off 'mousemove'
   $(window).off 'mouseup'
   
@@ -115,31 +117,45 @@ checkForAddToStack = (event, $dragging) ->
     socket.emit 'newStack', { collectionKey: collectionPath[0], draggedId, draggedOverId }
   true
 
-# Clear all timeouts
-clearDragTimeouts = () ->
-  clearInterval scrollInterval  
-  scrollInterval = null
-  clearTimeout collectionCloseByDragTopTimeout
-  collectionCloseByDragTopTimeout = null
-  clearTimeout collectionOpenByDragTimeout
-  collectionOpenByDragTimeout = null
-  draggingOnBorder = false
+moveToParent = (event, $dragging) ->
+  $collection       = contentModel.getCollection $dragging
+  $collectionParent = contentModel.getCollection $collection
 
-stopDragging = (event, $dragging) ->
-  if !checkForAddToStack(event, $dragging)
-    padding = $('.slidingContainer').find('.padding')
-    throw 'did not find padding :(' unless padding.length
-    $dragging.insertAfter padding
+  return false if $dragging.hasClass 'collection'
+  return false if $collection.data('collectiontype') is 'pack'
+
+  if yTransform($dragging) < -100
+    $dragging.insertAfter $collection
+
     padding.remove()
+    history.back()
 
-    $collection = $('.collection.open')
-    collectionOrder = collectionModel.getContentOrder $collection
+    data =
+      elemId: $dragging.attr('id')
+      collectionKey: collectionModel.getState($collectionParent).collectionKey
+    socket.emit 'moveToCollection', data
+    return true
 
-    socket.emit 'reorderArticles', {
-      articleOrder: collectionOrder
-      collectionKey: collectionPath[0]
-    }
+  false
+
+stopDragging = (mouseUpEvent, $dragging) ->
+  return if moveToChild  mouseUpEvent, $dragging
+  return if moveToParent mouseUpEvent, $dragging
   
+  # Search to insure it is in the Dom.
+  padding = $('.slidingContainer').find('.padding')
+  throw 'did not find padding' unless padding.length
+  $dragging.insertAfter padding
+  padding.remove()
+
+  $collection = $('.collection.open')
+  collectionOrder = collectionModel.getContentOrder $collection
+
+  socket.emit 'reorderArticles', {
+    articleOrder: collectionOrder
+    collectionKey: collectionPath[0]
+  }
+
   # Timeout to prevent click event after drag
   setTimeout (() ->
     $dragging.
@@ -179,8 +195,8 @@ startDragging = ($dragging, mouseDownEvent) ->
   stopPlaying($dragging) if $dragging.hasClass('playable')
   collectionViewController.draw $collection
   footerController.show $dragging
- 
-makeDraggable = ($content) ->
+
+window.makeDraggable = ($content) ->
   $content.find('a,img,iframe').bind 'dragstart', () -> false
   
   $content.on 'mousedown', (mouseDownEvent) ->
@@ -205,17 +221,22 @@ makeDraggable = ($content) ->
       if draggingArticle?
         stopDragging(event, draggingArticle)
 
+# scrollWindow = (event) ->
+#   border = sliderBorder
+#   speed = 0
+#   if scrollInterval
+#     clearInterval scrollInterval
+#     draggingOnBorder = false
+#     scrollInterval = null
 
-startDragTransform = ($dragging) ->
-  $dragging.find('.transform').velocity({
-    'rotateZ': (Math.random() * .5) * 12
-  }, dragOptions)
-
-endDragTransform = ($dragging) ->
-  $dragging.find('.transform').velocity({
-    'rotateZ': 0
-  }, dragOptions)
-
-$ ->
-  window.padding = $('<article>').addClass('slider sliding padding')
-  padding.css 'background-color', 'red'  
+#   if event.clientX < border
+#     speed = - (border - event.clientX) * draggingOnEdgeSpeed
+#   else if event.clientX > $(window).width() - border
+#     speed = (event.clientX - $(window).width() + border) * draggingOnEdgeSpeed
+  
+#   if speed 
+#     draggingOnBorder = true
+#     scrollInterval = setInterval (() ->
+#       if $('.velocity-animating').length == 0
+#         $(window).scrollLeft($(window).scrollLeft() + speed)
+#     ), 5

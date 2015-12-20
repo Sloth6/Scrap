@@ -60,3 +60,5 @@ $ ->
   footerController.init $('footer.main')
   navigationController.open $('.collection.root')
 
+  # Used while dragging to create space
+  window.padding = $('<article>').addClass('slider sliding padding')

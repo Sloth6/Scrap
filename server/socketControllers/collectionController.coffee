@@ -7,6 +7,20 @@ collectionRenderer = require '../modules/collectionRenderer'
 toTitleCase = (str) -> 
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
 
+inviteEmailHtml = (user, collection) ->
+  creator = collection.Creator
+  domain = 'http://tryScrap.com'
+  collectionKey = collection.collectionKey
+  title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
+  subject = "#{creator.name} invited you to #{collection.name} on Scrap."
+  
+  html = "
+    <h1>View #{title} on Scrap.</h1>
+    <p>If you do not yet have an account, register with email '#{user.email}' to view.</p><br>
+    <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>
+  "
+  return { html, subject }
+
 module.exports =
   reorderArticles: (sio, socket, data) ->
     { collectionKey, articleOrder } = data
@@ -31,21 +45,17 @@ module.exports =
     done = (user, collection) ->
       collection.addUser(user).done (err) ->
         return callback(err) if err?
-        domain = 'http://tryScrap.com'
-        title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
-        subject = "#you were invited to #{collection.name} on Scrap."
-        
-        html = "
-            <h1>View #{title} on Scrap.</h1>
-            <p>If you do not yet have an account, register with email '#{email}' to view.</p><br>
-            <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>"
+        { html, subject } = inviteEmailHtml user, collection
         mail.send { to: email, subject: subject, text: html, html: html }
         callback null
 
-    models.Collection.find( where: { collectionKey }).done (err, collection) ->
-      return callback('cannot invite to stack') unless collection.hasCover
+    params = 
+      where: { collectionKey }
+      include: [{ model: models.User, as: 'Creator' }]
+
+    models.Collection.find( params ).done (err, collection) ->
       return callback(err) if err?
-      
+      return callback('cannot invite to stack') unless collection.hasCover
       models.User.find( where: { email }).done (err, user) ->
         return callback(err) if err?
         return done user, collection if user?
