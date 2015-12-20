@@ -12,8 +12,11 @@ redrawCollections = ($collection, $parentCollection, animate) ->
     collectionViewController.draw $collection, { animate: true }
     collectionViewController.draw $parentCollection, { animate: true }
   
+canPreview = ($collection) ->
+  $collection.hasClass('closed') and !$collection.hasClass('dragging')
+
 closePackPreview = ($collection, $parentCollection) ->
-  if $collection.hasClass 'closed'
+  if canPreview $collection
     unless $collection.data('previewState') is 'expanded'
       $collection.data 'previewState', 'none'
       $collection.velocity
@@ -46,7 +49,7 @@ initPackPreview = ($collection, $parentCollection, $contentContainer) ->
 
 bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cover) ->
   $cover.mouseenter () ->
-    if $collection.hasClass 'closed'
+    if canPreview $collection
       unless $collection.data 'contentLoaded'
         $collection.data 'contentLoaded', true
         collectionModel.loadContent $collection, () ->
@@ -54,7 +57,7 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       else
         initPackPreview($collection, $parentCollection, $contentContainer)
   $contentContainer.mouseenter () ->
-    if $collection.hasClass 'closed'
+    if canPreview $collection
       $collection.data 'previewState', 'expanded'
       redrawCollections $collection, $parentCollection, true
       $collection.velocity
@@ -64,7 +67,7 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       redrawCollections $collection, $parentCollection, true
       $cover.off('mouseleave')
   $contentContainer.mouseleave () ->
-    if $collection.hasClass 'closed'
+    if canPreview $collection
       # if mouse is over cover
       if $collection.is(":hover")
         $collection.data 'previewState', 'compactReverse'
@@ -79,19 +82,19 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
   $cover.mouseleave () ->
     closePackPreview($collection, $parentCollection)
   $collection.mouseout () ->
-    if $collection.hasClass 'closed'
+    if canPreview $collection
       unless $collection.is(":hover")
         closePackPreview($collection, $parentCollection)
 
 bindStackPreviewEvents = ($collection, $parentCollection) ->
   $collection.mouseenter () ->
-    if $collection.hasClass 'closed' 
+    if canPreview $collection
       unless $collection.hasClass 'dragging'
         console.log 'stack mouseenter'
         $collection.data 'previewState', 'expanded'
         redrawCollections $collection, $parentCollection, true
   $collection.mouseleave () -> 
-    if $collection.hasClass 'closed'
+    if canPreview $collection
       console.log 'stack mouseenter'
       $collection.data 'previewState', 'compact'
       redrawCollections $collection, $parentCollection, true

@@ -179,9 +179,12 @@ startDragging = ($dragging, mouseDownEvent) ->
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999 
 
-  if $dragging.hasClass 'collection'
-    console.log 'hasclass collectoin'
-    $dragging.data 'previewState', 'compact'
+  if $dragging.hasClass 'collection'    
+    if $dragging.hasClass 'pack'
+      $dragging.data 'previewState', 'compactReverse'
+    else
+      $dragging.data 'previewState', 'compact'
+    
     collectionViewController.draw $dragging, { animate:true }
     collectionViewController.draw $collection, { animate:true }
  
