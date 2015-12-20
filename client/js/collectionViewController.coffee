@@ -153,7 +153,7 @@ window.collectionViewController =
       options: { complete: () -> $(@).hide() }
 
     # Mark collection so no longer being open 
-    $collection.removeClass('open').addClass 'closed'
+    $collection.removeClass('open')
 
   open: ($collection, options = {}) ->
     throw 'no collection passed' unless $collection.length
@@ -169,6 +169,8 @@ window.collectionViewController =
 
     # Make sure cover is above its children during transition
     $cover.css 'z-index': 9999
+    
+    $collection.data 'contentLoaded', true
     
     # Animate in content, content appears from behind its cover
     $collectionAddForm.show()
@@ -225,8 +227,11 @@ window.collectionViewController =
     $collection.
       addClass('open').
       removeClass 'closed'
+      
+    # Reset preview state for collections
+    $collection.find('.collection').data 'previewState', 'compact'
     
-    collectionViewController.draw $collection #, {animate: true}
+    collectionViewController.draw $collection, { animate: true }
 
   close: ($collection, options = {}) ->
     return if $collection.hasClass 'root'
@@ -245,6 +250,8 @@ window.collectionViewController =
     $collection.
       addClass('closed').
       removeClass('open')
+      
+    $collection.data 'contentLoaded', false
 
     # the cover should have a transateX 0 relative to its collection
     $collectionCover.show().velocity { translateX: 0 }
@@ -252,6 +259,10 @@ window.collectionViewController =
     $parentCollection.addClass('open').removeClass 'closed'
     $parentCollectionContent.show()
     $parentCollectionAddForm.show()
+
+    # Reset preview state for collections
+    $collection.find('.collection').data 'previewState', 'compact'
+    $parentCollection.find('.collection').data 'previewState', 'compact'
 
     if $collection.data('collectiontype') == 'pack'
       # The size of the collection will be reset to just the cover

@@ -1,5 +1,5 @@
 openCollectionCurve     = [20, 10]
-openCollectionDuration  = 2000
+openCollectionDuration  = 1000
 defaultCurve            = [20, 10]
 defaultDuration         = 500
 bouncyCurve             = [100, 10]

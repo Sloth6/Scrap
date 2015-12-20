@@ -13,17 +13,18 @@ redrawCollections = ($collection, $parentCollection, animate) ->
     collectionViewController.draw $parentCollection, { animate: true }
   
 closePackPreview = ($collection, $parentCollection) ->
-  unless $collection.hasClass('open') or $collection.data('previewState') is 'expanded'
-    $collection.data 'previewState', 'none'
-    $collection.velocity
-      properties:
-        rotateZ: $collection.data 'rotateZTemp'
-        translateX: xTransform($collection)
-    redrawCollections $collection, $parentCollection
-    setTimeout () ->
-#       collectionModel.removeContent $collection
+  if $collection.hasClass 'closed'
+    unless $collection.data('previewState') is 'expanded'
+      $collection.data 'previewState', 'none'
+      $collection.velocity
+        properties:
+          rotateZ: $collection.data 'rotateZTemp'
+          translateX: xTransform($collection)
       redrawCollections $collection, $parentCollection
-    , openCollectionDuration
+      setTimeout () ->
+  #       collectionModel.removeContent $collection
+        redrawCollections $collection, $parentCollection
+      , openCollectionDuration
     
 initPackPreview = ($collection, $parentCollection, $contentContainer) ->
   $collection.data 'rotateZTemp', getRotateZ($collection)
@@ -44,7 +45,7 @@ initPackPreview = ($collection, $parentCollection, $contentContainer) ->
 
 bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cover) ->
   $cover.mouseenter () ->
-    unless $collection.hasClass 'open'
+    if $collection.hasClass 'closed'
       console.log 'pack cover mouseenter'
       unless $collection.data 'contentLoaded'
         $collection.data 'contentLoaded', true
@@ -53,7 +54,7 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       else
         initPackPreview($collection, $parentCollection, $contentContainer)
   $contentContainer.mouseenter () ->
-    unless $collection.hasClass 'open'
+    if $collection.hasClass 'closed'
       console.log 'pack contentContainer mouseenter'
       $collection.data 'previewState', 'expanded'
       redrawCollections $collection, $parentCollection, true
@@ -64,8 +65,8 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       redrawCollections $collection, $parentCollection, true
       $cover.off('mouseleave')
   $contentContainer.mouseleave () ->
-    unless $collection.hasClass 'open'
-      console.log 'pack contentContainer mouseleave'
+    if $collection.hasClass 'closed'
+      console.log 'pack contentContainer mouseleave', $collection
       # if mouse is over cover
       if $collection.is(":hover")
         $collection.data 'previewState', 'compactReverse'
@@ -90,14 +91,16 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
 
 bindStackPreviewEvents = ($collection, $parentCollection) ->
   $collection.mouseenter () ->
-    unless $collection.hasClass 'dragging'
-      console.log 'stack mouseenter'
-      $collection.data 'previewState', 'expanded'
-      redrawCollections $collection, $parentCollection, true
+    if $collection.hasClass 'closed' 
+      unless $collection.hasClass 'dragging'
+        console.log 'stack mouseenter'
+        $collection.data 'previewState', 'expanded'
+        redrawCollections $collection, $parentCollection, true
   $collection.mouseleave () -> 
-    console.log 'stack mouseenter'
-    $collection.data 'previewState', 'compact'
-    redrawCollections $collection, $parentCollection, true
+    if $collection.hasClass 'closed'
+      console.log 'stack mouseenter'
+      $collection.data 'previewState', 'compact'
+      redrawCollections $collection, $parentCollection, true
 
 
 window.collectionModel =
