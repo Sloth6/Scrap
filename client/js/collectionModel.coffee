@@ -79,7 +79,7 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
   $cover.mouseleave () ->
     closePackPreview($collection, $parentCollection)
   $collection.mouseout () ->
-    unless $collection.hasClass 'open'
+    if $collection.hasClass 'closed'
       unless $collection.is(":hover")
         closePackPreview($collection, $parentCollection)
 
