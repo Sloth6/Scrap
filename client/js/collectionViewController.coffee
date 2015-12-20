@@ -54,12 +54,12 @@ drawCollectionPreview = ($collection, animate) ->
   
   collectionModel.getAddForm($collection).hide()
   $cover.zIndex 9999
-  $cover.css 'opacity', '.5'
+#   $cover.css 'opacity', '.5'
   
 #   $content.each () ->
 #     $(@).css 'max-width', $cover.width()
 
-  translateX  = 0
+  translateX  = if $collection.data('collectiontype') is 'pack' then $cover.width() else 0
   translateY  = 0
   zIndex      = $content.length
   sizeTotal   = 0
@@ -69,10 +69,8 @@ drawCollectionPreview = ($collection, animate) ->
   rightAlignOffsetSizeTotal = 0
   spacing = 0
   
-  if $collection.data('collectiontype') is 'pack'
-#     unless $collection.data('previewState') is 'none'
-    translateX += $cover.width()
-#   console.log 'widest', widest
+  totalX = translateX
+  
   $content.each () ->
     width = $content.width()
     switch $collection.data('previewState')
@@ -80,7 +78,7 @@ drawCollectionPreview = ($collection, animate) ->
         spacing = 10 #2 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0 #(Math.random() - .5) * 10
       when 'expanded'
-        spacing = 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
+        spacing = 144/$content.length #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0
       when 'compactReverse'
         spacing = -32/$content.length
@@ -102,11 +100,10 @@ drawCollectionPreview = ($collection, animate) ->
         rotateZ: rotateZ
       options:
         duration: duration
-#     if $collection.data('contenttype') is 'pack'
-#       sizeTotal += Math.max(sizeTotal, Math.abs(translateX * 1.01) + contentWidth + rightAlignOffsetSizeTotal)
-#     else
-    sizeTotal = Math.abs(translateX) + width + rightAlignOffsetSizeTotal
+
+    sizeTotal = Math.abs(totalX) + width + rightAlignOffsetSizeTotal
     translateX += spacing
+    totalX += Math.abs(spacing)
     
 #   $cover.find(".card").width sizeTotal
 #   sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
