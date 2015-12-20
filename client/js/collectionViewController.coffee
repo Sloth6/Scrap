@@ -70,7 +70,7 @@ drawCollectionPreview = ($collection, animate) ->
         spacing = 2 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0 #(Math.random() - .5) * 10
       when 'expanded'
-        spacing = if $collection.data('collectiontype') is 'pack' then  144/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
+        spacing = if $collection.data('collectiontype') is 'pack' then 144/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0
       when 'compactReverse'
         spacing = -32/$content.length
