@@ -17,7 +17,6 @@ drawOpenCollection = ($collection, animate) ->
     
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
     if isNaN(sizeTotal)
-      console.log contentModel.getSize($(@)), $(@).data('margin')
       throw 'shit'
     contentViewController.draw $(@), { animate }
 
@@ -40,16 +39,24 @@ getWidestArticle = ($content) ->
       widest = $(@).width()
   widest
 
-scaleDownTooBigContent = (scale, $content) ->
+scaleDownTooBigContent = (scale, $content, transformOrigin) ->
   $content.each () ->
-    $(@).data 'isScaled', true
     $(@).css
-      'transform-origin':         "left top"
-      '-webkit-transform-origin': "left top"
-      '-moz-transform-origin':    "left top"
-    
+      'transform-origin':         transformOrigin
+      '-webkit-transform-origin': transformOrigin
+      '-moz-transform-origin':    transformOrigin
     $.Velocity.hook($(@), 'scale', scale)
   
+# Given the ith item in a collection of length n,
+# how hard fron neighbor should it be?
+calculateSpacing = (i, n) ->
+  k = n - i # Distance from end. The largest spacing is at end.
+  # Two parameters to vary, largest spacing and rate of decrease
+  m = 200 # The largest spacing
+  d = 1   # The rate of decrease
+  func = (x) -> (1 - logisticFunction(x)) * 2
+  func(k * d) * m
+
 drawCollectionPreview = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent($collection)
@@ -62,16 +69,16 @@ drawCollectionPreview = ($collection, animate) ->
   collectionModel.getAddForm($collection).hide()
   $cover.zIndex 9999
   
-  
   if $collection.data('collectiontype') is 'pack'
     scale = Math.min($cover.width() / getWidestArticle($content), .75) # min to prevent small elements from scaling up
     translateX = $cover.width() / scale
+    transformOrigin = 'left top'
   else
     translateX  = 0
     scale = 1
-    
-  scaleDownTooBigContent(scale, $content)
-  
+    transformOrigin = 'center center'
+  scaleDownTooBigContent(scale, $content, transformOrigin)
+      
   translateY  = 0
   rotateZ     = 0
   zIndex      = $content.length
@@ -80,50 +87,50 @@ drawCollectionPreview = ($collection, animate) ->
   duration    = if $collection.data('drawInstant') then 1 else openCollectionDuration
   spacing     = 0
   previewWidth      = translateX # previewWidth is apparent width of preview. separate from 
-  rightAlignOffset  = 0
+  flushRightOffset  = 0
   
   if $collection.data('previewState') is 'compactReverse'
     translateX += 18
-
+  i = 0
   $content.each () ->
+    i += 1
     contentWidth = $(@).width()
-
     switch $collection.data('previewState')
       when 'compact'
-        spacing = 0 #2 * Math.exp(($(@).index() + 1), 2)
+        spacing = 0
         rotateZ = (Math.random() - .5) * 10
       when 'expanded'
-        spacing = if $collection.data('collectiontype') is 'pack' then 200/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
+        spacing = calculateSpacing i, $content.length
+        rotateZ = 0
       when 'compactReverse'
         spacing = -32/$content.length
         rotateZ = (Math.random() - .5) * 10
         contentWidth = 0
         translateY = 32
-        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+        flushRightOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
       when 'none'
         spacing = 0
         contentWidth = 0
-        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing) # -$cover.width() - $content.width() / 4
-        
+        flushRightOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
     $(@).velocity
       properties:
-        translateX: translateX + rightAlignOffset
+        translateX: translateX + flushRightOffset
         translateY: translateY
         rotateZ: rotateZ
       options:
         duration: duration
 
-    previewWidth += Math.abs(spacing)
-    sizeTotal = previewWidth + contentWidth
+    sizeTotal = Math.max sizeTotal, (translateX * scale) + contentWidth
     translateX += spacing
+    console.log 'translateX', translateX
     
   contentModel.setSize $collection, sizeTotal
+  console.log 'sizeTotal', sizeTotal
   sizeTotal
 
 window.collectionViewController =
 
   draw: ($collection, options = {}) ->
-#     console.log 'draw!'
     animate = options.animate or false
     
     if $collection.hasClass('open')
