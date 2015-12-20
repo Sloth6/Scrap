@@ -1,16 +1,16 @@
 defaultText = '<p>Write a note or paste a link</p>'
 
 addArticleController =
-  #  Open closed menu items
+  #  Open closed $menu items
   init: ($menu) ->
     
     collectionkey = $menu.data 'collectionkey'
-    input         = $menu.find '.editable'
+    input    = $menu.find '.editable'
 
     # function to get content of form
     content = () ->
       input.html()
-      
+
     $menu.click (event) ->
       if $menu.hasClass 'onEdge'
         if $menu.hasClass 'slideInFromSide'
@@ -25,10 +25,16 @@ addArticleController =
       event.stopPropagation()
       $menu.removeClass('slideInFromSide')
     
+    input.on 'focus', () ->
+      $menu.addClass 'focus'
+      $menu.find('.card').addClass 'editing'
+      $menu.find('.done').removeClass 'invisible'
+      $menu.find('.upload').hide()
+      return false
+
     input.on 'blur', () ->
-      console.log 'pn vblur'
       #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
-      $('<div contenteditable="true"></div>').appendTo($menu).focus().remove()
+      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
       #   # Blur with empty text area
       if content() == ''
         $menu.removeClass 'focus'
@@ -57,7 +63,7 @@ addArticleController =
 
     # Bind cancel event
     $menu.find('a.cancel').click (event) ->
-      event.stopPropagation()
+      $menu.removeClass 'focus'
       addArticleController.reset $menu
       event.preventDefault()
       
@@ -84,15 +90,11 @@ addArticleController =
     return false
     
   reset: ($menu) ->
-    $menu.find('.editable').html('')
-    $menu.find('.editable').get(0).blur()
-    $menu.find('.card').removeClass 'editing'
-    $menu.find('.upload').show()
-    $menu.find('.done').hide()
+    input = $menu.find '.editable'
+    input.html('')
     $menu.removeClass 'focus'
-    $menu.removeClass 'slideInFromSide'
-    $menu.removeClass 'typing'
+    $menu.find('.card').removeClass 'editing'
      
-# $ ->
-#   $('.addArticleForm').each () ->
-#     addArticleController.init $(@)
+$ ->
+  $('.addArticleForm').each () ->
+    addArticleController.init $(@)

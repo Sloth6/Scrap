@@ -7,13 +7,18 @@ window.xOfSelf = () -> xTransform $(@)
 
 window.yOfSelf = () -> yTransform $(@)
 
-window.xTransform = (elem) ->
-  transform = elem.css('transform')
-  new WebKitCSSMatrix(transform).e
+window.xTransform = ($element) ->
+#   transform = $element.css('transform')
+#   new WebKitCSSMatrix(transform).e
+  parseFloat $.Velocity.hook($element, 'translateX')
 
-window.yTransform = (elem) ->
-  transform = elem.css('transform')
-  new WebKitCSSMatrix(transform).f
+window.yTransform = ($element) ->
+#   transform = $element.css('transform')
+#   new WebKitCSSMatrix(transform).f
+  parseFloat $.Velocity.hook($element, 'translateY')
+  
+window.getRotateZ = ($element) ->
+  parseFloat $.Velocity.hook($element, 'rotateZ')
 
 window.logisticFunction = (x) ->
   1 / (1 + Math.pow(Math.E, -x))

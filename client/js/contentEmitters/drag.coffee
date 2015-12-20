@@ -48,8 +48,8 @@ drag = (event, $dragging) ->
   offsetY = - $dragging.data('mouseOffsetY')
 
   $dragging.velocity {
-    translateX: x + offsetX + scaleOffsetX + fudgeX*x
-    translateY: y + offsetY + scaleOffsetY + fudgeY*y
+    translateX: x - $dragging.data('mouseOffsetX')
+    translateY: y - $dragging.data('mouseOffsetY')
     scale: scale
   }, { duration: 1 }
   
@@ -171,12 +171,19 @@ stopDragging = (mouseUpEvent, $dragging) ->
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
+  $collection =  $('.collection.open')
 
   $dragging.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999 
+
+  if $dragging.hasClass 'collection'
+    console.log 'hasclass collectoin'
+    $dragging.data 'previewState', 'compact'
+    collectionViewController.draw $dragging, { animate:true }
+    collectionViewController.draw $collection, { animate:true }
  
   startDragTransform $dragging
   
@@ -186,7 +193,7 @@ startDragging = ($dragging, mouseDownEvent) ->
   
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
-  collectionViewController.draw $('.collection.open')
+  collectionViewController.draw $collection
   footerController.show $dragging
 
 window.makeDraggable = ($content) ->
@@ -198,19 +205,12 @@ window.makeDraggable = ($content) ->
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
     $content.data 'originalCollection', contentModel.getCollection $content
-    startX = mouseDownEvent.clientX
-    startY = mouseDownEvent.clientY
-    
+
     mousedownArticle = $content
     draggingArticle  = null
         
     $(window).mousemove (event) ->
       if draggingArticle == null
-        dX = Math.abs(startX - event.clientX)
-        dY = Math.abs(startY - event.clientY)
-        if dX < dragThreshold and dY < dragThreshold
-          return
-
         draggingArticle = mousedownArticle
         startDragging draggingArticle, mouseDownEvent
       drag event, draggingArticle

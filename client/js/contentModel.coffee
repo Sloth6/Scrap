@@ -26,7 +26,6 @@ window.contentModel =
       when 'youtube'    then initYoutube $content
       when 'collection' then collectionModel.init $content
 
-
   getCard: ($content) ->
     return null if $content.hasClass 'stack'
     if $content.hasClass 'pack'
@@ -49,6 +48,14 @@ window.contentModel =
       $content.data 'originalCollection'
     else
       $content.parent().parent()
+
+  getContentContainer: ($content) ->
+    if $content.hasClass('cover')
+      return
+    else if $content.hasClass 'dragging'
+      $content.data('originalCollection').children('.contentContainer')
+    else
+      $content.parent()
 
   getCollectionkey: ($content) ->
     $collection = contentModel.getCollection $content
