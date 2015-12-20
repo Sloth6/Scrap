@@ -385,6 +385,12 @@ body {
 }
 
 .addProjectForm {
+    &:hover, &.hover, &.editing, &.typing {
+        h1.typeOutlineClear {
+            @include typeOutlineFillBlack;
+        }
+    }
+    
     .card {
         width: $coverWidth;
     }
