@@ -40,6 +40,16 @@ getWidestArticle = ($content) ->
       widest = $(@).width()
   widest
 
+# Given the ith item in a collection of length n,
+# how hard fron neighbor should it be?
+calculateSpacing = (i, n) ->
+  k = n - i # Distance from end. The largest spacing is at end.
+  # Two parameters to vary, largest spacing and rate of decrease
+  m = 200 # The largest spacing
+  d = 1   # The rate of decrease
+  func = (x) -> (1 - logisticFunction(x)) * 2
+  func(k * d) * m
+
 drawCollectionPreview = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
   $content = collectionModel.getContent($collection)
@@ -63,14 +73,17 @@ drawCollectionPreview = ($collection, animate) ->
   totalX      = translateX # totalX is apparent width of preview. separate from 
   rightAlignOffset  = 0
 
+  i = 0
+  n = $content.length
   $content.each () ->
+    i += 1
     contentWidth = $content.width()
     switch $collection.data('previewState')
       when 'compact'
-        spacing = 2 * Math.exp(($(@).index() + 1), 2)
-        rotateZ = 0 #(Math.random() - .5) * 10
+        spacing = 0#2 * Math.exp(($(@).index() + 1), 2)
+        rotateZ = (Math.random() - .5) * 10
       when 'expanded'
-        spacing = if $collection.data('collectiontype') is 'pack' then 144/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
+        spacing = calculateSpacing i, n
         rotateZ = 0
       when 'compactReverse'
         spacing = -32/$content.length
