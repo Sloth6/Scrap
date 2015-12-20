@@ -41,42 +41,14 @@ getWidestArticle = ($content) ->
   widest
 
 scaleDownTooBigContent = (scale, $content) ->
-#   scale = $cover.width() / getWidestArticle($content)
-#   $contentContainer.data 'isScaled', true
-#   $.Velocity.hook($contentContainer, 'scale', scale );
-#   $contentContainer.css
-#     'transform-origin':         'right top'
-#     '-webkit-transform-origin': 'right top'
-#     '-moz-transform-origin':    'right top'
   $content.each () ->
     $(@).data 'isScaled', true
-#     scale = $cover.width() / $(@).width()
     $(@).css
       'transform-origin':         "left top"
       '-webkit-transform-origin': "left top"
       '-moz-transform-origin':    "left top"
     
-    $.Velocity.hook($(@), 'scale', scale);
-#     console.log $(@), "#{scale * 100}%"
-#     $(@).css
-#       'transform-origin':         "#{scale * 100}% top"
-#       '-webkit-transform-origin': "#{scale * 100}% top"
-#       '-moz-transform-origin':    "#{scale * 100}% top"
-
-getScaleOffset = ($content, translateX, spacing) ->
-  scale = parseFloat $.Velocity.hook($content, 'scale')
-#   transformOriginX = parseFloat $.Velocity.hook($content, 'scale')
-#   originalWidth = $content.width() / scale
-#   originalWidthMinusScaledRightEdge = transformOriginX * originalWidth + $content.width()/2
-#   offset = originalWidth - originalWidthMinusScaledRightEdge
-#   scale += 1
-#   scale * translateX
-#   Math.abs(spacing) * scale
-
-  value = translateX - (translateX * (1 - scale))
-  console.log value
-  value
-#   offset
+    $.Velocity.hook($(@), 'scale', scale)
   
 drawCollectionPreview = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
@@ -89,12 +61,17 @@ drawCollectionPreview = ($collection, animate) ->
   
   collectionModel.getAddForm($collection).hide()
   $cover.zIndex 9999
-
-  scale       = $cover.width() / getWidestArticle($content)
   
-  scaleDownTooBigContent(scale, $content) if $collection.data('collectiontype') is 'pack'
   
-  translateX  = if $collection.data('collectiontype') is 'pack' then $cover.width() / scale else 0
+  if $collection.data('collectiontype') is 'pack'
+    scale = Math.min($cover.width() / getWidestArticle($content), .75) # min to prevent small elements from scaling up
+    translateX = $cover.width() / scale
+  else
+    translateX  = 0
+    scale = 1
+    
+  scaleDownTooBigContent(scale, $content)
+  
   translateY  = 0
   rotateZ     = 0
   zIndex      = $content.length
@@ -109,44 +86,30 @@ drawCollectionPreview = ($collection, animate) ->
     translateX += 18
 
   $content.each () ->
-    contentWidth = $content.width()
+    contentWidth = $(@).width()
 
     switch $collection.data('previewState')
       when 'compact'
         spacing = 0 #2 * Math.exp(($(@).index() + 1), 2)
+        rotateZ = (Math.random() - .5) * 10
       when 'expanded'
         spacing = if $collection.data('collectiontype') is 'pack' then 200/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
       when 'compactReverse'
         spacing = -32/$content.length
         rotateZ = (Math.random() - .5) * 10
         contentWidth = 0
-        translateY = 24
+        translateY = 32
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
       when 'none'
         spacing = 0
         contentWidth = 0
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing) # -$cover.width() - $content.width() / 4
         
-#     scaleOffset = if $(@).data 'isScaled' then getScaleOffset($(@), translateX, spacing) else 0
-
-#     if $(@).data 'isScaled'
-#       scale = parseFloat $.Velocity.hook($(@), 'scale')
-# #       spacing /= (1 - scale)
-#       scaleOffset = Math.abs(spacing) * scale
-#     else
-#       scaleOffset = 0
-      
-#     if $(@).data 'isScaled'
-#       scale = parseFloat $.Velocity.hook($(@), 'scale')
-#       scaledTranslateX = translateX + (translateX - rightAlignOffset) * ( scale)
-    
     $(@).velocity
       properties:
-#         translateX: if $(@).data 'isScaled' then scaledTranslateX + rightAlignOffset else translateX + rightAlignOffset
-        translateX: translateX + rightAlignOffset# + scaleOffset
+        translateX: translateX + rightAlignOffset
         translateY: translateY
         rotateZ: rotateZ
-#         scale: scale
       options:
         duration: duration
 
