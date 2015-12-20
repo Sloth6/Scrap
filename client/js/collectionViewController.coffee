@@ -115,6 +115,8 @@ window.collectionViewController =
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
     
+    console.log 'got collection add form', $collectionAddForm
+    
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection
@@ -123,7 +125,7 @@ window.collectionViewController =
     $cover.css 'z-index': 999
     
     # Animate in content, content appears from behind its cover
-    $collectionAddForm.show()
+    $collectionAddForm.show().css opacity: 1
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
 
