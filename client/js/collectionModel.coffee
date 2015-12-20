@@ -9,7 +9,7 @@ redrawCollections = ($collection, $parentCollection, animate) ->
     collectionViewController.draw $collection, { animate: true }
     collectionViewController.draw $parentCollection, { animate: true }
   else
-    collectionViewController.draw $collection
+    collectionViewController.draw $collection, { animate: true }
     collectionViewController.draw $parentCollection, { animate: true }
   
 closePackPreview = ($collection, $parentCollection) ->
@@ -25,7 +25,7 @@ closePackPreview = ($collection, $parentCollection) ->
       redrawCollections $collection, $parentCollection
     , openCollectionDuration
     
-drawPackPreview = ($collection, $parentCollection, $contentContainer) ->
+initPackPreview = ($collection, $parentCollection, $contentContainer) ->
   $collection.data 'rotateZTemp', getRotateZ($collection)
   unless $collection.data('previewState') is 'compactReverse'
     $contentContainer.css 'opacity', 0
@@ -48,9 +48,9 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       unless $collection.data 'contentLoaded'
         $collection.data 'contentLoaded', true
         collectionModel.loadContent $collection, () ->
-          drawPackPreview($collection, $parentCollection, $contentContainer)
+          initPackPreview($collection, $parentCollection, $contentContainer)
       else
-        drawPackPreview($collection, $parentCollection, $contentContainer)
+        initPackPreview($collection, $parentCollection, $contentContainer)
   $contentContainer.mouseenter () ->
     unless $collection.hasClass 'open'
       $collection.data 'previewState', 'expanded'
@@ -130,6 +130,9 @@ window.collectionModel =
   getContent: ($collection) ->
     $contentContainer = $collection.children('.contentContainer')
     $contentContainer.children()
+
+  getContentContainer: ($collection) ->
+    $collection.children('.contentContainer')
 
   # The collection and article to partition around
   getContentPartitioned: ($collection, $content) ->

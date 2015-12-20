@@ -42,13 +42,14 @@ getWidestArticle = ($content) ->
 
 drawCollectionPreview = ($collection, animate) ->
   $cover = collectionModel.getCover($collection)
-  $content = collectionModel.getContent $collection
-  $content = $content.filter('article').not('.addArticleForm')
-  $contentContainer = contentModel.getContentContainer $content
+  $content = collectionModel.getContent($collection)
+  $content = $content.find('article').not('.cover').not('.addArticleForm').add($content.filter('article'))
+  $contentContainer = collectionModel.getContentContainer $collection
   # With a new stack, the dragged over element hides while waiting for a 
   # server response
   $content.show()
-  
+  console.log '———————'
+  console.log $content
   $contentContainer.css 'background', 'red'
   
   collectionModel.getAddForm($collection).hide()
@@ -57,7 +58,7 @@ drawCollectionPreview = ($collection, animate) ->
 #   $content.each () ->
 #     $(@).css 'max-width', $cover.width()
 
-  translateX  = if $collection.data('contenttype') is 'pack' then $cover.width() else 0
+  translateX  = 0
   translateY  = 0
   zIndex      = $content.length
   sizeTotal   = 0
@@ -66,8 +67,13 @@ drawCollectionPreview = ($collection, animate) ->
   rightAlignOffset = 0
   rightAlignOffsetSizeTotal = 0
   spacing = 0
+  
+  if $collection.data('collectiontype') is 'pack'
+    unless $collection.data('previewState') is 'none'
+      translateX += $cover.width()
 #   console.log 'widest', widest
   $content.each () ->
+    width = $content.width()
     switch $collection.data('previewState')
       when 'compact'
         spacing = 10 #2 * Math.exp(($(@).index() + 1), 2)
@@ -79,12 +85,13 @@ drawCollectionPreview = ($collection, animate) ->
         spacing = -10
         rotateZ = 0 #(Math.random() - .5) * 10
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
-        rightAlignOffsetSizeTotal = -$cover.width()
+        width = 0
+#         rightAlignOffsetSizeTotal = -$cover.width()
       when 'none'
         spacing = 0
         rotateZ = 0
-        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
-        rightAlignOffsetSizeTotal = -$cover.width()
+#         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+#         rightAlignOffsetSizeTotal = -$cover.width()
 #         coverOffset = 0
     $(@).velocity
       properties:
@@ -93,18 +100,17 @@ drawCollectionPreview = ($collection, animate) ->
         rotateZ: rotateZ
       options:
         duration: duration
-    contentWidth = if $collection.data('contenttype') is 'pack' then 0 else $(@).width()
-    if $collection.data('contenttype') is 'pack'
-      sizeTotal += Math.max(sizeTotal, Math.abs(translateX * 1.01) + contentWidth + rightAlignOffsetSizeTotal)
-    else
-      sizeTotal = Math.max(sizeTotal, Math.abs(translateX * 1.01) + contentWidth + rightAlignOffsetSizeTotal)
+#     if $collection.data('contenttype') is 'pack'
+#       sizeTotal += Math.max(sizeTotal, Math.abs(translateX * 1.01) + contentWidth + rightAlignOffsetSizeTotal)
+#     else
+    sizeTotal = Math.max(sizeTotal, Math.abs(translateX * 1.01) + width + rightAlignOffsetSizeTotal)
     translateX += spacing
     
 #   $cover.find(".card").width sizeTotal
-  sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
+#   sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
 #   console.log sizeTotal
-  if $collection.data('previewState') is 'none'
-    sizeTotal = $cover.width() - 10
+#   if $collection.data('previewState') is 'none'
+#     sizeTotal = $cover.width() - 10
   contentModel.setSize $collection, sizeTotal
   sizeTotal
 
@@ -213,13 +219,9 @@ window.collectionViewController =
 #       $cover.hide()
       # Show the add article Form.
       $collectionAddForm.show()
-      $collectionContent.show()
 
     # When opening a collection, it no longer slides but is fixed to start
     $collection.velocity { translateX: 0 }
-    $collection.velocity { translateX: 0 }
-    $collection.velocity { translateX: 0 }
-
     # Mark collection as open. 
     $collection.
       addClass('open').
