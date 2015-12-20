@@ -48,16 +48,10 @@ drawCollectionPreview = ($collection, animate) ->
   # With a new stack, the dragged over element hides while waiting for a 
   # server response
   $content.show()
-  console.log '———————'
-  console.log $content
-  $contentContainer.css 'background', 'red'
   
   collectionModel.getAddForm($collection).hide()
   $cover.zIndex 9999
 #   $cover.css 'opacity', '.5'
-  
-#   $content.each () ->
-#     $(@).css 'max-width', $cover.width()
 
   translateX  = if $collection.data('collectiontype') is 'pack' then $cover.width() else 0
   translateY  = 0
@@ -65,12 +59,16 @@ drawCollectionPreview = ($collection, animate) ->
   sizeTotal   = 0
   widest      = getWidestArticle($content)
   duration    = if $collection.data('drawInstant') then 1 else openCollectionDuration
-  rightAlignOffset = 0
+  spacing     = 0
+  totalX      = translateX
+  rightAlignOffset          = 0
   rightAlignOffsetSizeTotal = 0
-  spacing = 0
   
-  totalX = translateX
+  console.log 'PREVIEW',  $collection.data('collectiontype')
   
+#   if $collection.data('collectiontype') is 'pack' 
+#     console.log 'PREVIEW PACK'
+    
   $content.each () ->
     width = $content.width()
     switch $collection.data('previewState')
@@ -78,7 +76,7 @@ drawCollectionPreview = ($collection, animate) ->
         spacing = 10 #2 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0 #(Math.random() - .5) * 10
       when 'expanded'
-        spacing = 144/$content.length #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
+        spacing = if $collection.data('collectiontype') is 'pack' then  144/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0
       when 'compactReverse'
         spacing = -32/$content.length
@@ -176,6 +174,8 @@ window.collectionViewController =
     $collectionAddForm.show()
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
+    
+#     $collection.data 'previewState', 'none'
 
     if $collection.data('collectiontype') == 'pack'
       # Container around articles
