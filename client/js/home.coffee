@@ -7,7 +7,7 @@ fastDuration            = 250
 
 marginTop       = $(window).height() * 0.125
 articleMargin   = 24
-packMargin      = 120
+packMargin      = 48
 sliderBorder    = $(window).width() * 0.15
 edgeWidth       = 48
 marginAfter     = $(window).width()/2

@@ -21,10 +21,11 @@ closePackPreview = ($collection, $parentCollection) ->
           rotateZ: $collection.data 'rotateZTemp'
           translateX: xTransform($collection)
       redrawCollections $collection, $parentCollection
-      setTimeout () ->
-  #       collectionModel.removeContent $collection
-        redrawCollections $collection, $parentCollection
-      , openCollectionDuration
+#       setTimeout () ->
+#         collectionModel.removeContent $collection
+#         redrawCollections $collection, $parentCollection
+#         $collection.data 'contentLoaded', false
+#       , openCollectionDuration
     
 initPackPreview = ($collection, $parentCollection, $contentContainer) ->
   $collection.data 'rotateZTemp', getRotateZ($collection)
@@ -46,7 +47,6 @@ initPackPreview = ($collection, $parentCollection, $contentContainer) ->
 bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cover) ->
   $cover.mouseenter () ->
     if $collection.hasClass 'closed'
-      console.log 'pack cover mouseenter'
       unless $collection.data 'contentLoaded'
         $collection.data 'contentLoaded', true
         collectionModel.loadContent $collection, () ->
@@ -55,7 +55,6 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
         initPackPreview($collection, $parentCollection, $contentContainer)
   $contentContainer.mouseenter () ->
     if $collection.hasClass 'closed'
-      console.log 'pack contentContainer mouseenter'
       $collection.data 'previewState', 'expanded'
       redrawCollections $collection, $parentCollection, true
       $collection.velocity
@@ -66,7 +65,6 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       $cover.off('mouseleave')
   $contentContainer.mouseleave () ->
     if $collection.hasClass 'closed'
-      console.log 'pack contentContainer mouseleave', $collection
       # if mouse is over cover
       if $collection.is(":hover")
         $collection.data 'previewState', 'compactReverse'
@@ -79,15 +77,11 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       redrawCollections $collection, $parentCollection, true
       $cover.on('mouseleave', () -> closePackPreview($collection, $parentCollection))
   $cover.mouseleave () ->
-    console.log 'pack cover mouseleave'
     closePackPreview($collection, $parentCollection)
   $collection.mouseout () ->
     unless $collection.hasClass 'open'
       unless $collection.is(":hover")
-        console.log 'pack collection mouseout'
         closePackPreview($collection, $parentCollection)
-  #       $collection.data 'previewState', 'none'
-  #       redrawCollections $collection, $parentCollection, true
 
 bindStackPreviewEvents = ($collection, $parentCollection) ->
   $collection.mouseenter () ->

@@ -60,20 +60,14 @@ drawCollectionPreview = ($collection, animate) ->
   widest      = getWidestArticle($content)
   duration    = if $collection.data('drawInstant') then 1 else openCollectionDuration
   spacing     = 0
-  totalX      = translateX
-  rightAlignOffset          = 0
-  rightAlignOffsetSizeTotal = 0
-  
-  console.log 'PREVIEW',  $collection.data('collectiontype')
-  
-#   if $collection.data('collectiontype') is 'pack' 
-#     console.log 'PREVIEW PACK'
-    
+  totalX      = translateX # totalX is apparent width of preview. separate from 
+  rightAlignOffset  = 0
+
   $content.each () ->
-    width = $content.width()
+    contentWidth = $content.width()
     switch $collection.data('previewState')
       when 'compact'
-        spacing = 10 #2 * Math.exp(($(@).index() + 1), 2)
+        spacing = 2 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0 #(Math.random() - .5) * 10
       when 'expanded'
         spacing = if $collection.data('collectiontype') is 'pack' then  144/$content.length else 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
@@ -81,16 +75,13 @@ drawCollectionPreview = ($collection, animate) ->
       when 'compactReverse'
         spacing = -32/$content.length
         rotateZ = 0 #(Math.random() - .5) * 10
-        width = 0
+        contentWidth = 0
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
-#         rightAlignOffsetSizeTotal = -$cover.width()
       when 'none'
         spacing = 0
         rotateZ = 0
-        width = 0
+        contentWidth = 0
         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
-#         rightAlignOffsetSizeTotal = -$cover.width()
-#         coverOffset = 0
     $(@).velocity
       properties:
         translateX: translateX + rightAlignOffset
@@ -99,15 +90,10 @@ drawCollectionPreview = ($collection, animate) ->
       options:
         duration: duration
 
-    sizeTotal = Math.abs(totalX) + width + rightAlignOffsetSizeTotal
+    sizeTotal = Math.abs(totalX) + contentWidth
     translateX += spacing
     totalX += Math.abs(spacing)
     
-#   $cover.find(".card").width sizeTotal
-#   sizeTotal += if $collection.data('contenttype') is 'pack' then $cover.width() else 0
-#   console.log sizeTotal
-#   if $collection.data('previewState') is 'none'
-#     sizeTotal = $cover.width() - 10
   contentModel.setSize $collection, sizeTotal
   sizeTotal
 
