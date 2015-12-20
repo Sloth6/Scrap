@@ -12,14 +12,25 @@ sliderBorder    = $(window).width() * 0.15
 edgeWidth       = 48
 marginAfter     = $(window).width()/2
 
-collectionPath = []
+window.isScrolling = false
+isScrollingTimeout = null
+
+window.collectionPath = []
 
 history.scrollRestoration = 'manual'
 
 # Main scroll event
 onScroll = ->
   # return if $('.velocity-animating').length
-  # console.log 'on scrolla', $(window).scrollLeft()
+  window.isScrolling = true
+  
+  if isScrollingTimeout
+    clearTimeout isScrollingTimeout 
+  
+  isScrollingTimeout = setTimeout (() ->
+    window.isScrolling = false
+  ), 100
+
   collectionViewController.draw $('.open.collection')
   $('.hover').removeClass 'hover'
   # console.log 'on scrollb', $(window).scrollLeft()
