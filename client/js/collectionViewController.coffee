@@ -54,6 +54,7 @@ drawCollectionPreview = ($collection, animate) ->
   
   collectionModel.getAddForm($collection).hide()
   $cover.zIndex 9999
+  $cover.css 'opacity', '.5'
   
 #   $content.each () ->
 #     $(@).css 'max-width', $cover.width()
@@ -69,8 +70,8 @@ drawCollectionPreview = ($collection, animate) ->
   spacing = 0
   
   if $collection.data('collectiontype') is 'pack'
-    unless $collection.data('previewState') is 'none'
-      translateX += $cover.width()
+#     unless $collection.data('previewState') is 'none'
+    translateX += $cover.width()
 #   console.log 'widest', widest
   $content.each () ->
     width = $content.width()
@@ -82,15 +83,16 @@ drawCollectionPreview = ($collection, animate) ->
         spacing = 100 #$(@).width() / 2 #10 * Math.exp(($(@).index() + 1), 2)
         rotateZ = 0
       when 'compactReverse'
-        spacing = -10
+        spacing = -32/$content.length
         rotateZ = 0 #(Math.random() - .5) * 10
-        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
         width = 0
+        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
 #         rightAlignOffsetSizeTotal = -$cover.width()
       when 'none'
         spacing = 0
         rotateZ = 0
-#         rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+        width = 0
+        rightAlignOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
 #         rightAlignOffsetSizeTotal = -$cover.width()
 #         coverOffset = 0
     $(@).velocity
@@ -103,7 +105,7 @@ drawCollectionPreview = ($collection, animate) ->
 #     if $collection.data('contenttype') is 'pack'
 #       sizeTotal += Math.max(sizeTotal, Math.abs(translateX * 1.01) + contentWidth + rightAlignOffsetSizeTotal)
 #     else
-    sizeTotal = Math.max(sizeTotal, Math.abs(translateX * 1.01) + width + rightAlignOffsetSizeTotal)
+    sizeTotal = Math.abs(translateX) + width + rightAlignOffsetSizeTotal
     translateX += spacing
     
 #   $cover.find(".card").width sizeTotal
