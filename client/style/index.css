@@ -662,14 +662,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 189, ../../style/globals/_type.scss */
+/* line 190, ../../style/globals/_type.scss */
 .smallType {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 192, ../../style/globals/_type.scss */
+/* line 193, ../../style/globals/_type.scss */
 .smallType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -679,24 +679,24 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 197, ../../style/globals/_type.scss */
+/* line 198, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 201, ../../style/globals/_type.scss */
+/* line 202, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 206, ../../style/globals/_type.scss */
+/* line 207, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 213, ../../style/globals/_type.scss */
+/* line 214, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
