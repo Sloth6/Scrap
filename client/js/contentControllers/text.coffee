@@ -29,7 +29,7 @@ initText = ($content) ->
   articleId = $content.attr 'id'
   timeout   = null
   emitInterval = 200
-  maxHeight = 
+  maxHeight = 700
 
   $content.mousedown (e) ->
     $(@).data 'lastX', e.clientX
@@ -39,7 +39,6 @@ initText = ($content) ->
     return if $(@).data('lastX') != e.clientX
     return if $(@).data('lastY') != e.clientY
     startEditingText $(@) unless $(@).hasClass('ediitng')
-
 
   $content.find('a.done').click (event) ->
     stopEditingText $content
@@ -52,11 +51,17 @@ initText = ($content) ->
     timeout = setTimeout (() ->
       socket.emit 'updateArticle', { collectionKey, userId, articleId, content }
     ), emitInterval
-  
+
+  stopPropagation = (event) ->
+    if window.isScrolling
+      event.preventDefault()
+    else
+      event.stopPropagation()
+
   $content.find('.editable').
-    scroll((event) -> event.stopPropagation()).
-    mousewheel((event) -> event.stopPropagation()).
-    css('overflow-y':'auto', 'max-height': 700).
+    scroll(stopPropagation).
+    mousewheel(stopPropagation).
+    css('overflow-y':'auto', 'max-height': maxHeight).
     on('blur', () ->
       #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
       $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
