@@ -17,7 +17,9 @@ $ ->
     $collection = $('.collection.open')
     if collectionModel.getState($collection).collectionKey == collectionKey
       $addArticleForm = collectionModel.getAddForm $collection
-      $article.css { x: xTransform($addArticleForm) }
+      x = xTransform $addArticleForm
+      # console.log {x}
+      $article.velocity { translateX: [x,x] }, { duration: 1 }
       collectionModel.appendContent $collection, $article
       contentModel.init $article
       collectionViewController.draw $collection, { animate: true }

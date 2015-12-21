@@ -34,7 +34,7 @@ addArticleController =
 
     input.on 'blur', () ->
       #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
-      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
+      $('<div contenteditable="true"></div>').appendTo(input).focus().remove()
       #   # Blur with empty text area
       if content() == ''
         $menu.removeClass 'focus'
