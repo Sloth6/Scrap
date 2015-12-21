@@ -1565,13 +1565,6 @@ body article.dragging > .content .card, body article.ui-draggable-dragging > .co
 /* line 72, ../../style/globals/_components.scss */
 body article.dragging > .content .card.hover, body article.ui-draggable-dragging > .content .card.hover, body article.active > .content .card.hover, body article:active > .content .card.hover {
   border-color: #000000;
-  -moz-box-shadow: 8pt 8pt 0 0 black;
-  -webkit-box-shadow: 8pt 8pt 0 0 black;
-  box-shadow: 8pt 8pt 0 0 black;
-  -moz-transform: translate3d(-8pt, -8pt, 0);
-  -ms-transform: translate3d(-8pt, -8pt, 0);
-  -webkit-transform: translate3d(-8pt, -8pt, 0);
-  transform: translate3d(-8pt, -8pt, 0);
 }
 /* line 39, ../../style/layout/_article.scss */
 body article.locked {
