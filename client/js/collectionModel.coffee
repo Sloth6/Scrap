@@ -89,13 +89,12 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
 bindStackPreviewEvents = ($collection, $parentCollection) ->
   $collection.mouseenter () ->
     if canPreview $collection
-      unless $collection.hasClass 'dragging'
-        console.log 'stack mouseenter'
-        $collection.data 'previewState', 'expanded'
-        redrawCollections $collection, $parentCollection, true
+      console.log 'stack mouseenter'
+      $collection.data 'previewState', 'expanded'
+      redrawCollections $collection, $parentCollection, true
   $collection.mouseleave () -> 
     if canPreview $collection
-      console.log 'stack mouseenter'
+      console.log 'stack mouselave'
       $collection.data 'previewState', 'compact'
       redrawCollections $collection, $parentCollection, true
 

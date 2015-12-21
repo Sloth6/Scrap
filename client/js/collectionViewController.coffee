@@ -98,13 +98,13 @@ drawCollectionPreview = ($collection, animate) ->
     switch $collection.data('previewState')
       when 'compact'
         spacing = 0
-        rotateZ = (Math.random() - .5) * 10
+        rotateZ = (Math.random() - .5) * 12
       when 'expanded'
         spacing = calculateSpacing i, $content.length
-        rotateZ = 0
+        rotateZ = (Math.random() - .5) * 6
       when 'compactReverse'
         spacing = -32/$content.length
-        rotateZ = (Math.random() - .5) * 10
+        rotateZ = (Math.random() - .5) * 12
         contentWidth = 0
         translateY = 32
         flushRightOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
@@ -122,10 +122,8 @@ drawCollectionPreview = ($collection, animate) ->
 
     sizeTotal = Math.max sizeTotal, (translateX * scale) + contentWidth
     translateX += spacing
-    console.log 'translateX', translateX
     
   contentModel.setSize $collection, sizeTotal
-  console.log 'sizeTotal', sizeTotal
   sizeTotal
 
 window.collectionViewController =
@@ -178,8 +176,6 @@ window.collectionViewController =
     $parentCollection  = collectionModel.getParent $collection
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
-    
-    console.log 'got collection add form', $collectionAddForm
     
     # The root collection has nothing to push off. 
     if $parentCollection
