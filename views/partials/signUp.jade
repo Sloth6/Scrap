@@ -12,8 +12,10 @@ ul.right
 script.
   function onError(res) {
     $('#signUp errorField').text(res.responseText);
-  }
-  
+  };
+  function validateName(name) {
+    return name.match(/^[a-zA-Z]{2,} [a-zA-Z]{2,}$/i);
+  };
   $("#signUp").click(function(event) {
       console.log("hi")
       event.stopPropagation();
