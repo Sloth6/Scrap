@@ -208,14 +208,19 @@ window.makeDraggable = ($content) ->
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
     $content.data 'originalCollection', contentModel.getCollection $content
+    
+    startX = mouseDownEvent.clientX
+    startY = mouseDownEvent.clientY
 
     mousedownArticle = $content
     draggingArticle  = null
         
     $(window).mousemove (event) ->
       if draggingArticle == null
-        draggingArticle = mousedownArticle
-        startDragging draggingArticle, mouseDownEvent
+        dX = Math.abs(startX - event.clientX)
+        dY = Math.abs(startY - event.clientY)
+        if dX < dragThreshold and dY < dragThreshold
+          return
       drag event, draggingArticle
     
     $(window).mouseup (event) ->

@@ -150,14 +150,16 @@ window.collectionViewController =
     { $contentsBefore, $contentsAfter } = partition
 
     # Animate content offscreen in either direction, hide when done
-    $contentsBefore.add($openingCover).velocity
+    $contentsBefore.velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ (() -> -contentModel.getSize($(@))), xOfSelf ]
         translateY: [0, yOfSelf]
         rotateZ:    0
-      options: { complete: () -> $(@).hide() }
-
+      options: { complete: () ->
+        $(@).hide()# unless $(@).hasClass 'cover'
+      }
+      
     $contentsAfter.add($addForm).velocity
       properties:
         translateZ: [ 0, 0 ]
@@ -165,6 +167,11 @@ window.collectionViewController =
         translateY: [0, yOfSelf]
         rotateZ:    0
       options: { complete: () -> $(@).hide() }
+
+    $openingCover.addClass('peek onEdge open').velocity
+      properties:
+        translateZ: 0
+        translateX: [28-$openingCover.width(), xOfSelf]
 
     # Mark collection so no longer being open 
     $collection.removeClass('open')
@@ -264,6 +271,8 @@ window.collectionViewController =
     $collection.
       addClass('closed').
       removeClass('open')
+      
+    $collectionCover.removeClass('onEdge open')
       
     $collection.data 'contentLoaded', false
 
