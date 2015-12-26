@@ -2586,13 +2586,34 @@ footer.main ul.actions li.action label {
   min-height: 0;
   padding-bottom: 40pt;
 }
+@media screen and (max-width: 400px) {
+  /* line 85, ../../style/email.scss */
+  .email section.detail {
+    border: 0;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 400px) {
+  /* line 85, ../../style/email.scss */
+  .email section.detail {
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    position: absolute;
+    left: 50vw;
+    top: 0;
+    margin-top: 504pt;
+    margin-left: -84pt;
+  }
+}
 @media screen and (min-width: 768px) {
   /* line 85, ../../style/email.scss */
   .email section.detail {
-    position: absolute;
-    left: 50vw;
-    top: 25vh;
-    margin-top: 336pt;
-    margin-left: -84pt;
+    /*
+                top: 50vh;
+                margin-top: $typeHeaderLeading * 4;
+                margin-left: 6.25vw;
+    */
   }
 }

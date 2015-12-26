@@ -87,12 +87,27 @@
         min-height: 0;
         padding-bottom: $broadMargin;
         
-        @media screen and (min-width: $breakSmall) {
+        @media screen and (max-width: $breakMicro) {
+            border: 0;
+            padding: 0;
+        }
+
+        @media screen and (min-width: $breakMicro) {
+            @include transform(rotate(-5deg));
             position: absolute;
             left: 50vw;
-            top: 25vh;
-            margin-top: $coverHeight;
+            top: 0;
+            margin-top: $coverHeight * 1.5;
             margin-left: -$articleSideNarrow / 2;
+            
+        }
+        
+        @media screen and (min-width: $breakSmall) {
+/*
+            top: 50vh;
+            margin-top: $typeHeaderLeading * 4;
+            margin-left: 6.25vw;
+*/
         }
     }
 }
