@@ -13,7 +13,9 @@ redrawCollections = ($collection, $parentCollection, animate) ->
     collectionViewController.draw $parentCollection, { animate: true }
   
 canPreview = ($collection) ->
-  $collection.hasClass('closed') and !$collection.hasClass('dragging')
+  content = collectionModel.getContent $collection
+  console.log 'content', content.length
+  $collection.hasClass('closed') and !$collection.hasClass('dragging') and content.length > 0
 
 closePackPreview = ($collection, $parentCollection) ->
   if canPreview $collection
@@ -49,13 +51,13 @@ initPackPreview = ($collection, $parentCollection, $contentContainer) ->
 
 bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cover) ->
   $cover.mouseenter () ->
-    if canPreview $collection
-      unless $collection.data 'contentLoaded'
-        $collection.data 'contentLoaded', true
-        collectionModel.loadContent $collection, () ->
+    unless $collection.data 'contentLoaded'
+      $collection.data 'contentLoaded', true
+      collectionModel.loadContent $collection, () ->
+        if canPreview $collection
           initPackPreview($collection, $parentCollection, $contentContainer)
-      else
-        initPackPreview($collection, $parentCollection, $contentContainer)
+    else
+      initPackPreview($collection, $parentCollection, $contentContainer)
   $contentContainer.mouseenter () ->
     if canPreview $collection
       $collection.data 'previewState', 'expanded'

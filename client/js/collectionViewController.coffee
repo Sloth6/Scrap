@@ -4,7 +4,7 @@ drawOpenCollection = ($collection, animate) ->
   # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  leftMargin = $(window).width() / 2 - $contents.first().find('.card').width() / 2
+  leftMargin = $(window).width() / 6 - $contents.first().find('.card').width() / 2
   rightMargin = $(window).width() / 2 - $contents.last().find('.card').width() / 2
   sizeTotal  = if $collection.hasClass 'root' then leftMargin else 50
   maxX       = -Infinity
