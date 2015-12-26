@@ -32,7 +32,6 @@ $ ->
     collectionModel.appendContent $('.collection.open'), $collection
     $collection.css { x: xTransform($form) }
     contentModel.init $collection
-    addProjectController.reset $form
     collectionViewController.draw $('.collection.open'), {animate: true}
 
   # for new stacks

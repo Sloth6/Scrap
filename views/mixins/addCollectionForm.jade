@@ -9,5 +9,9 @@ mixin addCollectionFormMixin(collection)
     .translate.content
       .card.newCard
         section.title.editable
-          h1.collectionTitle.typeTitle.typeOutlineClear!=defaulttext
-
+          h1.editable.collectionTitle.typeTitle.typeOutlineClear!=defaulttext
+        .cardActions
+          ul
+            li.done.invisible
+              a.cancel.bodyType.warning(href='#') Cancel
+              a.submit.bodyType.confirm(href='#') Save

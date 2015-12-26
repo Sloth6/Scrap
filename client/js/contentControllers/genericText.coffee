@@ -28,27 +28,6 @@ window.initGenericText = ($content, options) ->
     $done.addClass 'invisible'
     $('body').on 'mousedown', stopEditingText
   
-  $content.mousedown (e) ->
-    $(@).data 'lastX', e.clientX
-    $(@).data 'lastY', e.clientY
-    e.stopPropagation()
-
-  $content.mouseup (e) ->
-    return if $(@).data('lastX') != e.clientX
-    return if $(@).data('lastY') != e.clientY
-    startEditingText $(@) unless $(@).hasClass('editing')
-
-  $content.find('a.done').click (event) ->
-    stopEditingText $content
-    event.preventDefault()
-
-  $editable.
-    css('overflow-y':'auto', 'max-height': maxHeight).
-    on('blur', () ->
-      #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
-      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
-    )
-
   stopPropagation = (event) ->
     return if Math.abs(event.deltaX) > Math.abs(event.deltaY)
     return unless $editable.hasScrollBar()
@@ -57,6 +36,30 @@ window.initGenericText = ($content, options) ->
     else
       event.stopPropagation()
 
+  #cancel is optional
+  # if $cancel.length
+  #   $cancel.click () ->
+  #     stopEditingText()
+
+  $content.mousedown (e) ->
+    $(@).data 'lastX', e.clientX
+    $(@).data 'lastY', e.clientY
+    e.stopPropagation()
+  
+  $content.mouseup (e) ->
+    return if $(@).data('lastX') != e.clientX
+    return if $(@).data('lastY') != e.clientY
+    startEditingText $(@) unless $(@).hasClass('editing')
+
+  $content.find('a.done').click (event) ->
+    stopEditingText()
+    event.preventDefault()
+
   $editable.
+    css('overflow-y':'auto', 'max-height': maxHeight).
     scroll(stopPropagation).
-    mousewheel(stopPropagation)
+    mousewheel(stopPropagation).
+    on('blur', () ->
+      #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
+      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
+    )

@@ -20,7 +20,6 @@ addArticleController =
       else
         addArticleController.focus $menu
 
-      
     $('body').click (event) ->
       event.stopPropagation()
       $menu.removeClass('slideInFromSide')
@@ -73,14 +72,8 @@ addArticleController =
     $menu.find('.done').show()
     $menu.find('.done').removeClass 'invisible'
     $menu.find('.upload').hide()
-#     $menu.find('.editable').bind 'focusin focus', (event) ->
-#       event.preventDefault()
-#     if $menu.hasClass 'slideInFromSide'
-#       $menu.find('.editable').on 'focus', (event) ->
-#         event.preventDefault()
-#     else
-#       $menu.find('.editable').focus()
     $menu.find('.editable').focus()
+
     return false
     
   reset: ($menu) ->
@@ -92,7 +85,3 @@ addArticleController =
     $menu.removeClass 'focus'
     $menu.removeClass 'slideInFromSide'
     $menu.removeClass 'typing'
-     
-# $ ->
-#   $('.addArticleForm').each () ->
-#     addArticleController.init $(@)
