@@ -701,6 +701,11 @@ p + p {
   margin-top: 8pt;
 }
 
+/* line 218, ../../style/globals/_type.scss */
+em {
+  font-style: italic;
+}
+
 /* line 150, ../../style/globals/_components.scss */
 a, input[type=submit], input[type=button] {
   color: #000000;
@@ -848,7 +853,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   overflow: hidden;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   /* line 242, ../../style/globals/_components.scss */
   .responsiveCard.cover {
     left: 0;

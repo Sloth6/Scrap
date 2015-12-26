@@ -701,6 +701,11 @@ p + p {
   margin-top: 8pt;
 }
 
+/* line 218, ../../style/globals/_type.scss */
+em {
+  font-style: italic;
+}
+
 /* line 150, ../../style/globals/_components.scss */
 a, input[type=submit], input[type=button] {
   color: #000000;
@@ -848,7 +853,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   overflow: hidden;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   /* line 242, ../../style/globals/_components.scss */
   .responsiveCard.cover {
     left: 0;
@@ -2485,32 +2490,23 @@ footer.main ul.actions li.action label {
 .email {
   margin: 8pt;
 }
-@media screen and (max-width: 480px) {
-  /* line 4, ../../style/email.scss */
-  .email {
-    padding: 0;
-    max-width: 100vw;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* line 14, ../../style/email.scss */
+.email .cards {
+  min-height: 75vh;
 }
-@media screen and (max-width: 480px) {
-  /* line 14, ../../style/email.scss */
-  .email header.card {
+@media screen and (max-width: 400px) {
+  /* line 17, ../../style/email.scss */
+  .email .cards header.card {
     position: relative;
     min-height: 0;
-    margin: 8pt;
-    padding-bottom: 40pt;
-    background: red;
-    -moz-transform: rotate(-2deg) translateX(8pt);
-    -ms-transform: rotate(-2deg) translateX(8pt);
-    -webkit-transform: rotate(-2deg) translateX(8pt);
-    transform: rotate(-2deg) translateX(8pt);
+    width: auto !important;
+    border: 0;
+    padding: 20pt 0 40pt 0;
   }
 }
-@media screen and (min-width: 480px) {
-  /* line 14, ../../style/email.scss */
-  .email header.card {
+@media screen and (min-width: 400px) {
+  /* line 17, ../../style/email.scss */
+  .email .cards header.card {
     width: 224pt;
     position: absolute;
     left: 50vw;
@@ -2524,8 +2520,8 @@ footer.main ul.actions li.action label {
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 14, ../../style/email.scss */
-  .email header.card {
+  /* line 17, ../../style/email.scss */
+  .email .cards header.card {
     margin-left: 0;
     -moz-transform: rotate(3deg);
     -ms-transform: rotate(3deg);
@@ -2535,41 +2531,41 @@ footer.main ul.actions li.action label {
     margin-top: -168pt;
   }
 }
-/* line 43, ../../style/email.scss */
-.email .cover {
+/* line 46, ../../style/email.scss */
+.email .cards .cover {
   transform-origin: center center;
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
   background: #bbff99;
 }
-@media screen and (max-width: 480px) {
-  /* line 43, ../../style/email.scss */
-  .email .cover {
-    -moz-transform: rotate(3deg);
-    -ms-transform: rotate(3deg);
-    -webkit-transform: rotate(3deg);
-    transform: rotate(3deg);
+@media screen and (max-width: 400px) {
+  /* line 46, ../../style/email.scss */
+  .email .cards .cover {
+    -moz-transform: rotate(3deg) scale(0.75) translateY(-42pt);
+    -ms-transform: rotate(3deg) scale(0.75) translateY(-42pt);
+    -webkit-transform: rotate(3deg) scale(0.75) translateY(-42pt);
+    transform: rotate(3deg) scale(0.75) translateY(-42pt);
     position: relative;
     top: -20pt;
   }
 }
-@media screen and (min-width: 480px) {
-  /* line 43, ../../style/email.scss */
-  .email .cover {
+@media screen and (min-width: 400px) {
+  /* line 46, ../../style/email.scss */
+  .email .cards .cover {
     -moz-transform: rotate(6deg) translateX(8pt);
     -ms-transform: rotate(6deg) translateX(8pt);
     -webkit-transform: rotate(6deg) translateX(8pt);
     transform: rotate(6deg) translateX(8pt);
     left: 50vw;
     margin-left: -112pt;
-    position: absolute;
+    position: relative;
     top: 120pt;
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 43, ../../style/email.scss */
-  .email .cover {
+  /* line 46, ../../style/email.scss */
+  .email .cards .cover {
     top: 50vh;
     margin-left: -224pt;
     margin-top: -168pt;
@@ -2579,8 +2575,24 @@ footer.main ul.actions li.action label {
     transform: rotate(-6deg);
   }
 }
-/* line 72, ../../style/email.scss */
-.email .cover .bottom {
+/* line 77, ../../style/email.scss */
+.email .cards .cover .bottom {
   position: absolute;
   bottom: 0;
+}
+/* line 85, ../../style/email.scss */
+.email section.detail {
+  width: 168pt;
+  min-height: 0;
+  padding-bottom: 40pt;
+}
+@media screen and (min-width: 768px) {
+  /* line 85, ../../style/email.scss */
+  .email section.detail {
+    position: absolute;
+    left: 50vw;
+    top: 25vh;
+    margin-top: 336pt;
+    margin-left: -84pt;
+  }
 }

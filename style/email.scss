@@ -5,72 +5,94 @@
     margin: $gutter;
 
     @media screen and (max-width: $breakMicro) {
-        padding: 0;
-        max-width: 100vw;
-        min-height: 100vh;
-        overflow-x: hidden;
+//         margin: 0;
+//         max-width: 100vw;
+//         min-height: 100vh;
+//         overflow-x: hidden;
     }
     
-    header.card {
-        
-        @media screen and (max-width: $breakMicro) {
-            position: relative;
-            min-height: 0;
-            margin: $gutter;
-            padding-bottom: $broadMargin;
-            @include transform(rotate(-2deg) translateX($gutter));
-        }
-        
-        @media screen and (min-width: $breakMicro) {
-            width: $col * 4;
-            position: absolute;
-            left: 50vw;
-            top: 0;
-            height: $coverHeight;
-            margin-left: -$col * 2;
-            @include transform(rotate(-3deg) translateX(-$gutter));
-        }
-        
-        @media screen and (min-width: $breakSmall) {
-            margin-left: 0;
-            @include transform(rotate(3deg));
-            top: 50vh;
-            margin-top: -$coverHeight / 2;
-        }
-    }
-    
-    .cover {
-        transform-origin: center center;
-        -webkit-transform-origin: center center;
-        -moz-transform-origin: center center;
-        -ms-transform-origin: center center;
-        
-        background: hsl(100,100%,80%);
+    .cards {
+        min-height: 75vh;
 
-        @media screen and (max-width: $breakMicro) {
-            @include transform(rotate(3deg));
-            position: relative;
-            top: -$broadMargin/2;
+        header.card {
+            
+            @media screen and (max-width: $breakMicro) {
+                position: relative;
+                min-height: 0;
+                width: auto !important;
+                border: 0;
+                padding: $broadMargin/2 0 $broadMargin 0;
+        //             @include transform(rotate(-2deg) translateX($gutter));
+            }
+            
+            @media screen and (min-width: $breakMicro) {
+                width: $col * 4;
+                position: absolute;
+                left: 50vw;
+                top: 0;
+                height: $coverHeight;
+                margin-left: -$col * 2;
+                @include transform(rotate(-3deg) translateX(-$gutter));
+            }
+            
+            @media screen and (min-width: $breakSmall) {
+                margin-left: 0;
+                @include transform(rotate(3deg));
+                top: 50vh;
+                margin-top: -$coverHeight / 2;
+            }
         }
         
-        @media screen and (min-width: $breakMicro) {
-            @include transform(rotate(6deg) translateX($gutter));
-            left: 50vw;
-            margin-left: -$coverWidth / 2;
-            position: absolute;
-            top: $typeHeaderLeading * 5;
+        .cover {
+            transform-origin: center center;
+            -webkit-transform-origin: center center;
+            -moz-transform-origin: center center;
+            -ms-transform-origin: center center;
+            
+            background: hsl(100,100%,80%);
+        
+            @media screen and (max-width: $breakMicro) {
+                @include transform(rotate(3deg) scale(.75) translateY(-$coverHeight / 8));
+                position: relative;
+                top: -$broadMargin/2;
+        //             width: auto;
+        //             max-width: $coverWidth;
+            }
+            
+            @media screen and (min-width: $breakMicro) {
+                @include transform(rotate(6deg) translateX($gutter));
+                left: 50vw;
+                margin-left: -$coverWidth / 2;
+                position: relative;
+                top: $typeHeaderLeading * 5;
+            }
+            
+            @media screen and (min-width: $breakSmall) {
+                top: 50vh;
+                margin-left: -$coverWidth;
+                margin-top: -$coverHeight / 2;
+                @include transform(rotate(-6deg));
+            }
+            
+            .bottom {
+                position: absolute;
+                bottom: 0;
+            }
         }
+    }
+    
+    
+    section.detail {
+        width: $articleSideNarrow;
+        min-height: 0;
+        padding-bottom: $broadMargin;
         
         @media screen and (min-width: $breakSmall) {
-            top: 50vh;
-            margin-left: -$coverWidth;
-            margin-top: -$coverHeight / 2;
-            @include transform(rotate(-6deg));
-        }
-        
-        .bottom {
             position: absolute;
-            bottom: 0;
+            left: 50vw;
+            top: 25vh;
+            margin-top: $coverHeight;
+            margin-left: -$articleSideNarrow / 2;
         }
     }
 }
