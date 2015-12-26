@@ -239,6 +239,19 @@ a, input[type=submit], input[type=button] {
     @include cardCover;
 }
 
+.responsiveCard.cover {
+    @media (max-width: $breakMicro) {
+//         border: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        position: absolute;
+//         height: auto;
+        width: auto;
+    }
+}
+
 // Globals
 
 .invisible {

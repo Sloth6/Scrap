@@ -166,7 +166,7 @@ html {
     @include typeSubtitle;
 }
 
-.headerType {
+.headerType, .typeHeader {
     @include typeHeader;
 }
 

@@ -2481,230 +2481,106 @@ footer.main ul.actions li.action label {
   text-transform: lowercase;
 }
 
-@media screen and (max-width: 640px) {
-  /* line 3, ../../style/index.scss */
-  section.page {
-    text-align: center;
-    margin-top: 56pt;
+/* line 4, ../../style/email.scss */
+.email {
+  margin: 8pt;
+}
+@media screen and (max-width: 480px) {
+  /* line 4, ../../style/email.scss */
+  .email {
+    padding: 0;
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 }
-/* line 9, ../../style/index.scss */
-section.page .animateIn {
-  position: absolute;
-  transform-origin: center center;
-  -webkit-transform-origin: center center;
-  opacity: 0;
-}
-/* line 16, ../../style/index.scss */
-section.page .card {
-  transform-origin: center center;
-  -webkit-transform-origin: center center;
-}
-@media screen and (max-width: 640px) {
-  /* line 16, ../../style/index.scss */
-  section.page .card {
+@media screen and (max-width: 480px) {
+  /* line 14, ../../style/email.scss */
+  .email header.card {
     position: relative;
-    text-align: left;
+    min-height: 0;
+    margin: 8pt;
+    padding-bottom: 40pt;
+    background: red;
+    -moz-transform: rotate(-2deg) translateX(8pt);
+    -ms-transform: rotate(-2deg) translateX(8pt);
+    -webkit-transform: rotate(-2deg) translateX(8pt);
+    transform: rotate(-2deg) translateX(8pt);
   }
 }
-/* line 25, ../../style/index.scss */
-section.page .card.small {
-  width: 168pt;
-  padding-bottom: 40pt;
-}
-@media screen and (max-width: 640px) {
-  /* line 30, ../../style/index.scss */
-  section.page .card.cover {
-    width: 90%;
-    max-width: 224pt;
+@media screen and (min-width: 480px) {
+  /* line 14, ../../style/email.scss */
+  .email header.card {
+    width: 224pt;
+    position: absolute;
+    left: 50vw;
+    top: 0;
+    height: 336pt;
+    margin-left: -112pt;
+    -moz-transform: rotate(-3deg) translateX(-8pt);
+    -ms-transform: rotate(-3deg) translateX(-8pt);
+    -webkit-transform: rotate(-3deg) translateX(-8pt);
+    transform: rotate(-3deg) translateX(-8pt);
   }
 }
-/* line 38, ../../style/index.scss */
-section.page footer {
-  font-size: 8pt;
-  font-weight: 500;
-  line-height: 12pt;
-  letter-spacing: 0.03125em;
-  width: 100vw;
-  padding-bottom: 8pt;
-  text-align: center;
+@media screen and (min-width: 768px) {
+  /* line 14, ../../style/email.scss */
+  .email header.card {
+    margin-left: 0;
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+    top: 50vh;
+    margin-top: -168pt;
+  }
 }
-
-/* line 48, ../../style/index.scss */
-section.page.index nav {
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1000;
-}
-/* line 54, ../../style/index.scss */
-section.page.index nav ul.menu li.first:hover {
-  opacity: 1 !important;
-}
-/* line 58, ../../style/index.scss */
-section.page.index nav .signUp {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-/* line 65, ../../style/index.scss */
-section.page.index .page {
-  min-height: 100vh;
-  position: relative;
-}
-/* line 72, ../../style/index.scss */
-section.page.index .page .collection .cover {
-  position: absolute;
-  left: 50vw;
-  top: 168pt;
-  margin-left: -112pt;
-  z-index: 3;
-  -webkit-transform-origin: center center;
+/* line 43, ../../style/email.scss */
+.email .cover {
   transform-origin: center center;
-}
-/* line 83, ../../style/index.scss */
-section.page.index .page .caption {
-  position: absolute;
-  text-align: center;
-  top: 0;
-  left: 12.5vw;
-  right: 12.5vw;
-  width: 75vw;
-  margin-top: 40pt;
-}
-/* line 92, ../../style/index.scss */
-section.page.index .page .caption .animateInPop {
-  position: absolute;
-  width: 100%;
-}
-/* line 97, ../../style/index.scss */
-section.page.index .page .caption p {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-/* line 104, ../../style/index.scss */
-section.page.index .page.example {
-  height: 200vh;
-}
-/* line 107, ../../style/index.scss */
-section.page.index .page.example.intro {
-  height: 400vh;
-}
-/* line 112, ../../style/index.scss */
-section.page.index .page.example.intro .caption p.createAccount {
-  line-height: 36pt;
-  -moz-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-/* line 119, ../../style/index.scss */
-section.page.index .page.example.join {
-  height: 120vh;
-}
-/* line 122, ../../style/index.scss */
-section.page.index .page.example.join .cover {
-  margin-top: 25vh;
-  border-style: dashed !important;
-  border-color: #000000 !important;
-  background-color: white !important;
-}
-/* line 97, ../../style/globals/_components.scss */
-section.page.index .page.example.join .cover.hover {
-  -moz-transform: none;
-  -ms-transform: none;
-  -webkit-transform: none;
-  transform: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-/* line 127, ../../style/index.scss */
-section.page.index .page.example.join .createAccount {
-  padding-top: 26.66667pt;
-}
-/* line 132, ../../style/index.scss */
-section.page.index .page.example .collection {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  z-index: 2;
-}
-/* line 139, ../../style/index.scss */
-section.page.index .page.example .collection.intro .translate {
   -webkit-transform-origin: center center;
-  transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  background: #bbff99;
 }
-/* line 145, ../../style/index.scss */
-section.page.index .page.example .collection .cover {
-  cursor: default;
+@media screen and (max-width: 480px) {
+  /* line 43, ../../style/email.scss */
+  .email .cover {
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+    position: relative;
+    top: -20pt;
+  }
 }
-/* line 148, ../../style/index.scss */
-section.page.index .page.example .collection .cover.scale {
-  top: 0;
-  left: 0;
-  margin: 0;
-  z-index: 2;
+@media screen and (min-width: 480px) {
+  /* line 43, ../../style/email.scss */
+  .email .cover {
+    -moz-transform: rotate(6deg) translateX(8pt);
+    -ms-transform: rotate(6deg) translateX(8pt);
+    -webkit-transform: rotate(6deg) translateX(8pt);
+    transform: rotate(6deg) translateX(8pt);
+    left: 50vw;
+    margin-left: -112pt;
+    position: absolute;
+    top: 120pt;
+  }
 }
-/* line 154, ../../style/index.scss */
-section.page.index .page.example .collection .cover.scale h1 {
-  font-size: 24vw;
-  line-height: .8em;
-  margin-top: -.03125em;
+@media screen and (min-width: 768px) {
+  /* line 43, ../../style/email.scss */
+  .email .cover {
+    top: 50vh;
+    margin-left: -224pt;
+    margin-top: -168pt;
+    -moz-transform: rotate(-6deg);
+    -ms-transform: rotate(-6deg);
+    -webkit-transform: rotate(-6deg);
+    transform: rotate(-6deg);
+  }
 }
-/* line 162, ../../style/index.scss */
-section.page.index .page.example .collection .exampleContent {
+/* line 72, ../../style/email.scss */
+.email .cover .bottom {
   position: absolute;
-  overflow-x: hidden;
-  height: 100%;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  opacity: 0;
-}
-/* line 171, ../../style/index.scss */
-section.page.index .page.example .collection .exampleContent article {
-  -webkit-transform-origin: center center;
-  transform-origin: center center;
-  position: absolute;
-  top: 168pt;
-  left: 50vw;
-}
-
-/* line 185, ../../style/index.scss */
-section.readOnly header.card {
-  z-index: 10;
-  position: relative;
-  opacity: 1;
-  cursor: default;
-}
-/* line 191, ../../style/index.scss */
-section.readOnly header.card section.form {
-  position: absolute;
-  bottom: 8pt;
-  opacity: 0;
-  width: 100%;
-}
-/* line 203, ../../style/index.scss */
-section.readOnly header.card section.form .formToggle {
-  position: absolute;
-  z-index: 10;
   bottom: 0;
-  right: 8pt;
-}
-/* line 212, ../../style/index.scss */
-section.readOnly .card {
-  position: absolute;
-  top: 0;
-}
-/* line 216, ../../style/index.scss */
-section.readOnly .card.blank {
-  z-index: 0;
-}
-/* line 220, ../../style/index.scss */
-section.readOnly .card.logo {
-  border: 0;
-  background: transparent;
-  padding: 0;
 }
