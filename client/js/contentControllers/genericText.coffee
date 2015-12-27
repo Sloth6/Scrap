@@ -18,15 +18,13 @@ window.initGenericText = ($content, options) ->
 
   startEditingText = () ->
     $card.add($content).addClass 'editing'
-    $editable.attr 'contentEditable', 'true'
     $done.removeClass 'invisible'
     $('body').on 'mousedown', stopEditingText
 
   stopEditingText = () ->
     $card.add($content).removeClass 'editing'
-    $editable.attr 'contentEditable', 'false'
     $done.addClass 'invisible'
-    $('body').on 'mousedown', stopEditingText
+    $('body').off 'mousedown', stopEditingText
   
   stopPropagation = (event) ->
     return if Math.abs(event.deltaX) > Math.abs(event.deltaY)
@@ -41,6 +39,18 @@ window.initGenericText = ($content, options) ->
   #   $cancel.click () ->
   #     stopEditingText()
 
+  new Pen
+    editor: $editable[0]
+    stay: false
+    list: [
+      'blockquote', 'h1', 'h2', 'h3', 'p', 'insertorderedlist', 'insertunorderedlist',
+      'indent', 'outdent', 'bold', 'underline' #'italic',
+    ]
+  
+  $('.pen-menu').mousedown (event) ->
+    event.stopPropagation()
+    event.preventDefault()
+  
   $content.mousedown (e) ->
     $(@).data 'lastX', e.clientX
     $(@).data 'lastY', e.clientY
@@ -58,8 +68,4 @@ window.initGenericText = ($content, options) ->
   $editable.
     css('overflow-y':'auto', 'max-height': maxHeight).
     scroll(stopPropagation).
-    mousewheel(stopPropagation).
-    on('blur', () ->
-      #http://stackoverflow.com/questions/12353247/force-contenteditable-div-to-stop-accepting-input-after-it-loses-focus-under-web
-      $('<div contenteditable="true"></div>').appendTo('body').focus().remove()
-    )
+    mousewheel(stopPropagation)

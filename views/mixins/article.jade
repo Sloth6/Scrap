@@ -74,8 +74,8 @@ mixin articleMixin(article)
                   .source.smallType.smallCaps youtube
 
             when 'text'
-              //- textarea.modify(name='content', style='height:300px')!=article.content
-              .editable(contentEditable="false", designmode="on")
+              //- contentEditable="false", designmode="on"
+              .editable()
                 | !{article.content}
               ul.cardActions
                 li.right
