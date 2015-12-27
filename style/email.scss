@@ -39,7 +39,8 @@
                 margin-left: 0;
                 @include transform(rotate(3deg));
                 top: 50vh;
-                margin-top: -$coverHeight / 2;
+                height: auto;
+                margin-top: -$coverHeight / 3;
             }
         }
         
@@ -103,11 +104,10 @@
         }
         
         @media screen and (min-width: $breakSmall) {
-/*
             top: 50vh;
-            margin-top: $typeHeaderLeading * 4;
+            margin-top: $broadMargin;
+            @include transform(rotate(7deg));
             margin-left: 6.25vw;
-*/
         }
     }
 }

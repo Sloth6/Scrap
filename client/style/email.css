@@ -2528,10 +2528,11 @@ footer.main ul.actions li.action label {
     -webkit-transform: rotate(3deg);
     transform: rotate(3deg);
     top: 50vh;
-    margin-top: -168pt;
+    height: auto;
+    margin-top: -112pt;
   }
 }
-/* line 46, ../../style/email.scss */
+/* line 47, ../../style/email.scss */
 .email .cards .cover {
   transform-origin: center center;
   -webkit-transform-origin: center center;
@@ -2540,7 +2541,7 @@ footer.main ul.actions li.action label {
   background: #bbff99;
 }
 @media screen and (max-width: 400px) {
-  /* line 46, ../../style/email.scss */
+  /* line 47, ../../style/email.scss */
   .email .cards .cover {
     -moz-transform: rotate(3deg) scale(0.75) translateY(-42pt);
     -ms-transform: rotate(3deg) scale(0.75) translateY(-42pt);
@@ -2551,7 +2552,7 @@ footer.main ul.actions li.action label {
   }
 }
 @media screen and (min-width: 400px) {
-  /* line 46, ../../style/email.scss */
+  /* line 47, ../../style/email.scss */
   .email .cards .cover {
     -moz-transform: rotate(6deg) translateX(8pt);
     -ms-transform: rotate(6deg) translateX(8pt);
@@ -2564,7 +2565,7 @@ footer.main ul.actions li.action label {
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 46, ../../style/email.scss */
+  /* line 47, ../../style/email.scss */
   .email .cards .cover {
     top: 50vh;
     margin-left: -224pt;
@@ -2575,26 +2576,26 @@ footer.main ul.actions li.action label {
     transform: rotate(-6deg);
   }
 }
-/* line 77, ../../style/email.scss */
+/* line 78, ../../style/email.scss */
 .email .cards .cover .bottom {
   position: absolute;
   bottom: 0;
 }
-/* line 85, ../../style/email.scss */
+/* line 86, ../../style/email.scss */
 .email section.detail {
   width: 168pt;
   min-height: 0;
   padding-bottom: 40pt;
 }
 @media screen and (max-width: 400px) {
-  /* line 85, ../../style/email.scss */
+  /* line 86, ../../style/email.scss */
   .email section.detail {
     border: 0;
     padding: 0;
   }
 }
 @media screen and (min-width: 400px) {
-  /* line 85, ../../style/email.scss */
+  /* line 86, ../../style/email.scss */
   .email section.detail {
     -moz-transform: rotate(-5deg);
     -ms-transform: rotate(-5deg);
@@ -2608,12 +2609,14 @@ footer.main ul.actions li.action label {
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 85, ../../style/email.scss */
+  /* line 86, ../../style/email.scss */
   .email section.detail {
-    /*
-                top: 50vh;
-                margin-top: $typeHeaderLeading * 4;
-                margin-left: 6.25vw;
-    */
+    top: 50vh;
+    margin-top: 40pt;
+    -moz-transform: rotate(7deg);
+    -ms-transform: rotate(7deg);
+    -webkit-transform: rotate(7deg);
+    transform: rotate(7deg);
+    margin-left: 6.25vw;
   }
 }
