@@ -78,8 +78,8 @@ mixin articleMixin(article)
               .editable()
                 | !{article.content}
               ul.cardActions
-                li.right
-                  a.invisible.done.confirm(href='#') Done
+                li.right.showOnEditing
+                  a.done.confirm(href='#') Done
                   //- a.invisible.cancel.confirm(href='#') Cancel
             default
               p!=article.content

@@ -13,21 +13,20 @@ textFormat = (elems) ->
       collectionViewController.draw $('.collection.open')
 
 initText = ($content) ->
-  collectionKey  = $content.data 'collectionkey'
-  articleId = $content.attr 'id'
-  timeout   = null
-  emitInterval = 200
+  timeout       = null
+  emitInterval  = 200
+  collectionKey = contentModel.getCollectionkey $content
 
   onChange = (text) ->
     textFormat $content
     clearTimeout timeout if timeout
     timeout = setTimeout (() ->
-      socket.emit 'updateArticle', { collectionKey, userId, articleId, content:text }
+      data =
+        collectionKey: collectionKey
+        userId: window.userId
+        articleId: $content.attr('id')
+        content: text
+      socket.emit 'updateArticle', data
     ), emitInterval
 
   initGenericText $content, { onChange }
-  
-  # if $content.find('.editable').text().length < lengthForLong
-  #   $content.addClass 'short'
-  # else
-  #   $content.addClass 'long'

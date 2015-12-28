@@ -17,7 +17,6 @@ drawOpenCollection = ($collection, animate) ->
     
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
     if isNaN(sizeTotal)
-      console.log contentModel.getSize($(@)), $(@).data('margin')
       throw 'shit'
     contentViewController.draw $(@), { animate }
 
@@ -114,9 +113,7 @@ window.collectionViewController =
     $parentCollection  = collectionModel.getParent $collection
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
-    
-    console.log 'got collection add form', $collectionAddForm
-    
+        
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection

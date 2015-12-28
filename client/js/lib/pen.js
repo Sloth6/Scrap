@@ -1,3 +1,4 @@
+'use strict';
 /*! Licensed under MIT, https://github.com/sofish/pen */
 (function(root, doc) {
 
