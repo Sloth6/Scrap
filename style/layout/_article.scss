@@ -84,7 +84,7 @@ body {
             font-style: normal;
             
             .card {
-                width: $articleSideNarrow;
+                width: $articleSide;
             }
             
             * {
@@ -102,36 +102,81 @@ body {
             .editable {
                 height: 100%;
                 margin-bottom: $broadMargin;
-            }                
-
-            &.short {
-                .editable {
+                padding-left: $gutter * 2;
+                padding-right: $gutter;
+                @include typeBody;
+                
+                h1 {
+//                     color: blue;
                     @include typeLarge;
-                    margin-top: -1pt;
-                }
-            }
-            
-            &.long {
-                .editable {
-                    @include typeBody;
-                    margin-top: $typeBodyLeading / 2.5;
                 }
                 
-                .card {
-//                     width: $articleSide;
-                                            
-                    .editable {
-//                         padding-left: $col / 2;
-//                         padding-right: $col / 4;
-                   
-/*
-                        * {
-                            &:first-child {
-                                @include typeHeader;
-                            }
+                h2 {
+//                     color: purple;
+                    @include typeBodySmallCaps;
+                }
+                
+                div, p, ul, ol, span, blockquote, h1, h2 {
+                    margin-bottom: $typeBodyLeading/2;
+                }
+                
+                div {
+//                     background-color: magenta;
+                }
+                
+                p {
+//                     background: red;
+                }
+                
+                blockquote {
+                    border-left: 1px solid rgba(0,0,0,.25);
+                    padding-left: $cell/1.5;
+                    position: relative;
+                    left: -$cell/1.5;
+                    margin-left: -1px;
+                    font-style: italic;
+                }
+                
+                ul, ol {
+                    position: relative;
+//                     margin: 0;
+//                     padding: 0;
+                    
+                    li {
+                        &:before {
+                            text-align: right;
+//                             background: aqua;
+                            position: absolute;
+                            width: $gutter * 2;
+                            left: -($gutter * 2) - $cardPaddingLeft/2;
                         }
-*/
+//                         margin: 0;
+//                         padding: 0;
                     }
+                }
+                
+                ul {
+//                     background: orange;
+                    
+                    li {
+                        &:before {
+                            content: '•';
+                        }
+                    }
+                }
+                
+                ol {
+                    counter-reset: li;
+//                     background: yellow;
+                    
+                    li {
+                        &:before {
+                            content:counter(li);
+                            counter-increment:li;
+                            @include typeBodySmallCaps;
+                            margin-top: .225em;
+                        }
+                    }                    
                 }
             }
         }
@@ -318,6 +363,7 @@ body {
                 }
                                
                 .text {
+                    overflow: visible;
 
                     header {
                         position: absolute;
