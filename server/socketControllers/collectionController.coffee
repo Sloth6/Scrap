@@ -15,7 +15,149 @@ inviteEmailHtml = (user, collection) ->
   title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
   subject = "#{creator.name} invited you to “#{collection.name}” on Scrap"  
   html = '''
-<html> <head> <meta charset=utf-8> <meta name=viewport content='width=device-width, maximum-scale=1, minimum-scale=1'> </head> <body style=margin:0;padding:0> <article class=email style="margin-top:48pt;margin-bottom:72pt;font-family:-apple-system,'Helvetica Neue','Helvetica','Arial',sans-serif"> <section class=cards> <header class=card style="padding:4pt 4pt 120pt 4pt;width:320px;border:1px solid black;position:relative;left:50%;margin-left:-160px;-webkit-transform:rotate(-3deg);-moz-transform:rotate(-3deg);-ms-transform:rotate(-3deg);transform:rotate(-3deg)"> <h1 class=typeHeader style=font-size:24px;font-weight:600;letter-spacing:-.03215em;margin:0;padding:0> Joel Simon invited you to “<a href=http://tryscrap.com/ style="text-decoration:none;color:black;border-bottom:.125em solid black">Pack Name</a>” on <a href=http://tryscrap.com/ style="text-decoration:none;color:black;border-bottom:.125em solid black">Scrap</a>. </h1> </header> <a href=# style=text-decoration:none;color:black;height:480px;width:320px;display:block;position:relative;left:50%;top:-72pt;margin-left:-160px> <div style="height:480px;width:320px;position:absolute;border:1px solid black;background:white;-webkit-transform:rotate(8deg);-moz-transform:rotate(8deg);-ms-transform:rotate(8deg);transform:rotate(8deg)"></div> <div style="height:480px;width:320px;position:absolute;border:1px solid black;background:white;-webkit-transform:rotate(-6deg);-moz-transform:rotate(-6deg);-ms-transform:rotate(-6deg);transform:rotate(-6deg)"></div> <div style="height:480px;width:320px;position:absolute;border:1px solid black;background:white;-webkit-transform:rotate(-4deg);-moz-transform:rotate(-4deg);-ms-transform:rotate(-4deg);transform:rotate(-4deg)"></div> <article class='card cover' style="height:100%;width:100%;border:1px solid black;padding:4pt;background-color:hsl(100,100%,80%);-webkit-transform:rotate(3deg);-moz-transform:rotate(3deg);-ms-transform:rotate(3deg);transform:rotate(3deg)"> <h1 class='typeTitle typeWeightBold typeOutlineClear typeOutlineBlackOnHover' style="font-size:48pt;line-height:48pt;letter-spacing:-.03125em;margin:0;-webkit-text-stroke:1px black;-webkit-text-fill-color:transparent">Pack Name</h1> <div class=bottom style=position:absolute;bottom:4pt;left:4pt;right:4pt> <ul class='users typeSmall' style=list-style:none;margin:0;padding:0;font-size:10pt> <li>Name Name</li> <li>Name Name</li> <li>Name Name</li> <li>Name Name</li> </ul> </div> </article> </a> </section> <section class='card detail' style="padding:4pt 4pt 48pt 4pt;border:1px solid black;font-size:12pt;background:white;width:240px;position:relative;left:50%;margin-left:-120px;-webkit-transform:rotate(-8deg);-moz-transform:rotate(-8deg);-ms-transform:rotate(-8deg);transform:rotate(-8deg)"> Scrap — save and share bits of the web. Get started. </section> </article> </body> </html>
+  <!DOCTYPE html>
+  <html>
+      <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1">
+      </head>
+      <body style="
+          margin: 0;
+          padding: 0;
+      ">
+          <article class="email" style="
+              margin-top: 48pt;
+              margin-bottom: 72pt;
+              font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+          ">
+              <section class="cards">
+                  <header class="card" style="
+                      padding: 4pt 4pt 120pt 4pt;
+                      width: 320px;
+                      border: 1px solid black;
+                      position: relative;
+                      left: 50%;
+                      margin-left: -160px;
+                      -webkit-transform: rotate(-3deg);
+                         -moz-transform: rotate(-3deg);
+                          -ms-transform: rotate(-3deg);
+                              transform: rotate(-3deg);
+                  ">
+                      <h1 class="typeHeader" style="
+                          font-size: 24px;
+                          font-weight: 600;
+                          letter-spacing: -.03215em;
+                          margin: 0;
+                          padding: 0;
+                      ">
+                          Joel Simon invited you to “<a href="http://tryscrap.com/" style="text-decoration: none; color: black; border-bottom: .125em solid black">Pack Name</a>” on <a href="http://tryscrap.com/" style="text-decoration: none; color: black; border-bottom: .125em solid black">Scrap</a>.
+                      </h1>
+                  </header>
+                  <a href="#" style="
+                      text-decoration: none;
+                      color: black;
+                      height: 480px;
+                      width: 320px;
+                      display: block;
+                      position: relative;
+                      left: 50%;
+                      top: -72pt;
+                      margin-left: -160px;
+                  ">
+                      <div style="
+                          height: 480px;
+                          width: 320px;
+                          position: absolute;
+                          border: 1px solid black;
+                          background: white;
+                          -webkit-transform: rotate(8deg);
+                             -moz-transform: rotate(8deg);
+                              -ms-transform: rotate(8deg);
+                                  transform: rotate(8deg);
+                          "></div>
+                      <div style="
+                          height: 480px;
+                          width: 320px;
+                          position: absolute;
+                          border: 1px solid black;
+                          background: white;
+                          -webkit-transform: rotate(-6deg);
+                             -moz-transform: rotate(-6deg);
+                              -ms-transform: rotate(-6deg);
+                                  transform: rotate(-6deg);
+                          "></div>
+                      <div style="
+                          height: 480px;
+                          width: 320px;
+                          position: absolute;
+                          border: 1px solid black;
+                          background: white;
+                          -webkit-transform: rotate(-4deg);
+                             -moz-transform: rotate(-4deg);
+                              -ms-transform: rotate(-4deg);
+                                  transform: rotate(-4deg);
+                          "></div>
+                      <article class="card cover" style="
+                          height: 100%;
+                          width: 100%;
+                          border: 1px solid black;
+                          padding: 4pt;
+                          background-color: hsl(100,100%,80%);
+                          -webkit-transform: rotate(3deg);
+                             -moz-transform: rotate(3deg);
+                              -ms-transform: rotate(3deg);
+                                  transform: rotate(3deg);
+                      ">
+                          <h1 class="typeTitle typeWeightBold typeOutlineClear typeOutlineBlackOnHover"
+                              style="
+                                  font-size: 48pt;
+                                  line-height: 48pt;
+                                  letter-spacing: -.03125em;
+                                  margin: 0;
+                                  -webkit-text-stroke: 1px black;
+                                  -webkit-text-fill-color: transparent;
+                              ">Pack Name</h1>
+                          <div class="bottom" style="
+                              position: absolute;
+                              bottom: 4pt;
+                              left: 4pt;
+                              right: 4pt;
+                          ">
+                              <ul class="users typeSmall" style="
+                                  list-style: none;
+                                  margin: 0;
+                                  padding: 0;
+                                  font-size: 10pt;
+                              ">
+                                  <li>Name Name</li>
+                                  <li>Name Name</li>
+                                  <li>Name Name</li>
+                                  <li>Name Name</li>
+                              </ul>
+                          </div>
+                          </article>
+                      </a>
+              </section>
+              <section class="card detail" style="
+                  padding: 4pt 4pt 48pt 4pt;
+                  border: 1px solid black;
+                  font-size: 12pt;
+                  background: white;
+                  width: 240px;
+                  position: relative;
+                  left: 50%;
+                  margin-left: -120px;
+                  -webkit-transform: rotate(-8deg);
+                     -moz-transform: rotate(-8deg);
+                      -ms-transform: rotate(-8deg);
+                          transform: rotate(-8deg);
+                  
+              ">
+                  Scrap — save and share bits of the web. Get started.
+              </section>
+          </article>
+      </body>
+  </html>
 '''
   return { html, subject }
 
