@@ -37,7 +37,7 @@ inviteEmailHtml = (user, collection) ->
                     padding: 4pt 4pt 36pt 4pt;
                     text-align: center;
                 ">
-                    Joel Simon shared <br>“<a href="http://tryscrap.com/" style="text-decoration: none; color: black; border-bottom: 0 solid black">Pack Name</a>”<br> with you on <a href="http://tryscrap.com/" style="text-decoration: none; color: black; border-bottom: 0 solid black">Scrap</a>.
+                    #{creator.name} shared <br>“<a href="http://tryscrap.com/" style="text-decoration: none; color: black; border-bottom: 0 solid black">#{collection.name}</a>”<br> with you on <a href="http://tryscrap.com/" style="text-decoration: none; color: black; border-bottom: 0 solid black">Scrap</a>.
                 </td>
             </tr>
             <tr>
@@ -71,7 +71,7 @@ inviteEmailHtml = (user, collection) ->
                                             margin: 0;
                                             -webkit-text-stroke: 1px black;
                                             -webkit-text-fill-color: transparent;
-                                        ">Pack Name</h1>
+                                        ">#{collection.name}</h1>
                                 </td>
                             </tr>
                             <tr>
