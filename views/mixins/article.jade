@@ -15,8 +15,13 @@ mixin articleMixin(article)
         .articleControls
           - if(article.Creator !== undefined)
             author.smallType!=article.Creator.name
-          
-        .card.cardHover.cardDrag(class=article.contentType)
+        -
+          if (article.contentType == 'text') {
+            backgroundColor = 'hsl(100,100%,95%)'
+          } else {
+            backgroundColor = ''
+          }
+        .card.cardHover.cardDrag(class=article.contentType, style='background-color:' + backgroundColor + ';')
           case article.contentType
             when 'image'
               - var content = JSON.parse(article.content)
