@@ -84,6 +84,12 @@ body {
             font-style: normal;
             max-width: 50vh !important;
             
+            &.editing, &.editing .card {
+                &:hover {
+                    cursor: text;
+                }
+            }
+            
             .card {
                 width: $articleSide;
                 max-width: 50vh !important;
