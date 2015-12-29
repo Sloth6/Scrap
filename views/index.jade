@@ -10,7 +10,11 @@ block scripts
   script(src="/js/page/stackAnimation.js")
   script(src="/js/page/index.js")
   script(src="/js/menuControllers/header.js")
+  script(src="/js/utilityFunction.js")
+
   //- script(src="/js/menuControllers/settings.js")
+  script(src="/js/contentModel.js")
+  script(src="/js/collectionModel.js")
   script(src="/js/contentControllers/stack.js")
   script(src="/js/contentControllers/packCover.js")
   script(src="/js/contentControllers/file.js")
@@ -20,6 +24,16 @@ block scripts
   script(src="/js/contentControllers/text.js")
   script(src="/js/contentControllers/youtube.js")
   script(src="/js/contentControllers/playable.js")
+
+  script.
+    var marginTop = 0;
+    var socket = {
+      emit: function(){}
+    }
+  script(src='/js/lib/pen.js')
+  script(src='/js/lib/markdown.js')
+  script(src="/js/contentControllers/genericText.js")
+
 
 block content
   section.page.index
