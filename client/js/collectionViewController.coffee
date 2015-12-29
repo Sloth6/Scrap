@@ -49,10 +49,10 @@ scaleDownTooBigContent = (scale, $content, transformOrigin) ->
   
 # Given the ith item in a collection of length n,
 # how hard fron neighbor should it be?
-calculateSpacing = (i, n) ->
+calculateSpacing = (i, n, m) ->
   k = n - i # Distance from end. The largest spacing is at end.
   # Two parameters to vary, largest spacing and rate of decrease
-  m = 200 # The largest spacing
+  m = m # The largest spacing
   d = 1   # The rate of decrease
   func = (x) -> (1 - logisticFunction(x)) * 2
   func(k * d) * m
@@ -90,23 +90,25 @@ drawCollectionPreview = ($collection, animate) ->
   flushRightOffset  = 0
   
   if $collection.data('previewState') is 'compactReverse'
-    translateX += 18
+    translateX += 0
   i = 0
   $content.each () ->
     i += 1
     contentWidth = $(@).width()
     switch $collection.data('previewState')
       when 'compact'
-        spacing = 0
-        rotateZ = (Math.random() - .5) * 12
+        spacing = 4 # calculateSpacing i, $content.length, 12
+        translateY = 4 * (i - 1) # calculateSpacing i, $content.length, 12
+        rotateZ = 0 # (Math.random() - .5) * 12
       when 'expanded'
-        spacing = calculateSpacing i, $content.length
-        rotateZ = (Math.random() - .5) * 6
+        spacing = 48 # calculateSpacing i, $content.length, 288
+        translateY = 48 * (i - 1) # calculateSpacing i, $content.length, 12
+        rotateZ = 0 # (Math.random() - .5) * 6
       when 'compactReverse'
-        spacing = -32/$content.length
-        rotateZ = (Math.random() - .5) * 12
+        spacing =  -4
+        rotateZ = 0 # (Math.random() - .5) * 12
         contentWidth = 0
-        translateY = 32
+        translateY = 4 * ($content.length- (i - 1)) 
         flushRightOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
       when 'none'
         spacing = 0
