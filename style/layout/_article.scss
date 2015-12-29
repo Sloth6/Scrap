@@ -82,9 +82,11 @@ body {
         
         &.text {
             font-style: normal;
+            max-width: 50vh !important;
             
             .card {
                 width: $articleSide;
+                max-width: 50vh !important;
             }
             
             * {
@@ -110,20 +112,34 @@ body {
 //                     color: blue;
                     @include typeLarge;
                     margin-top: $typeBodyLeading;
+                    
+                    &:first-child {
+                        margin-top: 0;
+                    }
                 }
                 
                 h2 {
 //                     color: purple;
                     @include typeBodySmallCaps;
+//                     margin-top: $typeBodyLeading / 2;
+                    
+                    &:first-child {
+                        margin-top: $typeBodyLeading/2;
+                    }
                 }
                 
-                div, p, ul, ol, span, blockquote {
-                    margin-top: $typeBodyLeading/4;
-                    margin-bottom: $typeBodyLeading/4;
+                p + h2, ul + h2, ol + h2, blockquote + h2 {
+                    margin-top: $typeBodyLeading;
                 }
                 
-                h1, h2 {
-                    margin-top: $typeBodyLeading/2;
+                div, p, ul, ol, span, blockquote, h1, h2 {
+                    margin-bottom: $typeBodyLeading/2;
+                }
+                
+                > p, > ul, > ol {
+                    &:first-child {
+                        margin-top: $typeBodyLeading/3;
+                    }
                 }
                 
                 div {
@@ -166,7 +182,7 @@ body {
                     
                     li {
                         &:before {
-                            content: '•';
+                            content: '–';
                         }
                     }
                 }
