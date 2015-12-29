@@ -1,25 +1,27 @@
+'use strict'
 lengthForLong = 500
 
-textFormat = (elems) ->
-  elems.each () ->
-    editable = $(@).find('.editable')
+# textFormat = (elems) ->
+#   elems.each () ->
+#     editable = $(@).find('.editable')
 
-    if editable.text().length < lengthForLong and !$(@).hasClass('short')
-      $(@).addClass('short').removeClass('long')
-      collectionViewController.draw $('.collection.open')
+#     if editable.text().length < lengthForLong and !$(@).hasClass('short')
+#       $(@).addClass('short').removeClass('long')
+#       collectionViewController.draw $('.collection.open')
     
-    else if editable.text().length > lengthForLong and !$(@).hasClass('long')
-      $(@).addClass('long').removeClass('short')
-      collectionViewController.draw $('.collection.open')
+#     else if editable.text().length > lengthForLong and !$(@).hasClass('long')
+#       $(@).addClass('long').removeClass('short')
+#       collectionViewController.draw $('.collection.open')
 
 initText = ($content) ->
   timeout       = null
-  emitInterval  = 200
+  emitInterval  = 500
   collectionKey = contentModel.getCollectionkey $content
 
   onChange = (text) ->
-    textFormat $content
-    clearTimeout timeout if timeout
+    if timeout
+      clearTimeout timeout 
+      timeout = null
     timeout = setTimeout (() ->
       data =
         collectionKey: collectionKey

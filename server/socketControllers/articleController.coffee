@@ -111,7 +111,7 @@ module.exports =
           SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
           WHERE \"id\"=:elemId
           "
-      models.sequelize.query(q, replacements :data).then ( results) ->
+      models.sequelize.query(q, replacements :data).then (results) ->
         return callback err if err?
         sio.to("#{collectionKey}").emit 'moveToCollection', data 
         callback null
@@ -119,8 +119,13 @@ module.exports =
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
     { collectionKey, content, articleId } = data
+    console.log "update article"
+    console.log "\t#{articleId}"
+    console.log "\t#{content}"
+    console.log "\t#{collectionKey}"
     id = +articleId
-    models.Article.update({content}, where: {id}).then () ->
+    models.Article.update({content}, where: {id}).done (err) ->
+      return callback(err) if err?
       data.userId = userId
       sio.to("#{collectionKey}").emit 'updateArticle', data
       callback null

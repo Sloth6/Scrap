@@ -31,17 +31,21 @@ window.initGenericText = ($content, options = {}) ->
     $card.addClass 'typing'
     $actions.find('.showOnEditing').show()
     $actions.find('.showOnNotEditing').hide()
-    $('body').on 'mousedown', stopEditingText
+    $('body').on 'mousedown', defocus
 
   stopEditingText = () ->
     $actions.find('.showOnNotEditing').show()
     $actions.find('.showOnEditing').hide()
-    $editable.blur()
+    
     $card.add($content).removeClass 'editing'
     $card.removeClass 'typing'
-    # pen.destroy()
-    $('body').off 'mousedown', stopEditingText
-  
+    
+    $('body').off 'mousedown', defocus
+
+  defocus = () ->
+    $editable.blur()
+    window.getSelection().removeAllRanges()
+
   stopPropagation = (event) ->
     return if Math.abs(event.deltaX) > Math.abs(event.deltaY)
     return unless $editable.hasScrollBar()
@@ -57,6 +61,7 @@ window.initGenericText = ($content, options = {}) ->
   if options.onChange?
     $editable.on 'DOMSubtreeModified', () ->
       options.onChange @innerHTML
+      null
 
   $('.pen-menu').mousedown (event) ->
     event.stopPropagation()
@@ -92,4 +97,4 @@ window.initGenericText = ($content, options = {}) ->
       event.preventDefault()
       clear()
 
-  return { clear, getContent: pen.getContent }
+  return { clear, content: () -> $editable[0].innerHTML }

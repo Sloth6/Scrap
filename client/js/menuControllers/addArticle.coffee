@@ -5,8 +5,28 @@ window.initAddArticle = ($menu) ->
   collectionkey = $menu.data 'collectionkey'
   input         = $menu.find '.editable'
 
-  # function to get content of form
+  genericText = initGenericText $menu, {
+    clearOnDone: true
+    onDone: (text) ->
+      emitNewArticle text, collectionkey
+  }
+  
+  $menu.find('input.file-input').click (event) ->
+    event.stopPropagation()
+    genericText.clear()
 
+  $menu.find('form.upload').fileupload fileuploadOptions(collectionkey)
+    
+  # Bind paste event.
+  input.bind "paste", () ->
+    return unless input.text() == ''
+    setTimeout (() =>
+      # use .text() to get link without divs around it
+      emitNewArticle input.text(), collectionkey
+      genericText.clear()
+    ), 20
+
+  
   # focus: () ->
   #   $menu.addClass 'focus'
   #   $menu.addClass('typing')
@@ -26,11 +46,7 @@ window.initAddArticle = ($menu) ->
   #   $menu.removeClass 'slideInFromSide'
   #   $menu.removeClass 'typing'
 
-  genericText = initGenericText $menu, {
-    clearOnDone: true
-    onDone: (text) ->
-      emitNewArticle text, collectionkey
-  }    
+    
   # $menu.click (event) ->
   #   if $menu.hasClass 'onEdge'
   #     if $menu.hasClass 'slideInFromSide'
@@ -54,17 +70,6 @@ window.initAddArticle = ($menu) ->
   #   else 
   #     $menu.find('.upload').hide()
   
-  # Bind paste event.
-  # input.bind "paste", () ->
-    # console.log 'PASTE', input.val()
-    # console.log genericText.getContent()
-    # return unless input.val() == ''
-    # setTimeout (() =>
-      # console.log console.log genericText.getContent()
-      # console.log input.val(), input.html(), input[0].innerHTML
-    #   emitNewArticle input.val(), collectionkey
-    #   genericText.clear()
-    # ), 20
 
   # Bind submit event
   # $menu.find('a.submit').click (event) ->
@@ -78,12 +83,5 @@ window.initAddArticle = ($menu) ->
   #   reset()
   #   event.stopPropagation()
   #   event.preventDefault()
-    
-  $menu.find('input.file-input').click (event) ->
-    event.stopPropagation()
-    genericText.clear()
-
-
-  $menu.find('form.upload').fileupload fileuploadOptions(collectionkey)
     
 
