@@ -33,7 +33,7 @@ mixin collectionContentMixin(collection)
       if content.collectionKey !== undefined
         +collectionMixin(content)
       else
-        +articleMixin(content)
+        +articleMixin(collection, content)
 
 mixin collectionMixin(collection)
   - var classes = 'closed ' + collection.collectionKey

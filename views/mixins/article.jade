@@ -1,4 +1,4 @@
-mixin articleMixin(article)
+mixin articleMixin(collection, article)
   -
     var classes =  [article.contentType]
     if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
@@ -17,9 +17,12 @@ mixin articleMixin(article)
             author.smallType!=article.Creator.name
         -
           if (article.contentType == 'text') {
-            backgroundColor = 'hsl(100,100%,95%)'
+            var color = collection.color
+            var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
+            var hue = color.match(pattern)[1]
+            var backgroundColor = 'hsl('+hue+',100%, 95%)'
           } else {
-            backgroundColor = ''
+            var backgroundColor = ''
           }
         .card.cardHover.cardDrag(class=article.contentType, style='background-color:' + backgroundColor + ';')
           case article.contentType
