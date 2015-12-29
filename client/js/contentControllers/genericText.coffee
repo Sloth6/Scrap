@@ -31,6 +31,7 @@ window.initGenericText = ($content, options = {}) ->
     $card.addClass 'typing'
     $actions.find('.showOnEditing').show()
     $actions.find('.showOnNotEditing').hide()
+    pen.focus()
     $('body').on 'mousedown', defocus
 
   stopEditingText = () ->
@@ -39,7 +40,8 @@ window.initGenericText = ($content, options = {}) ->
     
     $card.add($content).removeClass 'editing'
     $card.removeClass 'typing'
-    
+    defocus()
+    $content.removeClass 'slideInFromSide'
     $('body').off 'mousedown', defocus
 
   defocus = () ->
@@ -95,6 +97,7 @@ window.initGenericText = ($content, options = {}) ->
   if hasCancel
     $cancel.click (event) ->
       event.preventDefault()
+      event.stopPropagation()
       clear()
 
   return { clear, content: () -> $editable[0].innerHTML }
