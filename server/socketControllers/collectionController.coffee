@@ -14,8 +14,8 @@ inviteEmailHtml = (user, collection) ->
   collectionKey = collection.collectionKey
   title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
   subject = "#{creator.name} invited you to “#{collection.name}” on Scrap"  
-  html = '''
-  <html xmlns="http://www.w3.org/1999/xhtml">
+  html = """
+  <html xmlns="http://www.w3.org/1999/xhtml\">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Blah</title>
@@ -118,7 +118,7 @@ inviteEmailHtml = (user, collection) ->
         </table>
     </body>
 </html>
-'''
+"""
   return { html, subject }
 
 module.exports =

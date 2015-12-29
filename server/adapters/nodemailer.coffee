@@ -11,7 +11,7 @@ transporter = nodemailer.createTransport {
 module.exports = 
   send: (options, callback) ->
     callback ?= ()->
-    options.from = 'scrapcollections@gmail.com'
+    options.from =  'Scrap <noreply@tryscrap.com>'
     transporter.sendMail options, (err, message) ->
       if err?
         console.log "Failed to send email:"+err
