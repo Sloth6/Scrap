@@ -28,9 +28,9 @@ drag = (event, $dragging) ->
   scaleThreshhold = $(window).height() / 2
   scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
   $collection = $('.collection.open')
-
-  w = contentModel.getSize($dragging)
-  h = Math.max($dragging.find('.content').height(), 200)
+  
+  w = 200# contentModel.getSize($dragging)
+  h = 200# Math.max($dragging.find('.content').height(), 200)
   
   offsetPercentX = ($dragging.data('mouseOffsetX') - (w / 2)) / (w/2)
   offsetPercentY = ($dragging.data('mouseOffsetY') - (h / 2)) / (h/2)
@@ -105,8 +105,6 @@ moveToChild = (event, $dragging) ->
   draggedId     = parseInt($dragging.attr('id'))
   draggedOverId = parseInt($droppedOn.attr('id'))
   padding.remove()
-  
-  console.log 'droppedOn', $droppedOn
 
   if $droppedOn.hasClass 'collection'
     socket.emit "moveToCollection", { elemId: draggedId, collectionKey }
@@ -221,6 +219,8 @@ window.makeDraggable = ($content) ->
         dY = Math.abs(startY - event.clientY)
         if dX < dragThreshold and dY < dragThreshold
           return
+        draggingArticle = mousedownArticle
+        startDragging draggingArticle, mouseDownEvent
       drag event, draggingArticle
     
     $(window).mouseup (event) ->
