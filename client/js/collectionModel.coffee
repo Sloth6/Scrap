@@ -84,12 +84,6 @@ bindPackPreviewEvents = ($collection, $parentCollection, $contentContainer, $cov
       $cover.on('mouseleave', () -> closePackPreview($collection, $parentCollection))
   $cover.mouseleave () ->
     closePackPreview($collection, $parentCollection)
-#     console.log 'MOUSELEAVE'
-  $cover.mouseout () ->
-    console.log 'MOUSEOUT', $collection.index(0)
-#     unless $contentContainer.is(":hover")
-#       closePackPreview($collection, $parentCollection)
-
 bindStackPreviewEvents = ($collection, $parentCollection) ->
   $collection.mouseenter () ->
     if canPreview $collection
