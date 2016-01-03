@@ -26,11 +26,10 @@ closePackPreview = ($collection, $parentCollection) ->
           rotateZ: $collection.data 'rotateZTemp'
           translateX: xTransform($collection)
       redrawCollections $collection, $parentCollection
-#       setTimeout () ->
-#         collectionModel.removeContent $collection
-#         redrawCollections $collection, $parentCollection
-#         $collection.data 'contentLoaded', false
-#       , openCollectionDuration
+      setTimeout () ->
+        collectionModel.removeContent $collection
+        $collection.data 'contentLoaded', false
+      , openCollectionDuration
     
 initPackPreview = ($collection, $parentCollection, $contentContainer) ->
   $collection.data 'rotateZTemp', getRotateZ($collection)
