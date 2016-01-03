@@ -33,6 +33,9 @@ onScroll = ->
 
   collectionViewController.draw $('.open.collection')
   $('.hover').removeClass 'hover'
+  $('.collection.pack').data('previewState', 'none')
+  console.log 'scroll'
+  $('.collection.stack').data('previewState', 'compact')
   # console.log 'on scrollb', $(window).scrollLeft()
 
 # Enable the user to scroll vertically and map it to horizontal scroll
