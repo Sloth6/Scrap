@@ -179,7 +179,8 @@ startDragging = ($dragging, mouseDownEvent) ->
 
   if $dragging.hasClass 'collection'    
     if $dragging.hasClass 'pack'
-      $dragging.data 'previewState', 'compactReverse'
+      $dragging.data 'previewState', 'none'
+      
     else
       $dragging.data 'previewState', 'compact'
     
