@@ -664,14 +664,14 @@ html {
 }
 
 /* line 189, ../../style/globals/_type.scss */
-.smallType {
+.smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
 /* line 192, ../../style/globals/_type.scss */
-.smallType.smallCaps {
+.smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;

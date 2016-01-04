@@ -186,7 +186,7 @@ html {
     }
 }
 
-.smallType {
+.smallType, .typeSmall {
     @include typeSmall;
     
     &.smallCaps {

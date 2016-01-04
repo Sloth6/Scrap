@@ -40,34 +40,38 @@ block scripts
   script(src="/js/contentControllers/genericText.js")
 
 block content
-  header
-    h1.lettering.typeOutlineClear Scrap
-  nav
-    ul.menu.headerMenu.settings.right.hideFirst.slideIn
-      li.first Sign in
-      include partials/logIn
-  - for (var i = 0; i < 5; i++) {
-      .pack.filler
-        .card
-  - }
-  .pack
-    .card
-      p Donec sed odio dui.
-  - for (var i = 0; i < 5; i++) {
-      .pack.filler
-        .card
-  - }
-  .pack
-    .card
-      p.typeHeaderOutline Vestibulum id ligula porta felis euismod semper.
-  - for (var i = 0; i < 5; i++) {
-      .pack.filler
-        .card
-  - }
-  .pack.signUp
-    .card
-      include partials/signUp
-  - for (var i = 0; i < 10; i++) {
-      .pack.filler
-        .card
-  - }
+  .content
+    header
+      a(href='/')
+        h1.lettering.typeOutlineClear.typeOutlineBlackOnHover Scrap
+    nav
+      ul.menu.headerMenu.settings.right.hideFirst.slideIn
+        li.first Sign in
+        include partials/logIn
+    - for (var i = 0; i < 3; i++) {
+        .pack.filler
+          .card
+    - }
+    .pack
+      .card
+        p Donec sed odio dui.
+    - for (var i = 0; i < 3; i++) {
+        .pack.filler
+          .card
+    - }
+    .pack
+      .card
+        p.typeHeaderOutline Vestibulum id ligula porta felis euismod semper.
+    - for (var i = 0; i < 3; i++) {
+        .pack.filler
+          .card
+    - }
+    .pack.signUp
+      .card
+        include partials/signUp
+    - for (var i = 0; i < 100; i++) {
+        .pack.filler
+          .card
+    - }
+  footer
+    p.typeSmall Copyright 2015 Joel Simon and Antonio Ono
