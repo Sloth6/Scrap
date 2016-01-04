@@ -11,6 +11,9 @@ fs.readdirSync(__dirname + '/requestControllers').forEach (fileName) ->
     controllers[controllerName] = require(pathName)
 
 module.exports = (app) ->
+  app.get '/p', (req,res) ->
+    res.render('packeryTest')
+
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 

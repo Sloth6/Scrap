@@ -99,6 +99,7 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 
 window.contentViewController =
   draw: ($content,  options) ->
+    return
     animate = options.animate or false
     margin = 0#$content.data('margin') or 0
     jumble = $content.data 'jumble'

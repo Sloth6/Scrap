@@ -5,7 +5,7 @@ defaultDuration         = 500
 bouncyCurve             = [100, 10]
 fastDuration            = 250
 
-marginTop       = $(window).height() * 0.125
+marginTop       = 0#$(window).height() * 0.125
 articleMargin   = 24
 packMargin      = 72
 sliderBorder    = $(window).width() * 0.15
@@ -50,6 +50,8 @@ window.onpopstate = (event) ->
   navigationController.close $('.collection.open'), event.state
   
 $ ->
+
+
   window.socket = io.connect()
   
   $.Velocity.defaults.duration = openCollectionDuration
@@ -58,10 +60,11 @@ $ ->
 
   $('.slidingContainer').css y: marginTop
 
-  onScroll()
-  $(window).scroll onScroll
-  $(window).resize onScroll
-  $(window).mousewheel onMousewheel
+  window.packer = new Packer($(window).width(), $(window).height()*2)
+  # onScroll()
+  # $(window).scroll onScroll
+  # $(window).resize onScroll
+  # $(window).mousewheel onMousewheel
 
   # Trigger the history back event.
   $('.backButton').click (event) ->

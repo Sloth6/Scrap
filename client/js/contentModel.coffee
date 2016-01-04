@@ -6,8 +6,8 @@ window.contentModel =
     $card = contentModel.getCard($content)
 
     $content.off() # remove old handlers
-    makeDraggable $content
-    contentModel.setJumble $content
+    # makeDraggable $content
+    # contentModel.setJumble $content
 
     # Stacks will not have a cover
     if $card?

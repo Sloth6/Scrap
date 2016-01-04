@@ -1,0 +1,21 @@
+doctype html
+html.no-js(lang='en')
+  head
+    meta(charset='utf-8')
+    
+    script(src='/js/jquery/jquery.js')
+    script(src="/js/jquery/jquery-ui.min.js")
+    script(src="/js/jquery/jquery.transit.min.js")
+    script(src="/js/jquery/jquery-mousewheel.min.js")
+    script(src="/js/lib/dragabilly.min.js")
+    script(src="/js/lib/packery.js")
+    script(src='/js/packeryTest.js')
+    //- script(src='/js/derp.js')
+
+
+  body
+    #container
+        - for (var i = 0; i < 10; ++i) {
+          .item
+            h1(style='font-size: 4em')=i
+        - }

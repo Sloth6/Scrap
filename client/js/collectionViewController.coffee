@@ -16,8 +16,7 @@ drawOpenCollection = ($collection, animate) ->
       css { zIndex: zIndex++ }
     
     sizeTotal += contentModel.getSize($(@)) + $(@).data('margin')
-    if isNaN(sizeTotal)
-      throw 'shit'
+
     contentViewController.draw $(@), { animate }
 
   sizeTotal += rightMargin
@@ -62,6 +61,7 @@ drawClosedStack = ($collection, spacing = 15) ->
 window.collectionViewController =
 
   draw: ($collection, options = {}) ->
+    return
     animate = options.animate or false
     
     if $collection.hasClass('open')
@@ -80,7 +80,7 @@ window.collectionViewController =
     { $contentsBefore, $contentsAfter } = partition
 
     # Animate content offscreen in either direction, hide when done
-    $contentsBefore.velocity
+    $contentsBefore.add($openingCover).velocity
       properties:
         translateZ: [ 0, 0 ]
         translateX: [ (() -> -contentModel.getSize($(@))), xOfSelf ]
@@ -164,14 +164,11 @@ window.collectionViewController =
       $collection.velocity
         properties:
           rotateZ: 0
-#       $cover.hide()
       # Show the add article Form.
       $collectionAddForm.show()
       $collectionContent.show()
 
     # When opening a collection, it no longer slides but is fixed to start
-    $collection.velocity { translateX: 0 }
-    $collection.velocity { translateX: 0 }
     $collection.velocity { translateX: 0 }
 
     # Mark collection as open. 
@@ -179,7 +176,22 @@ window.collectionViewController =
       addClass('open').
       removeClass 'closed'
     
-    collectionViewController.draw $collection, {animate: true}
+    $container = $collection.children('.contentContainer')    
+    # $container.width('100vw').height('100vh')
+
+    window.packer.reset()
+    $collectionContent.each () ->
+      gutter = 20
+      width = $(@).find('.card').width() + gutter
+      height = $(@).find('.card').height() + gutter
+      rect = new Rect({ width, height })
+      packer.pack(rect)
+
+      $(@).velocity
+        translateX: rect.x
+        translateY: rect.y
+
+    # collectionViewController.draw $collection, {animate: true}
 
   close: ($collection, options = {}) ->
     return if $collection.hasClass 'root'
