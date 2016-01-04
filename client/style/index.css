@@ -2590,6 +2590,15 @@ header h1 span.char5 {
 }
 
 /* line 28, ../../style/index.scss */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/* line 36, ../../style/index.scss */
 .card {
   width: 224pt;
 }
