@@ -1,226 +1,30 @@
 @import "screen.scss";
 
-section.page {
-    @media screen and (max-width: 640px) {
-        text-align: center;
-        margin-top: $col;
-    }
-    
-    .animateIn {
+header {
+    h1 {
+        font-size: 25vw;
+        font-weight: $fontWeightBold;
+        line-height: .75em;
+        letter-spacing: .25em;
+        top: 25vh;
         position: absolute;
-                transform-origin: center center;
-        -webkit-transform-origin: center center;
-        opacity: 0;
-    }
-    
-    .card {
-                transform-origin: center center;
-        -webkit-transform-origin: center center;
         
-        @media screen and (max-width: 640px) {
-            position: relative;
-            text-align: left;
-        }
-        
-        &.small {
-            width: $articleSideNarrow;
-            padding-bottom: $broadMargin;
-        }
-        
-        &.cover {            
-            @media screen and (max-width: 640px) {
-                width: 90%;
-                max-width: $articleSide;
-            }
-        }
-    }
-    
-    footer {
-        @include typeSmall;
-        width: 100vw;
-        padding-bottom: $cell;
-        text-align: center;
-    }
-}
-
-section.page.index {
-  
-    nav {
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1000;
-        
-        ul.menu li.first:hover {
-            opacity: 1 !important;
-        }
-        
-        .signUp {
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-    }
-    
-    .page {
-        min-height: 100vh;
-        $collectionTop: $col * 3;
-        position: relative;
-        
-        .collection {
+        span { // lettering
+            display: inline-block;
+            margin-top: -.25em;
             
-            .cover {
-                position: absolute;
-                left: 50vw;
-                top: $collectionTop;
-                margin-left: -$articleSide/2;
-                z-index: 3;
-                -webkit-transform-origin: center center;
-                        transform-origin: center center;
-            }
-        }
-        
-        .caption {
-            position: absolute;
-            text-align: center;
-            top: 0;
-            left: 12.5vw;
-            right: 12.5vw;
-            width: 75vw;
-            margin-top: $broadMargin;
-            
-            .animateInPop {
-                position: absolute;
-                width: 100%;
+            &.char1 {
+                margin-top: 0;
             }
             
-            p {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        }
-        
-        &.example {
-            height: 200vh;
-
-            &.intro {
-                height: 400vh;
-                
-                .caption {
-                    
-                    p.createAccount {
-                        line-height: $typeSubtitleLeading;
-                        @include transition(opacity .5s $defaultCurve);
-                    }
-                }
-            }
-            
-            &.join {
-                height: 120vh;
-                
-                .cover {
-                    margin-top: 25vh;
-                    @include cardEditing;
-                }
-                
-                .createAccount {
-                    padding-top: $broadMargin/1.5;
-                }
-            }
-            
-            .collection {
-                position: relative;
-                height: 100vh;
-                width: 100vw;
-                z-index: 2;
-                
-                &.intro {
-                    .translate {
-                        -webkit-transform-origin: center center;
-                                transform-origin: center center;
-                    }
-                }
-                
-                .cover {
-                    cursor: default;
-
-                    &.scale {
-                        top: 0;
-                        left: 0;
-                        margin: 0;
-                        z-index: 2;
-                        
-                        h1 {
-                            font-size: 24vw;
-                            line-height: .8em;
-                            margin-top: -.03125em;
-                        }
-                    }
-                }
-                
-                .exampleContent {
-                    position: absolute;
-                    overflow-x: hidden;
-                    height: 100%;
-                    left: 0;
-                    right: 0;
-                    z-index: -1;
-                    opacity: 0;
-                    
-                    article {
-                        -webkit-transform-origin: center center;
-                                transform-origin: center center;
-                        position: absolute;
-                        top: $collectionTop;
-                        left: 50vw;
-                    }
-                }
+            &.char5 {
+//                 margin-top: -2.;
+                margin-bottom: .25em;
             }
         }
     }
 }
 
-section.readOnly {
-    header.card {
-        z-index: 10;
-        position: relative;
-        opacity: 1;
-        cursor: default;
-        
-        section.form {
-            position: absolute;
-            bottom: $cardPaddingBottom;
-            opacity: 0;
-            width: 100%;
-            
-            ul.form {
-                li.submit {
-//                     padding-bottom: 0;
-                }
-            }
-                        
-            .formToggle {
-                position: absolute;
-                z-index: 10;
-                bottom: 0;
-                right: $cardPaddingRight;
-            }
-        }
-    }
-    
-    .card {
-        position: absolute;
-        top: 0;
-        
-        &.blank {
-            z-index: 0;
-        }
-        
-        &.logo {
-            border: 0;
-            background: transparent;
-            padding: 0;
-        }
-    }
+.card {
+    width: $col * 4;
 }

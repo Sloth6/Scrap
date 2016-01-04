@@ -1,0 +1,44 @@
+@import "screen.scss";
+
+section.page {
+    @media screen and (max-width: 640px) {
+        text-align: center;
+        margin-top: $col;
+    }
+    
+    .animateIn {
+        position: absolute;
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
+        opacity: 0;
+    }
+    
+    .card {
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
+        
+        @media screen and (max-width: 640px) {
+            position: relative;
+            text-align: left;
+        }
+        
+        &.small {
+            width: $articleSideNarrow;
+            padding-bottom: $broadMargin;
+        }
+        
+        &.cover {            
+            @media screen and (max-width: 640px) {
+                width: 90%;
+                max-width: $articleSide;
+            }
+        }
+    }
+    
+    footer {
+        @include typeSmall;
+        width: 100vw;
+        padding-bottom: $cell;
+        text-align: center;
+    }
+}
