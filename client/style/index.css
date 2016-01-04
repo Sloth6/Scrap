@@ -691,13 +691,25 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 206, ../../style/globals/_type.scss */
+/* line 205, ../../style/globals/_type.scss */
+.typeHeaderOutline {
+  font-size: 24pt;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 24pt;
+  font-weight: 700;
+  letter-spacing: -0.03125em;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: transparent;
+}
+
+/* line 210, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 213, ../../style/globals/_type.scss */
+/* line 217, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -2566,30 +2578,40 @@ footer.main ul.actions li.action label {
   text-transform: lowercase;
 }
 
-/* line 4, ../../style/index.scss */
-header h1 {
-  font-size: 25vw;
-  font-weight: 700;
-  line-height: .75em;
-  letter-spacing: .25em;
-  top: 25vh;
-  position: absolute;
+/* line 3, ../../style/index.scss */
+.pack, .stamp {
+  opacity: 0;
 }
-/* line 12, ../../style/index.scss */
+
+/* line 8, ../../style/index.scss */
+header h1 {
+  font-size: 36.36364vw;
+  font-weight: 700;
+  line-height: .8em;
+  white-space: nowrap;
+  position: relative;
+}
+/* line 15, ../../style/index.scss */
 header h1 span {
   display: inline-block;
-  margin-top: -.25em;
+  margin-top: -.2em;
 }
-/* line 16, ../../style/index.scss */
+/* line 21, ../../style/index.scss */
 header h1 span.char1 {
   margin-top: 0;
 }
-/* line 20, ../../style/index.scss */
+/* line 25, ../../style/index.scss */
 header h1 span.char5 {
   margin-bottom: .25em;
 }
+@media (min-width: 768px) {
+  /* line 8, ../../style/index.scss */
+  header h1 {
+    font-size: 25vw;
+  }
+}
 
-/* line 28, ../../style/index.scss */
+/* line 36, ../../style/index.scss */
 nav {
   position: fixed;
   top: 0;
@@ -2598,7 +2620,8 @@ nav {
   z-index: 2;
 }
 
-/* line 36, ../../style/index.scss */
+/* line 44, ../../style/index.scss */
 .card {
+  background-color: transparent;
   width: 224pt;
 }

@@ -691,13 +691,25 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 206, ../../style/globals/_type.scss */
+/* line 205, ../../style/globals/_type.scss */
+.typeHeaderOutline {
+  font-size: 24pt;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 24pt;
+  font-weight: 700;
+  letter-spacing: -0.03125em;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: transparent;
+}
+
+/* line 210, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 213, ../../style/globals/_type.scss */
+/* line 217, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }

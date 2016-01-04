@@ -47,20 +47,27 @@ block content
       li.first Sign in
       include partials/logIn
   - for (var i = 0; i < 5; i++) {
-      .pack.card.filler
+      .pack.filler
+        .card
   - }
-  .pack.card
-    p Donec sed odio dui.
+  .pack
+    .card
+      p Donec sed odio dui.
   - for (var i = 0; i < 5; i++) {
-      .pack.card.filler
+      .pack.filler
+        .card
   - }
-  .pack.card
-    p Vestibulum id ligula porta felis euismod semper.
+  .pack
+    .card
+      p.typeHeaderOutline Vestibulum id ligula porta felis euismod semper.
   - for (var i = 0; i < 5; i++) {
-      .pack.card.filler
+      .pack.filler
+        .card
   - }
-  .pack.signUp.card
-    include partials/signUp
+  .pack.signUp
+    .card
+      include partials/signUp
   - for (var i = 0; i < 10; i++) {
-      .pack.card.filler
+      .pack.filler
+        .card
   - }
