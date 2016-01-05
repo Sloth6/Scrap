@@ -210,18 +210,15 @@ body {
         }
         
         &.image {
-            
-            .content {
+                          
+            .card {
+                padding: 0px;
+                width: $articleSide;
+                max-height: $articleSideWide;
+                overflow: hidden;
                 
-                .card {
-                    padding: 0px;
-                    width: $articleSide;
-                    max-height: $articleSideWide;
-                    overflow: hidden;
-                    
-                    img {
-                        margin: $hideImageWhiteBorder;
-                    }
+                img {
+                    margin: $hideImageWhiteBorder;
                 }
             }
         }
@@ -361,7 +358,7 @@ body {
         .card {
             position: relative;
             overflow: hidden;
-            min-height: $articleMinHeight;
+//             min-height: $articleMinHeight;
             
             &.website {
                 @include cardStyle;

@@ -2577,51 +2577,17 @@ footer.main ul.actions li.action label {
   text-transform: lowercase;
 }
 
-@media screen and (max-width: 640px) {
-  /* line 3, ../../style/page.scss */
-  section.page {
-    text-align: center;
-    margin-top: 56pt;
-  }
+/* line 3, ../../style/prototype.scss */
+header.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56pt;
+  background: blue;
 }
-/* line 9, ../../style/page.scss */
-section.page .animateIn {
-  position: absolute;
-  transform-origin: center center;
-  -webkit-transform-origin: center center;
-  opacity: 0;
-}
-/* line 16, ../../style/page.scss */
-section.page .card {
-  transform-origin: center center;
-  -webkit-transform-origin: center center;
-}
-@media screen and (max-width: 640px) {
-  /* line 16, ../../style/page.scss */
-  section.page .card {
-    position: relative;
-    text-align: left;
-  }
-}
-/* line 25, ../../style/page.scss */
-section.page .card.small {
-  width: 168pt;
-  padding-bottom: 40pt;
-}
-@media screen and (max-width: 640px) {
-  /* line 30, ../../style/page.scss */
-  section.page .card.cover {
-    width: 90%;
-    max-width: 224pt;
-  }
-}
-/* line 38, ../../style/page.scss */
-section.page footer {
-  font-size: 8pt;
-  font-weight: 500;
-  line-height: 12pt;
-  letter-spacing: 0.03125em;
-  width: 100vw;
-  padding-bottom: 8pt;
-  text-align: center;
+
+/* line 12, ../../style/prototype.scss */
+.container {
+  margin-top: 10em;
 }

@@ -1,0 +1,51 @@
+doctype html
+html.no-js(lang='en')
+  head
+    meta(charset='utf-8')
+    
+    script(src='/js/jquery/jquery.js')
+    script(src="/js/jquery/jquery-ui.min.js")
+    script(src="/js/jquery/jquery.transit.min.js")
+    script(src="/js/jquery/jquery-mousewheel.min.js")
+    script(src="/js/lib/dragabilly.min.js")
+    script(src="/js/lib/velocity.js")
+    script(src="/js/lib/packery.js")
+    link(rel='stylesheet', href='/style/prototype.css')
+    script(src='/js/prototype.js')
+    //- script(src='/js/derp.js')
+
+
+  body
+    header.main
+      .backButton
+        a(href="#")
+          span ‹
+      // include partials/settingsMenu.jade
+    .container
+      article.item.text
+        .card.text
+          .editable
+            h1 Header
+            h2 header 2
+            p paragraph
+            p paragraph
+            ol
+              li ordered
+              li list
+            ul
+              li unordered
+              li lists
+            blockquote quote
+      article.item.image
+        .card.image
+          img(src='http://lorempixel.com/400/200')
+      article.item.soundcloud.playable
+        .card.text
+          .preview
+            img(src='http://lorempixel.com/400/300')
+          header
+            .top
+              h1.headerType.title Title
+              .artist.smallType Name
+            .detail
+              .source.smallType.smallCaps Source

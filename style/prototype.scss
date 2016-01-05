@@ -1,0 +1,17 @@
+@import "screen.scss";
+
+header.main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $col;
+    background: blue;
+}
+
+.container {
+    margin-top: 10em;
+}
+
+.item {
+}
