@@ -1767,11 +1767,11 @@ body article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
 /* line 243, ../../style/layout/_article.scss */
-body article.file .content {
+body article.file {
   position: relative;
 }
 /* line 247, ../../style/layout/_article.scss */
-body article.file .content .fakeCard {
+body article.file .fakeCard {
   background-color: white;
   border: 1px solid #000000;
   padding: 4pt 4pt 4pt 4pt;
@@ -1784,7 +1784,7 @@ body article.file .content .fakeCard {
   position: relative;
 }
 /* line 255, ../../style/layout/_article.scss */
-body article.file .content .decorative.fold {
+body article.file .decorative.fold {
   z-index: 10;
   position: absolute;
   top: 0;
@@ -1795,7 +1795,7 @@ body article.file .content .decorative.fold {
   background-size: 48px 48px;
 }
 /* line 265, ../../style/layout/_article.scss */
-body article.file .content .decorative.fold:after {
+body article.file .decorative.fold:after {
   content: " ";
   left: -1px;
   right: 0;
@@ -1809,14 +1809,14 @@ body article.file .content .decorative.fold:after {
   border-top: 0;
 }
 /* line 280, ../../style/layout/_article.scss */
-body article.file .content .card {
+body article.file .card {
   width: 168pt;
   border: 0;
   background: transparent;
   padding: 0;
 }
 /* line 288, ../../style/layout/_article.scss */
-body article.file .content .card header h1 {
+body article.file .card header h1 {
   word-wrap: break-word;
 }
 /* line 300, ../../style/layout/_article.scss */
@@ -1831,7 +1831,7 @@ body article.playable .card {
   position: relative;
 }
 /* line 315, ../../style/layout/_article.scss */
-body article.playable .card.hover .preview:after {
+body article.playable .card.hover .preview:after, body article.playable .card:hover .preview:after {
   opacity: 1;
   -moz-transform: scale(1);
   -ms-transform: scale(1);
@@ -1839,11 +1839,11 @@ body article.playable .card.hover .preview:after {
   transform: scale(1);
 }
 /* line 321, ../../style/layout/_article.scss */
-body article.playable .card.hover .preview img {
+body article.playable .card.hover .preview img, body article.playable .card:hover .preview img {
   opacity: .9;
 }
 /* line 327, ../../style/layout/_article.scss */
-body article.playable .card.hover header {
+body article.playable .card.hover header, body article.playable .card:hover header {
   opacity: 1;
 }
 /* line 333, ../../style/layout/_article.scss */

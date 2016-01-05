@@ -21,31 +21,64 @@ html.no-js(lang='en')
         a(href="#")
           span ‹
       // include partials/settingsMenu.jade
-    .container
-      article.item.text
-        .card.text
-          .editable
-            h1 Header
-            h2 header 2
-            p paragraph
-            p paragraph
-            ol
-              li ordered
-              li list
-            ul
-              li unordered
-              li lists
-            blockquote quote
-      article.item.image
-        .card.image
-          img(src='http://lorempixel.com/400/200')
-      article.item.soundcloud.playable
-        .card.text.playable
-          .preview
+    .container.small
+      - for (var i = 0; i < 20; i++) {
+        article.text
+          .card.text
+            .editable
+              h1 Header
+              h2 header 2
+              p paragraph
+              p paragraph
+              ol
+                li ordered
+                li list
+              ul
+                li unordered
+                li lists
+              blockquote quote
+        article.image
+          .card.image
+            img(src='http://lorempixel.com/' + Math.floor(Math.random() * 100 + 200) + '/' + Math.floor(Math.random() * 100 + 200))
+        article.file
+          .card.file
+            .fakeCard
+              header
+                h1.headerType.title Filename
+                p.extension.smallCaps.bodyType PDF
+              ul.cardActions
+                li
+                  a.download.confirm(href='#') Download
+        article.website
+          .card.website
+            .text
+              header
+                h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                .url.smallType.smallCaps nytimes.com
+              .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
             img(src='http://lorempixel.com/400/300')
-          header
-            .top
-              h1.headerType.title Title
-              .artist.smallType Name
-            .detail
-              .source.smallType.smallCaps Source
+            a(href=url, target='_blank', title='Open “Title” in a new tab')
+        article.soundcloud.playable
+          .card.text.playable
+            .preview
+              - var size = Math.floor(Math.random() * 100 + 200)
+              img(src='http://lorempixel.com/' + size + '/' + size)
+            header
+              .top
+                h1.headerType.title Title
+                .artist.smallType Name
+              .detail
+                .source.smallType.smallCaps Source
+        article.youtube.playable
+          .card.text.playable
+            .preview
+              - var w = Math.floor(Math.random() * 100 + 300)
+              - var h = Math.floor(w / (16/9))
+              img(src='http://lorempixel.com/' + w + '/' + h)
+            header
+              .top
+                h1.headerType.title Title
+                .artist.smallType Name
+              .detail
+                .source.smallType.smallCaps Source
+      - }

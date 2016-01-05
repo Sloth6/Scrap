@@ -240,7 +240,7 @@ body {
             }
         }
         
-        &.file .content {
+        &.file {
             $foldWidth: 48px;
             position: relative;
             
@@ -309,7 +309,7 @@ body {
                 padding: 0;
                 position: relative;
                 
-                &.hover {
+                &.hover, &:hover {
                     
                     .preview {
                         &:after {
