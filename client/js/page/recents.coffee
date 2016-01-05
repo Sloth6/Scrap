@@ -1,5 +1,9 @@
+marginTop = 0
 $ ->
+  window.socket = io.connect()
+
   $('article').each () ->
+    contentModel.init $(@)
     $content = $(@).children('content')
     $(@).width($content.width())
     $(@).height($content.height())
