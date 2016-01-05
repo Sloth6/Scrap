@@ -21,10 +21,11 @@ resizeCards = (minSize, gutter) ->
     
 saveItemPositions = () ->
   $('article').each () ->
+#     console.log $(@).data('pack') * 300) + ($(@).index(".#{$(@).data('pack')}") * 12))
     $(@).data('recentsTop', $(@).css('top').toString())
     $(@).data('recentsLeft', $(@).css('left').toString())
-    $(@).data('packsTop', $(@).data('pack') * 300)
-    $(@).data('packsLeft', $(@).data('pack') * 300)
+    $(@).data('packsTop',  $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * 12))
+    $(@).data('packsLeft', $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * 12))
 
 
 initItems = () ->
@@ -48,7 +49,9 @@ initDrag = () ->
     $('.container').packery 'bindDraggabillyEvents', draggie
     
 makePack = (title) ->
-  $('.container').append($('<section></section>').addClass("pack #{title}"))
+  $packTitle = $('<h1></h1>').html(title).addClass('typeTitle packTitle')
+  $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
+  $('.container').append($pack)
   
 switchProperties = ($article, property, state) ->
   if property is 'transform'
@@ -84,7 +87,6 @@ toggleState = () ->
     })
     $('article').each () ->
       switchProperties($(@), 'transform', 'recents')
-    $('article').each () ->
       $(@).velocity
         properties:
           translateX: $(@).data('packsTop')
@@ -103,7 +105,6 @@ toggleState = () ->
     $('.container').data 'uiState', 'recents'
     $('article').each () ->
       switchProperties($(@), 'transform', 'packs')
-    $('article').each () ->
       $(@).velocity
         properties:
           translateX: $(@).data 'recentsLeft'
@@ -113,6 +114,7 @@ toggleState = () ->
           easing: [20, 10]
           complete: () ->
             switchProperties($(@), 'absolute', 'recents')
+            $('.container').append $(@)
 $ ->
   initItems()
   initOnLoad()

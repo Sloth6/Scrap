@@ -2649,3 +2649,9 @@ header.main {
     border-width: 1px;
   }
 }
+/* line 68, ../../style/prototype.scss */
+.container .pack h1.packTitle {
+  position: absolute;
+  color: red;
+  z-index: 2;
+}

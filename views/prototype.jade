@@ -25,7 +25,7 @@ html.no-js(lang='en')
       - var n = 10
       - for (var i = 0; i < n; i++) {
         - var pack = Math.floor(Math.random() * n)
-        article.text(data-pack=pack)
+        article.text(data-pack=pack, class=pack)
           .card.text
             .editable
               h1 Header
@@ -40,11 +40,11 @@ html.no-js(lang='en')
                 li lists
               blockquote quote
         - var pack = Math.floor(Math.random() * n)
-        article.image(data-pack=pack)
+        article.image(data-pack=pack, class=pack)
           .card.image
             img(src='http://lorempixel.com/' + Math.floor(Math.random() * 100 + 200) + '/' + Math.floor(Math.random() * 100 + 200))
         - var pack = Math.floor(Math.random() * n)
-        article.file(data-pack=pack)
+        article.file(data-pack=pack, class=pack)
           .card.file
             .fakeCard
               header
@@ -54,7 +54,7 @@ html.no-js(lang='en')
                 li
                   a.download.confirm(href='#') Download
         - var pack = Math.floor(Math.random() * n)
-        article.website(data-pack=pack)
+        article.website(data-pack=pack, class=pack)
           .card.website
             .text
               header
@@ -64,7 +64,7 @@ html.no-js(lang='en')
             img(src='http://lorempixel.com/400/300')
             a(href=url, target='_blank', title='Open “Title” in a new tab')
         - var pack = Math.floor(Math.random() * n)
-        article.soundcloud.playable(data-pack=pack)
+        article.soundcloud.playable(data-pack=pack, class=pack)
           .card.text.playable
             .preview
               - var size = Math.floor(Math.random() * 100 + 200)
@@ -76,7 +76,7 @@ html.no-js(lang='en')
               .detail
                 .source.smallType.smallCaps Source
         - var pack = Math.floor(Math.random() * n)
-        article.youtube.playable(data-pack=pack)
+        article.youtube.playable(data-pack=pack, class=pack)
           .card.text.playable
             .preview
               - var w = Math.floor(Math.random() * 100 + 300)

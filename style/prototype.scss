@@ -62,4 +62,13 @@ header.main {
             }
         }
     }
+    
+    .pack {
+        
+        h1.packTitle {
+            position: absolute;
+            color: red;
+            z-index: 2;
+        }
+    }
 }
