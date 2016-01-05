@@ -2626,15 +2626,19 @@ footer.main ul.actions li.action label {
 .content .card {
   background-color: transparent;
 }
-/* line 58, ../../style/index.scss */
-.content .card:hover {
+/* line 59, ../../style/index.scss */
+.content .card.interactive:hover {
   background-color: white;
 }
-/* line 62, ../../style/index.scss */
+/* line 64, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 65, ../../style/index.scss */
+/* line 67, ../../style/index.scss */
+.content .card.svg.borderless {
+  border: 0;
+}
+/* line 71, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
   /*
@@ -2642,14 +2646,14 @@ footer.main ul.actions li.action label {
                   width:  100%;
   */
 }
-/* line 74, ../../style/index.scss */
+/* line 80, ../../style/index.scss */
 .content .card.symbol {
   font-size: 8em;
   line-height: 1em;
   font-weight: 800;
 }
 
-/* line 83, ../../style/index.scss */
+/* line 89, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;

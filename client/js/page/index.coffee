@@ -47,31 +47,45 @@ initLettering = () ->
     }
   spaceOutLetters()
   
+initGlyphCards = ($card) ->
+  if Math.random() < .75
+    glyphCount = 89
+    path = '/images/glyphs/border/glyph'
+    classes = 'svg'
+  else
+    glyphCount = 9
+    path = '/images/glyphs/borderless/glyph'
+    classes = 'svg borderless'
+  glyph = (Math.ceil(Math.random() * glyphCount)).toString()
+  size = Math.ceil((Math.random() + .5)* 4) * 36
+  if (glyph.length < 2)
+    glyph = '0' + glyph
+  $object = $("<object type='image/svg+xml' data='#{path}-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
+  $card.append $object
+  setTimeout -> # wait until after svgs load
+    $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
+    $shapes.attr('vector-effect', 'non-scaling-stroke')
+    repack()
+  , 1000
+  $card.addClass classes
+  $card.css({
+    'width':  size
+  #           'height': size
+  })
+  
 initCards = () ->
   $('.pack.filler').each () ->
-    random = Math.floor(Math.random() * 2)
+    random = Math.floor(Math.random() * 4)
     $card = $(@).find('.card')
     switch random
       # card symbol
       when 0
-        glyph = (Math.ceil(Math.random() * 42)).toString()
-        size = Math.ceil(Math.random() * 4) * 48
-        if (glyph.length < 2)
-          glyph = '0' + glyph
-#           $object = $("<img src='./images/glyphs/glyph-#{glyph}.svg'>").addClass('svg')
-        $object = $("<object type='image/svg+xml' data='/images/glyphs/glyph-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
-        $card.append $object
-        setTimeout -> # wait until after svgs load
-          $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
-          $shapes.attr('vector-effect', 'non-scaling-stroke')
-          repack()
-        , 500
-        $card.addClass 'svg'
-        $card.css({
-          'width':  size
-#           'height': size
-        })
+        initGlyphCards($card)
       when 1
+        initGlyphCards($card)
+      when 2
+        initGlyphCards($card)
+      when 3
         random = Math.floor(Math.random() * 4)
         switch random
           when 0
@@ -86,7 +100,18 @@ initCards = () ->
               when 2 then $card.html '?'
               when 3 then $card.html '!'
           when 1
-            $h1 = $('<h1></h1>').html('Amazing')
+            $card.addClass 'typeOutlineClear symbol'
+            $card.css({
+              fontSize: Math.ceil(Math.random() * 4) * 24
+              fontWeight: Math.ceil(Math.random() * 8) * 100
+            })
+            random = Math.floor(Math.random() * 4)
+            switch random
+              when 0 then text = 'Wow!'
+              when 1 then text = 'Meh.'
+              when 2 then text = 'Cool'
+              when 3 then text = 'Amazing'
+            $h1 = $('<h1></h1>').html(text)
             $card.append $h1
           when 2
             $card.html '2'
@@ -116,7 +141,7 @@ onResize = () ->
   , 100
     
 loadAnimation = () ->
-  duration = 1000
+  duration = 2000
   easing = [20, 10]
   $('.stamp').each () ->
     $(@).velocity
@@ -124,6 +149,7 @@ loadAnimation = () ->
         opacity: [1, 1]
         scale: [1, 0]
         rotateZ: [0, (Math.random() - .5) * 45]
+#         translateY: [0, 1000]
       options:
         duration: duration
         easing: easing
@@ -134,6 +160,7 @@ loadAnimation = () ->
         opacity: [1, 1]
         scale: [1, 0]
         rotateZ: [0, (Math.random() - .5) * 45]
+#         translateY: [0, 1000]
       options:
         duration: duration
         easing: easing
@@ -161,8 +188,9 @@ $ ->
   
   $(window).resize () -> onResize()
   onResize()
-  
-  loadAnimation()
+  setTimeout ->
+    loadAnimation()
+  , 1000
   
   $('body').css({
     backgroundColor: randomColor()

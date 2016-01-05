@@ -55,12 +55,18 @@
         background-color: transparent;
 //         width: $col * 4;
 
-        &:hover {
-          background-color: white;
+        &.interactive {
+            &:hover {
+                background-color: white;
+            }
         }
 
         &.svg {
             padding: 0;
+            
+            &.borderless {
+                border: 0;
+            }
             
             object.svg {
                 margin-bottom: -6px;

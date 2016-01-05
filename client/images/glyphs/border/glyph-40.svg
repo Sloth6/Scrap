@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 640 973" style="enable-background:new 0 0 640 973;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+	.st2{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st3{clip-path:url(#SVGID_2_);}
+	.st4{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st5{fill:#202020;}
+	.st6{clip-path:url(#SVGID_4_);}
+	.st7{stroke:#000000;stroke-miterlimit:10;}
+	.st8{clip-path:url(#SVGID_6_);}
+	.st9{fill:none;stroke:#000000;}
+	.st10{clip-path:url(#SVGID_8_);}
+	.st11{clip-path:url(#SVGID_10_);}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_5_" x="-1334.3" y="1503" width="1033.3" height="640"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st3">
+		<g>
+			<polyline class="st0" points="-100.3,821.5 71.9,1021.5 244.1,821.5 416.3,1021.5 588.6,821.5 760.8,1021.5 933,821.5 			"/>
+		</g>
+		<g>
+			<polyline class="st0" points="-100.3,965.1 71.9,1165.1 244.1,965.1 416.3,1165.1 588.6,965.1 760.8,1165.1 933,965.1 			"/>
+		</g>
+	</g>
+</g>
+<rect x="158.1" y="240.4" class="st0" width="323.7" height="492.2"/>
+<line class="st0" x1="158.1" y1="240.4" x2="0" y2="0"/>
+<line class="st0" x1="481.9" y1="240.4" x2="640" y2="0"/>
+<line class="st0" x1="481.9" y1="732.6" x2="640" y2="973"/>
+<line class="st0" x1="158.1" y1="732.6" x2="0" y2="973"/>
+</svg>
