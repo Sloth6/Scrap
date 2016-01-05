@@ -22,8 +22,10 @@ html.no-js(lang='en')
           span ‹
       // include partials/settingsMenu.jade
     .container.small
-      - for (var i = 0; i < 10; i++) {
-        article.text
+      - var n = 10
+      - for (var i = 0; i < n; i++) {
+        - var pack = Math.floor(Math.random() * n)
+        article.text(data-pack=pack)
           .card.text
             .editable
               h1 Header
@@ -37,10 +39,12 @@ html.no-js(lang='en')
                 li unordered
                 li lists
               blockquote quote
-        article.image
+        - var pack = Math.floor(Math.random() * n)
+        article.image(data-pack=pack)
           .card.image
             img(src='http://lorempixel.com/' + Math.floor(Math.random() * 100 + 200) + '/' + Math.floor(Math.random() * 100 + 200))
-        article.file
+        - var pack = Math.floor(Math.random() * n)
+        article.file(data-pack=pack)
           .card.file
             .fakeCard
               header
@@ -49,7 +53,8 @@ html.no-js(lang='en')
               ul.cardActions
                 li
                   a.download.confirm(href='#') Download
-        article.website
+        - var pack = Math.floor(Math.random() * n)
+        article.website(data-pack=pack)
           .card.website
             .text
               header
@@ -58,7 +63,8 @@ html.no-js(lang='en')
               .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
             img(src='http://lorempixel.com/400/300')
             a(href=url, target='_blank', title='Open “Title” in a new tab')
-        article.soundcloud.playable
+        - var pack = Math.floor(Math.random() * n)
+        article.soundcloud.playable(data-pack=pack)
           .card.text.playable
             .preview
               - var size = Math.floor(Math.random() * 100 + 200)
@@ -69,7 +75,8 @@ html.no-js(lang='en')
                 .artist.smallType Name
               .detail
                 .source.smallType.smallCaps Source
-        article.youtube.playable
+        - var pack = Math.floor(Math.random() * n)
+        article.youtube.playable(data-pack=pack)
           .card.text.playable
             .preview
               - var w = Math.floor(Math.random() * 100 + 300)

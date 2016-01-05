@@ -21,8 +21,10 @@ resizeCards = (minSize, gutter) ->
     
 saveItemPositions = () ->
   $('article').each () ->
-    $(@).data('packeryTop', $(@).css('top').toString())
-    $(@).data('packeryLeft', $(@).css('left').toString())
+    $(@).data('recentsTop', $(@).css('top').toString())
+    $(@).data('recentsLeft', $(@).css('left').toString())
+    $(@).data('packsTop', $(@).data('pack') * 300)
+    $(@).data('packsLeft', $(@).data('pack') * 300)
 
 
 initItems = () ->
@@ -45,6 +47,9 @@ initDrag = () ->
 #     draggie.on( 'dragEnd', repack )
     $('.container').packery 'bindDraggabillyEvents', draggie
     
+makePack = (title) ->
+  $('.container').append($('<section></section>').addClass("pack #{title}"))
+  
 switchProperties = ($article, property, state) ->
   if property is 'transform'
     absoluteLeft  = ''
@@ -53,8 +58,8 @@ switchProperties = ($article, property, state) ->
       transformLeft = $article.css 'left'
       transformTop  = $article.css 'top'
     else # recents
-      transformLeft = $article.data 'packeryLeft'
-      transformTop  = $article.data 'packeryTop'
+      transformLeft = $article.data 'recentsLeft'
+      transformTop  = $article.data 'recentsTop'
   else # absolute positioning
     transformLeft = '0px'
     transformTop  = '0px'
@@ -62,8 +67,8 @@ switchProperties = ($article, property, state) ->
       absoluteLeft  = $.Velocity.hook $article, 'translateX'
       absoluteTop   = $.Velocity.hook $article, 'translateY'
     else # recents
-      absoluteLeft  = $article.data 'packeryLeft'
-      absoluteTop   = $article.data 'packeryTop'
+      absoluteLeft  = $article.data 'recentsLeft'
+      absoluteTop   = $article.data 'recentsTop'
   $article.css
     left: absoluteLeft
     top:  absoluteTop
@@ -73,18 +78,27 @@ switchProperties = ($article, property, state) ->
 toggleState = () ->
   if $('.container').data('uiState') is 'recents' # Switch to packs
     $('.container').data 'uiState', 'packs'
+    $('html').velocity('scroll', {
+      duration: 1000
+      easing: [20, 10]
+    })
     $('article').each () ->
       switchProperties($(@), 'transform', 'recents')
     $('article').each () ->
       $(@).velocity
         properties:
-          translateX: Math.random() * 600
-          translateY: Math.random() * 600
+          translateX: $(@).data('packsTop')
+          translateY: $(@).data('packsLeft')
         options:
           duration: 1000
-          easing: [75, 10]
+          easing: [20, 10]
           complete: () ->
             switchProperties($(@), 'absolute', 'packs')
+            # enclose in pack element
+            if $("section.pack.#{$(@).data('pack')}").length < 1
+              # if article doesn't have matching pack element, make one
+              makePack($(@).data('pack').toString())
+            $(".pack.#{$(@).data('pack')}").append $(@)
   else # Switch to recents
     $('.container').data 'uiState', 'recents'
     $('article').each () ->
@@ -92,11 +106,11 @@ toggleState = () ->
     $('article').each () ->
       $(@).velocity
         properties:
-          translateX: $(@).data 'packeryLeft'
-          translateY: $(@).data 'packeryTop'
+          translateX: $(@).data 'recentsLeft'
+          translateY: $(@).data 'recentsTop'
         options:
           duration: 1000
-          easing: [75, 10]
+          easing: [20, 10]
           complete: () ->
             switchProperties($(@), 'absolute', 'recents')
 $ ->
