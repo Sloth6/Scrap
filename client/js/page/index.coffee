@@ -1,360 +1,197 @@
-width = $(window).width()
-basicSpring = [60, 10]
-fancySpring = [100, 10]
-easingSmooth = [20, 10]
-coverWidth = 0
-coverHeight = 0
-scaleRatio = coverWidth / $(window).width()
-previousStep = 0
-collectionOpenDuration = 1000
-rotateZRandomMax = 45
-
-updateScaleRatio = () ->
-  scaleRatio = coverWidth / $(window).width()
-
-scaleCover = (scrollProgress, $cover, $caption) ->
-  $h1                 = $cover.find('h1')
-  step                = Math.round(scrollProgress * 8)
-  scaleRatio          = coverWidth / $(window).width()
-  scale               = ((1-scrollProgress) / (1 / (1 - scaleRatio))) + scaleRatio
-  stroke              = 1 / scale
-  finalLetterSpacing  = -1 / 32
-  letterSpacing       = Math.abs(1-scrollProgress) * (-1/48) + finalLetterSpacing # ems
-  finalBorderRadius   = 2 / scaleRatio
-  borderRadius        = scrollProgress * finalBorderRadius
-  finalBorderWidth    = 1 / scaleRatio
-  borderWidth         = scrollProgress * finalBorderWidth
-  translateY          = scrollProgress * ($cover.width() / coverWidth) * 224
-  rotateZ             = $cover.data('rotateZ') * scrollProgress
-  $cover.css
-    transform: "scale3d(#{scale}, #{scale}, 1) translate3d(0px, #{translateY}px, 0px)"
-  if not $cover.parent('.translate').data('animating')
-#     $cover.parent('.translate').css
-#       transform: "rotateZ(#{rotateZ}deg)"
-    $cover.parent('.translate').velocity { # Separate rotation so it can be undone in openCollection()
-      translateZ: 0
-      rotateZ: rotateZ
-    }, {
-      duration: 0
-    }
-  if step isnt previousStep or scrollProgress is 0
-    $cover.css
-      borderRadius: "#{borderRadius}pt"
-      borderWidth:  "#{borderWidth}px"
-    $h1.css
-      '-webkit-text-stroke': "#{stroke}px black"
-      'letter-spacing': "#{letterSpacing}em"
-  # Bring caption to top on scroll
-  if scrollProgress < .25
-    $caption.css
-      zIndex: 0
-    $caption.find('.createAccount').css
-      opacity: 0
-  else
-    $caption.css
-      zIndex: $cover.css('z-index') + 1
-    $caption.find('.createAccount').css
-      opacity: 1
-  $('nav ul.menu li.first').css
-    opacity: if $cover.offset().top < $('nav ul.menu li.first').height() * 3 then .2 else 1
-    
-animateOutPop = ($element) ->
-  if $element.data('hasAnimatedIn')
-    $element.velocity {
-      translateZ: 0
-      translateY: coverHeight
-      scaleX: 0
-      scaleY: 2
-      rotateZ: (Math.random() - .5) * rotateZRandomMax + 'deg'
-      opacity: 0
-    }, {
-      duration: collectionOpenDuration
-      easing: fancySpring
-      delay: collectionOpenDuration / 8
-    }
-    $element.data 'hasAnimatedIn', false
-        
-animateInPop = ($element) ->
-  unless $element.data 'hasAnimatedIn'
-    $element.velocity {
-      translateZ: 0
-      translateY: [0, coverHeight]
-      scaleY: 1
-      scaleX: 1
-      rotateZ: '0deg'
-      opacity: 1
-    }, {
-      duration: collectionOpenDuration
-      easing: fancySpring
-      delay: collectionOpenDuration / 8
-    }
-  $element.data 'hasAnimatedIn', true
+repack = () ->
+  $('.content').packery()
   
-closeCollection = ($section, $collection, $cover, $cards) ->
-  $cover.velocity 'reverse',
-    {
-      complete: () -> $cover.data 'animating', false
-    }
-  $cards.parent('.exampleContent').velocity 'reverse'
-  $cards.each -> $(@).velocity 'reverse'
-  $collection.data('stackHasOpened', false)
-
-openCollection = ($section, $collection, $cover, $cards) ->
-  cardSpacing             = 4
-  maxRotate               = 12
-  translateXToWindowLeft  = (cardSpacing * 1.5) + ((coverWidth / 2) - ($(window).width()/2))
-  translateY              = 0
-  $cover.data 'animating', true
-  $cover.velocity {
-    translateZ:   0
-    translateX:   if $section.hasClass 'join' then 0 else translateXToWindowLeft
-    translateY:   if $section.hasClass 'join' then -$(window).height() / 4 else 0
-    rotateZ:      0
-  }, {
-    duration: collectionOpenDuration
-    easing: basicSpring
-  }
-  # Unrotate cover
-  $cards.parent('.exampleContent').velocity {
-    opacity: 1
-  }, {
-    duration: collectionOpenDuration / 2
-    easing: easingSmooth
-  }
-  $cards.each () ->
-    # Sum width of previous cards
-    widthOfPreviousCards = 0
-    $(@).prevAll().each () ->
-      widthOfPreviousCards += $(@).width()
-    translateXStart   = (-$(window).width() / 2) + coverWidth + cardSpacing * 4
-    translateX        = widthOfPreviousCards + translateXStart + (($(@).index() + 2) * cardSpacing)
-    rotateZ           = '0deg'
-    $(@).velocity({
-      translateZ: 0
-      translateY: [translateY, Math.random() * (coverHeight / 2)]
-      translateX
-      rotateZ: [rotateZ, (Math.random() - .5) * rotateZRandomMax + 'deg']
-      scaleX: [1, 1]
-      scaleY: [1, 0]
-    }, {
-      duration: collectionOpenDuration
-      easing: basicSpring
-      delay: Math.random() * (collectionOpenDuration / 4)
+resizeCards = (minSize, gutter) ->
+  $('.pack.filler').each () ->
+    height  = minSize + (Math.round(Math.random() * (minSize*6)))
+    width   = minSize + (Math.round(Math.random() * (minSize*6)))
+#     $(@).find('.card').css({
+#       'width':  "#{width}px"
+#       'height': "#{height}px"
+#     })
+  $('.pack').each () ->
+    $(@).css({
+      'padding-left':  if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+      'padding-top':   if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+      'padding-bottom':  if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+      'padding-right':   if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
     })
-  $collection.data('stackHasOpened', true)
-  
-updateSectionScrollValues = ($section, scrollTop) ->
-  $section.data 'sectionTopToWindowTop',                $section.offset().top - scrollTop
-  $section.data 'sectionTopToDocumentTop',              $(window).height() - $section.data('sectionTopToWindowTop')
-  $section.data 'sectionBottomToDocumentTop',           $section.height() + $section.position().top
-  $section.data 'sectionTopToWindowTopProgress',        ($(window).height() - $section.data('sectionTopToWindowTop')) / $(window).height()
-  $section.data 'sectionBottomToWindowTopProgress',     $section.data('sectionTopToDocumentTop') / $section.data('sectionBottomToDocumentTop')
-  $section.data 'sectionBottomToWindowBottomProgress',  (scrollTop + $(window).height()) / $section.data('sectionBottomToDocumentTop')
-  
-positionElement = ($element, status, position, top) ->
-  $element.data 'status', status
-  $element.css {
-    position
-    top
-  } 
-  
-onScrollSection = ($section, scrollTop, scrollProgress) ->
-  $collection       = $section.children('.collection')
-  $cover            = $collection.find('.cover')
-  $translateCover   = if $cover.hasClass 'scale' then $cover.parent('.translate') else $cover
-  $exampleCards     = $collection.children('.exampleContent').find('article')
-  $caption          = $section.find('.caption')
-  collectionTopPercentage       = .1 # Percentage of window height
-  collectionTop                 = $(window).height() * collectionTopPercentage
-  windowTopToCollectionBottom   = collectionTop + coverHeight
-  sectionTopToCollectionBottom  = $section.height() + coverHeight
-  openCollectionThreshold = if $cover.hasClass('scale') then 2 else 1
-  updateSectionScrollValues $section, scrollTop
-  # Scale content section down unless halfway scrolled through first screen
-  if $cover.hasClass 'scale'
-    scaleCover(Math.max(0, Math.min(1, ($section.data('sectionTopToWindowTopProgress')  - 1) * 4)), $cover, $caption)
-  if $section.data('sectionTopToWindowTopProgress') >= openCollectionThreshold
-    animateInPop($section.find('.animateInOnCollectionOpen'))
-    if ($section.hasClass 'join') and ($caption.css('z-index') < $cover.css('z-index'))
-      setTimeout (() ->
-        $caption.css('z-index', $cover.css('z-index') + 1)
-      ), collectionOpenDuration
-    unless $collection.data('stackHasOpened')# or $section.hasClass 'cantOpen'
-      openCollection($section, $collection, $translateCover, $exampleCards)
-    if $section.hasClass('intro')
-      animateOutPop($section.find('.animateOutOnCollectionOpen'))
-  else
-    animateOutPop($section.find('.animateInOnCollectionOpen'))
-    if $section.hasClass 'join'
-      $caption.css 'z-index', 0
-    if $collection.data('stackHasOpened') # or not $section.hasClass 'cantOpen'
-      closeCollection($section, $collection, $translateCover, $exampleCards)
-    if $section.hasClass('intro')
-      animateInPop($section.find('.animateOutOnCollectionOpen'))
-  if $section.data('sectionTopToWindowTopProgress') >= 1
-    if $section.data('sectionBottomToWindowBottomProgress') <= 1
-      if $collection.data('status') != 'current'
-        positionElement($collection, 'current', 'fixed', 0)
-        positionElement($caption, 'current', 'fixed', 0)
-    else if $collection.data('status') != 'above'
-      # Section is scrolled past
-      positionElement($collection, 'above', 'absolute', $section.height() - $collection.height())
-      positionElement($caption, 'above', 'absolute', $section.height() - $(window).height())
-  else
-    if ($collection.data('status') != 'below')
-      positionElement($collection, 'below', 'absolute', 0)
-      positionElement($caption, 'below', 'absolute', 0)
-            
-animateJoin = () ->
-  $section = $('.join')
-      
-onScroll = ($sections) ->
-  scrollTop       = $(window).scrollTop() 
-  scrollProgress  = scrollTop / Math.max(($(document).height() - $(window).height()), 1)
-  updateScaleRatio()
-  $sections.each () ->
-    onScrollSection($(@), scrollTop, scrollProgress)
-  animateJoin()
     
-initScaleCover = ($scaleCover, $normalCover) ->
-  $normalH1 = $normalCover.find('h1')
-  transformOrigin = "#{$(window).width() / 2}px top"
-  $scaleCover.css {
-    transformOrigin: transformOrigin
-    webkitTransformOrigin: transformOrigin
-    padding:  parseFloat($normalCover.css('padding')) / scaleRatio + 'px'
-    height:   parseFloat($normalCover.css('height')) / scaleRatio + 'px'
-    width:    parseFloat($normalCover.css('width')) / scaleRatio + 'px'
-#     backgroundColor: $normalCover[0].style.backgroundColor
-  }
+spaceOutLetters = () ->
+  width = 0
+  left = 0
+  marginLoaf = $(window).width()
+  n = $('.lettering').children().length
+  $('.lettering').children().each () -> marginLoaf -= $(@).width()
+  $('.lettering').children().each () ->
+    margin = if $(@).index() < n - 1 then marginLoaf * ((Math.random())/(n-$(@).index() - 1)) else marginLoaf
+    marginLoaf -= margin
+    left += if $(@).index() > 0 then $(@).prev().width() + margin else 0
+    $(@).css {
+      left: "#{left}px"
+    }
+  # get space between right edge of last letter and right edge of window
+  spaceOnRight = $(window).width() - ($('.lettering').children().eq(n-1).width() + $('.lettering').children().eq(n-1).offset().left)
+  # center whole word
+  #   $('.lettering').css('left', spaceOnRight / 2)
+#   repack()
   
-  $scaleCover.find('h1').css {
-    letterSpacing: parseFloat($normalH1.css('letter-spacing')) / scaleRatio + 'px'
-    lineHeight:    parseFloat($normalH1.css('line-height')) / scaleRatio + 'px'
-    fontSize:      parseFloat($normalH1.css('font-size')) / scaleRatio + 'px'
-    marginTop:     parseFloat($normalH1.css('margin-top')) / scaleRatio + 'px'
-    marginLeft:    parseFloat($normalH1.css('margin-left')) / scaleRatio + 'px'
-  }
+initLettering = () ->
+  $('.lettering').lettering();
+  $('.lettering').children().addClass 'stamp'
+  $('.lettering').children().each () ->
+    top = ($(window).height()/2 - $(@).height()/2) + ((Math.random() - .5) * $(window).height()/2) # px
+    $(@).css {
+      position: 'absolute'
+      top: "#{top}px"
+    }
+  spaceOutLetters()
   
-randomCoverRotate = () ->
-  (Math.random() * 22) - 11
+initGlyphCards = ($card) ->
+  if Math.random() < .75
+    glyphCount = 89
+    path = '/images/glyphs/border/glyph'
+    classes = 'svg'
+  else
+    glyphCount = 9
+    path = '/images/glyphs/borderless/glyph'
+    classes = 'svg borderless'
+  glyph = (Math.ceil(Math.random() * glyphCount)).toString()
+  size = Math.ceil((Math.random() + .5)* 4) * 36
+  if (glyph.length < 2)
+    glyph = '0' + glyph
+  $object = $("<object type='image/svg+xml' data='#{path}-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
+  $card.append $object
+  setTimeout -> # wait until after svgs load
+    $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
+    $shapes.attr('vector-effect', 'non-scaling-stroke')
+    repack()
+  , 1000
+  $card.addClass classes
+  $card.css({
+    'width':  size
+  #           'height': size
+  })
+  
+initCards = () ->
+  $('.pack.filler').each () ->
+    random = Math.floor(Math.random() * 4)
+    $card = $(@).find('.card')
+    switch random
+      # card symbol
+      when 0
+        initGlyphCards($card)
+      when 1
+        initGlyphCards($card)
+      when 2
+        initGlyphCards($card)
+      when 3
+        random = Math.floor(Math.random() * 4)
+        switch random
+          when 0
+            random = Math.floor(Math.random() * 4)
+            $card.addClass 'typeOutlineClear symbol'
+            $card.css({
+              fontSize: Math.ceil(Math.random() * 4) * 24
+            })
+            switch random
+              when 0 then $card.html '$'
+              when 1 then $card.html '&'
+              when 2 then $card.html '?'
+              when 3 then $card.html '!'
+          when 1
+            $card.addClass 'typeOutlineClear symbol'
+            $card.css({
+              fontSize: Math.ceil(Math.random() * 4) * 24
+              fontWeight: Math.ceil(Math.random() * 8) * 100
+            })
+            random = Math.floor(Math.random() * 4)
+            switch random
+              when 0 then text = 'Wow!'
+              when 1 then text = 'Meh.'
+              when 2 then text = 'Cool'
+              when 3 then text = 'Amazing'
+            $h1 = $('<h1></h1>').html(text)
+            $card.append $h1
+          when 2
+            $card.html '2'
+          when 3
+            $card.html '3'
+  
+initPackery = () ->
+  $('.content').packery({
+    itemSelector: '.pack',
+    transitionDuration: '0s'
+  });
+  $('.content').packery( 'stamp', $('.stamp') );
 
-initSections = ($sections) ->
-  coverWidth  = $sections.children('.collection').find('.cover').not('.scale').width()
-  coverHeight = $sections.children('.collection').find('.cover').not('.scale').height()
-  updateScaleRatio()
-  $sections.each () ->
-    updateSectionScrollValues $(@), 0
-    $(@).data 'stackHasOpened', false
-    $(@).children('.collection').each () ->
-      $(@).data('status', null)
-      $(@).find('.exampleContent').css {
-        opacity: 0
-      }
-      $(@).find('.cover').each () ->
-        if $(@).hasClass('scale')
-          initScaleCover($(@), $sections.children('.collection').find('.cover').not('.scale'))
-          $(@).data('rotateZ', randomCoverRotate())
-        else
-          $(@).velocity {
-            rotateZ: randomCoverRotate()
-          }, {
-            duration: 0
-          }
+onResize = () ->
+  cardSize = if $(window).width() < 768 then 18 else 36
+  gutter   = if $(window).width() < 768 then 6 else 12
+  repack()
+  resizeCards(cardSize, gutter)
+  repack()
+  spaceOutLetters()
+  repack()
+  toggleExtraFillers()
+  repack()
+  setTimeout ->
+    toggleExtraFillers()
+    repack()
+  , 100
+    
+loadAnimation = () ->
+  duration = 2000
+  easing = [20, 10]
+  $('.stamp').each () ->
+    $(@).velocity
+      properties:
+        opacity: [1, 1]
+        scale: [1, 0]
+        rotateZ: [0, (Math.random() - .5) * 45]
+#         translateY: [0, 1000]
+      options:
+        duration: duration
+        easing: easing
+        delay: 250 + $(@).index() * 120
+  $('.pack').each () ->
+    $(@).velocity
+      properties:
+        opacity: [1, 1]
+        scale: [1, 0]
+        rotateZ: [0, (Math.random() - .5) * 45]
+#         translateY: [0, 1000]
+      options:
+        duration: duration
+        easing: easing
+        delay: 750 + Math.random() * 500
         
-
-initElementAnimations = () ->
-  $elements = $('.animateInPop')
-  hasAnimatedIn = if $elements.hasClass 'animateInOnCollectionOpen' then false else true
-  $elements.data 'hasAnimatedIn', hasAnimatedIn
-  $elements.velocity {
-    translateZ: 0
-    translateY: -coverHeight/2
-    opacity: 0
-    rotateZ:  (Math.random() - .5) * rotateZRandomMax + 'deg'
-    scaleX: 0
-    scaleY: 2
-  }, {
-    duration: 0
-    easing: fancySpring
-  }
-
+randomColor = () ->
+  h = Math.random() * 360
+  l = Math.random() * 10 + 70
+  "hsl(#{h},100%,#{l}%)"
   
-initJoinAnimations = () ->
-  $join = $('.page.join')
-  $cover = $join.find('.cover')
-  
-initCreateAccount = () ->
-  $button = $('.page').children('.caption').find('p.createAccount a')
-  $signUp = $('nav .signUp.card')
-  duration = 1000
-  signUpIsOpen = false
-  $signUp.css {
-    top:  $(window).height() / 2
-    left: $(window).width()  / 2
-    marginTop:  -$signUp.height() / 2
-    marginLeft: -$signUp.width()  / 2
-  }
-  $signUp.velocity {
-    translateZ: 0
-    translateY: $(window).height() / 2 + $signUp.height() / 2
-    scaleX: 0
-    scaleY: .5
-    rotateZ: (Math.random() * rotateZRandomMax/2) - (rotateZRandomMax/2) + 'deg'
-  }, {
-    duration: 0
-    easing: basicSpring
-  }
-  $button.click (event) ->
-    if signUpIsOpen is false
-      $signUp.velocity {
-        translateZ: 0
-        translateY: 0
-        scaleX: 1
-        scaleY: 1
-        rotateZ: 0
-      }, {
-        duration
-        easing: fancySpring
-      }
-      $('.page.index .sectionsWrapper').velocity {
-        translateZ: 0
-        opacity: .125
-        blur: 10
-      }, {
-        duration
-        easing: easingSmooth
-      }
-    event.stopPropagation()
-    event.preventDefault()
-    signUpIsOpen = true
-  $('body').click (event) ->
-    if signUpIsOpen
-      signUpIsOpen = false
-      $signUp.velocity 'reverse'
-      $('.page.index .sectionsWrapper').velocity 'reverse', { duration }
+toggleExtraFillers = () ->
+#   $('.pack.filler').find('.card').each () ->
+#     if $(@).offset().top > $(window).height()
+#       $(@).css('background-color', 'blue')
+#       $(@).hide()
+#     else
+#       $(@).css('background-color', 'red')
+#       $(@).show()
       
-initContentControllers = ->
-  # console.log $('.exampleContent').children
-  $('.exampleContent').find('article').each () ->
-    $content = $(@)
-    switch $content.data('contenttype')
-      when 'text'       then initText $content
-      when 'video'      then initVideo $content
-      when 'file'       then initFile $content
-      when 'soundcloud' then initSoundCloud $content
-      when 'youtube'    then initYoutube $content
-
-init = ($sections) ->
-  initSections($sections)
-  initElementAnimations()
-  initJoinAnimations()
-  initCreateAccount()
 
 $ ->
-  $sections = $('.page.index > .sectionsWrapper > .example')
-  init $sections
-  initContentControllers()
-  onScroll $sections
-  $(window).scroll -> onScroll $sections
-  $(window).resize -> onScroll $sections
+  initLettering()
+  initCards()
+  initPackery()
+  
+  $(window).resize () -> onResize()
+  onResize()
+  setTimeout ->
+    loadAnimation()
+  , 1000
+  
+  $('body').css({
+    backgroundColor: randomColor()
+  })
