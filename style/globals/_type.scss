@@ -186,7 +186,7 @@ html {
     }
 }
 
-.smallType {
+.smallType, .typeSmall {
     @include typeSmall;
     
     &.smallCaps {
@@ -200,6 +200,10 @@ html {
 
 .typeOutlineClear {
     @include typeOutlineClear;
+}
+
+.typeHeaderOutline {
+    @include typeHeaderOutline;
 }
 
 .typeOutlineBlackOnHover {
