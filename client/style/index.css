@@ -2622,13 +2622,34 @@ footer.main ul.actions li.action label {
   right: 0;
   z-index: 2;
 }
-/* line 50, ../../style/index.scss */
+/* line 54, ../../style/index.scss */
 .content .card {
   background-color: transparent;
-  width: 224pt;
+}
+/* line 58, ../../style/index.scss */
+.content .card:hover {
+  background-color: white;
+}
+/* line 62, ../../style/index.scss */
+.content .card.svg {
+  padding: 0;
+}
+/* line 65, ../../style/index.scss */
+.content .card.svg object.svg {
+  margin-bottom: -6px;
+  /*
+                  height: 100%;
+                  width:  100%;
+  */
+}
+/* line 74, ../../style/index.scss */
+.content .card.symbol {
+  font-size: 8em;
+  line-height: 1em;
+  font-weight: 800;
 }
 
-/* line 57, ../../style/index.scss */
+/* line 83, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;

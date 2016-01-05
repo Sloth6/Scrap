@@ -1,12 +1,14 @@
-
+repack = () ->
+  $('.content').packery()
+  
 resizeCards = (minSize, gutter) ->
   $('.pack.filler').each () ->
     height  = minSize + (Math.round(Math.random() * (minSize*6)))
     width   = minSize + (Math.round(Math.random() * (minSize*6)))
-    $(@).find('.card').css({
-      'width':  "#{width}px"
-      'height': "#{height}px"
-    })
+#     $(@).find('.card').css({
+#       'width':  "#{width}px"
+#       'height': "#{height}px"
+#     })
   $('.pack').each () ->
     $(@).css({
       'padding-left':  if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
@@ -32,7 +34,7 @@ spaceOutLetters = () ->
   spaceOnRight = $(window).width() - ($('.lettering').children().eq(n-1).width() + $('.lettering').children().eq(n-1).offset().left)
   # center whole word
   #   $('.lettering').css('left', spaceOnRight / 2)
-#   $('.content').packery();
+#   repack()
   
 initLettering = () ->
   $('.lettering').lettering();
@@ -47,17 +49,49 @@ initLettering = () ->
   
 initCards = () ->
   $('.pack.filler').each () ->
-    random = Math.floor(Math.random() * 4)
+    random = Math.floor(Math.random() * 2)
     $card = $(@).find('.card')
     switch random
+      # card symbol
       when 0
-        $card.html '1'
+        glyph = (Math.ceil(Math.random() * 42)).toString()
+        size = Math.ceil(Math.random() * 4) * 48
+        if (glyph.length < 2)
+          glyph = '0' + glyph
+#           $object = $("<img src='./images/glyphs/glyph-#{glyph}.svg'>").addClass('svg')
+        $object = $("<object type='image/svg+xml' data='/images/glyphs/glyph-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
+        $card.append $object
+        setTimeout -> # wait until after svgs load
+          $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
+          $shapes.attr('vector-effect', 'non-scaling-stroke')
+          repack()
+        , 500
+        $card.addClass 'svg'
+        $card.css({
+          'width':  size
+#           'height': size
+        })
       when 1
-        $card.html '1'
-      when 2
-        $card.html '1'
-      when 3
-        $card.html '1'
+        random = Math.floor(Math.random() * 4)
+        switch random
+          when 0
+            random = Math.floor(Math.random() * 4)
+            $card.addClass 'typeOutlineClear symbol'
+            $card.css({
+              fontSize: Math.ceil(Math.random() * 4) * 24
+            })
+            switch random
+              when 0 then $card.html '$'
+              when 1 then $card.html '&'
+              when 2 then $card.html '?'
+              when 3 then $card.html '!'
+          when 1
+            $h1 = $('<h1></h1>').html('Amazing')
+            $card.append $h1
+          when 2
+            $card.html '2'
+          when 3
+            $card.html '3'
   
 initPackery = () ->
   $('.content').packery({
@@ -69,16 +103,16 @@ initPackery = () ->
 onResize = () ->
   cardSize = if $(window).width() < 768 then 18 else 36
   gutter   = if $(window).width() < 768 then 6 else 12
-  $('.content').packery();
+  repack()
   resizeCards(cardSize, gutter)
-  $('.content').packery();
+  repack()
   spaceOutLetters()
-  $('.content').packery();
+  repack()
   toggleExtraFillers()
-  $('.content').packery();
+  repack()
   setTimeout ->
     toggleExtraFillers()
-    $('.content').packery();
+    repack()
   , 100
     
 loadAnimation = () ->

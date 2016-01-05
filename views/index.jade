@@ -8,6 +8,7 @@ block scripts
   script(src="/js/jquery/jquery.transit.min.js")
   script(src="/js/jquery/jquery-mousewheel.min.js")
   script(src="/js/jquery/jquery.lettering.js")
+  script(src="/js/jquery/jquery.svg.min.js")
   script(src="/js/lib/velocity.min.js")
   
   script(src='/js/lib/packery.js')
@@ -73,5 +74,15 @@ block content
         .pack.filler
           .card
     - }
+    
+    // - for (var i = 0; i < 42; i++) {
+    //   - var glyph = (i+1).toString();
+    //   - if (glyph.length < 2) {
+    //     - glyph = '0' + glyph;
+    //   - }
+    //   .pack.filler
+    //     .card.svg
+    //       object(type='image/svg+xml', data='./images/glyphs/glyph-'+glyph+'.svg', id='glyph-'+glyph+'-'+i+'')
+    // - }
   footer
     p.typeSmall Copyright 2015 Joel Simon and Antonio Ono
