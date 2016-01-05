@@ -26,3 +26,6 @@ window.logisticFunction = (x) ->
 validateEmail = (email) ->
   re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
   re.test(email)
+
+$.fn.hasScrollBar = () ->
+  @get(0).scrollHeight > @get(0).clientHeight

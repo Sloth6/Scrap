@@ -1,4 +1,4 @@
-mixin articleMixin(article)
+mixin articleMixin(collection, article)
   -
     var classes =  [article.contentType]
     if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
@@ -15,8 +15,16 @@ mixin articleMixin(article)
         .articleControls
           - if(article.Creator !== undefined)
             author.smallType!=article.Creator.name
-          
-        .card.cardHover.cardDrag(class=article.contentType)
+        -
+          if (article.contentType == 'text') {
+            var color = collection.color
+            var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
+            var hue = color.match(pattern)[1]
+            var backgroundColor = 'hsl('+hue+',100%, 98%)'
+          } else {
+            var backgroundColor = ''
+          }
+        .card.cardHover.cardDrag(class=article.contentType, style='background-color:' + backgroundColor + ';')
           case article.contentType
             when 'image'
               - var content = JSON.parse(article.content)
@@ -74,11 +82,12 @@ mixin articleMixin(article)
                   .source.smallType.smallCaps youtube
 
             when 'text'
-              //- textarea.modify(name='content', style='height:300px')!=article.content
-              .editable(contentEditable="false", designmode="on")
+              //- contentEditable="false", designmode="on"
+              .editable()
                 | !{article.content}
               ul.cardActions
-                li.right
-                  a.invisible.done.confirm(href='#') Done
+                li.right.showOnEditing
+                  a.done.confirm(href='#') Done
+                  //- a.invisible.cancel.confirm(href='#') Cancel
             default
               p!=article.content

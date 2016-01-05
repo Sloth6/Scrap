@@ -183,7 +183,7 @@ window.collectionViewController =
     $parentCollection  = collectionModel.getParent $collection
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
-    
+
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection

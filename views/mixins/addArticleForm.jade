@@ -1,15 +1,15 @@
 mixin addArticleFormMixin(collection)
   article(
-    class = ['addArticleForm', 'slider', 'peek']
+    class = ['addArticleForm', 'slider', 'peek', 'text']
     data-collectionkey=collection.collectionKey
     data-contenttype="addArticleForm"
   )
     .translate.content
       .card.cardHover.text.note.closed.tall.expandable.newCard
-        .editable.textInput(contentEditable="true", placeholder="Write a note or paste a link",  designmode="on")
+        .editable.textInput(placeholder="Write a note or paste a link")
         .cardActions
           ul
-            li.button.closed.upload.bodyType
+            li.button.closed.upload.bodyType.showOnNotEditing
               a.label.action(href='#') Upload a file
               form.upload(
                 action='http://scrap_images.s3.amazonaws.com',
@@ -24,6 +24,6 @@ mixin addArticleFormMixin(collection)
                 input(type='hidden', name='success_action_status', value='201')
                 input(type='hidden', name='Content-Type')
                 input(type='file', class='file-input', name='file')
-            li.done.invisible
+            li.right.showOnEditing
               a.cancel.bodyType.warning(href='#') Cancel
-              a.submit.bodyType.confirm(href='#') Save
+              a.done.bodyType.confirm(href='#') Save

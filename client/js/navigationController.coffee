@@ -16,8 +16,8 @@ window.navigationController =
       $addForm = collectionModel.getAddForm($collection)
       contentModel.setJumble $addForm
       switch $addForm.data('contenttype')
-        when 'addArticleForm' then addArticleController.init $addForm
-        when 'addProjectForm' then addProjectController.init $addForm
+        when 'addArticleForm' then initAddArticle    $addForm
+        when 'addProjectForm' then initAddCollection $addForm
   
       #If leaving root collection, animate out back button
       if collectionModel.getParent($collection)?
