@@ -18,10 +18,10 @@ bindPlayableControls = ($content, getIframe) ->
       $content.addClass 'playing'
       
   #Remove iframe, show preview
-  header.click (event) ->
-    if $content.hasClass 'playing'
-      stopPlaying $content
-      event.stopPropagation()
+#   header.click (event) ->
+#     if $content.hasClass 'playing'
+#       stopPlaying $content
+#       event.stopPropagation()
 
 stopPlaying = ($content) ->
   $content.removeClass 'playing'

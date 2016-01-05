@@ -71,8 +71,8 @@ $cardBorderRadius:          0; // $cell/4;
                                  
     &.hover {
         border-color: $cardBorderColorHover;
-        @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
-        @include transform(translate3d(-$cell, -$cell, 0));
+//         @include box-shadow($cardBoxShadowDimensions $cardBoxShadowColor);
+//         @include transform(translate3d(-$cell, -$cell, 0));
 //         @include transform($cardHoverScaleMin);
         &.invertHover {
 //             @include box-shadow($cardBoxShadowDimensions white);
@@ -202,7 +202,7 @@ a, input[type=submit], input[type=button] {
 }
 
 .cardHover {
-    @include cardHover;
+//     @include cardHover;
 }
 
 .cardDrag {

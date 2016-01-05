@@ -28,9 +28,9 @@ drag = (event, $dragging) ->
   scaleThreshhold = $(window).height() / 2
   scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
   $collection = $('.collection.open')
-
-  w = contentModel.getSize($dragging)
-  h = Math.max($dragging.find('.content').height(), 200)
+  
+  w = 200# contentModel.getSize($dragging)
+  h = 200# Math.max($dragging.find('.content').height(), 200)
   
   offsetPercentX = ($dragging.data('mouseOffsetX') - (w / 2)) / (w/2)
   offsetPercentY = ($dragging.data('mouseOffsetY') - (h / 2)) / (h/2)
@@ -48,8 +48,8 @@ drag = (event, $dragging) ->
   offsetY = - $dragging.data('mouseOffsetY')
 
   $dragging.velocity {
-    translateX: x + offsetX + scaleOffsetX + fudgeX*x
-    translateY: y + offsetY + scaleOffsetY + fudgeY*y
+    translateX: x - $dragging.data('mouseOffsetX')
+    translateY: y - $dragging.data('mouseOffsetY')
     scale: scale
   }, { duration: 1 }
   
@@ -105,8 +105,6 @@ moveToChild = (event, $dragging) ->
   draggedId     = parseInt($dragging.attr('id'))
   draggedOverId = parseInt($droppedOn.attr('id'))
   padding.remove()
-  
-  console.log 'droppedOn', $droppedOn
 
   if $droppedOn.hasClass 'collection'
     socket.emit "moveToCollection", { elemId: draggedId, collectionKey }
@@ -171,12 +169,23 @@ stopDragging = (mouseUpEvent, $dragging) ->
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
+  $collection =  $('.collection.open')
 
   $dragging.
     addClass('dragging').
     removeClass('sliding').
     data('oldZIndex', $dragging.zIndex()).
     zIndex 9999 
+
+  if $dragging.hasClass 'collection'    
+    if $dragging.hasClass 'pack'
+      $dragging.data 'previewState', 'none'
+      
+    else
+      $dragging.data 'previewState', 'compact'
+    
+    collectionViewController.draw $dragging, { animate:true }
+    collectionViewController.draw $collection, { animate:true }
  
   startDragTransform $dragging
   
@@ -186,7 +195,7 @@ startDragging = ($dragging, mouseDownEvent) ->
   
   $('.slidingContainer').append $dragging
   stopPlaying($dragging) if $dragging.hasClass('playable')
-  collectionViewController.draw $('.collection.open')
+  collectionViewController.draw $collection
   footerController.show $dragging
 
 window.makeDraggable = ($content) ->
@@ -198,9 +207,10 @@ window.makeDraggable = ($content) ->
     return if $(@).hasClass 'editing'
     return unless collectionModel.getParent($content).hasClass 'open'
     $content.data 'originalCollection', contentModel.getCollection $content
+    
     startX = mouseDownEvent.clientX
     startY = mouseDownEvent.clientY
-    
+
     mousedownArticle = $content
     draggingArticle  = null
         
@@ -210,7 +220,6 @@ window.makeDraggable = ($content) ->
         dY = Math.abs(startY - event.clientY)
         if dX < dragThreshold and dY < dragThreshold
           return
-
         draggingArticle = mousedownArticle
         startDragging draggingArticle, mouseDownEvent
       drag event, draggingArticle

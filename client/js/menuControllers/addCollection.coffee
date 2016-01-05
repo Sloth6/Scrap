@@ -50,4 +50,3 @@ window.initAddCollection = ($elem) ->
     $done.on 'click', submit
 
   $elem.click startEditing
-  

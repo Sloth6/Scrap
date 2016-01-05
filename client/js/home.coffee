@@ -7,7 +7,7 @@ fastDuration            = 250
 
 marginTop       = 0#$(window).height() * 0.125
 articleMargin   = 24
-packMargin      = 72
+packMargin      = 48
 sliderBorder    = $(window).width() * 0.15
 edgeWidth       = 48
 marginAfter     = $(window).width()/2
@@ -33,6 +33,9 @@ onScroll = ->
 
   collectionViewController.draw $('.open.collection')
   $('.hover').removeClass 'hover'
+  $('.collection.pack').data('previewState', 'none')
+  console.log 'scroll'
+  $('.collection.stack').data('previewState', 'compact')
   # console.log 'on scrollb', $(window).scrollLeft()
 
 # Enable the user to scroll vertically and map it to horizontal scroll

@@ -4,7 +4,7 @@ drawOpenCollection = ($collection, animate) ->
   # drawTimeout = setTimeout (() -> drawTimeout = null), 100
   $contents  = collectionModel.getContent $collection
   $addForm   = collectionModel.getAddForm $collection
-  leftMargin = $(window).width() / 2 - $contents.first().find('.card').width() / 2
+  leftMargin = $(window).width() / 6 - $contents.first().find('.card').width() / 2
   rightMargin = $(window).width() / 2 - $contents.last().find('.card').width() / 2
   sizeTotal  = if $collection.hasClass 'root' then leftMargin else 50
   maxX       = -Infinity
@@ -31,30 +31,97 @@ drawOpenCollection = ($collection, animate) ->
     #   $(@).css { zIndex: ($contents.length*3) - 1 }
     # else
     
-drawClosedStack = ($collection, spacing = 15) ->
-  $cover = collectionModel.getCover($collection)
-  $content = collectionModel.getContent $collection
-  
-  # With a new stack, the dragged over element hides while waiting for a 
-  # server resposse
-  $content.show()
-
-  collectionModel.getAddForm($collection).hide()
-  $content.find('.articleControls').hide()
-  $cover.zIndex 0
-
-  translateX = 0
-  translateY = 0
-  zIndex     = 0#s$content.length
-  sizeTotal  = 0
-  rotateZ    = 0
+getWidestArticle = ($content) ->
+  widest = 0
   $content.each () ->
-    $(@).velocity({ translateX, translateY, rotateZ })
-    $(@).css { zIndex: zIndex++ }
-    sizeTotal = Math.max(sizeTotal, translateX + $(@).width())
-    translateX += spacing
+    if $(@).width() > widest
+      widest = $(@).width()
+  widest
 
-  $cover.find(".card").width sizeTotal
+scaleDownTooBigContent = (scale, $content, transformOrigin) ->
+  $content.each () ->
+    $(@).css
+      'transform-origin':         transformOrigin
+      '-webkit-transform-origin': transformOrigin
+      '-moz-transform-origin':    transformOrigin
+    $.Velocity.hook($(@), 'scale', scale)
+  
+# Given the ith item in a collection of length n,
+# how hard fron neighbor should it be?
+calculateSpacing = (i, n) ->
+  k = n - i # Distance from end. The largest spacing is at end.
+  # Two parameters to vary, largest spacing and rate of decrease
+  m = 200 # The largest spacing
+  d = 1   # The rate of decrease
+  func = (x) -> (1 - logisticFunction(x)) * 2
+  func(k * d) * m
+
+drawCollectionPreview = ($collection, animate) ->
+  $cover = collectionModel.getCover($collection)
+  $content = collectionModel.getContent($collection)
+  $content = $content.find('article').not('.cover').not('.addArticleForm').add($content.filter('article'))
+  $contentContainer = collectionModel.getContentContainer $collection
+  # With a new stack, the dragged over element hides while waiting for a 
+  # server response
+  $content.show()
+  
+  collectionModel.getAddForm($collection).hide()
+  $cover.zIndex 9999
+  
+  if $collection.data('collectiontype') is 'pack'
+    scale = Math.min($cover.width() / getWidestArticle($content), .75) # min to prevent small elements from scaling up
+    translateX = $cover.width() / scale
+    transformOrigin = 'left top'
+  else
+    translateX  = 0
+    scale = 1
+    transformOrigin = 'center center'
+  scaleDownTooBigContent(scale, $content, transformOrigin)
+      
+  translateY  = 0
+  rotateZ     = 0
+  zIndex      = $content.length
+  sizeTotal   = 0
+  widest      = getWidestArticle($content)
+  duration    = if $collection.data('drawInstant') then 1 else openCollectionDuration
+  spacing     = 0
+  previewWidth      = translateX # previewWidth is apparent width of preview. separate from 
+  flushRightOffset  = 0
+  
+  if $collection.data('previewState') is 'compactReverse'
+    translateX += 18
+  i = 0
+  $content.each () ->
+    i += 1
+    contentWidth = $(@).width()
+    switch $collection.data('previewState')
+      when 'compact'
+        spacing = 0
+        rotateZ = (Math.random() - .5) * 12
+      when 'expanded'
+        spacing = calculateSpacing i, $content.length
+        rotateZ = (Math.random() - .5) * 6
+      when 'compactReverse'
+        spacing = -32/$content.length
+        rotateZ = (Math.random() - .5) * 12
+        contentWidth = 0
+        translateY = 32
+        flushRightOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+      when 'none'
+        spacing = 0
+        contentWidth = 0
+        flushRightOffset = -widest + (widest - $(@).width()) + ($content.length * -spacing)
+    $(@).velocity
+      properties:
+        translateX: translateX + flushRightOffset
+        translateY: translateY
+        rotateZ: rotateZ
+      options:
+        duration: duration
+
+    sizeTotal = Math.max sizeTotal, (translateX * scale) + contentWidth
+    translateX += spacing
+    
   contentModel.setSize $collection, sizeTotal
   sizeTotal
 
@@ -68,7 +135,10 @@ window.collectionViewController =
       drawOpenCollection $collection, animate
 
     else if $collection.data('collectiontype') == 'stack'
-      drawClosedStack($collection)
+      drawCollectionPreview $collection, animate
+      
+    else if $collection.data('collectiontype') == 'pack'
+      drawCollectionPreview $collection, animate
 
   # This function is only called from collectionViewController.open
   pushOffScreen: ($collection, $openingCollection) ->
@@ -89,7 +159,7 @@ window.collectionViewController =
       options: { complete: () ->
         $(@).hide()# unless $(@).hasClass 'cover'
       }
-
+      
     $contentsAfter.add($addForm).velocity
       properties:
         translateZ: [ 0, 0 ]
@@ -97,14 +167,14 @@ window.collectionViewController =
         translateY: [0, yOfSelf]
         rotateZ:    0
       options: { complete: () -> $(@).hide() }
-      
+
     $openingCover.addClass('peek onEdge open').velocity
       properties:
         translateZ: 0
         translateX: [28-$openingCover.width(), xOfSelf]
-        
+
     # Mark collection so no longer being open 
-    $collection.removeClass('open').addClass 'closed'
+    $collection.removeClass('open')
 
   open: ($collection, options = {}) ->
     throw 'no collection passed' unless $collection.length
@@ -113,18 +183,22 @@ window.collectionViewController =
     $parentCollection  = collectionModel.getParent $collection
     $collectionContent = collectionModel.getContent $collection
     $collectionAddForm = collectionModel.getAddForm $collection
-        
+
     # The root collection has nothing to push off. 
     if $parentCollection
       collectionViewController.pushOffScreen $parentCollection, $collection
 
     # Make sure cover is above its children during transition
-    $cover.css 'z-index': 999
+    $cover.css 'z-index': 9999
+    
+    $collection.data 'contentLoaded', true
     
     # Animate in content, content appears from behind its cover
     $collectionAddForm.show().css opacity: 1
     $collectionContent.find('.articleControls').show()
     $collectionContent.css {'overflow': 'visible' }
+    
+#     $collection.data 'previewState', 'none'
 
     if $collection.data('collectiontype') == 'pack'
       # Container around articles
@@ -166,7 +240,6 @@ window.collectionViewController =
           rotateZ: 0
       # Show the add article Form.
       $collectionAddForm.show()
-      $collectionContent.show()
 
     # When opening a collection, it no longer slides but is fixed to start
     $collection.velocity { translateX: 0 }
@@ -175,7 +248,10 @@ window.collectionViewController =
     $collection.
       addClass('open').
       removeClass 'closed'
-    
+      
+    # Reset preview state for collections
+    $collection.find('.collection').data 'previewState', 'compact'
+
     $container = $collection.children('.contentContainer')    
     # $container.width('100vw').height('100vh')
 
@@ -212,6 +288,8 @@ window.collectionViewController =
       removeClass('open')
       
     $collectionCover.removeClass('onEdge open')
+      
+    $collection.data 'contentLoaded', false
 
     # the cover should have a transateX 0 relative to its collection
     $collectionCover.show().velocity { translateX: 0 }
@@ -219,6 +297,10 @@ window.collectionViewController =
     $parentCollection.addClass('open').removeClass 'closed'
     $parentCollectionContent.show()
     $parentCollectionAddForm.show()
+
+    # Reset preview state for collections
+    $collection.find('.collection').data 'previewState', 'compact'
+    $parentCollection.find('.collection').data 'previewState', 'compact'
 
     if $collection.data('collectiontype') == 'pack'
       # The size of the collection will be reset to just the cover
@@ -254,5 +336,5 @@ window.collectionViewController =
 
   preview: ($collection) ->
     $collectionContent = collectionModel.getContent $collection
-    drawClosedStack($collection, 50)
+    drawCollectionPreview($collection, 50)
     
