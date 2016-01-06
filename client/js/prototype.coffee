@@ -7,6 +7,7 @@ gutter   = if $(window).width() < 768 then 6 else 12
 
 
 repack = () ->
+  console.log $('.content').data('layout')
   if $('.content').data('layout') is 'recents'
     $container = $('.container.recents')
     selector   = 'article'
@@ -16,25 +17,29 @@ repack = () ->
     selector   = '.pack'
   $container.packery {
     itemSelector: selector
+    gutter: gutter
     transitionDuration: 0
   }
   if $('.content').data('layout') is 'recents'
     saveArticleRecentsViewPositions()
+    console.log 'saveArticleRecentsViewPositions()'
   else
     savePacksViewPositions()
-
+    console.log 'savePacksViewPositions()'
+    
 resizeCards = (minSize, gutter) ->
-  $('article').each ->
-    $(@).css({
-      'padding-left':   gutter
-      'padding-top':    gutter
-      'padding-bottom': gutter
-      'padding-right':  gutter
-#       'padding-left':   if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-#       'padding-top':    if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-#       'padding-bottom': if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-#       'padding-right':  if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-    })
+  null
+#   $('article').each ->
+#     $(@).css({
+#       'padding-left':   gutter
+#       'padding-top':    gutter
+#       'padding-bottom': gutter
+#       'padding-right':  gutter
+# #       'padding-left':   if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+# #       'padding-top':    if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+# #       'padding-bottom': if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+# #       'padding-right':  if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+#     })
     
 saveArticleRecentsViewPositions = () ->
   $('article').each ->
@@ -52,7 +57,7 @@ savePacksViewPositions = () ->
     n = $(".#{packName}").length
     packX = parseInt $pack.data('packsLeft')
     packY = parseInt $pack.data('packsTop')
-    console.log packX, packY
+#     console.log packX, packY
     $(@).data('packsLeft', packX + ((n - i) * stackOffset))
     $(@).data('packsTop',  packY + ((n - i) * stackOffset))
 
