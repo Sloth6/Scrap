@@ -1739,7 +1739,7 @@ body article.text .editable ol li:before {
   font-size: 7.992pt;
   font-weight: 500;
   letter-spacing: 0.0625em;
-  margin-top: .225em;
+  margin-top: .1em;
 }
 /* line 214, ../../style/layout/_article.scss */
 body article.image .card {

@@ -39,7 +39,8 @@ onResize = () ->
   
 initOnLoad = () ->
   $('img').load () ->
-    repack()
+    null
+#     repack()
 
 initDrag = () ->
   itemElems = $('.container').packery('getItemElements')
@@ -53,6 +54,47 @@ makePack = (title) ->
   $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
   $('.container').append($pack)
   
+positionPacks = () ->
+  if $('.container').data('uiState') is 'packs'
+    # transfer article top,left to its pack
+    $('.pack').each () ->
+      $pack     = $(@)
+      packTop   = $pack.children('article').first().css('top')
+      packLeft  = $pack.children('article').first().css('left')
+      $pack.css {
+        top:  packTop
+        left: packLeft
+      }
+      # make article top,left relative to pack's top,left
+      $pack.children('article').each () ->
+        top =  parseInt($(@).data('packsTop'))  - parseInt(packTop)
+        left = parseInt($(@).data('packsLeft')) - parseInt(packLeft)
+        $(@).css {
+#           border: '1px solid red'
+          top:  top
+          left: left
+        }
+  else # switching to recents
+    $('.pack').each () ->
+      # reset pack top,left
+      $pack     = $(@)
+      packTop   = $pack.css('top')
+      packLeft  = $pack.css('left')
+      $pack.css {
+        top:  ''
+        left: ''
+      }
+      # make article top,left relative to pack's top,left
+      $pack.children('article').each () ->
+        top =  parseInt($(@).data('packsTop'))  + parseInt(packTop)
+        left = parseInt($(@).data('packsLeft')) + parseInt(packLeft)
+        $(@).css {
+#           border: '1px solid lime'
+          top:  top
+          left: left
+        }  
+    
+    
 switchProperties = ($article, property, state) ->
   if property is 'transform'
     absoluteLeft  = ''
@@ -100,21 +142,28 @@ toggleState = () ->
             if $("section.pack.#{$(@).data('pack')}").length < 1
               # if article doesn't have matching pack element, make one
               makePack($(@).data('pack').toString())
-            $(".pack.#{$(@).data('pack')}").append $(@)
+            $pack = $(".pack.#{$(@).data('pack')}")
+            $pack.append $(@)
+            # if last article
+            if $('article').length is $(@).index('article') + 1
+              positionPacks()
   else # Switch to recents
     $('.container').data 'uiState', 'recents'
-    $('article').each () ->
-      switchProperties($(@), 'transform', 'packs')
-      $(@).velocity
-        properties:
-          translateX: $(@).data 'recentsLeft'
-          translateY: $(@).data 'recentsTop'
-        options:
-          duration: 1000
-          easing: [20, 10]
-          complete: () ->
-            switchProperties($(@), 'absolute', 'recents')
-            $('.container').append $(@)
+    positionPacks()
+    setTimeout ->
+      $('article').each () ->
+        switchProperties($(@), 'transform', 'packs')
+        $(@).velocity
+          properties:
+            translateX: $(@).data 'recentsLeft'
+            translateY: $(@).data 'recentsTop'
+          options:
+            duration: 1000
+            easing: [20, 10]
+            complete: () ->
+              switchProperties($(@), 'absolute', 'recents')
+              $('.container').append $(@)
+    , 500
 $ ->
   initItems()
   initOnLoad()
@@ -126,5 +175,5 @@ $ ->
   $('.container').data 'uiState', 'recents'
   
   $('body').click () ->
-    unless $('.velocity-animating').length > 0 # only toggle state if not animating
+    if $('.velocity-animating').length < 1 # only toggle state if not animating
       toggleState()

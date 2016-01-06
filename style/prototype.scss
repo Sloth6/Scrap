@@ -44,7 +44,7 @@ header.main {
         
         article {
             .card {
-                border-width: (1px/$scale);
+//                 border-width: (1px/$scale);
             }
         }
     }
@@ -64,6 +64,11 @@ header.main {
     }
     
     .pack {
+//         background: rgba(213, 255, 0, 0.41);
+//         border: red 1px solid;
+        position: absolute;
+        height: 500px;
+        width: 500px;
         
         h1.packTitle {
             position: absolute;

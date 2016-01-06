@@ -1739,7 +1739,7 @@ body article.text .editable ol li:before {
   font-size: 7.992pt;
   font-weight: 500;
   letter-spacing: 0.0625em;
-  margin-top: .225em;
+  margin-top: .1em;
 }
 /* line 214, ../../style/layout/_article.scss */
 body article.image .card {
@@ -2630,10 +2630,6 @@ header.main {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 46, ../../style/prototype.scss */
-  .container article .card {
-    border-width: 2px;
-  }
 }
 @media (min-width: 1280px) {
   /* line 22, ../../style/prototype.scss */
@@ -2649,7 +2645,13 @@ header.main {
     border-width: 1px;
   }
 }
-/* line 68, ../../style/prototype.scss */
+/* line 66, ../../style/prototype.scss */
+.container .pack {
+  position: absolute;
+  height: 500px;
+  width: 500px;
+}
+/* line 73, ../../style/prototype.scss */
 .container .pack h1.packTitle {
   position: absolute;
   color: red;
