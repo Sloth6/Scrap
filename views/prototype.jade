@@ -21,72 +21,74 @@ html.no-js(lang='en')
         a(href="#")
           span ‹
       // include partials/settingsMenu.jade
-    .container.small
-      - var n = 2
-      - for (var i = 0; i < n; i++) {
-        - var pack = Math.floor(Math.random() * n)
-        article.text(data-pack=pack, class=pack)
-          .card.text
-            .editable
-              h1 Header
-              h2 header 2
-              p paragraph
-              p paragraph
-              ol
-                li ordered
-                li list
-              ul
-                li unordered
-                li lists
-              blockquote quote
-        - var pack = Math.floor(Math.random() * n)
-        article.image(data-pack=pack, class=pack)
-          .card.image
-            img(src='http://lorempixel.com/' + Math.floor(Math.random() * 100 + 200) + '/' + Math.floor(Math.random() * 100 + 200))
-        - var pack = Math.floor(Math.random() * n)
-        article.file(data-pack=pack, class=pack)
-          .card.file
-            .fakeCard
+    .content
+      .container.recents
+        - var n = 3
+        - for (var i = 0; i < n; i++) {
+          - var pack = Math.floor(Math.random() * n)
+          article.text(data-pack=pack, class=pack)
+            .card.text
+              .editable
+                h1 Header
+                h2 header 2
+                p paragraph
+                p paragraph
+                ol
+                  li ordered
+                  li list
+                ul
+                  li unordered
+                  li lists
+                blockquote quote
+          - var pack = Math.floor(Math.random() * n)
+          article.image(data-pack=pack, class=pack)
+            .card.image
+              img(src='http://lorempixel.com/' + Math.floor(Math.random() * 100 + 200) + '/' + Math.floor(Math.random() * 100 + 200))
+          - var pack = Math.floor(Math.random() * n)
+          article.file(data-pack=pack, class=pack)
+            .card.file
+              .fakeCard
+                header
+                  h1.headerType.title Filename
+                  p.extension.smallCaps.bodyType PDF
+                ul.cardActions
+                  li
+                    a.download.confirm(href='#') Download
+              .decorative.fold
+          - var pack = Math.floor(Math.random() * n)
+          article.website(data-pack=pack, class=pack)
+            .card.website
+              .text
+                header
+                  h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  .url.smallType.smallCaps nytimes.com
+                .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
+              img(src='http://lorempixel.com/400/300')
+              a(href=url, target='_blank', title='Open “Title” in a new tab')
+          - var pack = Math.floor(Math.random() * n)
+          article.soundcloud.playable(data-pack=pack, class=pack)
+            .card.text.playable
+              .preview
+                - var size = Math.floor(Math.random() * 100 + 200)
+                img(src='http://lorempixel.com/' + size + '/' + size)
               header
-                h1.headerType.title Filename
-                p.extension.smallCaps.bodyType PDF
-              ul.cardActions
-                li
-                  a.download.confirm(href='#') Download
-            .decorative.fold
-        - var pack = Math.floor(Math.random() * n)
-        article.website(data-pack=pack, class=pack)
-          .card.website
-            .text
+                .top
+                  h1.headerType.title Title
+                  .artist.smallType Name
+                .detail
+                  .source.smallType.smallCaps Source
+          - var pack = Math.floor(Math.random() * n)
+          article.youtube.playable(data-pack=pack, class=pack)
+            .card.text.playable
+              .preview
+                - var w = Math.floor(Math.random() * 100 + 300)
+                - var h = Math.floor(w / (16/9))
+                img(src='http://lorempixel.com/' + w + '/' + h)
               header
-                h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                .url.smallType.smallCaps nytimes.com
-              .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
-            img(src='http://lorempixel.com/400/300')
-            a(href=url, target='_blank', title='Open “Title” in a new tab')
-        - var pack = Math.floor(Math.random() * n)
-        article.soundcloud.playable(data-pack=pack, class=pack)
-          .card.text.playable
-            .preview
-              - var size = Math.floor(Math.random() * 100 + 200)
-              img(src='http://lorempixel.com/' + size + '/' + size)
-            header
-              .top
-                h1.headerType.title Title
-                .artist.smallType Name
-              .detail
-                .source.smallType.smallCaps Source
-        - var pack = Math.floor(Math.random() * n)
-        article.youtube.playable(data-pack=pack, class=pack)
-          .card.text.playable
-            .preview
-              - var w = Math.floor(Math.random() * 100 + 300)
-              - var h = Math.floor(w / (16/9))
-              img(src='http://lorempixel.com/' + w + '/' + h)
-            header
-              .top
-                h1.headerType.title Title
-                .artist.smallType Name
-              .detail
-                .source.smallType.smallCaps Source
-      - }
+                .top
+                  h1.headerType.title Title
+                  .artist.smallType Name
+                .detail
+                  .source.smallType.smallCaps Source
+        - }
+      .container.packs

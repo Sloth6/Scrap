@@ -3,12 +3,19 @@ duration    = 1000
 easing      = [20, 10]
 
 repack = () ->
-  if $('.container').data('layout', 'recents') # only repack when in recents review
-    $('.container').packery {
-      itemSelector: 'article'
-      transitionDuration: 0
-    }
-    saveItemPositions()
+  if $('.content').data('layout') is 'recents'
+    $container = $('.container.recents')
+    selector   = 'article'
+  else
+    $container = $('.container.packs')
+    selector   = '.pack'
+  $container.packery {
+    itemSelector: selector
+    transitionDuration: 0
+  }
+
+  saveItemPositions() if $('.content').data('layout') is 'recents'
+  
 
 resizeCards = (minSize, gutter) ->
   $('article').each ->
@@ -24,6 +31,7 @@ resizeCards = (minSize, gutter) ->
     })
     
 saveItemPositions = () ->
+  console.log 'hasdssi'
   $('article').each ->
     i = $(@).index(".#{$(@).data('pack')}")
     n = $(".#{$(@).data('pack')}").length
@@ -35,7 +43,8 @@ saveItemPositions = () ->
     $(@).data('packsTop',  $(@).data('pack') * packY + ((n - i) * stackOffset))
 
 initItems = () ->
-  saveItemPositions()
+  null
+#   saveItemPositions()
     
 onResize = () ->
   cardSize = if $(window).width() < 768 then 18 else 36
@@ -48,22 +57,38 @@ initOnLoad = () ->
     null
 #     repack()
 
-initDrag = () ->
-  itemElems = $('.container').packery('getItemElements')
-  for elem in itemElems
-    draggie = new Draggabilly( elem )
-#     draggie.on( 'dragEnd', repack )
-    $('.container').packery 'bindDraggabillyEvents', draggie
+# initDrag = () ->
+#   itemElems = $('.container').packery('getItemElements')
+#   for elem in itemElems
+#     draggie = new Draggabilly( elem )
+# #     draggie.on( 'dragEnd', repack )
+#     $('.container').packery 'bindDraggabillyEvents', draggie
     
 makePack = (title) ->
   $packTitle = $('<h1></h1>').html(title).addClass('typeTitle packTitle')
   $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
-  $('.container').append($pack)
+  $('.container.packs').append($pack)
   $pack
   
-positionPacks = ($pack) ->
+sizePack = ($pack) ->
+  widestWidth   = 0
+  tallestHeight = 0
+  # get measurements of tallest and widest articles
+  $pack.children().each () ->
+    if $(@).width() > widestWidth
+      widestWidth = $(@).width()
+    if $(@).height() > tallestHeight
+      tallestHeight = $(@).height()
+  # add largest dimension to margins
+  width  = widestWidth   + $pack.children().length * stackOffset
+  height = tallestHeight + $pack.children().length * stackOffset
+  $pack.css
+    width: width
+    height: height
+  
+positionPack = ($pack) ->
   $h1 = $pack.children 'h1'
-  if $('.container').data('layout') is 'packs'
+  if $('.content').data('layout') is 'packs'
     # transfer article top,left to its pack
     packTop   = $pack.children('article').first().css('top')
     packLeft  = $pack.children('article').first().css('left')
@@ -121,8 +146,8 @@ switchArticleProperties = ($article, property, state) ->
   switchProperties $article, absolute, transform
       
 toggleState = () ->
-  if $('.container').data('layout') is 'recents' # Switch to packs
-    $('.container').data 'layout', 'packs'
+  if $('.content').data('layout') is 'recents' # Switch to packs
+    $('.content').data 'layout', 'packs'
     $('html').velocity('scroll', {
       duration: duration
       easing: easing
@@ -134,6 +159,7 @@ toggleState = () ->
       $pack               = if $(".pack.#{packName}").length > 0 then $(".pack.#{packName}") else makePack(packName)
       $pack.prepend $(@) # enclose in pack element
 #       $pack.css 'z-index', $pack.index('.pack')
+    $('.container.recents').hide()
     $('article').each -> # animate to pack positions
       packName            = "#{$(@).data('pack')}"
       $pack               = $(".pack.#{packName}")
@@ -162,16 +188,21 @@ toggleState = () ->
           complete: () ->
             switchArticleProperties($(@), 'absolute', 'packs')
             if indexInPack is siblingCount # if last article
-              positionPacks($pack)
+              sizePack($pack)
+              positionPack($pack)
+    setTimeout ->
+#       $('.container').packery 'destroy'
+      repack('.pack')
+    , 3000
   else # Switch to recents
-    $('.container').data 'layout', 'recents'
+    $('.content').data 'layout', 'recents'
     $('.pack').children('h1').velocity('reverse',
       {
         complete: () ->
           $(@).css {top: '', left: ''}
           $(@).hide()
       })
-    $('.pack').each -> positionPacks($(@))
+    $('.pack').each -> positionPack($(@))
     $('article').each ->
       switchArticleProperties($(@), 'transform', 'packs')
       $(@).velocity
@@ -183,16 +214,22 @@ toggleState = () ->
           easing: easing
           complete: () ->
             switchArticleProperties($(@), 'absolute', 'recents')
-            $('.container').prepend $(@)
+            $('.container.recents').show()
+            $('.container.recents').prepend $(@)
+    setTimeout ->
+#       $recentsContaienr.packery 'destroy'
+      repack('article')
+    , 3000
+    
 $ ->
+  $('.content').data 'layout', 'recents'
   initItems()
   initOnLoad()
     
   $(window).resize () -> onResize()
   onResize()
-  initDrag()
+#   initDrag()
   
-  $('.container').data 'layout', 'recents'
   
   $('body').click () ->
     if $('.velocity-animating').length < 1 # only toggle state if not animating

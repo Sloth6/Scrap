@@ -2647,11 +2647,11 @@ header.main {
 }
 /* line 66, ../../style/prototype.scss */
 .container .pack {
+  background: rgba(213, 255, 0, 0.41);
+  border: red 1px solid;
   position: absolute;
-  height: 500px;
-  width: 500px;
 }
-/* line 73, ../../style/prototype.scss */
+/* line 71, ../../style/prototype.scss */
 .container .pack h1.packTitle {
   position: absolute;
   font-size: 52pt;
