@@ -36,7 +36,7 @@ saveItemPositions = () ->
     i = $(@).index(".#{$(@).data('pack')}")
     n = $(".#{$(@).data('pack')}").length
     packX = 300
-    packY = 700
+    packY = 0
     $(@).data('recentsTop', $(@).css('top').toString())
     $(@).data('recentsLeft', $(@).css('left').toString())
     $(@).data('packsLeft', $(@).data('pack') * packX + ((n - i) * stackOffset))
@@ -64,11 +64,11 @@ initOnLoad = () ->
 # #     draggie.on( 'dragEnd', repack )
 #     $('.container').packery 'bindDraggabillyEvents', draggie
     
-makePack = (title) ->
-  $packTitle = $('<h1></h1>').html(title).addClass('typeTitle packTitle')
-  $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
-  $('.container.packs').append($pack)
-  $pack
+# makePack = (title) ->
+#   $packTitle = $('<h1></h1>').html(title).addClass('typeTitle packTitle')
+#   $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
+#   $('.container.packs').append($pack)
+#   $pack
   
 sizePack = ($pack) ->
   widestWidth   = 0
@@ -155,8 +155,7 @@ toggleState = () ->
     $('article').each -> # Put articles into packs
       switchArticleProperties($(@), 'transform', 'recents')
       packName            = "#{$(@).data('pack')}"
-      # if article doesn't have matching pack element, make one
-      $pack               = if $(".pack.#{packName}").length > 0 then $(".pack.#{packName}") else makePack(packName)
+      $pack               = $(".pack.#{packName}")
       $pack.prepend $(@) # enclose in pack element
 #       $pack.css 'z-index', $pack.index('.pack')
     $('.container.recents').hide()
