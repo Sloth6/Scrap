@@ -21,7 +21,6 @@ resizeCards = (minSize, gutter) ->
     
 saveItemPositions = () ->
   $('article').each () ->
-#     console.log $(@).data('pack') * 300) + ($(@).index(".#{$(@).data('pack')}") * 12))
     $(@).data('recentsTop', $(@).css('top').toString())
     $(@).data('recentsLeft', $(@).css('left').toString())
     $(@).data('packsTop',  $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * 12))
@@ -70,7 +69,6 @@ positionPacks = () ->
         top =  parseInt($(@).data('packsTop'))  - parseInt(packTop)
         left = parseInt($(@).data('packsLeft')) - parseInt(packLeft)
         $(@).css {
-#           border: '1px solid red'
           top:  top
           left: left
         }
@@ -81,15 +79,14 @@ positionPacks = () ->
       packTop   = $pack.css('top')
       packLeft  = $pack.css('left')
       $pack.css {
-        top:  ''
-        left: ''
+        top:  0
+        left: 0
       }
-      # make article top,left relative to pack's top,left
+      # restore non-pack-dependent top,left values for articles
       $pack.children('article').each () ->
-        top =  parseInt($(@).data('packsTop'))  + parseInt(packTop)
-        left = parseInt($(@).data('packsLeft')) + parseInt(packLeft)
+        top =  parseInt($(@).data('packsTop'))  #+ parseInt(packTop)
+        left = parseInt($(@).data('packsLeft')) #+ parseInt(packLeft)
         $(@).css {
-#           border: '1px solid lime'
           top:  top
           left: left
         }  
@@ -150,20 +147,18 @@ toggleState = () ->
   else # Switch to recents
     $('.container').data 'uiState', 'recents'
     positionPacks()
-    setTimeout ->
-      $('article').each () ->
-        switchProperties($(@), 'transform', 'packs')
-        $(@).velocity
-          properties:
-            translateX: $(@).data 'recentsLeft'
-            translateY: $(@).data 'recentsTop'
-          options:
-            duration: 1000
-            easing: [20, 10]
-            complete: () ->
-              switchProperties($(@), 'absolute', 'recents')
-              $('.container').append $(@)
-    , 500
+    $('article').each () ->
+      switchProperties($(@), 'transform', 'packs')
+      $(@).velocity
+        properties:
+          translateX: $(@).data 'recentsLeft'
+          translateY: $(@).data 'recentsTop'
+        options:
+          duration: 1000
+          easing: [20, 10]
+          complete: () ->
+            switchProperties($(@), 'absolute', 'recents')
+            $('.container').append $(@)
 $ ->
   initItems()
   initOnLoad()
