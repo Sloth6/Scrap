@@ -30,6 +30,20 @@ formatCollection = (collection) ->
   collection
 
 module.exports =
+  renderRecents: (req, res, app, callback) ->
+    userId = req.session.currentUserId
+    return res.send(400) unless userId?
+    models.Article.findAll({
+      where: { creatorId: userId }
+      include: [ 
+        { model: models.User, as: 'Creator' }
+        { model: models.Collection } 
+      ]
+    }).done (err, articles) ->
+      return callback err if err?
+      console.log "Showing #{articles.length} articles"
+      res.render 'recents', { articles }
+
   collectionContent: (req, res, app, callback) ->
     { collectionKey } = req.params
     return res.send(400) unless collectionKey?
