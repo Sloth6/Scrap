@@ -1,4 +1,4 @@
-stackOffset = 12
+stackOffset = 6
 duration    = 1000
 easing      = [20, 10]
 
@@ -27,11 +27,12 @@ saveItemPositions = () ->
   $('article').each ->
     i = $(@).index(".#{$(@).data('pack')}")
     n = $(".#{$(@).data('pack')}").length
+    packX = 300
+    packY = 700
     $(@).data('recentsTop', $(@).css('top').toString())
     $(@).data('recentsLeft', $(@).css('left').toString())
-    $(@).data('packsTop',  $(@).data('pack') * 300 + ((n - i) * stackOffset))
-    $(@).data('packsLeft', $(@).data('pack') * 300 + ((n - i) * stackOffset))
-
+    $(@).data('packsLeft', $(@).data('pack') * packX + ((n - i) * stackOffset))
+    $(@).data('packsTop',  $(@).data('pack') * packY + ((n - i) * stackOffset))
 
 initItems = () ->
   saveItemPositions()
@@ -144,8 +145,8 @@ toggleState = () ->
         startX = if Math.random() > .5 then -$('.container').width() * 1.5 else $('.container').width() * 1.5
         $pack.children('h1').velocity
           properties:
-            translateX: [parseInt($articlesOfSamePack.last().data('packsLeft')) + stackOffset, startX]
-            translateY: [parseInt($articlesOfSamePack.last().data('packsTop'))  + stackOffset, Math.random() * $(window).height()]
+            translateX: [parseInt($articlesOfSamePack.last().data('packsLeft')) + stackOffset * 2, startX]
+            translateY: [parseInt($articlesOfSamePack.last().data('packsTop'))  + stackOffset * 2, Math.random() * $(window).height()]
           options:
             duration: duration
             easing: easing
@@ -153,8 +154,8 @@ toggleState = () ->
               $(@).show()
       $(@).velocity
         properties:
-          translateX: $(@).data('packsTop')
-          translateY: $(@).data('packsLeft')
+          translateX: $(@).data('packsLeft')
+          translateY: $(@).data('packsTop')
         options:
           duration: duration
           easing: easing
