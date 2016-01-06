@@ -1,3 +1,5 @@
+stackOffset = 12
+
 repack = () ->
   if $('.container').data('uiState', 'recents') # only repack when in recents review
     $('.container').packery {
@@ -23,8 +25,8 @@ saveItemPositions = () ->
   $('article').each () ->
     $(@).data('recentsTop', $(@).css('top').toString())
     $(@).data('recentsLeft', $(@).css('left').toString())
-    $(@).data('packsTop',  $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * 12))
-    $(@).data('packsLeft', $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * 12))
+    $(@).data('packsTop',  $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * stackOffset))
+    $(@).data('packsLeft', $(@).data('pack') * 300 + ($(@).index(".#{$(@).data('pack')}") * stackOffset))
 
 
 initItems = () ->
@@ -72,6 +74,10 @@ positionPacks = () ->
           top:  top
           left: left
         }
+      $pack.children('h1').css {
+        top:  parseInt($pack.children('article').last().css('top'))  + stackOffset
+        left: parseInt($pack.children('article').last().css('left')) + stackOffset
+      }
   else # switching to recents
     $('.pack').each () ->
       # reset pack top,left

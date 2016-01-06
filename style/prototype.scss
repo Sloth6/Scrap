@@ -72,7 +72,9 @@ header.main {
         
         h1.packTitle {
             position: absolute;
-            color: red;
+            @include typeTitle;
+            @include typeOutlineClear;
+            -webkit-text-fill-color: white;
             z-index: 2;
         }
     }

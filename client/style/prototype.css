@@ -2654,6 +2654,12 @@ header.main {
 /* line 73, ../../style/prototype.scss */
 .container .pack h1.packTitle {
   position: absolute;
-  color: red;
+  font-size: 52pt;
+  font-weight: 800;
+  letter-spacing: -0.03125em;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: white;
   z-index: 2;
 }
