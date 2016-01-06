@@ -1,4 +1,7 @@
 stackOffset = 12
+duration    = 1000
+easing      = [20, 10]
+
 
 repack = () ->
   if $('.container').data('uiState', 'recents') # only repack when in recents review
@@ -54,49 +57,41 @@ makePack = (title) ->
   $packTitle = $('<h1></h1>').html(title).addClass('typeTitle packTitle')
   $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
   $('.container').append($pack)
+  $pack
   
-positionPacks = () ->
+positionPacks = ($pack) ->
   if $('.container').data('uiState') is 'packs'
     # transfer article top,left to its pack
-    $('.pack').each () ->
-      $pack     = $(@)
-      packTop   = $pack.children('article').first().css('top')
-      packLeft  = $pack.children('article').first().css('left')
-      $pack.css {
-        top:  packTop
-        left: packLeft
-      }
-      # make article top,left relative to pack's top,left
-      $pack.children('article').each () ->
-        top =  parseInt($(@).data('packsTop'))  - parseInt(packTop)
-        left = parseInt($(@).data('packsLeft')) - parseInt(packLeft)
-        $(@).css {
-          top:  top
-          left: left
-        }
-      $pack.children('h1').css {
-        top:  parseInt($pack.children('article').last().css('top'))  + stackOffset
-        left: parseInt($pack.children('article').last().css('left')) + stackOffset
+    packTop   = $pack.children('article').first().css('top')
+    packLeft  = $pack.children('article').first().css('left')
+    $pack.css {
+      top:  packTop
+      left: packLeft
+    }
+    # make article top,left relative to pack's top,left
+    $pack.children('article').each () ->
+      top =  parseInt($(@).data('packsTop'))  - parseInt(packTop)
+      left = parseInt($(@).data('packsLeft')) - parseInt(packLeft)
+      $(@).css {
+        top:  top
+        left: left
       }
   else # switching to recents
-    $('.pack').each () ->
-      # reset pack top,left
-      $pack     = $(@)
-      packTop   = $pack.css('top')
-      packLeft  = $pack.css('left')
-      $pack.css {
-        top:  0
-        left: 0
-      }
-      # restore non-pack-dependent top,left values for articles
-      $pack.children('article').each () ->
-        top =  parseInt($(@).data('packsTop'))  #+ parseInt(packTop)
-        left = parseInt($(@).data('packsLeft')) #+ parseInt(packLeft)
-        $(@).css {
-          top:  top
-          left: left
-        }  
-    
+    # reset pack top,left
+    packTop   = $pack.css('top')
+    packLeft  = $pack.css('left')
+    $pack.css {
+      top:  0
+      left: 0
+    }
+    # restore non-pack-dependent top,left values for articles
+    $pack.children('article').each () ->
+      top =  parseInt($(@).data('packsTop'))  #+ parseInt(packTop)
+      left = parseInt($(@).data('packsLeft')) #+ parseInt(packLeft)
+      $(@).css {
+        top:  top
+        left: left
+      }  
     
 switchProperties = ($article, property, state) ->
   if property is 'transform'
@@ -127,32 +122,43 @@ toggleState = () ->
   if $('.container').data('uiState') is 'recents' # Switch to packs
     $('.container').data 'uiState', 'packs'
     $('html').velocity('scroll', {
-      duration: 1000
-      easing: [20, 10]
+      duration: duration
+      easing: easing
     })
+#     $pack.children('h1').velocity
+#       properties:
+#         translateY: [parseInt($pack.children('article').last().css('top'))  + stackOffset, 0]
+#         translateX: [parseInt($pack.children('article').last().css('left')) + stackOffset, -$(window).width()]
+#       options:
+#         duration: duration
+#         easing: easing
     $('article').each () ->
       switchProperties($(@), 'transform', 'recents')
+      packName            = "#{$(@).data('pack')}"
+      # if article doesn't have matching pack element, make one
+      $pack               = if $(".pack.#{packName}").length > 0 then $(".pack.#{packName}") else makePack(packName)
+      $articlesOfSamePack = $("article.#{packName}")
+      indexInPack         = $(@).index("article.#{packName}")
+      siblingCount        = $articlesOfSamePack.length - 1
+
       $(@).velocity
         properties:
           translateX: $(@).data('packsTop')
           translateY: $(@).data('packsLeft')
         options:
-          duration: 1000
-          easing: [20, 10]
+          duration: duration
+          easing: easing
           complete: () ->
             switchProperties($(@), 'absolute', 'packs')
-            # enclose in pack element
-            if $("section.pack.#{$(@).data('pack')}").length < 1
-              # if article doesn't have matching pack element, make one
-              makePack($(@).data('pack').toString())
-            $pack = $(".pack.#{$(@).data('pack')}")
-            $pack.append $(@)
+            $pack.append $(@) # enclose in pack element
             # if last article
-            if $('article').length is $(@).index('article') + 1
-              positionPacks()
+            if indexInPack is siblingCount
+              positionPacks($pack)
   else # Switch to recents
     $('.container').data 'uiState', 'recents'
-    positionPacks()
+#     $('.pack').children('h1').velocity 'reverse'
+    $('.pack').each () ->
+      positionPacks($(@))
     $('article').each () ->
       switchProperties($(@), 'transform', 'packs')
       $(@).velocity
@@ -160,8 +166,8 @@ toggleState = () ->
           translateX: $(@).data 'recentsLeft'
           translateY: $(@).data 'recentsTop'
         options:
-          duration: 1000
-          easing: [20, 10]
+          duration: duration
+          easing: easing
           complete: () ->
             switchProperties($(@), 'absolute', 'recents')
             $('.container').append $(@)
