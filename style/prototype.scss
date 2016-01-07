@@ -35,6 +35,12 @@ header.main {
                 border-width: (1px/$scale);
             }
         }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
+            }
+        }
     }
     
     @media (min-width: $breakSmall) {
@@ -46,6 +52,12 @@ header.main {
         article {
             .card {
 //                 border-width: (1px/$scale);
+            }
+        }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
             }
         }
     }
@@ -63,11 +75,19 @@ header.main {
                 border-width: (1px/$scale);
             }
         }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
+            }
+        }
     }
     
     .pack {
-//         background: rgba(213, 255, 0, 0.41);
-//         border: red 1px solid;
+/*
+        background: rgba(213, 255, 0, 0.41);
+        border: red 1px solid;
+*/
         position: absolute;
         height: 0;
         width: 0;
@@ -78,6 +98,59 @@ header.main {
             @include typeOutlineClear;
             -webkit-text-fill-color: white;
             z-index: 2;
+        }
+        
+        article {
+            .card {
+//                 mix-blend-mode: multiply;
+//                 -webkit-filter: grayscale(1);
+//                 opacity: .1;
+            }
+        }
+    }
+    
+    article {
+        .card {
+//             mix-blend-mode: none;
+//             -webkit-filter: grayscale(0);
+//             opacity: 1;
+            @include transition(1s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform,
+                                         box-shadow,
+                                 -webkit-box-shadow,
+                                    -moz-box-shadow,
+                                         background-color,
+                                         border-color,
+                                         color,
+                                         mix-blend-mode,
+                                 -webkit-filter);
+        }
+        
+        .backgroundColor {
+            @include transition(1s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform,
+                                         box-shadow,
+                                 -webkit-box-shadow,
+                                    -moz-box-shadow,
+                                         background-color,
+                                         border-color,
+                                         color,
+                                         mix-blend-mode,
+                                 -webkit-filter);
+            
+            background-color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
         }
     }
 }

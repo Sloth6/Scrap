@@ -20,14 +20,19 @@ html.no-js(lang='en')
       .backButton
         a(href="#")
           span ‹
+      ul
+        li
+          a(href='#') Recents
+        li
+          a(href='#') Packs
       // include partials/settingsMenu.jade
     .content
-      - var n = 20
+      - var n = 10
       .container.recents
         - for (var i = 0; i < n; i++) {
           - var pack = Math.floor(Math.random() * n)
           article.text(data-pack=pack, class=pack)
-            .card.text
+            .card.cardHover.text
               .editable
                 h1 Header
                 h2 header 2
@@ -42,22 +47,22 @@ html.no-js(lang='en')
                 blockquote quote
           - var pack = Math.floor(Math.random() * n)
           article.image(data-pack=pack, class=pack)
-            .card.image
-              img(src='http://lorempixel.com/' + Math.floor(Math.random() * 100 + 200) + '/' + Math.floor(Math.random() * 100 + 200))
+            .card.cardHover.image
+              img(src='http://lorempixel.com/' + Math.floor(Math.random() * 600 + 50) + '/' + Math.floor(Math.random() * 600 + 50))
           - var pack = Math.floor(Math.random() * n)
           article.file(data-pack=pack, class=pack)
-            .card.file
+            .card.cardHover.file
               .fakeCard
                 header
                   h1.headerType.title Filename
                   p.extension.smallCaps.bodyType PDF
-                ul.cardActions
+                ul.card.cardHoverActions
                   li
                     a.download.confirm(href='#') Download
               .decorative.fold
           - var pack = Math.floor(Math.random() * n)
           article.website(data-pack=pack, class=pack)
-            .card.website
+            .card.cardHover.website
               .text
                 header
                   h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
@@ -67,7 +72,7 @@ html.no-js(lang='en')
               a(href=url, target='_blank', title='Open “Title” in a new tab')
           - var pack = Math.floor(Math.random() * n)
           article.soundcloud.playable(data-pack=pack, class=pack)
-            .card.text.playable
+            .card.cardHover.text.playable
               .preview
                 - var size = Math.floor(Math.random() * 100 + 200)
                 img(src='http://lorempixel.com/' + size + '/' + size)
@@ -79,7 +84,7 @@ html.no-js(lang='en')
                   .source.smallType.smallCaps Source
           - var pack = Math.floor(Math.random() * n)
           article.youtube.playable(data-pack=pack, class=pack)
-            .card.text.playable
+            .card.cardHover.text.playable
               .preview
                 - var w = Math.floor(Math.random() * 100 + 300)
                 - var h = Math.floor(w / (16/9))
@@ -93,7 +98,7 @@ html.no-js(lang='en')
         - }
       .container.packs
         - for (var i = 0; i < n; i++) {
-          - var name = 'Pack ' + i
+          - var name = 'This Is My Amazing Pack #' + i
           section.pack(data-pack=i, class=i)
             h1.typeTitle.packTitle= name
         - }

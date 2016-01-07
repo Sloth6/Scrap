@@ -1,5 +1,5 @@
 stackOffset = 6
-duration    = 500
+duration    = 2000
 easing      = [20, 10]
 packeryDuration = 0 # "#{duration / 1000}s"
 
@@ -47,25 +47,25 @@ resizeCards = (minSize, gutter) ->
 #     })
     
 saveArticleRecentsViewPositions = () ->
+  console.log 'saveArticleRecentsViewPositions'
   $('article').each ->
     $(@).data('recentsTop', $(@).css('top').toString())
     $(@).data('recentsLeft', $(@).css('left').toString())
 
 savePacksViewPositions = () ->
   $('.pack').each () ->
-    console.log 'savePacksViewPositions', $(@).css('left'), $(@).css('top')
     $(@).data('packsLeft', $(@).css('left'))
     $(@).data('packsTop',  $(@).css('top'))
   $('article').each ->
     packName = "#{$(@).data('pack')}"
     $pack  = $(".pack.#{packName}")
-    i = $(@).index("article.#{packName}")
+    i = $(@).index(".#{packName}")
     n = $("article.#{packName}").length
-    packX = parseInt($pack.data('packsLeft'))
-    packY = parseInt($pack.data('packsTop'))
+    packX = parseInt $pack.data('packsLeft')
+    packY = parseInt $pack.data('packsTop')
 #     console.log packX, packY
-    $(@).data('packsLeft', packX + (i * stackOffset))
-    $(@).data('packsTop',  packY + (i * stackOffset))
+    $(@).data('packsLeft', packX + (((n-1)-i) * stackOffset))
+    $(@).data('packsTop',  packY + (((n-1)-i) * stackOffset))
 
 initItems = () ->
   null
@@ -114,21 +114,29 @@ sizePack = ($pack) ->
     width: width
     height: height
   
-positionPack = ($pack, $article, packName) ->
+positionPack = ($pack) ->
   $h1 = $pack.children 'h1'
   if $('.content').data('layout') is 'packs'
-#     switchProperties $h1, {x: $.Velocity.hook($h1, 'translateX'), y: $.Velocity.hook($h1, 'translateY') }, {x: '0px', y: '0px'}
-#     console.log $article.data('packsLeft'), $pack.data('packsLeft')
-    $article.css
-      top:  $article.data('packsTop')  - parseInt($pack.data('packsTop'))
-      left: $article.data('packsLeft') - parseInt($pack.data('packsLeft'))
+    # transfer article top,left to its pack
+    packTop   = $pack.children('article').first().css('top')
+    packLeft  = $pack.children('article').first().css('left')
+#     $pack.css {
+#       top:  packTop
+#       left: packLeft
+#     }
+    # make article top,left relative to pack's top,left
+    switchProperties $h1, {x: $.Velocity.hook($h1, 'translateX'), y: $.Velocity.hook($h1, 'translateY') }, {x: '0px', y: '0px'}
+    $pack.children().each ->
+      $(@).css
+        top:  parseInt($(@).css('top'))  - parseInt(packTop)
+        left: parseInt($(@).css('left')) - parseInt(packLeft)
   else # switching to recents
     # reset pack top,left
     packTop   = $pack.css('top')
     packLeft  = $pack.css('left')
-#     $pack.css
-#       top:  0
-#       left: 0
+    $pack.css
+      top:  0
+      left: 0
     # restore non-pack-dependent top,left values for articles
     $pack.children().each ->
       $(@).css
@@ -169,37 +177,40 @@ switchArticleProperties = ($article, property, state) ->
       
 toggleState = () ->
   if $('.content').data('layout') is 'recents' # Switch to packs
-    $('.container.recents').packery('destroy')
     $('.content').data 'layout', 'packs'
-    $('.container.packs').show()
-    $('article').each ->
-      $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
-#       switchArticleProperties($(@), 'transform', 'recents')
 #     repack()
 #     $('html').velocity('scroll', {
 #       duration: duration
 #       easing: easing
 #     })
 #     repack()
+    $('.packs.container').show()
+    $('article').each -> # Put articles into packs
+      switchArticleProperties($(@), 'transform', 'recents')
+      packName            = "#{$(@).data('pack')}"
+      $pack               = $(".pack.#{packName}")
+      $pack.prepend $(@) # enclose in pack element
+#       $pack.css 'z-index', $pack.index('.pack')
+    $('.container.recents').hide()
+#     $('.container.recents').packery('destroy')
     $('article').each -> # animate to pack positions
       packName            = "#{$(@).data('pack')}"
       $pack               = $(".pack.#{packName}")
       $articlesOfSamePack = $("article.#{packName}")
       indexInPack         = $(@).index("article.#{packName}")
       siblingCount        = $articlesOfSamePack.length - 1
-      switchArticleProperties($(@), 'transform', 'recents')
       if indexInPack is 0 # if first article
         startX = if Math.random() > .5 then -$('.container').width() * 1.5 else $('.container').width() * 1.5
         $pack.children('h1').velocity
           properties:
-            translateX: [(siblingCount+1) * stackOffset, startX]
-            translateY: [(siblingCount+1) * stackOffset, Math.random() * $(window).height()]
+            translateX: [parseInt($articlesOfSamePack.last().data('packsLeft')) + stackOffset, startX]
+            translateY: [parseInt($articlesOfSamePack.last().data('packsTop'))  + stackOffset, Math.random() * $(window).height()]
           options:
             duration: duration
             easing: easing
             begin: () ->
               $(@).show()
-#       color = $pack.data('color')
+      color = $pack.data('color')
 #       $('<div></div>').addClass('backgroundColor').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)").prependTo($(@))
 #       $pack.children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
 #       $(@).find('.card, .fakeCard').css('background-color', $pack.data('color'))
@@ -212,17 +223,9 @@ toggleState = () ->
           easing: easing
           complete: () ->
             switchArticleProperties($(@), 'absolute', 'packs')
-            positionPack($pack, $(@), packName)
-            $pack.append $(@)
-#     $('article').each -> # Put articles into packs
-#       switchArticleProperties($(@), 'transform', 'recents')
-#       packName            = "#{$(@).data('pack')}"
-#       $pack               = $(".pack.#{packName}")
-#       $pack.prepend $(@) # enclose in pack element
-#     #       $pack.css 'z-index', $pack.index('.pack')
-#     $('.packs.container').show()
-#     $('.container.recents').hide()
-#     packPacks()
+            if indexInPack is siblingCount # if last article
+#               sizePack($pack)
+              positionPack($pack)
   else # Switch to recents
     $('.content').data 'layout', 'recents'
     $('.pack').children('h1').velocity('reverse',
@@ -231,13 +234,12 @@ toggleState = () ->
           $(@).css {top: '', left: ''}
           $(@).hide()
       })
-#     $('.pack').each -> positionPack($(@))
+    $('.pack').each -> positionPack($(@))
     $('.container.recents').show()
     $('article').each ->
-      packName            = "#{$(@).data('pack')}"
-      $pack               = $(".pack.#{packName}")
-      positionPack($pack, $(@), packName)
-      $('.container.recents').append $(@)
+      $('.container.recents').prepend $(@)
+#     $('.container.packs').hide()
+    $('article').each ->
       switchArticleProperties($(@), 'transform', 'packs')
       $(@).velocity
         properties:
@@ -248,11 +250,12 @@ toggleState = () ->
           easing: easing
           complete: () ->
             switchArticleProperties($(@), 'absolute', 'recents')
-#     setTimeout ->
-#       packPacks()
-#       $('.container.packs').hide()
-#     , duration
-    
+#             repack()
+    packPacks()
+#   setTimeout ->
+#     packPacks()
+#     packRecents()
+#   , 2000
     
 resizePacks = () ->
   $('.pack').each () ->
@@ -266,23 +269,17 @@ resizePacks = () ->
     
 initPacks = () ->
   resizePacks()
-  $('.packs.container').packery {
-    itemSelector: '.pack'
-    gutter: gutter
-    transitionDuration: packeryDuration
-  }
+  setTimeout ->
+    $('.packs.container').packery {
+      itemSelector: '.pack'
+      gutter: gutter
+      transitionDuration: packeryDuration
+    }
+  , 2000
   $('.pack').each ->
-    packName = "#{$(@).data('pack')}"
     $(@).data 'color', randomColor()
-#     top = $("article.#{packName}").length * stackOffset
-#     $(@).css
-#       'margin-top': "-#{top}"
-#       'opacity': .1
-  packPacks()
   savePacksViewPositions()
-#   setTimeout ->
-#     $('.packs.container').hide()
-#   , 2000
+  $('.packs.container').hide()
   
 $ ->
   $('.content').data 'layout', 'recents'
