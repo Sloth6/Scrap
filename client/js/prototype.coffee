@@ -1,5 +1,5 @@
 stackOffset = 6
-duration    = 500
+duration    = 1000
 easing      = [20, 10]
 packeryDuration = 0 # "#{duration / 1000}s"
 
@@ -172,13 +172,14 @@ switchToPacks = ->
     $('.container.recents').packery('destroy')
     $('.content').data 'layout', 'packs'
     $('.container.packs').show()
+    $('html').velocity('scroll', {
+      duration: duration
+      easing: easing
+    })
     $('article').each ->
       $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
   #       switchArticleProperties($(@), 'transform', 'recents')
   #     repack()
-  #     $('html').velocity('scroll', {
-  #       duration: duration
-  #       easing: easing
   #     })
   #     repack()
     $('article').each -> # animate to pack positions
@@ -291,11 +292,13 @@ initPacks = () ->
   
 initNav = ->
   $nav = $('ul.tabs')
-  $nav.find('.tab.recents').click () ->
+  $nav.find('.tab.recents').click (event) ->
+    event.preventDefault()
     if $('.velocity-animating').length < 1 # only toggle state if not animating
       unless $('.content').data('layout') is 'recents'
         switchToRecents()
-  $nav.find('.tab.packs').click () ->
+  $nav.find('.tab.packs').click (event) ->
+    event.preventDefault()
     if $('.velocity-animating').length < 1
       unless $('.content').data('layout') is 'packs'
         console.log 'packs'

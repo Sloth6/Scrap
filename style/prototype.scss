@@ -15,7 +15,8 @@ header.main {
     right: 0;
     height: $broadMargin;
     z-index: 2;
-    padding: $cardPadding;
+    background: $colorCardBackground;
+    border-bottom: $cardBorder;
 //     background: blue;
 
     ul.tabs {
@@ -43,7 +44,7 @@ header.main {
 }
 
 .container {
-    margin-top: $broadMargin;
+    margin-top: $broadMargin + $gutter * 2;
     transform-origin: top left;
     
     @media (max-width: $breakSmall) {
@@ -126,12 +127,12 @@ header.main {
         article {
             .card {
 //                 mix-blend-mode: multiply;
-//                 -webkit-filter: grayscale(1);
+                -webkit-filter: grayscale(1);
 //                 opacity: .1;
             }
             
             .backgroundColor {
-//                 opacity: 1;
+                opacity: 1;
             }
         }
     }
@@ -140,7 +141,6 @@ header.main {
         .card {
             mix-blend-mode: multiply;
             -webkit-filter: grayscale(0);
-//             opacity: 1;
             @include transition(1s $defaultCurve);
             @include transition-property(transform,
                                  -webkit-transform,
