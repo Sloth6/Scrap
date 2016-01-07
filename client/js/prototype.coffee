@@ -30,7 +30,10 @@ packPacks = () ->
     itemSelector: '.packs'
     gutter: gutter
     transitionDuration: packeryDuration
-  savePacksViewPositions()
+  $('.container.packs').packery
+    itemSelector: '.packs'
+    gutter: gutter
+    transitionDuration: packeryDuration
   
 resizeCards = (minSize, gutter) ->
   null
@@ -79,9 +82,11 @@ onResize = () ->
   
 initOnLoad = () ->
   $('img').load () ->
-    packPacks()
-    packRecents()
-    resizePacks()
+    $('.pack').each -> sizePack($(@))
+    if $('.content').data('layout') is 'recents'
+      packRecents()
+    else
+      packPacks()
 
 # initDrag = () ->
 #   itemElems = $('.container').packery('getItemElements')
