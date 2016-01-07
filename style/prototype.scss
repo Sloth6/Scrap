@@ -28,6 +28,10 @@ nav.main {
         width: 100%;
         background: $colorCardBackground;
         border-bottom: $cardBorder;
+/*
+        -webkit-backdrop-filter: blur(30px);
+        opacity: .5;
+*/
       
         ul.tabs {
             position: absolute;

@@ -2622,8 +2622,12 @@ nav.main .bar {
   width: 100%;
   background: white;
   border-bottom: 1px solid #000000;
+  /*
+          -webkit-backdrop-filter: blur(30px);
+          opacity: .5;
+  */
 }
-/* line 32, ../../style/prototype.scss */
+/* line 36, ../../style/prototype.scss */
 nav.main .bar ul.tabs {
   position: absolute;
   top: 0;
@@ -2632,12 +2636,12 @@ nav.main .bar ul.tabs {
   bottom: 0;
   text-align: center;
 }
-/* line 41, ../../style/prototype.scss */
+/* line 45, ../../style/prototype.scss */
 nav.main .bar ul.tabs li {
   display: inline-block;
   height: 100%;
 }
-/* line 45, ../../style/prototype.scss */
+/* line 49, ../../style/prototype.scss */
 nav.main .bar ul.tabs li a {
   display: block;
   padding: 0 16pt;
@@ -2645,13 +2649,13 @@ nav.main .bar ul.tabs li a {
   height: 100%;
 }
 
-/* line 57, ../../style/prototype.scss */
+/* line 61, ../../style/prototype.scss */
 .container {
   margin-top: 56pt;
   transform-origin: top left;
 }
 @media (max-width: 768px) {
-  /* line 57, ../../style/prototype.scss */
+  /* line 61, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2659,17 +2663,17 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 69, ../../style/prototype.scss */
+  /* line 73, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 75, ../../style/prototype.scss */
+  /* line 79, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 768px) {
-  /* line 57, ../../style/prototype.scss */
+  /* line 61, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2677,13 +2681,13 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 94, ../../style/prototype.scss */
+  /* line 98, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 1280px) {
-  /* line 57, ../../style/prototype.scss */
+  /* line 61, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2691,16 +2695,16 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 109, ../../style/prototype.scss */
+  /* line 113, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 115, ../../style/prototype.scss */
+  /* line 119, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
-/* line 121, ../../style/prototype.scss */
+/* line 125, ../../style/prototype.scss */
 .container .pack {
   /*
           background: rgba(213, 255, 0, 0.41);
@@ -2710,21 +2714,21 @@ nav.main .bar ul.tabs li a {
   height: 0;
   width: 0;
 }
-/* line 132, ../../style/prototype.scss */
+/* line 136, ../../style/prototype.scss */
 .container .pack:hover article .card {
   -webkit-filter: grayscale(0);
 }
-/* line 136, ../../style/prototype.scss */
+/* line 140, ../../style/prototype.scss */
 .container .pack:hover article .backgroundColor {
   opacity: 0;
 }
-/* line 142, ../../style/prototype.scss */
+/* line 146, ../../style/prototype.scss */
 .container .pack header {
   position: absolute;
   z-index: 2;
   width: 224pt;
 }
-/* line 147, ../../style/prototype.scss */
+/* line 151, ../../style/prototype.scss */
 .container .pack header h1.packTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -2733,7 +2737,7 @@ nav.main .bar ul.tabs li a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
-/* line 168, ../../style/prototype.scss */
+/* line 172, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2752,7 +2756,7 @@ nav.main .bar ul.tabs li a {
                                    -webkit-filter);
   */
 }
-/* line 187, ../../style/prototype.scss */
+/* line 191, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

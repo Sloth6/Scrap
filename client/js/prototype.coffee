@@ -98,7 +98,7 @@ initOnLoad = () ->
   
 sizePack = ($pack) ->
   pack = $pack.data('pack')
-  $children = $("article.#{pack}")
+  $children = $("article.#{pack}").add($pack.children('header'))
   widestWidth   = 0
   tallestHeight = 0
   # get measurements of tallest and widest articles
@@ -233,7 +233,7 @@ switchToRecents = () ->
           switchArticleProperties($(@), 'absolute', 'recents')
   setTimeout ->
     packRecents()
-  , duration
+  , duration * 1.1
     
 openPack = ($pack) ->
   $packs      = $('.pack')
@@ -270,9 +270,10 @@ hideNavBar = ->
     properties:
       translateY: -$bar.height() * 2 # double height to keep out of Safari transparent zone
     options:
+      duration: duration
+      easing: easing
       complete: () ->
         $bar.hide()
-  console.log 'retract'
   
 showNavBar = ->
   $bar = $('nav .bar')
@@ -281,9 +282,10 @@ showNavBar = ->
     properties:
       translateY: 0
     options:
+      duration: duration
+      easing: easing
       begin: () ->
         $bar.show()
-  console.log 'expose'
 
 resizePacks = () -> # stretch pack element around children
   $('.pack').each () ->
