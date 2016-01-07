@@ -13,10 +13,33 @@ header.main {
     top: 0;
     left: 0;
     right: 0;
-    height: $col;
+    height: $broadMargin;
     z-index: 2;
     padding: $cardPadding;
 //     background: blue;
+
+    ul.tabs {
+        position: absolute;
+        top: 0;
+        left: $broadMargin;
+        right: $broadMargin;
+        bottom: 0;
+        text-align: center;
+//         background-color: red;
+        
+        li {
+            display: inline-block;
+            height: 100%;
+            
+            a {
+                display: block;
+                padding: 0 $gutter * 2;
+                line-height: $broadMargin;
+                height: 100%;
+//                 background-color: blue;
+            }
+        }
+    }
 }
 
 .container {

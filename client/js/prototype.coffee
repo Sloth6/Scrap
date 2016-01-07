@@ -166,21 +166,21 @@ switchArticleProperties = ($article, property, state) ->
         x: $article.data 'recentsLeft'
         y: $article.data 'recentsTop'
   switchProperties $article, absolute, transform
-      
-toggleState = () ->
+  
+switchToPacks = ->
   if $('.content').data('layout') is 'recents' # Switch to packs
     $('.container.recents').packery('destroy')
     $('.content').data 'layout', 'packs'
     $('.container.packs').show()
     $('article').each ->
       $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
-#       switchArticleProperties($(@), 'transform', 'recents')
-#     repack()
-#     $('html').velocity('scroll', {
-#       duration: duration
-#       easing: easing
-#     })
-#     repack()
+  #       switchArticleProperties($(@), 'transform', 'recents')
+  #     repack()
+  #     $('html').velocity('scroll', {
+  #       duration: duration
+  #       easing: easing
+  #     })
+  #     repack()
     $('article').each -> # animate to pack positions
       packName            = "#{$(@).data('pack')}"
       $pack               = $(".pack.#{packName}")
@@ -210,40 +210,41 @@ toggleState = () ->
             switchArticleProperties($(@), 'absolute', 'packs')
             positionPack($pack, $(@), packName)
             $pack.append $(@)
-#     $('article').each -> # Put articles into packs
-#       switchArticleProperties($(@), 'transform', 'recents')
-#       packName            = "#{$(@).data('pack')}"
-#       $pack               = $(".pack.#{packName}")
-#       $pack.prepend $(@) # enclose in pack element
-#     #       $pack.css 'z-index', $pack.index('.pack')
-#     $('.packs.container').show()
-#     $('.container.recents').hide()
-#     packPacks()
-  else # Switch to recents
-    $('.content').data 'layout', 'recents'
-    $('.pack').children('h1').velocity('reverse',
-      {
-        complete: () ->
-          $(@).css {top: '', left: ''}
-          $(@).hide()
-      })
+  #     $('article').each -> # Put articles into packs
+  #       switchArticleProperties($(@), 'transform', 'recents')
+  #       packName            = "#{$(@).data('pack')}"
+  #       $pack               = $(".pack.#{packName}")
+  #       $pack.prepend $(@) # enclose in pack element
+  #     #       $pack.css 'z-index', $pack.index('.pack')
+  #     $('.packs.container').show()
+  #     $('.container.recents').hide()
+  #     packPacks()
+  
+switchToRecents = () ->
+  $('.content').data 'layout', 'recents'
+  $('.pack').children('h1').velocity('reverse',
+    {
+      complete: () ->
+        $(@).css {top: '', left: ''}
+        $(@).hide()
+    })
 #     $('.pack').each -> positionPack($(@))
-    $('.container.recents').show()
-    $('article').each ->
-      packName            = "#{$(@).data('pack')}"
-      $pack               = $(".pack.#{packName}")
-      positionPack($pack, $(@), packName)
-      $('.container.recents').append $(@)
-      switchArticleProperties($(@), 'transform', 'packs')
-      $(@).velocity
-        properties:
-          translateX: $(@).data 'recentsLeft'
-          translateY: $(@).data 'recentsTop'
-        options:
-          duration: duration
-          easing: easing
-          complete: () ->
-            switchArticleProperties($(@), 'absolute', 'recents')
+  $('.container.recents').show()
+  $('article').each ->
+    packName            = "#{$(@).data('pack')}"
+    $pack               = $(".pack.#{packName}")
+    positionPack($pack, $(@), packName)
+    $('.container.recents').append $(@)
+    switchArticleProperties($(@), 'transform', 'packs')
+    $(@).velocity
+      properties:
+        translateX: $(@).data 'recentsLeft'
+        translateY: $(@).data 'recentsTop'
+      options:
+        duration: duration
+        easing: easing
+        complete: () ->
+          switchArticleProperties($(@), 'absolute', 'recents')
 #     setTimeout ->
 #       packPacks()
 #       $('.container.packs').hide()
@@ -288,17 +289,27 @@ initPacks = () ->
 #     $('.packs.container').hide()
 #   , 2000
   
+initNav = ->
+  $nav = $('ul.tabs')
+  $nav.find('.tab.recents').click () ->
+    if $('.velocity-animating').length < 1 # only toggle state if not animating
+      unless $('.content').data('layout') is 'recents'
+        switchToRecents()
+  $nav.find('.tab.packs').click () ->
+    if $('.velocity-animating').length < 1
+      unless $('.content').data('layout') is 'packs'
+        console.log 'packs'
+        switchToPacks()
+  
 $ ->
   $('.content').data 'layout', 'recents'
   initItems()
   initPacks()
   initOnLoad()
+  initNav()
   
   $(window).resize () -> onResize()
   onResize()
 #   initDrag()
   
   
-  $('body').click () ->
-    if $('.velocity-animating').length < 1 # only toggle state if not animating
-      toggleState()
