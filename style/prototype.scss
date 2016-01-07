@@ -106,13 +106,17 @@ header.main {
 //                 -webkit-filter: grayscale(1);
 //                 opacity: .1;
             }
+            
+            .backgroundColor {
+//                 opacity: 1;
+            }
         }
     }
     
     article {
         .card {
-//             mix-blend-mode: none;
-//             -webkit-filter: grayscale(0);
+            mix-blend-mode: multiply;
+            -webkit-filter: grayscale(0);
 //             opacity: 1;
             @include transition(1s $defaultCurve);
             @include transition-property(transform,
@@ -130,19 +134,8 @@ header.main {
         
         .backgroundColor {
             @include transition(1s $defaultCurve);
-            @include transition-property(transform,
-                                 -webkit-transform,
-                                    -moz-transform,
-                                         box-shadow,
-                                 -webkit-box-shadow,
-                                    -moz-box-shadow,
-                                         background-color,
-                                         border-color,
-                                         color,
-                                         mix-blend-mode,
-                                 -webkit-filter);
-            
-            background-color: white;
+            @include transition-property(opacity);
+            opacity: 0;
             position: absolute;
             top: 0;
             left: 0;

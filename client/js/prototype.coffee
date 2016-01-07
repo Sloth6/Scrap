@@ -199,10 +199,6 @@ toggleState = () ->
             easing: easing
             begin: () ->
               $(@).show()
-#       color = $pack.data('color')
-#       $('<div></div>').addClass('backgroundColor').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)").prependTo($(@))
-#       $pack.children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
-#       $(@).find('.card, .fakeCard').css('background-color', $pack.data('color'))
       $(@).velocity
         properties:
           translateX: $(@).data('packsLeft')
@@ -273,7 +269,15 @@ initPacks = () ->
   }
   $('.pack').each ->
     packName = "#{$(@).data('pack')}"
+    color = randomColor()
     $(@).data 'color', randomColor()
+    $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
+    $("article.#{packName}").each ->
+      $('<div></div>').addClass('backgroundColor').css({
+        'background-color' : "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
+      }).prependTo($(@))
+#       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)")
+
 #     top = $("article.#{packName}").length * stackOffset
 #     $(@).css
 #       'margin-top': "-#{top}"
