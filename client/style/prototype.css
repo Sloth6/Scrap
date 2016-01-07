@@ -2698,27 +2698,38 @@ header.main ul.tabs li a {
   height: 0;
   width: 0;
 }
-/* line 119, ../../style/prototype.scss */
-.container .pack h1.packTitle {
+/* line 121, ../../style/prototype.scss */
+.container .pack:hover article .card {
+  -webkit-filter: grayscale(0);
+}
+/* line 125, ../../style/prototype.scss */
+.container .pack:hover article .backgroundColor {
+  opacity: 0;
+}
+/* line 131, ../../style/prototype.scss */
+.container .pack header {
   position: absolute;
+  z-index: 2;
+  width: 224pt;
+}
+/* line 136, ../../style/prototype.scss */
+.container .pack header h1.packTitle {
   font-size: 52pt;
   font-weight: 800;
   letter-spacing: -0.03125em;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
-  -webkit-text-fill-color: white;
-  z-index: 2;
 }
-/* line 128, ../../style/prototype.scss */
+/* line 144, ../../style/prototype.scss */
 .container .pack article .card {
   -webkit-filter: grayscale(1);
 }
-/* line 134, ../../style/prototype.scss */
+/* line 150, ../../style/prototype.scss */
 .container .pack article .backgroundColor {
   opacity: 1;
 }
-/* line 141, ../../style/prototype.scss */
+/* line 157, ../../style/prototype.scss */
 .container article .card {
   mix-blend-mode: multiply;
   -webkit-filter: grayscale(0);
@@ -2731,7 +2742,7 @@ header.main ul.tabs li a {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
 }
-/* line 158, ../../style/prototype.scss */
+/* line 174, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

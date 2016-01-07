@@ -116,12 +116,28 @@ header.main {
         height: 0;
         width: 0;
         
-        h1.packTitle {
+        &:hover {
+            article {
+                .card {
+                    -webkit-filter: grayscale(0);
+                }
+                
+                .backgroundColor {
+                    opacity: 0;
+                }
+            }
+        }
+        
+        header {
             position: absolute;
-            @include typeTitle;
-            @include typeOutlineClear;
-            -webkit-text-fill-color: white;
             z-index: 2;
+            width: $articleSide;
+            
+            h1.packTitle {
+                @include typeTitle;
+                @include typeOutlineClear;
+//                 -webkit-text-fill-color: white;
+            }
         }
         
         article {

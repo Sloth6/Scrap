@@ -1,7 +1,7 @@
 stackOffset = 6
 duration    = 1000
 easing      = [20, 10]
-packeryDuration = 0 # "#{duration / 1000}s"
+packeryDuration = "#{duration / 2 / 1000}s"
 
 cardSize = if $(window).width() < 768 then 18 else 36
 gutter   = if $(window).width() < 768 then 12 else 24
@@ -115,7 +115,7 @@ sizePack = ($pack) ->
     height: height
   
 positionPack = ($pack, $article, packName) ->
-  $h1 = $pack.children 'h1'
+  $header = $pack.children 'header'
   if $('.content').data('layout') is 'packs'
 #     switchProperties $h1, {x: $.Velocity.hook($h1, 'translateX'), y: $.Velocity.hook($h1, 'translateY') }, {x: '0px', y: '0px'}
 #     console.log $article.data('packsLeft'), $pack.data('packsLeft')
@@ -191,7 +191,7 @@ switchToPacks = ->
       switchArticleProperties($(@), 'transform', 'recents')
       if indexInPack is 0 # if first article
         startX = if Math.random() > .5 then -$('.container').width() * 1.5 else $('.container').width() * 1.5
-        $pack.children('h1').velocity
+        $pack.children('header').velocity
           properties:
             translateX: [(siblingCount+1) * stackOffset, startX]
             translateY: [(siblingCount+1) * stackOffset, Math.random() * $(window).height()]
@@ -223,7 +223,7 @@ switchToPacks = ->
   
 switchToRecents = () ->
   $('.content').data 'layout', 'recents'
-  $('.pack').children('h1').velocity('reverse',
+  $('.pack').children('header').velocity('reverse',
     {
       complete: () ->
         $(@).css {top: '', left: ''}
@@ -273,11 +273,10 @@ initPacks = () ->
     packName = "#{$(@).data('pack')}"
     color = randomColor()
     $(@).data 'color', randomColor()
-    $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
+    $(@).children('header').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
+#     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
     $("article.#{packName}").each ->
-      $('<div></div>').addClass('backgroundColor').css({
-        'background-color' : "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
-      }).prependTo($(@))
+      $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
 #       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)")
 
 #     top = $("article.#{packName}").length * stackOffset
