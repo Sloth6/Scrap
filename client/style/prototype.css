@@ -2601,18 +2601,30 @@ body {
 }
 
 /* line 11, ../../style/prototype.scss */
-header.main {
+nav.main {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 40pt;
   z-index: 2;
+}
+/* line 19, ../../style/prototype.scss */
+nav.main .backButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+/* line 26, ../../style/prototype.scss */
+nav.main .bar {
+  height: 100%;
+  width: 100%;
   background: white;
   border-bottom: 1px solid #000000;
 }
-/* line 22, ../../style/prototype.scss */
-header.main ul.tabs {
+/* line 32, ../../style/prototype.scss */
+nav.main .bar ul.tabs {
   position: absolute;
   top: 0;
   left: 40pt;
@@ -2620,26 +2632,26 @@ header.main ul.tabs {
   bottom: 0;
   text-align: center;
 }
-/* line 31, ../../style/prototype.scss */
-header.main ul.tabs li {
+/* line 41, ../../style/prototype.scss */
+nav.main .bar ul.tabs li {
   display: inline-block;
   height: 100%;
 }
-/* line 35, ../../style/prototype.scss */
-header.main ul.tabs li a {
+/* line 45, ../../style/prototype.scss */
+nav.main .bar ul.tabs li a {
   display: block;
   padding: 0 16pt;
   line-height: 40pt;
   height: 100%;
 }
 
-/* line 46, ../../style/prototype.scss */
+/* line 57, ../../style/prototype.scss */
 .container {
   margin-top: 56pt;
   transform-origin: top left;
 }
 @media (max-width: 768px) {
-  /* line 46, ../../style/prototype.scss */
+  /* line 57, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2647,17 +2659,17 @@ header.main ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 58, ../../style/prototype.scss */
+  /* line 69, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 64, ../../style/prototype.scss */
+  /* line 75, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 768px) {
-  /* line 46, ../../style/prototype.scss */
+  /* line 57, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2665,13 +2677,13 @@ header.main ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 83, ../../style/prototype.scss */
+  /* line 94, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 1280px) {
-  /* line 46, ../../style/prototype.scss */
+  /* line 57, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2679,16 +2691,16 @@ header.main ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 98, ../../style/prototype.scss */
+  /* line 109, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 104, ../../style/prototype.scss */
+  /* line 115, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
-/* line 110, ../../style/prototype.scss */
+/* line 121, ../../style/prototype.scss */
 .container .pack {
   /*
           background: rgba(213, 255, 0, 0.41);
@@ -2698,21 +2710,21 @@ header.main ul.tabs li a {
   height: 0;
   width: 0;
 }
-/* line 121, ../../style/prototype.scss */
+/* line 132, ../../style/prototype.scss */
 .container .pack:hover article .card {
   -webkit-filter: grayscale(0);
 }
-/* line 125, ../../style/prototype.scss */
+/* line 136, ../../style/prototype.scss */
 .container .pack:hover article .backgroundColor {
   opacity: 0;
 }
-/* line 131, ../../style/prototype.scss */
+/* line 142, ../../style/prototype.scss */
 .container .pack header {
   position: absolute;
   z-index: 2;
   width: 224pt;
 }
-/* line 136, ../../style/prototype.scss */
+/* line 147, ../../style/prototype.scss */
 .container .pack header h1.packTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -2721,7 +2733,7 @@ header.main ul.tabs li a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
-/* line 157, ../../style/prototype.scss */
+/* line 168, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2740,7 +2752,7 @@ header.main ul.tabs li a {
                                    -webkit-filter);
   */
 }
-/* line 176, ../../style/prototype.scss */
+/* line 187, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

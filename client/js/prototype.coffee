@@ -1,3 +1,5 @@
+lastScrollTop = 0
+
 stackOffset = 6
 duration    = 1000
 easing      = [20, 10]
@@ -250,7 +252,7 @@ openPack = ($pack) ->
         translateX: if parseInt($(@).data('packsLeft')) > ($(window).width()  / 2) then $(window).width()  * ((Math.random()+1) * 2) else -$(window).width()  * ((Math.random()+1) * 2)
         translateY: if parseInt($(@).data('packsTop') ) > ($(window).height() / 2) then $(window).height() * ((Math.random()+1) * 2) else -$(window).height() * ((Math.random()+1) * 2)
       options:
-        duration: duration * 2
+        duration: duration
         easing: easing
   $pack.velocity
     properties:
@@ -259,6 +261,29 @@ openPack = ($pack) ->
     options:
       duration: duration
       easing: easing
+  hideNavBar()
+  
+hideNavBar = ->
+  $bar = $('nav .bar')
+  $bar.data 'state', 'hidden'
+  $bar.velocity
+    properties:
+      translateY: -$bar.height() * 2 # double height to keep out of Safari transparent zone
+    options:
+      complete: () ->
+        $bar.hide()
+  console.log 'retract'
+  
+showNavBar = ->
+  $bar = $('nav .bar')
+  $bar.data 'state', 'visible'
+  $bar.velocity
+    properties:
+      translateY: 0
+    options:
+      begin: () ->
+        $bar.show()
+  console.log 'expose'
 
 resizePacks = () -> # stretch pack element around children
   $('.pack').each () ->
@@ -311,7 +336,24 @@ initNav = ->
     if $('.velocity-animating').length < 1
       unless $('.content').data('layout') is 'packs'
         switchToPacks()
-  
+
+onScroll = () ->
+  scrollTop = $(document).scrollTop()
+  direction = if scrollTop > lastScrollTop then 'down' else 'up'
+  lastScrollTop = scrollTop
+  console.log direction
+  $bar = $('nav .bar')
+  if scrollTop > $bar.height()
+    if (direction is 'up')
+      showNavBar() if ($bar.data('state') isnt 'visible')
+    else
+      if $bar.data('state') isnt 'hidden'
+        hideNavBar()
+  else
+    if $bar.data('state') isnt 'visible'
+      showNavBar()
+      
+    
 $ ->
   $('.content').data 'layout', 'recents'
   initItems()
@@ -321,6 +363,10 @@ $ ->
   
   $(window).resize () -> onResize()
   onResize()
+  
+  $(window).scroll () -> onScroll()
+  onScroll()
+  
 #   initDrag()
   
   

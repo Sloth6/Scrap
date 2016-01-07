@@ -16,16 +16,17 @@ html.no-js(lang='en')
 
 
   body
-    header.main
+    nav.main
       .backButton
         a(href="#")
           span ‹
-      ul.tabs
-        li
-          a.tab.recents.typeBody.smallCaps(href='#') Recents
-        li
-          a.tab.packs.typeBody.smallCaps(href='#') Packs
-      // include partials/settingsMenu.jade
+      .bar
+        ul.tabs
+          li
+            a.tab.recents.typeBody.smallCaps(href='#') Recents
+          li
+            a.tab.packs.typeBody.smallCaps(href='#') Packs
+        // include partials/settingsMenu.jade
     .content
       - var n = 7
       .container.recents
