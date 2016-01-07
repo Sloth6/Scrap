@@ -1,7 +1,8 @@
 stackOffset = 6
 duration    = 1000
 easing      = [20, 10]
-packeryDuration = "#{duration / 2 / 1000}s"
+packeryDurationMS = duration / 2
+packeryDuration = "#{packeryDurationMS / 1000}s"
 
 cardSize = if $(window).width() < 768 then 18 else 36
 gutter   = if $(window).width() < 768 then 12 else 24
@@ -22,17 +23,18 @@ packRecents = () ->
     itemSelector: 'article'
     gutter: gutter
     transitionDuration: packeryDuration
-  saveArticleRecentsViewPositions()
+  setTimeout ->
+    saveArticleRecentsViewPositions()
+  , packeryDurationMS
     
 packPacks = () ->
   $('.container.packs').packery
     itemSelector: '.packs'
     gutter: gutter
     transitionDuration: packeryDuration
-  $('.container.packs').packery
-    itemSelector: '.packs'
-    gutter: gutter
-    transitionDuration: packeryDuration
+  setTimeout ->
+    savePacksViewPositions()
+  , duration
   
 resizeCards = (minSize, gutter) ->
   null
@@ -55,7 +57,6 @@ saveArticleRecentsViewPositions = () ->
 
 savePacksViewPositions = () ->
   $('.pack').each () ->
-    console.log 'savePacksViewPositions', $(@).css('left'), $(@).css('top')
     $(@).data('packsLeft', $(@).css('left'))
     $(@).data('packsTop',  $(@).css('top'))
   $('article').each ->
@@ -232,7 +233,34 @@ switchToRecents = () ->
     packRecents()
   , duration
     
-resizePacks = () ->
+openPack = ($pack) ->
+  $packs      = $('.pack')
+  $otherPacks = $packs.not($pack)
+  # clear packery on packs view
+  $('.container.packs').packery 'destroy'
+  $packs.each ->
+    $(@).css
+      top:  $(@).data 'packsTop'
+      left: $(@).data 'packsLeft'
+    switchProperties $(@), { x: '', y: ''}, { x: $(@).data('packsLeft'), y: $(@).data('packsTop')}
+    console.log $(@).data('packsLeft'), $(@).data('packsTop')
+  $otherPacks.each ->
+    $(@).velocity
+      properties:
+        translateX: if parseInt($(@).data('packsLeft')) > ($(window).width()  / 2) then $(window).width()  * ((Math.random()+1) * 2) else -$(window).width()  * ((Math.random()+1) * 2)
+        translateY: if parseInt($(@).data('packsTop') ) > ($(window).height() / 2) then $(window).height() * ((Math.random()+1) * 2) else -$(window).height() * ((Math.random()+1) * 2)
+      options:
+        duration: duration * 2
+        easing: easing
+  $pack.velocity
+    properties:
+      translateX: 0
+      translateY: 0
+    options:
+      duration: duration
+      easing: easing
+
+resizePacks = () -> # stretch pack element around children
   $('.pack').each () ->
     sizePack($(@))
   $('.packs.container').packery {
@@ -240,7 +268,9 @@ resizePacks = () ->
     gutter: gutter
     transitionDuration: packeryDuration
   }
-  savePacksViewPositions()
+  setTimeout ->
+    savePacksViewPositions()
+  , duration
     
 initPacks = () ->
   resizePacks()
@@ -252,6 +282,9 @@ initPacks = () ->
   $('.pack').each ->
     packName = "#{$(@).data('pack')}"
     color = randomColor()
+    # trigger pack open
+    $(@).click ->
+      openPack($(@))
     $(@).data 'color', randomColor()
     $(@).children('header').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
 #     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
@@ -277,7 +310,6 @@ initNav = ->
     event.preventDefault()
     if $('.velocity-animating').length < 1
       unless $('.content').data('layout') is 'packs'
-        console.log 'packs'
         switchToPacks()
   
 $ ->
