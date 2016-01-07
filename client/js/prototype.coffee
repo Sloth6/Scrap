@@ -24,7 +24,6 @@ packRecents = () ->
     transitionDuration: packeryDuration
   saveArticleRecentsViewPositions()
     
-    
 packPacks = () ->
   $('.container.packs').packery
     itemSelector: '.packs'
@@ -66,7 +65,6 @@ savePacksViewPositions = () ->
     n = $("article.#{packName}").length
     packX = parseInt($pack.data('packsLeft'))
     packY = parseInt($pack.data('packsTop'))
-#     console.log packX, packY
     $(@).data('packsLeft', packX + (i * stackOffset))
     $(@).data('packsTop',  packY + (i * stackOffset))
 
@@ -94,12 +92,6 @@ initOnLoad = () ->
 #     draggie = new Draggabilly( elem )
 # #     draggie.on( 'dragEnd', repack )
 #     $('.container').packery 'bindDraggabillyEvents', draggie
-    
-# makePack = (title) ->
-#   $packTitle = $('<h1></h1>').html(title).addClass('typeTitle packTitle')
-#   $pack = $('<section></section>').addClass("pack #{title}").append($packTitle)
-#   $('.container.packs').append($pack)
-#   $pack
   
 sizePack = ($pack) ->
   pack = $pack.data('pack')
@@ -122,8 +114,6 @@ sizePack = ($pack) ->
 positionPack = ($pack, $article, packName) ->
   $header = $pack.children 'header'
   if $('.content').data('layout') is 'packs'
-#     switchProperties $h1, {x: $.Velocity.hook($h1, 'translateX'), y: $.Velocity.hook($h1, 'translateY') }, {x: '0px', y: '0px'}
-#     console.log $article.data('packsLeft'), $pack.data('packsLeft')
     $article.css
       top:  $article.data('packsTop')  - parseInt($pack.data('packsTop'))
       left: $article.data('packsLeft') - parseInt($pack.data('packsLeft'))
@@ -131,9 +121,6 @@ positionPack = ($pack, $article, packName) ->
     # reset pack top,left
     packTop   = $pack.css('top')
     packLeft  = $pack.css('left')
-#     $pack.css
-#       top:  0
-#       left: 0
     # restore non-pack-dependent top,left values for articles
     $pack.children().each ->
       $(@).css
@@ -216,15 +203,6 @@ switchToPacks = ->
   setTimeout ->
     packPacks()
   , duration
-  #     $('article').each -> # Put articles into packs
-  #       switchArticleProperties($(@), 'transform', 'recents')
-  #       packName            = "#{$(@).data('pack')}"
-  #       $pack               = $(".pack.#{packName}")
-  #       $pack.prepend $(@) # enclose in pack element
-  #     #       $pack.css 'z-index', $pack.index('.pack')
-  #     $('.packs.container').show()
-  #     $('.container.recents').hide()
-  #     packPacks()
   
 switchToRecents = () ->
   $('.content').data 'layout', 'recents'
@@ -234,7 +212,6 @@ switchToRecents = () ->
         $(@).css {top: '', left: ''}
         $(@).hide()
     })
-#     $('.pack').each -> positionPack($(@))
   $('.container.recents').show()
   $('article').each ->
     packName            = "#{$(@).data('pack')}"
@@ -288,9 +265,6 @@ initPacks = () ->
 #       'opacity': .1
   packPacks()
   savePacksViewPositions()
-#   setTimeout ->
-#     $('.packs.container').hide()
-#   , 2000
   
 initNav = ->
   $nav = $('ul.tabs')
