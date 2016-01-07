@@ -176,12 +176,9 @@ switchToPacks = ->
       duration: duration
       easing: easing
     })
-    $('article').each ->
+    $('article').each -> # clear recents packery before doing anything else
       $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
-  #       switchArticleProperties($(@), 'transform', 'recents')
-  #     repack()
-  #     })
-  #     repack()
+#     $('.pack').find('backgroundColor').css 'opacity', 1
     $('article').each -> # animate to pack positions
       packName            = "#{$(@).data('pack')}"
       $pack               = $(".pack.#{packName}")
@@ -211,6 +208,9 @@ switchToPacks = ->
             switchArticleProperties($(@), 'absolute', 'packs')
             positionPack($pack, $(@), packName)
             $pack.append $(@)
+  setTimeout ->
+    packPacks()
+  , duration
   #     $('article').each -> # Put articles into packs
   #       switchArticleProperties($(@), 'transform', 'recents')
   #       packName            = "#{$(@).data('pack')}"
@@ -246,11 +246,9 @@ switchToRecents = () ->
         easing: easing
         complete: () ->
           switchArticleProperties($(@), 'absolute', 'recents')
-#     setTimeout ->
-#       packPacks()
-#       $('.container.packs').hide()
-#     , duration
-    
+  setTimeout ->
+    packRecents()
+  , duration
     
 resizePacks = () ->
   $('.pack').each () ->

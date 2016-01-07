@@ -143,18 +143,19 @@ header.main {
         article {
             .card {
 //                 mix-blend-mode: multiply;
-                -webkit-filter: grayscale(1);
+//                 -webkit-filter: grayscale(1);
 //                 opacity: .1;
             }
             
             .backgroundColor {
-                opacity: 1;
+//                 opacity: 1;
             }
         }
     }
     
     article {
         .card {
+/*
             mix-blend-mode: multiply;
             -webkit-filter: grayscale(0);
             @include transition(1s $defaultCurve);
@@ -169,6 +170,7 @@ header.main {
                                          color,
                                          mix-blend-mode,
                                  -webkit-filter);
+*/
         }
         
         .backgroundColor {
