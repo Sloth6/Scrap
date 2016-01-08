@@ -305,13 +305,13 @@ closePack = () ->
   $packs.each ->
     $(@).velocity
       properties:
-        translateX: $(@).data 'packsLeft'
-        translateY:  $(@).data 'packsTop'
+        translateX:  $(@).data('packsLeft') / 2
+        translateY:  $(@).data('packsTop')  / 2
       options:
         duration: duration
         easing: easing
         complete: () ->
-          switchProperties $(@), { x: $(@).data('packLeft'), y: $(@).data('packTop')} , { x: '0px', y: '0px' }
+          switchProperties $(@), { x: $(@).data('packsLeft'), y: $(@).data('packsTop')} , { x: '0px', y: '0px' }
           if $(@).index() is ($packs.length - 1)
             packPacks(true)
   showNavBar()
