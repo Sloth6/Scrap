@@ -21,33 +21,33 @@ calculateX = ($content, margin) ->
   right_start = $(window).width() - border
   left_min = - contentModel.getSize($content) + edgeWidth
   left_start = left_min + border
-  
 #   if $collection.hasClass 'root'
 #     left_start = $(window).width() / 2
   
   if isForm
 #     console.log 'form at edge'
     border = 132
-
-  # is piling up on right
+# is piling up on right
   if x > right_start
     percent = (x - right_start) / border
     x = right_start + (logisticFunction(percent)-0.5)*2 * border
-    if isForm
-      $content.addClass 'onEdge'
-  # is piling up on left
+
+  if isForm
+    $content.addClass 'onEdge'
+    # is piling up on left
+    
   else if x < left_start
     percent = 1 - ((x - left_min)/ border)
     x = left_start - ((logisticFunction(percent)-0.5)*2 * border)
+    
   else
     if isForm
       $content.removeClass 'onEdge'
     
     
-#   if $content.hasClass('cover')# and not $collection.hasClass('root')
-#     console.log 'cover',  $collection.attr 'class'
-    
-    
+  #   if $content.hasClass('cover')# and not $collection.hasClass('root')
+  #     console.log 'cover',  $collection.attr 'class'
+  
   # Prevent stack from shifting to right when growing
   # x -= .0001825 * rawX
   x
@@ -94,6 +94,7 @@ calculateRotateZ = ($content, margin, jumble, multiple) ->
 #     $content.removeClass 'peek'
 
 # percentFromCenter = percentToBorder((translateX), $content, $(window).width()/2)
+
 
 # On open/close or load
 

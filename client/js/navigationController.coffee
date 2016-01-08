@@ -35,7 +35,7 @@ window.navigationController =
       }, ""
 
       #Begin on the left side 
-      $(window).scrollLeft 0#$(window.document).width()
+      $(window).scrollLeft 0
 
       # Update the url.
       path = if $collection.hasClass('root') then '/' else "/s/#{collectionKey}"

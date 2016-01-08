@@ -10,3 +10,4 @@ migrations
 *.tar
 *.scssc
 server/config.json
+client/images/placeholder

@@ -1,0 +1,237 @@
+@import "screen.scss";
+
+body {
+    margin: 0 $gutter;
+    
+    @media (min-width: $breakSmall) {
+        margin: 0 $col/4 0 $col;
+    }
+}
+
+.content {
+  height: auto;
+  width: 100%;
+  min-height: 0;
+}
+
+nav.main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $broadMargin;
+    z-index: 2;
+    
+    .backButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .bar {
+        height: 100%;
+        width: 100%;
+        background: $colorCardBackground;
+        border-bottom: $cardBorder;
+        @include transition(.5s $defaultCurve);
+        @include transition-property(border-color, background-color);
+/*
+        -webkit-backdrop-filter: blur(30px);
+        opacity: .5;
+*/
+      
+        ul.tabs {
+            position: absolute;
+            top: 0;
+            left: $broadMargin;
+            right: $broadMargin;
+            bottom: 0;
+            text-align: center;
+        //         background-color: red;
+            
+            li {
+                display: inline-block;
+                height: 100%;
+                
+                a {
+                    display: block;
+                    padding: 0 $gutter * 2;
+                    line-height: $broadMargin;
+                    height: 100%;
+        //                 background-color: blue;
+                }
+            }
+        }
+    }
+}
+
+.container {
+    margin-top: $broadMargin;
+    transform-origin: top left;
+    
+    @media (max-width: $breakSmall) {
+        $scale: (1/2);
+        
+        @include transform(scale($scale));
+        width: 100% * (1/$scale);
+        
+        article {
+            .card {
+                border-width: (1px/$scale);
+            }
+        }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
+            }
+        }
+    }
+    
+    @media (min-width: $breakSmall) {
+        $scale: (1/2);
+        
+        @include transform(scale($scale));
+        width: 100% * (1/$scale);
+        
+        article {
+            .card {
+//                 border-width: (1px/$scale);
+            }
+        }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
+            }
+        }
+    }
+    
+    @media (min-width: $breakMedium) {
+        $scale: (1/1.5);
+        
+        @include transform(scale($scale));
+        width: 100% * (1/$scale);
+        
+        article {
+            .card {
+                border-width: (1px/$scale);
+            }
+        }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
+            }
+        }
+    }
+    
+/*
+    @media (min-width: $breakLarge) {
+        $scale: (1);
+        
+        @include transform(scale($scale));
+        width: 100% * (1/$scale);
+        
+        article {
+            .card {
+                border-width: (1px/$scale);
+            }
+        }
+        
+        .pack {
+            h1.packTitle {
+                -webkit-text-stroke: (1px/$scale) $colorType;
+            }
+        }
+    }
+*/
+    
+    .pack {
+/*
+        background: rgba(213, 255, 0, 0.41);
+        border: red 1px solid;
+*/
+        position: absolute;
+        height: 0;
+        width: 0;
+        
+        &:hover {
+            article {
+                .card {
+                    -webkit-filter: grayscale(0);
+                }
+                
+                .backgroundColor {
+                    opacity: 0;
+                }
+            }
+        }
+        
+        &.open {
+            height: 100%;
+            width: 100%;
+        }
+        
+        header {
+            position: absolute;
+            z-index: 2;
+            width: $articleSide;
+            min-height: $articleSide;
+            
+            h1.packTitle {
+                @include typeTitle;
+                @include typeOutlineClear;
+//                 -webkit-text-fill-color: white;
+            }
+        }
+        
+        article {
+            .card {
+//                 mix-blend-mode: multiply;
+//                 -webkit-filter: grayscale(1);
+//                 opacity: .1;
+            }
+            
+            .backgroundColor {
+//                 opacity: 1;
+            }
+        }
+    }
+    
+    article {
+        .card {
+/*
+            mix-blend-mode: multiply;
+            -webkit-filter: grayscale(0);
+            @include transition(1s $defaultCurve);
+            @include transition-property(transform,
+                                 -webkit-transform,
+                                    -moz-transform,
+                                         box-shadow,
+                                 -webkit-box-shadow,
+                                    -moz-box-shadow,
+                                         background-color,
+                                         border-color,
+                                         color,
+                                         mix-blend-mode,
+                                 -webkit-filter);
+*/
+        }
+        
+        .backgroundColor {
+            @include transition(1s $defaultCurve);
+            @include transition-property(opacity);
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+        }
+    }
+}

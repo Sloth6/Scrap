@@ -17,12 +17,14 @@ $ ->
     $collection = $('.collection.open')
     if collectionModel.getState($collection).collectionKey == collectionKey
       $addArticleForm = collectionModel.getAddForm $collection
-      $article.css { x: xTransform($addArticleForm) }
+      x = xTransform $addArticleForm
+      # console.log {x}
+      $article.velocity { translateX: [x,x] }, { duration: 1 }
       collectionModel.appendContent $collection, $article
       contentModel.init $article
       collectionViewController.draw $collection, { animate: true }
       size = contentModel.getSize $collection
-      $(document.body).css { width: size }
+      $(document.body).css { width: size }      
 
   socket.on 'newPack', (data) ->
     { collectionHTML } = data
@@ -77,7 +79,6 @@ $ ->
       collectionViewController.draw $('.collection.open'), {animate: true}
       size = contentModel.getSize $('.collection.open')
       $(document.body).css { width: size }
-
 
   socket.on 'updateArticle', ({ collectionKey, userId, articleId, content }) ->
     return if data.userId is window.userId
