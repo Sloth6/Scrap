@@ -275,31 +275,17 @@ closePack = () ->
   $children   = $articles.add($header)
   $('.content').data 'packOpen', false
   switchProperties $pack, { x: '', y: '' }, { x: parseInt($pack.css('left')), y:  parseInt($pack.css('top')) }
-  resizePacks() # reset open pack width
   console.log $pack.data('packsLeft')
-  $pack.css
-    top: ''
-    left: ''
-    position: 'absolute'
-  # bring back other packs
-  $packs.each ->
-    $(@).velocity
-      properties:
-        translateX: $(@).data 'packsLeft'
-        translateY:  $(@).data 'packsTop'
-      options:
-        duration: duration
-        easing: easing
-        complete: () ->
-          switchProperties $pack, { x: '', y:  ''} , { x: '0px', y: '0px' }
-          packPacks(false)
-#   # collapse open pack
+# collapse open pack
   $pack.packery # have to create new packery instance for some reason
     itemSelector: '.packable'
     gutter: gutter
     transitionDuration: 0
   $pack.packery 'destroy'
-#   $header.
+  $pack.css
+    top: ''
+    left: ''
+    position: 'absolute'
   $children.each ->
     $(@).css
       position: 'absolute'
@@ -314,6 +300,20 @@ closePack = () ->
         duration: duration
         easing: easing
   $pack.removeClass 'open'
+  resizePacks() # reset open pack width
+  # bring back other packs
+  $packs.each ->
+    $(@).velocity
+      properties:
+        translateX: $(@).data 'packsLeft'
+        translateY:  $(@).data 'packsTop'
+      options:
+        duration: duration
+        easing: easing
+        complete: () ->
+          switchProperties $(@), { x: $(@).data('packLeft'), y: $(@).data('packTop')} , { x: '0px', y: '0px' }
+          if $(@).index() is ($packs.length - 1)
+            packPacks(true)
   showNavBar()
   hideBackButton()
   
@@ -519,15 +519,26 @@ onScroll = () ->
   $bar = $('nav .bar')
   unless $('.content').data('packOpen') # don't show/hide nav bar when pack open
     if scrollTop > $bar.height()
+      $bar.css
+        backgroundColor: 'white'
+        borderColor: 'black'
       if (direction is 'up')
         showNavBar() if ($bar.data('state') isnt 'visible')
       else
         if $bar.data('state') isnt 'hidden'
           hideNavBar()
+#           $bar.css
+#             backgroundColor: 'transparent'
+#             borderColor: 'transparent'
     else
       if $bar.data('state') isnt 'visible'
         showNavBar()
-    
+#         setTimeout ->
+        $bar.css
+          backgroundColor: 'transparent'
+          borderColor: 'transparent'
+#         , duration
+        
 $ ->
   $('.content').data 'layout', 'recents'
   $('.content').data 'packOpen', false

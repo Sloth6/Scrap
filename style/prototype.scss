@@ -59,7 +59,7 @@ nav.main {
 }
 
 .container {
-    margin-top: $broadMargin + $gutter * 2;
+    margin-top: $broadMargin;
     transform-origin: top left;
     
     @media (max-width: $breakSmall) {
@@ -123,10 +123,8 @@ nav.main {
     }
     
     .pack {
-/*
         background: rgba(213, 255, 0, 0.41);
         border: red 1px solid;
-*/
         position: absolute;
         height: 0;
         width: 0;
