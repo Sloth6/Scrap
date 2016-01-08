@@ -13,8 +13,6 @@ html.no-js(lang='en')
     link(rel='stylesheet', href='/style/prototype.css')
     script(src='/js/prototype.js')
     //- script(src='/js/derp.js')
-
-
   body
     nav.main
       .backButton
@@ -28,7 +26,7 @@ html.no-js(lang='en')
             a.tab.packs.typeBody.smallCaps(href='#') Packs
         // include partials/settingsMenu.jade
     .content
-      - var n = 3
+      - var n = 2
       .container.recents
         - for (var i = 0; i < n; i++) {
           - var pack = Math.floor(Math.random() * n)
