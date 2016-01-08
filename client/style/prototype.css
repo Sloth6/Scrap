@@ -2622,12 +2622,20 @@ nav.main .bar {
   width: 100%;
   background: white;
   border-bottom: 1px solid #000000;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -moz-transition-property: border-color, background-color;
+  -o-transition-property: border-color, background-color;
+  -webkit-transition-property: border-color, background-color;
+  transition-property: border-color, background-color;
   /*
           -webkit-backdrop-filter: blur(30px);
           opacity: .5;
   */
 }
-/* line 36, ../../style/prototype.scss */
+/* line 38, ../../style/prototype.scss */
 nav.main .bar ul.tabs {
   position: absolute;
   top: 0;
@@ -2636,12 +2644,12 @@ nav.main .bar ul.tabs {
   bottom: 0;
   text-align: center;
 }
-/* line 45, ../../style/prototype.scss */
+/* line 47, ../../style/prototype.scss */
 nav.main .bar ul.tabs li {
   display: inline-block;
   height: 100%;
 }
-/* line 49, ../../style/prototype.scss */
+/* line 51, ../../style/prototype.scss */
 nav.main .bar ul.tabs li a {
   display: block;
   padding: 0 16pt;
@@ -2649,13 +2657,13 @@ nav.main .bar ul.tabs li a {
   height: 100%;
 }
 
-/* line 61, ../../style/prototype.scss */
+/* line 63, ../../style/prototype.scss */
 .container {
   margin-top: 40pt;
   transform-origin: top left;
 }
 @media (max-width: 768px) {
-  /* line 61, ../../style/prototype.scss */
+  /* line 63, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2663,17 +2671,17 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 73, ../../style/prototype.scss */
+  /* line 75, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 79, ../../style/prototype.scss */
+  /* line 81, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 768px) {
-  /* line 61, ../../style/prototype.scss */
+  /* line 63, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2681,13 +2689,13 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 98, ../../style/prototype.scss */
+  /* line 100, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 1280px) {
-  /* line 61, ../../style/prototype.scss */
+  /* line 63, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2695,16 +2703,16 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 113, ../../style/prototype.scss */
+  /* line 115, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 119, ../../style/prototype.scss */
+  /* line 121, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
-/* line 125, ../../style/prototype.scss */
+/* line 127, ../../style/prototype.scss */
 .container .pack {
   /*
           background: rgba(213, 255, 0, 0.41);
@@ -2714,26 +2722,26 @@ nav.main .bar ul.tabs li a {
   height: 0;
   width: 0;
 }
-/* line 136, ../../style/prototype.scss */
+/* line 138, ../../style/prototype.scss */
 .container .pack:hover article .card {
   -webkit-filter: grayscale(0);
 }
-/* line 140, ../../style/prototype.scss */
+/* line 142, ../../style/prototype.scss */
 .container .pack:hover article .backgroundColor {
   opacity: 0;
 }
-/* line 146, ../../style/prototype.scss */
+/* line 148, ../../style/prototype.scss */
 .container .pack.open {
   height: 100%;
   width: 100%;
 }
-/* line 151, ../../style/prototype.scss */
+/* line 153, ../../style/prototype.scss */
 .container .pack header {
   position: absolute;
   z-index: 2;
   width: 224pt;
 }
-/* line 156, ../../style/prototype.scss */
+/* line 158, ../../style/prototype.scss */
 .container .pack header h1.packTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -2742,7 +2750,7 @@ nav.main .bar ul.tabs li a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
-/* line 177, ../../style/prototype.scss */
+/* line 179, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2761,7 +2769,7 @@ nav.main .bar ul.tabs li a {
                                    -webkit-filter);
   */
 }
-/* line 196, ../../style/prototype.scss */
+/* line 198, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

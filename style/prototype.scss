@@ -28,6 +28,8 @@ nav.main {
         width: 100%;
         background: $colorCardBackground;
         border-bottom: $cardBorder;
+        @include transition(.5s $defaultCurve);
+        @include transition-property(border-color, background-color);
 /*
         -webkit-backdrop-filter: blur(30px);
         opacity: .5;

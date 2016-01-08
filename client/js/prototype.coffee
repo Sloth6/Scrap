@@ -519,9 +519,6 @@ onScroll = () ->
   $bar = $('nav .bar')
   unless $('.content').data('packOpen') # don't show/hide nav bar when pack open
     if scrollTop > $bar.height()
-      $bar.css
-        backgroundColor: 'white'
-        borderColor: 'black'
       if (direction is 'up')
         showNavBar() if ($bar.data('state') isnt 'visible')
       else
@@ -534,11 +531,16 @@ onScroll = () ->
       if $bar.data('state') isnt 'visible'
         showNavBar()
 #         setTimeout ->
-        $bar.css
-          backgroundColor: 'transparent'
-          borderColor: 'transparent'
 #         , duration
-        
+    if scrollTop > 0
+      $bar.css
+        backgroundColor: 'white'
+        borderColor: 'black'
+    else
+      $bar.css
+        backgroundColor: 'transparent'
+        borderColor: 'transparent'
+
 $ ->
   $('.content').data 'layout', 'recents'
   $('.content').data 'packOpen', false
