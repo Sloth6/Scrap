@@ -90,10 +90,11 @@ initItems = () ->
   $('article').each ->
     packName = $(@).data('pack')
     color = $(".pack.#{packName}").data('color')
-    $(@).find('.card').css
-      backgroundColor: "hsl(#{color.h},100%,95%)"
-  #   null
-  #   saveArticleRecentsViewPositions()
+    if $(@).hasClass('text')
+      $(@).find('.card').css
+        backgroundColor: "hsl(#{color.h},100%,95%)"
+    #   null
+    #   saveArticleRecentsViewPositions()
     
 onResize = () ->
   if $('.content').data('layout') is 'recents'

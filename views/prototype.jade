@@ -2,6 +2,7 @@ doctype html
 html.no-js(lang='en')
   head
     meta(charset='utf-8')
+    title Scrap
     link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
     script(src='/js/jquery/jquery.js')
     script(src="/js/jquery/jquery-ui.min.js")
@@ -60,23 +61,31 @@ html.no-js(lang='en')
           article.text(data-pack=pack, class=pack)
             .card.cardHover.text
               .editable
-                h1 Header
-                h2 header 2
-                p paragraph
-                p paragraph
-                ol
-                  li ordered
-                  li list
-                ul
-                  li unordered
-                  li lists
-                blockquote quote
-          - for (var j = 0; j < 20; j++) {
+                h1 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
+          - for (var j = 0; j < 30; j++) {
             - var pack = Math.floor(Math.random() * n)
               article.image(data-pack=pack, class=pack)
                 .card.cardHover.image
                   img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
           - }
+          - var pack = Math.floor(Math.random() * n)
+          article.text(data-pack=pack, class=pack)
+            .card.cardHover.text
+              .editable
+                h2 Est non commodo
+                ol
+                  li Justo
+                  li Risus
+                  li Ornare
+                  li Ipsum
+                  li Lorem
+                h2 Donec ullamcorper
+                ul
+                  li Vivamus sagittis lacus vel augue
+                  li Laoreet rutrum faucibus dolor auctor
+                  li Duis mollis, est non commodo luctus nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+                  li Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+                blockquote Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           - var pack = Math.floor(Math.random() * n)
           article.file(data-pack=pack, class=pack)
             .card.cardHover.file
@@ -98,6 +107,13 @@ html.no-js(lang='en')
                 .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
               img(src='http://lorempixel.com/400/300')
               a(href=url, target='_blank', title='Open “Title” in a new tab')
+          - var pack = Math.floor(Math.random() * n)
+          article.text(data-pack=pack, class=pack)
+            .card.cardHover.text
+              .editable
+                h1 Duis mollis
+                p Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis euismod semper.
+                p Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod.
           - var pack = Math.floor(Math.random() * n)
           article.soundcloud.playable(data-pack=pack, class=pack)
             .card.cardHover.text.playable
@@ -126,7 +142,7 @@ html.no-js(lang='en')
         - }
       .container.packs
         - for (var i = 0; i < n; i++) {
-          - var name = 'This Is My Amazing Pack #' + i
+          - var name = 'Ligula Dolor Commodo #' + i;
           section.pack(data-pack=i, class=i)
             header.card
               h1.typeTitle.packTitle= name
