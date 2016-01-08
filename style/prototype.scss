@@ -143,6 +143,11 @@ nav.main {
             }
         }
         
+        &.open {
+            height: 100%;
+            width: 100%;
+        }
+        
         header {
             position: absolute;
             z-index: 2;

@@ -36,8 +36,17 @@ packPacks = () ->
     transitionDuration: packeryDuration
   setTimeout ->
     savePacksViewPositions()
-  , duration
-  
+  , duration  
+    
+packOpenPack = () ->
+  $('.pack.open').packery
+    itemSelector: '.packable'
+    gutter: gutter
+    transitionDuration: packeryDuration
+  setTimeout ->
+    saveOpenPackPositions()
+  , duration  
+
 resizeCards = (minSize, gutter) ->
   null
 #   $('article').each ->
@@ -54,13 +63,13 @@ resizeCards = (minSize, gutter) ->
     
 saveArticleRecentsViewPositions = () ->
   $('article').each ->
-    $(@).data('recentsTop', $(@).css('top').toString())
-    $(@).data('recentsLeft', $(@).css('left').toString())
+    $(@).data('recentsTop',  parseInt $(@).css('top'))
+    $(@).data('recentsLeft', parseInt $(@).css('left'))
 
 savePacksViewPositions = () ->
   $('.pack').each () ->
-    $(@).data('packsLeft', $(@).css('left'))
-    $(@).data('packsTop',  $(@).css('top'))
+    $(@).data('packsLeft', parseInt $(@).css('left'))
+    $(@).data('packsTop',  parseInt $(@).css('top'))
   $('article').each ->
     packName = "#{$(@).data('pack')}"
     $pack  = $(".pack.#{packName}")
@@ -68,8 +77,13 @@ savePacksViewPositions = () ->
     n = $("article.#{packName}").length
     packX = parseInt($pack.data('packsLeft'))
     packY = parseInt($pack.data('packsTop'))
-    $(@).data('packsLeft', packX + (i * stackOffset))
-    $(@).data('packsTop',  packY + (i * stackOffset))
+    $(@).data('packsLeft', parseInt(packX + (i * stackOffset)))
+    $(@).data('packsTop',  parseInt(packY + (i * stackOffset)))
+    
+saveOpenPackPositions = () ->
+  $('.pack.open .packable').each ->
+    $(@).data('openPackLeft', parseInt($(@).css('left')))
+    $(@).data('openPackTop',  parseInt($(@).css('top')))
 
 initItems = () ->
   null
@@ -79,8 +93,12 @@ onResize = () ->
   if $('.content').data('layout') is 'recents'
     packRecents()
   else if $('.content').data('layout') is 'packs'
-    packPacks()
-  
+    if $('.content').data('packOpen')
+      packOpenPack()
+    else # if on main pack view and all packs closed
+      console.log 'woefijwoeifjweofij'
+      packPacks()
+      
 initOnLoad = () ->
   $('img').load () ->
     $('.pack').each -> sizePack($(@))
@@ -235,25 +253,41 @@ switchToRecents = () ->
     packRecents()
   , duration * 1.1
     
+closePack = () ->
+  $pack = $('.pack.open')
+  $otherPacks = $packs.not($pack)
+  $articles   = $pack.children('article')
+  $header     = $pack.children('header')
+  $children   = $articles.add($header)
+  $pack.removeClass 'open'
+  
 openPack = ($pack) ->
   $packs      = $('.pack')
   $otherPacks = $packs.not($pack)
+  $articles   = $pack.children('article')
+  $header     = $pack.children('header')
+  $children   = $articles.add($header)
+  $('.content').data 'packOpen', true
   # clear packery on packs view
   $('.container.packs').packery 'destroy'
+  # restore packery locations so packs to move after 'destroy'
+  $pack.addClass 'open'
   $packs.each ->
     $(@).css
       top:  $(@).data 'packsTop'
       left: $(@).data 'packsLeft'
-    switchProperties $(@), { x: '', y: ''}, { x: $(@).data('packsLeft'), y: $(@).data('packsTop')}
-    console.log $(@).data('packsLeft'), $(@).data('packsTop')
+    # switch packs to transform positioning to prepare for animations
+    switchProperties $(@), { x: '', y: ''}, { x: "#{$(@).data('packsLeft')}", y: "#{$(@).data('packsTop')}"}
+  # animate other packs off screen
   $otherPacks.each ->
     $(@).velocity
       properties:
-        translateX: if parseInt($(@).data('packsLeft')) > ($(window).width()  / 2) then $(window).width()  * ((Math.random()+1) * 2) else -$(window).width()  * ((Math.random()+1) * 2)
-        translateY: if parseInt($(@).data('packsTop') ) > ($(window).height() / 2) then $(window).height() * ((Math.random()+1) * 2) else -$(window).height() * ((Math.random()+1) * 2)
+        translateX: if $(@).data('packsLeft') > ($(window).width()  / 2) then $(window).width()  * ((Math.random()+1) * 2) else -$(window).width()  * ((Math.random()+1) * 2)
+        translateY: if $(@).data('packsTop')  > ($(window).height() / 2) then $(window).height() * ((Math.random()+1) * 2) else -$(window).height() * ((Math.random()+1) * 2)
       options:
         duration: duration
         easing: easing
+  # animate opened pack to top left
   $pack.velocity
     properties:
       translateX: 0
@@ -261,7 +295,80 @@ openPack = ($pack) ->
     options:
       duration: duration
       easing: easing
+  # set pack height and width equal to container height and width
+  $pack.css
+    'position': 'absolute'
+    'height': '100%'
+    'width':  '100%'
+  # store header stack top/left values
+  $header.data('packsTop',  parseInt $.Velocity.hook($header, 'translateX'))
+  $header.data('packsLeft', parseInt $.Velocity.hook($header, 'translateY'))
+  # change header to absolute from transform
+  switchProperties $header, { x: $header.data('packsLeft'), y: $header.data('packsTop') }, { x: '0px', y: '0px'}
+  # make articles and header packable
+  $children.addClass 'packable'
+  # pack articles and header
+  $pack.packery
+    itemSelector: '.packable'
+    gutter: gutter
+    transitionDuration: 0
+  # capture destination packery values
+  saveOpenPackPositions()
+  # wipeout packery layout
+  $pack.packery 'destroy'
+  $children.css
+    top: '0'
+    left: '0'
+    position: 'absolute'
+  # switch packable elements to transform positioning to prepare for animations
+#   setTimeout ->
+  $children.each ->
+    console.log $(@), "#{$(@).data('packsLeft')}px", "#{$(@).data('packsTop')}px"
+    switchProperties $(@), { x: '', y: ''}, { x: "#{$(@).data('packsLeft')}px", y: "#{$(@).data('packsTop')}px"}
+    $(@).velocity
+      properties:
+        translateX: $(@).data('openPackLeft')
+        translateY: $(@).data('openPackTop')
+      options:
+        duration: duration
+        easing: easing
+        complete: () ->
+          switchProperties $(@), { x: $(@).data('openPackLeft'), y: $(@).data('openPackTop') }, { x: '0px', y: '0px' }
+          $.Velocity.hook $(@), 'translateX', '0px'
+          $.Velocity.hook $(@), 'translateY', '0px'
+          if $(@).index is $children.length - 1
+#             $children.css
+#               top: '0'
+#               left: '0'
+#               position: 'absolute'
+            packOpenPack()
+            
+#   , 250
+  # change nav
   hideNavBar()
+  showBackButton()
+  
+hideBackButton = ->
+  $back = $('nav .backButton')
+  $back.velocity
+    properties:
+      translateX: -$back.width()
+    options:
+      duration: duration
+      easing: easing
+      complete: () ->
+        $back.hide()
+  
+showBackButton = ->
+  $back = $('nav .backButton')
+  $back.velocity
+    properties:
+      translateX: 0
+    options:
+      duration: duration
+      easing: easing
+      begin: () ->
+        $back.show()
   
 hideNavBar = ->
   $bar = $('nav .bar')
@@ -311,7 +418,8 @@ initPacks = () ->
     color = randomColor()
     # trigger pack open
     $(@).click ->
-      openPack($(@))
+      unless $('.content').data 'packOpen'
+        openPack($(@))
     $(@).data 'color', randomColor()
     $(@).children('header').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
 #     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
@@ -327,6 +435,7 @@ initPacks = () ->
   savePacksViewPositions()
   
 initNav = ->
+# Tabs
   $nav = $('ul.tabs')
   $nav.find('.tab.recents').click (event) ->
     event.preventDefault()
@@ -338,26 +447,34 @@ initNav = ->
     if $('.velocity-animating').length < 1
       unless $('.content').data('layout') is 'packs'
         switchToPacks()
+# Back button
+  $back = $('nav .backButton')
+  $back.hide()
+  hideBackButton()
+  $back.click (event) ->
+    event.preventDefault()
+    if $('.content').data('packOpen')
+      closePack()
 
 onScroll = () ->
   scrollTop = $(document).scrollTop()
   direction = if scrollTop > lastScrollTop then 'down' else 'up'
   lastScrollTop = scrollTop
-  console.log direction
   $bar = $('nav .bar')
-  if scrollTop > $bar.height()
-    if (direction is 'up')
-      showNavBar() if ($bar.data('state') isnt 'visible')
+  unless $('.content').data('packOpen') # don't show/hide nav bar when pack open
+    if scrollTop > $bar.height()
+      if (direction is 'up')
+        showNavBar() if ($bar.data('state') isnt 'visible')
+      else
+        if $bar.data('state') isnt 'hidden'
+          hideNavBar()
     else
-      if $bar.data('state') isnt 'hidden'
-        hideNavBar()
-  else
-    if $bar.data('state') isnt 'visible'
-      showNavBar()
-      
+      if $bar.data('state') isnt 'visible'
+        showNavBar()
     
 $ ->
   $('.content').data 'layout', 'recents'
+  $('.content').data 'packOpen', false
   initItems()
   initPacks()
   initOnLoad()
