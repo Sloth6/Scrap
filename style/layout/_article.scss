@@ -222,8 +222,10 @@ body {
                 overflow: hidden;
                 
                 img {
-                    height: intrinsic;
-                    width: intrinsic;
+                    height: auto;
+                    width: auto;
+                    max-height: $col * 6;
+                    max-width:  $col * 6;
                     min-height: auto !important;
                     min-width:  auto !important;
                     margin: $hideImageWhiteBorder;

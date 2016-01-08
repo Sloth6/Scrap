@@ -28,33 +28,34 @@ html.no-js(lang='en')
             a.tab.recents.typeBody.smallCaps(href='#') Recents
           li
             a.tab.packs.typeBody.smallCaps(href='#') Packs
-      ul.menu.headerMenu.settings.right.hideFirst.slideIn
-        li.first.hideOnOpenSubmenu.userName.typeOutlineClear.typeOutlineBlackOnHover.typeWeightBold • • •
-        li.hideOnOpenSubmenu.bodyType.smallCaps Antonio Ono
-        li.update.hideOnOpenSubmenu
-          a(href="#") Edit your account
-        ul.submenu
-          li.hidden.backButton
-            a(href="#")
-              span ‹
-          form
-            li.hidden.smallType Update your name, email, or password
-            li.input.inputText.hidden
-              input.name(type="text", name="user[email]", placeholder="Name")
-            li.input.inputText.hidden
-              input.email(type="email", name="user[email]", placeholder="Email")
-            li.input.inputText.hidden
-              input.password(type="password", name="user[email]", placeholder="Password")
-            li.input.submit.save.closeButton.hidden
-              input.confirm(type="submit", value="Save")
-        li.logout.hideOnOpenSubmenu
-          a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
-        li.logout.hideOnOpenSubmenu
-          a.logout(href="/logout") Sign out
+        ul.menu.headerMenu.settings.right.hideFirst.slideIn
+          li.first.hideOnOpenSubmenu.userName.typeOutlineClear.typeOutlineBlackOnHover.typeWeightBold • • •
+          li.hideOnOpenSubmenu.bodyType.smallCaps Antonio Ono
+          li.update.hideOnOpenSubmenu
+            a(href="#") Edit your account
+          ul.submenu
+            li.hidden.backButton
+              a(href="#")
+                span ‹
+            form
+              li.hidden.smallType Update your name, email, or password
+              li.input.inputText.hidden
+                input.name(type="text", name="user[email]", placeholder="Name")
+              li.input.inputText.hidden
+                input.email(type="email", name="user[email]", placeholder="Email")
+              li.input.inputText.hidden
+                input.password(type="password", name="user[email]", placeholder="Password")
+              li.input.submit.save.closeButton.hidden
+                input.confirm(type="submit", value="Save")
+          li.logout.hideOnOpenSubmenu
+            a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
+          li.logout.hideOnOpenSubmenu
+            a.logout(href="/logout") Sign out
     .content
-      - var n = 6
+      - var n = 20
+      - var imageCount = 268
       .container.recents
-        - for (var i = 0; i < n; i++) {
+        - for (var i = 0; i < n/6; i++) {
           - var pack = Math.floor(Math.random() * n)
           article.text(data-pack=pack, class=pack)
             .card.cardHover.text
@@ -70,10 +71,12 @@ html.no-js(lang='en')
                   li unordered
                   li lists
                 blockquote quote
-          - var pack = Math.floor(Math.random() * n)
-          article.image(data-pack=pack, class=pack)
-            .card.cardHover.image
-              img(src='http://lorempixel.com/' + Math.floor(Math.random() * 600 + 50) + '/' + Math.floor(Math.random() * 600 + 50))
+          - for (var j = 0; j < 20; j++) {
+            - var pack = Math.floor(Math.random() * n)
+              article.image(data-pack=pack, class=pack)
+                .card.cardHover.image
+                  img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
+          - }
           - var pack = Math.floor(Math.random() * n)
           article.file(data-pack=pack, class=pack)
             .card.cardHover.file

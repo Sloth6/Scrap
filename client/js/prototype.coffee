@@ -21,6 +21,7 @@ randomColor = () ->
 #   "hsl(#{h},100%,#{l}%)"
 
 packRecents = (animate) ->
+#   resizeCards()
   $('.container.recents').packery
     itemSelector: 'article'
     gutter: gutter
@@ -47,18 +48,18 @@ packOpenPack = (animate) ->
     saveOpenPackPositions()
   , duration  
 
-resizeCards = (minSize, gutter) ->
+resizeCards = () ->
   null
 #   $('article').each ->
 #     $(@).css({
-#       'padding-left':   gutter
-#       'padding-top':    gutter
-#       'padding-bottom': gutter
-#       'padding-right':  gutter
-# #       'padding-left':   if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-# #       'padding-top':    if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-# #       'padding-bottom': if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-# #       'padding-right':  if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
+# #       'padding-left':   gutter
+# #       'padding-top':    gutter
+# #       'padding-bottom': gutter
+# #       'padding-right':  gutter
+# #       'padding-left':   if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
+# #       'padding-top':    if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
+# #       'padding-bottom': if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
+# #       'padding-right':  if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
 #     })
     
 saveArticleRecentsViewPositions = () ->
@@ -86,8 +87,13 @@ saveOpenPackPositions = () ->
     $(@).data('openPackTop',  parseInt($(@).css('top')))
 
 initItems = () ->
-  null
-#   saveArticleRecentsViewPositions()
+  $('article').each ->
+    packName = $(@).data('pack')
+    color = $(".pack.#{packName}").data('color')
+    $(@).find('.card').css
+      backgroundColor: "hsl(#{color.h},100%,95%)"
+  #   null
+  #   saveArticleRecentsViewPositions()
     
 onResize = () ->
   if $('.content').data('layout') is 'recents'
@@ -238,7 +244,7 @@ switchToRecents = () ->
           switchArticleProperties($(@), 'absolute', 'recents')
   setTimeout ->
     packRecents(true)
-  , duration
+  , duration * 1.1
   
 
 animateHeaderIn = ($header, siblingCount) ->
@@ -544,8 +550,8 @@ onScroll = () ->
 $ ->
   $('.content').data 'layout', 'recents'
   $('.content').data 'packOpen', false
-  initItems()
   initPacks()
+  initItems()
   initOnLoad()
   initNav()
   
