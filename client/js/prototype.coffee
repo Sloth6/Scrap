@@ -97,14 +97,14 @@ closeArticle = ($article, scaleRatio, nativeDimensions) ->
     options:
       duration: duration
       easing: easing
-  $('article').not($article).removeClass('defocus').velocity
+  $('article, .packable').not($article).removeClass('defocus').velocity
       properties:
         opacity: 1
       options:
         duration: duration
         easing: easing
   $('body').off()
-  $('body').css('cursor', 'auto')
+  $('body, article, .packable').css('cursor', 'auto')
   showNavBar()
     
 openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
@@ -123,9 +123,9 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
       duration: duration
       easing: easing
   # hide other articles
-  $('article').not($article).addClass('defocus').velocity
+  $('article, .packable').not($article).addClass('defocus').velocity
     properties:
-      opacity: .05
+      opacity: 0
     options:
       duration: duration
       easing: easing
@@ -142,8 +142,8 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
     options:
       duration: duration
       easing: easing
+  $('body, article, .packable').css 'cursor', 'url(/images/cursors/close.svg), auto'
   $article.css 'cursor', 'auto'
-  $('body').css 'cursor', 'url(/images/cursors/close.svg), auto'
   $article.click (event) ->
     event.stopPropagation()
   setTimeout ->
@@ -421,7 +421,6 @@ closePack = () ->
           switchProperties $(@), { x: $(@).data('packsLeft'), y: $(@).data('packsTop')} , { x: '0px', y: '0px' }
           if $(@).index() is ($packs.length - 1)
             packPacks(true)
-  showNavBar()
   hideBackButton()
   
 openPack = ($pack) ->
@@ -508,7 +507,6 @@ openPack = ($pack) ->
 
 #   , 250
   # change nav
-  hideNavBar()
   showBackButton()
   
 hideBackButton = ->
@@ -605,7 +603,14 @@ initNav = ->
     event.preventDefault()
     if $('.velocity-animating').length < 1 # only toggle state if not animating
       unless $('.content').data('layout') is 'recents'
-        switchToRecents()
+        if $('.content').data('packOpen') # if pack is open, close pack first
+          closePack()
+          setTimeout ->
+            switchToRecents()
+          , duration
+        else 
+          switchToRecents()
+          
   $nav.find('.tab.packs').click (event) ->
     event.preventDefault()
     if $('.velocity-animating').length < 1
