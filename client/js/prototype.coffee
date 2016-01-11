@@ -87,7 +87,27 @@ saveOpenPackPositions = () ->
     $(@).data('openPackLeft', parseInt($(@).css('left')))
     $(@).data('openPackTop',  parseInt($(@).css('top')))
     
-openScale = ($article, scaleRatio, nativeDimensions) ->
+closeArticle = ($article, scaleRatio, nativeDimensions) ->
+  $('.content').data 'articleOpen', false
+  $('.scale').velocity
+    properties:
+      scale: 1
+      translateX: 0
+      translateY: 0
+    options:
+      duration: duration
+      easing: easing
+  $('article').not($article).removeClass('defocus').velocity
+      properties:
+        opacity: 1
+      options:
+        duration: duration
+        easing: easing
+  $('body').off()
+  $('body').css('cursor', 'auto')
+  showNavBar()
+    
+openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
   hideNavBar()
 #   translateX = (($(window).width()/2))  - ((nativeDimensions.width/2))
 #   translateY = (($(window).height()/2)) - ((nativeDimensions.height/2))
@@ -121,7 +141,15 @@ openScale = ($article, scaleRatio, nativeDimensions) ->
       borderWidth: "#{(1 / scale) / scaleRatio}px"
     options:
       duration: duration
-      easing: easing    
+      easing: easing
+  $article.css 'cursor', 'auto'
+  $('body').css 'cursor', 'url(/images/cursors/close.svg), auto'
+  $article.click (event) ->
+    event.stopPropagation()
+  setTimeout ->
+    $('body').click ->
+      closeArticle($article, scaleRatio, nativeDimensions)
+  , duration
     
 openArticle = ($article) -> 
   type = $article.data 'type'
@@ -139,21 +167,23 @@ openArticle = ($article) ->
         height: newImage.height
       }
       scaleRatio = nativeDimensions.width / scaledDimensions.width
-      openScale($article, scaleRatio, nativeDimensions)
+      openArticleAnimations($article, scaleRatio, nativeDimensions)
   else
     nativeDimensions = {
       width:  $article.width()  / scale
       height: $article.height() / scale
     }
     scaleRatio = 1 / scale
-    openScale($article, scaleRatio, nativeDimensions)
+    openArticleAnimations($article, scaleRatio, nativeDimensions)
     
     
 bindArticleOpenEvents = ($article) ->
   $article.click ->
     # only make openable if in recents view or pack is open
     if ($('.content').data('layout') is 'recents') or $('.content').data('packOpen')
-      openArticle($article)
+      # don't run if article already open
+      unless $('.content').data('articleOpen')
+        openArticle($article)
   
 initItems = () ->
   $('article').each ->
