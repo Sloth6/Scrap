@@ -8,9 +8,11 @@ body {
 //   width: 100%;
   min-height: 0;
   margin: 0 $gutter;
+  padding-top: $broadMargin;
   
   @media (min-width: $breakSmall) {
       margin: 0 $col/4 0 $col;
+      padding-top: $broadMargin;
   }
   
 }
@@ -73,7 +75,6 @@ nav.main {
 }
 
 .container {
-    padding-top: $broadMargin;
     transform-origin: top left;
     
     @media (max-width: $breakSmall) {
