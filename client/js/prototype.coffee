@@ -1,5 +1,6 @@
 lastScrollTop = 0
 
+scale       = 1 / 1.5
 stackOffset = 6
 duration    = 1000
 easing      = [20, 10]
@@ -85,7 +86,75 @@ saveOpenPackPositions = () ->
   $('.pack.open .packable').each ->
     $(@).data('openPackLeft', parseInt($(@).css('left')))
     $(@).data('openPackTop',  parseInt($(@).css('top')))
-
+    
+openScale = ($article, scaleRatio, nativeDimensions) ->
+  hideNavBar()
+#   translateX = (($(window).width()/2))  - ((nativeDimensions.width/2))
+#   translateY = (($(window).height()/2)) - ((nativeDimensions.height/2))
+  translateX =  (($(window).width() / 2) / scaleRatio) - $article.offset().left - ($article.width()/2)*scale
+  translateY =  (($(window).height() / 2) / scaleRatio) - $article.offset().top - ($article.height()/2)*scale
+  console.log nativeDimensions.width
+  $('.scale').velocity
+    properties:
+      scale: scaleRatio
+      translateX: translateX
+      translateY: translateY
+    options:
+      duration: duration
+      easing: easing
+  # hide other articles
+  $('article').not($article).addClass('defocus').velocity
+    properties:
+      opacity: .05
+    options:
+      duration: duration
+      easing: easing
+  # make sure article is visible
+  $article.velocity
+    properties:
+      opacity: 1
+    options:
+      duration: duration
+      easing: easing
+  $article.children('.card').velocity
+    properties:
+      borderWidth: "#{(1 / scale) / scaleRatio}px"
+    options:
+      duration: duration
+      easing: easing    
+    
+openArticle = ($article) -> 
+  type = $article.data 'type'
+  $('.content').data 'articleOpen', true
+  if type is 'image'
+    newImage = new Image()
+    newImage.src = $article.find('img').attr('src')
+    scaledDimensions = {
+      width:  $article.find('img').width()
+      height: $article.find('img').height()
+    }
+    $(newImage).load ->
+      nativeDimensions = {
+        width:  newImage.width
+        height: newImage.height
+      }
+      scaleRatio = nativeDimensions.width / scaledDimensions.width
+      openScale($article, scaleRatio, nativeDimensions)
+  else
+    nativeDimensions = {
+      width:  $article.width()  / scale
+      height: $article.height() / scale
+    }
+    scaleRatio = 1 / scale
+    openScale($article, scaleRatio, nativeDimensions)
+    
+    
+bindArticleOpenEvents = ($article) ->
+  $article.click ->
+    # only make openable if in recents view or pack is open
+    if ($('.content').data('layout') is 'recents') or $('.content').data('packOpen')
+      openArticle($article)
+  
 initItems = () ->
   $('article').each ->
     packName = $(@).data('pack')
@@ -95,6 +164,7 @@ initItems = () ->
         backgroundColor: "hsl(#{color.h},100%,95%)"
     #   null
     #   saveArticleRecentsViewPositions()
+    bindArticleOpenEvents $(@)
     
 onResize = () ->
   if $('.content').data('layout') is 'recents'
@@ -448,14 +518,15 @@ hideNavBar = ->
 showNavBar = ->
   $bar = $('nav .bar')
   $bar.data 'state', 'visible'
-  $bar.velocity
-    properties:
-      translateY: 0
-    options:
-      duration: duration
-      easing: easing
-      begin: () ->
-        $bar.show()
+  unless $('.content').data('articleOpen')
+    $bar.velocity
+      properties:
+        translateY: 0
+      options:
+        duration: duration
+        easing: easing
+        begin: () ->
+          $bar.show()
 
 resizePacks = () -> # stretch pack element around children
   $('.pack').each () ->
@@ -551,6 +622,7 @@ onScroll = () ->
 $ ->
   $('.content').data 'layout', 'recents'
   $('.content').data 'packOpen', false
+  $('.content').data 'articleOpen', false
   initPacks()
   initItems()
   initOnLoad()

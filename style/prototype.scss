@@ -1,17 +1,23 @@
 @import "screen.scss";
 
 body {
-    margin: 0 $gutter;
-    
-    @media (min-width: $breakSmall) {
-        margin: 0 $col/4 0 $col;
-    }
 }
 
 .content {
   height: auto;
-  width: 100%;
+//   width: 100%;
   min-height: 0;
+  margin: 0 $gutter;
+  
+  @media (min-width: $breakSmall) {
+      margin: 0 $col/4 0 $col;
+  }
+  
+}
+
+.scale {
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
 }
 
 nav.main {
@@ -67,7 +73,7 @@ nav.main {
 }
 
 .container {
-    margin-top: $broadMargin;
+    padding-top: $broadMargin;
     transform-origin: top left;
     
     @media (max-width: $breakSmall) {
@@ -201,10 +207,18 @@ nav.main {
     }
     
     article {
+        &.defocus {
+            .card {
+                -webkit-filter: grayscale(1);
+            }
+        }
+        
         .card {
 /*
             mix-blend-mode: multiply;
             -webkit-filter: grayscale(0);
+*/
+
             @include transition(1s $defaultCurve);
             @include transition-property(transform,
                                  -webkit-transform,
@@ -217,7 +231,6 @@ nav.main {
                                          color,
                                          mix-blend-mode,
                                  -webkit-filter);
-*/
         }
         
         .backgroundColor {
