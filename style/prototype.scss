@@ -8,11 +8,10 @@ body {
 //   width: 100%;
   min-height: 0;
   margin: 0 $gutter;
-  padding-top: $broadMargin;
+  padding-top: $broadMargin + 1;
   
   @media (min-width: $breakSmall) {
       margin: 0 $col/4 0 $col;
-      padding-top: $broadMargin;
   }
   
 }

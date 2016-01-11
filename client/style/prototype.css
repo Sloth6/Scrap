@@ -2597,23 +2597,22 @@ footer.main ul.actions li.action label {
   height: auto;
   min-height: 0;
   margin: 0 8pt;
-  padding-top: 40pt;
+  padding-top: 41pt;
 }
 @media (min-width: 768px) {
   /* line 6, ../../style/prototype.scss */
   .content {
     margin: 0 14pt 0 56pt;
-    padding-top: 40pt;
   }
 }
 
-/* line 20, ../../style/prototype.scss */
+/* line 19, ../../style/prototype.scss */
 .scale {
   transform-origin: top left;
   -webkit-transform-origin: top left;
 }
 
-/* line 25, ../../style/prototype.scss */
+/* line 24, ../../style/prototype.scss */
 nav.main {
   position: fixed;
   top: 0;
@@ -2622,14 +2621,14 @@ nav.main {
   height: 40pt;
   z-index: 2;
 }
-/* line 33, ../../style/prototype.scss */
+/* line 32, ../../style/prototype.scss */
 nav.main .backButton {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
 }
-/* line 40, ../../style/prototype.scss */
+/* line 39, ../../style/prototype.scss */
 nav.main .bar {
   height: 100%;
   width: 100%;
@@ -2648,7 +2647,7 @@ nav.main .bar {
           opacity: .5;
   */
 }
-/* line 52, ../../style/prototype.scss */
+/* line 51, ../../style/prototype.scss */
 nav.main .bar ul.tabs {
   position: absolute;
   top: 0;
@@ -2657,12 +2656,12 @@ nav.main .bar ul.tabs {
   bottom: 0;
   text-align: center;
 }
-/* line 61, ../../style/prototype.scss */
+/* line 60, ../../style/prototype.scss */
 nav.main .bar ul.tabs li {
   display: inline-block;
   height: 100%;
 }
-/* line 65, ../../style/prototype.scss */
+/* line 64, ../../style/prototype.scss */
 nav.main .bar ul.tabs li a {
   display: block;
   padding: 0 16pt;
@@ -2670,7 +2669,7 @@ nav.main .bar ul.tabs li a {
   height: 100%;
 }
 
-/* line 77, ../../style/prototype.scss */
+/* line 76, ../../style/prototype.scss */
 .container {
   transform-origin: top left;
   /*
@@ -2695,7 +2694,7 @@ nav.main .bar ul.tabs li a {
   */
 }
 @media (max-width: 768px) {
-  /* line 77, ../../style/prototype.scss */
+  /* line 76, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2703,17 +2702,17 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 87, ../../style/prototype.scss */
+  /* line 86, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 93, ../../style/prototype.scss */
+  /* line 92, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 768px) {
-  /* line 77, ../../style/prototype.scss */
+  /* line 76, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2721,13 +2720,13 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 112, ../../style/prototype.scss */
+  /* line 111, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 1024px) {
-  /* line 77, ../../style/prototype.scss */
+  /* line 76, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.66667);
     -ms-transform: scale(0.66667);
@@ -2735,16 +2734,16 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.66667);
     width: 150%;
   }
-  /* line 125, ../../style/prototype.scss */
+  /* line 124, ../../style/prototype.scss */
   .container article .card {
     border-width: 1.5px;
   }
-  /* line 131, ../../style/prototype.scss */
+  /* line 130, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 1.5px #000000;
   }
 }
-/* line 158, ../../style/prototype.scss */
+/* line 157, ../../style/prototype.scss */
 .container .pack {
   /*
           background: rgba(213, 255, 0, 0.41);
@@ -2754,27 +2753,27 @@ nav.main .bar ul.tabs li a {
   height: 0;
   width: 0;
 }
-/* line 169, ../../style/prototype.scss */
+/* line 168, ../../style/prototype.scss */
 .container .pack:hover article .card {
   -webkit-filter: grayscale(0);
 }
-/* line 173, ../../style/prototype.scss */
+/* line 172, ../../style/prototype.scss */
 .container .pack:hover article .backgroundColor {
   opacity: 0;
 }
-/* line 179, ../../style/prototype.scss */
+/* line 178, ../../style/prototype.scss */
 .container .pack.open {
   height: 100%;
   width: 100%;
 }
-/* line 184, ../../style/prototype.scss */
+/* line 183, ../../style/prototype.scss */
 .container .pack header {
   position: absolute;
   z-index: 2;
   width: 224pt;
   min-height: 224pt;
 }
-/* line 190, ../../style/prototype.scss */
+/* line 189, ../../style/prototype.scss */
 .container .pack header h1.packTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -2783,23 +2782,23 @@ nav.main .bar ul.tabs li a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
-/* line 212, ../../style/prototype.scss */
+/* line 211, ../../style/prototype.scss */
 .container article.defocus .card {
   -webkit-filter: grayscale(1);
 }
-/* line 217, ../../style/prototype.scss */
+/* line 216, ../../style/prototype.scss */
 .container article .comments {
   margin-top: 16pt;
   width: 224pt;
   transform-origin: left top;
   -webkit-transform-origin: left top;
 }
-/* line 223, ../../style/prototype.scss */
+/* line 222, ../../style/prototype.scss */
 .container article .comments li {
   opacity: 0;
   margin-bottom: 8pt;
 }
-/* line 229, ../../style/prototype.scss */
+/* line 228, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2814,7 +2813,7 @@ nav.main .bar ul.tabs li a {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
 }
-/* line 249, ../../style/prototype.scss */
+/* line 248, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

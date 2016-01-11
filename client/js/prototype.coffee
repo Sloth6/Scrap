@@ -670,11 +670,9 @@ onScroll = () ->
 #         , duration
     if scrollTop > 0
       $bar.css
-        backgroundColor: 'white'
         borderColor: 'black'
     else
       $bar.css
-        backgroundColor: 'transparent'
         borderColor: 'transparent'
 
 $ ->

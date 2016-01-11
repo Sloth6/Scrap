@@ -54,7 +54,7 @@ html.no-js(lang='en')
             a.logout(href="/logout") Sign out
     .scale
       .content
-        - var n = 3
+        - var n = 10
         - var imageCount = 268
         .container.recents
           - for (var i = 0; i < n/6; i++) {
@@ -63,7 +63,7 @@ html.no-js(lang='en')
               .card.cardHover.text
                 .editable
                   h1 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
-            - for (var j = 0; j < 3; j++) {
+            - for (var j = 0; j < 20; j++) {
               - var pack = Math.floor(Math.random() * n)
                 article.image(data-pack=pack, class=pack, data-type='image')
                   .card.cardHover.image
@@ -151,21 +151,18 @@ html.no-js(lang='en')
   .comments
     ul
       li.comment
-        author.typeBody.smallCaps Name Name
+        author.typeBody.smallCaps Cursus Pharetra
         div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
       li.comment
-        author.typeBody.smallCaps Name Name
-        div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+        author.typeBody.smallCaps Magna Porta
+        div Ipsum pharetra
       li.comment
-        author.typeBody.smallCaps Name Name
-        div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+        author.typeBody.smallCaps Tellus Nullam
+        div Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
       li.comment
-        author.typeBody.smallCaps Name Name
-        div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+        author.typeBody.smallCaps Tortor Inceptos
+        div Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
       li.comment
-        author.typeBody.smallCaps Name Name
-        div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-      li.comment
-        author.typeBody.smallCaps Name Name
-        div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+        author.typeBody.smallCaps Vulputate Fermentum
+        div Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
         
