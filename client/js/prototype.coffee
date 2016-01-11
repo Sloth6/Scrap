@@ -104,15 +104,20 @@ closeArticle = ($article, scaleRatio, nativeDimensions) ->
         duration: duration
         easing: easing
   $('body').off()
-  $('body, article, .packable').css('cursor', 'auto')
+  $('body, article, .packable').css('cursor', '')
+  $('.comments').velocity('reverse', {
+    complete: -> $('.comments').hide().appendTo($('body'))
+  })
+  $('.comments').find('.comment').each -> $(@).velocity('reverse')
   showNavBar()
     
 openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
   hideNavBar()
+  $card = $article.find('.card')
 #   translateX = (($(window).width()/2))  - ((nativeDimensions.width/2))
 #   translateY = (($(window).height()/2)) - ((nativeDimensions.height/2))
-  translateX =  (($(window).width() / 2) / scaleRatio) - $article.offset().left - ($article.width()/2)*scale
-  translateY =  (($(window).height() / 2) / scaleRatio) - $article.offset().top - ($article.height()/2)*scale
+  translateX =  (($(window).width() / 2) / scaleRatio)  - $card.offset().left - ($card.width()/2)*scale
+  translateY =  (($(window).height() / 2) / scaleRatio) - $card.offset().top -  ($card.height()/2)*scale
   console.log nativeDimensions.width
   $('.scale').velocity
     properties:
@@ -136,12 +141,28 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
     options:
       duration: duration
       easing: easing
-  $article.children('.card').velocity
+  $card.velocity
     properties:
       borderWidth: "#{(1 / scale) / scaleRatio}px"
     options:
       duration: duration
       easing: easing
+  console.log 'hi', scale, scaleRatio
+  $('.comments').show().appendTo($article).velocity
+    properties:
+      scale: (1 / scale) / scaleRatio
+    options:
+      duration: duration
+      easing: easing
+  $('.comments').find('.comment').each () ->
+    $(@).velocity
+      properties:
+        opacity: [1, 0]
+        translateY: [0, $(window).height() / 2]
+      options:
+        duration: duration/2
+        easing: easing
+        delay: $(@).index() * ((duration/2) / $('.comments').find('.comment').length)
   $('body, article, .packable').css 'cursor', 'url(/images/cursors/close.svg), auto'
   $article.css 'cursor', 'auto'
   $article.click (event) ->
@@ -195,6 +216,8 @@ initItems = () ->
     #   null
     #   saveArticleRecentsViewPositions()
     bindArticleOpenEvents $(@)
+  # hide placeholder comments
+  $('.comments').hide()
     
 onResize = () ->
   if $('.content').data('layout') is 'recents'

@@ -214,6 +214,18 @@ nav.main {
             }
         }
         
+        .comments {
+            margin-top: $typeBodyLeading;
+            width: $articleSide;
+                    transform-origin: left top;
+            -webkit-transform-origin: left top;
+            
+            li {
+                opacity: 0; // prepare for animation
+                margin-bottom: $typeBodyLeading/2;
+            }
+        }
+        
         .card {
 /*
             mix-blend-mode: multiply;

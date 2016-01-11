@@ -2788,6 +2788,18 @@ nav.main .bar ul.tabs li a {
   -webkit-filter: grayscale(1);
 }
 /* line 217, ../../style/prototype.scss */
+.container article .comments {
+  margin-top: 16pt;
+  width: 224pt;
+  transform-origin: left top;
+  -webkit-transform-origin: left top;
+}
+/* line 223, ../../style/prototype.scss */
+.container article .comments li {
+  opacity: 0;
+  margin-bottom: 8pt;
+}
+/* line 229, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2802,7 +2814,7 @@ nav.main .bar ul.tabs li a {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
 }
-/* line 237, ../../style/prototype.scss */
+/* line 249, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
