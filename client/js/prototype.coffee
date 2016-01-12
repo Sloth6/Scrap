@@ -21,6 +21,12 @@ randomColor = () ->
   }
 #   "hsl(#{h},100%,#{l}%)"
 
+applyCloseCursor = ($element) ->
+  $element.css 'cursor', 'url(/images/cursors/close.svg), auto'
+
+removeCloseCursor = ($element) ->
+  $element.css 'cursor', ''
+
 packRecents = (animate) ->
 #   resizeCards()
   $('.container.recents').packery
@@ -163,7 +169,7 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
         duration: duration/2
         easing: easing
         delay: $(@).index() * ((duration/2) / $('.comments').find('.comment').length)
-  $('body, article, .packable').css 'cursor', 'url(/images/cursors/close.svg), auto'
+  applyCloseCursor $('body, article, .packable')
   $article.css 'cursor', 'auto'
   $article.click (event) ->
     event.stopPropagation()
@@ -623,21 +629,54 @@ initLabels = () ->
 # #       'opacity': .1
 #   packPacks(true)
 #   savePacksViewPositions()
+
+showPanelMenu = ($panel, $menu, $header) ->
+#   $panel.velocity
+#     properties:
+#       height: ['1000px', '0px']
+#     options:
+#       duration: duration
+#       easing: easing
+  $menu.velocity
+    properties:
+      translateY: [0, -$menu.height()]
+    options:
+      duration: duration
+      easing: easing
+      begin: () -> $menu.show()
+  $header.velocity
+    properties:
+      translateY: [-$header.height(), 0]
+    options:
+      duration: duration
+      easing: easing
+  $('.content').addClass 'blur'
+  $('.content').append $('<div class="mask"></div>')
+  applyCloseCursor $('body')
+      
+hidePanelMenu = ($panel, $menu, $header) ->
+#   $panel.velocity 'reverse'  
+  $menu.velocity 'reverse', { complete: () -> $menu.hide() }
+  $header.velocity 'reverse'
+  $('.content').removeClass 'blur'
+  $('.content .mask').remove()
+  removeCloseCursor $('body')
+  $('body').off()
   
 initNav = ->
   $('nav.main ul.panel').each ->
     $panel = $(@)
-    $header = $panel.find('li.panelHeader')
     $menu = $panel.find('li.menu')
+    $header = $panel.find('li.panelHeader')
     # hide submenu
     $menu.hide()
     console.log $panel, $menu
     # open panel on header click
-    $header.mouseenter ->
-      $menu.show()
+    $header.click (event) ->
       event.stopPropagation()
-    $header.mouseleave ->
-      $menu.hide()
+      showPanelMenu $panel, $menu, $header
+      $('body').click ->
+        hidePanelMenu $panel, $menu, $header
 # # Tabs
 #   $nav = $('ul.tabs')
 #   $nav.find('.tab.recents').click (event) ->

@@ -4,17 +4,29 @@ body {
 }
 
 .content {
-  height: auto;
-//   width: 100%;
-  min-height: 0;
-  margin: 0 $gutter;
-  padding-top: $broadMargin + 1;
-  
-  @media (min-width: $breakSmall) {
-      margin: 0 $gutter * 3 0 $gutter * 5;
-//       margin: 0 $col/4 0 $col;
-  }
-  
+    height: auto;
+    min-height: 0;
+    margin: 0 $gutter;
+    padding-top: $broadMargin + 1;
+    @include transition(1s $defaultCurve);
+    @include transition-property(opacity, -webkit-filter);
+    
+    @media (min-width: $breakSmall) {
+        margin: 0 $gutter * 3 0 $gutter * 5;
+    }
+    
+    &.blur {
+        -webkit-filter: grayscale(1);
+        opacity: .1;
+    }
+    
+    .mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 .scale {
@@ -28,6 +40,10 @@ nav.main {
     left: 0;
     right: 0;
     
+    a, a:hover, a:active {
+        opacity: 1;
+    }
+    
     ul.panel {
         $width: 100vh;
         top: 50vh;
@@ -35,13 +51,17 @@ nav.main {
         text-align: center;
         width: $width;
         border-bottom: transparent $cardBorderWidth solid;
+/*
         @include transition(.25s $defaultCurve);
         @include transition-property(background-color, border-color);
+*/
         
+/*
         &:hover {
             background-color: $colorCardBackground;
             border-color: $cardBorderColor;
         }
+*/
         
         &.left {
             position: absolute;
@@ -67,6 +87,8 @@ nav.main {
             width: 100%;
             
             &.panelHeader {
+                position: absolute;
+                top: 0;
                 a {
 //                     margin-top: 0;
 //                     line-height: $gutter * 4;
@@ -75,9 +97,9 @@ nav.main {
             
             a {
                 display: inline-block;
-                width: 100%;
+//                 width: 100%;
                 line-height: 1em;
-                font-size: $typeHeaderSize;
+                font-size: $typeTitleSize;
             }
         }
     }
