@@ -637,14 +637,28 @@ showPanelMenu = ($panel, $menu, $header) ->
 #     options:
 #       duration: duration
 #       easing: easing
-  $menu.velocity
+  $menu.find('li').each ->
+    $(@).css 'opacity', 0
+    console.log duration - ($(@).index() / $menu.find('li').length) * 1000
+    $(@).velocity
+      properties:
+        translateZ: 0
+        translateY: [0, -$menu.height()]
+      options:
+        duration: duration - ($(@).index() / $menu.find('li').length) * 500
+        easing: easing
+#         delay: $(@).index() * 100
+        begin: () ->
+          if $(@).index() is 0
+            $menu.show()
+          $(@).css 'opacity', 1
+  $header.velocity
     properties:
-      translateY: [0, -$menu.height()]
+      translateY: [-$header.height(), 0]
     options:
       duration: duration
       easing: easing
-      begin: () -> $menu.show()
-  $header.velocity
+  $('li.panelHeader').not($header).velocity
     properties:
       translateY: [-$header.height(), 0]
     options:
@@ -656,8 +670,13 @@ showPanelMenu = ($panel, $menu, $header) ->
       
 hidePanelMenu = ($panel, $menu, $header) ->
 #   $panel.velocity 'reverse'  
-  $menu.velocity 'reverse', { complete: () -> $menu.hide() }
+  $menu.find('li').each ->
+    $(@).velocity 'reverse', { complete: () ->
+      if ($(@).index() is ($menu.find('li').length - 1)) 
+        $menu.hide()
+    }
   $header.velocity 'reverse'
+  $('li.panelHeader').not($header).velocity 'reverse'
   $('.content').removeClass 'blur'
   $('.content .mask').remove()
   removeCloseCursor $('body')
@@ -670,10 +689,10 @@ initNav = ->
     $header = $panel.find('li.panelHeader')
     # hide submenu
     $menu.hide()
-    console.log $panel, $menu
     # open panel on header click
-    $header.click (event) ->
+    $header.find('a').click (event) ->
       event.stopPropagation()
+      event.preventDefault()
       showPanelMenu $panel, $menu, $header
       $('body').click ->
         hidePanelMenu $panel, $menu, $header

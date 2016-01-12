@@ -12,12 +12,12 @@ body {
     @include transition-property(opacity, -webkit-filter);
     
     @media (min-width: $breakSmall) {
-        margin: 0 $gutter * 3 0 $gutter * 5;
+        margin: 0 $gutter 0 $gutter * 3;
     }
     
     &.blur {
-        -webkit-filter: grayscale(1);
-        opacity: .1;
+//         -webkit-filter: grayscale(1);
+        opacity: 0;
     }
     
     .mask {
@@ -90,7 +90,7 @@ nav.main {
                 position: absolute;
                 top: 0;
                 a {
-//                     margin-top: 0;
+//                     margin-top: $gutter;
 //                     line-height: $gutter * 4;
                 }
             }
@@ -98,8 +98,20 @@ nav.main {
             a {
                 display: inline-block;
 //                 width: 100%;
-                line-height: 1em;
-                font-size: $typeTitleSize;
+                line-height: 1.5em;
+                font-size: $typeHeaderSize;
+            }
+            
+            &.menu {
+              
+                ul.labels {
+                    a {
+                        &:first-child {
+//                             margin-top: $gutter;
+                        }
+//                         font-size: $typeTitleSize;
+                    }
+                }
             }
         }
     }
