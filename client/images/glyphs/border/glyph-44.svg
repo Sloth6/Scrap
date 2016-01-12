@@ -3,38 +3,42 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 582.9 1285.5" style="enable-background:new 0 0 582.9 1285.5;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#231F20;stroke-miterlimit:10;}
-	.st2{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st3{clip-path:url(#SVGID_2_);}
-	.st4{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st5{fill:#202020;}
-	.st6{clip-path:url(#SVGID_4_);}
-	.st7{stroke:#000000;stroke-miterlimit:10;}
-	.st8{clip-path:url(#SVGID_6_);}
-	.st9{fill:none;stroke:#000000;}
-	.st10{clip-path:url(#SVGID_8_);}
-	.st11{clip-path:url(#SVGID_10_);}
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+	.st4{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_6_);}
+	.st6{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st7{fill:#202020;}
+	.st8{clip-path:url(#SVGID_8_);}
+	.st9{stroke:#000000;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_10_);}
+	.st11{fill:none;stroke:#000000;}
+	.st12{clip-path:url(#SVGID_12_);}
+	.st13{clip-path:url(#SVGID_14_);}
+	.st14{clip-path:url(#SVGID_16_);}
+	.st15{clip-path:url(#SVGID_18_);}
 </style>
 <g>
-	<line class="st0" x1="55.3" y1="52" x2="527.3" y2="52"/>
-	<line class="st0" x1="55.3" y1="118" x2="527.3" y2="118"/>
-	<line class="st0" x1="55.3" y1="183" x2="527.3" y2="183"/>
-	<line class="st0" x1="55.3" y1="249" x2="527.3" y2="249"/>
-	<line class="st0" x1="55.3" y1="315" x2="527.3" y2="315"/>
-	<line class="st0" x1="55.3" y1="380" x2="527.3" y2="380"/>
-	<line class="st0" x1="55.3" y1="446" x2="527.3" y2="446"/>
-	<line class="st0" x1="55.3" y1="512" x2="527.3" y2="512"/>
-	<line class="st0" x1="55.3" y1="577" x2="527.3" y2="577"/>
-	<line class="st0" x1="55.3" y1="643" x2="527.3" y2="643"/>
-	<line class="st0" x1="55.3" y1="708" x2="527.3" y2="708"/>
-	<line class="st0" x1="55.3" y1="774" x2="527.3" y2="774"/>
-	<line class="st0" x1="55.3" y1="840" x2="527.3" y2="840"/>
-	<line class="st0" x1="55.3" y1="905" x2="527.3" y2="905"/>
-	<line class="st0" x1="55.3" y1="971" x2="527.3" y2="971"/>
-	<line class="st0" x1="55.3" y1="1036" x2="527.3" y2="1036"/>
-	<line class="st0" x1="55.3" y1="1102" x2="527.3" y2="1102"/>
-	<line class="st0" x1="55.3" y1="1168" x2="527.3" y2="1168"/>
-	<line class="st0" x1="55.3" y1="1233" x2="527.3" y2="1233"/>
+	<line class="st2" x1="55.3" y1="52" x2="527.3" y2="52"/>
+	<line class="st2" x1="55.3" y1="118" x2="527.3" y2="118"/>
+	<line class="st2" x1="55.3" y1="183" x2="527.3" y2="183"/>
+	<line class="st2" x1="55.3" y1="249" x2="527.3" y2="249"/>
+	<line class="st2" x1="55.3" y1="315" x2="527.3" y2="315"/>
+	<line class="st2" x1="55.3" y1="380" x2="527.3" y2="380"/>
+	<line class="st2" x1="55.3" y1="446" x2="527.3" y2="446"/>
+	<line class="st2" x1="55.3" y1="512" x2="527.3" y2="512"/>
+	<line class="st2" x1="55.3" y1="577" x2="527.3" y2="577"/>
+	<line class="st2" x1="55.3" y1="643" x2="527.3" y2="643"/>
+	<line class="st2" x1="55.3" y1="708" x2="527.3" y2="708"/>
+	<line class="st2" x1="55.3" y1="774" x2="527.3" y2="774"/>
+	<line class="st2" x1="55.3" y1="840" x2="527.3" y2="840"/>
+	<line class="st2" x1="55.3" y1="905" x2="527.3" y2="905"/>
+	<line class="st2" x1="55.3" y1="971" x2="527.3" y2="971"/>
+	<line class="st2" x1="55.3" y1="1036" x2="527.3" y2="1036"/>
+	<line class="st2" x1="55.3" y1="1102" x2="527.3" y2="1102"/>
+	<line class="st2" x1="55.3" y1="1168" x2="527.3" y2="1168"/>
+	<line class="st2" x1="55.3" y1="1233" x2="527.3" y2="1233"/>
 </g>
 </svg>

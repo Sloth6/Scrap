@@ -3,32 +3,36 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 959.1 1289.7" style="enable-background:new 0 0 959.1 1289.7;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#231F20;stroke-miterlimit:10;}
-	.st2{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st3{clip-path:url(#SVGID_2_);}
-	.st4{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st5{fill:#202020;}
-	.st6{clip-path:url(#SVGID_4_);}
-	.st7{stroke:#000000;stroke-miterlimit:10;}
-	.st8{clip-path:url(#SVGID_6_);}
-	.st9{fill:none;stroke:#000000;}
-	.st10{clip-path:url(#SVGID_8_);}
-	.st11{clip-path:url(#SVGID_10_);}
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+	.st4{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_6_);}
+	.st6{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st7{fill:#202020;}
+	.st8{clip-path:url(#SVGID_8_);}
+	.st9{stroke:#000000;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_10_);}
+	.st11{fill:none;stroke:#000000;}
+	.st12{clip-path:url(#SVGID_12_);}
+	.st13{clip-path:url(#SVGID_14_);}
+	.st14{clip-path:url(#SVGID_16_);}
+	.st15{clip-path:url(#SVGID_18_);}
 </style>
 <g>
-	<line class="st0" x1="64" y1="644.5" x2="895" y2="644.5"/>
-	<line class="st0" x1="64" y1="708.5" x2="895" y2="708.5"/>
-	<line class="st0" x1="64" y1="772.5" x2="895" y2="772.5"/>
-	<line class="st0" x1="64" y1="836.5" x2="895" y2="836.5"/>
-	<line class="st0" x1="64" y1="900.5" x2="895" y2="900.5"/>
-	<line class="st0" x1="64" y1="964.5" x2="895" y2="964.5"/>
-	<line class="st0" x1="64" y1="1028.5" x2="895" y2="1028.5"/>
-	<line class="st0" x1="64" y1="1092.5" x2="895" y2="1092.5"/>
-	<line class="st0" x1="64" y1="1156.5" x2="895" y2="1156.5"/>
-	<line class="st0" x1="64" y1="1220.5" x2="895" y2="1220.5"/>
+	<line class="st2" x1="64" y1="644.5" x2="895" y2="644.5"/>
+	<line class="st2" x1="64" y1="708.5" x2="895" y2="708.5"/>
+	<line class="st2" x1="64" y1="772.5" x2="895" y2="772.5"/>
+	<line class="st2" x1="64" y1="836.5" x2="895" y2="836.5"/>
+	<line class="st2" x1="64" y1="900.5" x2="895" y2="900.5"/>
+	<line class="st2" x1="64" y1="964.5" x2="895" y2="964.5"/>
+	<line class="st2" x1="64" y1="1028.5" x2="895" y2="1028.5"/>
+	<line class="st2" x1="64" y1="1092.5" x2="895" y2="1092.5"/>
+	<line class="st2" x1="64" y1="1156.5" x2="895" y2="1156.5"/>
+	<line class="st2" x1="64" y1="1220.5" x2="895" y2="1220.5"/>
 </g>
-<rect x="130" y="240" class="st0" width="699" height="38.4"/>
-<rect x="228.1" y="327.3" class="st0" width="503" height="38.4"/>
-<line class="st0" x1="329" y1="431.5" x2="630" y2="431.5"/>
+<rect x="130" y="240" class="st2" width="699" height="38.4"/>
+<rect x="228.1" y="327.3" class="st2" width="503" height="38.4"/>
+<line class="st2" x1="329" y1="431.5" x2="630" y2="431.5"/>
 </svg>

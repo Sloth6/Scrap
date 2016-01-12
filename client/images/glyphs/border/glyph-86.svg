@@ -3,40 +3,44 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 656.2 1252.8" style="enable-background:new 0 0 656.2 1252.8;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#231F20;stroke-miterlimit:10;}
-	.st2{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st3{clip-path:url(#SVGID_2_);}
-	.st4{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st5{fill:#202020;}
-	.st6{clip-path:url(#SVGID_4_);}
-	.st7{stroke:#000000;stroke-miterlimit:10;}
-	.st8{clip-path:url(#SVGID_6_);}
-	.st9{fill:none;stroke:#000000;}
-	.st10{clip-path:url(#SVGID_8_);}
-	.st11{clip-path:url(#SVGID_10_);}
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+	.st4{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_6_);}
+	.st6{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st7{fill:#202020;}
+	.st8{clip-path:url(#SVGID_8_);}
+	.st9{stroke:#000000;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_10_);}
+	.st11{fill:none;stroke:#000000;}
+	.st12{clip-path:url(#SVGID_12_);}
+	.st13{clip-path:url(#SVGID_14_);}
+	.st14{clip-path:url(#SVGID_16_);}
+	.st15{clip-path:url(#SVGID_18_);}
 </style>
 <g>
-	<line class="st0" x1="0.3" y1="0.2" x2="656.3" y2="0.2"/>
-	<line class="st0" x1="0.3" y1="62.2" x2="656.3" y2="62.2"/>
-	<line class="st0" x1="0.3" y1="125.2" x2="656.3" y2="125.2"/>
-	<line class="st0" x1="0.3" y1="188.2" x2="656.3" y2="188.2"/>
-	<line class="st0" x1="0.3" y1="250.2" x2="656.3" y2="250.2"/>
-	<line class="st0" x1="0.3" y1="313.2" x2="656.3" y2="313.2"/>
-	<line class="st0" x1="0.3" y1="376.2" x2="656.3" y2="376.2"/>
-	<line class="st0" x1="0.3" y1="438.2" x2="656.3" y2="438.2"/>
-	<line class="st0" x1="0.3" y1="501.2" x2="656.3" y2="501.2"/>
-	<line class="st0" x1="0.3" y1="564.2" x2="656.3" y2="564.2"/>
-	<line class="st0" x1="0.3" y1="626.2" x2="656.3" y2="626.2"/>
-	<line class="st0" x1="0.3" y1="689.2" x2="656.3" y2="689.2"/>
-	<line class="st0" x1="0.3" y1="751.2" x2="656.3" y2="751.2"/>
-	<line class="st0" x1="0.3" y1="814.2" x2="656.3" y2="814.2"/>
-	<line class="st0" x1="0.3" y1="877.2" x2="656.3" y2="877.2"/>
-	<line class="st0" x1="0.3" y1="939.2" x2="656.3" y2="939.2"/>
-	<line class="st0" x1="0.3" y1="1002.2" x2="656.3" y2="1002.2"/>
-	<line class="st0" x1="0.3" y1="1065.2" x2="656.3" y2="1065.2"/>
-	<line class="st0" x1="0.3" y1="1127.2" x2="656.3" y2="1127.2"/>
-	<line class="st0" x1="0.3" y1="1190.2" x2="656.3" y2="1190.2"/>
-	<line class="st0" x1="0.3" y1="1253.2" x2="656.3" y2="1253.2"/>
+	<line class="st2" x1="0.3" y1="0.2" x2="656.3" y2="0.2"/>
+	<line class="st2" x1="0.3" y1="62.2" x2="656.3" y2="62.2"/>
+	<line class="st2" x1="0.3" y1="125.2" x2="656.3" y2="125.2"/>
+	<line class="st2" x1="0.3" y1="188.2" x2="656.3" y2="188.2"/>
+	<line class="st2" x1="0.3" y1="250.2" x2="656.3" y2="250.2"/>
+	<line class="st2" x1="0.3" y1="313.2" x2="656.3" y2="313.2"/>
+	<line class="st2" x1="0.3" y1="376.2" x2="656.3" y2="376.2"/>
+	<line class="st2" x1="0.3" y1="438.2" x2="656.3" y2="438.2"/>
+	<line class="st2" x1="0.3" y1="501.2" x2="656.3" y2="501.2"/>
+	<line class="st2" x1="0.3" y1="564.2" x2="656.3" y2="564.2"/>
+	<line class="st2" x1="0.3" y1="626.2" x2="656.3" y2="626.2"/>
+	<line class="st2" x1="0.3" y1="689.2" x2="656.3" y2="689.2"/>
+	<line class="st2" x1="0.3" y1="751.2" x2="656.3" y2="751.2"/>
+	<line class="st2" x1="0.3" y1="814.2" x2="656.3" y2="814.2"/>
+	<line class="st2" x1="0.3" y1="877.2" x2="656.3" y2="877.2"/>
+	<line class="st2" x1="0.3" y1="939.2" x2="656.3" y2="939.2"/>
+	<line class="st2" x1="0.3" y1="1002.2" x2="656.3" y2="1002.2"/>
+	<line class="st2" x1="0.3" y1="1065.2" x2="656.3" y2="1065.2"/>
+	<line class="st2" x1="0.3" y1="1127.2" x2="656.3" y2="1127.2"/>
+	<line class="st2" x1="0.3" y1="1190.2" x2="656.3" y2="1190.2"/>
+	<line class="st2" x1="0.3" y1="1253.2" x2="656.3" y2="1253.2"/>
 </g>
 </svg>

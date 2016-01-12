@@ -3,21 +3,25 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1018.1 836.6" style="enable-background:new 0 0 1018.1 836.6;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#231F20;stroke-miterlimit:10;}
-	.st2{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st3{clip-path:url(#SVGID_2_);}
-	.st4{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
-	.st5{fill:#202020;}
-	.st6{clip-path:url(#SVGID_4_);}
-	.st7{stroke:#000000;stroke-miterlimit:10;}
-	.st8{clip-path:url(#SVGID_6_);}
-	.st9{fill:none;stroke:#000000;}
-	.st10{clip-path:url(#SVGID_8_);}
-	.st11{clip-path:url(#SVGID_10_);}
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+	.st4{stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_6_);}
+	.st6{fill:none;stroke:#231F20;stroke-width:0.5;stroke-miterlimit:10;}
+	.st7{fill:#202020;}
+	.st8{clip-path:url(#SVGID_8_);}
+	.st9{stroke:#000000;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_10_);}
+	.st11{fill:none;stroke:#000000;}
+	.st12{clip-path:url(#SVGID_12_);}
+	.st13{clip-path:url(#SVGID_14_);}
+	.st14{clip-path:url(#SVGID_16_);}
+	.st15{clip-path:url(#SVGID_18_);}
 </style>
 <g>
-	<path class="st0" d="M453,201.8C356,226.4,284.9,314,284.9,418.3S356,610.2,453,634.8V201.8z"/>
-	<path class="st0" d="M563,201.8v433c97-24.6,168.1-112.2,168.1-216.5S660,226.4,563,201.8z"/>
+	<path class="st2" d="M453,201.8C356,226.4,284.9,314,284.9,418.3S356,610.2,453,634.8V201.8z"/>
+	<path class="st2" d="M563,201.8v433c97-24.6,168.1-112.2,168.1-216.5S660,226.4,563,201.8z"/>
 </g>
 </svg>
