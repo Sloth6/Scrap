@@ -3,7 +3,7 @@ html.no-js(lang='en')
   head
     meta(charset='utf-8')
     title Scrap
-    // link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
+    link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
     script(src='/js/jquery/jquery.js')
     script(src="/js/jquery/jquery-ui.min.js")
     script(src="/js/jquery/jquery.transit.min.js")
@@ -19,42 +19,48 @@ html.no-js(lang='en')
     script(src='/js/prototype.js')
     //- script(src='/js/derp.js')
   body
+    - var n = 10
     nav.main
-      .backButton
-        a(href="#")
-          span ‹
-      .bar
-        ul.tabs
-          li
-            a.tab.recents.typeBody.smallCaps(href='#') Recents
-          li
-            a.tab.packs.typeBody.smallCaps(href='#') Packs
-        ul.menu.headerMenu.settings.right.hideFirst.slideIn
-          li.first.hideOnOpenSubmenu.userName.typeOutlineClear.typeOutlineBlackOnHover.typeWeightBold • • •
-          li.hideOnOpenSubmenu.bodyType.smallCaps Antonio Ono
-          li.update.hideOnOpenSubmenu
-            a(href="#") Edit your account
-          ul.submenu
-            li.hidden.backButton
-              a(href="#")
-                span ‹
-            form
-              li.hidden.smallType Update your name, email, or password
-              li.input.inputText.hidden
-                input.name(type="text", name="user[email]", placeholder="Name")
-              li.input.inputText.hidden
-                input.email(type="email", name="user[email]", placeholder="Email")
-              li.input.inputText.hidden
-                input.password(type="password", name="user[email]", placeholder="Password")
-              li.input.submit.save.closeButton.hidden
-                input.confirm(type="submit", value="Save")
-          li.logout.hideOnOpenSubmenu
-            a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
-          li.logout.hideOnOpenSubmenu
-            a.logout(href="/logout") Sign out
+      ul.panel.left
+        li.panelHeader
+          a(href='#') Labels
+        li.menu
+          ul.labels
+            - for (var i = 0; i < n; i++) {
+              - var name = 'Ligula Dolor #' + i;
+              li.label(data-pack=i, class=i)
+                a(href='#')= name
+            - }
+      ul.panel.right
+        li.panelHeader
+          a(href='#') Settings
+        li.menu
+          ul
+            li.first.hideOnOpenSubmenu.userName.typeOutlineClear.typeOutlineBlackOnHover.typeWeightBold • • •
+            li.hideOnOpenSubmenu.bodyType.smallCaps Antonio Ono
+            li.update.hideOnOpenSubmenu
+              a(href="#") Edit your account
+            ul.submenu
+              li.hidden.backButton
+                a(href="#")
+                  span ‹
+              form
+                li.hidden.smallType Update your name, email, or password
+                li.input.inputText.hidden
+                  input.name(type="text", name="user[email]", placeholder="Name")
+                li.input.inputText.hidden
+                  input.email(type="email", name="user[email]", placeholder="Email")
+                li.input.inputText.hidden
+                  input.password(type="password", name="user[email]", placeholder="Password")
+                li.input.submit.save.closeButton.hidden
+                  input.confirm(type="submit", value="Save")
+            li.logout.hideOnOpenSubmenu
+              a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
+            li.logout.hideOnOpenSubmenu
+              a.logout(href="/logout") Sign out
+          
     .scale
       .content
-        - var n = 10
         - var imageCount = 268
         .container.recents
           - for (var i = 0; i < n/6; i++) {
@@ -140,13 +146,6 @@ html.no-js(lang='en')
                     .artist.smallType Name
                   .detail
                     .source.smallType.smallCaps Source
-          - }
-        .container.packs
-          - for (var i = 0; i < n; i++) {
-            - var name = 'Ligula Dolor #' + i;
-            section.pack(data-pack=i, class=i)
-              header.card
-                h1.typeTitle.packTitle= name
           - }
   .comments
     ul

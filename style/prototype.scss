@@ -11,7 +11,8 @@ body {
   padding-top: $broadMargin + 1;
   
   @media (min-width: $breakSmall) {
-      margin: 0 $col/4 0 $col;
+      margin: 0 $gutter * 3 0 $gutter * 5;
+//       margin: 0 $col/4 0 $col;
   }
   
 }
@@ -21,6 +22,68 @@ body {
   -webkit-transform-origin: top left;
 }
 
+nav.main {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    
+    ul.panel {
+        $width: 100vh;
+        top: 50vh;
+        margin-top: $width/2;
+        text-align: center;
+        width: $width;
+        border-bottom: transparent $cardBorderWidth solid;
+        @include transition(.25s $defaultCurve);
+        @include transition-property(background-color, border-color);
+        
+        &:hover {
+            background-color: $colorCardBackground;
+            border-color: $cardBorderColor;
+        }
+        
+        &.left {
+            position: absolute;
+            left: 0;
+            @include transform(rotateZ(270deg));
+            transform-origin: left top;
+            -webkit-transform-origin: left top;
+            
+            &:hover {
+              
+            }
+        }
+        
+        &.right {
+            position: absolute;
+            right: 0;
+            @include transform(rotateZ(90deg));
+            transform-origin: right top;
+            -webkit-transform-origin: right top;
+        }
+        
+        li {
+            width: 100%;
+            
+            &.panelHeader {
+                a {
+//                     margin-top: 0;
+//                     line-height: $gutter * 4;
+                }
+            }
+            
+            a {
+                display: inline-block;
+                width: 100%;
+                line-height: 1em;
+                font-size: $typeHeaderSize;
+            }
+        }
+    }
+}
+
+/*
 nav.main {
     position: fixed;
     top: 0;
@@ -43,10 +106,6 @@ nav.main {
         border-bottom: $cardBorder;
         @include transition(.5s $defaultCurve);
         @include transition-property(border-color, background-color);
-/*
-        -webkit-backdrop-filter: blur(30px);
-        opacity: .5;
-*/
       
         ul.tabs {
             position: absolute;
@@ -72,6 +131,7 @@ nav.main {
         }
     }
 }
+*/
 
 .container {
     transform-origin: top left;

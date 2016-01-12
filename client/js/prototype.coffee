@@ -209,7 +209,7 @@ bindArticleOpenEvents = ($article) ->
 initItems = () ->
   $('article').each ->
     packName = $(@).data('pack')
-    color = $(".pack.#{packName}").data('color')
+    color = $("li.label.#{packName}").data('color')
     if $(@).hasClass('text')
       $(@).find('.card').css
         backgroundColor: "hsl(#{color.h},100%,95%)"
@@ -310,42 +310,42 @@ switchArticleProperties = ($article, property, state) ->
         y: $article.data 'recentsTop'
   switchProperties $article, absolute, transform
   
-switchToPacks = ->
-  if $('.content').data('layout') is 'recents' # Switch to packs
-    $('.container.recents').packery('destroy')
-    $('.content').data 'layout', 'packs'
-    $('.container.packs').show()
-    $('html').velocity('scroll', {
-      duration: duration
-      easing: easing
-    })
-    $('article').each -> # clear recents packery before doing anything else
-      $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
-#     $('.pack').find('backgroundColor').css 'opacity', 1
-    $('article').each -> # animate to pack positions
-      packName            = "#{$(@).data('pack')}"
-      $pack               = $(".pack.#{packName}")
-      $articlesOfSamePack = $("article.#{packName}")
-      indexInPack         = $(@).index("article.#{packName}")
-      siblingCount        = $articlesOfSamePack.length - 1
-      switchArticleProperties($(@), 'transform', 'recents')
-      if indexInPack is 0 # if first article
-        animateHeaderIn($pack.children('header'), siblingCount)
-#       console.log $pack.data('left'), $pack.data('top')
-      $(@).velocity
-        properties:
-          translateX: $pack.data('packsLeft') + $(@).data('packsLeft')
-          translateY: $pack.data('packsTop')  + $(@).data('packsTop')
-        options:
-          duration: duration
-          easing: easing
-          complete: () ->
-            switchArticleProperties($(@), 'absolute', 'packs')
-            positionPack($pack, $(@), packName)
-            $pack.append $(@)
-  setTimeout ->
-    packPacks(true)
-  , duration
+# switchToPacks = ->
+#   if $('.content').data('layout') is 'recents' # Switch to packs
+#     $('.container.recents').packery('destroy')
+#     $('.content').data 'layout', 'packs'
+#     $('.container.packs').show()
+#     $('html').velocity('scroll', {
+#       duration: duration
+#       easing: easing
+#     })
+#     $('article').each -> # clear recents packery before doing anything else
+#       $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
+# #     $('.pack').find('backgroundColor').css 'opacity', 1
+#     $('article').each -> # animate to pack positions
+#       packName            = "#{$(@).data('pack')}"
+#       $pack               = $(".pack.#{packName}")
+#       $articlesOfSamePack = $("article.#{packName}")
+#       indexInPack         = $(@).index("article.#{packName}")
+#       siblingCount        = $articlesOfSamePack.length - 1
+#       switchArticleProperties($(@), 'transform', 'recents')
+#       if indexInPack is 0 # if first article
+#         animateHeaderIn($pack.children('header'), siblingCount)
+# #       console.log $pack.data('left'), $pack.data('top')
+#       $(@).velocity
+#         properties:
+#           translateX: $pack.data('packsLeft') + $(@).data('packsLeft')
+#           translateY: $pack.data('packsTop')  + $(@).data('packsTop')
+#         options:
+#           duration: duration
+#           easing: easing
+#           complete: () ->
+#             switchArticleProperties($(@), 'absolute', 'packs')
+#             positionPack($pack, $(@), packName)
+#             $pack.append $(@)
+#   setTimeout ->
+#     packPacks(true)
+#   , duration
   
 switchToRecents = () ->
   $('.content').data 'layout', 'recents'
@@ -591,62 +591,80 @@ resizePacks = () -> # stretch pack element around children
     savePacksViewPositions()
   , duration
     
-initPacks = () ->
-  resizePacks()
-  $('.packs.container').packery {
-    itemSelector: '.pack'
-    gutter: gutter
-    transitionDuration: packeryDuration
-  }
-  $('.pack').each ->
-    packName = "#{$(@).data('pack')}"
+initLabels = () ->
+  $('li.label').each ->
     color = randomColor()
-    # trigger pack open
-    $(@).click ->
-      unless $('.content').data 'packOpen'
-        openPack($(@))
-    $(@).data 'color', randomColor()
-    $(@).children('header').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
-#     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
-    $("article.#{packName}").each ->
-      $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
-#       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)")
-
-#     top = $("article.#{packName}").length * stackOffset
-#     $(@).css
-#       'margin-top': "-#{top}"
-#       'opacity': .1
-  packPacks(true)
-  savePacksViewPositions()
+    $(@).data 'color', color
+    $(@).children('a').css
+      color: "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
+#   resizePacks()
+#   $('.packs.container').packery {
+#     itemSelector: '.pack'
+#     gutter: gutter
+#     transitionDuration: packeryDuration
+#   }
+#   $('.pack').each ->
+#     packName = "#{$(@).data('pack')}"
+#     color = randomColor()
+#     # trigger pack open
+#     $(@).click ->
+#       unless $('.content').data 'packOpen'
+#         openPack($(@))
+#     $(@).data 'color', randomColor()
+#     $(@).children('header').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
+# #     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
+#     $("article.#{packName}").each ->
+#       $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
+# #       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)")
+# 
+# #     top = $("article.#{packName}").length * stackOffset
+# #     $(@).css
+# #       'margin-top': "-#{top}"
+# #       'opacity': .1
+#   packPacks(true)
+#   savePacksViewPositions()
   
 initNav = ->
-# Tabs
-  $nav = $('ul.tabs')
-  $nav.find('.tab.recents').click (event) ->
-    event.preventDefault()
-    if $('.velocity-animating').length < 1 # only toggle state if not animating
-      unless $('.content').data('layout') is 'recents'
-        if $('.content').data('packOpen') # if pack is open, close pack first
-          closePack()
-          setTimeout ->
-            switchToRecents()
-          , duration
-        else 
-          switchToRecents()
-          
-  $nav.find('.tab.packs').click (event) ->
-    event.preventDefault()
-    if $('.velocity-animating').length < 1
-      unless $('.content').data('layout') is 'packs'
-        switchToPacks()
-# Back button
-  $back = $('nav .backButton')
-  $back.hide()
-  hideBackButton()
-  $back.click (event) ->
-    event.preventDefault()
-    if $('.content').data('packOpen')
-      closePack()
+  $('nav.main ul.panel').each ->
+    $panel = $(@)
+    $header = $panel.find('li.panelHeader')
+    $menu = $panel.find('li.menu')
+    # hide submenu
+    $menu.hide()
+    console.log $panel, $menu
+    # open panel on header click
+    $header.mouseenter ->
+      $menu.show()
+      event.stopPropagation()
+    $header.mouseleave ->
+      $menu.hide()
+# # Tabs
+#   $nav = $('ul.tabs')
+#   $nav.find('.tab.recents').click (event) ->
+#     event.preventDefault()
+#     if $('.velocity-animating').length < 1 # only toggle state if not animating
+#       unless $('.content').data('layout') is 'recents'
+#         if $('.content').data('packOpen') # if pack is open, close pack first
+#           closePack()
+#           setTimeout ->
+#             switchToRecents()
+#           , duration
+#         else 
+#           switchToRecents()
+#           
+#   $nav.find('.tab.packs').click (event) ->
+#     event.preventDefault()
+#     if $('.velocity-animating').length < 1
+#       unless $('.content').data('layout') is 'packs'
+#         switchToPacks()
+# # Back button
+#   $back = $('nav .backButton')
+#   $back.hide()
+#   hideBackButton()
+#   $back.click (event) ->
+#     event.preventDefault()
+#     if $('.content').data('packOpen')
+#       closePack()
 
 onScroll = () ->
   scrollTop = $(document).scrollTop()
@@ -679,7 +697,7 @@ $ ->
   $('.content').data 'layout', 'recents'
   $('.content').data 'packOpen', false
   $('.content').data 'articleOpen', false
-  initPacks()
+  initLabels()
   initItems()
   initOnLoad()
   initNav()

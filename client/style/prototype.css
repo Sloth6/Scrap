@@ -2602,74 +2602,128 @@ footer.main ul.actions li.action label {
 @media (min-width: 768px) {
   /* line 6, ../../style/prototype.scss */
   .content {
-    margin: 0 14pt 0 56pt;
+    margin: 0 24pt 0 40pt;
   }
 }
 
-/* line 19, ../../style/prototype.scss */
+/* line 20, ../../style/prototype.scss */
 .scale {
   transform-origin: top left;
   -webkit-transform-origin: top left;
 }
 
-/* line 24, ../../style/prototype.scss */
+/* line 25, ../../style/prototype.scss */
 nav.main {
   position: fixed;
-  top: 0;
+  z-index: 2;
   left: 0;
   right: 0;
-  height: 40pt;
-  z-index: 2;
 }
-/* line 32, ../../style/prototype.scss */
-nav.main .backButton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-/* line 39, ../../style/prototype.scss */
-nav.main .bar {
-  height: 100%;
-  width: 100%;
-  background: white;
-  border-bottom: 1px solid #000000;
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  -moz-transition-property: border-color, background-color;
-  -o-transition-property: border-color, background-color;
-  -webkit-transition-property: border-color, background-color;
-  transition-property: border-color, background-color;
-  /*
-          -webkit-backdrop-filter: blur(30px);
-          opacity: .5;
-  */
-}
-/* line 51, ../../style/prototype.scss */
-nav.main .bar ul.tabs {
-  position: absolute;
-  top: 0;
-  left: 40pt;
-  right: 40pt;
-  bottom: 0;
+/* line 31, ../../style/prototype.scss */
+nav.main ul.panel {
+  top: 50vh;
+  margin-top: 50vh;
   text-align: center;
+  width: 100vh;
+  border-bottom: transparent 1px solid;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -moz-transition-property: background-color, border-color;
+  -o-transition-property: background-color, border-color;
+  -webkit-transition-property: background-color, border-color;
+  transition-property: background-color, border-color;
 }
-/* line 60, ../../style/prototype.scss */
-nav.main .bar ul.tabs li {
+/* line 41, ../../style/prototype.scss */
+nav.main ul.panel:hover {
+  background-color: white;
+  border-color: #000000;
+}
+/* line 46, ../../style/prototype.scss */
+nav.main ul.panel.left {
+  position: absolute;
+  left: 0;
+  -moz-transform: rotateZ(270deg);
+  -ms-transform: rotateZ(270deg);
+  -webkit-transform: rotateZ(270deg);
+  transform: rotateZ(270deg);
+  transform-origin: left top;
+  -webkit-transform-origin: left top;
+}
+/* line 58, ../../style/prototype.scss */
+nav.main ul.panel.right {
+  position: absolute;
+  right: 0;
+  -moz-transform: rotateZ(90deg);
+  -ms-transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
+  transform-origin: right top;
+  -webkit-transform-origin: right top;
+}
+/* line 66, ../../style/prototype.scss */
+nav.main ul.panel li {
+  width: 100%;
+}
+/* line 76, ../../style/prototype.scss */
+nav.main ul.panel li a {
   display: inline-block;
-  height: 100%;
-}
-/* line 64, ../../style/prototype.scss */
-nav.main .bar ul.tabs li a {
-  display: block;
-  padding: 0 16pt;
-  line-height: 40pt;
-  height: 100%;
+  width: 100%;
+  line-height: 1em;
+  font-size: 24pt;
 }
 
-/* line 76, ../../style/prototype.scss */
+/*
+nav.main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $broadMargin;
+    z-index: 2;
+    
+    .backButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .bar {
+        height: 100%;
+        width: 100%;
+        background: $colorCardBackground;
+        border-bottom: $cardBorder;
+        @include transition(.5s $defaultCurve);
+        @include transition-property(border-color, background-color);
+      
+        ul.tabs {
+            position: absolute;
+            top: 0;
+            left: $broadMargin;
+            right: $broadMargin;
+            bottom: 0;
+            text-align: center;
+        //         background-color: red;
+            
+            li {
+                display: inline-block;
+                height: 100%;
+                
+                a {
+                    display: block;
+                    padding: 0 $gutter * 2;
+                    line-height: $broadMargin;
+                    height: 100%;
+        //                 background-color: blue;
+                }
+            }
+        }
+    }
+}
+*/
+/* line 136, ../../style/prototype.scss */
 .container {
   transform-origin: top left;
   /*
@@ -2694,7 +2748,7 @@ nav.main .bar ul.tabs li a {
   */
 }
 @media (max-width: 768px) {
-  /* line 76, ../../style/prototype.scss */
+  /* line 136, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2702,17 +2756,17 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 86, ../../style/prototype.scss */
+  /* line 146, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 92, ../../style/prototype.scss */
+  /* line 152, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 768px) {
-  /* line 76, ../../style/prototype.scss */
+  /* line 136, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2720,13 +2774,13 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 111, ../../style/prototype.scss */
+  /* line 171, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 1024px) {
-  /* line 76, ../../style/prototype.scss */
+  /* line 136, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.66667);
     -ms-transform: scale(0.66667);
@@ -2734,16 +2788,16 @@ nav.main .bar ul.tabs li a {
     transform: scale(0.66667);
     width: 150%;
   }
-  /* line 124, ../../style/prototype.scss */
+  /* line 184, ../../style/prototype.scss */
   .container article .card {
     border-width: 1.5px;
   }
-  /* line 130, ../../style/prototype.scss */
+  /* line 190, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 1.5px #000000;
   }
 }
-/* line 157, ../../style/prototype.scss */
+/* line 217, ../../style/prototype.scss */
 .container .pack {
   /*
           background: rgba(213, 255, 0, 0.41);
@@ -2753,27 +2807,27 @@ nav.main .bar ul.tabs li a {
   height: 0;
   width: 0;
 }
-/* line 168, ../../style/prototype.scss */
+/* line 228, ../../style/prototype.scss */
 .container .pack:hover article .card {
   -webkit-filter: grayscale(0);
 }
-/* line 172, ../../style/prototype.scss */
+/* line 232, ../../style/prototype.scss */
 .container .pack:hover article .backgroundColor {
   opacity: 0;
 }
-/* line 178, ../../style/prototype.scss */
+/* line 238, ../../style/prototype.scss */
 .container .pack.open {
   height: 100%;
   width: 100%;
 }
-/* line 183, ../../style/prototype.scss */
+/* line 243, ../../style/prototype.scss */
 .container .pack header {
   position: absolute;
   z-index: 2;
   width: 224pt;
   min-height: 224pt;
 }
-/* line 189, ../../style/prototype.scss */
+/* line 249, ../../style/prototype.scss */
 .container .pack header h1.packTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -2782,23 +2836,23 @@ nav.main .bar ul.tabs li a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
-/* line 211, ../../style/prototype.scss */
+/* line 271, ../../style/prototype.scss */
 .container article.defocus .card {
   -webkit-filter: grayscale(1);
 }
-/* line 216, ../../style/prototype.scss */
+/* line 276, ../../style/prototype.scss */
 .container article .comments {
   margin-top: 16pt;
   width: 224pt;
   transform-origin: left top;
   -webkit-transform-origin: left top;
 }
-/* line 222, ../../style/prototype.scss */
+/* line 282, ../../style/prototype.scss */
 .container article .comments li {
   opacity: 0;
   margin-bottom: 8pt;
 }
-/* line 228, ../../style/prototype.scss */
+/* line 288, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2813,7 +2867,7 @@ nav.main .bar ul.tabs li a {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
 }
-/* line 248, ../../style/prototype.scss */
+/* line 308, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
