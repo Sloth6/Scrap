@@ -1,4 +1,3 @@
-panelHeadersHidden = false
 window.droppableCoordinates = []
 
 lastScrollTop = 0
@@ -876,18 +875,15 @@ onScroll = () ->
   isScrolling = true
   scrollTop = $(document).scrollTop()
   direction = if scrollTop > lastScrollTop then 'down' else 'up'
-  hasScrolledSomeDistance = scrollTop isnt lastScrollTop # true if user has actually scrolled, and scroll event wasn't triggered without real movement
-  
+  console.log 'diff' if scrollTop isnt lastScrollTop
   # hide side panels on scroll
-#   if hasScrolledSomeDistance and (scrollTop > 200) and (panelHeadersHidden isnt true)
-  unless panelHeadersHidden
-    hidePanelHeaders() if hasScrolledSomeDistance
-    panelHeadersHidden = true
-  clearTimeout $.data this, 'hideHeadersTimer'
-  $.data this, 'hideHeadersTimer', setTimeout ->
-    showPanelHeaders() if hasScrolledSomeDistance
-    panelHeadersHidden = false
-  , 500
+  $panels = $('nav .panel')
+  hidePanelHeaders()
+  clearTimeout $.data this, 'scrollTimer'
+  $.data this, 'scrollTimer', setTimeout ->
+    console.log 'sho'
+    showPanelHeaders()
+  , 250
   
   lastScrollTop = scrollTop
   
