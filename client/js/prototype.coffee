@@ -827,6 +827,7 @@ hidePanelMenuItem = ($menu, $menuItem) ->
     properties:
       translateY: -$menu.height()
       translateX: 0
+#       rotateZ: [90, 0]
     options:
       duration: duration
       easing: easing
@@ -842,7 +843,7 @@ showPanelMenu = ($panel, $menu, $header) ->
     $.Velocity.hook $(@).find('a'), 'rotateZ', 0
     $(@).velocity
       properties:
-        translateZ: 0
+#         rotateZ: [0, 90]
         translateY: [0, -$menu.height()]
       options:
         duration: duration/2 + ($(@).index() / $menu.find('li').length) * 1000
@@ -886,10 +887,35 @@ openLabel = ($label) ->
   # close panel
   hidePanelMenu $panel, $menu, $header
   
+  # click label to open menu again
+  $label.find('a').off()
+  $label.find('a').click ->
+    event.stopPropagation()
+    event.preventDefault()
+    $label.removeClass 'open'
+    showPanelMenu $panel, $menu, $header
+    $label.find('a').off()    
+  
   $articles = $("article.#{label}")
   $otherArticles = $('article').not($articles)
   scrollPageTo(0)
-  $otherArticles.hide()
+#   $('.container.recents').packery 'remove', $otherArticles
+  $articles.each ->
+    $(@).show()
+    $.Velocity.hook $(@), 'translateX', 0
+    $.Velocity.hook $(@), 'translateY', 0
+    packRecents(true)
+  $otherArticles.each ->
+    $(@).velocity
+      properties:
+        translateY: Math.random() * $(window).height()
+        translateX: if $(@).offset().left > $(window).width()/2 then $(window).width() else -$(window).width()
+      options:
+        duration: duration/4
+        easing: easing
+        complete: ->
+          $(@).hide()
+          packRecents(true)
   packRecents(true)
   
 initNav = ->

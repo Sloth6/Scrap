@@ -85,6 +85,8 @@ nav.main {
         
         li {
             width: 100%;
+                    transform-origin: left center;
+            -webkit-transform-origin: left center;
             
             &.panelHeader {
                 position: absolute;
@@ -103,7 +105,6 @@ nav.main {
             }
             
             &.menu {
-              
                 ul.labels {
                     a {
                         &:first-child {
