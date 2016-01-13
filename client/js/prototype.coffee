@@ -38,19 +38,23 @@ drag = (event, $dragging, droppableCoordinates) ->
   for droppable in window.droppableCoordinates
     if mouseX >= droppable.left and mouseX <= droppable.right
       if mouseY >= droppable.top and mouseY <= droppable.bottom
-        makeDropTarget droppable.$element
+        makeDropTarget $dragging, droppable.$element
         overAnyTarget = true
 # Unless an article is hovered over, defocus all articles
-  makeDropTarget(null) unless overAnyTarget
+  makeDropTarget($dragging, null) unless overAnyTarget
   
-makeDropTarget = ($dropTarget) ->
+makeDropTarget = ($label, $dropTarget) ->
 # If no article is hovered over, un-defocus all articles
   if $dropTarget is null
+    console.log 'null'
     $('.droppable').removeClass('defocus').removeClass('dropTarget')
   else
+    console.log 'not null'
     $dropTarget.removeClass 'defocus'
     $dropTarget.addClass 'dropTarget'
-    $('.droppable').not($dropTarget).addClass 'defocus'
+    $('.droppable').not($dropTarget).addClass('defocus').css('backgroundColor', '')
+    color = $label.data 'color'
+    $dropTarget.css 'backgroundColor', "hsl(#{color.h},100%,#{color.l}%)"
   
 stopDragging = (mouseUpEvent, $dragging) ->
   $dragging.removeClass('dragging')
@@ -725,9 +729,13 @@ resizePacks = () -> # stretch pack element around children
 initLabels = () ->
   $('li.label').each ->
     color = randomColor()
+    labelName = "#{$(@).data('pack')}"
     $(@).data 'color', color
     $(@).children('a').css
       color: "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
+#     $("article.#{labelName}").each ->
+#       $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
+    
 #   resizePacks()
 #   $('.packs.container').packery {
 #     itemSelector: '.pack'
@@ -776,8 +784,8 @@ showPanelMenu = ($panel, $menu, $header) ->
           if $(@).index() is 0
             $menu.show()
           $(@).css 'opacity', 1
-    # Bind drag events
     makeDraggable $(@)
+    # Bind drag events
 #     $(@).mousedown ->
 # #       $.Velocity.hook $panel, 'rotateZ', 0
 # #       $.Velocity.hook $menu.find('li'), 'rotateZ', 270

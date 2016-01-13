@@ -248,64 +248,26 @@ nav.main {
     }
 */
     
-    .pack {
-/*
-        background: rgba(213, 255, 0, 0.41);
-        border: red 1px solid;
-*/
-        position: absolute;
-        height: 0;
-        width: 0;
-        
-        &:hover {
-            article {
-                .card {
-                    -webkit-filter: grayscale(0);
-                }
-                
-                .backgroundColor {
-                    opacity: 0;
-                }
-            }
-        }
-        
-        &.open {
-            height: 100%;
-            width: 100%;
-        }
-        
-        header {
-            position: absolute;
-            z-index: 2;
-            width: $articleSide;
-            min-height: $articleSide;
-            
-            h1.packTitle {
-                @include typeTitle;
-                @include typeOutlineClear;
-//                 -webkit-text-fill-color: white;
-            }
-        }
-        
-        article {
+    
+    article {
+        @include transition(1s $defaultCurve);
+        @include transition-property(background-color);
+           
+        &.defocus {
             .card {
-//                 mix-blend-mode: multiply;
-//                 -webkit-filter: grayscale(1);
-//                 opacity: .1;
+                -webkit-filter: grayscale(1);
+                opacity: .5;
+            }
+        }
+        
+        &.dropTarget {
+            .card {
+                -webkit-filter: grayscale(1);
+                mix-blend-mode: multiply;
             }
             
             .backgroundColor {
 //                 opacity: 1;
-            }
-        }
-    }
-    
-    article {
-              
-        &.defocus {
-            .card {
-                -webkit-filter: grayscale(1);
-                opacity: .2;
             }
         }
         

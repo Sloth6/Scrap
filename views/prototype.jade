@@ -22,7 +22,7 @@ html.no-js(lang='en')
   body
     - var n = 4
     nav.main
-      ul.panel.left
+      ul.panel.labels.left
         li.panelHeader
           a(href='#') Labels
         li.menu
@@ -32,7 +32,7 @@ html.no-js(lang='en')
               li.label(data-pack=i, class=i)
                 a(href='#')= name
             - }
-      ul.panel.right
+      ul.panel.settings.right
         li.panelHeader
           a(href='#') Settings
         li.menu
