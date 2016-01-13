@@ -2861,23 +2861,24 @@ nav.main {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
-/* line 305, ../../style/prototype.scss */
+/* line 306, ../../style/prototype.scss */
 .container article.defocus .card {
   -webkit-filter: grayscale(1);
+  opacity: .2;
 }
-/* line 310, ../../style/prototype.scss */
+/* line 312, ../../style/prototype.scss */
 .container article .comments {
   margin-top: 16pt;
   width: 224pt;
   transform-origin: left top;
   -webkit-transform-origin: left top;
 }
-/* line 316, ../../style/prototype.scss */
+/* line 318, ../../style/prototype.scss */
 .container article .comments li {
   opacity: 0;
   margin-bottom: 8pt;
 }
-/* line 322, ../../style/prototype.scss */
+/* line 324, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2892,7 +2893,7 @@ nav.main {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
 }
-/* line 342, ../../style/prototype.scss */
+/* line 344, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

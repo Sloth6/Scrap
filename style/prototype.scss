@@ -301,9 +301,11 @@ nav.main {
     }
     
     article {
+              
         &.defocus {
             .card {
                 -webkit-filter: grayscale(1);
+                opacity: .2;
             }
         }
         

@@ -1,3 +1,5 @@
+window.droppableCoordinates = []
+
 lastScrollTop = 0
 
 scale       = 1 / 1.5
@@ -10,13 +12,12 @@ packeryDuration = "#{packeryDurationMS / 1000}s"
 cardSize = if $(window).width() < 768 then 18 else 36
 gutter   = if $(window).width() < 768 then 12 else 24
 
-drag = (event, $dragging) ->
-  x = event.clientX
-  y = $(window).height() - event.clientY
-#   scaleThreshhold = $(window).height() / 2
-#   scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
-#   $collection = $('.collection.open')
-  
+drag = (event, $dragging, droppableCoordinates) ->
+  mouseX = event.clientX
+  mouseY = event.clientY
+  x = mouseX
+  y = $(window).height() - mouseY
+    
   w = 200# contentModel.getSize($dragging)
   h = 200# Math.max($dragging.find('.content').height(), 200)
   
@@ -31,19 +32,75 @@ drag = (event, $dragging) ->
     translateY: x - $dragging.data 'mouseOffsetX'
     translateX: y - $dragging.data 'mouseOffsetY'
   }, { duration: 1 }
-
+  
+  # check for mouseover articles
+  overAnyTarget = false
+  for droppable in window.droppableCoordinates
+    if mouseX >= droppable.left and mouseX <= droppable.right
+      if mouseY >= droppable.top and mouseY <= droppable.bottom
+        makeDropTarget droppable.$element
+        overAnyTarget = true
+# Unless an article is hovered over, defocus all articles
+  makeDropTarget(null) unless overAnyTarget
+  
+makeDropTarget = ($dropTarget) ->
+# If no article is hovered over, un-defocus all articles
+  if $dropTarget is null
+    $('.droppable').removeClass('defocus').removeClass('dropTarget')
+  else
+    $dropTarget.removeClass 'defocus'
+    $dropTarget.addClass 'dropTarget'
+    $('.droppable').not($dropTarget).addClass 'defocus'
+  
 stopDragging = (mouseUpEvent, $dragging) ->
-  console.log 'ho'
+  $dragging.removeClass('dragging')
+# If mouse is over a drop target
+  if $('.dropTarget').length > 0
+    console.log 'ho'
+# Mouse is over nothing
+  else
+    $panel = $dragging.parents('ul.panel')
+    $menu = $panel.find('li.menu')
+    $header = $panel.find('li.panelHeader')
+    hidePanelMenu $panel, $menu, $header
+    $dragging.find('a').velocity 'reverse' # unrotate label 
+#     $dragging.velocity
+#       properties:
+#         translateX: 0
+#         translateY: -$menu.height()
+#       options:
+#         duration: duration
+#         easing: easing
+  $('.article').removeClass('defocus').removeClass('dropTarget').removeClass('droppable')
 
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
-#   $dragging.appendTo $('body')
-#   $dragging.css
-#     position: 'absolute'
-#     top: 0
-#     left: 0
+  $dragging.addClass 'dragging'
+  
+  # close menu
+  $panel = $dragging.parents('ul.panel')
+  $menu = $panel.find('li.menu')
+  $header = $panel.find('li.panelHeader')
+  hidePanelMenu $panel, $menu, $header
+  
+  # rotate label right-side-up
+  $dragging.find('a').velocity
+    properties:
+      rotateZ: 90
 
+  # make article droppable
+  $('article').addClass 'droppable'
+  $('.droppable').each ->
+    window.droppableCoordinates.push {
+        $element: $(this),
+        left:     $(@).offset().left
+        top:      $(@).offset().top
+        right:    $(@).offset().left + $(@).width() * scale
+        bottom:   $(@).offset().top + $(@).height() * scale
+    }
+  
+  
 makeDraggable = ($element) ->
   $element.find('a,img,iframe').bind 'dragstart', () -> false
   dragThreshold = 20
@@ -721,10 +778,7 @@ showPanelMenu = ($panel, $menu, $header) ->
           $(@).css 'opacity', 1
     # Bind drag events
     makeDraggable $(@)
-    $(@).mousedown ->
-      $(@).find('a').velocity
-        properties:
-          rotateZ: 90
+#     $(@).mousedown ->
 # #       $.Velocity.hook $panel, 'rotateZ', 0
 # #       $.Velocity.hook $menu.find('li'), 'rotateZ', 270
 #       $(@).velocity
@@ -761,14 +815,32 @@ showPanelMenu = ($panel, $menu, $header) ->
   applyCloseCursor $('body')
       
 hidePanelMenu = ($panel, $menu, $header) ->
-#   $panel.velocity 'reverse'  
-  $menu.find('li').each ->
-    $(@).velocity 'reverse', { complete: () ->
-      if ($(@).index() is ($menu.find('li').length - 1)) 
-        $menu.hide()
-    }
-  $header.velocity 'reverse'
-  $('li.panelHeader').not($header).velocity 'reverse'
+  dragging = $('.label.dragging').length > 0
+  $menuItems = if dragging then $menu.find('li').not($('.dragging')) else $menu.find('li')
+  $menuItems.each ->
+    $(@).velocity
+      properties:
+        translateY: -$menu.height()
+        translateX: 0
+      options:
+        duration: duration
+        easing: easing
+        complete: () ->
+          # If last menu item, hide whole menu on animation complete
+          if ($(@).index() is ($menu.find('li').length - 1)) 
+            $menu.hide() unless dragging
+  $header.velocity
+    properties:
+      translateY: 0
+    options:
+      duration: duration
+      easing: easing
+  $('li.panelHeader').not($header).velocity
+    properties:
+      translateY: 0
+    options:
+      duration: duration
+      easing: easing
 #   $('.content').velocity 'reverse'
   $('.content').removeClass 'blur'
   $('.content .mask').remove()
