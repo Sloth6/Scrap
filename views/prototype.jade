@@ -20,7 +20,7 @@ html.no-js(lang='en')
     script(src='/js/prototype.js')
     //- script(src='/js/derp.js')
   body
-    - var n = 8
+    - var n = 4
     nav.main
       ul.panel.labels.left
         li.panelHeader
@@ -61,108 +61,109 @@ html.no-js(lang='en')
               a.logout(href="/logout") Sign out
           
     .scale
-      .content
-        - var imageCount = 268
-        .container.recents
-          - for (var i = 0; i < n/6; i++) {
-            - var pack = Math.floor(Math.random() * n)
-            article.text(data-pack=pack, class=pack, data-type='text')
-              .card.cardHover.text
-                .editable
-                  h1 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
-            - for (var j = 0; j < 20; j++) {
+      .translate
+        .content
+          - var imageCount = 268
+          .container.recents
+            - for (var i = 0; i < n/6; i++) {
               - var pack = Math.floor(Math.random() * n)
-                article.image(data-pack=pack, class=pack, data-type='image')
-                  .card.cardHover.image
-                    img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
+              article.text(data-pack=pack, class=pack, data-type='text')
+                .card.cardHover.text
+                  .editable
+                    h1 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
+              - for (var j = 0; j < 20; j++) {
+                - var pack = Math.floor(Math.random() * n)
+                  article.image(data-pack=pack, class=pack, data-type='image')
+                    .card.cardHover.image
+                      img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
+              - }
+              - var pack = Math.floor(Math.random() * n)
+              article.text(data-pack=pack, class=pack, data-type='text')
+                .card.cardHover.text
+                  .editable
+                    h2 Est non commodo
+                    ol
+                      li Justo
+                      li Risus
+                      li Ornare
+                      li Ipsum
+                      li Lorem
+                    h2 Donec ullamcorper
+                    ul
+                      li Vivamus sagittis lacus vel augue
+                      li Laoreet rutrum faucibus dolor auctor
+                      li Duis mollis, est non commodo luctus nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+                      li Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+                    blockquote Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              - var pack = Math.floor(Math.random() * n)
+              article.file(data-pack=pack, class=pack, data-type='file')
+                .card.cardHover.file
+                  .fakeCard
+                    header
+                      h1.headerType.title Filename
+                      p.extension.smallCaps.bodyType PDF
+                    ul.card.cardHoverActions
+                      li
+                        a.download.confirm(href='#') Download
+                  .decorative.fold
+              - var pack = Math.floor(Math.random() * n)
+              article.website(data-pack=pack, class=pack, data-type='website')
+                .card.cardHover.website
+                  .text
+                    header
+                      h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                      .url.smallType.smallCaps nytimes.com
+                    .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
+                  img(src='http://lorempixel.com/400/300')
+                  a(href=url, target='_blank', title='Open “Title” in a new tab')
+              - var pack = Math.floor(Math.random() * n)
+              article.text(data-pack=pack, class=pack, data-type='text')
+                .card.cardHover.text
+                  .editable
+                    h1 Duis mollis
+                    p Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis euismod semper.
+                    p Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod.
+              - var pack = Math.floor(Math.random() * n)
+              article.soundcloud.playable(data-pack=pack, class=pack, data-type='music')
+                .card.cardHover.text.playable
+                  .preview
+                    - var size = Math.floor(Math.random() * 100 + 200)
+                    img(src='http://lorempixel.com/' + size + '/' + size)
+                  header
+                    .top
+                      h1.headerType.title Title
+                      .artist.smallType Name
+                    .detail
+                      .source.smallType.smallCaps Source
+              - var pack = Math.floor(Math.random() * n)
+              article.youtube.playable(data-pack=pack, class=pack, data-type='video')
+                .card.cardHover.text.playable
+                  .preview
+                    - var w = Math.floor(Math.random() * 100 + 300)
+                    - var h = Math.floor(w / (16/9))
+                    img(src='http://lorempixel.com/' + w + '/' + h)
+                  header
+                    .top
+                      h1.headerType.title Title
+                      .artist.smallType Name
+                    .detail
+                      .source.smallType.smallCaps Source
             - }
-            - var pack = Math.floor(Math.random() * n)
-            article.text(data-pack=pack, class=pack, data-type='text')
-              .card.cardHover.text
-                .editable
-                  h2 Est non commodo
-                  ol
-                    li Justo
-                    li Risus
-                    li Ornare
-                    li Ipsum
-                    li Lorem
-                  h2 Donec ullamcorper
-                  ul
-                    li Vivamus sagittis lacus vel augue
-                    li Laoreet rutrum faucibus dolor auctor
-                    li Duis mollis, est non commodo luctus nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                    li Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                  blockquote Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            - var pack = Math.floor(Math.random() * n)
-            article.file(data-pack=pack, class=pack, data-type='file')
-              .card.cardHover.file
-                .fakeCard
-                  header
-                    h1.headerType.title Filename
-                    p.extension.smallCaps.bodyType PDF
-                  ul.card.cardHoverActions
-                    li
-                      a.download.confirm(href='#') Download
-                .decorative.fold
-            - var pack = Math.floor(Math.random() * n)
-            article.website(data-pack=pack, class=pack, data-type='website')
-              .card.cardHover.website
-                .text
-                  header
-                    h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                    .url.smallType.smallCaps nytimes.com
-                  .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
-                img(src='http://lorempixel.com/400/300')
-                a(href=url, target='_blank', title='Open “Title” in a new tab')
-            - var pack = Math.floor(Math.random() * n)
-            article.text(data-pack=pack, class=pack, data-type='text')
-              .card.cardHover.text
-                .editable
-                  h1 Duis mollis
-                  p Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis euismod semper.
-                  p Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod.
-            - var pack = Math.floor(Math.random() * n)
-            article.soundcloud.playable(data-pack=pack, class=pack, data-type='music')
-              .card.cardHover.text.playable
-                .preview
-                  - var size = Math.floor(Math.random() * 100 + 200)
-                  img(src='http://lorempixel.com/' + size + '/' + size)
-                header
-                  .top
-                    h1.headerType.title Title
-                    .artist.smallType Name
-                  .detail
-                    .source.smallType.smallCaps Source
-            - var pack = Math.floor(Math.random() * n)
-            article.youtube.playable(data-pack=pack, class=pack, data-type='video')
-              .card.cardHover.text.playable
-                .preview
-                  - var w = Math.floor(Math.random() * 100 + 300)
-                  - var h = Math.floor(w / (16/9))
-                  img(src='http://lorempixel.com/' + w + '/' + h)
-                header
-                  .top
-                    h1.headerType.title Title
-                    .artist.smallType Name
-                  .detail
-                    .source.smallType.smallCaps Source
-          - }
-  .comments
-    ul
-      li.comment
-        author.typeBody.smallCaps Cursus Pharetra
-        div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-      li.comment
-        author.typeBody.smallCaps Magna Porta
-        div Ipsum pharetra
-      li.comment
-        author.typeBody.smallCaps Tellus Nullam
-        div Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-      li.comment
-        author.typeBody.smallCaps Tortor Inceptos
-        div Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-      li.comment
-        author.typeBody.smallCaps Vulputate Fermentum
-        div Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-        
+    .comments
+      ul
+        li.comment
+          author.typeBody.smallCaps Cursus Pharetra
+          div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+        li.comment
+          author.typeBody.smallCaps Magna Porta
+          div Ipsum pharetra
+        li.comment
+          author.typeBody.smallCaps Tellus Nullam
+          div Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        li.comment
+          author.typeBody.smallCaps Tortor Inceptos
+          div Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+        li.comment
+          author.typeBody.smallCaps Vulputate Fermentum
+          div Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          

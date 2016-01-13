@@ -30,8 +30,8 @@ body {
 }
 
 .scale {
-  transform-origin: top left;
-  -webkit-transform-origin: top left;
+          transform-origin: left top;
+  -webkit-transform-origin: left top;
 }
 
 nav.main {

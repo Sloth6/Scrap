@@ -275,15 +275,13 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
   $('body').css
     height: $(window).height() * 10
     overflow: 'hidden'
-#     width: $(window).width()/8
-#     overflowX: 'hidden'
-#     maxHeight: ''
   $card = $article.find('.card')
-#   translateX = (($(window).width()/2))  - ((nativeDimensions.width/2))
-#   translateY = (($(window).height()/2)) - ((nativeDimensions.height/2))
   translateX =  (($(window).width() / 2) / scaleRatio)  - $card.offset().left - ($card.width()/2)*scale
   translateY =  (($(window).height() / 2) / scaleRatio) - $card.offset().top -  ($card.height()/2)*scale
-  console.log nativeDimensions.width
+  transformOriginX  = 150 # * (($card.offset().left - ($(window).width())) / ($(window).width()))
+  transformOriginY  = 0
+  transformOrigin   = "#{transformOriginX}% #{transformOriginY}%"
+  console.log transformOriginX
   $('.scale').velocity
     properties:
       scale: scaleRatio
@@ -292,6 +290,18 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
     options:
       duration: duration
       easing: easing
+#       begin: ->
+#         $('.scale').css
+#           transformOrigin:       transformOrigin
+#           webkitTransformOrigin: transformOrigin
+
+#   $('.translate').velocity
+#     properties:
+#       translateX: translateX
+#       translateY: translateY
+#     options:
+#       duration: duration
+#       easing: easing
   # hide other articles
   $('article, .packable').not($article).addClass('defocus').velocity
     properties:
@@ -312,7 +322,6 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
     options:
       duration: duration
       easing: easing
-  console.log 'hi', scale, scaleRatio
   $('.comments').show().appendTo($article).velocity
     properties:
       scale: (1 / scale) / scaleRatio
@@ -793,16 +802,16 @@ initLabels = () ->
 #   packPacks(true)
 #   savePacksViewPositions()
   
-showPanelHeaders = ->
+showPanelHeaders = (stop) ->
   $('li.panelHeader').velocity
     properties:
       translateY: 0
     options:
       duration: duration
       easing: easing
-      complete: -> $(@).velocity 'stop', true # prevent animations from piling up
+      complete: -> $(@).velocity('stop', true) if stop? # prevent animations from piling up
 
-hidePanelHeaders = ->
+hidePanelHeaders = () ->
   $('li.panelHeader').velocity
     properties:
       translateY: [-$(@).height(), 0]
@@ -913,7 +922,7 @@ onScroll = () ->
     panelHeadersHidden = true
   clearTimeout $.data this, 'hidePanelHeadersTimer'
   $.data this, 'hidePanelHeadersTimer', setTimeout ->
-    showPanelHeaders() if hasScrolledSomeDistance or not articleIsOpen
+    showPanelHeaders(true) if hasScrolledSomeDistance or not articleIsOpen
     panelHeadersHidden = false
   , 500
   

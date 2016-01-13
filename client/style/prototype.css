@@ -2629,8 +2629,8 @@ footer.main ul.actions li.action label {
 
 /* line 32, ../../style/prototype.scss */
 .scale {
-  transform-origin: top left;
-  -webkit-transform-origin: top left;
+  transform-origin: left top;
+  -webkit-transform-origin: left top;
 }
 
 /* line 37, ../../style/prototype.scss */
