@@ -13,6 +13,14 @@ packeryDuration = "#{packeryDurationMS / 1000}s"
 cardSize = if $(window).width() < 768 then 18 else 36
 gutter   = if $(window).width() < 768 then 12 else 24
 
+
+scrollPageTo = (offset) ->
+  $('html').velocity 'scroll', {
+    offset: offset
+    duration: duration
+    easing: easing
+  }
+
 drag = (event, $dragging, droppableCoordinates) ->
   mouseX = event.clientX
   mouseY = event.clientY
@@ -47,10 +55,8 @@ drag = (event, $dragging, droppableCoordinates) ->
 makeDropTarget = ($label, $dropTarget) ->
 # If no article is hovered over, un-defocus all articles
   if $dropTarget is null
-    console.log 'null'
     $('.droppable').removeClass('defocus').removeClass('dropTarget')
   else
-    console.log 'not null'
     $dropTarget.removeClass 'defocus'
     $dropTarget.addClass 'dropTarget'
     $('.droppable').not($dropTarget).addClass('defocus').css('backgroundColor', '')
@@ -234,11 +240,7 @@ closeArticle = ($article, scaleRatio, nativeDimensions) ->
   $('.content').css
     position: ''
   $('.content').data 'articleOpen', false
-  $('html').velocity 'scroll', {
-    offset: $(document).data 'originalScroll'
-    duration: duration
-    easing: easing
-  }
+  scrollPageTo($(document).data 'originalScroll')
   $('body').css
     maxHeight: ''
   $('.scale').velocity
@@ -266,22 +268,21 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
   hidePanelHeaders()
   # Scroll to top
   $(document).data 'originalScroll', $(document).scrollTop()
-  $('html').velocity 'scroll', {
-    duration: duration
-    easing: easing
-  }
-  $('.content').css
-    position: 'fixed'
-  $('body').css
-    height: $(window).height() * 10
-    overflow: 'hidden'
+  scrollPageTo(0)
+#   $('.content').css
+#     position: 'fixed'
+#   $('body').css
+# #     height: $(window).height() 
+#     overflow: 'hidden'
   $card = $article.find('.card')
   translateX =  (($(window).width() / 2) / scaleRatio)  - $card.offset().left - ($card.width()/2)*scale
   translateY =  (($(window).height() / 2) / scaleRatio) - $card.offset().top -  ($card.height()/2)*scale
-  transformOriginX  = 150 # * (($card.offset().left - ($(window).width())) / ($(window).width()))
-  transformOriginY  = 0
-  transformOrigin   = "#{transformOriginX}% #{transformOriginY}%"
-  console.log transformOriginX
+#   translateX = ($('.scale').width()/2)  - $card.offset().left - ($card.width()/2) *scale
+#   translateY = ($('.scale').height()/2) - ($(window).height() * 2) / scaleRatio# $card.offset().top 
+#   transformOriginX  = 150 # * (($card.offset().left - ($(window).width())) / ($(window).width()))
+#   transformOriginY  = 0
+#   transformOrigin   = "#{transformOriginX}% #{transformOriginY}%"
+#   console.log translateY, scaleRatio
   $('.scale').velocity
     properties:
       scale: scaleRatio
@@ -819,8 +820,9 @@ hidePanelHeaders = () ->
       duration: duration
       easing: easing
   
-hidePanelMenuItem = ($menu, $menuItem, isDragging) ->
-  dragging = $('.label.dragging').length > 0
+hidePanelMenuItem = ($menu, $menuItem) ->
+  isDragging = $('.label.dragging').length > 0
+  isOpeningLabel = $('.label.open').length > 0
   $menuItem.velocity
     properties:
       translateY: -$menu.height()
@@ -831,7 +833,7 @@ hidePanelMenuItem = ($menu, $menuItem, isDragging) ->
       complete: () ->
         # If last menu item, hide whole menu on animation complete
         if ($(@).index() is ($menu.find('li').length - 1)) 
-          $menu.hide() unless dragging
+          $menu.hide() unless isDragging or isOpeningLabel
           
 showPanelMenu = ($panel, $menu, $header) ->
   $menu.find('li').each ->
@@ -857,14 +859,38 @@ showPanelMenu = ($panel, $menu, $header) ->
       
 hidePanelMenu = ($panel, $menu, $header) ->
   isDragging = $('.label.dragging').length > 0
-  $menuItems = if isDragging then $menu.find('li').not($('.dragging')) else $menu.find('li') # if dragging, exclude label being dragged from being hidden
+  isOpeningLabel = $('.label.open').length > 0
+  $exemptMenuItem = if isDragging then $('.dragging') else if isOpeningLabel then $('.label.open')
+  $menuItems = if isDragging or isOpeningLabel then $menu.find('li').not($exemptMenuItem) else $menu.find('li') # if dragging, exclude label being dragged from being hidden
   $menuItems.each ->
     hidePanelMenuItem $menu, $(@), isDragging
-  showPanelHeaders() unless isDragging # Put panel headers back, unless label has been dragged out
+  showPanelHeaders() unless isDragging or isOpeningLabel # Put panel headers back, unless label has been dragged out or opening a label
   $('.content').removeClass 'blur'
   $('.content .mask').remove()
   removeCloseCursor $('body')
   $('body').off()
+  
+openLabel = ($label) ->
+  label = $label.data 'pack'
+  $panel = $label.parents('ul.panel')
+  $menu = $panel.find('li.menu')
+  $header = $panel.find('li.panelHeader')
+  $label.addClass 'open'
+  # animate label back to edge
+  $label.velocity
+    properties:
+      translateY: -$label.offset().left
+    options:
+      duration: duration
+      easing: easing
+  # close panel
+  hidePanelMenu $panel, $menu, $header
+  
+  $articles = $("article.#{label}")
+  $otherArticles = $('article').not($articles)
+  scrollPageTo(0)
+  $otherArticles.hide()
+  packRecents(true)
   
 initNav = ->
   $('nav.main ul.panel').each ->
@@ -880,6 +906,14 @@ initNav = ->
       showPanelMenu $panel, $menu, $header
       $('body').click ->
         hidePanelMenu $panel, $menu, $header
+    if $panel.hasClass 'labels'
+      $menu.find('li').each ->
+        $label = $(@)
+        $(@).find('a').click (event) ->
+#           console.log $label
+          event.preventDefault()
+          event.stopPropagation()
+          openLabel $label
 # # Tabs
 #   $nav = $('ul.tabs')
 #   $nav.find('.tab.recents').click (event) ->
@@ -915,16 +949,16 @@ onScroll = () ->
   articleIsOpen = $('.content').data 'articleOpen'
   hasScrolledSomeDistance = scrollTop isnt lastScrollTop # true if user has actually scrolled, and scroll event wasn't triggered without real movement
   
-  # hide side panels on scroll
-#   if hasScrolledSomeDistance and (scrollTop > 200) and (panelHeadersHidden isnt true)
-  unless panelHeadersHidden or articleIsOpen
-    hidePanelHeaders() if hasScrolledSomeDistance
-    panelHeadersHidden = true
-  clearTimeout $.data this, 'hidePanelHeadersTimer'
-  $.data this, 'hidePanelHeadersTimer', setTimeout ->
-    showPanelHeaders(true) if hasScrolledSomeDistance or not articleIsOpen
-    panelHeadersHidden = false
-  , 500
+#   # hide side panels on scroll
+# #   if hasScrolledSomeDistance and (scrollTop > 200) and (panelHeadersHidden isnt true)
+#   unless panelHeadersHidden or articleIsOpen
+#     hidePanelHeaders() if hasScrolledSomeDistance
+#     panelHeadersHidden = true
+#   clearTimeout $.data this, 'hidePanelHeadersTimer'
+#   $.data this, 'hidePanelHeadersTimer', setTimeout ->
+#     showPanelHeaders(true) if hasScrolledSomeDistance or not articleIsOpen
+#     panelHeadersHidden = false
+#   , 500
   
   lastScrollTop = scrollTop
   
