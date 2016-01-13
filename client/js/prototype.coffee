@@ -774,6 +774,7 @@ showPanelHeaders = ->
     options:
       duration: duration
       easing: easing
+      complete: -> $(@).velocity 'stop', true # prevent animations from piling up
 
 hidePanelHeaders = ->
   $('li.panelHeader').velocity
@@ -782,6 +783,7 @@ hidePanelHeaders = ->
     options:
       duration: duration
       easing: easing
+#       complete: -> $(@).velocity "stop", true
   
 hidePanelMenuItem = ($menu, $menuItem, isDragging) ->
   dragging = $('.label.dragging').length > 0
@@ -883,8 +885,8 @@ onScroll = () ->
   unless panelHeadersHidden
     hidePanelHeaders() if hasScrolledSomeDistance
     panelHeadersHidden = true
-  clearTimeout $.data this, 'hideHeadersTimer'
-  $.data this, 'hideHeadersTimer', setTimeout ->
+  clearTimeout $.data this, 'hidePanelHeadersTimer'
+  $.data this, 'hidePanelHeadersTimer', setTimeout ->
     showPanelHeaders() if hasScrolledSomeDistance
     panelHeadersHidden = false
   , 500
