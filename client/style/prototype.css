@@ -2615,7 +2615,8 @@ footer.main ul.actions li.action label {
 }
 /* line 18, ../../style/prototype.scss */
 .content.blur {
-  opacity: 0;
+  -webkit-filter: grayscale(1);
+  opacity: .25;
 }
 /* line 23, ../../style/prototype.scss */
 .content .mask {

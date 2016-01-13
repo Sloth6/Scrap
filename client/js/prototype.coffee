@@ -58,24 +58,27 @@ makeDropTarget = ($label, $dropTarget) ->
   
 stopDragging = (mouseUpEvent, $dragging) ->
   $dragging.removeClass('dragging')
+  $panel = $dragging.parents('ul.panel')
+  $menu = $panel.find('li.menu')
+  $header = $panel.find('li.panelHeader')
 # If mouse is over a drop target
   if $('.dropTarget').length > 0
-    console.log 'ho'
+    classRemoveDelay = 1000
+    $dragging.find('a').velocity
+      properties:
+        scale: 0
+      options:
+        duration: 250
+        easing: easing
+        complete: -> $(@).css 'opacity', 0
 # Mouse is over nothing
   else
-    $panel = $dragging.parents('ul.panel')
-    $menu = $panel.find('li.menu')
-    $header = $panel.find('li.panelHeader')
-    hidePanelMenu $panel, $menu, $header
+    classRemoveDelay = 0
+  setTimeout ->
     $dragging.find('a').velocity 'reverse' # unrotate label 
-#     $dragging.velocity
-#       properties:
-#         translateX: 0
-#         translateY: -$menu.height()
-#       options:
-#         duration: duration
-#         easing: easing
-  $('.article').removeClass('defocus').removeClass('dropTarget').removeClass('droppable')
+    hidePanelMenu $panel, $menu, $header
+    $('article').removeClass('defocus').removeClass('dropTarget').removeClass('droppable')
+  , classRemoveDelay
 
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
@@ -772,6 +775,8 @@ showPanelMenu = ($panel, $menu, $header) ->
 #       easing: easing
   $menu.find('li').each ->
     $(@).css 'opacity', 0
+    $(@).find('a').css 'opacity', 1 # reverse hiding of label after adding to article
+    $.Velocity.hook $(@).find('a'), 'rotateZ', 0
     $(@).velocity
       properties:
         translateZ: 0
