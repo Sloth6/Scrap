@@ -230,7 +230,17 @@ saveOpenPackPositions = () ->
     $(@).data('openPackTop',  parseInt($(@).css('top')))
     
 closeArticle = ($article, scaleRatio, nativeDimensions) ->
+  showPanelHeaders()
+  $('.content').css
+    position: ''
   $('.content').data 'articleOpen', false
+  $('html').velocity 'scroll', {
+    offset: $(document).data 'originalScroll'
+    duration: duration
+    easing: easing
+  }
+  $('body').css
+    maxHeight: ''
   $('.scale').velocity
     properties:
       scale: 1
@@ -251,10 +261,23 @@ closeArticle = ($article, scaleRatio, nativeDimensions) ->
     complete: -> $('.comments').hide().appendTo($('body'))
   })
   $('.comments').find('.comment').each -> $(@).velocity('reverse')
-  showNavBar()
     
 openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
-  hideNavBar()
+  hidePanelHeaders()
+  # Scroll to top
+  $(document).data 'originalScroll', $(document).scrollTop()
+  $('html').velocity 'scroll', {
+    duration: duration
+    easing: easing
+  }
+  $('.content').css
+    position: 'fixed'
+  $('body').css
+    height: $(window).height() * 10
+    overflow: 'hidden'
+#     width: $(window).width()/8
+#     overflowX: 'hidden'
+#     maxHeight: ''
   $card = $article.find('.card')
 #   translateX = (($(window).width()/2))  - ((nativeDimensions.width/2))
 #   translateY = (($(window).height()/2)) - ((nativeDimensions.height/2))
@@ -272,7 +295,7 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
   # hide other articles
   $('article, .packable').not($article).addClass('defocus').velocity
     properties:
-      opacity: 0
+      opacity: .125
     options:
       duration: duration
       easing: easing
@@ -880,16 +903,17 @@ onScroll = () ->
   isScrolling = true
   scrollTop = $(document).scrollTop()
   direction = if scrollTop > lastScrollTop then 'down' else 'up'
+  articleIsOpen = $('.content').data 'articleOpen'
   hasScrolledSomeDistance = scrollTop isnt lastScrollTop # true if user has actually scrolled, and scroll event wasn't triggered without real movement
   
   # hide side panels on scroll
 #   if hasScrolledSomeDistance and (scrollTop > 200) and (panelHeadersHidden isnt true)
-  unless panelHeadersHidden
+  unless panelHeadersHidden or articleIsOpen
     hidePanelHeaders() if hasScrolledSomeDistance
     panelHeadersHidden = true
   clearTimeout $.data this, 'hidePanelHeadersTimer'
   $.data this, 'hidePanelHeadersTimer', setTimeout ->
-    showPanelHeaders() if hasScrolledSomeDistance
+    showPanelHeaders() if hasScrolledSomeDistance or not articleIsOpen
     panelHeadersHidden = false
   , 500
   
