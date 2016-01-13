@@ -2651,6 +2651,7 @@ nav.main ul.panel {
   text-align: center;
   width: 100vh;
   border-bottom: transparent 1px solid;
+  height: 0;
   /*
           @include transition(.25s $defaultCurve);
           @include transition-property(background-color, border-color);
@@ -2662,7 +2663,7 @@ nav.main ul.panel {
           }
   */
 }
-/* line 66, ../../style/prototype.scss */
+/* line 67, ../../style/prototype.scss */
 nav.main ul.panel.left {
   position: absolute;
   left: 0;
@@ -2673,7 +2674,7 @@ nav.main ul.panel.left {
   transform-origin: left top;
   -webkit-transform-origin: left top;
 }
-/* line 78, ../../style/prototype.scss */
+/* line 79, ../../style/prototype.scss */
 nav.main ul.panel.right {
   position: absolute;
   right: 0;
@@ -2684,22 +2685,26 @@ nav.main ul.panel.right {
   transform-origin: right top;
   -webkit-transform-origin: right top;
 }
-/* line 86, ../../style/prototype.scss */
+/* line 87, ../../style/prototype.scss */
 nav.main ul.panel li {
   width: 100%;
   transform-origin: left center;
   -webkit-transform-origin: left center;
 }
-/* line 91, ../../style/prototype.scss */
+/* line 92, ../../style/prototype.scss */
 nav.main ul.panel li.panelHeader {
   position: absolute;
   top: 0;
 }
-/* line 100, ../../style/prototype.scss */
+/* line 101, ../../style/prototype.scss */
 nav.main ul.panel li a {
   display: inline-block;
   line-height: 1.25em;
   font-size: 36pt;
+}
+/* line 108, ../../style/prototype.scss */
+nav.main ul.panel li.menu {
+  background: yellow;
 }
 
 /*
@@ -2751,7 +2756,7 @@ nav.main {
     }
 }
 */
-/* line 171, ../../style/prototype.scss */
+/* line 174, ../../style/prototype.scss */
 .container {
   transform-origin: top left;
   /*
@@ -2776,7 +2781,7 @@ nav.main {
   */
 }
 @media (max-width: 768px) {
-  /* line 171, ../../style/prototype.scss */
+  /* line 174, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2784,17 +2789,17 @@ nav.main {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 181, ../../style/prototype.scss */
+  /* line 184, ../../style/prototype.scss */
   .container article .card {
     border-width: 2px;
   }
-  /* line 187, ../../style/prototype.scss */
+  /* line 190, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 768px) {
-  /* line 171, ../../style/prototype.scss */
+  /* line 174, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.5);
     -ms-transform: scale(0.5);
@@ -2802,13 +2807,13 @@ nav.main {
     transform: scale(0.5);
     width: 200%;
   }
-  /* line 206, ../../style/prototype.scss */
+  /* line 209, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 2px #000000;
   }
 }
 @media (min-width: 1024px) {
-  /* line 171, ../../style/prototype.scss */
+  /* line 174, ../../style/prototype.scss */
   .container {
     -moz-transform: scale(0.66667);
     -ms-transform: scale(0.66667);
@@ -2816,16 +2821,16 @@ nav.main {
     transform: scale(0.66667);
     width: 150%;
   }
-  /* line 219, ../../style/prototype.scss */
+  /* line 222, ../../style/prototype.scss */
   .container article .card {
     border-width: 1.5px;
   }
-  /* line 225, ../../style/prototype.scss */
+  /* line 228, ../../style/prototype.scss */
   .container .pack h1.packTitle {
     -webkit-text-stroke: 1.5px #000000;
   }
 }
-/* line 253, ../../style/prototype.scss */
+/* line 256, ../../style/prototype.scss */
 .container article {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -2836,29 +2841,29 @@ nav.main {
   -webkit-transition-property: background-color;
   transition-property: background-color;
 }
-/* line 258, ../../style/prototype.scss */
+/* line 261, ../../style/prototype.scss */
 .container article.defocus .card {
   -webkit-filter: grayscale(1);
-  opacity: .5;
+  opacity: .1;
 }
-/* line 265, ../../style/prototype.scss */
+/* line 268, ../../style/prototype.scss */
 .container article.dropTarget .card {
   -webkit-filter: grayscale(1);
   mix-blend-mode: multiply;
 }
-/* line 275, ../../style/prototype.scss */
+/* line 278, ../../style/prototype.scss */
 .container article .comments {
   margin-top: 16pt;
   width: 224pt;
   transform-origin: left top;
   -webkit-transform-origin: left top;
 }
-/* line 281, ../../style/prototype.scss */
+/* line 284, ../../style/prototype.scss */
 .container article .comments li {
   opacity: 0;
   margin-bottom: 8pt;
 }
-/* line 287, ../../style/prototype.scss */
+/* line 290, ../../style/prototype.scss */
 .container article .card {
   /*
               mix-blend-mode: multiply;
@@ -2873,7 +2878,7 @@ nav.main {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
   transition-property: transform, -webkit-transform, -moz-transform, box-shadow, -webkit-box-shadow, -moz-box-shadow, background-color, border-color, color, mix-blend-mode, -webkit-filter;
 }
-/* line 307, ../../style/prototype.scss */
+/* line 310, ../../style/prototype.scss */
 .container article .backgroundColor {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;

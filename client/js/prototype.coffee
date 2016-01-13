@@ -304,12 +304,7 @@ openArticleAnimations = ($article, scaleRatio, nativeDimensions) ->
 #       duration: duration
 #       easing: easing
   # hide other articles
-  $('article, .packable').not($article).addClass('defocus').velocity
-    properties:
-      opacity: .125
-    options:
-      duration: duration
-      easing: easing
+  $('article, .packable').not($article).addClass('defocus')
   # make sure article is visible
   $article.velocity
     properties:
@@ -812,8 +807,9 @@ showPanelHeaders = (stop) ->
       easing: easing
       complete: -> $(@).velocity('stop', true) if stop? # prevent animations from piling up
 
-hidePanelHeaders = () ->
-  $('li.panelHeader').velocity
+hidePanelHeaders = ($panel) ->
+  $headers = if $panel? then $panel.find($('li.panelHeader')) else $('li.panelHeader')
+  $headers.velocity
     properties:
       translateY: [-$(@).height(), 0]
     options:
@@ -835,8 +831,14 @@ hidePanelMenuItem = ($menu, $menuItem) ->
         # If last menu item, hide whole menu on animation complete
         if ($(@).index() is ($menu.find('li').length - 1)) 
           $menu.hide() unless isDragging or isOpeningLabel
+#           $menu.css
+#             height: $menuItem.height()
+#             overflow: 'hidden'
           
 showPanelMenu = ($panel, $menu, $header) ->
+#   $menu.css
+#     height: ''
+#     overflow: ''
   $menu.find('li').each ->
     $(@).css 'opacity', 0
     $(@).find('a').show() # reverse hiding of label after adding to article
@@ -844,7 +846,7 @@ showPanelMenu = ($panel, $menu, $header) ->
     $(@).velocity
       properties:
 #         rotateZ: [0, 90]
-        translateY: [0, -$menu.height()]
+        translateY: [$menu.height(), 0]
       options:
         duration: duration/2 + ($(@).index() / $menu.find('li').length) * 1000
         easing: easing
@@ -880,7 +882,7 @@ openLabel = ($label) ->
   # animate label back to edge
   $label.velocity
     properties:
-      translateY: -$label.offset().left
+      translateY: $menu.height() - $label.offset().left
     options:
       duration: duration
       easing: easing
@@ -899,19 +901,20 @@ openLabel = ($label) ->
   $articles = $("article.#{label}")
   $otherArticles = $('article').not($articles)
   scrollPageTo(0)
-#   $('.container.recents').packery 'remove', $otherArticles
   $articles.each ->
-    $(@).show()
-    $.Velocity.hook $(@), 'translateX', 0
-    $.Velocity.hook $(@), 'translateY', 0
-    packRecents(true)
+    $(@).velocity 'reverse', {
+      complete: ->
+        $(@).show()
+        packRecents(true)
+    }
   $otherArticles.each ->
     $(@).velocity
       properties:
         translateY: Math.random() * $(window).height()
-        translateX: if $(@).offset().left > $(window).width()/2 then $(window).width() else -$(window).width()
+        translateX: if $(@).offset().left > $(window).width()/2 then $(window).width()*1.5 else -$(window).width()*1.5
+        rotateZ: (Math.random() - .5) * 360
       options:
-        duration: duration/4
+        duration: duration/2
         easing: easing
         complete: ->
           $(@).hide()
@@ -924,7 +927,9 @@ initNav = ->
     $menu = $panel.find('li.menu')
     $header = $panel.find('li.panelHeader')
     # hide submenu
-    $menu.hide()
+#     $menu.hide()
+    $.Velocity.hook $menu, 'translateY', "-#{$menu.height()}px"
+    console.log $.Velocity.hook($menu, 'translateY')
     # open panel on header click
     $header.find('a').click (event) ->
       event.stopPropagation()
@@ -936,7 +941,6 @@ initNav = ->
       $menu.find('li').each ->
         $label = $(@)
         $(@).find('a').click (event) ->
-#           console.log $label
           event.preventDefault()
           event.stopPropagation()
           openLabel $label
