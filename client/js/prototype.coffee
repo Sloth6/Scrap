@@ -10,6 +10,74 @@ packeryDuration = "#{packeryDurationMS / 1000}s"
 cardSize = if $(window).width() < 768 then 18 else 36
 gutter   = if $(window).width() < 768 then 12 else 24
 
+drag = (event, $dragging) ->
+  x = event.clientX
+  y = $(window).height() - event.clientY
+#   scaleThreshhold = $(window).height() / 2
+#   scale = if y > scaleThreshhold then Math.max(.125, 1 - ((y - scaleThreshhold) / scaleThreshhold)) else 1
+#   $collection = $('.collection.open')
+  
+  w = 200# contentModel.getSize($dragging)
+  h = 200# Math.max($dragging.find('.content').height(), 200)
+  
+  offsetPercentX = ($dragging.data('mouseOffsetX') - (w / 2)) / (w/2)
+  offsetPercentY = ($dragging.data('mouseOffsetY') - (h / 2)) / (h/2)
+  
+  scaleOffsetX = (w/2)*(1-scale)*offsetPercentX
+  scaleOffsetY = (h/2)*(1-scale)*offsetPercentY
+  offsetX = - $dragging.data('mouseOffsetX')
+  offsetY = - $dragging.data('mouseOffsetY')
+  $dragging.velocity {
+    translateY: x - $dragging.data 'mouseOffsetX'
+    translateX: y - $dragging.data 'mouseOffsetY'
+  }, { duration: 1 }
+
+stopDragging = (mouseUpEvent, $dragging) ->
+  console.log 'ho'
+
+startDragging = ($dragging, mouseDownEvent) ->
+  $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
+  $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
+#   $dragging.appendTo $('body')
+#   $dragging.css
+#     position: 'absolute'
+#     top: 0
+#     left: 0
+
+makeDraggable = ($element) ->
+  $element.find('a,img,iframe').bind 'dragstart', () -> false
+  dragThreshold = 20
+  
+  $element.on 'mousedown', (mouseDownEvent) ->
+    return unless mouseDownEvent.which is 1 # only work for left click
+#     return if $(@).hasClass 'open'
+#     return if $(@).hasClass 'editing'
+#     return unless collectionModel.getParent($content).hasClass 'open'
+#     $element.data 'originalCollection', contentModel.getCollection $content
+    
+    startX = mouseDownEvent.clientX
+    startY = mouseDownEvent.clientY
+
+    mousedownArticle = $element
+    draggingArticle  = null
+        
+    $(window).mousemove (event) ->
+      if draggingArticle == null
+        dX = Math.abs(startX - event.clientX)
+        dY = Math.abs(startY - event.clientY)
+        if dX < dragThreshold and dY < dragThreshold
+          return
+        draggingArticle = mousedownArticle
+        startDragging draggingArticle, mouseDownEvent
+      drag event, draggingArticle
+    
+    $(window).mouseup (event) ->
+      $(window).off 'mousemove'
+      $(window).off 'mouseup'
+      if draggingArticle?
+        stopDragging(event, draggingArticle)
+
+
 randomColor = () ->
   h = Math.random() * 360
   s = 100
@@ -639,19 +707,37 @@ showPanelMenu = ($panel, $menu, $header) ->
 #       easing: easing
   $menu.find('li').each ->
     $(@).css 'opacity', 0
-    console.log duration - ($(@).index() / $menu.find('li').length) * 1000
     $(@).velocity
       properties:
         translateZ: 0
         translateY: [0, -$menu.height()]
       options:
-        duration: duration - ($(@).index() / $menu.find('li').length) * 500
+        duration: duration/2 + ($(@).index() / $menu.find('li').length) * 1000
         easing: easing
 #         delay: $(@).index() * 100
         begin: () ->
           if $(@).index() is 0
             $menu.show()
           $(@).css 'opacity', 1
+    # Bind drag events
+    makeDraggable $(@)
+    $(@).mousedown ->
+      $(@).find('a').velocity
+        properties:
+          rotateZ: 90
+# #       $.Velocity.hook $panel, 'rotateZ', 0
+# #       $.Velocity.hook $menu.find('li'), 'rotateZ', 270
+#       $(@).velocity
+#         properties:
+#           rotateZ: '90deg'
+#         options:
+#           duration: duration
+#           easing: easing
+#           complete: ->
+#             drag $(@)
+# #             $draggable = $(@).draggabilly()
+# #             $draggable.on 'dragStart', () ->
+# #               console.log $(@)
   $header.velocity
     properties:
       translateY: [-$header.height(), 0]
@@ -664,6 +750,12 @@ showPanelMenu = ($panel, $menu, $header) ->
     options:
       duration: duration
       easing: easing
+#   $('.content').velocity
+#     properties:
+#       translateX: $menu.height()
+#     options:
+#       duration: duration
+#       easing: easing
   $('.content').addClass 'blur'
   $('.content').append $('<div class="mask"></div>')
   applyCloseCursor $('body')
@@ -677,6 +769,7 @@ hidePanelMenu = ($panel, $menu, $header) ->
     }
   $header.velocity 'reverse'
   $('li.panelHeader').not($header).velocity 'reverse'
+#   $('.content').velocity 'reverse'
   $('.content').removeClass 'blur'
   $('.content .mask').remove()
   removeCloseCursor $('body')

@@ -2695,8 +2695,8 @@ nav.main ul.panel li.panelHeader {
 /* line 98, ../../style/prototype.scss */
 nav.main ul.panel li a {
   display: inline-block;
-  line-height: 1.5em;
-  font-size: 24pt;
+  line-height: 1.25em;
+  font-size: 36pt;
 }
 
 /*
