@@ -1,6 +1,7 @@
 @import "screen.scss";
 
 body {
+    @include transition(background-color .5s $defaultCurve); // for label hover effect
 }
 
 .content {
@@ -17,7 +18,8 @@ body {
     
     &.blur {
         -webkit-filter: grayscale(1);
-        opacity: .25;
+        mix-blend-mode: multiply;
+        opacity: .125;
     }
     
     .mask {
@@ -92,30 +94,43 @@ nav.main {
             &.panelHeader {
                 position: absolute;
                 top: 0;
+                
                 a {
-//                     margin-top: $gutter;
-//                     line-height: $gutter * 4;
+                    -webkit-text-stroke: 1px $colorType;
+                    -webkit-text-fill-color: $colorCardBackground;
+                    
+                    &:hover {
+                        @include typeOutlineFillBlack;
+                    }
                 }
             }
             
             a {
                 display: inline-block;
+                background: blue;
 //                 width: 100%;
                 line-height: 1.25em;
                 font-size: 36pt;
+                font-weight: $fontWeightMedium;
+                @include transition(.25s $defaultCurve);
+                @include transition-property(-webkit-text-stroke, -webkit-text-fill-color);
             }
             
             &.menu {
                 
                 ul.labels {
-                    a {
-                        -webkit-text-stroke: 1px $colorType;
-                        -webkit-text-fill-color: $colorType;
-                        
-                        &:first-child {
-//                             margin-top: $gutter;
+                    li.label {
+                        &.recent {
+                            a {
+                                -webkit-text-stroke: 1px $colorType;
+                                -webkit-text-fill-color: $colorType;
+                            }
                         }
-//                         font-size: $typeTitleSize;
+                        
+                        a {
+                            -webkit-text-stroke: 1px $colorType;
+                            -webkit-text-fill-color: $colorCardBackground;
+                        }
                     }
                 }
             }

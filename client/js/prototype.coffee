@@ -760,10 +760,33 @@ initLabels = () ->
       color = $(@).data('color')
       labelName = "#{$(@).data('pack')}"
       $(@).children('a').css
-        color: "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
-        '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
+        color: "hsl(#{color.h},100%,#{color.l}%)"
+        '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
       $("article.#{labelName}").each ->
         $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
+      $(@).mouseenter ->
+        unless $(@).hasClass 'open'
+          $('li.label').not($(@)).each ->
+            $(@).find('a').css
+              color: 'white' # "hsl(#{color.h},100%,#{color.l}%)"
+              '-webkit-text-fill-color' : 'white' # "hsl(#{color.h},100%,#{color.l}%)"
+#           $(@).find('a').css
+#             color: "white"
+#             '-webkit-text-fill-color' : "white"
+#           $('.content, article, article .card').css
+#             'mix-blend-mode': 'multiply'
+#           $('body, .backgroundColor').css
+#             backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
+      $(@).mouseout ->
+        $('li.label').not($(@)).not('.recent').each ->
+          color = $(@).data('color')
+          $(@).find('a').css
+            color: "hsl(#{color.h},100%,#{color.l}%)"
+            '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
+#         $('.content, article, article .card').css
+#           'mix-blend-mode': ''
+#         $('body, .backgroundColor').css
+#           backgroundColor: ''
     
 #   resizePacks()
 #   $('.packs.container').packery {
@@ -783,7 +806,7 @@ initLabels = () ->
 # #     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
 #     $("article.#{packName}").each ->
 #       $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
-# #       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{(color.l+50)/2}%)")
+# #       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
 # 
 # #     top = $("article.#{packName}").length * stackOffset
 # #     $(@).css
@@ -877,7 +900,7 @@ openLabel = ($label) ->
   # animate label back to edge
   $label.velocity
     properties:
-      translateY: $menu.height() - $label.offset().left
+      translateY: -$label.offset().left
     options:
       duration: duration
       easing: easing
