@@ -7,12 +7,12 @@ body {
     height: auto;
     min-height: 0;
     margin: 0 $gutter;
-    padding-top: $broadMargin + 1;
+//     padding-top: $broadMargin + 1;
     @include transition(1s $defaultCurve);
     @include transition-property(opacity, -webkit-filter);
     
     @media (min-width: $breakSmall) {
-        margin: 0 $gutter 0 $gutter * 3;
+        margin: $gutter $gutter $gutter $gutter * 3;
     }
     
     &.blur {
@@ -109,6 +109,9 @@ nav.main {
                 
                 ul.labels {
                     a {
+                        -webkit-text-stroke: 1px $colorType;
+                        -webkit-text-fill-color: $colorType;
+                        
                         &:first-child {
 //                             margin-top: $gutter;
                         }
@@ -271,6 +274,35 @@ nav.main {
             
             .backgroundColor {
 //                 opacity: 1;
+            }
+        }
+        
+        .labelIndicator {
+            content: "";
+            height: $cell;
+            width: $cell * 4;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            border: $cardBorder;
+            color: transparent;
+            padding: 0;
+            @include transition(.25s $defaultCurve);
+            @include transition-property(padding);
+            white-space: nowrap;
+            @include cursorGrab;
+            
+            &:hover {
+                color: $colorType;
+                width: intrinsic;
+                height: auto;
+                padding: 0 $cell $cell/2 $cell;
+            }
+            
+            &:active {
+                @include cursorGrabbing;
             }
         }
         

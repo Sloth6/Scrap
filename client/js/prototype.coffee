@@ -369,7 +369,10 @@ bindArticleOpenEvents = ($article) ->
 initItems = () ->
   $('article').each ->
     packName = $(@).data('pack')
-    color = $("li.label.#{packName}").data('color')
+    $label = $("li.label.#{packName}")
+    color = $label.data('color')
+    $labelIndicator = $('<div></div>').addClass('labelIndicator').appendTo($(@)).html($label.find('a').html()).css
+      backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
     if $(@).hasClass('text')
       $(@).find('.card').css
         backgroundColor: "hsl(#{color.h},100%,95%)"
@@ -758,6 +761,7 @@ initLabels = () ->
       labelName = "#{$(@).data('pack')}"
       $(@).children('a').css
         color: "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
+        '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
       $("article.#{labelName}").each ->
         $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
     
