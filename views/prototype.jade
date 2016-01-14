@@ -3,7 +3,7 @@ html.no-js(lang='en')
   head
     meta(charset='utf-8')
     title Scrap
-    // link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
+    link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
     script(src='/js/jquery/jquery.js')
     script(src="/js/jquery/jquery-ui.min.js")
     script(src="/js/jquery/jquery.transit.min.js")
@@ -27,9 +27,14 @@ html.no-js(lang='en')
           a(href='#') Labels
         li.menu
           ul.labels
+            - function randomColor () {
+                - return JSON.stringify({ 'h' : Math.random() * 360, 's' : 100, 'l' : Math.random() * 10 + 70 })
+            - }
+            li.label.recent(data-pack='recent', data-color=JSON.stringify({'h': 0, 's' : 0, 'l' : 0}))
+              a(href='#') Recent
             - for (var i = 0; i < n; i++) {
               - var name = 'Ligula Dolor #' + i;
-              li.label(data-pack=i, class=i)
+              li.label(data-pack=i, class=i, data-color=randomColor())
                 a(href='#')= name
             - }
       ul.panel.settings.right

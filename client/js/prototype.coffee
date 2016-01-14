@@ -151,16 +151,6 @@ makeDraggable = ($element) ->
       if draggingArticle?
         stopDragging(event, draggingArticle)
 
-
-randomColor = () ->
-  h = Math.random() * 360
-  s = 100
-  l = Math.random() * 10 + 70
-  {
-    h: h
-    s: s
-    l: l
-  }
 #   "hsl(#{h},100%,#{l}%)"
 
 applyCloseCursor = ($element) ->
@@ -763,13 +753,13 @@ resizePacks = () -> # stretch pack element around children
     
 initLabels = () ->
   $('li.label').each ->
-    color = randomColor()
-    labelName = "#{$(@).data('pack')}"
-    $(@).data 'color', color
-    $(@).children('a').css
-      color: "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
-#     $("article.#{labelName}").each ->
-#       $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
+    unless $(@).hasClass 'recent'
+      color = $(@).data('color')
+      labelName = "#{$(@).data('pack')}"
+      $(@).children('a').css
+        color: "hsl(#{color.h},100%,#{(color.l+50)/2}%)"
+      $("article.#{labelName}").each ->
+        $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
     
 #   resizePacks()
 #   $('.packs.container').packery {
@@ -846,7 +836,7 @@ showPanelMenu = ($panel, $menu, $header) ->
     $(@).velocity
       properties:
 #         rotateZ: [0, 90]
-        translateY: [$menu.height(), 0]
+        translateY: [0, -$menu.height()]
       options:
         duration: duration/2 + ($(@).index() / $menu.find('li').length) * 1000
         easing: easing
@@ -879,6 +869,7 @@ openLabel = ($label) ->
   $menu = $panel.find('li.menu')
   $header = $panel.find('li.panelHeader')
   $label.addClass 'open'
+    
   # animate label back to edge
   $label.velocity
     properties:
@@ -896,17 +887,21 @@ openLabel = ($label) ->
     event.preventDefault()
     $label.removeClass 'open'
     showPanelMenu $panel, $menu, $header
-    $label.find('a').off()    
+    $label.find('a').off()
   
+  # filter articles
   $articles = $("article.#{label}")
   $otherArticles = $('article').not($articles)
+  # scroll to top
   scrollPageTo(0)
+  # animate matching articles pack in if necessary
   $articles.each ->
     $(@).velocity 'reverse', {
       complete: ->
         $(@).show()
         packRecents(true)
     }
+  # animate non-matching articles away, then hide()
   $otherArticles.each ->
     $(@).velocity
       properties:
@@ -919,7 +914,14 @@ openLabel = ($label) ->
         complete: ->
           $(@).hide()
           packRecents(true)
+  # repack for good measure
   packRecents(true)
+  
+  # add button for going back to recents view
+#   $recentsLabel = $label.clone().insertBefore($menu.find('li.label').first())
+#   $recentsLabel.removeAttr 'data-pack'
+#   $recentsLabel.removeClass 
+  
   
 initNav = ->
   $('nav.main ul.panel').each ->
@@ -927,9 +929,8 @@ initNav = ->
     $menu = $panel.find('li.menu')
     $header = $panel.find('li.panelHeader')
     # hide submenu
-#     $menu.hide()
-    $.Velocity.hook $menu, 'translateY', "-#{$menu.height()}px"
-    console.log $.Velocity.hook($menu, 'translateY')
+    $menu.hide()
+#     $.Velocity.hook $menu, 'translateY', "-#{$menu.height()}px"
     # open panel on header click
     $header.find('a').click (event) ->
       event.stopPropagation()
