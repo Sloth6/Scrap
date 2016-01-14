@@ -107,8 +107,6 @@ nav.main {
             
             a {
                 display: inline-block;
-                background: blue;
-//                 width: 100%;
                 line-height: 1.25em;
                 font-size: 36pt;
                 font-weight: $fontWeightMedium;
@@ -130,6 +128,13 @@ nav.main {
                         a {
                             -webkit-text-stroke: 1px $colorType;
                             -webkit-text-fill-color: $colorCardBackground;
+                            
+                            .scale {
+                                        transform-origin: left top;
+                                -webkit-transform-origin: left top;
+                                @include transition(.5s $defaultCurve);
+                                @include transition-property(background-color, border);
+                            }
                         }
                     }
                 }
@@ -292,32 +297,44 @@ nav.main {
             }
         }
         
-        .labelIndicator {
-            content: "";
-            height: $cell;
-            width: $cell * 4;
-            background: red;
+        ul.labelIndicators {
             position: absolute;
             top: 0;
             left: 0;
             z-index: 2;
-            border: $cardBorder;
-            color: transparent;
-            padding: 0;
-            @include transition(.25s $defaultCurve);
-            @include transition-property(padding);
-            white-space: nowrap;
-            @include cursorGrab;
-            
-            &:hover {
-                color: $colorType;
-                width: intrinsic;
-                height: auto;
-                padding: 0 $cell $cell/2 $cell;
-            }
-            
-            &:active {
-                @include cursorGrabbing;
+        
+            li.labelIndicator {
+                display: inline-block;
+                content: "";
+                height: $cell;
+                width: $cell;
+                background: red;
+                border: $cardBorder;
+                margin-left: -$cardBorderWidth;
+                color: transparent;
+                padding: 0;
+                @include transition(.25s $defaultCurve);
+                @include transition-property(padding);
+                white-space: nowrap;
+                @include cursorGrab;
+                transform-origin: left top;
+        -webkit-transform-origin: left top;
+
+                
+                &:first-of-type {
+                    margin-left: 0;
+                }
+                
+                &:hover {
+                    color: $colorType;
+                    width: intrinsic;
+                    height: auto;
+                    padding: 0 $cell $cell/2 $cell;
+                }
+                
+                &:active {
+                    @include cursorGrabbing;
+                }
             }
         }
         

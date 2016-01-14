@@ -62,22 +62,68 @@ makeDropTarget = ($label, $dropTarget) ->
     $('.droppable').not($dropTarget).addClass('defocus').css('backgroundColor', '')
     color = $label.data 'color'
     $dropTarget.css 'backgroundColor', "hsl(#{color.h},100%,#{color.l}%)"
+    
+applyLabel = ($label, $target, duration) ->
+  color = $label.data 'color'
+  $a = $label.find('a')
+  $translate = $label.find('.translate')
+  $scale = $label.find('.scale')
+  $labelIndicator = $('<li></li>').addClass('labelIndicator').html($label.find('a').html()).css
+    backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
+    opacity: 0
+  $labelIndicator.velocity
+    properties:
+      translateX: [0, $translate.offset().left - $labelIndicator.offset().left]
+      translateY: [0, $translate.offset().top  - $labelIndicator.offset().top]
+      scaleX: [1, 50] #$label.width()  / $labelIndicator.width()]
+      scaleY: [1, 6 ] #$label.height() / $labelIndicator.height()]
+      opacity: [1, 0]
+    options:
+      duration: duration
+      easing: easing
+      begin: ->
+        $labelIndicator.appendTo $target.find('ul.labelIndicators')
+  # translate label to top left of article
+  $translate.velocity
+    properties:
+      translateY: $target.offset().top  - $translate.offset().top
+      translateX: $target.offset().left - $translate.offset().left
+    options:
+      duration: duration
+      easing: easing
+  # scale label down to 0 as it translates up/left
+  $scale.velocity
+    properties:
+      scaleX: $labelIndicator.width() / $label.width() 
+      scaleY: $labelIndicator.height() / $label.height()
+      opacity: 0
+    options:
+      duration: duration
+      easing: easing
+      complete: ->
+        # reset transformations on transformation divs
+        $scale.css
+          backgroundColor: ''
+          border: ''
+          opacity: ''
+        $.Velocity.hook $scale,     'scaleX',      '1'
+        $.Velocity.hook $scale,     'scaleY',      '1'
+        $.Velocity.hook $translate, 'translateX', '0px'
+        $.Velocity.hook $translate, 'translateY', '0px'
+        $a.hide()
+  $target.addClass($label.data('pack') + ' ')
+  console.log 'abel', $label.data('pack'), $target.attr('class') 
   
 stopDragging = (mouseUpEvent, $dragging) ->
   $dragging.removeClass('dragging')
   $panel = $dragging.parents('ul.panel')
   $menu = $panel.find('li.menu')
   $header = $panel.find('li.panelHeader')
+  $target = $('.dropTarget')
 # If mouse is over a drop target
-  if $('.dropTarget').length > 0
+  if $target.length > 0
     classRemoveDelay = 500
-    $dragging.find('a').velocity
-      properties:
-        scale: 0
-      options:
-        duration: classRemoveDelay
-        easing: easing
-        complete: -> $(@).hide()
+    applyLabel $dragging, $target, classRemoveDelay
 # Mouse is over nothing
   else
     classRemoveDelay = 0
@@ -371,7 +417,8 @@ initItems = () ->
     packName = $(@).data('pack')
     $label = $("li.label.#{packName}")
     color = $label.data('color')
-    $labelIndicator = $('<div></div>').addClass('labelIndicator').appendTo($(@)).html($label.find('a').html()).css
+    $labelIndicatorContainer = $('<ul></ul>').addClass('labelIndicators').appendTo($(@))
+    $labelIndicator = $('<li></li>').addClass('labelIndicator').appendTo($labelIndicatorContainer).html($label.find('a').html()).css
       backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
     if $(@).hasClass('text')
       $(@).find('.card').css

@@ -28,14 +28,18 @@ html.no-js(lang='en')
         li.menu
           ul.labels
             - function randomColor () {
-                - return JSON.stringify({ 'h' : Math.random() * 360, 's' : 100, 'l' : Math.random() * 10 + 70 })
+                - return JSON.stringify({ 'h' : Math.random() * 360, 's' : 100, 'l' : Math.random() * 10 + 60 })
             - }
             li.label.recent(data-pack='recent', data-color=JSON.stringify({'h': 0, 's' : 0, 'l' : 0}))
-              a(href='#') Recent
+              a(href='#')
+                .translate
+                  .scale Recent
             - for (var i = 0; i < n; i++) {
               - var name = 'Ligula Dolor #' + i;
               li.label(data-pack=i, class=i, data-color=randomColor())
-                a(href='#')= name
+                a(href='#')
+                  .translate
+                    .scale= name
             - }
       ul.panel.settings.right
         li.panelHeader
