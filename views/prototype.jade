@@ -73,19 +73,19 @@ html.no-js(lang='en')
         .content
           - var imageCount = 268
           .container.recents
-            - for (var i = 0; i < n/6; i++) {
+            - for (var i = 0; i < n; i++) {
               - var pack = Math.floor(Math.random() * n)
               article.text(data-pack=pack, class=pack, data-type='text')
                 .card.cardHover.text
                   .editable
                     h1 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
-              - for (var j = 0; j < 20; j++) {
-                - var pack = Math.floor(Math.random() * n)
-                  article.image(data-pack=pack, class=pack, data-type='image')
-                    .card.cardHover.image
-                      img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
-              - }
-              - var pack = Math.floor(Math.random() * n)
+              // - for (var j = 0; j < 20; j++) {
+              //   - var pack = Math.floor(Math.random() * n)
+              //     article.image(data-pack=pack, class=pack, data-type='image')
+              //       .card.cardHover.image
+              //         img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
+              // - }
+              // - var pack = Math.floor(Math.random() * n)
               article.text(data-pack=pack, class=pack, data-type='text')
                 .card.cardHover.text
                   .editable
