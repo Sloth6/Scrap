@@ -264,18 +264,7 @@ packOpenPack = (animate) ->
 
 resizeCards = () ->
   null
-#   $('article').each ->
-#     $(@).css({
-# #       'padding-left':   gutter
-# #       'padding-top':    gutter
-# #       'padding-bottom': gutter
-# #       'padding-right':  gutter
-# #       'padding-left':   if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
-# #       'padding-top':    if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
-# #       'padding-bottom': if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
-# #       'padding-right':  if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*cardSize}px" else (Math.random()+.5) * gutter
-#     })
-    
+
 saveArticleRecentsViewPositions = () ->
   $('article').each ->
     $(@).data('recentsTop',  parseInt($(@).css('top')))
@@ -476,13 +465,6 @@ initOnLoad = () ->
       packRecents(true)
     else
       packPacks(true)
-
-# initDrag = () ->
-#   itemElems = $('.container').packery('getItemElements')
-#   for elem in itemElems
-#     draggie = new Draggabilly( elem )
-# #     draggie.on( 'dragEnd', repack )
-#     $('.container').packery 'bindDraggabillyEvents', draggie
   
 sizePack = ($pack) ->
   pack = $pack.data('pack')
@@ -550,43 +532,6 @@ switchArticleProperties = ($article, property, state) ->
         y: $article.data 'recentsTop'
   switchProperties $article, absolute, transform
   
-# switchToPacks = ->
-#   if $('.content').data('layout') is 'recents' # Switch to packs
-#     $('.container.recents').packery('destroy')
-#     $('.content').data 'layout', 'packs'
-#     $('.container.packs').show()
-#     $('html').velocity('scroll', {
-#       duration: duration
-#       easing: easing
-#     })
-#     $('article').each -> # clear recents packery before doing anything else
-#       $(@).css {'top': $(@).data('recentsTop'), 'left': $(@).data('recentsLeft'), 'position': 'absolute'}
-# #     $('.pack').find('backgroundColor').css 'opacity', 1
-#     $('article').each -> # animate to pack positions
-#       packName            = "#{$(@).data('pack')}"
-#       $pack               = $(".pack.#{packName}")
-#       $articlesOfSamePack = $("article.#{packName}")
-#       indexInPack         = $(@).index("article.#{packName}")
-#       siblingCount        = $articlesOfSamePack.length - 1
-#       switchArticleProperties($(@), 'transform', 'recents')
-#       if indexInPack is 0 # if first article
-#         animateHeaderIn($pack.children('header'), siblingCount)
-# #       console.log $pack.data('left'), $pack.data('top')
-#       $(@).velocity
-#         properties:
-#           translateX: $pack.data('packsLeft') + $(@).data('packsLeft')
-#           translateY: $pack.data('packsTop')  + $(@).data('packsTop')
-#         options:
-#           duration: duration
-#           easing: easing
-#           complete: () ->
-#             switchArticleProperties($(@), 'absolute', 'packs')
-#             positionPack($pack, $(@), packName)
-#             $pack.append $(@)
-#   setTimeout ->
-#     packPacks(true)
-#   , duration
-  
 switchToRecents = () ->
   $('.content').data 'layout', 'recents'
   animateHeaderOut($('.pack').children('header'))
@@ -634,143 +579,6 @@ animateHeaderOut = ($header) ->
       complete: () ->
         $header.hide()
         $header.css {top: '', left: ''}
-
-# closePack = () ->
-#   console.log 'close'
-#   $pack       = $('.pack.open')
-#   $packs      = $('.pack')
-#   $otherPacks = $packs.not($pack)
-#   $articles   = $pack.children('article')
-#   $header     = $pack.children('header')
-#   $children   = $articles.add($header)
-#   $('.content').data 'packOpen', false
-#   switchProperties $pack, { x: '', y: '' }, { x: parseInt($pack.css('left')), y:  parseInt($pack.css('top')) }
-#   console.log $pack.data('packsLeft')
-# # collapse open pack
-#   $pack.packery # have to create new packery instance for some reason
-#     itemSelector: '.packable'
-#     gutter: gutter
-#     transitionDuration: 0
-#   $pack.packery 'destroy'
-#   $pack.css
-#     top: ''
-#     left: ''
-#     position: 'absolute'
-#   $children.each ->
-#     $(@).css
-#       position: 'absolute'
-#       top: 0
-#       left: 0
-#     switchProperties $(@), { x: '0', y: '0'}, { x:  $(@).data('openPackLeft'), y:  $(@).data('openPackLeft') }
-#     $(@).velocity
-#       properties:
-#         translateX:  $(@).data('packsLeft')
-#         translateY:  $(@).data('packsTop') 
-#       options:
-#         duration: duration
-#         easing: easing
-#   $pack.removeClass 'open'
-#   resizePacks() # reset open pack width
-#   # bring back other packs
-#   $packs.each ->
-#     $(@).velocity
-#       properties:
-#         translateX:  $(@).data('packsLeft') / 2
-#         translateY:  $(@).data('packsTop')  / 2
-#       options:
-#         duration: duration
-#         easing: easing
-#         complete: () ->
-#           switchProperties $(@), { x: $(@).data('packsLeft'), y: $(@).data('packsTop')} , { x: '0px', y: '0px' }
-#           if $(@).index() is ($packs.length - 1)
-#             packPacks(true)
-#   hideBackButton()
-  
-# openPack = ($pack) ->
-#   $packs      = $('.pack')
-#   $otherPacks = $packs.not($pack)
-#   $articles   = $pack.children('article')
-#   $header     = $pack.children('header')
-#   $children   = $articles.add($header)
-#   $('.content').data 'packOpen', true
-#   # clear packery on packs view
-#   $('.container.packs').packery 'destroy'
-#   # restore packery locations so packs to move after 'destroy'
-#   $pack.addClass 'open'
-#   $packs.each ->
-#     $(@).css
-#       top:  $(@).data 'packsTop'
-#       left: $(@).data 'packsLeft'
-#     # switch packs to transform positioning to prepare for animations
-#     switchProperties $(@), { x: '', y: ''}, { x: "#{$(@).data('packsLeft')}px", y: "#{$(@).data('packsTop')}px" }
-#   # animate other packs off screen
-#   $otherPacks.each ->
-#     $(@).velocity
-#       properties:
-#         translateX: if $(@).data('packsLeft') > ($(window).width()  / 2) then $(window).width()  * ((Math.random()+1) * 2) else -$(window).width()  * ((Math.random()+1) * 2)
-#         translateY: if $(@).data('packsTop')  > ($(window).height() / 2) then $(window).height() * ((Math.random()+1) * 2) else -$(window).height() * ((Math.random()+1) * 2)
-#       options:
-#         duration: duration
-#         easing: easing
-#   # animate opened pack to top left
-#   $pack.velocity
-#     properties:
-#       translateX: 0
-#       translateY: 0
-#     options:
-#       duration: duration
-#       easing: easing
-#   # set pack height and width equal to container height and width
-#   $pack.css
-#     'position': 'absolute'
-#     'height': '100%'
-#     'width':  '100%'
-#   # store header stack top/left values
-#   $header.data('packsTop',  parseInt($.Velocity.hook($header, 'translateX')))
-#   $header.data('packsLeft', parseInt($.Velocity.hook($header, 'translateY')))
-#   # change header to absolute from transform
-#   switchProperties $header, { x: $header.data('packsLeft'), y: $header.data('packsTop') }, { x: '0px', y: '0px'}
-#   # make articles and header packable
-#   $children.addClass 'packable'
-#   # pack articles and header
-# #   packOpenPack(false)
-#   $pack.packery
-#     itemSelector: '.packable'
-#     gutter: gutter
-#     transitionDuration: 0
-#   # capture destination packery values
-#   saveOpenPackPositions()
-#   # wipeout packery layout
-#   $pack.packery 'destroy'
-#   $children.css
-#     top: '0'
-#     left: '0'
-#     position: 'absolute'
-#   # switch packable elements to transform positioning to prepare for animations
-# #   setTimeout ->
-#   $children.each ->
-#     switchProperties $(@), { x: '', y: ''}, { x: "#{$(@).data('packsLeft')}px", y: "#{$(@).data('packsTop')}px"}
-#     $(@).velocity
-#       properties:
-#         translateX: $(@).data('openPackLeft')
-#         translateY: $(@).data('openPackTop')
-#       options:
-#         duration: duration
-#         easing: easing
-#         complete: () ->
-#           switchProperties $(@), { x: $(@).data('openPackLeft'), y: $(@).data('openPackTop') }, { x: '0px', y: '0px' }
-#           $.Velocity.hook $(@), 'translateX', '0px'
-#           $.Velocity.hook $(@), 'translateY', '0px'
-#           if $(@).index is $children.length - 1
-# #             $children.css
-# #               top: '0'
-# #               left: '0'
-# #               position: 'absolute'
-#             packOpenPack(true)
-# 
-# #   , 250
-#   # change nav
-#   showBackButton()
   
 hideBackButton = ->
   $back = $('nav .backButton')
@@ -864,33 +672,6 @@ initLabels = () ->
 #           'mix-blend-mode': ''
 #         $('body, .backgroundColor').css
 #           backgroundColor: ''
-    
-#   resizePacks()
-#   $('.packs.container').packery {
-#     itemSelector: '.pack'
-#     gutter: gutter
-#     transitionDuration: packeryDuration
-#   }
-#   $('.pack').each ->
-#     packName = "#{$(@).data('pack')}"
-#     color = randomColor()
-#     # trigger pack open
-#     $(@).click ->
-#       unless $('.content').data 'packOpen'
-#         openPack($(@))
-#     $(@).data 'color', randomColor()
-#     $(@).children('header').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
-# #     $(@).children('h1').css('-webkit-text-fill-color', "hsl(#{color.h},100%,#{(color.l+100)/2}%)")
-#     $("article.#{packName}").each ->
-#       $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
-# #       $(@).find('.card, .fakeCard').css('background-color', "hsl(#{color.h},100%,#{color.l}%)")
-# 
-# #     top = $("article.#{packName}").length * stackOffset
-# #     $(@).css
-# #       'margin-top': "-#{top}"
-# #       'opacity': .1
-#   packPacks(true)
-#   savePacksViewPositions()
   
 showPanelHeaders = (stop) ->
   $('li.panelHeader').velocity
@@ -1050,33 +831,6 @@ initNav = ->
             filterArticles $('article'), $('')
           else
             openLabel($label)
-# # Tabs
-#   $nav = $('ul.tabs')
-#   $nav.find('.tab.recents').click (event) ->
-#     event.preventDefault()
-#     if $('.velocity-animating').length < 1 # only toggle state if not animating
-#       unless $('.content').data('layout') is 'recents'
-#         if $('.content').data('packOpen') # if pack is open, close pack first
-#           closePack()
-#           setTimeout ->
-#             switchToRecents()
-#           , duration
-#         else 
-#           switchToRecents()
-#           
-#   $nav.find('.tab.packs').click (event) ->
-#     event.preventDefault()
-#     if $('.velocity-animating').length < 1
-#       unless $('.content').data('layout') is 'packs'
-#         switchToPacks()
-# # Back button
-#   $back = $('nav .backButton')
-#   $back.hide()
-#   hideBackButton()
-#   $back.click (event) ->
-#     event.preventDefault()
-#     if $('.content').data('packOpen')
-#       closePack()
 
 onScroll = () ->
   isScrolling = true
@@ -1097,30 +851,6 @@ onScroll = () ->
 #   , 500
   
   lastScrollTop = scrollTop
-  
-  
-#   $bar = $('nav .bar')
-#   unless $('.content').data('packOpen') # don't show/hide nav bar when pack open
-#     if scrollTop > $bar.height()
-#       if (direction is 'up')
-#         showNavBar() if ($bar.data('state') isnt 'visible')
-#       else
-#         if $bar.data('state') isnt 'hidden'
-#           hideNavBar()
-# #           $bar.css
-# #             backgroundColor: 'transparent'
-# #             borderColor: 'transparent'
-#     else
-#       if $bar.data('state') isnt 'visible'
-#         showNavBar()
-# #         setTimeout ->
-# #         , duration
-#     if scrollTop > 0
-#       $bar.css
-#         borderColor: 'black'
-#     else
-#       $bar.css
-#         borderColor: 'transparent'
 
 $ ->
   $('.content').data 'layout', 'recents'
