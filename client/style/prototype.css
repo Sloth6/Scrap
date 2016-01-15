@@ -2717,13 +2717,13 @@ nav.main ul.panel li.panelHeader a:hover {
 /* line 108, ../../style/prototype.scss */
 nav.main ul.panel li a {
   display: inline-block;
-  line-height: 1.25em;
+  line-height: 1.125em;
   font-size: 36pt;
   font-weight: 500;
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   -moz-transition-property: -webkit-text-stroke, -webkit-text-fill-color;
   -o-transition-property: -webkit-text-stroke, -webkit-text-fill-color;
   -webkit-transition-property: -webkit-text-stroke, -webkit-text-fill-color;
@@ -2936,14 +2936,14 @@ nav.main {
   margin-left: 0;
 }
 /* line 328, ../../style/prototype.scss */
-.container article ul.labelIndicators li.labelIndicator:hover {
+.container article ul.labelIndicators li.labelIndicator:hover, .container article ul.labelIndicators li.labelIndicator:active, .container article ul.labelIndicators li.labelIndicator.dragging, .container article ul.labelIndicators li.labelIndicator.removing {
   color: #000000;
   width: intrinsic;
   height: auto;
   padding: 0 8pt 4pt 8pt;
 }
 /* line 335, ../../style/prototype.scss */
-.container article ul.labelIndicators li.labelIndicator:active {
+.container article ul.labelIndicators li.labelIndicator:active, .container article ul.labelIndicators li.labelIndicator.dragging {
   cursor: move;
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;

@@ -25,7 +25,7 @@ drag = (event, $dragging, droppableCoordinates) ->
   mouseX = event.clientX
   mouseY = event.clientY
   x = mouseX
-  y = $(window).height() - mouseY
+  y = if $dragging.hasClass('label') then $(window).height() - mouseY else mouseY
     
   w = 200# contentModel.getSize($dragging)
   h = 200# Math.max($dragging.find('.content').height(), 200)
@@ -37,9 +37,13 @@ drag = (event, $dragging, droppableCoordinates) ->
   scaleOffsetY = (h/2)*(1-scale)*offsetPercentY
   offsetX = - $dragging.data('mouseOffsetX')
   offsetY = - $dragging.data('mouseOffsetY')
+  
+  translateX = if $dragging.hasClass('label') then y - $dragging.data 'mouseOffsetY' else x - $dragging.data 'mouseOffsetX'
+  translateY = if $dragging.hasClass('label') then x - $dragging.data 'mouseOffsetX' else y - $dragging.data 'mouseOffsetY'
+
   $dragging.velocity {
-    translateY: x - $dragging.data 'mouseOffsetX'
-    translateX: y - $dragging.data 'mouseOffsetY'
+    translateY
+    translateX
   }, { duration: 1 }
   
   # check for mouseover articles
@@ -116,52 +120,77 @@ applyLabel = ($label, $target, duration) ->
   
 stopDragging = (mouseUpEvent, $dragging) ->
   $dragging.removeClass('dragging')
-  $panel = $dragging.parents('ul.panel')
-  $menu = $panel.find('li.menu')
-  $header = $panel.find('li.panelHeader')
-  $target = $('.dropTarget')
-# If mouse is over a drop target
-  if $target.length > 0
-    classRemoveDelay = 500
-    applyLabel $dragging, $target, classRemoveDelay
-# Mouse is over nothing
-  else
-    classRemoveDelay = 0
-  setTimeout ->
-    $dragging.find('a').velocity 'reverse' # unrotate label 
-    hidePanelMenu $panel, $menu, $header
-    $('article').removeClass('defocus').removeClass('dropTarget').removeClass('droppable')
-  , classRemoveDelay
+  
+  if $dragging.hasClass 'label'
+    $panel = $dragging.parents('ul.panel')
+    $menu = $panel.find('li.menu')
+    $header = $panel.find('li.panelHeader')
+    $target = $('.dropTarget')
+  # If mouse is over a drop target
+    if $target.length > 0
+      classRemoveDelay = 500
+      applyLabel $dragging, $target, classRemoveDelay
+  # Mouse is over nothing
+    else
+      classRemoveDelay = 0
+    setTimeout ->
+      $dragging.find('a').velocity 'reverse' # unrotate label 
+      hidePanelMenu $panel, $menu, $header
+      $('article').removeClass('defocus').removeClass('dropTarget').removeClass('droppable')
+    , classRemoveDelay
+  else if $dragging.hasClass 'labelIndicator'
+    $article  = $dragging.parents('article')
+    label     = $article.data('pack')
+    
+    $dragging.addClass('removing').velocity
+      properties:
+        rotateZ: 720 * (Math.random() - .5)
+        translateY: $(window).height() / scale
+#         translateX: $(window).width() * (Math.random() - .5)
+#         scale: 0
+      options:
+        duration: 2000
+        easing: easing
+        complete: ->
+          # remove label data from article
+          $article.attr('data-pack', '')
+          $article.removeClass label + ''
+          # give text elements neutral background   
+          if $article.hasClass 'text'
+            $article.find('.card').css
+              backgroundColor: 'white'
+          $dragging.remove()    
 
 startDragging = ($dragging, mouseDownEvent) ->
   $dragging.data 'mouseOffsetX', (mouseDownEvent.clientX - xTransform($dragging))
   $dragging.data 'mouseOffsetY', (mouseDownEvent.clientY - yTransform($dragging))
   $dragging.addClass 'dragging'
   
-  # close menus
-  $panel = $dragging.parents('ul.panel')
-  $menu = $panel.find('li.menu')
-  $header = $panel.find('li.panelHeader')
-  hidePanelMenu $panel, $menu, $header
+  if $dragging.hasClass 'label'
+    # close menus
+    $panel = $dragging.parents('ul.panel')
+    $menu = $panel.find('li.menu')
+    $header = $panel.find('li.panelHeader')
+    hidePanelMenu $panel, $menu, $header
+    
+    # rotate label right-side-up
+    $dragging.find('a').velocity
+      properties:
+        rotateZ: 90
+      options:
+        duration: 250
+        easing: easing
   
-  # rotate label right-side-up
-  $dragging.find('a').velocity
-    properties:
-      rotateZ: 90
-    options:
-      duration: 250
-      easing: easing
-
-  # make article droppable
-  $('article').addClass 'droppable'
-  $('.droppable').each ->
-    window.droppableCoordinates.push {
-        $element: $(this),
-        left:     $(@).offset().left
-        top:      $(@).offset().top
-        right:    $(@).offset().left + $(@).width() * scale
-        bottom:   $(@).offset().top + $(@).height() * scale
-    }
+    # make article droppable
+    $('article').addClass 'droppable'
+    $('.droppable').each ->
+      window.droppableCoordinates.push {
+          $element: $(this),
+          left:     $(@).offset().left
+          top:      $(@).offset().top
+          right:    $(@).offset().left + $(@).width() * scale
+          bottom:   $(@).offset().top + $(@).height() * scale
+      }
   
   
 makeDraggable = ($element) ->
@@ -420,6 +449,7 @@ initItems = () ->
     $labelIndicatorContainer = $('<ul></ul>').addClass('labelIndicators').appendTo($(@))
     $labelIndicator = $('<li></li>').addClass('labelIndicator').appendTo($labelIndicatorContainer).html($label.find('a').html()).css
       backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
+    makeDraggable $labelIndicator
     if $(@).hasClass('text')
       $(@).find('.card').css
         backgroundColor: "hsl(#{color.h},100%,95%)"
@@ -803,20 +833,20 @@ resizePacks = () -> # stretch pack element around children
     
 initLabels = () ->
   $('li.label').each ->
-    unless $(@).hasClass 'recent'
-      color = $(@).data('color')
-      labelName = "#{$(@).data('pack')}"
-      $(@).children('a').css
-        color: "hsl(#{color.h},100%,#{color.l}%)"
-        '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
-      $("article.#{labelName}").each ->
-        $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
-      $(@).mouseenter ->
-        unless $(@).hasClass 'open'
-          $('li.label').not($(@)).each ->
-            $(@).find('a').css
-              color: 'white' # "hsl(#{color.h},100%,#{color.l}%)"
-              '-webkit-text-fill-color' : 'white' # "hsl(#{color.h},100%,#{color.l}%)"
+#     unless $(@).hasClass 'recent'
+    color = $(@).data('color')
+    labelName = "#{$(@).data('pack')}"
+    $(@).children('a').css
+      color: "hsl(#{color.h},100%,#{color.l}%)"
+      '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
+    $("article.#{labelName}").each ->
+      $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
+    $(@).mouseenter ->
+      unless $(@).hasClass 'open'
+        $('li.label').not($(@)).each ->
+          $(@).find('a').css
+            color: 'white' # "hsl(#{color.h},100%,#{color.l}%)"
+            '-webkit-text-fill-color' : 'white' # "hsl(#{color.h},100%,#{color.l}%)"
 #           $(@).find('a').css
 #             color: "white"
 #             '-webkit-text-fill-color' : "white"
@@ -824,12 +854,12 @@ initLabels = () ->
 #             'mix-blend-mode': 'multiply'
 #           $('body, .backgroundColor').css
 #             backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
-      $(@).mouseout ->
-        $('li.label').not($(@)).not('.recent').each ->
-          color = $(@).data('color')
-          $(@).find('a').css
-            color: "hsl(#{color.h},100%,#{color.l}%)"
-            '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
+    $(@).mouseout ->
+      $('li.label').not($(@)).not('.recent').each ->
+        color = $(@).data('color')
+        $(@).find('a').css
+          color: "hsl(#{color.h},100%,#{color.l}%)"
+          '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
 #         $('.content, article, article .card').css
 #           'mix-blend-mode': ''
 #         $('body, .backgroundColor').css

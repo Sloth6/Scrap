@@ -107,10 +107,10 @@ nav.main {
             
             a {
                 display: inline-block;
-                line-height: 1.25em;
+                line-height: 1.125em;
                 font-size: 36pt;
                 font-weight: $fontWeightMedium;
-                @include transition(.25s $defaultCurve);
+                @include transition(.5s $defaultCurve);
                 @include transition-property(-webkit-text-stroke, -webkit-text-fill-color);
             }
             
@@ -325,14 +325,14 @@ nav.main {
                     margin-left: 0;
                 }
                 
-                &:hover {
+                &:hover, &:active, &.dragging, &.removing {
                     color: $colorType;
                     width: intrinsic;
                     height: auto;
                     padding: 0 $cell $cell/2 $cell;
                 }
                 
-                &:active {
+                &:active, &.dragging {
                     @include cursorGrabbing;
                 }
             }

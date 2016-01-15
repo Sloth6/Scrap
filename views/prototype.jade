@@ -30,7 +30,7 @@ html.no-js(lang='en')
             - function randomColor () {
                 - return JSON.stringify({ 'h' : Math.random() * 360, 's' : 100, 'l' : Math.random() * 10 + 60 })
             - }
-            li.label.recent(data-pack='recent', data-color=JSON.stringify({'h': 0, 's' : 0, 'l' : 0}))
+            li.label.recent(data-pack='recent', data-color=JSON.stringify({'h': 0, 's': '0%', 'l': '0%'}))
               a(href='#')
                 .translate
                   .scale Recent
@@ -68,7 +68,6 @@ html.no-js(lang='en')
               a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
             li.logout.hideOnOpenSubmenu
               a.logout(href="/logout") Sign out
-          
     .scale
       .translate
         .content
