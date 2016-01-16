@@ -30,9 +30,16 @@ formatCollection = (collection) ->
   collection
 
 module.exports =
-  renderRecents: (req, res, app, callback) ->
+  renderAll: (req, res, app, callback) ->
     userId = req.session.currentUserId
     return res.send(400) unless userId?
+    # models.User.find({
+    #   where: id: userId
+    #   include: [
+    #     { model: models.Collection }
+    #     { model: models.Article:  }
+    #   ]
+    # })
     models.Article.findAll({
       where: { creatorId: userId }
       include: [ 
@@ -41,8 +48,19 @@ module.exports =
       ]
     }).done (err, articles) ->
       return callback err if err?
-      console.log "Showing #{articles.length} articles"
-      res.render 'recents', { articles }
+      options = {where: { CreatorId: userId, root:true }}
+      models.Collection.find(options).done (err, rootCollection) ->
+        return callback err if err?
+        
+        collections = {}
+        
+        for article in articles
+          # if !(article.Collection.collectionKey in collections)
+          key = article.Collection.collectionKey
+          collections[key] = article.Collection.dataValues
+        # console.log collections
+        console.log "Showing #{articles.length} articles"
+        res.render 'prototype', { articles, rootCollection, collections }
 
   collectionContent: (req, res, app, callback) ->
     { collectionKey } = req.params

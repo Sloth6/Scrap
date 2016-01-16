@@ -3,7 +3,6 @@ html.no-js(lang='en')
   head
     meta(charset='utf-8')
     title Scrap
-    link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
     script(src='/js/jquery/jquery.js')
     script(src="/js/jquery/jquery-ui.min.js")
     script(src="/js/jquery/jquery.transit.min.js")
@@ -16,11 +15,34 @@ html.no-js(lang='en')
     script(src="/js/lib/dragabilly.min.js")
     script(src="/js/lib/velocity.min.js")
     script(src="/js/lib/packery.js")
-    link(rel='stylesheet', href='/style/prototype.css')
     script(src='/js/prototype.js')
-    //- script(src='/js/derp.js')
+
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/lib/soundcloud-api.js')
+    script(src='/js/lib/pen.js')
+
+    script(src="/js/contentModel.js")
+    script(src="/js/collectionModel.js")
+    
+    script(src="/js/contentControllers/packCover.js")
+    script(src="/js/contentControllers/file.js")
+    script(src="/js/contentControllers/gif.js")
+    script(src="/js/contentControllers/soundCloud.js")
+    script(src="/js/contentControllers/video.js")
+    script(src="/js/contentControllers/text.js")
+    script(src="/js/contentControllers/youtube.js")
+    script(src="/js/contentControllers/playable.js")
+    script(src="/js/contentControllers/genericText.js")
+
+    link(rel='stylesheet', href='/style/prototype.css')
+    //- link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
+
+    
+    include mixins/article
+    include mixins/addCollectionForm
+    include mixins/addArticleForm
+
   body
-    - var n = 8
     nav.main
       ul.panel.labels.left
         li.panelHeader
@@ -30,17 +52,18 @@ html.no-js(lang='en')
             - function randomColor () {
                 - return JSON.stringify({ 'h' : Math.random() * 360, 's' : 100, 'l' : Math.random() * 10 + 60 })
             - }
-            li.label.recent(data-pack='recent', data-color=JSON.stringify({'h': 0, 's': '0%', 'l': '0%'}))
+            li.label.recent(data-pack='recent', data-color=JSON.stringify({ 'h': 0, 's': '0%', 'l': '0%' }))
               a(href='#')
                 .translate
                   .scale Recent
-            - for (var i = 0; i < n; i++) {
-              - var name = 'Ligula Dolor #' + i;
-              li.label(data-pack=i, class=i, data-color=randomColor())
+            
+            each collection, collectionKey in collections
+              - var name = collection.collectionKey
+              li.label(data-pack=name, class=name, data-color=randomColor())
                 a(href='#')
                   .translate
-                    .scale= name
-            - }
+                    .scale!=name
+
       ul.panel.settings.right
         li.panelHeader
           a(href='#') Settings
@@ -71,107 +94,26 @@ html.no-js(lang='en')
     .scale
       .translate
         .content
-          - var imageCount = 268
           .container.recents
-            - for (var i = 0; i < n; i++) {
-              - var pack = Math.floor(Math.random() * n)
-              article.text(data-pack=pack, class=pack, data-type='text')
-                .card.cardHover.text
-                  .editable
-                    h1 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.
-              // - for (var j = 0; j < 20; j++) {
-              //   - var pack = Math.floor(Math.random() * n)
-              //     article.image(data-pack=pack, class=pack, data-type='image')
-              //       .card.cardHover.image
-              //         img(src='/images/placeholder/' + (Math.ceil(Math.random() * imageCount)) + '.jpg')
-              // - }
-              // - var pack = Math.floor(Math.random() * n)
-              article.text(data-pack=pack, class=pack, data-type='text')
-                .card.cardHover.text
-                  .editable
-                    h2 Est non commodo
-                    ol
-                      li Justo
-                      li Risus
-                      li Ornare
-                      li Ipsum
-                      li Lorem
-                    h2 Donec ullamcorper
-                    ul
-                      li Vivamus sagittis lacus vel augue
-                      li Laoreet rutrum faucibus dolor auctor
-                      li Duis mollis, est non commodo luctus nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                      li Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                    blockquote Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              - var pack = Math.floor(Math.random() * n)
-              article.file(data-pack=pack, class=pack, data-type='file')
-                .card.cardHover.file
-                  .fakeCard
-                    header
-                      h1.headerType.title Filename
-                      p.extension.smallCaps.bodyType PDF
-                    ul.card.cardHoverActions
-                      li
-                        a.download.confirm(href='#') Download
-                  .decorative.fold
-              - var pack = Math.floor(Math.random() * n)
-              article.website(data-pack=pack, class=pack, data-type='website')
-                .card.cardHover.website
-                  .text
-                    header
-                      h1.headerType Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                      .url.smallType.smallCaps nytimes.com
-                    .description.smallType Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.
-                  img(src='http://lorempixel.com/400/300')
-                  a(href=url, target='_blank', title='Open “Title” in a new tab')
-              - var pack = Math.floor(Math.random() * n)
-              article.text(data-pack=pack, class=pack, data-type='text')
-                .card.cardHover.text
-                  .editable
-                    h1 Duis mollis
-                    p Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis euismod semper.
-                    p Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod.
-              - var pack = Math.floor(Math.random() * n)
-              article.soundcloud.playable(data-pack=pack, class=pack, data-type='music')
-                .card.cardHover.text.playable
-                  .preview
-                    - var size = Math.floor(Math.random() * 100 + 200)
-                    img(src='http://lorempixel.com/' + size + '/' + size)
-                  header
-                    .top
-                      h1.headerType.title Title
-                      .artist.smallType Name
-                    .detail
-                      .source.smallType.smallCaps Source
-              - var pack = Math.floor(Math.random() * n)
-              article.youtube.playable(data-pack=pack, class=pack, data-type='video')
-                .card.cardHover.text.playable
-                  .preview
-                    - var w = Math.floor(Math.random() * 100 + 300)
-                    - var h = Math.floor(w / (16/9))
-                    img(src='http://lorempixel.com/' + w + '/' + h)
-                  header
-                    .top
-                      h1.headerType.title Title
-                      .artist.smallType Name
-                    .detail
-                      .source.smallType.smallCaps Source
-            - }
-    .comments
-      ul
-        li.comment
-          author.typeBody.smallCaps Cursus Pharetra
-          div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-        li.comment
-          author.typeBody.smallCaps Magna Porta
-          div Ipsum pharetra
-        li.comment
-          author.typeBody.smallCaps Tellus Nullam
-          div Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        li.comment
-          author.typeBody.smallCaps Tortor Inceptos
-          div Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-        li.comment
-          author.typeBody.smallCaps Vulputate Fermentum
-          div Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-          
+            +addArticleFormMixin(rootCollection)
+            for article in articles
+              +articleMixin(article.Collection, article)
+
+    //- .comments
+    //-   ul
+    //-     li.comment
+    //-       author.typeBody.smallCaps Cursus Pharetra
+    //-       div Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+    //-     li.comment
+    //-       author.typeBody.smallCaps Magna Porta
+    //-       div Ipsum pharetra
+    //-     li.comment
+    //-       author.typeBody.smallCaps Tellus Nullam
+    //-       div Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+    //-     li.comment
+    //-       author.typeBody.smallCaps Tortor Inceptos
+    //-       div Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+    //-     li.comment
+    //-       author.typeBody.smallCaps Vulputate Fermentum
+    //-       div Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+    //-       

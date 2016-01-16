@@ -12,15 +12,18 @@ fs.readdirSync(__dirname + '/requestControllers').forEach (fileName) ->
 
 module.exports = (app) ->
 
-  app.get '/p', (req,res) ->
-    res.render('packeryTest')
-    
-  app.get '/prototype', (req,res) ->
-    res.render('prototype')
+  # app.get '/', (req,res) ->
+  #   res.render('packeryTest')
+  
+  # app.get '/home', (req,res) ->
+  #   res.render('prototype')  
 
-  app.get '/recents', (req,res) ->
-    controllers.collectionController.renderRecents req, res, app, errorHandler
+  # app.get '/prototype', (req,res) ->
+  #   res.render('prototype')
 
+  app.get '/home', (req,res) ->
+    controllers.collectionController.renderAll req, res, app, errorHandler
+#
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 

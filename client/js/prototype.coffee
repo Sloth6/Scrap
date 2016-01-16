@@ -434,14 +434,19 @@ initItems = () ->
   $('article').each ->
     packName = $(@).data('pack')
     $label = $("li.label.#{packName}")
-    color = $label.data('color')
+    # color = $label.data('color')
     $labelIndicatorContainer = $('<ul></ul>').addClass('labelIndicators').appendTo($(@))
-    $labelIndicator = $('<li></li>').addClass('labelIndicator').appendTo($labelIndicatorContainer).html($label.find('a').html()).css
-      backgroundColor: "hsl(#{color.h},100%,#{color.l}%)"
+    $labelIndicator = $('<li></li>').
+      addClass('labelIndicator').
+      appendTo($labelIndicatorContainer).
+      html($label.find('a').html())
+      # css { backgroundColor: "hsl(#{color.h},100%,#{color.l}%)" }
+
     makeDraggable $labelIndicator
-    if $(@).hasClass('text')
-      $(@).find('.card').css
-        backgroundColor: "hsl(#{color.h},100%,95%)"
+    # if $(@).hasClass('text')
+      # $(@).find('.card').css
+      #   backgroundColor: "hsl(#{color.h},100%,95%)"
+
     #   null
     #   saveArticleRecentsViewPositions()
     bindArticleOpenEvents $(@)
@@ -641,14 +646,18 @@ resizePacks = () -> # stretch pack element around children
     
 initLabels = () ->
   $('li.label').each ->
-#     unless $(@).hasClass 'recent'
-    color = $(@).data('color')
+    color     = $(@).data('color')
     labelName = "#{$(@).data('pack')}"
+
     $(@).children('a').css
       color: "hsl(#{color.h},100%,#{color.l}%)"
       '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
+    
     $("article.#{labelName}").each ->
-      $('<div></div>').addClass('backgroundColor').css('background-color',"hsl(#{color.h},100%,#{color.l}%)").prependTo($(@))
+      $('<div></div>').
+        addClass('backgroundColor').
+        css('background-color',"hsl(#{color.h},100%,#{color.l}%)").
+        prependTo($(@))
     $(@).mouseenter ->
       unless $(@).hasClass 'open'
         $('li.label').not($(@)).each ->
@@ -807,12 +816,13 @@ openLabel = ($label) ->
   
 initNav = ->
   $('nav.main ul.panel').each ->
-    $panel = $(@)
-    $menu = $panel.find('li.menu')
+    $panel  = $(@)
+    $menu   = $panel.find('li.menu')
     $header = $panel.find('li.panelHeader')
     # hide submenu
     $menu.hide()
 #     $.Velocity.hook $menu, 'translateY', "-#{$menu.height()}px"
+    
     # open panel on header click
     $header.find('a').click (event) ->
       event.stopPropagation()
