@@ -589,7 +589,7 @@ body section.collection section.content article.color9 div.card.text.comment, bo
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 157, ../../style/globals/_type.scss */
+/* line 162, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -603,7 +603,7 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 161, ../../style/globals/_type.scss */
+/* line 166, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 52pt;
   font-weight: 800;
@@ -611,7 +611,7 @@ html {
   line-height: 48pt;
 }
 
-/* line 165, ../../style/globals/_type.scss */
+/* line 170, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -619,7 +619,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 169, ../../style/globals/_type.scss */
+/* line 174, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -627,7 +627,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 173, ../../style/globals/_type.scss */
+/* line 178, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -635,7 +635,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 176, ../../style/globals/_type.scss */
+/* line 181, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -645,7 +645,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 181, ../../style/globals/_type.scss */
+/* line 186, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -653,7 +653,7 @@ html {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 184, ../../style/globals/_type.scss */
+/* line 189, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -663,14 +663,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 189, ../../style/globals/_type.scss */
+/* line 194, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 192, ../../style/globals/_type.scss */
+/* line 197, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -680,18 +680,18 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 197, ../../style/globals/_type.scss */
+/* line 202, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 201, ../../style/globals/_type.scss */
+/* line 206, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 205, ../../style/globals/_type.scss */
+/* line 210, ../../style/globals/_type.scss */
 .typeHeaderOutline {
   font-size: 24pt;
   font-weight: 500;
@@ -703,13 +703,13 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 210, ../../style/globals/_type.scss */
+/* line 215, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 217, ../../style/globals/_type.scss */
+/* line 222, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1892,7 +1892,6 @@ body article.playable .card .preview:after {
   margin-top: -36px;
   margin-left: -36px;
   z-index: 9000000;
-  opacity: 0;
   -moz-transform: scale(0);
   -ms-transform: scale(0);
   -webkit-transform: scale(0);
@@ -1923,20 +1922,25 @@ body article.playable .card header {
   height: 100%;
 }
 /* line 396, ../../style/layout/_article.scss */
+body article.playable .card header h1 {
+  -webkit-text-fill-color: white !important;
+  -webkit-text-stroke: 1px #000000;
+}
+/* line 400, ../../style/layout/_article.scss */
 body article.playable .card header .artist {
   margin-top: 4pt;
 }
-/* line 400, ../../style/layout/_article.scss */
+/* line 404, ../../style/layout/_article.scss */
 body article.playable .card header .detail {
   position: absolute;
   bottom: 8pt;
 }
-/* line 409, ../../style/layout/_article.scss */
+/* line 413, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
   overflow: hidden;
 }
-/* line 414, ../../style/layout/_article.scss */
+/* line 418, ../../style/layout/_article.scss */
 body article .card.website {
   background-color: white;
   border: 1px solid #000000;
@@ -1946,7 +1950,7 @@ body article .card.website {
   -webkit-transform-origin: right bottom;
   width: 168pt;
 }
-/* line 418, ../../style/layout/_article.scss */
+/* line 422, ../../style/layout/_article.scss */
 body article .card.website.hover {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1957,11 +1961,11 @@ body article .card.website.hover {
       border-color: blue;
   */
 }
-/* line 425, ../../style/layout/_article.scss */
+/* line 429, ../../style/layout/_article.scss */
 body article .card.website.hover .text header .url {
   opacity: 1;
 }
-/* line 432, ../../style/layout/_article.scss */
+/* line 436, ../../style/layout/_article.scss */
 body article .card.website a {
   border: 0;
   position: absolute;
@@ -1970,11 +1974,11 @@ body article .card.website a {
   right: 0;
   bottom: 0;
 }
-/* line 441, ../../style/layout/_article.scss */
+/* line 445, ../../style/layout/_article.scss */
 body article .card.website .text {
   overflow: visible;
 }
-/* line 444, ../../style/layout/_article.scss */
+/* line 448, ../../style/layout/_article.scss */
 body article .card.website .text header {
   position: absolute;
   top: 4pt;
@@ -1987,7 +1991,7 @@ body article .card.website .text header {
   -webkit-transition-property: top;
   transition-property: top;
 }
-/* line 450, ../../style/layout/_article.scss */
+/* line 454, ../../style/layout/_article.scss */
 body article .card.website .text header h1 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -1997,7 +2001,7 @@ body article .card.website .text header h1 {
   padding-bottom: .125em;
   margin-bottom: -.125em;
 }
-/* line 460, ../../style/layout/_article.scss */
+/* line 464, ../../style/layout/_article.scss */
 body article .card.website .text header .url {
   margin-top: 4pt;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -2009,7 +2013,7 @@ body article .card.website .text header .url {
   -webkit-transition-property: opacity;
   transition-property: opacity;
 }
-/* line 467, ../../style/layout/_article.scss */
+/* line 471, ../../style/layout/_article.scss */
 body article .card.website .text .description {
   margin-top: 112pt;
   margin-bottom: 4pt;
@@ -2023,7 +2027,7 @@ body article .card.website .text .description {
   -webkit-transition-property: opacity, margin-top;
   transition-property: opacity, margin-top;
 }
-/* line 475, ../../style/layout/_article.scss */
+/* line 479, ../../style/layout/_article.scss */
 body article .card.website .text img {
   margin-top: 0;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -2035,52 +2039,52 @@ body article .card.website .text img {
   -webkit-transition-property: margin-top;
   transition-property: margin-top;
 }
-/* line 488, ../../style/layout/_article.scss */
+/* line 492, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 493, ../../style/layout/_article.scss */
+/* line 497, ../../style/layout/_article.scss */
 body article .card img {
   width: 100%;
   margin-bottom: -2.66667pt;
   background-color: white;
 }
 
-/* line 503, ../../style/layout/_article.scss */
+/* line 507, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 168pt;
 }
 
-/* line 510, ../../style/layout/_article.scss */
+/* line 514, ../../style/layout/_article.scss */
 .addProjectForm:hover h1.typeOutlineClear, .addProjectForm.hover h1.typeOutlineClear, .addProjectForm.editing h1.typeOutlineClear, .addProjectForm.typing h1.typeOutlineClear {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
-/* line 515, ../../style/layout/_article.scss */
+/* line 519, ../../style/layout/_article.scss */
 .addProjectForm .card {
   width: 224pt;
 }
 
-/* line 525, ../../style/layout/_article.scss */
+/* line 529, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge:hover .translate, .addProjectForm.peek.onEdge:hover .translate {
   -moz-transform: translate(-28pt, 0px);
   -ms-transform: translate(-28pt, 0px);
   -webkit-transform: translate(-28pt, 0px);
   transform: translate(-28pt, 0px);
 }
-/* line 530, ../../style/layout/_article.scss */
+/* line 534, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge.slideInFromSide, .addArticleForm.peek.onEdge.slideInFromSide:hover, .addProjectForm.peek.onEdge.slideInFromSide, .addProjectForm.peek.onEdge.slideInFromSide:hover {
   z-index: 99999999 !important;
 }
-/* line 533, ../../style/layout/_article.scss */
+/* line 537, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge.slideInFromSide .translate, .addArticleForm.peek.onEdge.slideInFromSide:hover .translate, .addProjectForm.peek.onEdge.slideInFromSide .translate, .addProjectForm.peek.onEdge.slideInFromSide:hover .translate {
   -moz-transform: translate(-168pt, 0px);
   -ms-transform: translate(-168pt, 0px);
   -webkit-transform: translate(-168pt, 0px);
   transform: translate(-168pt, 0px);
 }
-/* line 536, ../../style/layout/_article.scss */
+/* line 540, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge.slideInFromSide .translate .card .editable, .addArticleForm.peek.onEdge.slideInFromSide .translate .card .cardActions, .addArticleForm.peek.onEdge.slideInFromSide:hover .translate .card .editable, .addArticleForm.peek.onEdge.slideInFromSide:hover .translate .card .cardActions, .addProjectForm.peek.onEdge.slideInFromSide .translate .card .editable, .addProjectForm.peek.onEdge.slideInFromSide .translate .card .cardActions, .addProjectForm.peek.onEdge.slideInFromSide:hover .translate .card .editable, .addProjectForm.peek.onEdge.slideInFromSide:hover .translate .card .cardActions {
   opacity: 1;
   -moz-transform: translate(0px, 0px);
@@ -2088,21 +2092,21 @@ body article .card img {
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 542, ../../style/layout/_article.scss */
+/* line 546, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge.slideInFromSide .translate:after, .addArticleForm.peek.onEdge.slideInFromSide:hover .translate:after, .addProjectForm.peek.onEdge.slideInFromSide .translate:after, .addProjectForm.peek.onEdge.slideInFromSide:hover .translate:after {
   -moz-transform: translate(-48px, 0px);
   -ms-transform: translate(-48px, 0px);
   -webkit-transform: translate(-48px, 0px);
   transform: translate(-48px, 0px);
 }
-/* line 549, ../../style/layout/_article.scss */
+/* line 553, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge.slideInFromSide.cover .translate, .addArticleForm.peek.onEdge.slideInFromSide.cover.onEdge:hover .translate, .addArticleForm.peek.onEdge.slideInFromSide:hover.cover .translate, .addArticleForm.peek.onEdge.slideInFromSide:hover.cover.onEdge:hover .translate, .addProjectForm.peek.onEdge.slideInFromSide.cover .translate, .addProjectForm.peek.onEdge.slideInFromSide.cover.onEdge:hover .translate, .addProjectForm.peek.onEdge.slideInFromSide:hover.cover .translate, .addProjectForm.peek.onEdge.slideInFromSide:hover.cover.onEdge:hover .translate {
   -moz-transform: translate(-224pt, 0px);
   -ms-transform: translate(-224pt, 0px);
   -webkit-transform: translate(-224pt, 0px);
   transform: translate(-224pt, 0px);
 }
-/* line 556, ../../style/layout/_article.scss */
+/* line 560, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge .translate .card .editable, .addArticleForm.peek.onEdge .translate .card .cardActions, .addProjectForm.peek.onEdge .translate .card .editable, .addProjectForm.peek.onEdge .translate .card .cardActions {
   opacity: 0;
   -moz-transform: translate(168pt, 0px);
@@ -2110,28 +2114,28 @@ body article .card img {
   -webkit-transform: translate(168pt, 0px);
   transform: translate(168pt, 0px);
 }
-/* line 561, ../../style/layout/_article.scss */
+/* line 565, ../../style/layout/_article.scss */
 .addArticleForm.peek.onEdge .translate:after, .addProjectForm.peek.onEdge .translate:after {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 567, ../../style/layout/_article.scss */
+/* line 571, ../../style/layout/_article.scss */
 .addArticleForm.peek .translate, .addProjectForm.peek .translate {
   -moz-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 570, ../../style/layout/_article.scss */
+/* line 574, ../../style/layout/_article.scss */
 .addArticleForm.peek .translate:after, .addProjectForm.peek .translate:after {
   -moz-transform: translate(-48px, 0px);
   -ms-transform: translate(-48px, 0px);
   -webkit-transform: translate(-48px, 0px);
   transform: translate(-48px, 0px);
 }
-/* line 575, ../../style/layout/_article.scss */
+/* line 579, ../../style/layout/_article.scss */
 .addArticleForm.peek .card .editable, .addArticleForm.peek .card .cardActions, .addProjectForm.peek .card .editable, .addProjectForm.peek .card .cardActions {
   opacity: 1;
   display: block;
@@ -2148,18 +2152,18 @@ body article .card img {
   -webkit-transition-property: opacity, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: opacity, transform, -webkit-transform, -moz-transform;
 }
-/* line 586, ../../style/layout/_article.scss */
+/* line 590, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover, .addProjectForm.typing, .addProjectForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 590, ../../style/layout/_article.scss */
+/* line 594, ../../style/layout/_article.scss */
 .addArticleForm.typing .translate:after, .addArticleForm.typing .translate:hover:after, .addArticleForm.typing:hover .translate:after, .addArticleForm.typing:hover .translate:hover:after, .addProjectForm.typing .translate:after, .addProjectForm.typing .translate:hover:after, .addProjectForm.typing:hover .translate:after, .addProjectForm.typing:hover .translate:hover:after {
   -moz-transform: translate(-48px, 0px);
   -ms-transform: translate(-48px, 0px);
   -webkit-transform: translate(-48px, 0px);
   transform: translate(-48px, 0px);
 }
-/* line 594, ../../style/layout/_article.scss */
+/* line 598, ../../style/layout/_article.scss */
 .addArticleForm.typing .translate .card .editable, .addArticleForm.typing .translate .card .cardActions, .addArticleForm.typing .translate:hover .card .editable, .addArticleForm.typing .translate:hover .card .cardActions, .addArticleForm.typing:hover .translate .card .editable, .addArticleForm.typing:hover .translate .card .cardActions, .addArticleForm.typing:hover .translate:hover .card .editable, .addArticleForm.typing:hover .translate:hover .card .cardActions, .addProjectForm.typing .translate .card .editable, .addProjectForm.typing .translate .card .cardActions, .addProjectForm.typing .translate:hover .card .editable, .addProjectForm.typing .translate:hover .card .cardActions, .addProjectForm.typing:hover .translate .card .editable, .addProjectForm.typing:hover .translate .card .cardActions, .addProjectForm.typing:hover .translate:hover .card .editable, .addProjectForm.typing:hover .translate:hover .card .cardActions {
   opacity: 1;
   -moz-transform: translate(0px, 0px);
@@ -2167,15 +2171,15 @@ body article .card img {
   -webkit-transform: translate(0px, 0px);
   transform: translate(0px, 0px);
 }
-/* line 601, ../../style/layout/_article.scss */
+/* line 605, ../../style/layout/_article.scss */
 .addArticleForm.typing .cardActions ul li.upload, .addArticleForm.typing:hover .cardActions ul li.upload, .addProjectForm.typing .cardActions ul li.upload, .addProjectForm.typing:hover .cardActions ul li.upload {
   opacity: 0;
 }
-/* line 605, ../../style/layout/_article.scss */
+/* line 609, ../../style/layout/_article.scss */
 .addArticleForm.typing .cardActions ul li.done, .addArticleForm.typing:hover .cardActions ul li.done, .addProjectForm.typing .cardActions ul li.done, .addProjectForm.typing:hover .cardActions ul li.done {
   opacity: 1;
 }
-/* line 611, ../../style/layout/_article.scss */
+/* line 615, ../../style/layout/_article.scss */
 .addArticleForm .translate, .addProjectForm .translate {
   overflow-x: hidden;
   position: relative;
@@ -2193,7 +2197,7 @@ body article .card img {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 622, ../../style/layout/_article.scss */
+/* line 626, ../../style/layout/_article.scss */
 .addArticleForm .translate:after, .addProjectForm .translate:after {
   content: "";
   height: 24px;
@@ -2217,15 +2221,15 @@ body article .card img {
   -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: transform, -webkit-transform, -moz-transform;
 }
-/* line 641, ../../style/layout/_article.scss */
+/* line 645, ../../style/layout/_article.scss */
 .addArticleForm .translate .card, .addProjectForm .translate .card {
   overflow: visible;
 }
-/* line 644, ../../style/layout/_article.scss */
+/* line 648, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions, .addProjectForm .translate .card .cardActions {
   width: 168pt;
 }
-/* line 651, ../../style/layout/_article.scss */
+/* line 655, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload, .addProjectForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -2234,7 +2238,7 @@ body article .card img {
   overflow: hidden;
   position: relative;
 }
-/* line 660, ../../style/layout/_article.scss */
+/* line 664, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload:hover a, .addProjectForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -2245,7 +2249,7 @@ body article .card img {
       border-color: blue;
   */
 }
-/* line 665, ../../style/layout/_article.scss */
+/* line 669, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload form, .addProjectForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -2253,7 +2257,7 @@ body article .card img {
   left: 0;
   position: absolute;
 }
-/* line 672, ../../style/layout/_article.scss */
+/* line 676, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload form input, .addProjectForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -2263,14 +2267,14 @@ body article .card img {
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 684, ../../style/layout/_article.scss */
+/* line 688, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.done, .addProjectForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 690, ../../style/layout/_article.scss */
+/* line 694, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.done a, .addProjectForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;

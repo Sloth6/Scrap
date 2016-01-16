@@ -154,6 +154,11 @@ $headerLeftMarginOffset:
     -webkit-text-stroke: 1px $colorType;
 }
 
+@mixin typeOutlineFillWhite {
+    -webkit-text-fill-color: $colorCardBackground !important;
+    -webkit-text-stroke: 1px $colorType;
+}
+
 html {
     @include typeBody;
     @include proportionalNums;

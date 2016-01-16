@@ -4,6 +4,14 @@ body {
     @include transition(background-color .5s $defaultCurve); // for label hover effect
 }
 
+.draggable {
+    @include cursorGrab;
+}
+
+.dragging {
+    @include cursorGrabbing;
+}
+
 .content {
     height: auto;
     min-height: 0;
