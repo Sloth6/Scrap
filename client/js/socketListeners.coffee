@@ -1,84 +1,93 @@
 $ ->  
   socket = io.connect()
 
-  socket.on 'updateCollection', (data) ->
-    name = data.name
-    collectionKey = data.collectionKey
-    $('h1').text(name)
-    document.title = name
-    $("a[href='/s/#{collectionKey}']").text(name)
+  # socket.on 'updateCollection', (data) ->
+  #   name = data.name
+  #   collectionKey = data.collectionKey
+  #   $('h1').text(name)
+  #   document.title = name
+  #   $("a[href='/s/#{collectionKey}']").text(name)
 
   socket.on 'newArticle', (data) ->
     {collectionKey, html} = data
     $article = $(decodeURIComponent(html))
+    $addArticleForm = $('.addArticleForm')
 
     console.log "new $article for #{collectionKey}", $article.attr('class')
+
+    $('.container.recents').prepend $article
+    $('.container.recents').prepend $addArticleForm
     
-    $collection = $('.collection.open')
-    if collectionModel.getState($collection).collectionKey == collectionKey
-      $addArticleForm = collectionModel.getAddForm $collection
-      x = xTransform $addArticleForm
-      # console.log {x}
-      $article.velocity { translateX: [x,x] }, { duration: 1 }
-      collectionModel.appendContent $collection, $article
-      contentModel.init $article
-      collectionViewController.draw $collection, { animate: true }
-      size = contentModel.getSize $collection
-      $(document.body).css { width: size }      
+    $('.container.recents').packery 'prepended', $addArticleForm.add($article)
+    closeArticle($addArticleForm, scaleRatio, nativeDimensions)
 
-  socket.on 'newPack', (data) ->
-    { collectionHTML } = data
-    $collection = $(decodeURIComponent(collectionHTML))
-    $form = collectionModel.getAddForm $('.collection.root')
+    # $collection = $('.collection.open')
 
-    collectionModel.appendContent $('.collection.open'), $collection
-    $collection.css { x: xTransform($form) }
-    contentModel.init $collection
-    collectionViewController.draw $('.collection.open'), {animate: true}
+    # if collectionModel.getState($collection).collectionKey == collectionKey
+    # $article.insertAfter $addArticleForm
+    # initArticles $article
+    # packRecents(true)
+    # $article.velocity { translateX: [x,x] }, { duration: 1 }
+    
+    # collectionModel.appendContent $collection, $article
+    # contentModel.init $article
+    # collectionViewController.draw $collection, { animate: true }
+    # size = contentModel.getSize $collection
+    # $(document.body).css { width: size }      
+
+  # socket.on 'newPack', (data) ->
+  #   { collectionHTML } = data
+  #   $collection = $(decodeURIComponent(collectionHTML))
+  #   $form = collectionModel.getAddForm $('.collection.root')
+
+  #   collectionModel.appendContent $('.collection.open'), $collection
+  #   $collection.css { x: xTransform($form) }
+  #   contentModel.init $collection
+  #   collectionViewController.draw $('.collection.open'), {animate: true}
 
   # for new stacks
-  socket.on 'newCollection', (data) ->
-    { draggedId, draggedOverId, collectionHTML } = data
+  # socket.on 'newCollection', (data) ->
+  #   { draggedId, draggedOverId, collectionHTML } = data
     
     
-    dragged = $("##{data.draggedId}")
-    draggedOver = $("##{data.draggedOverId}")
+  #   dragged = $("##{data.draggedId}")
+  #   draggedOver = $("##{data.draggedOverId}")
     
-    # Make these elements no longer interactive.
-    # dragged.add(draggedOver).off()
+  #   # Make these elements no longer interactive.
+  #   # dragged.add(draggedOver).off()
 
-    $stack = $(decodeURIComponent(data.collectionHTML))
-    $stack.insertAfter draggedOver
-    $stack.css { x: xTransform(draggedOver) }
+  #   $stack = $(decodeURIComponent(data.collectionHTML))
+  #   $stack.insertAfter draggedOver
+  #   $stack.css { x: xTransform(draggedOver) }
 
-    collectionModel.appendContent $stack, draggedOver
-    collectionModel.appendContent $stack, dragged
+  #   collectionModel.appendContent $stack, draggedOver
+  #   collectionModel.appendContent $stack, dragged
     
-    contentModel.init $stack
-    collectionViewController.draw $('.collection.open')
+  #   contentModel.init $stack
+  #   collectionViewController.draw $('.collection.open')
 
-  socket.on 'reorderArticles', (data) ->
-    console.log 'reorderArticles', data
+  # socket.on 'reorderArticles', (data) ->
+  #   console.log 'reorderArticles', data
 
-  socket.on 'deleteCollection', (data) ->
-    { collectionKey } = data
-    $collection =  $(".collection.#{collectionKey}")
-    $collection.fadeOut ->
-      $collection.remove()
-      collectionViewController.draw $('.collection.open'), {animate: true}
-      size = contentModel.getSize $('.collection.open')
-      $(document.body).css { width: size }
+  # socket.on 'deleteCollection', (data) ->
+  #   { collectionKey } = data
+  #   $collection =  $(".collection.#{collectionKey}")
+  #   $collection.fadeOut ->
+  #     $collection.remove()
+  #     collectionViewController.draw $('.collection.open'), {animate: true}
+  #     size = contentModel.getSize $('.collection.open')
+  #     $(document.body).css { width: size }
 
-  socket.on 'deleteArticle', (data) ->
-    console.log 'deleteArticle', data, $("\##{data.id}")
-    { id, collectionKey } = data
+  # socket.on 'deleteArticle', (data) ->
+  #   console.log 'deleteArticle', data, $("\##{data.id}")
+  #   { id, collectionKey } = data
     
-    toRemove = $("\##{data.id}")
-    toRemove.fadeOut ->
-      toRemove.remove()
-      collectionViewController.draw $('.collection.open'), {animate: true}
-      size = contentModel.getSize $('.collection.open')
-      $(document.body).css { width: size }
+  #   toRemove = $("\##{data.id}")
+  #   toRemove.fadeOut ->
+  #     toRemove.remove()
+  #     collectionViewController.draw $('.collection.open'), {animate: true}
+  #     size = contentModel.getSize $('.collection.open')
+  #     $(document.body).css { width: size }
 
   socket.on 'updateArticle', ({ collectionKey, userId, articleId, content }) ->
     return if data.userId is window.userId

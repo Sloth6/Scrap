@@ -20,6 +20,7 @@ html.no-js(lang='en')
     script(src='/socket.io/socket.io.js')
     script(src='/js/lib/soundcloud-api.js')
     script(src='/js/lib/pen.js')
+    script(src="/js/uploadForm.js")
 
     script(src="/js/contentModel.js")
     script(src="/js/collectionModel.js")
@@ -34,6 +35,13 @@ html.no-js(lang='en')
     script(src="/js/contentControllers/playable.js")
     script(src="/js/contentControllers/genericText.js")
 
+    script(src="/js/contentEmitters/add.js")
+    script(src="/js/contentEmitters/delete.js")
+
+    script(src="/js/menuControllers/addArticle.js")
+
+    script(src="/js/socketListeners.js")
+
     link(rel='stylesheet', href='/style/prototype.css')
     //- link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
 
@@ -41,6 +49,11 @@ html.no-js(lang='en')
     include mixins/article
     include mixins/addCollectionForm
     include mixins/addArticleForm
+
+    script.
+      var rootCollectionKey = "#{rootCollection.collectionKey}";
+      var userName = "!{user.name}";
+      var userId = +"!{user.id}";
 
   body
     nav.main

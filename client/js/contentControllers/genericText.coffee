@@ -8,7 +8,7 @@ window.initGenericText = ($content, options = {}) ->
   
   $actions.find('.showOnEditing').hide()
 
-  maxHeight = $(window).height() - marginTop - 100
+  maxHeight = $(window).height()
 
   unless $done.length
     throw 'generticText object does not have done'+ $content[0]

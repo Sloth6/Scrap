@@ -146,8 +146,6 @@ stopDragging = (mouseUpEvent, $dragging) ->
       properties:
         rotateZ: 720 * (Math.random() - .5)
         translateY: $(window).height() / scale
-#         translateX: $(window).width() * (Math.random() - .5)
-#         scale: 0
       options:
         duration: 2000
         easing: easing
@@ -422,16 +420,18 @@ openArticle = ($article) ->
     openArticleAnimations($article, scaleRatio, nativeDimensions)
     
     
-bindArticleOpenEvents = ($article) ->
-  $article.click ->
+bindArticleOpenEvents = (articles) ->
+  articles.click ->
+    $article = $(@)
     # only make openable if in recents view or pack is open
     if ($('.content').data('layout') is 'recents') or $('.content').data('packOpen')
       # don't run if article already open
       unless $('.content').data('articleOpen')
         openArticle($article)
   
-initItems = () ->
-  $('article').each ->
+initArticles = ($articles) ->
+  bindArticleOpenEvents $articles
+  $articles.not('.addArticleForm').each ->
     packName = $(@).data('pack')
     $label = $("li.label.#{packName}")
     # color = $label.data('color')
@@ -449,7 +449,6 @@ initItems = () ->
 
     #   null
     #   saveArticleRecentsViewPositions()
-    bindArticleOpenEvents $(@)
   # hide placeholder comments
   $('.comments').hide()
     
@@ -559,7 +558,6 @@ switchToRecents = () ->
   setTimeout ->
     packRecents(true)
   , duration * 1.1
-  
 
 animateHeaderIn = ($header, siblingCount) ->
   startX = if Math.random() > .5 then -$('.container').width() * 1.5 else $('.container').width() * 1.5
@@ -783,12 +781,18 @@ filterArticles = ($matched, $unmatched) ->
   # repack for good measure
   packRecents(true) 
   
+openCollectionkey = () ->
+  if $('.open').length
+    $('.open').data 'pack'
+  else
+    return rootCollectionKey
+
 openLabel = ($label) ->
   label               = $label.data 'pack'
   $panel              = $label.parents('ul.panel')
   $menu               = $panel.find('li.menu')
   $header             = $panel.find('li.panelHeader')
-  $matchedArticles    = $("article.#{label}")
+  $matchedArticles    = $("article.#{label}").add('.addArticleForm')
   $ummatchedArticles  = $('article').not $matchedArticles
   
   $label.addClass 'open'
@@ -863,13 +867,15 @@ onScroll = () ->
   lastScrollTop = scrollTop
 
 $ ->
+  window.socket = io.connect()
   $('.content').data 'layout', 'recents'
   $('.content').data 'packOpen', false
   $('.content').data 'articleOpen', false
   initLabels()
-  initItems()
+  initArticles $('article')
   initOnLoad()
   initNav()
+  initAddArticleForm()
   
   $(window).resize -> onResize()
   onResize()

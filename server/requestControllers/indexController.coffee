@@ -36,26 +36,30 @@ module.exports =
   index: (req, res, app, callback) ->
     if req.session.currentUserId?
       userId = req.session.currentUserId
-      options =
-        where: { id: userId }
-        include: [{
-          required: false
-          model: models.Collection
-          where: { hasCover: true }
-          include: [ models.User ]
-        }]
-      models.User.find( options ).done (err, user) ->
+      models.User.find( where: { id: userId } ).done (err, user) ->
         return callback err, res if err?
         return indexPage res unless user?
+        models.Article.findAll({
+          where: { creatorId: userId }
+          include: [ 
+            { model: models.User, as: 'Creator' }
+            { model: models.Collection } 
+          ]
+        }).done (err, articles) ->
+          return callback err if err?
+          options = {where: { CreatorId: userId, root:true }}
+          models.Collection.find(options).done (err, rootCollection) ->
+            return callback err if err?
 
-        options = {where: { CreatorId: userId, root:true }}
-        models.Collection.find(options).done (err, collection) ->    
-          return callback err, res if err?
-          return res.send(400) unless collection?
-
-          collection.children = user.Collections or []
-          formatCollection(collection)
-          res.render 'home.jade', { user, collection, title: 'Scrap' }
+            collections = {}
+            
+            for article in articles
+              # if !(article.Collection.collectionKey in collections)
+              key = article.Collection.collectionKey
+              collections[key] = article.Collection.dataValues
+            # console.log collections
+            console.log "Showing #{articles.length} articles"
+            res.render 'prototype', { articles, rootCollection, collections, user }
     else
       indexPage res
       callback null
