@@ -192,6 +192,7 @@ startDragging = ($dragging, mouseDownEvent) ->
   
   
 makeDraggable = ($element) ->
+  console.log 'makeDraggable'
   $element.find('a,img,iframe').bind 'dragstart', () -> false
   dragThreshold = 20
   
@@ -647,10 +648,13 @@ resizePacks = () -> # stretch pack element around children
   , duration
     
 initLabels = () ->
+
   $('li.label').each ->
     color     = $(@).data('color')
     labelName = $(@).data('pack')
-    # console.log color, labelName, @
+    
+    makeDraggable $(@)
+    
     $(@).children('a').css
       color: "hsl(#{color.h},100%,#{color.l}%)"
       '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
@@ -740,7 +744,6 @@ showPanelMenu = ($panel, $menu, $header) ->
           if $(@).index() is 0
             $menu.show()
           $(@).css 'opacity', 1
-    makeDraggable $(@)
   hidePanelHeaders()
   $('.content').addClass 'blur'
   $('.content').append $('<div class="mask"></div>')
