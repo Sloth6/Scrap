@@ -54,6 +54,7 @@ html.no-js(lang='en')
       var rootCollectionKey = "#{rootCollection.collectionKey}";
       var userName = "!{user.name}";
       var userId = +"!{user.id}";
+      var collections = !{JSON.stringify(collections)};
 
   body
     nav.main
@@ -71,11 +72,12 @@ html.no-js(lang='en')
                   .scale Recent
             
             each collection, collectionKey in collections
-              - var key = collection.collectionKey
-              li.label(data-pack=key, class=key, data-color=randomColor())
-                a(href='#')
-                  .translate
-                    .scale!=collection.name
+              if typeof(collection.name) != undefined
+                - var key = collection.collectionKey
+                li.label(data-pack=key, class=key, data-color=randomColor())
+                  a(href='#')
+                    .translate
+                      .scale!=collection.name
 
       ul.panel.settings.right
         li.panelHeader

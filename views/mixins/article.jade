@@ -6,6 +6,7 @@ mixin articleMixin(collection, article)
     }
   article(id=article.id, style= posString,
     class = classes,
+    data-collectionkey    = collection.collectionKey
     data-contenttype= article.contentType, 
     data-creatorid  = article.creatorId, 
     data-content    = article.content
@@ -89,3 +90,5 @@ mixin articleMixin(collection, article)
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content
+    //- ul.labelIndicators
+    //-   li.label(class=collection.collectionKey)!=collection.name

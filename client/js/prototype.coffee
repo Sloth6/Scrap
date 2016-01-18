@@ -431,24 +431,28 @@ bindArticleOpenEvents = (articles) ->
   
 initArticles = ($articles) ->
   bindArticleOpenEvents $articles
+  
   $articles.not('.addArticleForm').each ->
-    packName = $(@).data('pack')
-    $label = $("li.label.#{packName}")
-    # color = $label.data('color')
+
+    collectionKey = $(@).data('collectionkey')
+    $label = $("li.label.#{collectionKey}")
+    color = $label.data 'color'
+  
     $labelIndicatorContainer = $('<ul></ul>').addClass('labelIndicators').appendTo($(@))
     $labelIndicator = $('<li></li>').
       addClass('labelIndicator').
       appendTo($labelIndicatorContainer).
-      html($label.find('a').html())
-      # css { backgroundColor: "hsl(#{color.h},100%,#{color.l}%)" }
+      html($label.find('a').html()).
+      css { backgroundColor: "hsl(#{color.h},100%,#{color.l}%)" }
 
     makeDraggable $labelIndicator
-    # if $(@).hasClass('text')
-      # $(@).find('.card').css
-      #   backgroundColor: "hsl(#{color.h},100%,95%)"
 
-    #   null
+    if $(@).hasClass('text')
+      $(@).find('.card').css
+        backgroundColor: "hsl(#{color.h},100%,95%)"
+
     #   saveArticleRecentsViewPositions()
+
   # hide placeholder comments
   $('.comments').hide()
     
@@ -645,8 +649,8 @@ resizePacks = () -> # stretch pack element around children
 initLabels = () ->
   $('li.label').each ->
     color     = $(@).data('color')
-    labelName = "#{$(@).data('pack')}"
-
+    labelName = $(@).data('pack')
+    # console.log color, labelName, @
     $(@).children('a').css
       color: "hsl(#{color.h},100%,#{color.l}%)"
       '-webkit-text-fill-color' : "hsl(#{color.h},100%,#{color.l}%)"
