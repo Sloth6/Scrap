@@ -71,11 +71,11 @@ html.no-js(lang='en')
                   .scale Recent
             
             each collection, collectionKey in collections
-              - var name = collection.collectionKey
-              li.label(data-pack=name, class=name, data-color=randomColor())
+              - var key = collection.collectionKey
+              li.label(data-pack=key, class=key, data-color=randomColor())
                 a(href='#')
                   .translate
-                    .scale!=name
+                    .scale!=collection.name
 
       ul.panel.settings.right
         li.panelHeader
