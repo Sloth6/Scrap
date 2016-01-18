@@ -280,10 +280,8 @@ nav.main {
         @include transition-property(background-color);
            
         &.defocus {
-            .card {
-                -webkit-filter: grayscale(1);
-                opacity: .1;
-            }
+            -webkit-filter: grayscale(1);
+            opacity: .1;
         }
         
         &.dropTarget {
