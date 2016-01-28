@@ -90,7 +90,7 @@ window.articleModel =
 window.init =
   label: ($labels) ->
     $labels.
-      zIndex(9).
+      zIndex(2).
       draggable({
         start: (event, ui) ->
           visualEvents.closeLabels()
@@ -159,6 +159,7 @@ $ ->
   init.container $('#container')
   init.label $('li.label')
   init.article $( "article" )
+  initAddArticleForm()
   # $('a').on 'ondragstart', ()  -> false
 
   $(window).resize -> onResize()
@@ -173,4 +174,21 @@ $ ->
     (() -> visualEvents.openLabels event),
     (() -> visualEvents.closeLabels event)
   )
+
+  $addArticleForm = $('.addArticleForm')
+  $addArticleForm.hide()
+
+  $('.addForm').hover(
+    (() ->
+      $('.addForm .headerButton').hide()
+      $addArticleForm.show()
+      $addArticleForm.find('.editable').focus()
+    ),
+    (() ->
+      $('.addForm .headerButton').show()
+      $addArticleForm.hide()
+
+    )
+  )
+
 

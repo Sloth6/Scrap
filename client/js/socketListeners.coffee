@@ -9,17 +9,21 @@ $ ->
   #   $("a[href='/s/#{collectionKey}']").text(name)
 
   socket.on 'newArticle', (data) ->
-    {collectionKey, html} = data
+    { collectionKey, html } = data
     $article = $(decodeURIComponent(html))
     $addArticleForm = $('.addArticleForm')
 
     console.log "new $article for #{collectionKey}", $article.attr('class')
-
-    $('.container.recents').prepend $article
-    $('.container.recents').prepend $addArticleForm
     
-    $('.container.recents').packery 'prepended', $addArticleForm.add($article)
-    closeArticle($addArticleForm, scaleRatio, nativeDimensions)
+    $('#container').prepend $article
+
+    init.article $article
+    init.label $article.find('.label')
+
+    if collectionKey != window.openCollection
+      $article.hide()
+    
+    $('#container').packery 'prepended', $article
 
     # $collection = $('.collection.open')
 

@@ -8,7 +8,7 @@ window.initAddArticleForm = () ->
   genericText = initGenericText $form, {
     clearOnDone: true
     onDone: (text) ->
-      emitNewArticle text, openCollectionkey()
+      emitNewArticle text, window.openCollection
   }
   
   $form.find('input.file-input').click (event) ->
@@ -22,6 +22,6 @@ window.initAddArticleForm = () ->
     return unless input.text() == ''
     setTimeout (() ->
       # Use .text() to get link without divs around it
-      emitNewArticle input.text(), openCollectionkey()
+      emitNewArticle input.text(), window.openCollection
       genericText.clear()
     ), 20

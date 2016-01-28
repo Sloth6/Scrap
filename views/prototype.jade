@@ -58,12 +58,12 @@ html.no-js(lang='en')
       var collections = !{JSON.stringify(collections)};
 
   body
-    nav.main(style='width:100vw;position:fixed;z-index:2;')
+    nav.main(style='width:100vw;position:fixed;z-index:3;')
       .addForm.left(style='position:absolute;left:0;')
         .headerButton
           a(href='#') Add
-        //- +addArticleFormMixin(rootCollection)
-        
+        +addArticleFormMixin(rootCollection)
+
       ul.labels.center(style='position:absolute;')
         li.headerButton
           a(href='#') Labels
