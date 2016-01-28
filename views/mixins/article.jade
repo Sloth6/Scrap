@@ -4,6 +4,17 @@ mixin articleMixin(collection, article)
     if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
       classes.push('playable')
     }
+    var color = collection.color
+    var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
+    var hue = color.match(pattern)[1]
+    var hslLight = 'hsl('+hue+',100%, 98%)'
+        
+    if (article.contentType == 'text'){
+      var backgroundColor = hslLight
+    } else {
+      var backgroundColor = ''
+    }
+
   article(id=article.id, style= posString,
     class = classes,
     data-collectionkey    = collection.collectionKey
@@ -14,15 +25,12 @@ mixin articleMixin(collection, article)
     .articleControls
       - if(article.Creator !== undefined)
         author.smallType!=article.Creator.name
-    -
-      if (article.contentType == 'text') {
-        var color = collection.color
-        var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
-        var hue = color.match(pattern)[1]
-        var backgroundColor = 'hsl('+hue+',100%, 98%)'
-      } else {
-        var backgroundColor = ''
-      }
+
+
+    ul.articleLabels
+      - var key = collection.collectionKey
+      li.label(data-collectionKey=key, class=key)
+        a(href='#', style='color:'+collection.color+';')!=collection.name
     .card.cardHover.cardDrag(class=article.contentType, style='background-color:' + backgroundColor + ';')
       case article.contentType
         when 'image'
@@ -90,5 +98,5 @@ mixin articleMixin(collection, article)
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content
-    //- ul.labelIndicators
-    //-   li.label(class=collection.collectionKey)!=collection.name
+    
+      

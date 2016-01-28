@@ -54,10 +54,9 @@ module.exports =
             collections = {}
             
             for article in articles
-              # if !(article.Collection.collectionKey in collections)
               key = article.Collection.collectionKey
               collections[key] = article.Collection.dataValues
-            # console.log collections
+
             console.log "Showing #{articles.length} articles"
             res.render 'prototype', { articles, rootCollection, collections, user }
     else
