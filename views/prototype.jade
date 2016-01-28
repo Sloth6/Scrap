@@ -44,7 +44,7 @@ html.no-js(lang='en')
     script(src="/js/socketListeners.js")
 
     link(rel='stylesheet', href='/style/prototype.css')
-    link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
+    //- link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
 
     
     include mixins/article
@@ -58,21 +58,25 @@ html.no-js(lang='en')
       var collections = !{JSON.stringify(collections)};
 
   body
-    nav.main()
-      ul.panel.labels.left
-        li.panelHeader
+    nav.main(style='width:100vw;position:fixed;z-index:2;')
+      .addForm.left(style='position:absolute;left:0;')
+        .headerButton
+          a(href='#') Add
+        //- +addArticleFormMixin(rootCollection)
+        
+      ul.labels.center(style='position:absolute;')
+        li.headerButton
           a(href='#') Labels
-        li.menu
-          ul.labels
-            li.label.recent(data-collectionkey='recent')
-              a(href='#') Recent
-            
-            each collection, collectionKey in collections
-              if typeof(collection.name) != undefined
-                - var key = collection.collectionKey
-                li.label(data-collectionKey=key, class=key)
-                  a(href='#', style='color:'+collection.color+';')!=collection.name
-
+        li.label.recent(data-collectionkey='recent')
+          a(href='#') Recent
+        each collection, collectionKey in collections
+          if typeof(collection.name) != undefined
+            - var key = collection.collectionKey
+            li.label(data-collectionKey=key, class=key)
+              a(href='#', style='color:'+collection.color+';')!=collection.name
+      .settings.right(style='position:absolute;right:0;')
+        .headerButton
+          a(href='#') Settings
       //- ul.panel.settings.right
       //-   li.panelHeader
       //-     a(href='#') Settings
@@ -105,7 +109,6 @@ html.no-js(lang='en')
     //- .zoomViewport
     //-   .zoomContainer
     #container.recents
-      +addArticleFormMixin(rootCollection)
       for article in articles
         +articleMixin(article.Collection, article)
 
