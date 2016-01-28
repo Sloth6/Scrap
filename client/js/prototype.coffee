@@ -5,6 +5,10 @@ packeryDurationMS = duration / 2
 packeryDuration = "#{packeryDurationMS / 1000}s"
 
 draggable = false
+'use strict'
+window.constants =
+  style:
+    gutter: 20
 
 hslLight = (color) ->
   pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
@@ -72,9 +76,11 @@ init =
         helper: "clone"
         revert: "true"
       }).
-      click () ->
+      click (event) ->
         collectionKey = $(@).data('collectionkey')
         structuralEvents.switchToCollection collectionKey
+        event.stopPropagation()
+        event.preventDefault()
 
   article: ($articles) ->
     $articles.droppable
@@ -99,7 +105,7 @@ $ ->
   $container.packery({
     itemSelector: 'article'
     isOriginTop: true
-    gutter: 10
+    gutter: constants.style.gutter
   }).packery('bindResize')
 
   # if draggable

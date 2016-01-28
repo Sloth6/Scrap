@@ -7,6 +7,7 @@ html.no-js(lang='en')
     script(src="/js/jquery/jquery-ui.min.js")
     script(src="/js/jquery/jquery.transit.min.js")
     script(src="/js/jquery/jquery-mousewheel.min.js")
+    script(src="/js/jquery/jquery.zoomooz.js")
 
     script(src="/js/utilityFunctions.js")
     script(src="/js/menuControllers/header.js")
@@ -57,7 +58,7 @@ html.no-js(lang='en')
       var collections = !{JSON.stringify(collections)};
 
   body
-    nav.main
+    nav.main()
       ul.panel.labels.left
         li.panelHeader
           a(href='#') Labels
@@ -99,11 +100,14 @@ html.no-js(lang='en')
       //-         a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
       //-       li.logout.hideOnOpenSubmenu
       //-         a.logout(href="/logout") Sign out
-    .content
-      #container.recents
-        +addArticleFormMixin(rootCollection)
-        for article in articles
-          +articleMixin(article.Collection, article)
+    //- .content
+    //- 
+    //- .zoomViewport
+    //-   .zoomContainer
+    #container.recents
+      +addArticleFormMixin(rootCollection)
+      for article in articles
+        +articleMixin(article.Collection, article)
 
     //- .comments
     //-   ul
