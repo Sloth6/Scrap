@@ -38,8 +38,11 @@ spaceOutLetters = () ->
   
 initLettering = () ->
   $('.lettering').lettering();
-  $('.lettering').children().addClass 'stamp'
+  $('.lettering').children().addClass 'stamp letter'
   $('.lettering').children().each () ->
+    letter = $(@).html()
+    $(@).html('')
+    $inner = $('<span></span>').addClass('inner').html(letter).appendTo($(@))
     top = ($(window).height()/2 - $(@).height()/2) + ((Math.random() - .5) * $(window).height()/2) # px
     $(@).css
       position: 'absolute'
@@ -88,6 +91,15 @@ initCards = ->
   $('.card').css
     backgroundColor: window.color
           
+getRotateValues = ($element, scale, event) ->
+  offsetY = $element.offset().top - $(window).scrollTop()
+  offsetX = $element.offset().left - $(window).scrollLeft()
+  progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
+  progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
+  rotateX = 40 * (progressY - .5)
+  rotateY = 40 * (Math.abs(1 - progressX) - .5)
+  { x: rotateX, y: rotateY}
+  
 initHoverEffect = ->
   $elements = $('.card, .lettering span')
   $elements.parent().css
@@ -95,26 +107,23 @@ initHoverEffect = ->
     '-webkit-perspective': '400px'
   $elements.each ->
     $element = $(@)
-    scale = 1.125
+    scale = 1.25
     $element.mouseenter (event) ->
+      rotate = getRotateValues($element, scale, event)
       $element.parent().css
         zIndex: 999
       $(@).velocity
         properties:
           scale: scale
+          rotateX: rotate.x
+          rotateY: rotate.y
         options:
-          duration: 250
+          duration: 500
           easing: [40, 10]
     $element.mousemove (event) ->
-      offsetY = $element.offset().top - $(window).scrollTop()
-      offsetX = $element.offset().left - $(window).scrollLeft()
-      progressY = (event.clientY - offsetY) / ($element.height() * scale)
-      progressX = (event.clientX - offsetX) / ($element.width() * scale)
-      rotateX = 40 * (progressY - .5)
-      rotateY = 40 * (Math.abs(1 - progressX) - .5)
-      console.log progressX, rotateY
-      $.Velocity.hook $element, 'rotateX', "#{rotateX}deg"
-      $.Velocity.hook $element, 'rotateY', "#{rotateY}deg"
+      rotate = getRotateValues($element, scale, event)
+      $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
+      $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
     $element.mouseleave ->
       $(@).velocity
         properties:

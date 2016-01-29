@@ -1,6 +1,11 @@
 @import "screen.scss";
 
+body {
+//   margin: $broadMargin;
+}
+
 .content {
+    
     .pack, .stamp {
         opacity: 0;
     }
@@ -12,25 +17,33 @@
         h1 {
             font-size: (100vw / 2.75);
             font-weight: $fontWeightBold;
-            line-height: .9em;
+//             line-height: .6em;
             white-space: nowrap;
             position: relative;
             @include transition(all .25s $defaultCurve);
 //             text-transform: lowercase;
             
-            span { // lettering
+            span.letter { // lettering
                 display: inline-block;
-                background-color: transparent !important;
-                margin-top: -.333em;
-    //             background-color: rgba(255, 89, 89, 0.56);
+//                 background-color: transparent !important;
+                height: .6em;
+                
+                .inner {
+                    position: relative;
+                    top: .125em;
+                }
                 
           
                 &.char1 {
-                    margin-top: -.125em;
+                    height: .8em;
+                    
+                    .inner {
+                        top: .3125em;
+                    }
                 }
                 
                 &.char5 {
-                    margin-bottom: .1825em;
+                    height: .8em;
                 }
             }
             
@@ -62,6 +75,7 @@
         }
         ul.form {
             display: none;
+            padding: $cardPadding;
         }
     }
     
@@ -101,14 +115,16 @@
     }
     
     .sub {
-      
-        .card {
-            width: $col * 4;
-            
-            p {
-              font-size: 48pt;
-              line-height: 48pt;
-            }
+        padding: 0 !important;
+        
+        p {
+            font-size: 48pt;
+            font-weight: $fontWeightMedium;
+            line-height: 48pt;
+            letter-spacing: -(1em/32);
+            padding: 0px;
+            width: auto !important;
+            margin: 0px;
         }
     }
     

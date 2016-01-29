@@ -2592,19 +2592,18 @@ footer.main ul.actions li.action label {
   text-transform: lowercase;
 }
 
-/* line 4, ../../style/index.scss */
+/* line 9, ../../style/index.scss */
 .content .pack, .content .stamp {
   opacity: 0;
 }
-/* line 8, ../../style/index.scss */
+/* line 13, ../../style/index.scss */
 .content header {
   max-width: 100vw;
 }
-/* line 12, ../../style/index.scss */
+/* line 17, ../../style/index.scss */
 .content header h1 {
   font-size: 36.36364vw;
   font-weight: 700;
-  line-height: .9em;
   white-space: nowrap;
   position: relative;
   -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -2617,21 +2616,29 @@ footer.main ul.actions li.action label {
               }
   */
 }
-/* line 21, ../../style/index.scss */
-.content header h1 span {
+/* line 26, ../../style/index.scss */
+.content header h1 span.letter {
   display: inline-block;
-  background-color: transparent !important;
-  margin-top: -.333em;
+  height: .6em;
 }
-/* line 28, ../../style/index.scss */
-.content header h1 span.char1 {
-  margin-top: -.125em;
+/* line 31, ../../style/index.scss */
+.content header h1 span.letter .inner {
+  position: relative;
+  top: .125em;
 }
-/* line 32, ../../style/index.scss */
-.content header h1 span.char5 {
-  margin-bottom: .1825em;
+/* line 37, ../../style/index.scss */
+.content header h1 span.letter.char1 {
+  height: .8em;
+}
+/* line 40, ../../style/index.scss */
+.content header h1 span.letter.char1 .inner {
+  top: .3125em;
 }
 /* line 45, ../../style/index.scss */
+.content header h1 span.letter.char5 {
+  height: .8em;
+}
+/* line 58, ../../style/index.scss */
 .content nav {
   position: fixed;
   top: 0;
@@ -2639,29 +2646,30 @@ footer.main ul.actions li.action label {
   right: 0;
   z-index: 2;
 }
-/* line 53, ../../style/index.scss */
+/* line 66, ../../style/index.scss */
 .content .card.form {
   cursor: pointer;
   overflow: hidden;
   position: relative;
   padding: 0;
 }
-/* line 59, ../../style/index.scss */
+/* line 72, ../../style/index.scss */
 .content .card.form h1 {
   position: absolute;
   width: 100%;
 }
-/* line 63, ../../style/index.scss */
+/* line 76, ../../style/index.scss */
 .content .card.form ul.form {
   display: none;
+  padding: 4pt 4pt 4pt 4pt;
 }
-/* line 69, ../../style/index.scss */
+/* line 83, ../../style/index.scss */
 .content .signUp .card {
   width: 168pt;
   height: 168pt;
   border-radius: 168pt;
 }
-/* line 74, ../../style/index.scss */
+/* line 88, ../../style/index.scss */
 .content .signUp .card h1 {
   text-align: center;
   line-height: .8em;
@@ -2669,50 +2677,55 @@ footer.main ul.actions li.action label {
   margin-left: 12.5%;
   margin-top: .25em;
 }
-/* line 87, ../../style/index.scss */
+/* line 101, ../../style/index.scss */
 .content .logIn .card {
   height: 56pt;
   width: 112pt;
 }
-/* line 92, ../../style/index.scss */
+/* line 106, ../../style/index.scss */
 .content .logIn .card h1 {
   margin-top: .5em;
   text-align: center;
 }
-/* line 105, ../../style/index.scss */
-.content .sub .card {
-  width: 224pt;
+/* line 117, ../../style/index.scss */
+.content .sub {
+  padding: 0 !important;
 }
-/* line 108, ../../style/index.scss */
-.content .sub .card p {
+/* line 120, ../../style/index.scss */
+.content .sub p {
   font-size: 48pt;
+  font-weight: 500;
   line-height: 48pt;
+  letter-spacing: -0.03125em;
+  padding: 0px;
+  width: auto !important;
+  margin: 0px;
 }
-/* line 115, ../../style/index.scss */
+/* line 131, ../../style/index.scss */
 .content .card {
   background-color: transparent;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 121, ../../style/index.scss */
+/* line 137, ../../style/index.scss */
 .content .card.interactive.unfocused:hover {
   background-color: #000000 !important;
 }
-/* line 126, ../../style/index.scss */
+/* line 142, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 129, ../../style/index.scss */
+/* line 145, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 134, ../../style/index.scss */
+/* line 150, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
 }
 
-/* line 142, ../../style/index.scss */
+/* line 158, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;
