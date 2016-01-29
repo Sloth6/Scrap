@@ -2604,19 +2604,22 @@ footer.main ul.actions li.action label {
 .content header h1 {
   font-size: 36.36364vw;
   font-weight: 700;
-  line-height: .8em;
+  line-height: .9em;
   white-space: nowrap;
   position: relative;
   -moz-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  text-transform: lowercase;
 }
 /* line 21, ../../style/index.scss */
 .content header h1 span {
   display: inline-block;
   margin-top: -.2em;
+}
+/* line 27, ../../style/index.scss */
+.content header h1 span.char1 {
+  margin-top: 0;
 }
 /* line 31, ../../style/index.scss */
 .content header h1 span.char5 {
@@ -2636,38 +2639,68 @@ footer.main ul.actions li.action label {
   right: 0;
   z-index: 2;
 }
-/* line 54, ../../style/index.scss */
-.content .card {
-  background-color: transparent;
+/* line 50, ../../style/index.scss */
+.content .card.form {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+/* line 55, ../../style/index.scss */
+.content .card.form h1 {
+  position: absolute;
+  width: 100%;
 }
 /* line 59, ../../style/index.scss */
-.content .card.interactive:hover {
-  background-color: white;
+.content .card.form ul.form {
+  display: none;
 }
-/* line 64, ../../style/index.scss */
+/* line 65, ../../style/index.scss */
+.content .signUp .card {
+  width: 168pt;
+  height: 168pt;
+  border-radius: 168pt;
+}
+/* line 70, ../../style/index.scss */
+.content .signUp .card h1 {
+  text-align: center;
+  font-style: italic;
+  line-height: .8em;
+  width: 75%;
+}
+/* line 81, ../../style/index.scss */
+.content .logIn .card {
+  height: 56pt;
+  width: 112pt;
+}
+/* line 86, ../../style/index.scss */
+.content .logIn .card h1 {
+  text-align: center;
+}
+/* line 96, ../../style/index.scss */
+.content .card {
+  background-color: transparent;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+}
+/* line 102, ../../style/index.scss */
+.content .card.interactive.unfocused:hover {
+  background-color: #000000 !important;
+}
+/* line 107, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 67, ../../style/index.scss */
+/* line 110, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
+  background-color: transparent !important;
 }
-/* line 71, ../../style/index.scss */
+/* line 115, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
-  /*
-                  height: 100%;
-                  width:  100%;
-  */
-}
-/* line 80, ../../style/index.scss */
-.content .card.symbol {
-  font-size: 8em;
-  line-height: 1em;
-  font-weight: 800;
 }
 
-/* line 89, ../../style/index.scss */
+/* line 123, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;

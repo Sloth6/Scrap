@@ -1,14 +1,14 @@
 repack = () ->
-  $('.content').packery()
-  
+  $('.content').packery 'stamp', $('.stamp')
+  $('.content').packery({
+    itemSelector: '.pack'
+  #     transitionDuration: '0s'
+  });
+    
 resizeCards = (minSize, gutter) ->
   $('.pack.filler').each () ->
     height  = minSize + (Math.round(Math.random() * (minSize*6)))
     width   = minSize + (Math.round(Math.random() * (minSize*6)))
-#     $(@).find('.card').css({
-#       'width':  "#{width}px"
-#       'height': "#{height}px"
-#     })
   $('.pack').each () ->
     $(@).css({
       'padding-left':  if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
@@ -41,93 +41,95 @@ initLettering = () ->
   $('.lettering').children().addClass 'stamp'
   $('.lettering').children().each () ->
     top = ($(window).height()/2 - $(@).height()/2) + ((Math.random() - .5) * $(window).height()/2) # px
-    $(@).css {
+    $(@).css
       position: 'absolute'
       top: "#{top}px"
-    }
   spaceOutLetters()
   
 initGlyphCards = ($card) ->
   if Math.random() < .75
     glyphCount = 89
     path = '/images/glyphs/border/glyph'
-    classes = 'svg'
   else
     glyphCount = 9
     path = '/images/glyphs/borderless/glyph'
-    classes = 'svg borderless'
+    $card.addClass 'borderless'
   glyph = (Math.ceil(Math.random() * glyphCount)).toString()
-  size = Math.ceil((Math.random() + .5)* 4) * 36
+  size = Math.ceil((Math.random() + .5)* 8) * 12
   if (glyph.length < 2)
     glyph = '0' + glyph
   $object = $("<object type='image/svg+xml' data='#{path}-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
   $card.append $object
   setTimeout -> # wait until after svgs load
+    # make monoline
     $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
-    $shapes.attr('vector-effect', 'non-scaling-stroke')
+    $shapes.attr('vector-effect', 'non-scaling-stroke').attr('style', "fill: #{window.color}")
     repack()
   , 1000
-  $card.addClass classes
-  $card.css({
-    'width':  size
-  #           'height': size
-  })
+  $cardMask = $('<div></div>').addClass('cardMask').css
+    position: 'absolute'
+    zIndex: 3
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+  $card.append $cardMask
+  $card.addClass 'svg'
+  $card.css
+    width: size
   
 initCards = () ->
   $('.pack.filler').each () ->
-    random = Math.floor(Math.random() * 4)
     $card = $(@).find('.card')
-    switch random
-      # card symbol
-      when 0
-        initGlyphCards($card)
-      when 1
-        initGlyphCards($card)
-      when 2
-        initGlyphCards($card)
-      when 3
-        random = Math.floor(Math.random() * 4)
-        switch random
-          when 0
-            random = Math.floor(Math.random() * 4)
-            $card.addClass 'typeOutlineClear symbol'
-            $card.css({
-              fontSize: Math.ceil(Math.random() * 4) * 24
-            })
-            switch random
-              when 0 then $card.html '$'
-              when 1 then $card.html '&'
-              when 2 then $card.html '?'
-              when 3 then $card.html '!'
-          when 1
-            $card.addClass 'typeOutlineClear symbol'
-            $card.css({
-              fontSize: Math.ceil(Math.random() * 4) * 24
-              fontWeight: Math.ceil(Math.random() * 8) * 100
-            })
-            random = Math.floor(Math.random() * 4)
-            switch random
-              when 0 then text = 'Wow!'
-              when 1 then text = 'Meh.'
-              when 2 then text = 'Cool'
-              when 3 then text = 'Amazing'
-            $h1 = $('<h1></h1>').html(text)
-            $card.append $h1
-          when 2
-            $card.html '2'
-          when 3
-            $card.html '3'
+    initGlyphCards($card)
   
+  $cards = $('.card')
+  $cards.parent().css
+    'perspective': '400px'
+    '-webkit-perspective': '400px'
+  $cards.css
+    backgroundColor: window.color
+  $cards.each ->
+    $card = $(@)
+    scale = 1.25
+    $card.mouseenter (event) ->
+      $card.parent().css
+        zIndex: 999
+      $(@).velocity
+        properties:
+          scale: scale
+          rotateX: 0
+          rotateY: 0
+        options:
+  #         queue: false
+          duration: 250
+          easing: [40, 10]
+    $card.mousemove (event) ->
+      offsetY = $card.offset().top - $(window).scrollTop()
+      offsetX = $card.offset().left - $(window).scrollLeft()
+      progressY = (event.clientY - offsetY) / ($card.height() * scale)
+      progressX = (event.clientX - offsetX) / ($card.width() * scale)
+      rotateX = 40 * (progressY - .5)
+      rotateY = 40 * (Math.abs(1 - progressX) - .5)
+      console.log progressX, rotateY
+      $.Velocity.hook $card, 'rotateX', "#{rotateX}deg"
+      $.Velocity.hook $card, 'rotateY', "#{rotateY}deg"
+    $card.mouseleave ->
+      $(@).velocity
+        properties:
+          scale: 1
+          rotateX: 0
+          rotateY: 0
+        options:
+          duration: 250
+          easing: [40, 10]
+          
 initPackery = () ->
-  $('.content').packery({
-    itemSelector: '.pack',
-    transitionDuration: '0s'
-  });
-  $('.content').packery( 'stamp', $('.stamp') );
-
+  repack()
+  
 onResize = () ->
   cardSize = if $(window).width() < 768 then 18 else 36
-  gutter   = if $(window).width() < 768 then 6 else 12
+  gutter   = if $(window).width() < 768 then 3 else 6
   repack()
   resizeCards(cardSize, gutter)
   repack()
@@ -168,7 +170,7 @@ loadAnimation = () ->
         
 randomColor = () ->
   h = Math.random() * 360
-  l = Math.random() * 10 + 70
+  l = Math.random() * 10 + 75
   "hsl(#{h},100%,#{l}%)"
   
 toggleExtraFillers = () ->
@@ -182,6 +184,7 @@ toggleExtraFillers = () ->
       
 
 $ ->
+  window.color = randomColor()
   initLettering()
   initCards()
   initPackery()
@@ -192,6 +195,61 @@ $ ->
     loadAnimation()
   , 1000
   
-  $('body').css({
-    backgroundColor: randomColor()
-  })
+#   $('body').css({
+#     backgroundColor: window.color
+#   })
+  
+  $('.typeOutlineClear, .typeHeaderOutline').css
+    '-webkit-text-fill-color': window.color
+  
+  $('.logIn .card').css
+    borderRadius: '400pt / 200pt' # doesn't work in SCSS
+    
+  $('.card.form').click ->
+    if $(@).hasClass 'unfocused'
+      $packable = $(@).parent($('.pack'))
+      $h1 = $(@).find('h1')
+      $form = $(@).find('ul.form')
+      duration = 500
+      easing = [30, 10]
+      $(@).removeClass 'unfocused'
+      $h1.velocity
+        properties:
+          translateY: -$h1.height()
+          opacity: 0
+        options:
+          duration: duration
+          easing: easing
+          complete: -> $h1.hide()
+          
+      $form.velocity
+        properties:
+          translateY: [0, $form.height()]
+          opacity: 1
+        options:
+          duration: duration
+          easing: easing
+          begin: ->
+            $form.show()
+            $form.css
+              opacity: 0
+              top: 0
+  #         complete: ->
+  #           $form.css
+  #             position: 'static'
+          
+      $('.stamp').removeClass 'stamp'
+      $packable.addClass('stamp').css
+        height: $form.height() + 48
+        width: '200px'
+      $(@).velocity
+        properties:
+          borderRadius: 0
+          height: '100%'
+          width: '100%'
+        options:
+          duration: duration
+          easing: easing
+#       repack()
+    
+        

@@ -12,11 +12,11 @@
         h1 {
             font-size: (100vw / 2.75);
             font-weight: $fontWeightBold;
-            line-height: .8em;
+            line-height: .9em;
             white-space: nowrap;
             position: relative;
             @include transition(all .25s $defaultCurve);
-            text-transform: lowercase;
+//             text-transform: lowercase;
             
             span { // lettering
                 display: inline-block;
@@ -25,7 +25,7 @@
                 
           
                 &.char1 {
-//                     margin-top: 0;
+                    margin-top: 0;
                 }
                 
                 &.char5 {
@@ -47,17 +47,60 @@
         z-index: 2;
     }
     
-    .filler .card {
-//         opacity: .2;
+    .card.form {
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+
+        h1 {
+            position: absolute;
+            width: 100%;
+        }
+        ul.form {
+            display: none;
+        }
+    }
+    
+    .signUp {
+        .card {
+            width: $col * 3;
+            height: $col * 3;
+            border-radius: $col * 3;
+            
+            h1 {
+                text-align: center;
+                font-style: italic;
+                line-height: .8em;
+                width: 75%;
+            }
+        }
+    }
+    
+    .logIn {
+        
+        .card {
+            height: $col;
+            width: $col * 2;
+//             padding: 0;
+//             padding: $broadMargin;
+            h1 {
+//                 line-height: $col * 1.75;
+                text-align: center;
+            }
+            
+            
+        }
+      
     }
     
     .card {
         background-color: transparent;
-//         width: $col * 4;
-
+                transform-origin:   center center;
+        -webkit-transform-origin: center center;
+        
         &.interactive {
-            &:hover {
-                background-color: white;
+            &.unfocused:hover {
+                background-color: $colorType !important;
             }
         }
 
@@ -66,23 +109,14 @@
             
             &.borderless {
                 border: 0;
+                background-color: transparent !important;
             }
             
             object.svg {
                 margin-bottom: -6px;
-/*
-                height: 100%;
-                width:  100%;
-*/
             }
         }
-        
-        &.symbol {
-            font-size: 8em;
-            line-height: 1em;
-            font-weight: $fontWeightExtraBold;
-        }
-    }
+            }
     
 }
 

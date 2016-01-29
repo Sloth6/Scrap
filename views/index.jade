@@ -45,31 +45,31 @@ block content
     header
       a(href='/')
         h1.lettering.typeOutlineClear.typeOutlineBlackOnHover Scrap
-    nav
-      ul.menu.headerMenu.settings.right.hideFirst.slideIn
-        li.first Sign in
-        include partials/logIn
+    .pack.signUp.form
+      .card.interactive.unfocused.form
+        h1.typeOutlineClear.typeTitle Sign up here!
+        ul.form
+          include partials/signUp
+    .pack.logIn.form
+      .card.interactive.unfocused.form
+        h1.typeHeaderOutline Sign in
+        ul.form
+          include partials/logIn
     - for (var i = 0; i < 3; i++) {
         .pack.filler
           .card
     - }
     .pack
-      .card.interactive
-        p Save and share anything.
-    - for (var i = 0; i < 3; i++) {
-        .pack.filler
-          .card
-    - }
-    .pack
-      .card.interactive
+      .card
         p.typeHeaderOutline Collect pieces of the web in one place.
     - for (var i = 0; i < 3; i++) {
         .pack.filler
           .card
     - }
-    .pack.signUp
-      .card.interactive
-        include partials/signUp
+    - for (var i = 0; i < 3; i++) {
+        .pack.filler
+          .card
+    - }
     - for (var i = 0; i < 50; i++) {
         .pack.filler
           .card
