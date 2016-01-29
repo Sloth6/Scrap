@@ -20,22 +20,25 @@
             
             span { // lettering
                 display: inline-block;
-                margin-top: -.2em;
+                background-color: transparent !important;
+                margin-top: -.333em;
     //             background-color: rgba(255, 89, 89, 0.56);
                 
           
                 &.char1 {
-                    margin-top: 0;
+                    margin-top: -.125em;
                 }
                 
                 &.char5 {
-                    margin-bottom: .25em;
+                    margin-bottom: .1825em;
                 }
             }
             
+/*
             @media (min-width: $breakSmall) {
                 font-size: 25vw;
             }
+*/
         }
     }
     
@@ -51,6 +54,7 @@
         cursor: pointer;
         overflow: hidden;
         position: relative;
+        padding: 0;
 
         h1 {
             position: absolute;
@@ -69,9 +73,11 @@
             
             h1 {
                 text-align: center;
-                font-style: italic;
+//                 font-style: italic;
                 line-height: .8em;
                 width: 75%;
+                margin-left: 12.5%;
+                margin-top: .25em;
             }
         }
     }
@@ -85,12 +91,25 @@
 //             padding: $broadMargin;
             h1 {
 //                 line-height: $col * 1.75;
+                margin-top: .5em;
                 text-align: center;
             }
             
             
         }
       
+    }
+    
+    .sub {
+      
+        .card {
+            width: $col * 4;
+            
+            p {
+              font-size: 48pt;
+              line-height: 48pt;
+            }
+        }
     }
     
     .card {

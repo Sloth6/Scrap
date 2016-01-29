@@ -44,7 +44,7 @@ block content
   .content
     header
       a(href='/')
-        h1.lettering.typeOutlineClear.typeOutlineBlackOnHover Scrap
+        h1.lettering.typeOutlineClear Scrap
     .pack.signUp.form
       .card.interactive.unfocused.form
         h1.typeOutlineClear.typeTitle Sign up here!
@@ -55,21 +55,9 @@ block content
         h1.typeHeaderOutline Sign in
         ul.form
           include partials/logIn
-    - for (var i = 0; i < 3; i++) {
-        .pack.filler
-          .card
-    - }
-    .pack
+    .pack.sub
       .card
-        p.typeHeaderOutline Collect pieces of the web in one place.
-    - for (var i = 0; i < 3; i++) {
-        .pack.filler
-          .card
-    - }
-    - for (var i = 0; i < 3; i++) {
-        .pack.filler
-          .card
-    - }
+        p.typeTitle.typeOutlineClear Collect pieces of the web in one place.
     - for (var i = 0; i < 50; i++) {
         .pack.filler
           .card

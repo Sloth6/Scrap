@@ -48,9 +48,11 @@ initLettering = () ->
   
 initGlyphCards = ($card) ->
   if Math.random() < .75
+    borderless = false
     glyphCount = 89
     path = '/images/glyphs/border/glyph'
   else
+    borderless = true
     glyphCount = 9
     path = '/images/glyphs/borderless/glyph'
     $card.addClass 'borderless'
@@ -63,7 +65,10 @@ initGlyphCards = ($card) ->
   setTimeout -> # wait until after svgs load
     # make monoline
     $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
-    $shapes.attr('vector-effect', 'non-scaling-stroke').attr('style', "fill: #{window.color}")
+    $shapes.attr('vector-effect', 'non-scaling-stroke')
+    if borderless
+      $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
+      $fillable.attr('style', "fill: #{window.color}")
     repack()
   , 1000
   $cardMask = $('<div></div>').addClass('cardMask').css
@@ -78,43 +83,39 @@ initGlyphCards = ($card) ->
   $card.css
     width: size
   
-initCards = () ->
-  $('.pack.filler').each () ->
-    $card = $(@).find('.card')
-    initGlyphCards($card)
-  
-  $cards = $('.card')
-  $cards.parent().css
+initCards = ->
+  $('.pack.filler').each () -> initGlyphCards $(@).find('.card')
+  $('.card').css
+    backgroundColor: window.color
+          
+initHoverEffect = ->
+  $elements = $('.card, .lettering span')
+  $elements.parent().css
     'perspective': '400px'
     '-webkit-perspective': '400px'
-  $cards.css
-    backgroundColor: window.color
-  $cards.each ->
-    $card = $(@)
-    scale = 1.25
-    $card.mouseenter (event) ->
-      $card.parent().css
+  $elements.each ->
+    $element = $(@)
+    scale = 1.125
+    $element.mouseenter (event) ->
+      $element.parent().css
         zIndex: 999
       $(@).velocity
         properties:
           scale: scale
-          rotateX: 0
-          rotateY: 0
         options:
-  #         queue: false
           duration: 250
           easing: [40, 10]
-    $card.mousemove (event) ->
-      offsetY = $card.offset().top - $(window).scrollTop()
-      offsetX = $card.offset().left - $(window).scrollLeft()
-      progressY = (event.clientY - offsetY) / ($card.height() * scale)
-      progressX = (event.clientX - offsetX) / ($card.width() * scale)
+    $element.mousemove (event) ->
+      offsetY = $element.offset().top - $(window).scrollTop()
+      offsetX = $element.offset().left - $(window).scrollLeft()
+      progressY = (event.clientY - offsetY) / ($element.height() * scale)
+      progressX = (event.clientX - offsetX) / ($element.width() * scale)
       rotateX = 40 * (progressY - .5)
       rotateY = 40 * (Math.abs(1 - progressX) - .5)
       console.log progressX, rotateY
-      $.Velocity.hook $card, 'rotateX', "#{rotateX}deg"
-      $.Velocity.hook $card, 'rotateY', "#{rotateY}deg"
-    $card.mouseleave ->
+      $.Velocity.hook $element, 'rotateX', "#{rotateX}deg"
+      $.Velocity.hook $element, 'rotateY', "#{rotateY}deg"
+    $element.mouseleave ->
       $(@).velocity
         properties:
           scale: 1
@@ -124,7 +125,7 @@ initCards = () ->
           duration: 250
           easing: [40, 10]
           
-initPackery = () ->
+initPackery = ->
   repack()
   
 onResize = () ->
@@ -181,12 +182,53 @@ toggleExtraFillers = () ->
 #     else
 #       $(@).css('background-color', 'red')
 #       $(@).show()
-      
+
+openForm = ($card) ->
+  $packable = $card.parent($('.pack'))
+  $h1 = $card.find('h1')
+  $form = $card.find('ul.form')
+  duration = 500
+  easing = [30, 10]
+  $card.removeClass 'unfocused'
+  $h1.velocity
+    properties:
+      translateY: -$h1.height()
+      opacity: 0
+    options:
+      duration: duration
+      easing: easing
+      complete: -> $h1.hide()
+  $form.velocity
+    properties:
+      translateY: [0, $form.height()]
+      opacity: 1
+    options:
+      duration: duration
+      easing: easing
+      begin: ->
+        $form.show()
+        $form.css
+          opacity: 0
+          top: 0      
+  $('.stamp').removeClass 'stamp'
+  $packable.addClass('stamp').css
+    height: $form.height() + 48
+    width: '200px'
+  $card.velocity
+    properties:
+      borderRadius: 0
+      height: '100%'
+      width: '100%'
+    options:
+      duration: duration
+      easing: easing
+  #       repack()
 
 $ ->
   window.color = randomColor()
   initLettering()
   initCards()
+  initHoverEffect()
   initPackery()
   
   $(window).resize () -> onResize()
@@ -207,49 +249,4 @@ $ ->
     
   $('.card.form').click ->
     if $(@).hasClass 'unfocused'
-      $packable = $(@).parent($('.pack'))
-      $h1 = $(@).find('h1')
-      $form = $(@).find('ul.form')
-      duration = 500
-      easing = [30, 10]
-      $(@).removeClass 'unfocused'
-      $h1.velocity
-        properties:
-          translateY: -$h1.height()
-          opacity: 0
-        options:
-          duration: duration
-          easing: easing
-          complete: -> $h1.hide()
-          
-      $form.velocity
-        properties:
-          translateY: [0, $form.height()]
-          opacity: 1
-        options:
-          duration: duration
-          easing: easing
-          begin: ->
-            $form.show()
-            $form.css
-              opacity: 0
-              top: 0
-  #         complete: ->
-  #           $form.css
-  #             position: 'static'
-          
-      $('.stamp').removeClass 'stamp'
-      $packable.addClass('stamp').css
-        height: $form.height() + 48
-        width: '200px'
-      $(@).velocity
-        properties:
-          borderRadius: 0
-          height: '100%'
-          width: '100%'
-        options:
-          duration: duration
-          easing: easing
-#       repack()
-    
-        
+      openForm $(@)

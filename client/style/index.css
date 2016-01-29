@@ -2611,27 +2611,27 @@ footer.main ul.actions li.action label {
   -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  /*
+              @media (min-width: $breakSmall) {
+                  font-size: 25vw;
+              }
+  */
 }
 /* line 21, ../../style/index.scss */
 .content header h1 span {
   display: inline-block;
-  margin-top: -.2em;
+  background-color: transparent !important;
+  margin-top: -.333em;
 }
-/* line 27, ../../style/index.scss */
+/* line 28, ../../style/index.scss */
 .content header h1 span.char1 {
-  margin-top: 0;
+  margin-top: -.125em;
 }
-/* line 31, ../../style/index.scss */
+/* line 32, ../../style/index.scss */
 .content header h1 span.char5 {
-  margin-bottom: .25em;
+  margin-bottom: .1825em;
 }
-@media (min-width: 768px) {
-  /* line 12, ../../style/index.scss */
-  .content header h1 {
-    font-size: 25vw;
-  }
-}
-/* line 42, ../../style/index.scss */
+/* line 45, ../../style/index.scss */
 .content nav {
   position: fixed;
   top: 0;
@@ -2639,68 +2639,80 @@ footer.main ul.actions li.action label {
   right: 0;
   z-index: 2;
 }
-/* line 50, ../../style/index.scss */
+/* line 53, ../../style/index.scss */
 .content .card.form {
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  padding: 0;
 }
-/* line 55, ../../style/index.scss */
+/* line 59, ../../style/index.scss */
 .content .card.form h1 {
   position: absolute;
   width: 100%;
 }
-/* line 59, ../../style/index.scss */
+/* line 63, ../../style/index.scss */
 .content .card.form ul.form {
   display: none;
 }
-/* line 65, ../../style/index.scss */
+/* line 69, ../../style/index.scss */
 .content .signUp .card {
   width: 168pt;
   height: 168pt;
   border-radius: 168pt;
 }
-/* line 70, ../../style/index.scss */
+/* line 74, ../../style/index.scss */
 .content .signUp .card h1 {
   text-align: center;
-  font-style: italic;
   line-height: .8em;
   width: 75%;
+  margin-left: 12.5%;
+  margin-top: .25em;
 }
-/* line 81, ../../style/index.scss */
+/* line 87, ../../style/index.scss */
 .content .logIn .card {
   height: 56pt;
   width: 112pt;
 }
-/* line 86, ../../style/index.scss */
+/* line 92, ../../style/index.scss */
 .content .logIn .card h1 {
+  margin-top: .5em;
   text-align: center;
 }
-/* line 96, ../../style/index.scss */
+/* line 105, ../../style/index.scss */
+.content .sub .card {
+  width: 224pt;
+}
+/* line 108, ../../style/index.scss */
+.content .sub .card p {
+  font-size: 48pt;
+  line-height: 48pt;
+}
+/* line 115, ../../style/index.scss */
 .content .card {
   background-color: transparent;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 102, ../../style/index.scss */
+/* line 121, ../../style/index.scss */
 .content .card.interactive.unfocused:hover {
   background-color: #000000 !important;
 }
-/* line 107, ../../style/index.scss */
+/* line 126, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 110, ../../style/index.scss */
+/* line 129, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 115, ../../style/index.scss */
+/* line 134, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
 }
 
-/* line 123, ../../style/index.scss */
+/* line 142, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;
