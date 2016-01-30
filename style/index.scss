@@ -1,6 +1,11 @@
 @import "screen.scss";
 
+body {
+//   margin: $broadMargin;
+}
+
 .content {
+    
     .pack, .stamp {
         opacity: 0;
     }
@@ -12,30 +17,41 @@
         h1 {
             font-size: (100vw / 2.75);
             font-weight: $fontWeightBold;
-            line-height: .8em;
+//             line-height: .6em;
             white-space: nowrap;
             position: relative;
             @include transition(all .25s $defaultCurve);
-            text-transform: lowercase;
+//             text-transform: lowercase;
             
-            span { // lettering
+            span.letter { // lettering
                 display: inline-block;
-                margin-top: -.2em;
-    //             background-color: rgba(255, 89, 89, 0.56);
+//                 background-color: transparent !important;
+                height: .6em;
+                
+                .inner {
+                    position: relative;
+                    top: .125em;
+                }
                 
           
                 &.char1 {
-//                     margin-top: 0;
+                    height: .8em;
+                    
+                    .inner {
+                        top: .3125em;
+                    }
                 }
                 
                 &.char5 {
-                    margin-bottom: .25em;
+                    height: .8em;
                 }
             }
             
+/*
             @media (min-width: $breakSmall) {
                 font-size: 25vw;
             }
+*/
         }
     }
     
@@ -47,17 +63,80 @@
         z-index: 2;
     }
     
-    .filler .card {
-//         opacity: .2;
+    .card.form {
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        padding: 0;
+
+        h1 {
+            position: absolute;
+            width: 100%;
+            -webkit-text-fill-color: white !important;
+        }
+        ul.form {
+            display: none;
+            padding: $cardPadding;
+        }
+    }
+    
+    .signUp {
+        .card {
+            width: $col * 3;
+            height: $col * 3;
+            border-radius: $col * 3;
+            
+            h1 {
+                text-align: center;
+//                 font-style: italic;
+                line-height: .8em;
+                width: 75%;
+                margin-left: 12.5%;
+                margin-top: .25em;
+            }
+        }
+    }
+    
+    .logIn {
+        
+        .card {
+            height: $col;
+            width: $col * 2;
+//             padding: 0;
+//             padding: $broadMargin;
+            h1 {
+//                 line-height: $col * 1.75;
+                margin-top: .5em;
+                text-align: center;
+            }
+            
+            
+        }
+      
+    }
+    
+    .sub {
+        padding: 0 !important;
+        
+        p {
+            font-size: 48pt;
+            font-weight: $fontWeightMedium;
+            line-height: 48pt;
+            letter-spacing: -(1em/32);
+            padding: 0px;
+            width: auto !important;
+            margin: 0px;
+        }
     }
     
     .card {
         background-color: transparent;
-//         width: $col * 4;
-
+                transform-origin:   center center;
+        -webkit-transform-origin: center center;
+        
         &.interactive {
-            &:hover {
-                background-color: white;
+            &.unfocused:hover {
+                background-color: $colorType !important;
             }
         }
 
@@ -66,23 +145,14 @@
             
             &.borderless {
                 border: 0;
+                background-color: transparent !important;
             }
             
             object.svg {
                 margin-bottom: -6px;
-/*
-                height: 100%;
-                width:  100%;
-*/
             }
         }
-        
-        &.symbol {
-            font-size: 8em;
-            line-height: 1em;
-            font-weight: $fontWeightExtraBold;
-        }
-    }
+            }
     
 }
 
