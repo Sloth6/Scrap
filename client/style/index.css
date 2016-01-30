@@ -2657,19 +2657,20 @@ footer.main ul.actions li.action label {
 .content .card.form h1 {
   position: absolute;
   width: 100%;
+  -webkit-text-fill-color: white !important;
 }
-/* line 76, ../../style/index.scss */
+/* line 77, ../../style/index.scss */
 .content .card.form ul.form {
   display: none;
   padding: 4pt 4pt 4pt 4pt;
 }
-/* line 83, ../../style/index.scss */
+/* line 84, ../../style/index.scss */
 .content .signUp .card {
   width: 168pt;
   height: 168pt;
   border-radius: 168pt;
 }
-/* line 88, ../../style/index.scss */
+/* line 89, ../../style/index.scss */
 .content .signUp .card h1 {
   text-align: center;
   line-height: .8em;
@@ -2677,21 +2678,21 @@ footer.main ul.actions li.action label {
   margin-left: 12.5%;
   margin-top: .25em;
 }
-/* line 101, ../../style/index.scss */
+/* line 102, ../../style/index.scss */
 .content .logIn .card {
   height: 56pt;
   width: 112pt;
 }
-/* line 106, ../../style/index.scss */
+/* line 107, ../../style/index.scss */
 .content .logIn .card h1 {
   margin-top: .5em;
   text-align: center;
 }
-/* line 117, ../../style/index.scss */
+/* line 118, ../../style/index.scss */
 .content .sub {
   padding: 0 !important;
 }
-/* line 120, ../../style/index.scss */
+/* line 121, ../../style/index.scss */
 .content .sub p {
   font-size: 48pt;
   font-weight: 500;
@@ -2701,31 +2702,31 @@ footer.main ul.actions li.action label {
   width: auto !important;
   margin: 0px;
 }
-/* line 131, ../../style/index.scss */
+/* line 132, ../../style/index.scss */
 .content .card {
   background-color: transparent;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 137, ../../style/index.scss */
+/* line 138, ../../style/index.scss */
 .content .card.interactive.unfocused:hover {
   background-color: #000000 !important;
 }
-/* line 142, ../../style/index.scss */
+/* line 143, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 145, ../../style/index.scss */
+/* line 146, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 150, ../../style/index.scss */
+/* line 151, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
 }
 
-/* line 158, ../../style/index.scss */
+/* line 159, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;

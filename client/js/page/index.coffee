@@ -101,7 +101,7 @@ getRotateValues = ($element, scale, event) ->
   { x: rotateX, y: rotateY}
   
 initHoverEffect = ->
-  $elements = $('.card, .lettering span')
+  $elements = $('.card')
   $elements.parent().css
     'perspective': '400px'
     '-webkit-perspective': '400px'
@@ -114,12 +114,13 @@ initHoverEffect = ->
         zIndex: 999
       $(@).velocity
         properties:
+          translateZ: 0
           scale: scale
           rotateX: rotate.x
           rotateY: rotate.y
         options:
-          duration: 500
-          easing: [40, 10]
+          duration: 250
+          easing: [60, 10]
     $element.mousemove (event) ->
       rotate = getRotateValues($element, scale, event)
       $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
