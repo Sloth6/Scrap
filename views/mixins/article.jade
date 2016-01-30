@@ -1,23 +1,26 @@
-mixin articleMixin(collection, article)
+mixin articleMixin(article, collections)
   -
-    var classes =  [article.contentType, collection.collectionKey, 'zoomTarget']
+    var classes =  [article.contentType, 'zoomTarget']
+    var content = article.content
+    for (var i = 0; i < collections.length; i++) {
+      classes.push(collections[i].collectionKey)
+    }
     if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
       classes.push('playable')
     }
-    var color = collection.color
-    var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
-    var hue = color.match(pattern)[1]
-    var hslLight = 'hsl('+hue+',100%, 98%)'
+    // var color = collection.color
+    // var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
+    // var hue = color.match(pattern)[1]
+    // var hslLight = 'hsl('+hue+',100%, 98%)'
         
-    if (article.contentType == 'text'){
-      var backgroundColor = hslLight
-    } else {
-      var backgroundColor = ''
-    }
+    // if (article.contentType == 'text'){
+    //   var backgroundColor = hslLight
+    // } else {
+    //   var backgroundColor = ''
+    // }
 
   article(id=article.id, style= posString,
     class = classes,
-    data-collectionkey    = collection.collectionKey
     data-contenttype= article.contentType, 
     data-creatorid  = article.creatorId, 
     data-content    = article.content
@@ -26,19 +29,20 @@ mixin articleMixin(collection, article)
       - if(article.Creator !== undefined)
         author.smallType!=article.Creator.name
 
-
-    ul.articleLabels
-      - var key = collection.collectionKey
-      li.label(data-collectionKey=key, class=key)
-        a(href='#', style='color:'+collection.color+';')!=collection.name
-    .card.cardHover.cardDrag(class=article.contentType, style='background-color:' + backgroundColor + ';')
+    ul.articleCollections
+      if collections.length > 0
+        for (var i = 0; i < collections.length; i++)
+          - var key = collection.collectionKey
+          li.collection(data-collectionKey=key, class=key)
+            a(href='#', style='color:'+collection.color+';')!=collection.name
+    
+    .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
+        
         when 'image'
-          - var content = JSON.parse(article.content)
-          img(src= content.original_url)
+          img(src = content.original_url)
         
         when 'website'
-          -var content = JSON.parse(article.content)
           -var url = decodeURIComponent(content.url)
           .text
             header
@@ -51,7 +55,7 @@ mixin articleMixin(collection, article)
         when 'file'
           .fakeCard
             header
-              - name = article.content.split('/').pop()
+              - name = content.split('/').pop()
               //- - extension = name.pop()
               h1.headerType.title=name.split('.')[0]
               p.extension.smallCaps.bodyType=name.split('.').pop()
@@ -62,14 +66,11 @@ mixin articleMixin(collection, article)
   
         when 'video'
           video()
-            source(src=article.content)
-            //- img(src=article.content+'.png')
+            source(src = content.url)
         
         when 'soundcloud'
-          -var content = JSON.parse(article.content)
-          //- title, description, thumbnail_url, html, author_name, author_url
           .preview(title='Play “' + content.title + '”')
-            img.soundcloudThumbnail(src=content.thumbnail_url)
+            img.soundcloudThumbnail(src = content.thumbnail_url)
           header
             .top
               h1.headerType.title!=content.title
@@ -78,7 +79,6 @@ mixin articleMixin(collection, article)
               .source.smallType.smallCaps SoundCloud
         
         when 'youtube'
-          -var content = JSON.parse(article.content)
           .preview(title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
           header
@@ -91,7 +91,7 @@ mixin articleMixin(collection, article)
         when 'text'
           //- contentEditable="false", designmode="on"
           .editable()
-            | !{article.content}
+            | !{article.content.text}
           ul.cardActions
             li.right.showOnEditing
               a.done.confirm(href='#') Done

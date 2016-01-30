@@ -1,20 +1,17 @@
 module.exports = (sequelize, DataTypes) ->
   Article = sequelize.define 'Article', {
     contentType:
-      type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud', 'mp3', 'youtube', 'cover'
+      type: DataTypes.ENUM 'text', 'image', 'website', 'file', 'video', 'gif', 'soundcloud', 'mp3', 'youtube', 'pdf'
       allowNull: false
     content:
-      type: DataTypes.TEXT
+      type: DataTypes.JSON
       allowNull: false
-    preview:
-      type: DataTypes.TEXT
-      allowNull: true
-    caption:
-      type: DataTypes.TEXT
-      allowNull: true
   }, {
     classMethods:
       associate: (models) ->
         Article.belongsTo models.User, foreignKey: 'creatorId', as: 'Creator'
-        Article.belongsTo models.Collection, { onDelete: 'CASCADE' }
+        Article.hasMany models.Collection
+        # Article.belongsToMany models.Collection, {
+        #   through: ['ArticleCollection']
+        # }
   }

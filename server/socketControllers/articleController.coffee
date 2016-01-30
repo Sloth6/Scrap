@@ -31,44 +31,44 @@ module.exports =
   # create a new article and save it to db
   newArticle : (sio, socket, data, callback) =>
     collectionKey = data.collectionKey
-    console.log collectionKey, typeof collectionKey
-    data.content = decodeURIComponent data.content
+    rawContent = decodeURIComponent data.content
     userId = socket.handshake.session.userId
-    console.log 'Received content:'
+    user = socket.handshake.session.user
+    
+    console.log 'newArticle:'
     console.log "\tuserId: #{userId}"
     console.log "\tcollectionKey: #{collectionKey}"
-    console.log "\tcontent: #{data.content}"
+    console.log "\trawContent: #{rawContent}"
 
-    done = (err, attributes) ->
-      return callback err if err
-      params =
-        where: { collectionKey }
-        include: models.User
-      models.Collection.find( params ).done (err, collection) ->
-        return callback err if err
-        attributes.CollectionId = collection.id
-        models.Article.create(attributes).done (err, article) ->
-          return callback err if err
-          collection.update({
-            articleOrder: models.sequelize.fn( 'array_append', models.sequelize.col('articleOrder'), "#{article.id}")
-          }).done (err) ->
-            return callback err if err
-            html = articleRenderer collection, article
-            console.log 'emitting to ', collectionKey
-            sio.to(collectionKey).emit 'newArticle', { html, collectionKey }
-            callback null
-    
-    getType data.content, (contentType) ->
+    getType rawContent, (contentType) ->
       console.log "\tcontentType: #{contentType}"
-      attributes =
-        creatorId: userId
-        contentType: contentType
-        content: data.content
+      
+      newArticles[contentType] rawContent, (err, content) ->
+        return callback err if err
 
-      if contentType of newArticles
-        newArticles[contentType] collectionKey, attributes, done
-      else
-        done null, attributes
+        attributes = { creatorId: userId, contentType, content }
+
+        models.Collection.find(where: { collectionKey }).done (err, collection) ->
+          return callback err if err
+          
+          models.Article.create(attributes).done (err, article) ->
+            return callback err if err
+            
+            user.addArticle(article).done (err) ->
+              return callback err if err
+
+              if collection?
+                html = articleRenderer article, [collection]
+                room = collection.collectionKey    
+              else
+                html = articleRenderer article, []
+                room = "user:#{userId}"
+              
+              console.log 'emitting to ', room
+              sio.to(room).emit 'newArticle', { html: encodeURIComponent(html) }
+              callback null
+        
+          
 
   # delete the article
   deleteArticle : (sio, socket, data, callback) =>
@@ -98,23 +98,23 @@ module.exports =
         s3.delete content, (err) ->
           console.log err if err
 
-  moveToCollection: (sio, socket, data, callback) ->
-    { elemId, collectionKey } = data
-    return callback('no collectionkey in moveToCollection') unless collectionKey?
-    return callback('no elemId in moveToCollection') unless elemId?
-    console.log "move to collection data:", data
-    models.Article.find(where: { id: elemId }).then (elem) ->
-      oldCollectionId = elem.CollectionId
-      console.log 'old collection id', oldCollectionId
-      q = "
-          UPDATE \"Articles\"
-          SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
-          WHERE \"id\"=:elemId
-          "
-      models.sequelize.query(q, replacements :data).then (results) ->
-        return callback err if err?
-        sio.to("#{collectionKey}").emit 'moveToCollection', data 
-        callback null
+  # moveToCollection: (sio, socket, data, callback) ->
+  #   { elemId, collectionKey } = data
+  #   return callback('no collectionKey in moveToCollection') unless collectionKey?
+  #   return callback('no elemId in moveToCollection') unless elemId?
+  #   console.log "move to collection data:", data
+  #   models.Article.find(where: { id: elemId }).then (elem) ->
+  #     oldCollectionId = elem.CollectionId
+  #     console.log 'old collection id', oldCollectionId
+  #     q = "
+  #         UPDATE \"Articles\"
+  #         SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
+  #         WHERE \"id\"=:elemId
+  #         "
+  #     models.sequelize.query(q, replacements :data).then (results) ->
+  #       return callback err if err?
+  #       sio.to("#{collectionKey}").emit 'moveToCollection', data 
+  #       callback null
   
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId

@@ -118,7 +118,7 @@ initCards = () ->
           when 3
             $card.html '3'
   
-initPackery = () ->
+initLabelery = () ->
   $('.content').packery({
     itemSelector: '.pack',
     transitionDuration: '0s'
@@ -184,7 +184,7 @@ toggleExtraFillers = () ->
 $ ->
   initLettering()
   initCards()
-  initPackery()
+  initLabelery()
   
   $(window).resize () -> onResize()
   onResize()

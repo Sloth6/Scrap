@@ -16,13 +16,13 @@ res =
   status: () ->
   send: () ->
 
-collectionController = require '../../server/socketControllers/collectionController'
+labelController = require '../../server/socketControllers/labelController'
 userController = require '../../server/requestControllers/userController'
 
 req = body: { name: 'cody', email: 'c@c.c', password: 'cs' }
 userController.newUser req, res, (err) ->
   console.log err
-  # collectionController.newCollection {}, {data: {spacekey: }}
+  # labelController.newLabel {}, {data: {spacekey: }}
 
 # describe 'SpaceHandlers', ->
 

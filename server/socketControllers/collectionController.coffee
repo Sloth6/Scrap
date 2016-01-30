@@ -2,7 +2,6 @@ models = require '../../models'
 mail = require '../adapters/nodemailer'
 async = require 'async'
 coverColor = require '../modules/coverColor'
-collectionRenderer = require '../modules/collectionRenderer'
 
 toTitleCase = (str) -> 
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
@@ -22,18 +21,18 @@ inviteEmailHtml = (user, collection) ->
   return { html, subject }
 
 module.exports =
-  reorderArticles: (sio, socket, data) ->
+  reorderCollection: (sio, socket, data) ->
     { collectionKey, articleOrder } = data
     what = { articleOrder }
     models.Collection.update(what, where:{ collectionKey }).done () ->
       console.log 'Emit order to client'
-      # sio.to("#{parentCollectionKey}").emit 'newCollection', emitData
+      # sio.to("#{parentcollectionKey}").emit 'newcollection', emitData
 
-  rename: (sio, socket, data, callback) ->
-    { collectionKey, name } = data
-    models.Collection.update({ name }, where: { collectionKey }).then () ->
-      console.log "updated name of #{collectionKey} to #{name}"
-      callback null
+  # rename: (sio, socket, data, callback) ->
+  #   { collectionKey, name } = data
+  #   models.Collection.update({ name }, where: { collectionKey }).then () ->
+  #     console.log "updated name of #{collectionKey} to #{name}"
+  #     callback null
         # sio.to("#{collectionKey}").emit 'updateArticle', data
   
   inviteToCollection: (sio, socket, data, callback) =>
@@ -65,108 +64,29 @@ module.exports =
           return callback(err) if err?
           done user, collection
 
-  newStack: (sio, socket, data, callback) ->
-    # CollectionKey will be the parent of the new collection
-    parentCollectionKey = data.collectionKey
-    userId = socket.handshake.session.userId
-    
-    # Dragged and draggedOver and the articles that created the collection
-    draggedId     = parseInt data.draggedId
-    draggedOverId = parseInt data.draggedOverId
-    
-    console.log 'New collection data', data
-    return console.log('no draggedId in newCollection') unless draggedId?
-    return console.log('no draggedOverId in newCollection') unless draggedOverId?
-
-
-    async.waterfall [
-      # Get the parent collection
-      (cb) ->
-        options =
-          where: { collectionKey: parentCollectionKey }
-          include: [ model: models.User, as: 'Creator' ]
-        models.Collection.find( options ).done cb
-
-      # Create the new collection
-      (parent, cb) ->
-        user = parent.Creator
-        options = { hasCover: false, CreatorId: userId }
-        models.Collection.createAndInitialize options, user, parent, (err, collection) ->
-          return cb(err) if err?
-          return cb null, collection, parent
-
-      # Move articles to the new collection
-      (collection, parent, cb) -> 
-        console.log 'Moving articles to the new collection'
-        updateQuery = "UPDATE \"Articles\"
-                      SET \"CollectionId\" = '#{collection.id}'
-                      WHERE id = #{draggedId} or id = #{draggedOverId};
-                      "
-        collection.articleOrder = [draggedId, draggedOverId]
-        collection.save().done (err) ->
-          return cb(err) if err 
-          models.sequelize.query(updateQuery).done (err) ->
-            if err then cb err else cb null, collection, parent
-
-      # Change article order
-      (collection, parent, cb) ->
-        console.log "Changing article order"
-        order = parent.articleOrder
-        # The position of the dragegdOverId becomes the cover id   
-        draggedOverPosition = order.indexOf(draggedOverId)
-        draggedPosition = order.indexOf(draggedId)
-        order[draggedOverPosition] = collection.id
-        order.splice(draggedPosition, 1)
-        parent.save().done (err) ->
-          return cb(err) if err?
-          cb null, parent, collection
-    
-    ], (err, parent, collection) ->
-      return console.log err if err
-      
-      collectionHTML = collectionRenderer(collection)
-      emitData = {collectionHTML, draggedId, draggedOverId}
-      sio.to("#{parentCollectionKey}").emit 'newCollection', emitData
-      socket.join collection.collectionKey
-      callback null
-
-  newPack: (sio, socket, data, callback) ->
+  addCollection: (sio, socket, data, callback) ->
     { name } = data
     userId = socket.handshake.session.userId
     return console.log('no userid', res) unless userId?
     return console.log('no name sent', res) unless name?
-    async.waterfall [
-      # Get the parent collection
-      (cb) ->
-        options =
-          where: { CreatorId:userId, root: true }
-          include: [ model: models.User, as: 'Creator' ]
-        models.Collection.find( options ).done cb
-      
-      # Create the new collection
-      (parent, cb) ->
-        user = parent.Creator
-        options = { name, hasCover:true, CreatorId: userId }
-        models.Collection.createAndInitialize options, user, parent, cb
-
-    ], (err, collection) ->
+  
+    options = { name }
+    models.Collection.create({ name }).done (err, collection) ->
       return callback(err) if err?
-      console.log 'new pack', collection.collectionKey
-      socket.emit 'newPack', { collectionHTML: collectionRenderer(collection) }
-      socket.join collection.collectionKey
-      callback null
+      models.User.find( where: { id: userId }).done (err, user) ->
+        return callback(err) if err?
+        collection.addUser(user).done (err) ->
+          return callback(err) if err?
+          console.log 'new collection', collection.collectionKey
+          socket.emit 'newcollection', collection.dataValues
+          socket.join collection.collectionKey
+          callback null
 
-  deleteCollection: (sio, socket, data, callback) ->
+  removeCollection: (sio, socket, data, callback) ->
     collectionKey = data.collectionKey
-    models.Collection.find({
-      where: { collectionKey }, include:[ model:models.Collection, as: "parent" ]
-    }).then ( collection) ->
-      parentCollectionKey = collection.parent.collectionKey
-
-      # TODO change location string of parent
-      # draggedPosition = order.indexOf(draggedId)
-      # order.splice(draggedPosition, 1)
-
+    models.Collection.find( where: { collectionKey }).done (err,  collection ) ->
+      return callback(err) if err?
       collection.destroy().done (err) ->
-        sio.to("#{parentCollectionKey}").emit 'deleteCollection', { collectionKey }
+        return callback(err) if err?
+        sio.to("#{collectionKey}").emit 'deletecollection', { collectionKey }
         callback null

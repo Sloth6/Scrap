@@ -1,3 +1,4 @@
+'use strict'
 $ ->  
   socket = io.connect()
 
@@ -9,19 +10,15 @@ $ ->
   #   $("a[href='/s/#{collectionKey}']").text(name)
 
   socket.on 'newArticle', (data) ->
-    { collectionKey, html } = data
+    { html } = data
     $article = $(decodeURIComponent(html))
-    $addArticleForm = $('.addArticleForm')
-
-    console.log "new $article for #{collectionKey}", $article.attr('class')
-    
+    console.log "new $article", $article.attr('class')    
     $('#container').prepend $article
-
     init.article $article
-    init.label $article.find('.label')
+    # init.collection $article.find('.collection')
 
-    if collectionKey != window.openCollection
-      $article.hide()
+    # if collectionKey != window.openCollection
+    #   $article.hide()
     
     $('#container').packery 'prepended', $article
 
@@ -39,16 +36,13 @@ $ ->
     # size = contentModel.getSize $collection
     # $(document.body).css { width: size }      
 
-  # socket.on 'newPack', (data) ->
-  #   { collectionHTML } = data
-  #   $collection = $(decodeURIComponent(collectionHTML))
-  #   $form = collectionModel.getAddForm $('.collection.root')
-
-  #   collectionModel.appendContent $('.collection.open'), $collection
-  #   $collection.css { x: xTransform($form) }
-  #   contentModel.init $collection
-  #   collectionViewController.draw $('.collection.open'), {animate: true}
-
+  socket.on 'newCollection', (data) ->
+    console.log 'socket.on.newCollection', data
+    { name, collectionKey, color } = data
+    collections[collectionKey] = data
+    $('li.newCollection')
+    
+    
   # for new stacks
   # socket.on 'newCollection', (data) ->
   #   { draggedId, draggedOverId, collectionHTML } = data

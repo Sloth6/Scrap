@@ -9,10 +9,9 @@ html.no-js(lang='en')
     script(src="/js/jquery/jquery-mousewheel.min.js")
     script(src="/js/jquery/jquery.zoomooz.js")
 
-    script(src="/js/utilityFunctions.js")
     script(src="/js/menuControllers/header.js")
     script(src="/js/menuControllers/settings.js")
-    
+
     script(src="/js/lib/dragabilly.min.js")
     script(src="/js/lib/velocity.min.js")
     script(src="/js/lib/packery.js")
@@ -22,11 +21,7 @@ html.no-js(lang='en')
     script(src='/js/lib/soundcloud-api.js')
     script(src='/js/lib/pen.js')
     script(src="/js/uploadForm.js")
-
-    script(src="/js/contentModel.js")
-    script(src="/js/collectionModel.js")
     
-    script(src="/js/contentControllers/packCover.js")
     script(src="/js/contentControllers/file.js")
     script(src="/js/contentControllers/gif.js")
     script(src="/js/contentControllers/soundCloud.js")
@@ -48,11 +43,9 @@ html.no-js(lang='en')
 
     
     include mixins/article
-    include mixins/addCollectionForm
     include mixins/addArticleForm
 
     script.
-      var rootCollectionKey = "#{rootCollection.collectionKey}";
       var userName = "!{user.name}";
       var userId = +"!{user.id}";
       var collections = !{JSON.stringify(collections)};
@@ -62,18 +55,26 @@ html.no-js(lang='en')
       .addForm.left(style='position:absolute;left:0;')
         .headerButton
           a(href='#') Add
-        +addArticleFormMixin(rootCollection)
+        +addArticleFormMixin()
 
-      ul.labels.center(style='position:absolute;')
+      ul.collections.center(style='position:absolute;')
         li.headerButton
-          a(href='#') Labels
-        li.label.recent(data-collectionkey='recent')
+          a(href='#') Collections
+        li.collection.recent(data-collectionkey='recent')
           a(href='#') Recent
         each collection, collectionKey in collections
           if typeof(collection.name) != undefined
             - var key = collection.collectionKey
-            li.label(data-collectionKey=key, class=key)
+            li.collection(data-collectionKey=key, class=key)
               a(href='#', style='color:'+collection.color+';')!=collection.name
+        li.newCollection
+          form(id='newCollectionForm')
+            input(type="text", placeholder="new collection", maxlength="20")
+            input(type='submit', value='Add')
+          //- a.cancel(href='#') Cancel
+          //- a.save(href='#') Save
+
+
       .settings.right(style='position:absolute;right:0;')
         .headerButton
           a(href='#') Settings
@@ -109,8 +110,8 @@ html.no-js(lang='en')
     //- .zoomViewport
     //-   .zoomContainer
     #container.recents
-      for article in articles
-        +articleMixin(article.Collection, article)
+      for article in user.Articles
+        +articleMixin(article, article.Collections)
 
     //- .comments
     //-   ul

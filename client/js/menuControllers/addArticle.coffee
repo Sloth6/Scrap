@@ -15,7 +15,7 @@ window.initAddArticleForm = () ->
     event.stopPropagation()
     genericText.clear()
 
-  # $form.find('form.upload').fileupload fileuploadOptions(collectionkey)
+  # $form.find('form.upload').fileupload fileuploadOptions(collectionKey)
   
   # Bind paste event.
   input.bind "paste", () ->

@@ -1,5 +1,5 @@
 /*!
- * Packery PACKAGED v1.4.3
+ * Labelery PACKAGED v1.4.3
  * bin-packing layout library
  *
  * Licensed GPLv3 for open source use
@@ -1112,7 +1112,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 
 var document = window.document;
-// collection of functions to be triggered on ready
+// label of functions to be triggered on ready
 var queue = [];
 
 function docReady( fn ) {
@@ -1664,7 +1664,7 @@ function Item( element, layout ) {
   }
 
   this.element = element;
-  // parent layout class, i.e. Masonry, Isotope, or Packery
+  // parent layout class, i.e. Masonry, Isotope, or Labelery
   this.layout = layout;
   this.position = {
     x: 0,
@@ -2296,7 +2296,7 @@ Outlayer.prototype._create = function() {
 
 // goes through all children again and gets bricks in proper order
 Outlayer.prototype.reloadItems = function() {
-  // collection of item elements
+  // label of item elements
   this.items = this._itemize( this.element.children );
 };
 
@@ -2304,14 +2304,14 @@ Outlayer.prototype.reloadItems = function() {
 /**
  * turn elements into Outlayer.Items to be used in layout
  * @param {Array or NodeList or HTMLElement} elems
- * @returns {Array} items - collection of new Outlayer Items
+ * @returns {Array} items - label of new Outlayer Items
  */
 Outlayer.prototype._itemize = function( elems ) {
 
   var itemElems = this._filterFindItemElements( elems );
   var Item = this.constructor.Item;
 
-  // create new Outlayer Items for collection
+  // create new Outlayer Items for label
   var items = [];
   for ( var i=0, len = itemElems.length; i < len; i++ ) {
     var elem = itemElems[i];
@@ -2333,7 +2333,7 @@ Outlayer.prototype._filterFindItemElements = function( elems ) {
 
 /**
  * getter method for getting item elements
- * @returns {Array} elems - collection of item elements
+ * @returns {Array} elems - label of item elements
  */
 Outlayer.prototype.getItemElements = function() {
   var elems = [];
@@ -2405,7 +2405,7 @@ Outlayer.prototype._getMeasurement = function( measurement, size ) {
 };
 
 /**
- * layout a collection of item elements
+ * layout a label of item elements
  * @api public
  */
 Outlayer.prototype.layoutItems = function( items, isInstant ) {
@@ -2552,7 +2552,7 @@ Outlayer.prototype._setContainerMeasure = function( measure, isWidth ) {
 };
 
 /**
- * emit eventComplete on a collection of items events
+ * emit eventComplete on a label of items events
  * @param {String} eventName
  * @param {Array} items - Outlayer.Items
  */
@@ -2613,7 +2613,7 @@ Outlayer.prototype.dispatchEvent = function( type, event, args ) {
 
 
 /**
- * keep item in collection, but do not lay it out
+ * keep item in label, but do not lay it out
  * ignored items do not get skipped in layout
  * @param {Element} elem
  */
@@ -2625,7 +2625,7 @@ Outlayer.prototype.ignore = function( elem ) {
 };
 
 /**
- * return item to layout collection
+ * return item to layout label
  * @param {Element} elem
  */
 Outlayer.prototype.unignore = function( elem ) {
@@ -2821,7 +2821,7 @@ Outlayer.prototype.needsResizeLayout = function() {
 **/
 Outlayer.prototype.addItems = function( elems ) {
   var items = this._itemize( elems );
-  // add items to collection
+  // add items to label
   if ( items.length ) {
     this.items = this.items.concat( items );
   }
@@ -2851,7 +2851,7 @@ Outlayer.prototype.prepended = function( elems ) {
   if ( !items.length ) {
     return;
   }
-  // add items to beginning of collection
+  // add items to beginning of label
   var previousItems = this.items.slice(0);
   this.items = items.concat( previousItems );
   // start new layout
@@ -2865,7 +2865,7 @@ Outlayer.prototype.prepended = function( elems ) {
 };
 
 /**
- * reveal a collection of items
+ * reveal a label of items
  * @param {Array of Outlayer.Items} items
  */
 Outlayer.prototype.reveal = function( items ) {
@@ -2879,7 +2879,7 @@ Outlayer.prototype.reveal = function( items ) {
 };
 
 /**
- * hide a collection of items
+ * hide a label of items
  * @param {Array of Outlayer.Items} items
  */
 Outlayer.prototype.hide = function( items ) {
@@ -2928,7 +2928,7 @@ Outlayer.prototype.getItem = function( elem ) {
 };
 
 /**
- * get collection of Outlayer.Items, given Elements
+ * get label of Outlayer.Items, given Elements
  * @param {Array} elems
  * @returns {Array} items - Outlayer.Items
  */
@@ -2963,7 +2963,7 @@ Outlayer.prototype.remove = function( elems ) {
   for ( var i=0, len = removeItems.length; i < len; i++ ) {
     var item = removeItems[i];
     item.remove();
-    // remove item from collection
+    // remove item from label
     utils.removeFrom( this.items, item );
   }
 };
@@ -3032,7 +3032,7 @@ Outlayer.create = function( namespace, options ) {
   Layout.defaults = utils.extend( {}, Outlayer.defaults );
   // apply new options
   utils.extend( Layout.defaults, options );
-  // keep prototype.settings for backwards compatibility (Packery v1.2.0)
+  // keep prototype.settings for backwards compatibility (Labelery v1.2.0)
   Layout.prototype.settings = {};
 
   Layout.namespace = namespace;
@@ -3086,17 +3086,17 @@ return Outlayer;
     module.exports = factory();
   } else {
     // browser global
-    window.Packery = window.Packery || {};
-    window.Packery.Rect = factory();
+    window.Labelery = window.Labelery || {};
+    window.Labelery.Rect = factory();
   }
 
 }( window, function factory() {
 
 
-// -------------------------- Packery -------------------------- //
+// -------------------------- Labelery -------------------------- //
 
 // global namespace
-var Packery = window.Packery = function() {};
+var Labelery = window.Labelery = function() {};
 
 // -------------------------- Rect -------------------------- //
 
@@ -3113,7 +3113,7 @@ function Rect( props ) {
 }
 
 // make available
-Packery.Rect = Rect;
+Labelery.Rect = Rect;
 
 Rect.defaults = {
   x: 0,
@@ -3230,7 +3230,7 @@ return Rect;
 }));
 
 /**
- * Packer
+ * Labeler
  * bin-packing algorithm
  */
 
@@ -3247,14 +3247,14 @@ return Rect;
     );
   } else {
     // browser global
-    var Packery = window.Packery = window.Packery || {};
-    Packery.Packer = factory( Packery.Rect );
+    var Labelery = window.Labelery = window.Labelery || {};
+    Labelery.Labeler = factory( Labelery.Rect );
   }
 
 }( window, function factory( Rect ) {
 
 
-// -------------------------- Packer -------------------------- //
+// -------------------------- Labeler -------------------------- //
 
 /**
  * @param {Number} width
@@ -3262,7 +3262,7 @@ return Rect;
  * @param {String} sortDirection
  *   topLeft for vertical, leftTop for horizontal
  */
-function Packer( width, height, sortDirection ) {
+function Labeler( width, height, sortDirection ) {
   this.width = width || 0;
   this.height = height || 0;
   this.sortDirection = sortDirection || 'downwardLeftToRight';
@@ -3270,7 +3270,7 @@ function Packer( width, height, sortDirection ) {
   this.reset();
 }
 
-Packer.prototype.reset = function() {
+Labeler.prototype.reset = function() {
   this.spaces = [];
   this.newSpaces = [];
 
@@ -3286,8 +3286,8 @@ Packer.prototype.reset = function() {
   this.sorter = sorters[ this.sortDirection ] || sorters.downwardLeftToRight;
 };
 
-// change x and y of rect to fit with in Packer's available spaces
-Packer.prototype.pack = function( rect ) {
+// change x and y of rect to fit with in Labeler's available spaces
+Labeler.prototype.pack = function( rect ) {
   for ( var i=0, len = this.spaces.length; i < len; i++ ) {
     var space = this.spaces[i];
     if ( space.canFit( rect ) ) {
@@ -3297,7 +3297,7 @@ Packer.prototype.pack = function( rect ) {
   }
 };
 
-Packer.prototype.placeInSpace = function( rect, space ) {
+Labeler.prototype.placeInSpace = function( rect, space ) {
   // place rect in space
   rect.x = space.x;
   rect.y = space.y;
@@ -3306,7 +3306,7 @@ Packer.prototype.placeInSpace = function( rect, space ) {
 };
 
 // update spaces with placed rect
-Packer.prototype.placed = function( rect ) {
+Labeler.prototype.placed = function( rect ) {
   // update spaces
   var revisedSpaces = [];
   for ( var i=0, len = this.spaces.length; i < len; i++ ) {
@@ -3325,14 +3325,14 @@ Packer.prototype.placed = function( rect ) {
   this.mergeSortSpaces();
 };
 
-Packer.prototype.mergeSortSpaces = function() {
+Labeler.prototype.mergeSortSpaces = function() {
   // remove redundant spaces
-  Packer.mergeRects( this.spaces );
+  Labeler.mergeRects( this.spaces );
   this.spaces.sort( this.sorter );
 };
 
 // add a space back
-Packer.prototype.addSpace = function( rect ) {
+Labeler.prototype.addSpace = function( rect ) {
   this.spaces.push( rect );
   this.mergeSortSpaces();
 };
@@ -3344,7 +3344,7 @@ Packer.prototype.addSpace = function( rect ) {
  * @param {Array} rects: an array of Rects
  * @returns {Array} rects: an array of Rects
 **/
-Packer.mergeRects = function( rects ) {
+Labeler.mergeRects = function( rects ) {
   for ( var i=0, len = rects.length; i < len; i++ ) {
     var rect = rects[i];
     // skip over this rect if it was already removed
@@ -3360,7 +3360,7 @@ Packer.mergeRects = function( rects ) {
     for ( var j=0, jLen = compareRects.length; j < jLen; j++ ) {
       var compareRect = compareRects[j];
       // if this rect contains another,
-      // remove that rect from test collection
+      // remove that rect from test label
       var indexAdjust = i > j ? 0 : 1;
       if ( rect.contains( compareRect ) ) {
         // console.log( 'current test rects:' + testRects.length, testRects );
@@ -3392,11 +3392,11 @@ var sorters = {
 
 // --------------------------  -------------------------- //
 
-return Packer;
+return Labeler;
 
 }));
 /**
- * Packery Item Element
+ * Labelery Item Element
 **/
 
 ( function( window, factory ) {
@@ -3420,10 +3420,10 @@ return Packer;
     );
   } else {
     // browser global
-    window.Packery.Item = factory(
+    window.Labelery.Item = factory(
       window.getStyleProperty,
       window.Outlayer,
-      window.Packery.Rect
+      window.Labelery.Rect
     );
   }
 
@@ -3435,7 +3435,7 @@ return Packer;
 var transformProperty = getStyleProperty('transform');
 
 // sub-class Item
-var Item = function PackeryItem() {
+var Item = function LabeleryItem() {
   Outlayer.Item.apply( this, arguments );
 };
 
@@ -3446,7 +3446,7 @@ Item.prototype._create = function() {
   // call default _create logic
   protoCreate.call( this );
   this.rect = new Rect();
-  // rect used for placing, in drag or Packery.fit()
+  // rect used for placing, in drag or Labelery.fit()
   this.placeRect = new Rect();
 };
 
@@ -3578,7 +3578,7 @@ return Item;
 }));
 
 /*!
- * Packery v1.4.3
+ * Labelery v1.4.3
  * bin-packing layout library
  *
  * Licensed GPLv3 for open source use
@@ -3614,17 +3614,17 @@ return Item;
     );
   } else {
     // browser global
-    window.Packery = factory(
+    window.Labelery = factory(
       window.classie,
       window.getSize,
       window.Outlayer,
-      window.Packery.Rect,
-      window.Packery.Packer,
-      window.Packery.Item
+      window.Labelery.Rect,
+      window.Labelery.Labeler,
+      window.Labelery.Item
     );
   }
 
-}( window, function factory( classie, getSize, Outlayer, Rect, Packer, Item ) {
+}( window, function factory( classie, getSize, Outlayer, Rect, Labeler, Item ) {
 
 
 // ----- Rect ----- //
@@ -3634,18 +3634,18 @@ Rect.prototype.canFit = function( rect ) {
   return this.width >= rect.width - 1 && this.height >= rect.height - 1;
 };
 
-// -------------------------- Packery -------------------------- //
+// -------------------------- Labelery -------------------------- //
 
 // create an Outlayer layout class
-var Packery = Outlayer.create('packery');
-Packery.Item = Item;
+var Labelery = Outlayer.create('packery');
+Labelery.Item = Item;
 
-Packery.prototype._create = function() {
+Labelery.prototype._create = function() {
   // call super
   Outlayer.prototype._create.call( this );
 
   // initial properties
-  this.packer = new Packer();
+  this.packer = new Labeler();
 
   // Left over from v1.0
   this.stamp( this.options.stamped );
@@ -3694,7 +3694,7 @@ Packery.prototype._create = function() {
 /**
  * logic before any new layout
  */
-Packery.prototype._resetLayout = function() {
+Labelery.prototype._resetLayout = function() {
   this.getSize();
 
   this._getMeasurements();
@@ -3723,13 +3723,13 @@ Packery.prototype._resetLayout = function() {
  * update columnWidth, rowHeight, & gutter
  * @private
  */
-Packery.prototype._getMeasurements = function() {
+Labelery.prototype._getMeasurements = function() {
   this._getMeasurement( 'columnWidth', 'width' );
   this._getMeasurement( 'rowHeight', 'height' );
   this._getMeasurement( 'gutter', 'width' );
 };
 
-Packery.prototype._getItemLayoutPosition = function( item ) {
+Labelery.prototype._getItemLayoutPosition = function( item ) {
   this._packItem( item );
   return item.rect;
 };
@@ -3737,9 +3737,9 @@ Packery.prototype._getItemLayoutPosition = function( item ) {
 
 /**
  * layout item in packer
- * @param {Packery.Item} item
+ * @param {Labelery.Item} item
  */
-Packery.prototype._packItem = function( item ) {
+Labelery.prototype._packItem = function( item ) {
   this._setRectSize( item.element, item.rect );
   // pack the rect in the packer
   this.packer.pack( item.rect );
@@ -3748,10 +3748,10 @@ Packery.prototype._packItem = function( item ) {
 
 /**
  * set max X and Y value, for size of container
- * @param {Packery.Rect} rect
+ * @param {Labelery.Rect} rect
  * @private
  */
-Packery.prototype._setMaxXY = function( rect ) {
+Labelery.prototype._setMaxXY = function( rect ) {
   this.maxX = Math.max( rect.x + rect.width, this.maxX );
   this.maxY = Math.max( rect.y + rect.height, this.maxY );
 };
@@ -3759,9 +3759,9 @@ Packery.prototype._setMaxXY = function( rect ) {
 /**
  * set the width and height of a rect, applying columnWidth and rowHeight
  * @param {Element} elem
- * @param {Packery.Rect} rect
+ * @param {Labelery.Rect} rect
  */
-Packery.prototype._setRectSize = function( elem, rect ) {
+Labelery.prototype._setRectSize = function( elem, rect ) {
   var size = getSize( elem );
   var w = size.outerWidth;
   var h = size.outerHeight;
@@ -3782,7 +3782,7 @@ Packery.prototype._setRectSize = function( elem, rect ) {
  * @param {Number} gridSize - columnWidth or rowHeight
  * @returns measurement
  */
-Packery.prototype._applyGridGutter = function( measurement, gridSize ) {
+Labelery.prototype._applyGridGutter = function( measurement, gridSize ) {
   // just add gutter if no gridSize
   if ( !gridSize ) {
     return measurement + this.gutter;
@@ -3795,7 +3795,7 @@ Packery.prototype._applyGridGutter = function( measurement, gridSize ) {
   return measurement;
 };
 
-Packery.prototype._getContainerSize = function() {
+Labelery.prototype._getContainerSize = function() {
   if ( this.options.isHorizontal ) {
     return {
       width: this.maxX - this.gutter
@@ -3814,7 +3814,7 @@ Packery.prototype._getContainerSize = function() {
  * makes space for element
  * @param {Element} elem
  */
-Packery.prototype._manageStamp = function( elem ) {
+Labelery.prototype._manageStamp = function( elem ) {
 
   var item = this.getItem( elem );
   var rect;
@@ -3844,21 +3844,21 @@ function horizontalSorter( a, b ) {
   return a.position.x - b.position.x || a.position.y - b.position.y;
 }
 
-Packery.prototype.sortItemsByPosition = function() {
+Labelery.prototype.sortItemsByPosition = function() {
   var sorter = this.options.isHorizontal ? horizontalSorter : verticalSorter;
   this.items.sort( sorter );
 };
 
 /**
  * Fit item element in its current position
- * Packery will position elements around it
+ * Labelery will position elements around it
  * useful for expanding elements
  *
  * @param {Element} elem
  * @param {Number} x - horizontal destination position, optional
  * @param {Number} y - vertical destination position, optional
  */
-Packery.prototype.fit = function( elem, x, y ) {
+Labelery.prototype.fit = function( elem, x, y ) {
   var item = this.getItem( elem );
   if ( !item ) {
     return;
@@ -3896,10 +3896,10 @@ Packery.prototype.fit = function( elem, x, y ) {
 
 /**
  * emit event when item is fit and other items are laid out
- * @param {Packery.Item} item
+ * @param {Labelery.Item} item
  * @private
  */
-Packery.prototype._bindFitEvents = function( item ) {
+Labelery.prototype._bindFitEvents = function( item ) {
   var _this = this;
   var ticks = 0;
   function tick() {
@@ -3924,7 +3924,7 @@ Packery.prototype._bindFitEvents = function( item ) {
 // -------------------------- resize -------------------------- //
 
 // debounced, layout on resize
-Packery.prototype.resize = function() {
+Labelery.prototype.resize = function() {
   // don't trigger if size did not change
   var size = getSize( this.element );
   // check that this.size and size are there
@@ -3944,7 +3944,7 @@ Packery.prototype.resize = function() {
  * handle an item drag start event
  * @param {Element} elem
  */
-Packery.prototype.itemDragStart = function( elem ) {
+Labelery.prototype.itemDragStart = function( elem ) {
   this.stamp( elem );
   var item = this.getItem( elem );
   if ( item ) {
@@ -3958,7 +3958,7 @@ Packery.prototype.itemDragStart = function( elem ) {
  * @param {Number} x - horizontal change in position
  * @param {Number} y - vertical change in position
  */
-Packery.prototype.itemDragMove = function( elem, x, y ) {
+Labelery.prototype.itemDragMove = function( elem, x, y ) {
   var item = this.getItem( elem );
   if ( item ) {
     item.dragMove( x, y );
@@ -3977,7 +3977,7 @@ Packery.prototype.itemDragMove = function( elem, x, y ) {
   this.dragTimeout = setTimeout( delayed, 40 );
 };
 
-Packery.prototype.clearDragTimeout = function() {
+Labelery.prototype.clearDragTimeout = function() {
   if ( this.dragTimeout ) {
     clearTimeout( this.dragTimeout );
   }
@@ -3987,7 +3987,7 @@ Packery.prototype.clearDragTimeout = function() {
  * handle an item drag end event
  * @param {Element} elem
  */
-Packery.prototype.itemDragEnd = function( elem ) {
+Labelery.prototype.itemDragEnd = function( elem ) {
   var item = this.getItem( elem );
   var itemDidDrag;
   if ( item ) {
@@ -4024,10 +4024,10 @@ Packery.prototype.itemDragEnd = function( elem ) {
 /**
  * get drag end callback
  * @param {Element} elem
- * @param {Packery.Item} item
+ * @param {Labelery.Item} item
  * @returns {Function} onLayoutComplete
  */
-Packery.prototype._getDragEndLayoutComplete = function( elem, item ) {
+Labelery.prototype._getDragEndLayoutComplete = function( elem, item ) {
   var itemNeedsPositioning = item && item.needsPositioning;
   var completeCount = 0;
   var asyncCount = itemNeedsPositioning ? 2 : 1;
@@ -4063,7 +4063,7 @@ Packery.prototype._getDragEndLayoutComplete = function( elem, item ) {
  * binds Draggabilly events
  * @param {Draggabilly} draggie
  */
-Packery.prototype.bindDraggabillyEvents = function( draggie ) {
+Labelery.prototype.bindDraggabillyEvents = function( draggie ) {
   draggie.on( 'dragStart', this.handleDraggabilly.dragStart );
   draggie.on( 'dragMove', this.handleDraggabilly.dragMove );
   draggie.on( 'dragEnd', this.handleDraggabilly.dragEnd );
@@ -4073,16 +4073,16 @@ Packery.prototype.bindDraggabillyEvents = function( draggie ) {
  * binds jQuery UI Draggable events
  * @param {jQuery} $elems
  */
-Packery.prototype.bindUIDraggableEvents = function( $elems ) {
+Labelery.prototype.bindUIDraggableEvents = function( $elems ) {
   $elems
     .on( 'dragstart', this.handleUIDraggable.start )
     .on( 'drag', this.handleUIDraggable.drag )
     .on( 'dragstop', this.handleUIDraggable.stop );
 };
 
-Packery.Rect = Rect;
-Packery.Packer = Packer;
+Labelery.Rect = Rect;
+Labelery.Labeler = Labeler;
 
-return Packery;
+return Labelery;
 
 }));

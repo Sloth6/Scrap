@@ -7,7 +7,7 @@ del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
+fieldset, form, collection, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
@@ -907,7 +907,7 @@ form li {
 }
 
 /* line 285, ../../style/globals/_components.scss */
-label {
+collection {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
@@ -2453,7 +2453,7 @@ body article .card img {
   bottom: 0;
 }
 /* line 162, ../../style/layout/_home.scss */
-.cover .card ul.users li.add ul li label, .cover.card ul.users li.add ul li label {
+.cover .card ul.users li.add ul li collection, .cover.card ul.users li.add ul li collection {
   display: block;
 }
 /* line 166, ../../style/layout/_home.scss */
@@ -2504,7 +2504,7 @@ footer.main ul.actions li.action:last-of-type {
   padding-right: 16pt;
 }
 /* line 24, ../../style/layout/_footer.scss */
-footer.main ul.actions li.action:last-of-type label {
+footer.main ul.actions li.action:last-of-type collection {
   right: 8pt;
 }
 /* line 30, ../../style/layout/_footer.scss */
@@ -2562,7 +2562,7 @@ footer.main ul.actions li.action .target {
   background-size: 32pt 32pt;
 }
 /* line 69, ../../style/layout/_footer.scss */
-footer.main ul.actions li.action label {
+footer.main ul.actions li.action collection {
   position: absolute;
   left: 0;
   right: 0;

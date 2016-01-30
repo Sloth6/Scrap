@@ -21,25 +21,14 @@ module.exports = (sequelize, DataTypes) ->
   }, {
     classMethods:
       associate: (models) ->
-        User.hasMany(models.Collection, { onDelete: 'CASCADE' })
+        User.hasMany(models.Collection)
+        User.hasMany(models.Article)
 
-      # Create a new user and their root collection
+      # Create a new user and their root label
       createAndInitialize: (options, callback) ->
         User.create(options).done (err, user) ->
           return callback(err) if err?
-        
-          Collection = sequelize.model('Collection')
-          
-          collectionOptions = 
-            CreatorId: user.id
-            name: user.name
-            root: true
-            publicRead: false
-
-          Collection.createAndInitialize collectionOptions, user, null, (err) ->
-            return callback err if err?
-            callback null, user
-
+          callback null, user
 
     instanceMethods:
       verifyPassword: (password, done) ->

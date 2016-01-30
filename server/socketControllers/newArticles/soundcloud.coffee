@@ -2,13 +2,12 @@ models = require '../../../models'
 request = require 'request'
 webPreviews = require '../../modules/webPreviews.coffee'
 
-module.exports = (collectionKey, attributes, callback) ->
+module.exports = (rawInput, callback) ->
   options =
     uri: "http://soundcloud.com/oembed"
     method: 'POST'
     json:
-      url: attributes.content
-  request options, (err, response, body) ->
-    return callback "Soundcloud err", err if err or !body
-    attributes.content = JSON.stringify body
-    callback null, attributes
+      url: rawInput
+  request options, (err, response, data) ->
+    return callback "Soundcloud err", err if err or !data
+    callback null, data

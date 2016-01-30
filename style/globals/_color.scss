@@ -44,7 +44,7 @@ $color9trans:   rgba(82,237,199 ,.9);
 
 // ARTICLES
 
-body section.collection section.content article {
+body section.label section.content article {
     
     &.color0 div.card.text.comment, &.color0 header {
         background-color: $color0trans;

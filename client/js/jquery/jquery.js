@@ -833,7 +833,7 @@ jQuery.extend({
 		return proxy;
 	},
 
-	// Multifunctional method to get and set values of a collection
+	// Multifunctional method to get and set values of a label
 	// The value/s can optionally be executed if it's a function
 	access: function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		var i = 0,
@@ -2333,7 +2333,7 @@ Expr = Sizzle.selectors = {
 				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === elem.type );
 		},
 
-		// Position-in-collection
+		// Position-in-label
 		"first": createPositionalPseudo(function() {
 			return [ 0 ];
 		}),
@@ -3065,7 +3065,7 @@ jQuery.Callbacks = function( options ) {
 		},
 		// Actual Callbacks object
 		self = {
-			// Add a callback or a collection of callbacks to the list
+			// Add a callback or a label of callbacks to the list
 			add: function() {
 				if ( list ) {
 					// First, we save the current length
@@ -6441,7 +6441,7 @@ jQuery.each({
 			elems = i === last ? this : this.clone(true);
 			jQuery( insert[i] )[ original ]( elems );
 
-			// Modern browsers can apply jQuery collections as arrays, but oldIE needs a .get()
+			// Modern browsers can apply jQuery labels as arrays, but oldIE needs a .get()
 			core_push.apply( ret, elems.get() );
 		}
 
@@ -7903,7 +7903,7 @@ jQuery.extend({
 			s = jQuery.ajaxSetup( {}, options ),
 			// Callbacks context
 			callbackContext = s.context || s,
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			// Context for global events is callbackContext if it is a DOM node or jQuery label
 			globalEventContext = s.context && ( callbackContext.nodeType || callbackContext.jquery ) ?
 				jQuery( callbackContext ) :
 				jQuery.event,
@@ -8163,7 +8163,7 @@ jQuery.extend({
 				clearTimeout( timeoutTimer );
 			}
 
-			// Dereference transport for early garbage collection
+			// Dereference transport for early garbage label
 			// (no matter how long the jqXHR object will be used)
 			transport = undefined;
 
@@ -8877,11 +8877,11 @@ function createFxNow() {
 
 function createTween( value, prop, animation ) {
 	var tween,
-		collection = ( tweeners[ prop ] || [] ).concat( tweeners[ "*" ] ),
+		label = ( tweeners[ prop ] || [] ).concat( tweeners[ "*" ] ),
 		index = 0,
-		length = collection.length;
+		length = label.length;
 	for ( ; index < length; index++ ) {
-		if ( (tween = collection[ index ].call( animation, prop, value )) ) {
+		if ( (tween = label[ index ].call( animation, prop, value )) ) {
 
 			// we're done with this property
 			return tween;

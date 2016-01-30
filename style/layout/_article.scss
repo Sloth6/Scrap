@@ -1,9 +1,9 @@
-$collectionOpenTransitionDuration: 1s;
+$labelOpenTransitionDuration: 1s;
 $hideImageWhiteBorder: -2px -1px -4px -2px;
 
 body {
   
-    .collection {
+    .label {
         &.stack {
             @include cursorGrab;
         }
@@ -75,7 +75,7 @@ body {
             
             author {
                 right:  0;
-                white-collection: nowrap;
+                white-label: nowrap;
             }
         }
         
@@ -444,7 +444,7 @@ body {
                     header {
                         position: absolute;
                         top: $cell/2;
-                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition($labelOpenTransitionDuration $defaultCurve);
                         @include transition-property(top);
 
                         h1 {
@@ -468,13 +468,13 @@ body {
                         margin-top: $articleSideNarrow - $col;
                         margin-bottom: $cell/2;
                         opacity: 1;
-                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition($labelOpenTransitionDuration $defaultCurve);
                         @include transition-property(opacity, margin-top);
                     }
                     
                     img {
                         margin-top: 0;
-                        @include transition($collectionOpenTransitionDuration $defaultCurve);
+                        @include transition($labelOpenTransitionDuration $defaultCurve);
                         @include transition-property(margin-top);
                     }
                 }

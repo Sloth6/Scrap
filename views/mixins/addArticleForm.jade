@@ -1,7 +1,6 @@
-mixin addArticleFormMixin(collection)
+mixin addArticleFormMixin()
   article(
     class = ['addArticleForm', 'slider', 'peek', 'text']
-    data-collectionkey=collection.collectionKey
     data-contenttype="addArticleForm"
   )
     .translate.content
@@ -10,7 +9,7 @@ mixin addArticleFormMixin(collection)
         .cardActions
           ul
             li.button.closed.upload.bodyType.showOnNotEditing
-              a.label.action(href='#') Upload a file
+              a.collection.action(href='#') Upload a file
               form.upload(
                 action='http://scrap_images.s3.amazonaws.com',
                 method='post',

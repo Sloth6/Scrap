@@ -6,14 +6,13 @@ getId = (url) ->
   match = url.match(regExp)
   if match && match[2].length == 11 then match[2] else null
 
-module.exports = (collectionKey, attributes, callback) ->
-  id = getId attributes.content
+module.exports = (rawInput, callback) ->
+  id = getId rawInput
   if id == null
-    return callback "failed to get youtube id  #{attributes.content}"
+    return callback "failed to get youtube id  #{rawInput}"
   
-  webPreviews "https://www.youtube.com/watch?v=#{id}", (err, pageData) ->
+  webPreviews "https://www.youtube.com/watch?v=#{id}", (err, data) ->
     return callback err if err
-    pageData.id = id
-    pageData.url = encodeURIComponent pageData.url
-    attributes.content = JSON.stringify pageData
-    callback null, attributes
+    data.id = id
+    data.url = encodeURIComponent data.url
+    callback null, data

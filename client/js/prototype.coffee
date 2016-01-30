@@ -19,23 +19,24 @@ onResize = () ->
 onScroll = () ->
 
 window.visualEvents =
-  labelOverArticle: (event, $label) ->
+  collectionOverArticle: (event, $collection) ->
     $article = $('article.hovered')
     $card = $article.children('.card')
 
-  labelOutArticle: (event, $label) ->
+  collectionOutArticle: (event, $collection) ->
     $article = $('article.hovered')
     $card = $article.children('.card')
 
-  openLabels: () ->
-    console.log 'openLabels'
-    $('ul.labels.center li.label').show()
+  openCollections: () ->
+    console.log 'openCollections'
+    $('ul.collections.center').children().show()
     $('#container').hide()
 
-  closeLabels: () ->
-    console.log 'closeLabels'
-    $menuLabels = $('ul.labels.center li.label')
-    $menuLabels.not('.ui-draggable-dragging').hide()
+  closeCollections: () ->
+    console.log 'closeCollections'
+    $menuCollections = $('ul.collections.center').children().not('.headerButton')
+    console.log $menuCollections
+    $menuCollections.hide()
     $('#container').show()
 
   animateOutArticle: ($article, callback) ->
@@ -45,7 +46,7 @@ window.visualEvents =
 window.structuralEvents =
   switchToCollection: (collectionKey) ->
     console.log 'switchToCollection', collectionKey
-    $title = $('.labels.center li.headerButton a')
+    $title = $('.collections.center li.headerButton a')
 
     if collectionKey == 'recent'
       $("article").show()
@@ -59,41 +60,41 @@ window.structuralEvents =
       $title.css 'color': collections[collectionKey].color
       window.openCollection = collectionKey
     
-    visualEvents.closeLabels()
+    visualEvents.closeCollections()
     $('#container').packery()
   
-  changeArticlesCollection: ($article, $label) ->
-    console.log 'changeArticlesCollection', $article[0], $label[0]
-    oldCollectionKey  = articleModel.getCollectionKey $article
-    newCollectionKey  = $label.data 'collectionkey'
-    $existingLabel    = articleModel.getLabel $article
+  changeArticlesCollection: ($article, $collection) ->
+    console.log 'changeArticlesCollection', $article[0], $collection[0]
+    oldcollectionKey  = articleModel.getcollectionKey $article
+    newcollectionKey  = $collection.data 'collectionKey'
+    $existingCollection    = articleModel.getCollection $article
     $card = $article.children('.card')
 
-    $label.insertAfter $existingLabel
-    $existingLabel.remove()
+    $collection.insertAfter $existingCollection
+    $existingCollection.remove()
 
     $article.
-      removeClass(oldCollectionKey).
-      addClass(newCollectionKey).
-      data('collectionkey', newCollectionKey)
+      removeClass(oldcollectionKey).
+      addClass(newcollectionKey).
+      data('collectionKey', newcollectionKey)
 
-    $card.css 'background-color': hslLight(collections[newCollectionKey].color)
+    $card.css 'background-color': hslLight(collections[newcollectionKey].color)
 
     structuralEvents.switchToCollection(openCollection)
 
 window.articleModel = 
-  getLabel: ($article) ->
-    $article.children('ul.articleLabels').children().first()
-  getCollectionKey: ($article) ->
-    articleModel.getLabel($article).data 'collectionkey'
+  getCollection: ($article) ->
+    $article.children('ul.articleCollections').children().first()
+  getcollectionKey: ($article) ->
+    articleModel.getCollection($article).data 'collectionKey'
 
 window.init =
-  label: ($labels) ->
-    $labels.
+  collection: ($collections) ->
+    $collections.
       zIndex(2).
       draggable({
         start: (event, ui) ->
-          visualEvents.closeLabels()
+          visualEvents.closeCollections()
           $(ui.helper).hover(
             ((event) -> event.stopPropagation()),
             ((event) -> event.stopPropagation())
@@ -105,7 +106,7 @@ window.init =
         revert: "true"
       }).
       click (event) ->
-        collectionKey = $(@).data('collectionkey')
+        collectionKey = $(@).data('collectionKey')
         structuralEvents.switchToCollection collectionKey
         event.stopPropagation()
         event.preventDefault()
@@ -114,13 +115,13 @@ window.init =
     $articles.droppable
       hoverClass: "hovered"
       over: (event, object) ->
-        visualEvents.labelOverArticle event, object.draggable
+        visualEvents.collectionOverArticle event, object.draggable
       out: (event, object) ->
-        visualEvents.labelOutArticle event, object.draggable
+        visualEvents.collectionOutArticle event, object.draggable
       drop: ( event, ui ) ->
-        $label = init.label ui.draggable.clone()
-        structuralEvents.changeArticlesCollection $(@), $label
-        $label.show()
+        $collection = init.collection ui.draggable.clone()
+        structuralEvents.changeArticlesCollection $(@), $collection
+        $collection.show()
 
     $articles.each () ->
       $(@).width $(@).children('.card').outerWidth()
@@ -142,10 +143,15 @@ window.init =
 
 # window.forms:
 #   add: () ->
-#   labels: () ->
-#     $labelsButton = $('.labels .headerButton a')
+#   collections: () ->
+#     $collectionsButton = $('.collections .headerButton a')
 #   settings: () ->
-
+initAddCollectionForm = () ->
+  $('#newCollectionForm').submit (event) ->
+    name = $('#newCollectionForm [type=text]').val()
+    $('#newCollectionForm [type=text]').val ''
+    socket.emit 'newCollection', { name }
+    event.preventDefault()
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
@@ -157,9 +163,10 @@ $ ->
   #     $container.packery 'bindDraggabillyEvents', draggie
 
   init.container $('#container')
-  init.label $('li.label')
+  init.collection $('li.collection')
   init.article $( "article" )
   initAddArticleForm()
+  initAddCollectionForm()
   # $('a').on 'ondragstart', ()  -> false
 
   $(window).resize -> onResize()
@@ -167,12 +174,14 @@ $ ->
   $(window).scroll -> onScroll()
   onScroll()
 
-  $('ul.labels.center li.label').hide()
-  $('ul.labels.center').css 'left', $(window).width()/2
   
-  $('.labels.center').hover(
-    (() -> visualEvents.openLabels event),
-    (() -> visualEvents.closeLabels event)
+  $('ul.collections.center').css 'left', $(window).width()/2
+  visualEvents.closeCollections()
+
+
+  $('.collections.center').hover(
+    (() -> visualEvents.openCollections event),
+    (() -> visualEvents.closeCollections event)
   )
 
   $addArticleForm = $('.addArticleForm')

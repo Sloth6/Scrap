@@ -16,7 +16,7 @@ lengthForLong = 500
 initText = ($content) ->
   timeout       = null
   emitInterval  = 500
-  collectionKey = contentModel.getCollectionkey $content
+  collectionKey = contentModel.getcollectionKey $content
 
   onChange = (text) ->
     if timeout

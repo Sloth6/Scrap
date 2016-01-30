@@ -1,6 +1,6 @@
 # videoScreenshot = require '../../modules/videoScreenshot.coffee'              
 
-module.exports = (collectionKey, attributes, callback) ->
+module.exports = (rawInput, callback) ->
   # videoScreenshot attributes.content, (err) ->
   #   return callback 'Error creating video screenshot'+ err if err
-  callback null, attributes
+  callback null, { url: rawInput }

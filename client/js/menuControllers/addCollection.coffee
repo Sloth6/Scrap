@@ -3,9 +3,7 @@ max = 35
 window.initAddCollection = ($elem) ->
   $done   = $elem.find '.done'
   $cancel = $elem.find '.cancel'
-  $title = $elem.find '.collectionTitle'
-  $card  = $elem.children '.card'
-
+  
   $elem.data 'sent', false
 
   reset = (event) ->
@@ -25,7 +23,7 @@ window.initAddCollection = ($elem) ->
     $title.attr 'contenteditable', false
     $card.removeClass 'editing'
     $card.removeClass 'hover'
-    socket.emit 'newPack', { name: $title.text() }
+    socket.emit 'newCollection', { name: $title.text() }
     reset(event)
 
   startEditing = () ->
