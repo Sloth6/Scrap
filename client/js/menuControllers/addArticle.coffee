@@ -4,6 +4,8 @@ defaultText = '<p>Write a note or paste a link</p>'
 window.initAddArticleForm = () ->
   $form = $('.addArticleForm')
   input = $form.find '.editable'
+  $form.hide()
+
 
   genericText = initGenericText $form, {
     clearOnDone: true
@@ -25,3 +27,16 @@ window.initAddArticleForm = () ->
       emitNewArticle input.text(), window.openCollection
       genericText.clear()
     ), 20
+
+
+  $('.addForm').hover(
+    (() ->
+      $('.addForm .headerButton').hide()
+      $form.show()
+      # $form.find('.editable').trigger 'click'
+    ),
+    (() ->
+      $('.addForm .headerButton').show()
+      $form.hide()
+    )
+  )

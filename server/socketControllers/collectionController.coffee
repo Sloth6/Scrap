@@ -77,10 +77,12 @@ module.exports =
         return callback(err) if err?
         collection.addUser(user).done (err) ->
           return callback(err) if err?
-          console.log 'new collection', collection.collectionKey
-          socket.emit 'newcollection', collection.dataValues
-          socket.join collection.collectionKey
-          callback null
+          user.addCollection(collection).done (err) ->
+            return callback(err) if err?
+            console.log 'new collection', collection.collectionKey
+            socket.emit 'newcollection', collection.dataValues
+            socket.join collection.collectionKey
+            callback null
 
   removeCollection: (sio, socket, data, callback) ->
     collectionKey = data.collectionKey

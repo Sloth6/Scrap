@@ -27,7 +27,7 @@ module.exports =
       return indexPage res unless user?
 
       collections = {}
-      for collection in collections 
+      for collection in user.Collections 
         key = collection.collectionKey
         collections[key] = collection.dataValues
 

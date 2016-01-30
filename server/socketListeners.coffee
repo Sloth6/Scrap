@@ -37,16 +37,19 @@ module.exports = (io)->
       socket.on 'deleteArticle', (data) -> articleController.deleteArticle io, socket, clean(data), errorHandler
       socket.on 'updateArticle', (data) -> articleController.updateArticle io, socket, data, errorHandler
       
-      socket.on 'addArticleCollection', (data) -> articleCollectionController.addToCollection io, socket, clean(data), errorHandler
-      socket.on 'removeArticleCollection', (data) -> articleCollectionController.removeFromCollection io, socket, clean(data), errorHandler
+      [
+        'addArticleCollection', 'removeArticleCollection'
+      ].forEach (eventName) ->
+        socket.on eventName, (data) ->
+          articleCollectionController[eventName] io, socket, clean(data), errorHandler
       
-      collectionEvents = [
+      [
         'reorderCollection', 'addCollection',
         'removeCollection', 'inviteToCollection'
-      ]
-      for eventName in collectionEvents
+      ].forEach (eventName) ->
         socket.on eventName, (data) ->
           collectionController[eventName] io, socket, clean(data), errorHandler
+      
       # socket.on , (data) -> collectionController.reorderArticles io, socket, clean(data), errorHandler
       # socket.on 'addCollection', (data) -> collectionController.newCollection io, socket, clean(data), errorHandler
       # socket.on 'removeCollection', (data) -> collectionController.deleteCollection io, socket, clean(data), errorHandler

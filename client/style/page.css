@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -7,7 +7,7 @@ del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
-fieldset, form, collection, legend,
+fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
@@ -21,45 +21,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -98,44 +98,44 @@ html *[contentEditable=true] {
 }
 
 /* line 49, ../../style/globals/_color.scss */
-body section.collection section.content article.color0 div.card.text.comment, body section.collection section.content article.color0 header {
+body section.label section.content article.color0 div.card.text.comment, body section.label section.content article.color0 header {
   background-color: rgba(255, 59, 48, 0.9);
 }
 /* line 53, ../../style/globals/_color.scss */
-body section.collection section.content article.color1 div.card.text.comment, body section.collection section.content article.color1 header {
+body section.label section.content article.color1 div.card.text.comment, body section.label section.content article.color1 header {
   background-color: rgba(255, 149, 0, 0.9);
 }
 /* line 57, ../../style/globals/_color.scss */
-body section.collection section.content article.color2 div.card.text.comment, body section.collection section.content article.color2 header {
+body section.label section.content article.color2 div.card.text.comment, body section.label section.content article.color2 header {
   background-color: rgba(255, 204, 0, 0.9);
 }
 /* line 61, ../../style/globals/_color.scss */
-body section.collection section.content article.color3 div.card.text.comment, body section.collection section.content article.color3 header {
+body section.label section.content article.color3 div.card.text.comment, body section.label section.content article.color3 header {
   background-color: rgba(76, 217, 100, 0.9);
   color: #fffbf1;
 }
 /* line 66, ../../style/globals/_color.scss */
-body section.collection section.content article.color4 div.card.text.comment, body section.collection section.content article.color4 header {
+body section.label section.content article.color4 div.card.text.comment, body section.label section.content article.color4 header {
   background-color: rgba(0, 122, 255, 0.9);
 }
 /* line 70, ../../style/globals/_color.scss */
-body section.collection section.content article.color5 div.card.text.comment, body section.collection section.content article.color5 header {
+body section.label section.content article.color5 div.card.text.comment, body section.label section.content article.color5 header {
   background-color: rgba(255, 45, 85, 0.9);
 }
 /* line 74, ../../style/globals/_color.scss */
-body section.collection section.content article.color6 div.card.text.comment, body section.collection section.content article.color6 header {
+body section.label section.content article.color6 div.card.text.comment, body section.label section.content article.color6 header {
   background-color: rgba(135, 252, 112, 0.9);
 }
 /* line 78, ../../style/globals/_color.scss */
-body section.collection section.content article.color7 div.card.text.comment, body section.collection section.content article.color7 header {
+body section.label section.content article.color7 div.card.text.comment, body section.label section.content article.color7 header {
   background-color: rgba(255, 19, 0, 0.9);
 }
 /* line 82, ../../style/globals/_color.scss */
-body section.collection section.content article.color8 div.card.text.comment, body section.collection section.content article.color8 header {
+body section.label section.content article.color8 div.card.text.comment, body section.label section.content article.color8 header {
   background-color: rgba(239, 77, 182, 0.9);
 }
 /* line 86, ../../style/globals/_color.scss */
-body section.collection section.content article.color9 div.card.text.comment, body section.collection section.content article.color9 header {
+body section.label section.content article.color9 div.card.text.comment, body section.label section.content article.color9 header {
   background-color: rgba(82, 237, 199, 0.9);
 }
 
@@ -907,7 +907,7 @@ form li {
 }
 
 /* line 285, ../../style/globals/_components.scss */
-collection {
+label {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
@@ -1061,7 +1061,7 @@ ul.headerMenu {
   overflow: visible;
   position: absolute;
   display: inline-block;
-  white-collection: nowrap;
+  white-label: nowrap;
   border: 1px solid #000000;
   border-color: transparent;
   background: white;
@@ -1511,28 +1511,8 @@ header.main .backButton.main a {
   padding: 0 12px 12px 24px;
 }
 
-/* line 1, ../../style/layout/_container.scss */
-.slidingContainer {
-  position: absolute;
-  top: 0vh;
-}
-
-/* line 6, ../../style/layout/_container.scss */
-.slider {
-  position: absolute;
-}
-
-/* line 12, ../../style/layout/_container.scss */
-section.container header.main {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 40;
-}
-
 /* line 7, ../../style/layout/_article.scss */
-body .collection.stack {
+body .label.stack {
   cursor: move;
   cursor: -webkit-grab;
   cursor: -moz-grab;
@@ -1624,7 +1604,7 @@ body article .articleControls .articleDeleteButton {
 /* line 76, ../../style/layout/_article.scss */
 body article .articleControls author {
   right: 0;
-  white-collection: nowrap;
+  white-label: nowrap;
 }
 /* line 84, ../../style/layout/_article.scss */
 body article.text {
@@ -2278,14 +2258,14 @@ body article .card img {
 }
 
 /* line 2, ../../style/layout/_home.scss */
-.collection {
+.label {
   position: absolute;
   transform-origin: center center;
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
 }
 /* line 8, ../../style/layout/_home.scss */
-.collection.pack {
+.label.pack {
   transform-origin: 112pt 168pt;
   -moz-transform-origin: 112pt 168pt;
   -webkit-transform-origin: 112pt 168pt;
@@ -2453,7 +2433,7 @@ body article .card img {
   bottom: 0;
 }
 /* line 162, ../../style/layout/_home.scss */
-.cover .card ul.users li.add ul li collection, .cover.card ul.users li.add ul li collection {
+.cover .card ul.users li.add ul li label, .cover.card ul.users li.add ul li label {
   display: block;
 }
 /* line 166, ../../style/layout/_home.scss */
@@ -2504,7 +2484,7 @@ footer.main ul.actions li.action:last-of-type {
   padding-right: 16pt;
 }
 /* line 24, ../../style/layout/_footer.scss */
-footer.main ul.actions li.action:last-of-type collection {
+footer.main ul.actions li.action:last-of-type label {
   right: 8pt;
 }
 /* line 30, ../../style/layout/_footer.scss */
@@ -2562,7 +2542,7 @@ footer.main ul.actions li.action .target {
   background-size: 32pt 32pt;
 }
 /* line 69, ../../style/layout/_footer.scss */
-footer.main ul.actions li.action collection {
+footer.main ul.actions li.action label {
   position: absolute;
   left: 0;
   right: 0;

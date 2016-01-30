@@ -29,12 +29,12 @@ mixin articleMixin(article, collections)
       - if(article.Creator !== undefined)
         author.smallType!=article.Creator.name
 
-    ul.articleCollections
-      if collections.length > 0
-        for (var i = 0; i < collections.length; i++)
-          - var key = collection.collectionKey
-          li.collection(data-collectionKey=key, class=key)
-            a(href='#', style='color:'+collection.color+';')!=collection.name
+    ul.articleCollections(style='position:absolute;z-index:2;')
+      - for (var i = 0; i < collections.length; i++)
+        - var collection = collections[i]
+        - var key = collection.collectionKey
+        li.collection(data-collectionKey=key, class=key)
+          a(href='#', style='color:'+collection.color+';')!=collection.name
     
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
