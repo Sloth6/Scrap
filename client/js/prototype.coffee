@@ -64,11 +64,11 @@ window.structuralEvents =
     $('#container').packery()
 
 window.articleModel = 
-  getCollection: ($article) ->
-    $article.children('ul.articleCollections').children().first()
+  # getCollection: ($article) ->
+  #   $article.children('ul.articleCollections').children().first()
   
-  getcollectionKey: ($article) ->
-    articleModel.getCollection($article).data 'collectionKey'
+  # getcollectionKey: ($article) ->
+  #   articleModel.getCollection($article).data 'collectionKey'
   
   addCollection: ($article, $collection) ->
     $article.addClass($collection.data('collectionkey'))
@@ -78,11 +78,18 @@ window.articleModel =
     collectionKey = $collection.data 'collectionkey'
     socket.emit 'addArticleCollection', { articleId, collectionKey }
 
+  removeCollection: ($article, $collection) ->
+    articleId     = $article.attr 'id'
+    collectionKey = $collection.data 'collectionkey'
+    
+    $article.removeClass collectionKey
+    $collection.remove()
+    socket.emit 'removeArticleCollection', { articleId, collectionKey }
+
 window.init =
   collection: ($collections) ->
     draggableOptions = 
       helper: "clone"
-      cursor: 'move'
       revert: "true"
       start: (event, ui) ->
         visualEvents.closeCollections()
@@ -101,6 +108,7 @@ window.init =
 
   article: ($articles) ->
     $articles.droppable
+      greedy: true
       hoverClass: "hovered"
       over: (event, object) ->
         visualEvents.collectionOverArticle event, object.draggable
@@ -113,6 +121,9 @@ window.init =
         init.collection $collection
         $collection.show()
         articleModel.addCollection $(@), $collection
+        event.stopPropagation()
+        console.log ui
+        true
 
     $articles.each () ->
       $(@).width $(@).children('.card').outerWidth()
@@ -131,6 +142,12 @@ window.init =
 
     $container.packery 'bindResize'
 
+    $container.droppable
+      greedy: true
+      drop: (event, ui) ->
+        console.log 'dropped on collection!'
+        $collection = ui.draggable
+        articleModel.removeCollection $collection.parent().parent(), $collection
 
 initAddCollectionForm = () ->
   $('#newCollectionForm').submit (event) ->
@@ -146,29 +163,29 @@ initCollectionsHeader = () ->
                                    visualEvents.closeCollections)
   visualEvents.closeCollections()
 
-
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
-  # if draggable
-  #   itemElems = $container.packery('getItemElements')
-  #   for elem in itemElems
-  #     draggie = new Draggabilly( elem )
-  #     $container.packery 'bindDraggabillyEvents', draggie
 
+  init.article $( "article" )
   init.container $('#container')
   init.collection $('li.collection')
-  init.article $( "article" )
+  
   
   initCollectionsHeader()
   initAddCollectionForm()
   initAddArticleForm()
-  # $('a').on 'ondragstart', ()  -> false
 
   $(window).resize -> onResize()
   onResize()
   $(window).scroll -> onScroll()
   onScroll()
+
+  # if draggable
+  #   itemElems = $container.packery('getItemElements')
+  #   for elem in itemElems
+  #     draggie = new Draggabilly( elem )
+  #     $container.packery 'bindDraggabillyEvents', draggie
 
 
 

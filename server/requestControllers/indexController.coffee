@@ -19,7 +19,7 @@ module.exports =
       where: { id: userId }
       include: [
         { model: models.Collection }
-        { model: models.Article, include: [{ model:models.Collection, required: false }] }
+        { model: models.Article, order: '"createdAt" DESC', include: [{ model:models.Collection, required: false }] }
       ]
 
     models.User.find( options ).done (err, user) ->
