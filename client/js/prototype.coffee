@@ -64,6 +64,13 @@ window.structuralEvents =
     $('#container').packery()
 
 window.articleModel = 
+  getCollectionKeys: ($article) ->
+    keys = []
+    for c in $article.find('.collection')
+      if c.length
+        keys.append(c.data('collectionkey'))
+    keys
+
   # getCollection: ($article) ->
   #   $article.children('ul.articleCollections').children().first()
   
@@ -175,6 +182,14 @@ $ ->
   initCollectionsHeader()
   initAddCollectionForm()
   initAddArticleForm()
+
+  $('article').each () ->
+    switch $(@).data 'contenttype'
+      when 'text'       then initText $(@)
+      when 'video'      then initVideo $(@)
+      when 'file'       then initFile $(@)
+      when 'soundcloud' then initSoundCloud $(@)
+      when 'youtube'    then initYoutube $(@)
 
   $(window).resize -> onResize()
   onResize()

@@ -27,6 +27,19 @@ getType = (s, cb) ->
       return cb 'website'
     return cb 'file'# if contentType.match /^application\//
 
+getCollectionKeys = (articleId, callback) ->
+  q = """
+      SELECT "collectionKey" FROM "Collections" where "id" in 
+        (SELECT "CollectionId" from "ArticlesCollections"
+        WHERE "ArticleId"=:articleId)
+      """
+  models.sequelize.query(q, replacements: { articleId }).done (err, results) ->
+    return callback(err) if err?
+    callback null, (res.collectionKey for res in results[0])
+
+# getCollectionKeys 18, (a, b) ->
+#   console.log a, b
+
 module.exports =
   # create a new article and save it to db
   newArticle : (sio, socket, data, callback) =>
@@ -118,14 +131,15 @@ module.exports =
   
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
-    { collectionKey, content, articleId } = data
+    { content, articleId } = data
     console.log "update article"
-    console.log "\t#{articleId}"
-    console.log "\t#{content}"
-    console.log "\t#{collectionKey}"
+    console.log "\t#{articleId}\n\t", content
     id = +articleId
-    models.Article.update({content}, where: {id}).done (err) ->
-      return callback(err) if err?
-      data.userId = userId
-      sio.to("#{collectionKey}").emit 'updateArticle', data
-      callback null
+
+    models.Article.update({ content }, where: { id }).done (err) ->
+      getCollectionKeys id, (err, collectionKeys) ->
+        return callback(err) if err?
+        data.userId = userId
+        for key in getCollectionKeys
+          sio.to("#{key}").emit 'updateArticle', data
+        callback null
