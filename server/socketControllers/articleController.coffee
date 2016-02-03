@@ -110,24 +110,6 @@ module.exports =
       if contentType in ['file', 'video', 'image']
         s3.delete content, (err) ->
           console.log err if err
-
-  # moveToCollection: (sio, socket, data, callback) ->
-  #   { elemId, collectionKey } = data
-  #   return callback('no collectionKey in moveToCollection') unless collectionKey?
-  #   return callback('no elemId in moveToCollection') unless elemId?
-  #   console.log "move to collection data:", data
-  #   models.Article.find(where: { id: elemId }).then (elem) ->
-  #     oldCollectionId = elem.CollectionId
-  #     console.log 'old collection id', oldCollectionId
-  #     q = "
-  #         UPDATE \"Articles\"
-  #         SET \"CollectionId\" = (Select id from \"Collections\" WHERE \"collectionKey\"=:collectionKey)
-  #         WHERE \"id\"=:elemId
-  #         "
-  #     models.sequelize.query(q, replacements :data).then (results) ->
-  #       return callback err if err?
-  #       sio.to("#{collectionKey}").emit 'moveToCollection', data 
-  #       callback null
   
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId

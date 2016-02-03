@@ -1502,7 +1502,7 @@ if(!$.zoomooz) {
         }
 
         var $root = settings.root;
-
+        console.log($root);
         if(!$root.hasClass("zoomTarget")) {
 
             var rootSettings = $root.zoomSettings({});

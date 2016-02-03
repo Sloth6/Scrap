@@ -1,19 +1,8 @@
-scale       = 1 / 1.5
-duration    = 1000
-easing      = [20, 10]
-packeryDurationMS = duration / 2
-packeryDuration = "#{packeryDurationMS / 1000}s"
-
-draggable = false
 'use strict'
+
 window.constants =
   style:
     gutter: 40
-
-hslLight = (color) ->
-  pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
-  hue = color.match(pattern)[1]
-  'hsl('+hue+',100%, 98%)'
 
 stopProp = (event) -> event.stopPropagation()
 onResize = () ->
@@ -38,10 +27,6 @@ window.visualEvents =
     $menuCollections = $('ul.collections.center').children()
     $menuCollections.not('.headerButton, .ui-draggable-dragging').hide()
     $('#container').show()
-
-  animateOutArticle: ($article, callback) ->
-
-  animateInArticle: ($article, callback) ->
 
 window.structuralEvents =
   switchToCollection: (collectionKey) ->
@@ -70,12 +55,6 @@ window.articleModel =
       if c.length
         keys.append(c.data('collectionkey'))
     keys
-
-  # getCollection: ($article) ->
-  #   $article.children('ul.articleCollections').children().first()
-  
-  # getcollectionKey: ($article) ->
-  #   articleModel.getCollection($article).data 'collectionKey'
   
   addCollection: ($article, $collection) ->
     $article.addClass($collection.data('collectionkey'))
@@ -174,10 +153,9 @@ $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
 
-  init.article $( "article" )
+  init.article $("article")
   init.container $('#container')
   init.collection $('li.collection')
-  
   
   initCollectionsHeader()
   initAddCollectionForm()
@@ -190,6 +168,24 @@ $ ->
       when 'file'       then initFile $(@)
       when 'soundcloud' then initSoundCloud $(@)
       when 'youtube'    then initYoutube $(@)
+
+  # $('article').click () ->
+    # 
+  # $('article').zoomTarget {
+  #   duration: 450
+  #   targetsize: 0.9    
+  #   preservescroll: true
+  #   # root: $("#container")
+  #   animationendcallback: () ->
+  #     console.log 'animationendcall'
+  # }
+
+  # $(document.body).click () ->
+  #   console.log 'yo'
+  # $("article").click (evt) ->
+  #   console.log @
+  #   $(this).zoomTo({targetsize:0.75, duration:600});
+  #   evt.stopPropagation();
 
   $(window).resize -> onResize()
   onResize()

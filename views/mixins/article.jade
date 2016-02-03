@@ -1,6 +1,6 @@
 mixin articleMixin(article, collections)
   -
-    var classes =  [article.contentType, 'zoomTarget']
+    var classes =  [article.contentType] //, 'zoomTarget'
     var content = article.content
     for (var i = 0; i < collections.length; i++) {
       classes.push(collections[i].collectionKey)

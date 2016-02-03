@@ -32,4 +32,4 @@ module.exports =
         collections[key] = collection.dataValues
 
       console.log "Showing #{user.Articles.length} articles"
-      res.render 'prototype', { user, collections }
+      res.render 'main', { user, collections }

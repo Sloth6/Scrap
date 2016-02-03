@@ -3,10 +3,6 @@ Array.min = (array) -> Math.min.apply Math, array
 
 Array.prototype.last = () -> @[@length - 1]
 
-window.xOfSelf = () -> xTransform $(@)
-
-window.yOfSelf = () -> yTransform $(@)
-
 window.xTransform = ($element) ->
 #   transform = $element.css('transform')
 #   new WebKitCSSMatrix(transform).e

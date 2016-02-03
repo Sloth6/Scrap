@@ -4,13 +4,18 @@ lengthForLong = 500
 initText = ($article) ->
   timeout       = null
   emitInterval  = 500
-  $article.data 'old-height', $article.children('card').height()
+  oldHeight = $article.height()
 
   onChange = (text) ->
-    console.log $article.children('card')
+
     if timeout
       clearTimeout timeout 
       timeout = null
+
+    if $article.children('card').height() != oldHeight
+      oldHeight = $article.children('.card').height()
+      $article.height oldHeight
+      $('#container').packery()
 
     timeout = setTimeout (() ->
       data =
