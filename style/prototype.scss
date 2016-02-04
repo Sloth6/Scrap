@@ -42,9 +42,12 @@ nav {
                 margin: 0 auto;
 //                 background-color: rgba(0, 255, 61, 0.41);
                 
-                li.collection {
+                li {
                     	width: 100%;
                     margin: 0 auto;
+                  	  transform-origin:  center center;
+                  	  -webkit-transform-origin:  center center;
+
 //                     border: 1px red solid;
                     	
                     	.contents {

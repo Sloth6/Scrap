@@ -2597,18 +2597,20 @@ nav section.center ul.collectionsMenu {
   margin: 0 auto;
 }
 /* line 45, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li.collection {
+nav section.center ul.collectionsMenu li {
   width: 100%;
   margin: 0 auto;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
 }
-/* line 50, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li.collection .contents {
+/* line 53, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 55, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li.collection .contents a {
+/* line 58, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li .contents a {
   width: 100%;
   display: inline-block;
   font-size: 52pt;
@@ -2618,7 +2620,7 @@ nav section.center ul.collectionsMenu li.collection .contents a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 67, ../../style/prototype.scss */
+/* line 70, ../../style/prototype.scss */
 nav section .headerButton a {
   font-size: 52pt;
   font-weight: 500;

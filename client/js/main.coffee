@@ -44,18 +44,22 @@ window.events =
       width: $menu.width()
     $button.velocity
       properties:
-        translateY: -$button.height()
+        translateY: -$button.height() * 3
+        scaleY: 2
+        scaleX: .125
+        rotateZ: 45 * (Math.random() - .5)
       options:
         duration: options.duration
         easing:   options.easing
+        delay:    0
     $labels.each ->
       $label = $(@)
       $label.find('.contents').velocity
         properties:
-          translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height())]
+          translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height() * 2)]
           scaleY: [1, 2]
           scaleX: [1, .125]
-#           rotateZ: [0, 45 * (Math.random() - .5)]
+          rotateZ: [0, 22 * (Math.random() - .5)]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
@@ -82,10 +86,15 @@ window.events =
       easing:   constants.style.curves.smooth
 
     $menu.removeClass 'open'
-    $button.velocity 'reverse'
+    $button.velocity 'reverse', {
+      delay: 60 * $labels.length
+    }
     $labels.each ->
       $label = $(@)
       $label.find('.contents').velocity 'reverse', {
+        duration: options.duration
+        easing:   options.easing
+        delay:    60 * (($labels.length ) - $label.index())
         complete: ->
           if $label.index() is $labels.length - 1
             $labels.hide()
