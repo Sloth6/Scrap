@@ -4,7 +4,7 @@ window.constants =
   style:
     gutter: 40
     curves:
-      smooth: [25, 10]
+      smooth: [20, 10]
       spring: [75, 10]
   dom:
     collectionsMenu: 'ul.collectionsMenu'
@@ -32,7 +32,7 @@ window.events =
     $openLabel  = $menu.children(".#{window.openCollection}")
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
-      duration: 750
+      duration: 1000
       easing:   constants.style.curves.smooth
     isHome      = window.openCollection is 'recent'
     $menu.addClass 'open'
@@ -46,9 +46,9 @@ window.events =
       $labelsButton.find('.contents').velocity
         properties:
           translateY: -$button.height() * 3
-          scaleY: 2
-          scaleX: .125
-          rotateZ: 45 * (Math.random() - .5)
+#           scaleY: 2
+#           scaleX: .125
+#           rotateZ: 45 * (Math.random() - .5)
         options:
           duration: options.duration
           easing:   options.easing
@@ -62,15 +62,15 @@ window.events =
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
         translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
-      scaleY = if $openLabel.index() is $label.index() then 1 else 2
-      scaleX = if $openLabel.index() is $label.index() then 1 else .125
-      rotateZ = if $openLabel.index() is $label.index() then 1 else 22 * (Math.random() - .5)
+#       scaleY = if $openLabel.index() is $label.index() then 1 else 2
+#       scaleX = if $openLabel.index() is $label.index() then 1 else .125
+#       rotateZ = if $openLabel.index() is $label.index() then 1 else 22 * (Math.random() - .5)
       $label.find('.contents').velocity
         properties:
           translateY: [-$button.height(), translateY]
-          scaleY: [1, scaleY]
-          scaleX: [1, scaleX]
-          rotateZ: [0, rotateZ]
+#           scaleY: [1, scaleY]
+#           scaleX: [1, scaleX]
+#           rotateZ: [0, rotateZ]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
@@ -109,9 +109,9 @@ window.events =
     $destinationLabel.find('.contents').velocity
       properties:
         translateY: -$destinationLabel.offset().top
-        rotateZ: 0
-        scaleY: 1
-        scaleX: 1
+#         rotateZ: 0
+#         scaleY: 1
+#         scaleX: 1
       options:
         duration: options.duration
         easing:   options.easing
@@ -129,9 +129,9 @@ window.events =
       $label.find('.contents').velocity
         properties:
           translateY: translateY
-          scaleY: 2
-          scaleX: .125
-          rotateZ: 22 * (Math.random() - .5)
+#           scaleY: 2
+#           scaleX: .125
+#           rotateZ: 22 * (Math.random() - .5)
         options:
           duration: options.duration
           easing:   options.easing
