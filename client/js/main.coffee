@@ -30,36 +30,33 @@ window.events =
     $button     = $menu.find('.headerButton')
     $labels     = $menuItems.not('.headerButton')
     options     =
-      duration: 1000
+      duration: 750
       easing:   constants.style.curves.smooth
-      
-    $menu.addClass('open')
-    if $menu.data('canOpen')
-      $labels.find('.contents').css
-        opacity: 0
-      $menuItems.show()
-      $menu.css
-        width: $menu.width()
-      $button.velocity
+    
+    $menu.addClass 'open'
+    $labels.find('.contents').css
+      opacity: 0
+    $menuItems.show()
+    $menu.css
+      width: $menu.width()
+    $button.velocity
+      properties:
+        translateY: -$button.height()
+      options:
+        duration: options.duration
+        easing:   options.easing
+    $labels.each ->
+      $label = $(@)
+      $label.find('.contents').velocity
         properties:
-          translateY: -$button.height()
+          translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height())]
+          opacity: [1, 1]
         options:
-          duration: options.duration
+          duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
-      $labels.each ->
-        $label = $(@)
-        $label.find('.contents').velocity
-          properties:
-            translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height())]
-            opacity: [1, 1]
-          options:
-            duration: options.duration # + ($label.index() * 60)
-            easing:   options.easing
-            delay:    $label.index() * 60
-      $container.hide()
-      $menu.data 'canOpen', false
-    else # not ready to open
-      window.triedToOpen = true # register attempt to open
+          delay:    $label.index() * 60
+    $container.hide()
+    $menu.data 'canOpen', false
 
   onCloseCollectionsMenu: () ->
     $menu       = $(constants.dom.collectionsMenu )
@@ -69,23 +66,23 @@ window.events =
     $dragging   = $menu.find 'ui-draggable-dragging'
     $labels     = $menuItems.not('.ui-draggable-dragging, .headerButton')
     options     =
-      duration: 1000
+      duration: 500
       easing:   constants.style.curves.smooth
-    if $menu.hasClass 'open' # detect if menu has been opened
-      $menu.removeClass('open')
-      $button.velocity 'reverse'
-      $labels.each ->
-        $label = $(@)
-        $label.find('.contents').velocity 'reverse', {
-          complete: ->
-            if $label.index() is $labels.length - 1
-              $labels.hide()
-              $menu.data 'canOpen', true
-              if window.triedToOpen # if user tried to open menu before ready
-                events.onOpenCollectionsMenu() # open menu after close animation finishes
-                window.triedToOpen = false
-        }
-      $container.show()
+
+    $menu.removeClass 'open'
+    $button.velocity 'reverse'
+    $labels.each ->
+      $label = $(@)
+      $label.find('.contents').velocity 'reverse', {
+        complete: ->
+          if $label.index() is $labels.length - 1
+            $labels.hide()
+            $menu.data 'canOpen', true
+            if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
+              events.onOpenCollectionsMenu() # open menu after close animation finishes
+              window.triedToOpen = false
+      }
+    $container.show()
 
   onArticleResize: ($article) ->
     $(@).width $(@).children('.card').outerWidth()
@@ -217,8 +214,12 @@ window.init =
 
   collectionsMenu: ($menu) ->  
     $menu.find('li.headerButton a').mouseenter ->
-      events.onOpenCollectionsMenu() unless $menu.hasClass('open')
-    $menu.mouseleave events.onCloseCollectionsMenu
+      if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
+        events.onOpenCollectionsMenu()
+      else # not ready to open
+        window.triedToOpen = true # register attempt to open
+    $menu.mouseleave ->
+      events.onCloseCollectionsMenu() if $menu.hasClass 'open'
     $menu.find('li').not('.headerButton').hide()
     $menu.data 'canOpen', true
 $ ->
