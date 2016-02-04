@@ -35,7 +35,9 @@ module.exports = (app) ->
   app.post '/updateUser', (req, res) ->
     controllers.userController.updateUser req, res, app, errorHandler
 
-    
+  app.get '/bookmarkletTest', (req, res) ->
+    res.render('partials/bookmarklet')  
+
   app.get '/500', (req, res) ->
     throw new Error 'This is a 500 Error'
 
