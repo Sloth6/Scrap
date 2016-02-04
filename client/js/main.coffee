@@ -15,7 +15,6 @@ stopProp = (event) -> event.stopPropagation()
   
 window.events =
   onCollectionOverArticle: (event, $collection) ->
-    console.log 'over'
     $article = $('article.hovered')
     $card = $article.children('.card')
 
@@ -33,18 +32,18 @@ window.events =
     $openLabel  = $menu.children(".#{window.openCollection}")
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
-      duration: 1000
-      easing:   constants.style.curves.spring
+      duration: 750
+      easing:   constants.style.curves.smooth
     isHome      = window.openCollection is 'recent'
     $menu.addClass 'open'
     # animate in labels
-    $labels.find('.contents').css
+    $labels.not($openLabel).find('.contents').css
       opacity: 0
     $menuItems.show()
     $menu.css
       width: $menu.width()
     if isHome
-      $labelsButton.velocity
+      $labelsButton.find('.contents').velocity
         properties:
           translateY: -$button.height() * 3
           scaleY: 2
@@ -54,26 +53,24 @@ window.events =
           duration: options.duration
           easing:   options.easing
           delay:    0
-        
-#     $openLabel.velocity
-    console.log $openLabel
     $openLabel.removeClass('openMenuButton')   
     $labels.each ->
       $label = $(@)
-      console.log $label.attr('class')
-      if $openLabel is $label
-        translateY = parseInt($.Velocity.hook($openLabel, 'translateY'))
+      if $openLabel.index() is $label.index()
+        translateY = parseInt($.Velocity.hook($openLabel.find('.contents'), 'translateY'))
+      else if $openLabel.index() < $label.index() # below
+        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
-        if $openLabel.index() < $label.index() # below
-          translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
-        else
-          translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+      scaleY = if $openLabel.index() is $label.index() then 1 else 2
+      scaleX = if $openLabel.index() is $label.index() then 1 else .125
+      rotateZ = if $openLabel.index() is $label.index() then 1 else 22 * (Math.random() - .5)
       $label.find('.contents').velocity
         properties:
           translateY: [-$button.height(), translateY]
-          scaleY: [1, 2]
-          scaleX: [1, .125]
-          rotateZ: [0, 22 * (Math.random() - .5)]
+          scaleY: [1, scaleY]
+          scaleX: [1, scaleX]
+          rotateZ: [0, rotateZ]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
@@ -87,44 +84,45 @@ window.events =
     $menu.data 'canOpen', false
 
   onCloseCollectionsMenu: () ->
+    isHome      = window.openCollection is 'recent'
     $menu       = $(constants.dom.collectionsMenu )
     $container  = $(constants.dom.articleContainer)
     $menuItems  = $menu.children()
-    $button     = $menu.find('.openMenuButton')
+    $oldButton     = $menu.find('.openMenuButton')
     $labelsButton = $menu.find('li.labelsButton')
     $dragging   = $menu.find 'ui-draggable-dragging'
     $labels     = $menuItems.not('.ui-draggable-dragging, .openMenuButton')
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
-    $openLabel  = $menu.children(".#{window.openCollection}")
+    $destinationLabel  = if isHome then $labelsButton else $menu.children(".#{window.openCollection}")
     options     =
       duration: 500
       easing:   constants.style.curves.smooth
-    isHome      = window.openCollection is 'recent'
     
     $menu.removeClass 'open'
-    console.log isHome
+
     if isHome
-      $button.velocity 'reverse', {
+      $labelsButton.find('.content').velocity 'reverse', {
         delay: 60 * $labels.length
       }
-      $labelsButton.addClass('openMenuButton')
-    else
-      $openLabel.addClass('openMenuButton')
-    $button.removeClass('openMenuButton')
-    $openLabel.find('.contents').velocity
+    $destinationLabel.addClass('openMenuButton')
+    $oldButton.removeClass('openMenuButton')
+    $destinationLabel.find('.contents').velocity
       properties:
-        translateY: -$openLabel.offset().top
+        translateY: -$destinationLabel.offset().top
+        rotateZ: 0
+        scaleY: 1
+        scaleX: 1
       options:
         duration: options.duration
         easing:   options.easing
 #         complete: ->
-#           $openLabel.css
+#           $destinationLabel.css
 #             position: 'absolute'
 #             top: 0
-#           $.Velocity.hook($openLabel, 'translateY', 0)
-    $labels.not($openLabel).each ->
+#           $.Velocity.hook($destinationLabel, 'translateY', 0)
+    $labels.not($destinationLabel).each ->
       $label = $(@)
-      if $openLabel.index() < $label.index() # below
+      if $destinationLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
         translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
@@ -140,7 +138,7 @@ window.events =
           delay:    0 #60 * (($labels.length ) - $label.index())
           complete: ->
             if $label.index() is $labels.length - 1
-#               $labels.not($openLabel).hide()
+#               $labels.not($destinationLabel).hide()
               $menu.data 'canOpen', true
               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
                 events.onOpenCollectionsMenu() # open menu after close animation finishes
@@ -260,7 +258,6 @@ window.init =
       out: (event, object) ->
         events.onCollectionOutArticle event, object.draggable
       drop: ( event, ui ) ->
-        console.log 'dropped!'
         $collection = ui.draggable.clone()
         $collection.css 'top':0, 'left':0
         init.collection $collection
@@ -289,7 +286,6 @@ window.init =
     $container.droppable
       greedy: true
       drop: (event, ui) ->
-        console.log 'dropped on collection!'
         $collection = ui.draggable
         articleModel.removeCollection $collection.parent().parent(), $collection
 
