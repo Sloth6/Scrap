@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,45 +21,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -589,7 +589,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 157, ../../style/globals/_type.scss */
+/* line 161, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -603,15 +603,15 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 161, ../../style/globals/_type.scss */
+/* line 165, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 52pt;
-  font-weight: 800;
-  letter-spacing: -0.03125em;
+  font-weight: 500;
+  letter-spacing: 0;
   line-height: 48pt;
 }
 
-/* line 165, ../../style/globals/_type.scss */
+/* line 169, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -619,7 +619,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 169, ../../style/globals/_type.scss */
+/* line 173, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -627,7 +627,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 173, ../../style/globals/_type.scss */
+/* line 177, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -635,7 +635,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 176, ../../style/globals/_type.scss */
+/* line 180, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -645,7 +645,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 181, ../../style/globals/_type.scss */
+/* line 185, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -653,7 +653,7 @@ html {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 184, ../../style/globals/_type.scss */
+/* line 188, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -663,14 +663,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 189, ../../style/globals/_type.scss */
+/* line 193, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 192, ../../style/globals/_type.scss */
+/* line 196, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -680,18 +680,18 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 197, ../../style/globals/_type.scss */
+/* line 201, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 201, ../../style/globals/_type.scss */
+/* line 205, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 205, ../../style/globals/_type.scss */
+/* line 209, ../../style/globals/_type.scss */
 .typeHeaderOutline {
   font-size: 24pt;
   font-weight: 500;
@@ -703,74 +703,60 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 210, ../../style/globals/_type.scss */
+/* line 214, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 217, ../../style/globals/_type.scss */
+/* line 219, ../../style/globals/_type.scss */
+a {
+  color: #000000;
+  text-decoration: none;
+  border: 0;
+}
+
+/* line 225, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
 
-/* line 152, ../../style/globals/_components.scss */
+/*
 a, input[type=submit], input[type=button] {
-  color: #000000;
-  text-decoration: none;
-  border: 0;
-  -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  /*
-      &.confirm {
-          &:hover {
-              @include hoverConfirmAnimation;
-              opacity: 1;
-          }
-      }
-  */
-}
-/* line 156, ../../style/globals/_components.scss */
-a:hover, a:focus, input[type=submit]:hover, input[type=submit]:focus, input[type=button]:hover, input[type=button]:focus {
-  opacity: .5;
-}
-/* line 160, ../../style/globals/_components.scss */
-a:active, input[type=submit]:active, input[type=button]:active {
-  opacity: .25;
-}
-/* line 165, ../../style/globals/_components.scss */
-a.action:hover, input[type=submit].action:hover, input[type=button].action:hover {
-  -webkit-animation: hoverLinkFlicker 20s infinite linear;
-  -moz-animation: hoverLinkFlicker 20s infinite linear;
-  -o-animation: hoverLinkFlicker 20s infinite linear;
-  animation: hoverLinkFlicker 20s infinite linear;
-  /*
-      color: blue;
-      border-color: blue;
-  */
-  opacity: 1;
-}
-/* line 173, ../../style/globals/_components.scss */
-a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:hover {
-  -webkit-animation: hoverWarningFlicker 20s infinite linear;
-  -moz-animation: hoverWarningFlicker 20s infinite linear;
-  -o-animation: hoverWarningFlicker 20s infinite linear;
-  animation: hoverWarningFlicker 20s infinite linear;
-  /*
-      color: $colorAccent;
-      border-color: $colorAccent;
-  */
-  opacity: 1;
-}
+    @include linkReset;
+    @include transition(opacity .25s $defaultCurve);
+    
+    &:hover, &:focus {
+        opacity: .5;
+    }
+    
+    &:active {
+        opacity: .25;
+    }
+    
+    &.action {
+        &:hover {
+            @include hoverLinkAnimation;
+            opacity: 1;
+        }
+    }
+    
+    &.warning {
+        
+        &:hover {
+            @include hoverWarningAnimation;
+            opacity: 1;
+        }
+    }
 
-/* line 190, ../../style/globals/_components.scss */
+}
+*/
+/* line 184, ../../style/globals/_components.scss */
 .invertHover:hover {
   -webkit-filter: invert(1);
 }
 
-/* line 196, ../../style/globals/_components.scss */
+/* line 190, ../../style/globals/_components.scss */
 .blackHover:hover {
   background-color: #000000 !important;
   color: white !important;
@@ -783,7 +769,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   box-shadow: 8pt 8pt 0 0 black;
 }
 
-/* line 201, ../../style/globals/_components.scss */
+/* line 195, ../../style/globals/_components.scss */
 .card {
   background-color: white;
   border: 1px solid #000000;
@@ -794,7 +780,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   display: block;
 }
 
-/* line 210, ../../style/globals/_components.scss */
+/* line 204, ../../style/globals/_components.scss */
 .cardDrag {
   cursor: move;
   cursor: -webkit-grab;
@@ -802,7 +788,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   cursor: grab;
 }
 
-/* line 214, ../../style/globals/_components.scss */
+/* line 208, ../../style/globals/_components.scss */
 .card.editing {
   border-style: dashed !important;
   border-color: #000000 !important;
@@ -819,7 +805,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   box-shadow: none;
 }
 
-/* line 218, ../../style/globals/_components.scss */
+/* line 212, ../../style/globals/_components.scss */
 .cardActions {
   position: absolute;
   bottom: 4pt;
@@ -831,16 +817,16 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 225, ../../style/globals/_components.scss */
+/* line 219, ../../style/globals/_components.scss */
 .cardActions li.right {
   float: right;
 }
 
-/* line 230, ../../style/globals/_components.scss */
+/* line 224, ../../style/globals/_components.scss */
 .newCard {
   border-style: dashed;
 }
-/* line 233, ../../style/globals/_components.scss */
+/* line 227, ../../style/globals/_components.scss */
 .newCard.hover, .newCard:hover {
   border-style: solid;
   -moz-transform: none;
@@ -852,7 +838,7 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   box-shadow: none;
 }
 
-/* line 240, ../../style/globals/_components.scss */
+/* line 234, ../../style/globals/_components.scss */
 .card.cover, .cover .card {
   position: relative;
   width: 224pt;
@@ -861,25 +847,25 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   overflow: hidden;
 }
 
-/* line 246, ../../style/globals/_components.scss */
+/* line 240, ../../style/globals/_components.scss */
 .invisible {
   opacity: 0;
 }
 
-/* line 252, ../../style/globals/_components.scss */
+/* line 246, ../../style/globals/_components.scss */
 .backButton:hover a span {
   -moz-transform: translate3d(-4pt, 0px, 0px);
   -ms-transform: translate3d(-4pt, 0px, 0px);
   -webkit-transform: translate3d(-4pt, 0px, 0px);
   transform: translate3d(-4pt, 0px, 0px);
 }
-/* line 257, ../../style/globals/_components.scss */
+/* line 251, ../../style/globals/_components.scss */
 .backButton a {
   font-size: 48pt;
   font-weight: 100;
   display: block;
 }
-/* line 262, ../../style/globals/_components.scss */
+/* line 256, ../../style/globals/_components.scss */
 .backButton a span {
   display: inline-block;
   -moz-transform: translate3d(0px, 0px, 0px);
@@ -896,17 +882,17 @@ a.warning:hover, input[type=submit].warning:hover, input[type=button].warning:ho
   transition-property: transform, -webkit-transform, -moz-transform;
 }
 
-/* line 275, ../../style/globals/_components.scss */
+/* line 269, ../../style/globals/_components.scss */
 form {
   position: relative;
 }
-/* line 278, ../../style/globals/_components.scss */
+/* line 272, ../../style/globals/_components.scss */
 form li {
   list-style: none;
   margin-top: 16pt;
 }
 
-/* line 285, ../../style/globals/_components.scss */
+/* line 279, ../../style/globals/_components.scss */
 label {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -916,27 +902,27 @@ label {
   letter-spacing: 0.0625em;
 }
 
-/* line 293, ../../style/globals/_components.scss */
+/* line 287, ../../style/globals/_components.scss */
 ::-webkit-input-placeholder {
   color: #000000;
 }
 
-/* line 297, ../../style/globals/_components.scss */
+/* line 291, ../../style/globals/_components.scss */
 :-moz-placeholder {
   color: #000000;
 }
 
-/* line 300, ../../style/globals/_components.scss */
+/* line 294, ../../style/globals/_components.scss */
 ::-moz-placeholder {
   color: #000000;
 }
 
-/* line 303, ../../style/globals/_components.scss */
+/* line 297, ../../style/globals/_components.scss */
 :-ms-input-placeholder {
   color: #000000;
 }
 
-/* line 307, ../../style/globals/_components.scss */
+/* line 301, ../../style/globals/_components.scss */
 input {
   outline: 0;
   padding: 0;
@@ -953,75 +939,75 @@ input {
   max-width: 100%;
   border-radius: 0;
 }
-/* line 319, ../../style/globals/_components.scss */
+/* line 313, ../../style/globals/_components.scss */
 input[type=submit], input[type=button] {
   border: 0;
   cursor: pointer;
   text-align: left;
 }
-/* line 325, ../../style/globals/_components.scss */
+/* line 319, ../../style/globals/_components.scss */
 input[type=checkbox] {
   width: 1em;
   margin-left: -1.5em;
   margin-right: .5em;
 }
 
-/* line 335, ../../style/globals/_components.scss */
+/* line 329, ../../style/globals/_components.scss */
 .slideIn.left li, .slideIn.left.open li.hidden {
   -moz-transform: translate3d(-252pt, 0, 0);
   -ms-transform: translate3d(-252pt, 0, 0);
   -webkit-transform: translate3d(-252pt, 0, 0);
   transform: translate3d(-252pt, 0, 0);
 }
-/* line 338, ../../style/globals/_components.scss */
+/* line 332, ../../style/globals/_components.scss */
 .slideIn.left li.first, .slideIn.left.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 345, ../../style/globals/_components.scss */
+/* line 339, ../../style/globals/_components.scss */
 .slideIn.left.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 352, ../../style/globals/_components.scss */
+/* line 346, ../../style/globals/_components.scss */
 .slideIn.right li, .slideIn.right.open li.hidden {
   -moz-transform: translate3d(252pt, 0, 0);
   -ms-transform: translate3d(252pt, 0, 0);
   -webkit-transform: translate3d(252pt, 0, 0);
   transform: translate3d(252pt, 0, 0);
 }
-/* line 355, ../../style/globals/_components.scss */
+/* line 349, ../../style/globals/_components.scss */
 .slideIn.right li.first, .slideIn.right.open li.hidden.first {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 359, ../../style/globals/_components.scss */
+/* line 353, ../../style/globals/_components.scss */
 .slideIn.right li.first a:hover, .slideIn.right.open li.hidden.first a:hover {
   left: -8pt;
 }
-/* line 365, ../../style/globals/_components.scss */
+/* line 359, ../../style/globals/_components.scss */
 .slideIn.right li input, .slideIn.right.open li.hidden input {
   text-align: left;
 }
-/* line 372, ../../style/globals/_components.scss */
+/* line 366, ../../style/globals/_components.scss */
 .slideIn.right.open li {
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 381, ../../style/globals/_components.scss */
+/* line 375, ../../style/globals/_components.scss */
 .slideIn.hideFirst > li.first {
   position: absolute;
   top: 8pt;
 }
-/* line 389, ../../style/globals/_components.scss */
+/* line 383, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left.open > li.first {
   -moz-transform: translate3d(-252pt, 0, 0);
   -ms-transform: translate3d(-252pt, 0, 0);
@@ -1029,7 +1015,7 @@ input[type=checkbox] {
   transform: translate3d(-252pt, 0, 0);
   opacity: 0;
 }
-/* line 395, ../../style/globals/_components.scss */
+/* line 389, ../../style/globals/_components.scss */
 .slideIn.hideFirst.left > li.first {
   left: 8pt;
   -moz-transform: translate3d(-252pt, 0, 0);
@@ -1037,7 +1023,7 @@ input[type=checkbox] {
   -webkit-transform: translate3d(-252pt, 0, 0);
   transform: translate3d(-252pt, 0, 0);
 }
-/* line 403, ../../style/globals/_components.scss */
+/* line 397, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right.open > li.first {
   -moz-transform: translate3d(504pt, -56pt, 0) rotate(0);
   -ms-transform: translate3d(504pt, -56pt, 0) rotate(0);
@@ -1045,7 +1031,7 @@ input[type=checkbox] {
   transform: translate3d(504pt, -56pt, 0) rotate(0);
   opacity: 0;
 }
-/* line 409, ../../style/globals/_components.scss */
+/* line 403, ../../style/globals/_components.scss */
 .slideIn.hideFirst.right > li.first {
   transform-origin: 252pt top;
   -webkit-transform-origin: 252pt top;
@@ -1056,7 +1042,7 @@ input[type=checkbox] {
   right: 0;
 }
 
-/* line 419, ../../style/globals/_components.scss */
+/* line 413, ../../style/globals/_components.scss */
 ul.headerMenu {
   overflow: visible;
   position: absolute;
@@ -1081,7 +1067,7 @@ ul.headerMenu {
   -webkit-transition-property: left, right, background, border, width, padding, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, background, border, width, padding, transform, -webkit-transform, -moz-transform;
 }
-/* line 433, ../../style/globals/_components.scss */
+/* line 427, ../../style/globals/_components.scss */
 ul.headerMenu.left {
   float: left;
   transform-origin: right top;
@@ -1092,7 +1078,7 @@ ul.headerMenu.left {
   -webkit-transform: translate3d(-252pt, -56pt, 0) rotateZ(-11deg);
   transform: translate3d(-252pt, -56pt, 0) rotateZ(-11deg);
 }
-/* line 441, ../../style/globals/_components.scss */
+/* line 435, ../../style/globals/_components.scss */
 ul.headerMenu.right {
   transform-origin: left top;
   -webkit-transform-origin: left top;
@@ -1102,21 +1088,21 @@ ul.headerMenu.right {
   -webkit-transform: translate3d(252pt, -56pt, 0) rotateZ(11deg);
   transform: translate3d(252pt, -56pt, 0) rotateZ(11deg);
 }
-/* line 450, ../../style/globals/_components.scss */
+/* line 444, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.left {
   -moz-transform: translate3d(-252pt, 0, 0) rotateZ(0);
   -ms-transform: translate3d(-252pt, 0, 0) rotateZ(0);
   -webkit-transform: translate3d(-252pt, 0, 0) rotateZ(0);
   transform: translate3d(-252pt, 0, 0) rotateZ(0);
 }
-/* line 454, ../../style/globals/_components.scss */
+/* line 448, ../../style/globals/_components.scss */
 ul.headerMenu.hidden.right {
   -moz-transform: translate3d(252pt, 0, 0) rotateZ(0);
   -ms-transform: translate3d(252pt, 0, 0) rotateZ(0);
   -webkit-transform: translate3d(252pt, 0, 0) rotateZ(0);
   transform: translate3d(252pt, 0, 0) rotateZ(0);
 }
-/* line 459, ../../style/globals/_components.scss */
+/* line 453, ../../style/globals/_components.scss */
 ul.headerMenu.open {
   border-color: #000000;
   padding: 4pt 4pt 4pt 4pt;
@@ -1125,11 +1111,11 @@ ul.headerMenu.open {
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
 }
-/* line 464, ../../style/globals/_components.scss */
+/* line 458, ../../style/globals/_components.scss */
 ul.headerMenu.open.paddingBottom {
   padding-bottom: 40pt;
 }
-/* line 468, ../../style/globals/_components.scss */
+/* line 462, ../../style/globals/_components.scss */
 ul.headerMenu.open li {
   height: 16pt;
   margin-bottom: 8pt;
@@ -1138,11 +1124,11 @@ ul.headerMenu.open li {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
 }
-/* line 473, ../../style/globals/_components.scss */
+/* line 467, ../../style/globals/_components.scss */
 ul.headerMenu.open li a, ul.headerMenu.open li form {
   position: relative;
 }
-/* line 479, ../../style/globals/_components.scss */
+/* line 473, ../../style/globals/_components.scss */
 ul.headerMenu li {
   height: 0;
   margin-bottom: 0;
@@ -1154,11 +1140,11 @@ ul.headerMenu li {
   transform: scaleY(0);
 }
 
-/* line 490, ../../style/globals/_components.scss */
+/* line 484, ../../style/globals/_components.scss */
 ul.menu section {
   padding-bottom: 16pt;
 }
-/* line 494, ../../style/globals/_components.scss */
+/* line 488, ../../style/globals/_components.scss */
 ul.menu li {
   position: relative;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -1256,19 +1242,19 @@ ul.menu li {
           &:nth-of-type(20) { @include transition-duration(1.9s); }
   */
 }
-/* line 502, ../../style/globals/_components.scss */
+/* line 496, ../../style/globals/_components.scss */
 ul.menu li.backButton {
   padding-bottom: 16pt;
 }
-/* line 506, ../../style/globals/_components.scss */
+/* line 500, ../../style/globals/_components.scss */
 ul.menu li.backButton a:hover, ul.menu li.backButton a:active, ul.menu li.backButton a:focus {
   left: 0;
 }
-/* line 512, ../../style/globals/_components.scss */
+/* line 506, ../../style/globals/_components.scss */
 ul.menu li.input {
   margin-top: 24pt;
 }
-/* line 516, ../../style/globals/_components.scss */
+/* line 510, ../../style/globals/_components.scss */
 ul.menu li.heading {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -1277,14 +1263,14 @@ ul.menu li.heading {
   font-weight: 500;
   letter-spacing: 0.0625em;
 }
-/* line 520, ../../style/globals/_components.scss */
+/* line 514, ../../style/globals/_components.scss */
 ul.menu li.hidden {
   height: 0;
   margin: 0;
   opacity: 0;
   padding: 0;
 }
-/* line 527, ../../style/globals/_components.scss */
+/* line 521, ../../style/globals/_components.scss */
 ul.menu li.first {
   opacity: 1;
   height: 16pt;
@@ -1292,7 +1278,7 @@ ul.menu li.first {
   margin-top: 4pt;
   white-space: nowrap;
 }
-/* line 535, ../../style/globals/_components.scss */
+/* line 529, ../../style/globals/_components.scss */
 ul.menu li input {
   width: 100%;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
@@ -1304,7 +1290,7 @@ ul.menu li input {
   -webkit-transition-property: width;
   transition-property: width;
 }
-/* line 541, ../../style/globals/_components.scss */
+/* line 535, ../../style/globals/_components.scss */
 ul.menu li a {
   position: relative;
   left: 0;
@@ -1313,11 +1299,11 @@ ul.menu li a {
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 }
-/* line 546, ../../style/globals/_components.scss */
+/* line 540, ../../style/globals/_components.scss */
 ul.menu li a:hover, ul.menu li a:active, ul.menu li a:focus {
   left: 8pt;
 }
-/* line 551, ../../style/globals/_components.scss */
+/* line 545, ../../style/globals/_components.scss */
 ul.menu li > a {
   display: block;
   width: 100%;
@@ -1327,140 +1313,140 @@ ul.menu li > a {
   -webkit-transition-property: left, right, -webkit-transform, -webkit-transform, -moz-transform;
   transition-property: left, right, transform, -webkit-transform, -moz-transform;
 }
-/* line 604, ../../style/globals/_components.scss */
+/* line 598, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(1) {
   -moz-transition-delay: 0.05s;
   -o-transition-delay: 0.05s;
   -webkit-transition-delay: 0.05s;
   transition-delay: 0.05s;
 }
-/* line 605, ../../style/globals/_components.scss */
+/* line 599, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(2) {
   -moz-transition-delay: 0.1s;
   -o-transition-delay: 0.1s;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
-/* line 606, ../../style/globals/_components.scss */
+/* line 600, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(3) {
   -moz-transition-delay: 0.15s;
   -o-transition-delay: 0.15s;
   -webkit-transition-delay: 0.15s;
   transition-delay: 0.15s;
 }
-/* line 607, ../../style/globals/_components.scss */
+/* line 601, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(4) {
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* line 608, ../../style/globals/_components.scss */
+/* line 602, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(5) {
   -moz-transition-delay: 0.25s;
   -o-transition-delay: 0.25s;
   -webkit-transition-delay: 0.25s;
   transition-delay: 0.25s;
 }
-/* line 609, ../../style/globals/_components.scss */
+/* line 603, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(6) {
   -moz-transition-delay: 0.3s;
   -o-transition-delay: 0.3s;
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
-/* line 610, ../../style/globals/_components.scss */
+/* line 604, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(7) {
   -moz-transition-delay: 0.35s;
   -o-transition-delay: 0.35s;
   -webkit-transition-delay: 0.35s;
   transition-delay: 0.35s;
 }
-/* line 611, ../../style/globals/_components.scss */
+/* line 605, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(8) {
   -moz-transition-delay: 0.4s;
   -o-transition-delay: 0.4s;
   -webkit-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
-/* line 612, ../../style/globals/_components.scss */
+/* line 606, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(9) {
   -moz-transition-delay: 0.45s;
   -o-transition-delay: 0.45s;
   -webkit-transition-delay: 0.45s;
   transition-delay: 0.45s;
 }
-/* line 613, ../../style/globals/_components.scss */
+/* line 607, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(10) {
   -moz-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   -webkit-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
-/* line 614, ../../style/globals/_components.scss */
+/* line 608, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(11) {
   -moz-transition-delay: 0.55s;
   -o-transition-delay: 0.55s;
   -webkit-transition-delay: 0.55s;
   transition-delay: 0.55s;
 }
-/* line 615, ../../style/globals/_components.scss */
+/* line 609, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(12) {
   -moz-transition-delay: 0.6s;
   -o-transition-delay: 0.6s;
   -webkit-transition-delay: 0.6s;
   transition-delay: 0.6s;
 }
-/* line 616, ../../style/globals/_components.scss */
+/* line 610, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(13) {
   -moz-transition-delay: 0.65s;
   -o-transition-delay: 0.65s;
   -webkit-transition-delay: 0.65s;
   transition-delay: 0.65s;
 }
-/* line 617, ../../style/globals/_components.scss */
+/* line 611, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(14) {
   -moz-transition-delay: 0.7s;
   -o-transition-delay: 0.7s;
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-/* line 618, ../../style/globals/_components.scss */
+/* line 612, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(15) {
   -moz-transition-delay: 0.75s;
   -o-transition-delay: 0.75s;
   -webkit-transition-delay: 0.75s;
   transition-delay: 0.75s;
 }
-/* line 619, ../../style/globals/_components.scss */
+/* line 613, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(16) {
   -moz-transition-delay: 0.8s;
   -o-transition-delay: 0.8s;
   -webkit-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
-/* line 620, ../../style/globals/_components.scss */
+/* line 614, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(17) {
   -moz-transition-delay: 0.85s;
   -o-transition-delay: 0.85s;
   -webkit-transition-delay: 0.85s;
   transition-delay: 0.85s;
 }
-/* line 621, ../../style/globals/_components.scss */
+/* line 615, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(18) {
   -moz-transition-delay: 0.9s;
   -o-transition-delay: 0.9s;
   -webkit-transition-delay: 0.9s;
   transition-delay: 0.9s;
 }
-/* line 622, ../../style/globals/_components.scss */
+/* line 616, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(19) {
   -moz-transition-delay: 0.95s;
   -o-transition-delay: 0.95s;
   -webkit-transition-delay: 0.95s;
   transition-delay: 0.95s;
 }
-/* line 623, ../../style/globals/_components.scss */
+/* line 617, ../../style/globals/_components.scss */
 ul.menu li:nth-of-type(20) {
   -moz-transition-delay: 1s;
   -o-transition-delay: 1s;
@@ -1468,7 +1454,7 @@ ul.menu li:nth-of-type(20) {
   transition-delay: 1s;
 }
 
-/* line 673, ../../style/globals/_components.scss */
+/* line 667, ../../style/globals/_components.scss */
 .mask {
   height: 100vh;
   width: 100vw;
@@ -1478,7 +1464,7 @@ ul.menu li:nth-of-type(20) {
   background: transparent;
 }
 
-/* line 683, ../../style/globals/_components.scss */
+/* line 677, ../../style/globals/_components.scss */
 textarea {
   outline: 0;
   padding: 0;
@@ -2572,12 +2558,74 @@ footer.main ul.actions li.action label {
   text-transform: lowercase;
 }
 
-/* line 3, ../../style/prototype.scss */
-ul.collections {
-  position: absolute;
+/* line 5, ../../style/prototype.scss */
+nav {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 3;
+  height: 40pt;
 }
-
-/* line 7, ../../style/prototype.scss */
-.collection {
-  border: 2px red solid;
+/* line 18, ../../style/prototype.scss */
+nav section {
+  width: intrinsic;
+  position: absolute;
+  height: 100%;
+}
+/* line 23, ../../style/prototype.scss */
+nav section.left, nav section.right {
+  z-index: 2;
+}
+/* line 27, ../../style/prototype.scss */
+nav section.left {
+  left: 0;
+}
+/* line 31, ../../style/prototype.scss */
+nav section.right {
+  right: 0;
+}
+/* line 35, ../../style/prototype.scss */
+nav section.center {
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+/* line 40, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu {
+  width: -webkit-fit-content;
+  margin: 0 auto;
+}
+/* line 45, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li {
+  width: 100%;
+  margin: 0 auto;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+}
+/* line 53, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li .contents {
+  position: relative;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+}
+/* line 58, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li .contents a {
+  width: 100%;
+  display: inline-block;
+  font-size: 52pt;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: white;
+}
+/* line 70, ../../style/prototype.scss */
+nav section .headerButton a {
+  font-size: 52pt;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: white;
 }

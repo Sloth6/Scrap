@@ -1,7 +1,6 @@
 $ ->
   $('ul.menu').each () ->
     $menu = $(@)
-    console.log $menu
     inputIsFocused  = false
     subMenuIsOpen   = false
     canCloseMenu    = false

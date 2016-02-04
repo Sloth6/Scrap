@@ -3,8 +3,11 @@
 window.constants =
   style:
     gutter: 40
+    curves:
+      smooth: [25, 10]
+      spring: [75, 10]
   dom:
-    collectionsMenu: '.collectionsMenu'
+    collectionsMenu: 'ul.collectionsMenu'
     articleContainer: '#articleContainer'
     collections: '.collection'
 
@@ -21,16 +24,83 @@ window.events =
     $card = $article.children('.card')
 
   onOpenCollectionsMenu: () ->
-    console.log 'onOpenCollectionsMenu'
-    $( constants.dom.collectionsMenu ).children().show()
-    $( constants.dom.articleContainer ).hide()
+    $menu       = $(constants.dom.collectionsMenu )
+    $container  = $(constants.dom.articleContainer)
+    $menuItems  = $menu.children()
+    $button     = $menu.find('.headerButton')
+    $labels     = $menuItems.not('.headerButton')
+    $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
+    options     =
+      duration: 1000
+      easing:   constants.style.curves.spring
+    $menu.addClass 'open'
+    # animate in labels
+    $labels.find('.contents').css
+      opacity: 0
+    $menuItems.show()
+    $menu.css
+      width: $menu.width()
+    $button.velocity
+      properties:
+        translateY: -$button.height() * 3
+        scaleY: 2
+        scaleX: .125
+        rotateZ: 45 * (Math.random() - .5)
+      options:
+        duration: options.duration
+        easing:   options.easing
+        delay:    0
+    $labels.each ->
+      $label = $(@)
+      $label.find('.contents').velocity
+        properties:
+          translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height() * 2)]
+          scaleY: [1, 2]
+          scaleX: [1, .125]
+          rotateZ: [0, 22 * (Math.random() - .5)]
+          opacity: [1, 1]
+        options:
+          duration: options.duration # + ($label.index() * 60)
+          easing:   options.easing
+          delay:    $label.index() * 60
+    # hide articles
+    $articleContents.velocity
+      properties:
+        opacity: 0
+      options: options
+    $menu.data 'canOpen', false
 
   onCloseCollectionsMenu: () ->
-    console.log 'onCloseCollectionsMenu'
-    $collectionsInMenu = $( constants.dom.collectionsMenu ).children()
-    console.log $collectionsInMenu
-    $collectionsInMenu.not('.headerButton, .ui-draggable-dragging').hide()
-    $( constants.dom.articleContainer ).show()
+    $menu       = $(constants.dom.collectionsMenu )
+    $container  = $(constants.dom.articleContainer)
+    $menuItems  = $menu.children()
+    $button     = $menu.find('.headerButton')
+    $dragging   = $menu.find 'ui-draggable-dragging'
+    $labels     = $menuItems.not('.ui-draggable-dragging, .headerButton')
+    $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
+    options     =
+      duration: 500
+      easing:   constants.style.curves.smooth
+
+    $menu.removeClass 'open'
+    $button.velocity 'reverse', {
+      delay: 60 * $labels.length
+    }
+    $labels.each ->
+      $label = $(@)
+      $label.find('.contents').velocity 'reverse', {
+        duration: options.duration
+        easing:   options.easing
+        delay:    60 * (($labels.length ) - $label.index())
+        complete: ->
+          if $label.index() is $labels.length - 1
+            $labels.hide()
+            $menu.data 'canOpen', true
+            if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
+              events.onOpenCollectionsMenu() # open menu after close animation finishes
+              window.triedToOpen = false
+      }
+    $articleContents.velocity 'reverse'
 
   onArticleResize: ($article) ->
     $(@).width $(@).children('.card').outerWidth()
@@ -43,21 +113,54 @@ window.events =
   onSwitchToCollection: (collectionKey) ->
     console.log 'onSwitchToCollection', collectionKey
     $title = $('.collections li.headerButton a')
+    $container  = $(constants.dom.articleContainer)
 
-    if collectionKey == 'recent'
-      $("article").show()
-      window.openCollection = 'recent'
-      $title.text 'recent'
-      $title.css 'color': 'black'
-    else
-      $("article.#{collectionKey}").show()
-      $('article').not(".#{collectionKey}").hide()
-      $title.text collections[collectionKey].name
-      $title.css 'color': collections[collectionKey].color
-      window.openCollection = collectionKey
+    $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
+    $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
+    
+    console.log('matched', $matched)
+    console.log('unmatched', $unmatched)
+    
+    # Hide unmatched articles
+    $unmatched.each ->
+      $(@).velocity
+        properties:
+          translateY: $(window).height() * (Math.random() - .5)
+          translateX: if ($(@).offset().left > $(window).width() / 2) then $(window).width() else -$(window).width()
+          rotateZ: 45 * (Math.random() - .5)
+        options:
+          duration: 500
+          easing: constants.style.curves.smooth
+          complete: ->
+            $(@).hide()
+            $(constants.dom.articleContainer).packery()
+    # Show matched articles
+    $matched.show()
+    $matched.css 'opacity', 0
+    $container.packery
+      transitionDuration: 0
+    $matched.each ->
+      startX = if Math.random() > .5 then $(window).width() * 2 else -$(window).width() * 2
+      $(@).velocity
+        properties:
+          translateY: [0, $(window).height() * (Math.random() - .5)]
+          translateX: [0, startX]
+          rotateZ: [0, 45 * (Math.random() - .5)]
+          opacity: 1
+        options:
+          duration: 500
+          easing: constants.style.curves.smooth
+          begin: -> $(@).show()
+          complete: ->
+            if $matched.index() is $matched.length - 1 # last article
+              $container.packery
+                transitionDuration: 500
+#     $title.text collections[collectionKey].name
+#     $title.css 'color': collections[collectionKey].color
+    window.openCollection = collectionKey
     
     events.onCloseCollectionsMenu()
-    $( constants.dom.articleContainer ).packery()
+    $container.packery()
 
   onResize: () ->
 
@@ -101,11 +204,15 @@ window.init =
     $collections.
       zIndex(2).
       draggable(draggableOptions).
-      click (event) ->
+      click((event) ->
         collectionKey = $(@).data('collectionkey')
         events.onSwitchToCollection collectionKey
         event.stopPropagation()
-        event.preventDefault()
+        event.preventDefault()).
+      mousedown ->
+        # keep width the same on drag
+        $(@).css
+          width: $(@).width()  
 
   article: ($articles) ->
     $articles.droppable
@@ -156,12 +263,16 @@ window.init =
       socket.emit 'addCollection', { name }
       event.preventDefault()
 
-  collectionsMenu: ($menu) ->
-    $menu.css 'left': $(window).width()/2
-    
-    $menu.hover(events.onOpenCollectionsMenu, events.onCloseCollectionsMenu)
-    events.onCloseCollectionsMenu()
-
+  collectionsMenu: ($menu) ->  
+    $menu.find('li.headerButton a').mouseenter ->
+      if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
+        events.onOpenCollectionsMenu()
+      else # not ready to open
+        window.triedToOpen = true # register attempt to open
+    $menu.mouseleave ->
+      events.onCloseCollectionsMenu() if $menu.hasClass 'open'
+    $menu.find('li').not('.headerButton').hide()
+    $menu.data 'canOpen', true
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
