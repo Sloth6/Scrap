@@ -23,14 +23,19 @@ window.events =
   onOpenCollectionsMenu: () ->
     console.log 'onOpenCollectionsMenu'
     $( constants.dom.collectionsMenu ).children().show()
-    $( constants.dom.container ).hide()
+    $( constants.dom.articleContainer ).hide()
 
   onCloseCollectionsMenu: () ->
     console.log 'onCloseCollectionsMenu'
     $collectionsInMenu = $( constants.dom.collectionsMenu ).children()
     console.log $collectionsInMenu
     $collectionsInMenu.not('.headerButton, .ui-draggable-dragging').hide()
-    $( constants.dom.container ).show()
+    $( constants.dom.articleContainer ).show()
+
+  onArticleResize: ($article) ->
+    $(@).width $(@).children('.card').outerWidth()
+    $(@).height $(@).children('.card').outerHeight()
+    $( constants.dom.articleContainer ).packery()
 
   # direction = ['up', 'down']
   onChangeScrollDirection: (direction) ->
@@ -52,7 +57,7 @@ window.events =
       window.openCollection = collectionKey
     
     events.onCloseCollectionsMenu()
-    $( constants.dom.container ).packery()
+    $( constants.dom.articleContainer ).packery()
 
   onResize: () ->
 
@@ -118,12 +123,11 @@ window.init =
         $collection.show()
         articleModel.addCollection $(@), $collection
         event.stopPropagation()
-        console.log ui
         true
-
-    $articles.each () ->
-      $(@).width $(@).children('.card').outerWidth()
-      $(@).height $(@).children('.card').outerHeight()
+    
+    $articles.each () -> events.onArticleResize($(@))
+    $articles.find('img').load () -> 
+      events.onArticleResize($(@))
 
   container: ($container) ->
     $container.css
@@ -153,7 +157,6 @@ window.init =
       event.preventDefault()
 
   collectionsMenu: ($menu) ->
-    # console.log $menu
     $menu.css 'left': $(window).width()/2
     
     $menu.hover(events.onOpenCollectionsMenu, events.onCloseCollectionsMenu)

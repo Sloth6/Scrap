@@ -12,10 +12,10 @@ initText = ($article) ->
       clearTimeout timeout 
       timeout = null
 
-    if $article.children('card').height() != oldHeight
-      oldHeight = $article.children('.card').height()
-      $article.height oldHeight
-      $('#container').packery()
+    if $article.children('card').outerHeight() != oldHeight
+      oldHeight = $article.children('.card').outerHeight()
+      events.onArticleResize $article
+      # $(constants.dom.articleContainer).packery()
 
     timeout = setTimeout (() ->
       data =
