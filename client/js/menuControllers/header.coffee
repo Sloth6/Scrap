@@ -1,5 +1,5 @@
 $ ->
-  $('.menu').each () ->
+  $('ul.menu').each () ->
     $menu = $(@)
     console.log $menu
     inputIsFocused  = false
