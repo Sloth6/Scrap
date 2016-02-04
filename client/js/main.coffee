@@ -33,9 +33,7 @@ window.events =
     options     =
       duration: 1000
       easing:   constants.style.curves.spring
-    
     $menu.addClass 'open'
-    
     # animate in labels
     $labels.find('.contents').css
       opacity: 0
@@ -65,7 +63,6 @@ window.events =
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
           delay:    $label.index() * 60
-          
     # hide articles
     $articleContents.velocity
       properties:
@@ -103,7 +100,6 @@ window.events =
               events.onOpenCollectionsMenu() # open menu after close animation finishes
               window.triedToOpen = false
       }
-      
     $articleContents.velocity 'reverse'
 
   onArticleResize: ($article) ->
@@ -117,21 +113,54 @@ window.events =
   onSwitchToCollection: (collectionKey) ->
     console.log 'onSwitchToCollection', collectionKey
     $title = $('.collections li.headerButton a')
+    $container  = $(constants.dom.articleContainer)
 
-    if collectionKey == 'recent'
-      $("article").show()
-      window.openCollection = 'recent'
-      $title.text 'recent'
-      $title.css 'color': 'black'
-    else
-      $("article.#{collectionKey}").show()
-      $('article').not(".#{collectionKey}").hide()
-      $title.text collections[collectionKey].name
-      $title.css 'color': collections[collectionKey].color
-      window.openCollection = collectionKey
+    $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
+    $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
+    
+    console.log('matched', $matched)
+    console.log('unmatched', $unmatched)
+    
+    # Hide unmatched articles
+    $unmatched.each ->
+      $(@).velocity
+        properties:
+          translateY: $(window).height() * (Math.random() - .5)
+          translateX: if ($(@).offset().left > $(window).width() / 2) then $(window).width() else -$(window).width()
+          rotateZ: 45 * (Math.random() - .5)
+        options:
+          duration: 500
+          easing: constants.style.curves.smooth
+          complete: ->
+            $(@).hide()
+            $(constants.dom.articleContainer).packery()
+    # Show matched articles
+    $matched.show()
+    $matched.css 'opacity', 0
+    $container.packery
+      transitionDuration: 0
+    $matched.each ->
+      startX = if Math.random() > .5 then $(window).width() * 2 else -$(window).width() * 2
+      $(@).velocity
+        properties:
+          translateY: [0, $(window).height() * (Math.random() - .5)]
+          translateX: [0, startX]
+          rotateZ: [0, 45 * (Math.random() - .5)]
+          opacity: 1
+        options:
+          duration: 500
+          easing: constants.style.curves.smooth
+          begin: -> $(@).show()
+          complete: ->
+            if $matched.index() is $matched.length - 1 # last article
+              $container.packery
+                transitionDuration: 500
+#     $title.text collections[collectionKey].name
+#     $title.css 'color': collections[collectionKey].color
+    window.openCollection = collectionKey
     
     events.onCloseCollectionsMenu()
-    $( constants.dom.articleContainer ).packery()
+    $container.packery()
 
   onResize: () ->
 
