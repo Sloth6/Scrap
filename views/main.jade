@@ -53,34 +53,38 @@ html.no-js(lang='en')
 
   body
     nav.main(style='width:100vw;position:fixed;z-index:3;')
-      .addForm.left(style='position:absolute;left:0;')
-        .headerButton
-          a(href='#') Add
-        +addArticleFormMixin()
-
-      ul.collections.center(style='position:absolute;')
-        li.headerButton
-          a(href='#') Collections
-        li.collection.recent(data-collectionkey='recent')
-          a(href='#') Recent
-        each collection, collectionKey in collections
-          if typeof(collection.name) != undefined
-            - var key = collection.collectionKey
-            li.collection(data-collectionkey=key, class=key)
-              a(href='#', style='color:'+collection.color+';')!=collection.name
-        li.newCollection
-          form(id='newCollectionForm')
-            input(type="text", placeholder="new collection", maxlength="20")
-            input(type='submit', value='Add')
-
-      include partials/settingsMenu
-
+      section.left
+        .addForm(style='position:absolute;left:0;')
+          .headerButton
+            a(href='#') Add
+          +addArticleFormMixin()
+      
+      section.center
+        ul.collectionsMenu
+          li.headerButton
+            a(href='#') Collections
+          li.collection.recent(data-collectionkey='recent')
+            a(href='#') Recent
+          
+          each collection, collectionKey in collections
+            if typeof(collection.name) != undefined
+              - var key = collection.collectionKey
+              li.collection(data-collectionkey=key, class=key)
+                a(href='#', style='color:'+collection.color+';')!=collection.name
+          
+          li.newCollection
+            form(id='newCollectionForm')
+              input(type="text", placeholder="new collection", maxlength="20")
+              input(type='submit', value='Add')
+      
+      section.right
+        include partials/settingsMenu
 
     //- .content
     //- 
     //- .zoomViewport
     //-   .zoomContainer
-    #container
+    #articleContainer
       for article in user.Articles
         +articleMixin(article, article.Collections)
 

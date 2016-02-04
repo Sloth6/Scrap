@@ -2573,6 +2573,11 @@ footer.main ul.actions li.action label {
 }
 
 /* line 3, ../../style/prototype.scss */
-ul.articleLabels > .label {
+ul.collections {
   position: absolute;
+}
+
+/* line 7, ../../style/prototype.scss */
+.collection {
+  border: 2px red solid;
 }

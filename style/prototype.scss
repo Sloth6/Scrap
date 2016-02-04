@@ -1,5 +1,9 @@
 @import "screen.scss";
 
-ul.articleLabels > .label {
-  position: absolute;
+ul.collections {
+	position: absolute;
+}
+
+.collection {
+	border: 2px red solid;
 }

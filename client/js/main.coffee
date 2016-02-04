@@ -3,35 +3,41 @@
 window.constants =
   style:
     gutter: 40
+  dom:
+    collectionsMenu: '.collectionsMenu'
+    articleContainer: '#articleContainer'
+    collections: '.collection'
 
 stopProp = (event) -> event.stopPropagation()
-onResize = () ->
-onScroll = () ->
 
-window.visualEvents =
-  collectionOverArticle: (event, $collection) ->
+window.events =
+  onCollectionOverArticle: (event, $collection) ->
+    console.log 'over'
     $article = $('article.hovered')
     $card = $article.children('.card')
 
-  collectionOutArticle: (event, $collection) ->
+  onCollectionOutArticle: (event, $collection) ->
     $article = $('article.hovered')
     $card = $article.children('.card')
 
-  openCollections: () ->
-    console.log 'openCollections'
-    $('ul.collections.center').children().show()
-    $('#container').hide()
+  onOpenCollectionsMenu: () ->
+    console.log 'onOpenCollectionsMenu'
+    $( constants.dom.collectionsMenu ).children().show()
+    $( constants.dom.container ).hide()
 
-  closeCollections: () ->
-    console.log 'closeCollections'
-    $menuCollections = $('ul.collections.center').children()
-    $menuCollections.not('.headerButton, .ui-draggable-dragging').hide()
-    $('#container').show()
+  onCloseCollectionsMenu: () ->
+    console.log 'onCloseCollectionsMenu'
+    $collectionsInMenu = $( constants.dom.collectionsMenu ).children()
+    console.log $collectionsInMenu
+    $collectionsInMenu.not('.headerButton, .ui-draggable-dragging').hide()
+    $( constants.dom.container ).show()
 
-window.structuralEvents =
-  switchToCollection: (collectionKey) ->
-    console.log 'switchToCollection', collectionKey
-    $title = $('.collections.center li.headerButton a')
+  # direction = ['up', 'down']
+  onChangeScrollDirection: (direction) ->
+
+  onSwitchToCollection: (collectionKey) ->
+    console.log 'onSwitchToCollection', collectionKey
+    $title = $('.collections li.headerButton a')
 
     if collectionKey == 'recent'
       $("article").show()
@@ -45,8 +51,12 @@ window.structuralEvents =
       $title.css 'color': collections[collectionKey].color
       window.openCollection = collectionKey
     
-    visualEvents.closeCollections()
-    $('#container').packery()
+    events.onCloseCollectionsMenu()
+    $( constants.dom.container ).packery()
+
+  onResize: () ->
+
+  onScroll: () ->
 
 window.articleModel = 
   getCollectionKeys: ($article) ->
@@ -78,7 +88,7 @@ window.init =
       helper: "clone"
       revert: "true"
       start: (event, ui) ->
-        visualEvents.closeCollections()
+        events.onCloseCollectionsMenu()
         $(ui.helper).hover stopProp, stopProp
       stop: (event, ui) ->
         $(ui.helper).off 'hover'
@@ -88,7 +98,7 @@ window.init =
       draggable(draggableOptions).
       click (event) ->
         collectionKey = $(@).data('collectionkey')
-        structuralEvents.switchToCollection collectionKey
+        events.onSwitchToCollection collectionKey
         event.stopPropagation()
         event.preventDefault()
 
@@ -97,9 +107,9 @@ window.init =
       greedy: true
       hoverClass: "hovered"
       over: (event, object) ->
-        visualEvents.collectionOverArticle event, object.draggable
+        events.onCollectionOverArticle event, object.draggable
       out: (event, object) ->
-        visualEvents.collectionOutArticle event, object.draggable
+        events.onCollectionOutArticle event, object.draggable
       drop: ( event, ui ) ->
         console.log 'dropped!'
         $collection = ui.draggable.clone()
@@ -135,30 +145,29 @@ window.init =
         $collection = ui.draggable
         articleModel.removeCollection $collection.parent().parent(), $collection
 
-initAddCollectionForm = () ->
-  $('#newCollectionForm').submit (event) ->
-    name = $('#newCollectionForm [type=text]').val()
-    $('#newCollectionForm [type=text]').val ''
-    socket.emit 'addCollection', { name }
-    event.preventDefault()
+  addCollectionForm: () ->
+    $('#newCollectionForm').submit (event) ->
+      name = $('#newCollectionForm [type=text]').val()
+      $('#newCollectionForm [type=text]').val ''
+      socket.emit 'addCollection', { name }
+      event.preventDefault()
 
-initCollectionsHeader = () ->
-  $('ul.collections.center').css 'left': $(window).width()/2
-  
-  $('ul.collections.center').hover(visualEvents.openCollections,
-                                   visualEvents.closeCollections)
-  visualEvents.closeCollections()
+  collectionsMenu: ($menu) ->
+    # console.log $menu
+    $menu.css 'left': $(window).width()/2
+    
+    $menu.hover(events.onOpenCollectionsMenu, events.onCloseCollectionsMenu)
+    events.onCloseCollectionsMenu()
 
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
 
   init.article $("article")
-  init.container $('#container')
-  init.collection $('li.collection')
-  
-  initCollectionsHeader()
-  initAddCollectionForm()
+  init.container $( constants.dom.articleContainer )
+  init.collection $( constants.dom.collections )
+  init.collectionsMenu $( constants.dom.collectionsMenu )
+  init.addCollectionForm()
   initAddArticleForm()
 
   $('article').each () ->
@@ -169,28 +178,15 @@ $ ->
       when 'soundcloud' then initSoundCloud $(@)
       when 'youtube'    then initYoutube $(@)
 
-  # $('article').click () ->
-    # 
   # $('article').zoomTarget {
   #   duration: 450
   #   targetsize: 0.9    
-  #   preservescroll: true
-  #   # root: $("#container")
-  #   animationendcallback: () ->
-  #     console.log 'animationendcall'
   # }
 
-  # $(document.body).click () ->
-  #   console.log 'yo'
-  # $("article").click (evt) ->
-  #   console.log @
-  #   $(this).zoomTo({targetsize:0.75, duration:600});
-  #   evt.stopPropagation();
-
-  $(window).resize -> onResize()
-  onResize()
-  $(window).scroll -> onScroll()
-  onScroll()
+  $(window).resize -> events.onResize()
+  events.onResize()
+  $(window).scroll -> events.onScroll()
+  events.onScroll()
 
   # if draggable
   #   itemElems = $container.packery('getItemElements')
