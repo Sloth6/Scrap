@@ -40,15 +40,22 @@ nav {
             ul.collectionsMenu {
                 width: -webkit-fit-content;
                 margin: 0 auto;
+//                 background-color: rgba(0, 255, 61, 0.41);
                 
                 li.collection {
                     	width: 100%;
                     margin: 0 auto;
+//                     border: 1px red solid;
                     	
-                    	a {
-                      	  width: 100%;
-                      	  display: inline-block;
-                      	  	@include navText;
+                    	.contents {
+                      	  position: relative;
+//                       	  border: blue 1px soild;
+                      	  a {
+                          	  width: 100%;
+                      	    	  display: inline-block;
+                      	    	  	@include navText;
+//                       	    	  	border: lime 1px solid;
+                      	  }
                     	}
                 }
             }            

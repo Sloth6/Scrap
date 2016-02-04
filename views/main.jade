@@ -40,7 +40,7 @@ html.no-js(lang='en')
     script(src="/js/socketListeners.js")
 
     link(rel='stylesheet', href='/style/prototype.css')
-    link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
+    // link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
 
     
     include mixins/article
@@ -60,19 +60,23 @@ html.no-js(lang='en')
           +addArticleFormMixin()
       section.center
         ul.collectionsMenu
-          li.headerButton
-            a(href='#') Collections
+          li.headerButton.labels
+            .contents
+              a(href='#') Labels
           li.collection.recent(data-collectionkey='recent')
-            a(href='#') Recent
+            .contents
+              a(href='#') Everything
           each collection, collectionKey in collections
             if typeof(collection.name) != undefined
               - var key = collection.collectionKey
               li.collection(data-collectionkey=key, class=key)
-                a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+                .contents
+                  a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
           li.newCollection
-            form(id='newCollectionForm')
-              input(type="text", placeholder="new collection", maxlength="20")
-              input(type='submit', value='Add')
+            .contents
+              form(id='newCollectionForm')
+                input(type="text", placeholder="new collection", maxlength="20")
+                input(type='submit', value='Add')
       section.right
         include partials/settingsMenu
     #articleContainer

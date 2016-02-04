@@ -3,6 +3,9 @@
 window.constants =
   style:
     gutter: 40
+    curves:
+      smooth: [20, 10]
+      spring: [70, 10]
   dom:
     collectionsMenu: 'ul.collectionsMenu'
     articleContainer: '#articleContainer'
@@ -21,16 +24,68 @@ window.events =
     $card = $article.children('.card')
 
   onOpenCollectionsMenu: () ->
-    console.log 'onOpenCollectionsMenu'
-    $( constants.dom.collectionsMenu ).children().show()
-    $( constants.dom.articleContainer ).hide()
+    $menu       = $(constants.dom.collectionsMenu )
+    $container  = $(constants.dom.articleContainer)
+    $menuItems  = $menu.children()
+    $button     = $menu.find('.headerButton')
+    $labels     = $menuItems.not('.headerButton')
+    options     =
+      duration: 1000
+      easing:   constants.style.curves.smooth
+      
+    $menu.addClass('open')
+    if $menu.data('canOpen')
+      $labels.find('.contents').css
+        opacity: 0
+      $menuItems.show()
+      $menu.css
+        width: $menu.width()
+      $button.velocity
+        properties:
+          translateY: -$button.height()
+        options:
+          duration: options.duration
+          easing:   options.easing
+      $labels.each ->
+        $label = $(@)
+        $label.find('.contents').velocity
+          properties:
+            translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height())]
+            opacity: [1, 1]
+          options:
+            duration: options.duration # + ($label.index() * 60)
+            easing:   options.easing
+            delay:    $label.index() * 60
+      $container.hide()
+      $menu.data 'canOpen', false
+    else # not ready to open
+      window.triedToOpen = true # register attempt to open
 
   onCloseCollectionsMenu: () ->
-    console.log 'onCloseCollectionsMenu'
-    $collectionsInMenu = $( constants.dom.collectionsMenu ).children()
-    console.log $collectionsInMenu
-    $collectionsInMenu.not('.headerButton, .ui-draggable-dragging').hide()
-    $( constants.dom.articleContainer ).show()
+    $menu       = $(constants.dom.collectionsMenu )
+    $container  = $(constants.dom.articleContainer)
+    $menuItems  = $menu.children()
+    $button     = $menu.find('.headerButton')
+    $dragging   = $menu.find 'ui-draggable-dragging'
+    $labels     = $menuItems.not('.ui-draggable-dragging, .headerButton')
+    options     =
+      duration: 1000
+      easing:   constants.style.curves.smooth
+    if $menu.hasClass 'open' # detect if menu has been opened
+      $menu.removeClass('open')
+      $button.velocity 'reverse'
+      $labels.each ->
+        $label = $(@)
+        $label.find('.contents').velocity 'reverse', {
+          complete: ->
+            if $label.index() is $labels.length - 1
+              $labels.hide()
+              $menu.data 'canOpen', true
+              if window.triedToOpen # if user tried to open menu before ready
+                events.onOpenCollectionsMenu() # open menu after close animation finishes
+                window.triedToOpen = false
+        }
+      $container.show()
 
   onArticleResize: ($article) ->
     $(@).width $(@).children('.card').outerWidth()
@@ -109,8 +164,7 @@ window.init =
       mousedown ->
         # keep width the same on drag
         $(@).css
-          width: $(@).width()
-  
+          width: $(@).width()  
 
   article: ($articles) ->
     $articles.droppable
@@ -161,13 +215,12 @@ window.init =
       socket.emit 'addCollection', { name }
       event.preventDefault()
 
-  collectionsMenu: ($menu) ->
-    $menu.css 'left': $(window).width()/2
-    
-    $menu.find('li.headerButton a').mouseenter events.onOpenCollectionsMenu
+  collectionsMenu: ($menu) ->  
+    $menu.find('li.headerButton a').mouseenter ->
+      events.onOpenCollectionsMenu() unless $menu.hasClass('open')
     $menu.mouseleave events.onCloseCollectionsMenu
-    events.onCloseCollectionsMenu()
-
+    $menu.find('li').not('.headerButton').hide()
+    $menu.data 'canOpen', true
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'

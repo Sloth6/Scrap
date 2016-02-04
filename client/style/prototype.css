@@ -2596,13 +2596,17 @@ nav section.center ul.collectionsMenu {
   width: -webkit-fit-content;
   margin: 0 auto;
 }
-/* line 44, ../../style/prototype.scss */
+/* line 45, ../../style/prototype.scss */
 nav section.center ul.collectionsMenu li.collection {
   width: 100%;
   margin: 0 auto;
 }
-/* line 48, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li.collection a {
+/* line 50, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li.collection .contents {
+  position: relative;
+}
+/* line 53, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li.collection .contents a {
   width: 100%;
   display: inline-block;
   font-size: 52pt;
@@ -2612,7 +2616,7 @@ nav section.center ul.collectionsMenu li.collection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 58, ../../style/prototype.scss */
+/* line 65, ../../style/prototype.scss */
 nav section .headerButton a {
   font-size: 52pt;
   font-weight: 500;
