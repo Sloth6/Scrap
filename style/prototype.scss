@@ -1,9 +1,62 @@
 @import "screen.scss";
 
-ul.collections {
-	position: absolute;
+// _nav.scss
+
+nav {
+    @mixin navText {
+        @include typeTitle;
+        @include typeOutlineClear;
+    }
+    
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 3;
+    height: $broadMargin;
+    
+    section {
+        width: intrinsic;
+        position: absolute;
+        height: 100%;
+        
+        &.left, &.right {
+            z-index: 2;
+        }
+        
+        &.left {
+            left: 0;
+        }
+        
+        &.right {
+            right: 0;
+        }
+        
+        &.center {
+            left: 0;
+            right: 0;
+            text-align: center;
+            
+            ul.collectionsMenu {
+                width: -webkit-fit-content;
+                margin: 0 auto;
+                
+                li {
+                    	width: 100%;
+                    margin: 0 auto;
+                    	@include navText;
+                    	
+                    	a {
+                      	  width: 100%;
+                      	  display: inline-block;
+                    	}
+                }
+            }            
+        }
+        
+        .headerButton {
+            @include navText;
+        }
+    }
 }
 
-.collection {
-	border: 2px red solid;
-}

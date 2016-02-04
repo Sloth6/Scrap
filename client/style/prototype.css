@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 5, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,45 +21,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../.rvm/gems/ruby-2.1.5/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../.rvm/gems/ruby-2.2.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -2572,12 +2572,66 @@ footer.main ul.actions li.action label {
   text-transform: lowercase;
 }
 
-/* line 3, ../../style/prototype.scss */
-ul.collections {
-  position: absolute;
+/* line 5, ../../style/prototype.scss */
+nav {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 3;
+  height: 40pt;
 }
-
-/* line 7, ../../style/prototype.scss */
-.collection {
-  border: 2px red solid;
+/* line 18, ../../style/prototype.scss */
+nav section {
+  width: intrinsic;
+  position: absolute;
+  height: 100%;
+}
+/* line 23, ../../style/prototype.scss */
+nav section.left, nav section.right {
+  z-index: 2;
+}
+/* line 27, ../../style/prototype.scss */
+nav section.left {
+  left: 0;
+}
+/* line 31, ../../style/prototype.scss */
+nav section.right {
+  right: 0;
+}
+/* line 35, ../../style/prototype.scss */
+nav section.center {
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+/* line 40, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu {
+  width: -webkit-fit-content;
+  margin: 0 auto;
+}
+/* line 44, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 52pt;
+  font-weight: 800;
+  letter-spacing: -0.03125em;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: transparent;
+}
+/* line 49, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li a {
+  width: 100%;
+  display: inline-block;
+}
+/* line 57, ../../style/prototype.scss */
+nav section .headerButton {
+  font-size: 52pt;
+  font-weight: 800;
+  letter-spacing: -0.03125em;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: transparent;
 }

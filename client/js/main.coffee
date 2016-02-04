@@ -4,7 +4,7 @@ window.constants =
   style:
     gutter: 40
   dom:
-    collectionsMenu: '.collectionsMenu'
+    collectionsMenu: 'ul.collectionsMenu'
     articleContainer: '#articleContainer'
     collections: '.collection'
 
@@ -101,11 +101,16 @@ window.init =
     $collections.
       zIndex(2).
       draggable(draggableOptions).
-      click (event) ->
+      click((event) ->
         collectionKey = $(@).data('collectionkey')
         events.onSwitchToCollection collectionKey
         event.stopPropagation()
-        event.preventDefault()
+        event.preventDefault()).
+      mousedown ->
+        # keep width the same on drag
+        $(@).css
+          width: $(@).width()
+  
 
   article: ($articles) ->
     $articles.droppable
@@ -159,7 +164,8 @@ window.init =
   collectionsMenu: ($menu) ->
     $menu.css 'left': $(window).width()/2
     
-    $menu.hover(events.onOpenCollectionsMenu, events.onCloseCollectionsMenu)
+    $menu.find('li.headerButton a').mouseenter events.onOpenCollectionsMenu
+    $menu.mouseleave events.onCloseCollectionsMenu
     events.onCloseCollectionsMenu()
 
 $ ->
