@@ -2604,8 +2604,10 @@ nav section.center ul.collectionsMenu li.collection {
 /* line 50, ../../style/prototype.scss */
 nav section.center ul.collectionsMenu li.collection .contents {
   position: relative;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
 }
-/* line 53, ../../style/prototype.scss */
+/* line 55, ../../style/prototype.scss */
 nav section.center ul.collectionsMenu li.collection .contents a {
   width: 100%;
   display: inline-block;
@@ -2616,7 +2618,7 @@ nav section.center ul.collectionsMenu li.collection .contents a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 65, ../../style/prototype.scss */
+/* line 67, ../../style/prototype.scss */
 nav section .headerButton a {
   font-size: 52pt;
   font-weight: 500;

@@ -4,8 +4,8 @@ window.constants =
   style:
     gutter: 40
     curves:
-      smooth: [20, 10]
-      spring: [70, 10]
+      smooth: [25, 10]
+      spring: [75, 10]
   dom:
     collectionsMenu: 'ul.collectionsMenu'
     articleContainer: '#articleContainer'
@@ -31,8 +31,8 @@ window.events =
     $labels     = $menuItems.not('.headerButton')
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
-      duration: 750
-      easing:   constants.style.curves.smooth
+      duration: 1000
+      easing:   constants.style.curves.spring
     
     $menu.addClass 'open'
     
@@ -53,6 +53,9 @@ window.events =
       $label.find('.contents').velocity
         properties:
           translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height())]
+          scaleY: [1, 2]
+          scaleX: [1, .125]
+#           rotateZ: [0, 45 * (Math.random() - .5)]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
