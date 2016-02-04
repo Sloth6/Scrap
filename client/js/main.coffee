@@ -29,11 +29,14 @@ window.events =
     $menuItems  = $menu.children()
     $button     = $menu.find('.headerButton')
     $labels     = $menuItems.not('.headerButton')
+    $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
       duration: 750
       easing:   constants.style.curves.smooth
     
     $menu.addClass 'open'
+    
+    # animate in labels
     $labels.find('.contents').css
       opacity: 0
     $menuItems.show()
@@ -55,7 +58,12 @@ window.events =
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
           delay:    $label.index() * 60
-    $container.hide()
+          
+    # hide articles
+    $articleContents.velocity
+      properties:
+        opacity: 0
+      options: options
     $menu.data 'canOpen', false
 
   onCloseCollectionsMenu: () ->
@@ -65,6 +73,7 @@ window.events =
     $button     = $menu.find('.headerButton')
     $dragging   = $menu.find 'ui-draggable-dragging'
     $labels     = $menuItems.not('.ui-draggable-dragging, .headerButton')
+    $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
       duration: 500
       easing:   constants.style.curves.smooth
@@ -82,7 +91,8 @@ window.events =
               events.onOpenCollectionsMenu() # open menu after close animation finishes
               window.triedToOpen = false
       }
-    $container.show()
+      
+    $articleContents.velocity 'reverse'
 
   onArticleResize: ($article) ->
     $(@).width $(@).children('.card').outerWidth()
