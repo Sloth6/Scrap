@@ -104,8 +104,9 @@ window.events =
       $labelsButton.find('.content').velocity 'reverse', {
         delay: 60 * $labels.length
       }
+    else
+      $oldButton.removeClass('openMenuButton')
     $destinationLabel.addClass('openMenuButton')
-    $oldButton.removeClass('openMenuButton')
     $destinationLabel.find('.contents').velocity
       properties:
         translateY: -$destinationLabel.offset().top
