@@ -68,7 +68,7 @@ html.no-js(lang='en')
             if typeof(collection.name) != undefined
               - var key = collection.collectionKey
               li.collection(data-collectionkey=key, class=key)
-                a(href='#', style='color:'+collection.color+';')!=collection.name
+                a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
           li.newCollection
             form(id='newCollectionForm')
               input(type="text", placeholder="new collection", maxlength="20")

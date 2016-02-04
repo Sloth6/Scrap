@@ -5,7 +5,7 @@
 nav {
     @mixin navText {
         @include typeTitle;
-        @include typeOutlineClear;
+        @include typeOutlineWhite;
     }
     
     top: 0;
@@ -41,21 +41,23 @@ nav {
                 width: -webkit-fit-content;
                 margin: 0 auto;
                 
-                li {
+                li.collection {
                     	width: 100%;
                     margin: 0 auto;
-                    	@include navText;
                     	
                     	a {
                       	  width: 100%;
                       	  display: inline-block;
+                      	  	@include navText;
                     	}
                 }
             }            
         }
         
         .headerButton {
-            @include navText;
+            a {
+                @include navText;
+            }
         }
     }
 }

@@ -47,10 +47,9 @@ $typeSmallLetterSpacing:      (1em / 32);
 $headerLeftMarginOffset:
                     -1.667pt;
 @mixin typeTitle {
-//     font-family:    $fontFamilySerif;
     font-size:      $typeTitleSize;
-    font-weight:    $fontWeightExtraBold;
-    letter-spacing: -(1em / 32);
+    font-weight:    $fontWeightMedium;
+    letter-spacing: 0;
     line-height:    $typeTitleLeading;
 }
 
@@ -149,6 +148,11 @@ $headerLeftMarginOffset:
     -webkit-text-fill-color: transparent;
 }
 
+@mixin typeOutlineWhite {
+    -webkit-text-stroke: 1px $colorType;
+    -webkit-text-fill-color: white;
+}
+
 @mixin typeOutlineFillBlack {
     -webkit-text-fill-color: $colorType !important;
     -webkit-text-stroke: 1px $colorType;
@@ -210,6 +214,10 @@ html {
     &:hover {
         @include typeOutlineFillBlack;
     }
+}
+
+a {
+    @include linkReset;
 }
         
 p {
