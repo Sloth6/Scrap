@@ -9,7 +9,7 @@ window.constants =
   dom:
     collectionsMenu: 'ul.collectionsMenu'
     articleContainer: '#articleContainer'
-    collections: '.collection'
+    collections: 'ul.collectionsMenu li.collection'
 
 stopProp = (event) -> event.stopPropagation()
 
@@ -129,6 +129,7 @@ window.events =
 #           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
     $labels.not($destinationLabel).each ->
       $label = $(@)
+      console.log $label.attr 'class'
       if $destinationLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
@@ -145,7 +146,7 @@ window.events =
           delay:    0 #60 * (($labels.length ) - $label.index())
           complete: ->
             if $label.index() is $labels.length - 1
-              $menuItems.not('.openMenuButton').hide()
+              $menuItems.not('.openMenuButton, .ui-draggable-dragging').hide()
               $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
               $menu.data 'canOpen', true
               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
@@ -243,19 +244,24 @@ window.init =
       stop: (event, ui) ->
         $(ui.helper).off 'hover'
 
-    $collections.
-      zIndex(2).
-      draggable(draggableOptions).
-      click((event) ->
-        collectionKey = $(@).data('collectionkey')
-        events.onSwitchToCollection collectionKey
-        events.onCloseCollectionsMenu()
-        event.stopPropagation()
-        event.preventDefault()).
-      mousedown ->
-        # keep width the same on drag
-        $(@).css
-          width: $(@).width()  
+    $collections.each ->
+      $collection = $(@)
+      $collection.zIndex(2).
+        draggable(draggableOptions).
+        find('a').click((event) ->
+          collectionKey = $collection.data('collectionkey')
+          events.onSwitchToCollection collectionKey
+          events.onCloseCollectionsMenu()
+          event.stopPropagation()
+          event.preventDefault())
+      $collection.css
+        width: $(@).width()  
+      console.log 'hi', $(@).width()
+  #       mousedown ->
+  #         console.log $collection
+  #         # keep width the same on drag
+  #         $(@).css
+  #           width: $(@).width()  
 
   article: ($articles) ->
     $articles.droppable
@@ -385,13 +391,14 @@ window.init =
         hue += 30
         $a.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
       , 1000
-    $menu.find('li a').mouseenter ->
+    $menu.find('li a').click (event) ->
       if $(@).parents('li').hasClass('openMenuButton') # only run if is the current open menu button
+        event.stopPropagation()
         if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
           events.onOpenCollectionsMenu()
         else # not ready to open
           window.triedToOpen = true # register attempt to open
-    $menu.mouseleave ->
+    $('body').click ->
       events.onCloseCollectionsMenu() if $menu.hasClass 'open'
     $menu.find('li').not('.openMenuButton').hide()
     $menu.data 'canOpen', true

@@ -2612,7 +2612,7 @@ nav section ul.collectionsMenu li {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 61, ../../style/prototype.scss */
+/* line 62, ../../style/prototype.scss */
 nav section ul.collectionsMenu li.recent .contents a, nav section ul.collectionsMenu li.labelsButton .contents a {
   -moz-transition: -webkit-text-fill-color 1s linear;
   -o-transition: -webkit-text-fill-color 1s linear;
@@ -2627,8 +2627,8 @@ nav section ul.collectionsMenu li .contents {
 }
 /* line 74, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents a {
-  width: 100%;
   display: inline-block;
+  margin: 0 auto;
   font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
@@ -2653,4 +2653,13 @@ nav section .addForm .headerButton a {
 nav section .addForm article {
   position: absolute;
   top: 0;
+}
+
+/* line 106, ../../style/prototype.scss */
+#articleContainer {
+  -moz-transform: scale3d(0.5, 0.5, 0);
+  -ms-transform: scale3d(0.5, 0.5, 0);
+  -webkit-transform: scale3d(0.5, 0.5, 0);
+  transform: scale3d(0.5, 0.5, 0);
+  width: 190vw;
 }
