@@ -112,6 +112,10 @@ nav {
 //     width: 190vw;
 
     article {
+        .parallaxLayer {
+                    transform-origin: center center;
+            -webkit-transform-origin: center center;
+        }
         ul.articleCollections {
             white-space: nowrap;
             
@@ -120,14 +124,14 @@ nav {
                 
                 &:first-child {
                     a {
-                        margin-left: $cardBorderWidth;
+                        border-left-width: $cardBorderWidth;
                     }
                 }
                 
                 a {
                     display: block;
                     border: $cardBorder;
-                    border-left: 0;
+                    border-left-width: 0;
                     text-indent: -9999em;
                     height: $cell;
                     width: $cell;

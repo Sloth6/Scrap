@@ -29,7 +29,7 @@ mixin articleMixin(article, collections)
       - if(article.Creator !== undefined)
         author.smallType!=article.Creator.name
 
-    ul.articleCollections(style='position:absolute;z-index:2;')
+    ul.articleCollections.parallaxLayer(style='position:absolute;z-index:2;',data-parallaxdepth='.125')
       - for (var i = 0; i < collections.length; i++)
         - var collection = collections[i]
         - var key = collection.collectionKey
@@ -46,10 +46,10 @@ mixin articleMixin(article, collections)
           -var url = decodeURIComponent(content.url)
           .text
             header
-              h1.headerType!=content.title
+              h1.headerType.parallaxLayer(data-parallaxdepth='.25')!=content.title
               .url.smallType.smallCaps!=content.domain
-            .description.smallType!=content.description
-          img(src=content.image)
+            .description.smallType.parallaxLayer(data-parallaxdepth='.125')!=content.description
+          img.parallaxLayer(data-parallaxdepth='.0625', src=content.image)
           a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
   
         when 'file'
@@ -90,7 +90,7 @@ mixin articleMixin(article, collections)
   
         when 'text'
           //- contentEditable="false", designmode="on"
-          .editable()
+          .editable.parallaxLayer(data-parallaxdepth='.25')
             | !{article.content.text}
           ul.cardActions
             li.right.showOnEditing

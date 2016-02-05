@@ -3,7 +3,9 @@
 window.constants =
   style:
     gutter: 36
-    curves:
+    easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+  velocity:
+    easing:
       smooth: [20, 10]
       spring: [75, 10]
   dom:
@@ -40,7 +42,7 @@ window.events =
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
       duration: 1000
-      easing:   constants.style.curves.smooth
+      easing:   constants.velocity.easing.smooth
     isHome      = window.openCollection is 'recent'
     $menu.addClass 'open'
     # animate in labels
@@ -112,7 +114,7 @@ window.events =
     $destinationLabel  = if isHome then $labelsButton else $menu.children(".#{window.openCollection}")
     options     =
       duration: 500
-      easing:   constants.style.curves.smooth
+      easing:   constants.velocity.easing.smooth
     
     $menu.removeClass 'open'
 
@@ -187,7 +189,7 @@ window.events =
           rotateZ: 90 * (Math.random() - .5)
         options:
           duration: 500
-          easing: constants.style.curves.smooth
+          easing: constants.velocity.easing.smooth
           complete: ->
             $(@).hide()
             $(constants.dom.articleContainer).packery()
@@ -206,7 +208,7 @@ window.events =
           opacity: [1, 0]
         options:
           duration: 500
-          easing: constants.style.curves.smooth
+          easing: constants.velocity.easing.smooth
           begin: -> $(@).show()
           complete: ->
             if $matched.index() is $matched.length - 1 # last article
@@ -300,70 +302,86 @@ window.init =
       events.onArticleResize($(@))
       
   fancyHover: ->
-    getRotateValues = ($element, scale, event) ->
-      maxRotateY = if $element.is('a') then 45 else 45
-      maxRotateX = if $element.is('a') then 45 else 45
-      offsetY = $element.offset().top - $(window).scrollTop()
+    getProgressValues = ($element, scale) ->
       offsetX = $element.offset().left - $(window).scrollLeft()
+      offsetY = $element.offset().top  - $(window).scrollTop()
       progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
       progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
-      rotateX = maxRotateY * (progressY - .5)
-      rotateY = maxRotateX * (Math.abs(1 - progressX) - .5)
+      { x: progressX, y: progressY }
+      
+    getRotateValues = ($element, progress) ->
+      maxRotateY = if $element.is('a') then 45 else 45
+      maxRotateX = if $element.is('a') then 45 else 45
+      rotateX = maxRotateY * (progress.y - .5)
+      rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
       { x: rotateX, y: rotateY}
     
     $elements = $('#articleContainer article, ul.collectionsMenu li a, .addForm .headerButton a')
+    easing = 
 #     $scale = 
 #     $elements.parent().css
 #       'perspective': '400px'
 #       '-webkit-perspective': '400px'
     $elements.each ->
       $element = $(@)
+      $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.125
       perspective = if $element.is('a') then 400 else 800
+      duration = 250
       $element.mouseenter (event) ->
-        rotate = getRotateValues($element, scale, event)
+        progress = getProgressValues($element, scale)
+        rotate = getRotateValues($element, progress)
         $element.transition
           scale: scale
-          easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-          duration: 250
+          easing: constants.style.easing
+          duration: duration
         $element.css
           zIndex: 2
           perspective: perspective
         $element.parents('.contents').css
           zIndex: 2
+        $layers.each ->
+          depth = parseFloat $(@).data('parallaxdepth')
+          scale =  (((scale - 1) + depth) / 2) + 1
+          $(@).transition
+            scale: scale
+            easing: constants.style.easing
+            duration: duration
       $element.mousemove (event) ->
-        rotate = getRotateValues($element, scale, event)
-        $(@).css
+        progress = getProgressValues($element, scale)
+        rotate = getRotateValues($element, progress)
+        $element.css
           scale: scale
           z: 250
           rotateX: "#{rotate.x}deg"
           rotateY: "#{rotate.y}deg"
+        $layers.each ->
+          depth = parseFloat $(@).data('parallaxdepth')
+          offset = 50 * depth
+          $(@).css
+            x: offset * (-1 * (progress.x - .5))
+            y: offset * (-1 * (progress.y - .5))
       $element.mouseleave ->
         $element.css
-          zIndex: ''
-        $element.parents('li').css
-          zIndex: ''
+          zIndex: 0
+        $element.parents('.contents').css
+          zIndex: 0
         $element.transition
           scale: 1
           rotateX: 0
           rotateY: 0
-          easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-          duration: 250
-#         $(@).velocity
-#           properties:
-#             scale: 1
-#             rotateX: 0
-#             rotateY: 0
-#           options:
-#             duration: 250
-#             easing: [40, 10]
+          easing: constants.style.easing
+          duration: duration
+        $layers.each ->
+          $(@).transition
+            scale: 1
+            x: 0
+            y: 0
+            easing: constants.style.easing
+            duration: duration
     
 
   container: ($container) ->
-#     $container.css
-#       'margin': constants.style.gutter
-#       'margin-top': 0
-#       'padding-top': constants.style.gutter  
     $container.packery
       itemSelector: 'article'
       isOriginTop: true

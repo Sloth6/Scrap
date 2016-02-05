@@ -117,7 +117,6 @@ body {
                 @include typeBody;
                 
                 h1 {
-//                     color: blue;
                     @include typeLarge;
                     margin-top: $typeBodyLeading;
                     
@@ -127,9 +126,7 @@ body {
                 }
                 
                 h2 {
-//                     color: purple;
                     @include typeBodySmallCaps;
-//                     margin-top: $typeBodyLeading / 2;
                     
                     &:first-child {
                         margin-top: $typeBodyLeading/2;
@@ -150,14 +147,6 @@ body {
                     }
                 }
                 
-                div {
-//                     background-color: magenta;
-                }
-                
-                p {
-//                     background: red;
-                }
-                
                 blockquote {
                     border-left: 1px solid rgba(0,0,0,.25);
                     padding-left: $cell/1.5;
@@ -169,24 +158,18 @@ body {
                 
                 ul, ol {
                     position: relative;
-//                     margin: 0;
-//                     padding: 0;
                     
                     li {
                         &:before {
                             text-align: right;
-//                             background: aqua;
                             position: absolute;
                             width: $gutter * 2;
                             left: -($gutter * 2) - $cardPaddingLeft/2;
                         }
-//                         margin: 0;
-//                         padding: 0;
                     }
                 }
                 
                 ul {
-//                     background: orange;
                     
                     li {
                         &:before {
@@ -197,7 +180,6 @@ body {
                 
                 ol {
                     counter-reset: li;
-//                     background: yellow;
                     
                     li {
                         &:before {
@@ -409,7 +391,6 @@ body {
                 
         .card {
             position: relative;
-            overflow: hidden;
 //             min-height: $articleMinHeight;
             
             &.website {
@@ -610,7 +591,6 @@ body {
     }
     
     .translate {
-        overflow-x: hidden;
         position: relative;
         cursor: pointer;
         @include transform(translate(0px, 0px));
