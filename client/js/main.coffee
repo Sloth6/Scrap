@@ -41,6 +41,7 @@ window.events =
     $labels.not($openLabel).find('.contents').css
       opacity: 0
     $menuItems.show()
+    $.Velocity.hook($openLabel.find('.contents'), 'translateY', "#{-$openLabel.offset().top}px")
     $menu.css
       width: $menu.width()
     if isHome
@@ -58,7 +59,7 @@ window.events =
     $labels.each ->
       $label = $(@)
       if $openLabel.index() is $label.index()
-        translateY = parseInt($.Velocity.hook($openLabel.find('.contents'), 'translateY'))
+        translateY = -500
       else if $openLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
@@ -77,6 +78,10 @@ window.events =
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
           delay:    $label.index() * 60
+          begin: ->
+            $label.css
+              position: ''
+              top: ''
     # hide articles
     $articleContents.velocity
       properties:
@@ -121,7 +126,7 @@ window.events =
 #           $destinationLabel.css
 #             position: 'absolute'
 #             top: 0
-#           $.Velocity.hook($destinationLabel, 'translateY', 0)
+#           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
     $labels.not($destinationLabel).each ->
       $label = $(@)
       if $destinationLabel.index() < $label.index() # below
@@ -140,7 +145,8 @@ window.events =
           delay:    0 #60 * (($labels.length ) - $label.index())
           complete: ->
             if $label.index() is $labels.length - 1
-              $labels.not($destinationLabel).find('.contents').css 'opacity', 0
+              $menuItems.not('.openMenuButton').hide()
+              $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
               $menu.data 'canOpen', true
               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
                 events.onOpenCollectionsMenu() # open menu after close animation finishes
@@ -273,33 +279,37 @@ window.init =
       events.onArticleResize($(@))
       
   fancyHover: ->
-  
     getRotateValues = ($element, scale, event) ->
+      maxRotateY = if $element.is('a') then 45 else 45
+      maxRotateX = if $element.is('a') then 45 else 45
       offsetY = $element.offset().top - $(window).scrollTop()
       offsetX = $element.offset().left - $(window).scrollLeft()
       progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
-      progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
-      console.log progressY, progressX
-      
-      rotateX = 45 * (progressY - .5)
-      rotateY = 45 * (Math.abs(1 - progressX) - .5)
+      progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
+      rotateX = maxRotateY * (progressY - .5)
+      rotateY = maxRotateX * (Math.abs(1 - progressX) - .5)
       { x: rotateX, y: rotateY}
     
-    $elements = $('article, ul.collectionsMenu li a')
+    $elements = $('#articleContainer article, ul.collectionsMenu li a, .addForm .headerButton a')
 #     $scale = 
 #     $elements.parent().css
 #       'perspective': '400px'
 #       '-webkit-perspective': '400px'
     $elements.each ->
       $element = $(@)
-      scale = 1.25
+      scale = if $element.is('a') then 1.25 else 1.125
+      perspective = if $element.is('a') then 200 else 400
       $element.mouseenter (event) ->
         rotate = getRotateValues($element, scale, event)
         $element.transition
           scale: scale
           easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-#         $element.css
-#           zIndex: 999
+          duration: 250
+        $element.css
+          zIndex: 2
+          perspective: perspective
+        $element.parents('.contents').css
+          zIndex: 2
 #         $(@).velocity
 #           properties:
 # #             translateZ: 50
@@ -313,20 +323,23 @@ window.init =
       $element.mousemove (event) ->
         rotate = getRotateValues($element, scale, event)
         $(@).css
-          perspective: 400
           scale: scale
 #           z: 250
           rotateX: "#{rotate.x}deg"
           rotateY: "#{rotate.y}deg"
 #         $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
 #         $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
-        
       $element.mouseleave ->
+        $element.css
+          zIndex: ''
+        $element.parents('li').css
+          zIndex: ''
         $element.transition
           scale: 1
           rotateX: 0
           rotateY: 0
           easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+          duration: 250
 #         $(@).velocity
 #           properties:
 #             scale: 1
