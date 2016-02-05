@@ -139,7 +139,7 @@ window.events =
           delay:    0 #60 * (($labels.length ) - $label.index())
           complete: ->
             if $label.index() is $labels.length - 1
-#               $labels.not($destinationLabel).hide()
+              $labels.not($destinationLabel).find('.contents').css 'opacity', 0
               $menu.data 'canOpen', true
               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
                 events.onOpenCollectionsMenu() # open menu after close animation finishes
@@ -297,7 +297,15 @@ window.init =
       socket.emit 'addCollection', { name }
       event.preventDefault()
 
-  collectionsMenu: ($menu) ->  
+  collectionsMenu: ($menu) ->
+    # cycle colors on Recents
+    $menu.find('li.recent a, li.labelsButton a').each ->
+      hue = Math.floor(Math.random() * 360)
+      $a = $(@)
+      setInterval ->
+        hue += 30
+        $a.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
+      , 1000
     $menu.find('li a').mouseenter ->
       if $(@).parents('li').hasClass('openMenuButton') # only run if is the current open menu button
         if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)

@@ -47,6 +47,14 @@ nav {
                     margin: 0 auto;
                   	  transform-origin:  center center;
                   	  -webkit-transform-origin:  center center;
+                  	  
+                  	  &.recent, &.labelsButton {
+                    	    .contents {
+                      	      a {
+                        	        @include transition(-webkit-text-fill-color 1s linear);
+                      	      }
+                    	    }
+                  	  }
 
 //                     border: 1px red solid;
                     	

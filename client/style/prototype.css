@@ -605,7 +605,7 @@ html {
 
 /* line 165, ../../style/globals/_type.scss */
 .typeTitle {
-  font-size: 52pt;
+  font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 48pt;
@@ -2604,25 +2604,32 @@ nav section.center ul.collectionsMenu li {
   -webkit-transform-origin: center center;
 }
 /* line 53, ../../style/prototype.scss */
+nav section.center ul.collectionsMenu li.recent .contents a, nav section.center ul.collectionsMenu li.labelsButton .contents a {
+  -moz-transition: -webkit-text-fill-color 1s linear;
+  -o-transition: -webkit-text-fill-color 1s linear;
+  -webkit-transition: -webkit-text-fill-color 1s linear;
+  transition: -webkit-text-fill-color 1s linear;
+}
+/* line 61, ../../style/prototype.scss */
 nav section.center ul.collectionsMenu li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 58, ../../style/prototype.scss */
+/* line 66, ../../style/prototype.scss */
 nav section.center ul.collectionsMenu li .contents a {
   width: 100%;
   display: inline-block;
-  font-size: 52pt;
+  font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 70, ../../style/prototype.scss */
+/* line 78, ../../style/prototype.scss */
 nav section .headerButton a {
-  font-size: 52pt;
+  font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 48pt;
