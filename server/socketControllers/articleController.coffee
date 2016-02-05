@@ -1,31 +1,8 @@
 models   = require '../../models'
 async    = require 'async'
 s3 = require '../adapters/s3.coffee'
-request = require 'request'
-
+newArticle = require '../newArticle.coffee'
 articleRenderer = require '../modules/articleRenderer.coffee'
-newArticles = require './newArticles'
-
-getType = (s, cb) ->
-  jar = request.jar()
-  options =
-    url: s
-    followAllRedirects: true
-    jar: jar
-
-  request.head options, (err, res) ->
-    if err || !res
-      return cb 'text'
-    contentType = res.headers['content-type']
-    host = res.socket._httpMessage._headers.host
-    # return cb 'gif' if contentType.match /^image\/gif/
-    return cb 'image' if contentType.match /^image\//
-    return cb 'video' if contentType.match /^video\//
-    if contentType.match /^text\/html/
-      return cb 'soundcloud' if host is 'soundcloud.com'
-      return cb 'youtube' if host is 'www.youtube.com'
-      return cb 'website'
-    return cb 'file'# if contentType.match /^application\//
 
 getCollectionKeys = (articleId, callback) ->
   q = """
@@ -45,41 +22,28 @@ module.exports =
   newArticle : (sio, socket, data, callback) =>
     collectionKey = data.collectionKey
     rawContent = decodeURIComponent data.content
-    userId = socket.handshake.session.userId
+    # userId = socket.handshake.session.userId
     user = socket.handshake.session.user
     
     console.log 'newArticle:'
-    console.log "\tuserId: #{userId}"
+    console.log "\tuserId: #{user.id}"
     console.log "\tcollectionKey: #{collectionKey}"
     console.log "\trawContent: #{rawContent}"
 
-    getType rawContent, (contentType) ->
-      console.log "\tcontentType: #{contentType}"
+    newArticle rawContent, user, (err, article) ->
+      return callback(err) if err
+      console.log article
+      console.log user
+      # if collection?
+      #   html = articleRenderer article, [collection]
+      #   room = collection.collectionKey    
+      # else
+      html = articleRenderer article, []
+      room = "user:#{user.id}"
       
-      newArticles[contentType] rawContent, (err, content) ->
-        return callback err if err
-
-        attributes = { creatorId: userId, contentType, content }
-
-        models.Collection.find(where: { collectionKey }).done (err, collection) ->
-          return callback err if err
-          
-          models.Article.create(attributes).done (err, article) ->
-            return callback err if err
-            
-            user.addArticle(article).done (err) ->
-              return callback err if err
-
-              if collection?
-                html = articleRenderer article, [collection]
-                room = collection.collectionKey    
-              else
-                html = articleRenderer article, []
-                room = "user:#{userId}"
-              
-              console.log 'emitting to ', room
-              sio.to(room).emit 'newArticle', { html: encodeURIComponent(html) }
-              callback null
+      console.log 'emitting to ', room
+      sio.to(room).emit 'newArticle', { html: encodeURIComponent(html) }
+      callback null
         
           
 

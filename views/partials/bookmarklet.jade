@@ -1,8 +1,10 @@
 -
-	var script = "javascript:(function(){"+
-		"var w3cnavjs=document.createElement('SCRIPT');" +
-		"w3cnavjs.type='text/javascript';" +
-		"w3cnavjs.src='http://localhost:9001/js/bookmarklet.js';"+
-		"document.getElementsByTagName('head')[0].appendChild(w3cnavjs);})();"
+	var script = 
+		"javascript:(function(){"+
+		"var script=document.createElement('SCRIPT');" +
+		"script.type='text/javascript';" +
+		"script.src='http://localhost:9001/js/bookmarkletLoader.js';"+
+		"document.getElementsByTagName('head')[0].appendChild(script);"+
+		"})();"
 
-a.bookmarklet(href=script) BOOKMARK
+a.bookmarklet(href=(script)) BOOKMARK

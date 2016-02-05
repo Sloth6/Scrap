@@ -1,0 +1,12 @@
+head
+	script(src='/js/jquery/jquery.js')
+	script(src='/js/bookmarkletContent.js')
+
+body
+	p!=url
+	each collection, collectionKey in collections
+		if typeof(collection.name) != undefined
+			- var key = collection.collectionKey
+			li.collection(data-collectionkey=key, class=key)
+				.contents
+					a(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
