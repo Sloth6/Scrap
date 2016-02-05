@@ -93,6 +93,7 @@ body {
             
             .card {
                 width: $articleSide;
+                min-height: $articleSide;
                 max-width: 50vh !important;
             }
             

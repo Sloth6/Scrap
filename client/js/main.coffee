@@ -19,7 +19,7 @@ window.events =
     $article = $('article.hovered')
     $card = $article.children('.card')
     $color = $('<div></div>').appendTo('article')
-    $color.css
+#     $color.css
 #     $article.css
 #       opacity: .2
 
@@ -319,7 +319,7 @@ window.init =
     $elements.each ->
       $element = $(@)
       scale = if $element.is('a') then 1.25 else 1.125
-      perspective = if $element.is('a') then 200 else 400
+      perspective = if $element.is('a') then 400 else 800
       $element.mouseenter (event) ->
         rotate = getRotateValues($element, scale, event)
         $element.transition
@@ -331,25 +331,13 @@ window.init =
           perspective: perspective
         $element.parents('.contents').css
           zIndex: 2
-#         $(@).velocity
-#           properties:
-# #             translateZ: 50
-#             scale: scale
-# #             rotateX: rotate.x
-# #             rotateY: rotate.y
-# #             perspective: 400
-#           options:
-#             duration: 250
-#             easing: [60, 10]
       $element.mousemove (event) ->
         rotate = getRotateValues($element, scale, event)
         $(@).css
           scale: scale
-#           z: 250
+          z: 250
           rotateX: "#{rotate.x}deg"
           rotateY: "#{rotate.y}deg"
-#         $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
-#         $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
       $element.mouseleave ->
         $element.css
           zIndex: ''

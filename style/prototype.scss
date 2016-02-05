@@ -103,8 +103,52 @@ nav {
     }
 }
 
+// _article.scss
+
 #articleContainer {
     padding: $broadMargin;
+    
 //     @include transform(scale3d(.5, .5, 0));
 //     width: 190vw;
+
+    article {
+        ul.articleCollections {
+            white-space: nowrap;
+            
+            li.collection {
+                display: inline-block;
+                
+                &:first-child {
+                    a {
+                        margin-left: $cardBorderWidth;
+                    }
+                }
+                
+                a {
+                    display: block;
+                    border: $cardBorder;
+                    border-left: 0;
+                    text-indent: -9999em;
+                    height: $cell;
+                    width: $cell;
+                    color: transparent;
+                    @include transition(.25s $defaultCurve);
+                    @include transition-property(height, padding, color);
+                }
+            }
+            
+            &:hover {
+              
+                li.collection {
+                    a {
+                        text-indent: 0;
+                        height: $cell * 2;
+                        width: -webkit-fit-content;
+                        padding: $cardPadding;
+                        color: $colorType;
+                    }
+                }
+            }
+        }
+    }
 }
