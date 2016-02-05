@@ -589,7 +589,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 161, ../../style/globals/_type.scss */
+/* line 173, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -603,15 +603,24 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 165, ../../style/globals/_type.scss */
+/* line 178, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 48pt;
 }
+/* line 181, ../../style/globals/_type.scss */
+.typeTitle.smallCaps {
+  font-size: .666em;
+  letter-spacing: .03125em;
+  text-transform: uppercase !important;
+  font-size: 36pt;
+  font-weight: 700;
+  letter-spacing: 0.0625em;
+}
 
-/* line 169, ../../style/globals/_type.scss */
+/* line 186, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -619,7 +628,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 173, ../../style/globals/_type.scss */
+/* line 190, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 500;
@@ -627,7 +636,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 177, ../../style/globals/_type.scss */
+/* line 194, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -635,7 +644,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 180, ../../style/globals/_type.scss */
+/* line 197, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -645,7 +654,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 185, ../../style/globals/_type.scss */
+/* line 202, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -653,7 +662,7 @@ html {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 188, ../../style/globals/_type.scss */
+/* line 205, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -663,14 +672,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 193, ../../style/globals/_type.scss */
+/* line 210, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 196, ../../style/globals/_type.scss */
+/* line 213, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -680,18 +689,37 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 201, ../../style/globals/_type.scss */
+/* line 218, ../../style/globals/_type.scss */
+.typeNav {
+  font-size: 48pt;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: white;
+}
+/* line 221, ../../style/globals/_type.scss */
+.typeNav.smallCaps, .typeNav .smallCaps {
+  font-size: .666em;
+  letter-spacing: .03125em;
+  text-transform: uppercase !important;
+  font-size: 36pt;
+  font-weight: 700;
+  letter-spacing: 0.0625em;
+}
+
+/* line 226, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 205, ../../style/globals/_type.scss */
+/* line 230, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 209, ../../style/globals/_type.scss */
+/* line 234, ../../style/globals/_type.scss */
 .typeHeaderOutline {
   font-size: 24pt;
   font-weight: 500;
@@ -703,20 +731,20 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 214, ../../style/globals/_type.scss */
+/* line 239, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 219, ../../style/globals/_type.scss */
+/* line 244, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 225, ../../style/globals/_type.scss */
+/* line 250, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }

@@ -1,0 +1,34 @@
+@import "screen.scss";
+
+body {
+    text-align: center;
+    background: none;
+}
+
+h1, li a {
+    @include navText;
+}
+
+h1, ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+h1 {
+}
+
+ul.collectionsMenu {
+    list-style-type: none;
+    
+    li {
+      
+        &.header {
+            a {
+                position: relative;
+                top: .125em;
+            }
+        }
+    }
+}

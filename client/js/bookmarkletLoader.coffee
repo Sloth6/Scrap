@@ -10,6 +10,7 @@ iframe.style.left = '0px'
 iframe.style.position = 'fixed'
 iframe.style.width = '100%'
 iframe.style.height = '100%'
+iframe.style.border = '0'
 
 document.body.appendChild(iframe)
 
