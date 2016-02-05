@@ -138,7 +138,7 @@ close = ($header, $menu, $collections) ->
             easing: constants.velocity.easing.smooth
             complete: ->
               $collections.hide()
-              removeFrame() if $(@).index() is $collections.length - 1 # last collection
+              removeFrame()
               
 
 addCollection = ($collection) ->
