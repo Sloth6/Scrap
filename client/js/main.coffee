@@ -4,7 +4,7 @@ window.constants =
   style:
     gutter: 40
     curves:
-      smooth: [25, 10]
+      smooth: [20, 10]
       spring: [75, 10]
   dom:
     collectionsMenu: 'ul.collectionsMenu'
@@ -13,9 +13,9 @@ window.constants =
 
 stopProp = (event) -> event.stopPropagation()
 
+  
 window.events =
   onCollectionOverArticle: (event, $collection) ->
-    console.log 'over'
     $article = $('article.hovered')
     $card = $article.children('.card')
 
@@ -27,42 +27,61 @@ window.events =
     $menu       = $(constants.dom.collectionsMenu )
     $container  = $(constants.dom.articleContainer)
     $menuItems  = $menu.children()
-    $button     = $menu.find('.headerButton')
-    $labels     = $menuItems.not('.headerButton')
+    $button     = $menu.find('.openMenuButton')
+    $labelsButton = $menu.find('li.labelsButton')
+    $labels     = $menuItems.not('li.labelsButton')
+    $openLabel  = $menu.children(".#{window.openCollection}")
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
       duration: 1000
-      easing:   constants.style.curves.spring
+      easing:   constants.style.curves.smooth
+    isHome      = window.openCollection is 'recent'
     $menu.addClass 'open'
     # animate in labels
-    $labels.find('.contents').css
+    $labels.not($openLabel).find('.contents').css
       opacity: 0
     $menuItems.show()
+    $.Velocity.hook($openLabel.find('.contents'), 'translateY', "#{-$openLabel.offset().top}px")
     $menu.css
       width: $menu.width()
-    $button.velocity
-      properties:
-        translateY: -$button.height() * 3
-        scaleY: 2
-        scaleX: .125
-        rotateZ: 45 * (Math.random() - .5)
-      options:
-        duration: options.duration
-        easing:   options.easing
-        delay:    0
+    if isHome
+      $labelsButton.find('.contents').velocity
+        properties:
+          translateY: -$button.height() * 3
+#           scaleY: 2
+#           scaleX: .125
+#           rotateZ: 45 * (Math.random() - .5)
+        options:
+          duration: options.duration
+          easing:   options.easing
+          delay:    0
+    $openLabel.removeClass('openMenuButton')   
     $labels.each ->
       $label = $(@)
+      if $openLabel.index() is $label.index()
+        translateY = -500
+      else if $openLabel.index() < $label.index() # below
+        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+      else
+        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+#       scaleY = if $openLabel.index() is $label.index() then 1 else 2
+#       scaleX = if $openLabel.index() is $label.index() then 1 else .125
+#       rotateZ = if $openLabel.index() is $label.index() then 1 else 22 * (Math.random() - .5)
       $label.find('.contents').velocity
         properties:
-          translateY: [-$button.height(), $(window).height() - ($label.offset().top - $label.height() * 2)]
-          scaleY: [1, 2]
-          scaleX: [1, .125]
-          rotateZ: [0, 22 * (Math.random() - .5)]
+          translateY: [-$button.height(), translateY]
+#           scaleY: [1, scaleY]
+#           scaleX: [1, scaleX]
+#           rotateZ: [0, rotateZ]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
           delay:    $label.index() * 60
+          begin: ->
+            $label.css
+              position: ''
+              top: ''
     # hide articles
     $articleContents.velocity
       properties:
@@ -71,35 +90,68 @@ window.events =
     $menu.data 'canOpen', false
 
   onCloseCollectionsMenu: () ->
+    isHome      = window.openCollection is 'recent'
     $menu       = $(constants.dom.collectionsMenu )
     $container  = $(constants.dom.articleContainer)
     $menuItems  = $menu.children()
-    $button     = $menu.find('.headerButton')
+    $oldButton     = $menu.find('.openMenuButton')
+    $labelsButton = $menu.find('li.labelsButton')
     $dragging   = $menu.find 'ui-draggable-dragging'
-    $labels     = $menuItems.not('.ui-draggable-dragging, .headerButton')
+    $labels     = $menuItems.not('.ui-draggable-dragging, .openMenuButton')
     $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
+    $destinationLabel  = if isHome then $labelsButton else $menu.children(".#{window.openCollection}")
     options     =
       duration: 500
       easing:   constants.style.curves.smooth
-
+    
     $menu.removeClass 'open'
-    $button.velocity 'reverse', {
-      delay: 60 * $labels.length
-    }
-    $labels.each ->
-      $label = $(@)
-      $label.find('.contents').velocity 'reverse', {
+
+    if isHome
+      $labelsButton.find('.content').velocity 'reverse', {
+        delay: 60 * $labels.length
+      }
+    else
+      $oldButton.removeClass('openMenuButton')
+    $destinationLabel.addClass('openMenuButton')
+    $destinationLabel.find('.contents').velocity
+      properties:
+        translateY: -$destinationLabel.offset().top
+#         rotateZ: 0
+#         scaleY: 1
+#         scaleX: 1
+      options:
         duration: options.duration
         easing:   options.easing
-        delay:    60 * (($labels.length ) - $label.index())
-        complete: ->
-          if $label.index() is $labels.length - 1
-            $labels.hide()
-            $menu.data 'canOpen', true
-            if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
-              events.onOpenCollectionsMenu() # open menu after close animation finishes
-              window.triedToOpen = false
-      }
+#         complete: ->
+#           $destinationLabel.css
+#             position: 'absolute'
+#             top: 0
+#           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
+    $labels.not($destinationLabel).each ->
+      $label = $(@)
+      if $destinationLabel.index() < $label.index() # below
+        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+      else
+        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+      $label.find('.contents').velocity
+        properties:
+          translateY: translateY
+#           scaleY: 2
+#           scaleX: .125
+#           rotateZ: 22 * (Math.random() - .5)
+        options:
+          duration: options.duration
+          easing:   options.easing
+          delay:    0 #60 * (($labels.length ) - $label.index())
+          complete: ->
+            if $label.index() is $labels.length - 1
+              $menuItems.not('.openMenuButton').hide()
+              $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
+              $menu.data 'canOpen', true
+              if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
+                events.onOpenCollectionsMenu() # open menu after close animation finishes
+                window.triedToOpen = false
+              
     $articleContents.velocity 'reverse'
 
   onArticleResize: ($article) ->
@@ -111,15 +163,9 @@ window.events =
   onChangeScrollDirection: (direction) ->
 
   onSwitchToCollection: (collectionKey) ->
-    console.log 'onSwitchToCollection', collectionKey
-    $title = $('.collections li.headerButton a')
     $container  = $(constants.dom.articleContainer)
-
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
-    
-    console.log('matched', $matched)
-    console.log('unmatched', $unmatched)
     
     # Hide unmatched articles
     $unmatched.each ->
@@ -127,7 +173,7 @@ window.events =
         properties:
           translateY: $(window).height() * (Math.random() - .5)
           translateX: if ($(@).offset().left > $(window).width() / 2) then $(window).width() else -$(window).width()
-          rotateZ: 45 * (Math.random() - .5)
+          rotateZ: 90 * (Math.random() - .5)
         options:
           duration: 500
           easing: constants.style.curves.smooth
@@ -140,13 +186,13 @@ window.events =
     $container.packery
       transitionDuration: 0
     $matched.each ->
-      startX = if Math.random() > .5 then $(window).width() * 2 else -$(window).width() * 2
+      startX = if ($(@).offset().left > $(window).width() / 2) then $(window).width() else -$(window).width()
       $(@).velocity
         properties:
           translateY: [0, $(window).height() * (Math.random() - .5)]
           translateX: [0, startX]
-          rotateZ: [0, 45 * (Math.random() - .5)]
-          opacity: 1
+          rotateZ: [0, 90 * (Math.random() - .5)]
+          opacity: [1, 0]
         options:
           duration: 500
           easing: constants.style.curves.smooth
@@ -155,11 +201,7 @@ window.events =
             if $matched.index() is $matched.length - 1 # last article
               $container.packery
                 transitionDuration: 500
-#     $title.text collections[collectionKey].name
-#     $title.css 'color': collections[collectionKey].color
     window.openCollection = collectionKey
-    
-    events.onCloseCollectionsMenu()
     $container.packery()
 
   onResize: () ->
@@ -207,6 +249,7 @@ window.init =
       click((event) ->
         collectionKey = $(@).data('collectionkey')
         events.onSwitchToCollection collectionKey
+        events.onCloseCollectionsMenu()
         event.stopPropagation()
         event.preventDefault()).
       mousedown ->
@@ -223,7 +266,6 @@ window.init =
       out: (event, object) ->
         events.onCollectionOutArticle event, object.draggable
       drop: ( event, ui ) ->
-        console.log 'dropped!'
         $collection = ui.draggable.clone()
         $collection.css 'top':0, 'left':0
         init.collection $collection
@@ -235,6 +277,78 @@ window.init =
     $articles.each () -> events.onArticleResize($(@))
     $articles.find('img').load () -> 
       events.onArticleResize($(@))
+      
+  fancyHover: ->
+    getRotateValues = ($element, scale, event) ->
+      maxRotateY = if $element.is('a') then 45 else 45
+      maxRotateX = if $element.is('a') then 45 else 45
+      offsetY = $element.offset().top - $(window).scrollTop()
+      offsetX = $element.offset().left - $(window).scrollLeft()
+      progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
+      progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
+      rotateX = maxRotateY * (progressY - .5)
+      rotateY = maxRotateX * (Math.abs(1 - progressX) - .5)
+      { x: rotateX, y: rotateY}
+    
+    $elements = $('#articleContainer article, ul.collectionsMenu li a, .addForm .headerButton a')
+#     $scale = 
+#     $elements.parent().css
+#       'perspective': '400px'
+#       '-webkit-perspective': '400px'
+    $elements.each ->
+      $element = $(@)
+      scale = if $element.is('a') then 1.25 else 1.125
+      perspective = if $element.is('a') then 200 else 400
+      $element.mouseenter (event) ->
+        rotate = getRotateValues($element, scale, event)
+        $element.transition
+          scale: scale
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+          duration: 250
+        $element.css
+          zIndex: 2
+          perspective: perspective
+        $element.parents('.contents').css
+          zIndex: 2
+#         $(@).velocity
+#           properties:
+# #             translateZ: 50
+#             scale: scale
+# #             rotateX: rotate.x
+# #             rotateY: rotate.y
+# #             perspective: 400
+#           options:
+#             duration: 250
+#             easing: [60, 10]
+      $element.mousemove (event) ->
+        rotate = getRotateValues($element, scale, event)
+        $(@).css
+          scale: scale
+#           z: 250
+          rotateX: "#{rotate.x}deg"
+          rotateY: "#{rotate.y}deg"
+#         $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
+#         $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
+      $element.mouseleave ->
+        $element.css
+          zIndex: ''
+        $element.parents('li').css
+          zIndex: ''
+        $element.transition
+          scale: 1
+          rotateX: 0
+          rotateY: 0
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+          duration: 250
+#         $(@).velocity
+#           properties:
+#             scale: 1
+#             rotateX: 0
+#             rotateY: 0
+#           options:
+#             duration: 250
+#             easing: [40, 10]
+    
 
   container: ($container) ->
     $container.css
@@ -252,7 +366,6 @@ window.init =
     $container.droppable
       greedy: true
       drop: (event, ui) ->
-        console.log 'dropped on collection!'
         $collection = ui.draggable
         articleModel.removeCollection $collection.parent().parent(), $collection
 
@@ -263,16 +376,26 @@ window.init =
       socket.emit 'addCollection', { name }
       event.preventDefault()
 
-  collectionsMenu: ($menu) ->  
-    $menu.find('li.headerButton a').mouseenter ->
-      if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
-        events.onOpenCollectionsMenu()
-      else # not ready to open
-        window.triedToOpen = true # register attempt to open
+  collectionsMenu: ($menu) ->
+    # cycle colors on Recents
+    $menu.find('li.recent a, li.labelsButton a').each ->
+      hue = Math.floor(Math.random() * 360)
+      $a = $(@)
+      setInterval ->
+        hue += 30
+        $a.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
+      , 1000
+    $menu.find('li a').mouseenter ->
+      if $(@).parents('li').hasClass('openMenuButton') # only run if is the current open menu button
+        if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
+          events.onOpenCollectionsMenu()
+        else # not ready to open
+          window.triedToOpen = true # register attempt to open
     $menu.mouseleave ->
       events.onCloseCollectionsMenu() if $menu.hasClass 'open'
-    $menu.find('li').not('.headerButton').hide()
+    $menu.find('li').not('.openMenuButton').hide()
     $menu.data 'canOpen', true
+    
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
@@ -282,6 +405,7 @@ $ ->
   init.collection $( constants.dom.collections )
   init.collectionsMenu $( constants.dom.collectionsMenu )
   init.addCollectionForm()
+  init.fancyHover()
   initAddArticleForm()
 
   $('article').each () ->

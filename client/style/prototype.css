@@ -605,7 +605,7 @@ html {
 
 /* line 165, ../../style/globals/_type.scss */
 .typeTitle {
-  font-size: 52pt;
+  font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 48pt;
@@ -2591,41 +2591,66 @@ nav section.center {
   right: 0;
   text-align: center;
 }
-/* line 40, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu {
+/* line 42, ../../style/prototype.scss */
+nav section .headerButton a {
+  font-size: 48pt;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 48pt;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: white;
+}
+/* line 47, ../../style/prototype.scss */
+nav section ul.collectionsMenu {
   width: -webkit-fit-content;
   margin: 0 auto;
 }
-/* line 45, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li {
+/* line 53, ../../style/prototype.scss */
+nav section ul.collectionsMenu li {
   width: 100%;
   margin: 0 auto;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 53, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li .contents {
+/* line 61, ../../style/prototype.scss */
+nav section ul.collectionsMenu li.recent .contents a, nav section ul.collectionsMenu li.labelsButton .contents a {
+  -moz-transition: -webkit-text-fill-color 1s linear;
+  -o-transition: -webkit-text-fill-color 1s linear;
+  -webkit-transition: -webkit-text-fill-color 1s linear;
+  transition: -webkit-text-fill-color 1s linear;
+}
+/* line 69, ../../style/prototype.scss */
+nav section ul.collectionsMenu li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 58, ../../style/prototype.scss */
-nav section.center ul.collectionsMenu li .contents a {
+/* line 74, ../../style/prototype.scss */
+nav section ul.collectionsMenu li .contents a {
   width: 100%;
   display: inline-block;
-  font-size: 52pt;
+  font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
 }
-/* line 70, ../../style/prototype.scss */
-nav section .headerButton a {
-  font-size: 52pt;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 48pt;
-  -webkit-text-stroke: 1px #000000;
-  -webkit-text-fill-color: white;
+/* line 88, ../../style/prototype.scss */
+nav section .addForm .headerButton {
+  position: absolute;
+  top: 0;
+}
+/* line 92, ../../style/prototype.scss */
+nav section .addForm .headerButton a {
+  display: block;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+}
+/* line 98, ../../style/prototype.scss */
+nav section .addForm article {
+  position: absolute;
+  top: 0;
 }
