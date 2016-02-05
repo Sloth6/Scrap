@@ -67,6 +67,9 @@ nav {
                           	  width: 100%;
                       	    	  display: inline-block;
                       	    	  	@include navText;
+                          	    	  		  transform-origin:  center center;
+                  	    	  		  -webkit-transform-origin:  center center;
+
 //                       	    	  	border: lime 1px solid;
                       	  }
                     	}

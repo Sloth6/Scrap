@@ -12,6 +12,7 @@ window.constants =
     collections: '.collection'
 
 stopProp = (event) -> event.stopPropagation()
+
   
 window.events =
   onCollectionOverArticle: (event, $collection) ->
@@ -270,6 +271,71 @@ window.init =
     $articles.each () -> events.onArticleResize($(@))
     $articles.find('img').load () -> 
       events.onArticleResize($(@))
+      
+  fancyHover: ->
+  
+    getRotateValues = ($element, scale, event) ->
+      offsetY = $element.offset().top - $(window).scrollTop()
+      offsetX = $element.offset().left - $(window).scrollLeft()
+      progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
+      progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
+      console.log progressY, progressX
+      
+      rotateX = 45 * (progressY - .5)
+      rotateY = 45 * (Math.abs(1 - progressX) - .5)
+      { x: rotateX, y: rotateY}
+    
+    $elements = $('article, ul.collectionsMenu li a')
+#     $scale = 
+#     $elements.parent().css
+#       'perspective': '400px'
+#       '-webkit-perspective': '400px'
+    $elements.each ->
+      $element = $(@)
+      scale = 1.25
+      $element.mouseenter (event) ->
+        rotate = getRotateValues($element, scale, event)
+        $element.transition
+          scale: scale
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+#         $element.css
+#           zIndex: 999
+#         $(@).velocity
+#           properties:
+# #             translateZ: 50
+#             scale: scale
+# #             rotateX: rotate.x
+# #             rotateY: rotate.y
+# #             perspective: 400
+#           options:
+#             duration: 250
+#             easing: [60, 10]
+      $element.mousemove (event) ->
+        rotate = getRotateValues($element, scale, event)
+        $(@).css
+          perspective: 400
+          scale: scale
+#           z: 250
+          rotateX: "#{rotate.x}deg"
+          rotateY: "#{rotate.y}deg"
+#         $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
+#         $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
+        
+      $element.mouseleave ->
+        $element.transition
+          scale: 1
+          rotateX: 0
+          rotateY: 0
+          easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+#         $(@).velocity
+#           properties:
+#             scale: 1
+#             rotateX: 0
+#             rotateY: 0
+#           options:
+#             duration: 250
+#             easing: [40, 10]
+    
 
   container: ($container) ->
     $container.css
@@ -326,6 +392,7 @@ $ ->
   init.collection $( constants.dom.collections )
   init.collectionsMenu $( constants.dom.collectionsMenu )
   init.addCollectionForm()
+  init.fancyHover()
   initAddArticleForm()
 
   $('article').each () ->
