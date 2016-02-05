@@ -6,9 +6,9 @@ $ ->
     { html } = data
     $article = $(decodeURIComponent(html))
     console.log "new $article", $article.attr('class')    
-    $('#container').prepend $article
+    $(constants.dom.articleContainer).prepend $article
     init.article $article
-    $('#container').packery 'prepended', $article
+    $(constants.dom.articleContainer).packery 'prepended', $article
 
   socket.on 'newCollection', (data) ->
     console.log 'socket.on.newCollection', data

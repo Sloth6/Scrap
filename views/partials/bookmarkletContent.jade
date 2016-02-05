@@ -1,7 +1,8 @@
 head
 	script(src='/js/jquery/jquery.js')
 	script(src='/js/bookmarkletContent.js')
-
+	script.
+		var articleId = "!{articleId}";
 body
 	p!=url
 	each collection, collectionKey in collections

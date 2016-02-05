@@ -35,6 +35,9 @@ module.exports = (app) ->
   app.post '/updateUser', (req, res) ->
     controllers.userController.updateUser req, res, app, errorHandler
 
+  app.post '/addArticleCollection', (req, res) ->
+    controllers.extensionsControllers.addArticleCollection req, res, app, errorHandler
+
   app.get '/bookmarklet', (req, res) ->
     res.render('partials/bookmarklet')
 
