@@ -7,6 +7,7 @@ body {
 
 h1, li a {
     @include navText;
+    @include transition(-webkit-text-fill-color 1s linear);
 }
 
 h1, ul {
@@ -16,19 +17,30 @@ h1, ul {
     right: 0;
 }
 
-h1 {
-}
-
 ul.collectionsMenu {
     list-style-type: none;
     
     li {
+//         height: $typeTitleLeading;
       
         &.header {
             a {
                 position: relative;
                 top: .125em;
             }
+        }
+        
+        a {
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+            margin: 0 auto;
+            
+            display: block;
+//             border: red 1px solid;
+            padding: 0;
+//             margin-top: 0;
+//             height: $typeTitleLeading * .75;
         }
     }
 }

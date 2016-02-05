@@ -2599,9 +2599,13 @@ h1, li a {
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
+  -moz-transition: -webkit-text-fill-color 1s linear;
+  -o-transition: -webkit-text-fill-color 1s linear;
+  -webkit-transition: -webkit-text-fill-color 1s linear;
+  transition: -webkit-text-fill-color 1s linear;
 }
 
-/* line 12, ../../style/bookmarklet.scss */
+/* line 13, ../../style/bookmarklet.scss */
 h1, ul {
   position: absolute;
   top: 0;
@@ -2609,12 +2613,21 @@ h1, ul {
   right: 0;
 }
 
-/* line 22, ../../style/bookmarklet.scss */
+/* line 20, ../../style/bookmarklet.scss */
 ul.collectionsMenu {
   list-style-type: none;
 }
-/* line 28, ../../style/bookmarklet.scss */
+/* line 27, ../../style/bookmarklet.scss */
 ul.collectionsMenu li.header a {
   position: relative;
   top: .125em;
+}
+/* line 33, ../../style/bookmarklet.scss */
+ul.collectionsMenu li a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  display: block;
+  padding: 0;
 }
