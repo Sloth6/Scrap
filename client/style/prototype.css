@@ -2657,9 +2657,5 @@ nav section .addForm article {
 
 /* line 106, ../../style/prototype.scss */
 #articleContainer {
-  -moz-transform: scale3d(0.5, 0.5, 0);
-  -ms-transform: scale3d(0.5, 0.5, 0);
-  -webkit-transform: scale3d(0.5, 0.5, 0);
-  transform: scale3d(0.5, 0.5, 0);
-  width: 190vw;
+  padding: 40pt;
 }

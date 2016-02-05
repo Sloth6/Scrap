@@ -104,6 +104,7 @@ nav {
 }
 
 #articleContainer {
-    @include transform(scale3d(.5, .5, 0));
-    width: 190vw;
+    padding: $broadMargin;
+//     @include transform(scale3d(.5, .5, 0));
+//     width: 190vw;
 }

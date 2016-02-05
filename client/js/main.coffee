@@ -2,7 +2,7 @@
 
 window.constants =
   style:
-    gutter: 40
+    gutter: 36
     curves:
       smooth: [20, 10]
       spring: [75, 10]
@@ -18,10 +18,16 @@ window.events =
   onCollectionOverArticle: (event, $collection) ->
     $article = $('article.hovered')
     $card = $article.children('.card')
+    $color = $('<div></div>').appendTo('article')
+    $color.css
+#     $article.css
+#       opacity: .2
 
   onCollectionOutArticle: (event, $collection) ->
     $article = $('article.hovered')
     $card = $article.children('.card')
+#     $article.css
+#       opacity: .1
 
   onOpenCollectionsMenu: () ->
     $menu       = $(constants.dom.collectionsMenu )
@@ -83,6 +89,10 @@ window.events =
               position: ''
               top: ''
     # hide articles
+    $container.velocity
+      properties:
+        opacity: .5
+      options: options
     $articleContents.velocity
       properties:
         opacity: 0
@@ -152,7 +162,7 @@ window.events =
               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
                 events.onOpenCollectionsMenu() # open menu after close animation finishes
                 window.triedToOpen = false
-              
+    $container.velocity 'reverse'
     $articleContents.velocity 'reverse'
 
   onArticleResize: ($article) ->
@@ -264,6 +274,11 @@ window.init =
   #           width: $(@).width()  
 
   article: ($articles) ->
+    $articles.each ->
+      $(@).css
+        paddingTop:  12 + Math.random() * constants.style.gutter
+        paddingLeft: 12 + Math.random() * constants.style.gutter
+    
     $articles.droppable
       greedy: true
       hoverClass: "hovered"
@@ -357,15 +372,14 @@ window.init =
     
 
   container: ($container) ->
-    $container.css
-      'margin': constants.style.gutter
-      'margin-top': 0
-      'padding-top': constants.style.gutter  
-
+#     $container.css
+#       'margin': constants.style.gutter
+#       'margin-top': 0
+#       'padding-top': constants.style.gutter  
     $container.packery
       itemSelector: 'article'
       isOriginTop: true
-      gutter: constants.style.gutter
+      gutter: 0 #constants.style.gutter
 
     $container.packery 'bindResize'
 
