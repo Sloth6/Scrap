@@ -112,12 +112,18 @@ nav {
 //     width: 190vw;
 
     article {
+        background: yellow;
+        
         .parallaxLayer {
                     transform-origin: center center;
             -webkit-transform-origin: center center;
         }
         ul.articleCollections {
             white-space: nowrap;
+            z-index: 2;
+            position: absolute;
+            top: -$cell/2;
+            left:0;
             
             li.collection {
                 display: inline-block;
@@ -135,23 +141,21 @@ nav {
                     text-indent: -9999em;
                     height: $cell;
                     width: $cell;
+                    padding: 0;
                     color: transparent;
                     @include transition(.25s $defaultCurve);
                     @include transition-property(height, padding, color);
                 }
             }
-            
-            &:hover {
-              
-                li.collection {
-                    a {
-                        text-indent: 0;
-                        height: $cell * 2;
-                        width: -webkit-fit-content;
-                        padding: $cardPadding;
-                        color: $colorType;
-                    }
-                }
+        }
+        
+        &:hover {
+            ul.articleCollections li.collection a {
+                text-indent: 0;
+                height: $cell * 2;
+                width: -webkit-fit-content;
+                padding: 0 2pt;
+                color: $colorType;
             }
         }
     }

@@ -2658,24 +2658,32 @@ nav section .addForm article {
 #articleContainer {
   padding: 40pt;
 }
-/* line 115, ../../style/prototype.scss */
+/* line 114, ../../style/prototype.scss */
+#articleContainer article {
+  background: yellow;
+}
+/* line 117, ../../style/prototype.scss */
 #articleContainer article .parallaxLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 119, ../../style/prototype.scss */
+/* line 121, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections {
   white-space: nowrap;
+  z-index: 2;
+  position: absolute;
+  top: -4pt;
+  left: 0;
 }
-/* line 122, ../../style/prototype.scss */
+/* line 128, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection {
   display: inline-block;
 }
-/* line 126, ../../style/prototype.scss */
+/* line 132, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection:first-child a {
   border-left-width: 1px;
 }
-/* line 131, ../../style/prototype.scss */
+/* line 137, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection a {
   display: block;
   border: 1px solid #000000;
@@ -2683,6 +2691,7 @@ nav section .addForm article {
   text-indent: -9999em;
   height: 8pt;
   width: 8pt;
+  padding: 0;
   color: transparent;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -2693,11 +2702,11 @@ nav section .addForm article {
   -webkit-transition-property: height, padding, color;
   transition-property: height, padding, color;
 }
-/* line 147, ../../style/prototype.scss */
-#articleContainer article ul.articleCollections:hover li.collection a {
+/* line 153, ../../style/prototype.scss */
+#articleContainer article:hover ul.articleCollections li.collection a {
   text-indent: 0;
   height: 16pt;
   width: -webkit-fit-content;
-  padding: 4pt 4pt 4pt 4pt;
+  padding: 0 2pt;
   color: #000000;
 }

@@ -278,8 +278,8 @@ window.init =
   article: ($articles) ->
     $articles.each ->
       $(@).css
-        paddingTop:  12 + Math.random() * constants.style.gutter
-        paddingLeft: 12 + Math.random() * constants.style.gutter
+        marginTop:  12 + Math.random() * constants.style.gutter
+        marginLeft: 12 + Math.random() * constants.style.gutter
     
     $articles.droppable
       greedy: true
@@ -310,8 +310,8 @@ window.init =
       { x: progressX, y: progressY }
       
     getRotateValues = ($element, progress) ->
-      maxRotateY = if $element.is('a') then 45 else 45
-      maxRotateX = if $element.is('a') then 45 else 45
+      maxRotateY = if $element.is('a') then 22 else 22
+      maxRotateX = if $element.is('a') then 22 else 22
       rotateX = maxRotateY * (progress.y - .5)
       rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
       { x: rotateX, y: rotateY}
@@ -342,9 +342,15 @@ window.init =
           zIndex: 2
         $layers.each ->
           depth = parseFloat $(@).data('parallaxdepth')
-          scale =  (((scale - 1) + depth) / 2) + 1
+          scale = (((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
+          offset =
+            x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
+            y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+          console.log offset
           $(@).transition
             scale: scale
+            x: "#{offset.x}px"
+            y: "#{offset.y}px"
             easing: constants.style.easing
             duration: duration
       $element.mousemove (event) ->
@@ -357,10 +363,13 @@ window.init =
           rotateY: "#{rotate.y}deg"
         $layers.each ->
           depth = parseFloat $(@).data('parallaxdepth')
-          offset = 50 * depth
+          offset =
+            x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
+            y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+          parallax = 50 * depth
           $(@).css
-            x: offset * (-1 * (progress.x - .5))
-            y: offset * (-1 * (progress.y - .5))
+            x: offset.x + (parallax * (-1 * (progress.x - .5)))
+            y: offset.y + (parallax * (-1 * (progress.y - .5)))
       $element.mouseleave ->
         $element.css
           zIndex: 0
