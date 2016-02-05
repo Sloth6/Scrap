@@ -141,7 +141,6 @@ window.events =
 #           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
     $labels.not($destinationLabel).each ->
       $label = $(@)
-      console.log $label.attr 'class'
       if $destinationLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
@@ -315,19 +314,13 @@ window.init =
       rotateX = maxRotateY * (progress.y - .5)
       rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
       { x: rotateX, y: rotateY}
-    
     $elements = $('#articleContainer article, ul.collectionsMenu li a, .addForm .headerButton a')
-    easing = 
-#     $scale = 
-#     $elements.parent().css
-#       'perspective': '400px'
-#       '-webkit-perspective': '400px'
     $elements.each ->
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.125
       perspective = if $element.is('a') then 400 else 800
-      duration = 250
+      duration = 500
       $element.mouseenter (event) ->
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)

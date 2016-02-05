@@ -1,12 +1,21 @@
-head
-	script(src='/js/jquery/jquery.js')
-	script(src='/js/bookmarkletContent.js')
-
-body
-	p!=url
-	each collection, collectionKey in collections
-		if typeof(collection.name) != undefined
-			- var key = collection.collectionKey
-			li.collection(data-collectionkey=key, class=key)
-				.contents
-					a(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+html
+  head
+    script(src='/js/jquery/jquery.js')
+    script(src="/js/lib/velocity.min.js")
+    script(src='/js/bookmarkletContent.js')
+    link(rel='stylesheet', href='/style/bookmarklet.css')
+    link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
+  
+  body
+    // p!=url
+    h1.typeNav Saved
+    ul.collectionsMenu
+      li.collection.header
+        .contents
+          a.typeNav.smallCaps(href='#') Add Label
+      each collection, collectionKey in collections
+        if typeof(collection.name) != undefined
+          - var key = collection.collectionKey
+            li.collection(data-collectionkey=key, class=key)
+              .contents
+                a.typeNav(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name

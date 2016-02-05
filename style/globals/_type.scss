@@ -13,7 +13,6 @@ $fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
     -webkit-font-feature-settings: "pnum";
     font-feature-settings: "pnum";
 }
-
 $fontWeightThin:        100;
 $fontWeightExtraLight:  200;
 $fontWeightLight:       300;
@@ -104,6 +103,14 @@ $headerLeftMarginOffset:
     text-transform: uppercase !important;
 }
 
+
+@mixin typeTitleSmallCaps {
+    @include        smallCaps;
+    font-size:      $typeTitleSize * .75;
+    font-weight:    $fontWeightBold;
+    letter-spacing: (1em/16);
+}
+
 @mixin typeBodySmallCaps {
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
@@ -158,12 +165,22 @@ $headerLeftMarginOffset:
     -webkit-text-stroke: 1px $colorType;
 }
 
+@mixin navText {
+    @include typeTitle;
+    @include typeOutlineWhite;
+}
+
 html {
     @include typeBody;
     @include proportionalNums;
 }
+
 .typeTitle {
     @include typeTitle;
+    
+    &.smallCaps {
+        @include typeTitleSmallCaps;
+    }
 }
 
 .typeSubtitle {
@@ -195,6 +212,14 @@ html {
     
     &.smallCaps {
       @include typeSmallSmallCaps;
+    }
+}
+
+.typeNav {
+    @include navText;
+    
+    &.smallCaps, .smallCaps {
+        @include typeTitleSmallCaps;
     }
 }
 
