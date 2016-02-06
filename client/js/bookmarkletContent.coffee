@@ -3,8 +3,8 @@ window.constants =
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
   velocity:
     easing:
-      smooth: [20, 10]
-      spring: [50, 10]
+      smooth: [30, 10]
+      spring: [100, 10]
     duration: 1000
     
     
@@ -59,24 +59,31 @@ fancyHover = ($elements) ->
         duration: duration
     
 launch = ($header, $collections) ->
-  $header.hide()
+  $header.css('opacity', 0).hide()
   $collections.css('opacity', 0).hide()
   $header.velocity
     properties:
-      translateY: [0, -$header.height()]
+      translateY: [0, -$header.height() * 2]
+      rotateZ: [0, 45 * (Math.random() - .5)]
+      scaleX: [1, 0]
+      scaleY: [1, 2]
+      opacity: [1, 1]
     options:
       duration: constants.velocity.duration
-      easing: constants.velocity.easing.smooth
+      easing: constants.velocity.easing.spring
       begin: -> $header.show()
   $collections.each ->
     $(@).velocity
       properties:
         translateY: [$(window).height() - $(@).height() * 1.5, $(window).height()]
         opacity: [1, 1]
+        rotateZ: [0, 45 * (Math.random() - .5)]
+        scaleX: [1, .5]
+        scaleY: [1, 2]
       options:
         delay: 31.25 * $(@).index()
         duration: constants.velocity.duration
-        easing: constants.velocity.easing.smooth
+        easing: constants.velocity.easing.spring
         begin: -> $(@).show()
 
 slideInLabels = ($header, $menu, $collections) ->
@@ -88,14 +95,19 @@ slideInLabels = ($header, $menu, $collections) ->
       options:
         delay: 31.25 * $(@).index()
         duration: constants.velocity.duration
-        easing: constants.velocity.easing.smooth
+        easing: constants.velocity.easing.spring
   $header.velocity
     properties:
-      translateY: -$header.height()
+      translateY: -$header.height() * 2
+      rotateZ: 45 * (Math.random() - .5)
+      scaleX: 0
+      scaleY: 2
     options:
       duration: constants.velocity.duration
-      easing: constants.velocity.easing.smooth
-      complete: -> $header.hide()
+      easing: constants.velocity.easing.spring
+      complete: ->
+        $header.hide()
+        fancyHover $collections.not(':first-of-type').find('a')
   $('.container').velocity
     properties:
       backgroundColor: '#ffffff'
@@ -112,19 +124,25 @@ close = ($header, $menu, $collections) ->
   $chosen = $collections.filter('.chosen')
   $header.velocity
     properties:
-      translateY: -$header.height()
+      translateY: -$header.height() * 2
+      rotateZ: 45 * (Math.random() - .5)
+      scaleX: 0
+      scaleY: 2
     options:
       duration: constants.velocity.duration
-      easing: constants.velocity.easing.smooth
+      easing: constants.velocity.easing.spring
       complete: -> $header.hide()
   $collections.not('.chosen').each ->
     $(@).velocity
       properties:
         translateY: $(window).height()
+        rotateZ: 45 * (Math.random() - .5)
+        scaleX: 0
+        scaleY: 2
       options:
         delay: 31.25 * (($collections.length - 1) - $(@).index())
         duration: constants.velocity.duration/1.5
-        easing: constants.velocity.easing.smooth
+        easing: constants.velocity.easing.spring
         complete: ->
           unless $chosen.length > 0
             $(@).hide()
@@ -139,11 +157,14 @@ close = ($header, $menu, $collections) ->
       complete: ->
         $chosen.find('.contents').velocity
           properties:
-            translateY: -$chosen.offset().top-$chosen.height()*1.5
+            translateY: -$chosen.offset().top-$chosen.height()*2
+            rotateZ: 45 * (Math.random() - .5)
+            scaleX: 0
+            scaleY: 2
           options:
             delay: 500
             duration: constants.velocity.duration
-            easing: constants.velocity.easing.smooth
+            easing: constants.velocity.easing.spring
             complete: ->
               $collections.hide()
               removeFrame()
@@ -175,9 +196,7 @@ $ ->
   $header = $('h1')
   $menu = $('ul.collectionsMenu')
   $collections = $menu.find('li')
-  
-  fancyHover $collections.not(':first-of-type').find('a')
-  
+    
   launch $header, $collections
   
 #   rotateColor = ($element, hue)->
