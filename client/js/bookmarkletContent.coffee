@@ -4,9 +4,11 @@ window.constants =
   velocity:
     easing:
       smooth: [30, 10]
-      spring: [100, 10]
+      spring: [75, 10]
     duration: 1000
     
+randomRotate = ->
+  22 * (Math.random() - .5)
     
 fancyHover = ($elements) ->
   getProgressValues = ($element, scale) ->
@@ -64,7 +66,7 @@ launch = ($header, $collections) ->
   $header.velocity
     properties:
       translateY: [0, -$header.height() * 2]
-      rotateZ: [0, 45 * (Math.random() - .5)]
+      rotateZ: [0, randomRotate()]
       scaleX: [1, 0]
       scaleY: [1, 2]
       opacity: [1, 1]
@@ -77,7 +79,7 @@ launch = ($header, $collections) ->
       properties:
         translateY: [$(window).height() - $(@).height() * 1.5, $(window).height()]
         opacity: [1, 1]
-        rotateZ: [0, 45 * (Math.random() - .5)]
+        rotateZ: [0, randomRotate()]
         scaleX: [1, .5]
         scaleY: [1, 2]
       options:
@@ -94,12 +96,12 @@ slideInLabels = ($header, $menu, $collections) ->
         translateY: 0
       options:
         delay: 31.25 * $(@).index()
-        duration: constants.velocity.duration
-        easing: constants.velocity.easing.spring
+        duration: constants.velocity.duration / 1.5
+        easing: constants.velocity.easing.smooth
   $header.velocity
     properties:
       translateY: -$header.height() * 2
-      rotateZ: 45 * (Math.random() - .5)
+      rotateZ: randomRotate()
       scaleX: 0
       scaleY: 2
     options:
@@ -125,7 +127,7 @@ close = ($header, $menu, $collections) ->
   $header.velocity
     properties:
       translateY: -$header.height() * 2
-      rotateZ: 45 * (Math.random() - .5)
+      rotateZ: randomRotate()
       scaleX: 0
       scaleY: 2
     options:
@@ -136,7 +138,7 @@ close = ($header, $menu, $collections) ->
     $(@).velocity
       properties:
         translateY: $(window).height()
-        rotateZ: 45 * (Math.random() - .5)
+        rotateZ: randomRotate()
         scaleX: 0
         scaleY: 2
       options:
@@ -152,13 +154,13 @@ close = ($header, $menu, $collections) ->
       translateY: -$chosen.offset().top
     options:
       delay: 0
-      duration: constants.velocity.duration
+      duration: constants.velocity.duration / 1.5
       easing: constants.velocity.easing.smooth
       complete: ->
         $chosen.find('.contents').velocity
           properties:
             translateY: -$chosen.offset().top-$chosen.height()*2
-            rotateZ: 45 * (Math.random() - .5)
+            rotateZ: randomRotate()
             scaleX: 0
             scaleY: 2
           options:
