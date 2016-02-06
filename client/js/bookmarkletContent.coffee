@@ -1,10 +1,11 @@
 window.constants =
   style:
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+    scaleY: 4
   velocity:
     easing:
       smooth: [30, 10]
-      spring: [75, 10]
+      spring: [70, 10]
     duration: 1000
     
 randomRotate = ->
@@ -65,10 +66,10 @@ launch = ($header, $collections) ->
   $collections.css('opacity', 0).hide()
   $header.velocity
     properties:
-      translateY: [0, -$header.height() * 2]
+      translateY: [0, -$header.height() * constants.style.scaleY]
       rotateZ: [0, randomRotate()]
       scaleX: [1, 0]
-      scaleY: [1, 2]
+      scaleY: [1, constants.style.scaleY]
       opacity: [1, 1]
     options:
       duration: constants.velocity.duration
@@ -81,7 +82,7 @@ launch = ($header, $collections) ->
         opacity: [1, 1]
         rotateZ: [0, randomRotate()]
         scaleX: [1, .5]
-        scaleY: [1, 2]
+        scaleY: [1, constants.style.scaleY]
       options:
         delay: 31.25 * $(@).index()
         duration: constants.velocity.duration
@@ -91,19 +92,25 @@ launch = ($header, $collections) ->
 slideInLabels = ($header, $menu, $collections) ->
   $menu.data 'open', true
   $collections.each ->
+    rotateZ = if $(@).index() > 1 then randomRotate() else 0
+    scaleX  = if $(@).index() > 1 then .5 else 1
+    scaleY  = if $(@).index() > 1 then constants.style.scaleY else 1
     $(@).velocity
       properties:
         translateY: 0
+        rotateZ: [0, rotateZ]
+        scaleX: [1, scaleX]
+        scaleY: [1, scaleY]
       options:
         delay: 31.25 * $(@).index()
-        duration: constants.velocity.duration / 1.5
-        easing: constants.velocity.easing.smooth
+        duration: constants.velocity.duration # / 1.5
+        easing: constants.velocity.easing.spring
   $header.velocity
     properties:
-      translateY: -$header.height() * 2
+      translateY: -$header.height() * constants.style.scaleY
       rotateZ: randomRotate()
       scaleX: 0
-      scaleY: 2
+      scaleY: constants.style.scaleY
     options:
       duration: constants.velocity.duration
       easing: constants.velocity.easing.spring
@@ -117,6 +124,7 @@ slideInLabels = ($header, $menu, $collections) ->
     options:
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
+      begin: -> $('.container').css 'background-color', 'transparent'
       
 removeFrame = ->
   parent.window.postMessage("removetheiframe", "*")
@@ -126,24 +134,25 @@ close = ($header, $menu, $collections) ->
   $chosen = $collections.filter('.chosen')
   $header.velocity
     properties:
-      translateY: -$header.height() * 2
+      translateY: -$header.height() * constants.style.scaleY
       rotateZ: randomRotate()
       scaleX: 0
-      scaleY: 2
+      scaleY: constants.style.scaleY
     options:
       duration: constants.velocity.duration
       easing: constants.velocity.easing.spring
       complete: -> $header.hide()
   $collections.not('.chosen').each ->
+    translateY = if $(@).index() > $chosen.index() then $(window).height() else -$(window).height()
     $(@).velocity
       properties:
-        translateY: $(window).height()
+        translateY: translateY
         rotateZ: randomRotate()
         scaleX: 0
-        scaleY: 2
+        scaleY: constants.style.scaleY
       options:
-        delay: 31.25 * (($collections.length - 1) - $(@).index())
-        duration: constants.velocity.duration/1.5
+        delay: if $chosen.length > 0 then 0 else 31.25 * (($collections.length - 1) - $(@).index())
+        duration: constants.velocity.duration/1.25
         easing: constants.velocity.easing.spring
         complete: ->
           unless $chosen.length > 0
@@ -159,10 +168,10 @@ close = ($header, $menu, $collections) ->
       complete: ->
         $chosen.find('.contents').velocity
           properties:
-            translateY: -$chosen.offset().top-$chosen.height()*2
+            translateY: -$chosen.offset().top - $chosen.height() * constants.style.scaleY
             rotateZ: randomRotate()
             scaleX: 0
-            scaleY: 2
+            scaleY: constants.style.scaleY
           options:
             delay: 500
             duration: constants.velocity.duration
