@@ -2614,15 +2614,25 @@ h1, ul {
 }
 
 /* line 20, ../../style/bookmarklet.scss */
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+}
+
+/* line 29, ../../style/bookmarklet.scss */
 ul.collectionsMenu {
   list-style-type: none;
 }
-/* line 27, ../../style/bookmarklet.scss */
+/* line 36, ../../style/bookmarklet.scss */
 ul.collectionsMenu li.header a {
   position: relative;
   top: .125em;
 }
-/* line 33, ../../style/bookmarklet.scss */
+/* line 42, ../../style/bookmarklet.scss */
 ul.collectionsMenu li a {
   width: -webkit-fit-content;
   width: -moz-fit-content;

@@ -96,12 +96,20 @@ slideInLabels = ($header, $menu, $collections) ->
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
       complete: -> $header.hide()
+  $('.container').velocity
+    properties:
+      backgroundColor: '#ffffff'
+      backgroundColorAlpha: [0.9, 0]
+    options:
+      duration: constants.velocity.duration
+      easing: constants.velocity.easing.smooth
       
 removeFrame = ->
   parent.window.postMessage("removetheiframe", "*")
   console.log 'remove'
       
 close = ($header, $menu, $collections) ->
+  $chosen = $collections.filter('.chosen')
   $header.velocity
     properties:
       translateY: -$header.height()
@@ -118,20 +126,20 @@ close = ($header, $menu, $collections) ->
         duration: constants.velocity.duration/1.5
         easing: constants.velocity.easing.smooth
         complete: ->
-          unless $collections.filter('.chosen').length > 0
+          unless $chosen.length > 0
             $(@).hide()
             removeFrame() if $(@).index() is $collections.length - 1 # last collection
-  $collections.filter('.chosen').find('.contents').velocity
+  $chosen.find('.contents').velocity
     properties:
-      translateY: -$collections.filter('.chosen').offset().top
+      translateY: -$chosen.offset().top
     options:
       delay: 0
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
       complete: ->
-        $collections.filter('.chosen').find('.contents').velocity
+        $chosen.find('.contents').velocity
           properties:
-            translateY: -$collections.filter('.chosen').offset().top-$collections.filter('.chosen').height()*1.5
+            translateY: -$chosen.offset().top-$chosen.height()*1.5
           options:
             delay: 500
             duration: constants.velocity.duration
@@ -139,6 +147,18 @@ close = ($header, $menu, $collections) ->
             complete: ->
               $collections.hide()
               removeFrame()
+  $chosen.find('a').transition
+    scale: 1
+    rotateX: 0
+    rotateY: 0
+    easing: constants.style.easing
+    duration: constants.velocity.duration
+  $('.container').velocity
+    properties:
+      backgroundColorAlpha: 0
+    options:
+      duration: constants.velocity.duration
+      easing: constants.velocity.easing.smooth
               
 
 addCollection = ($collection) ->
@@ -160,16 +180,16 @@ $ ->
   
   launch $header, $collections
   
-  rotateColor = ($element, hue)->
-    $element.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
-    
-  $header.add($collections.first().find('a')).each ->
-    hue = Math.floor(Math.random() * 360)
-    $a = $(@)
-    rotateColor $a, hue
-    setInterval ->
-      hue += 30
-    , 1000
+#   rotateColor = ($element, hue)->
+#     $element.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
+#     
+#   $header.add($collections.first().find('a')).each ->
+#     hue = Math.floor(Math.random() * 360)
+#     $a = $(@)
+#     rotateColor $a, hue
+#     setInterval ->
+#       hue += 30
+#     , 1000
   
   $collections.first().mouseenter -> slideInLabels $header, $menu, $collections
   

@@ -11,14 +11,15 @@ html
   
   body
     // p!=url
-    h1.typeNav Saved
-    ul.collectionsMenu
-      li.collection.header
-        .contents
-          a.typeNav.smallCaps(href='#') Add Label
-      each collection, collectionKey in collections
-        if typeof(collection.name) != undefined
-          - var key = collection.collectionKey
-            li.collection(data-collectionkey=key, class=key)
-              .contents
-                a.typeNav(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+    .container
+      h1.typeNav Saved
+      ul.collectionsMenu
+        li.collection.header
+          .contents
+            a.typeNav.smallCaps(href='#') Add Label
+        each collection, collectionKey in collections
+          if typeof(collection.name) != undefined
+            - var key = collection.collectionKey
+              li.collection(data-collectionkey=key, class=key)
+                .contents
+                  a.typeNav(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
