@@ -14,22 +14,19 @@ window.constants =
     collections: 'ul.collectionsMenu li.collection'
 
 stopProp = (event) -> event.stopPropagation()
-
   
 window.events =
-  onCollectionOverArticle: (event, $collection) ->
-    $article = $('article.hovered')
+  onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
     $color = $('<div></div>').appendTo('article')
-#     $color.css
-#     $article.css
-#       opacity: .2
+    $article.css
+      opacity: .2
 
-  onCollectionOutArticle: (event, $collection) ->
-    $article = $('article.hovered')
+  onCollectionOutArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
-#     $article.css
-#       opacity: .1
+    console.log 'out'
+    $article.css
+      opacity: 1
 
   onOpenCollectionsMenu: () ->
     $menu       = $(constants.dom.collectionsMenu )
@@ -277,9 +274,9 @@ window.init =
       greedy: true
       hoverClass: "hovered"
       over: (event, object) ->
-        events.onCollectionOverArticle event, object.draggable
+        events.onCollectionOverArticle $(@), event, object.draggable
       out: (event, object) ->
-        events.onCollectionOutArticle event, object.draggable
+        events.onCollectionOutArticle $(@), event, object.draggable
       drop: ( event, ui ) ->
         $collection = ui.draggable.clone()
         $collection.css 'top':0, 'left':0
