@@ -195,13 +195,11 @@ close = ($header, $menu, $collections) ->
 
 addCollection = ($collection) ->
   $collection.addClass('chosen')
-#   	collectionKey = $collection.data 'collectionkey'
-#   	console.log "addCollection #{collectionKey} to #{articleId}"
-#   	host = document.location.host
-#   	$.post("http://localhost:9001/addArticleCollection", { articleId, collectionKey }).
-#   		fail(() -> console.log 'Failed to addCollection').
-#   		always close
-#   removeFrame()
+  collectionKey = $collection.data 'collectionkey'
+  console.log "addCollection #{collectionKey} to #{articleId}"
+  host = document.location.host
+  $.post("http://localhost:9001/addArticleCollection", { articleId, collectionKey }).
+    fail(() -> console.log 'Failed to addCollection')
   
 $ ->
   $header = $('h1')
@@ -229,9 +227,8 @@ $ ->
       event.stopPropagation()
       addCollection $collection
       close($header, $menu, $collections)
-      
   $('body').click -> close($header, $menu, $collections)
-#   setTimeout ->
-#     close($header, $menu, $collections) unless $menu.data('open')
-#   , 2000
+  setTimeout ->
+    close($header, $menu, $collections) unless $menu.data('open')
+  , 1500
 

@@ -14,22 +14,19 @@ window.constants =
     collections: 'ul.collectionsMenu li.collection'
 
 stopProp = (event) -> event.stopPropagation()
-
   
 window.events =
-  onCollectionOverArticle: (event, $collection) ->
-    $article = $('article.hovered')
+  onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
     $color = $('<div></div>').appendTo('article')
-#     $color.css
-#     $article.css
-#       opacity: .2
+    $article.css
+      opacity: .2
 
-  onCollectionOutArticle: (event, $collection) ->
-    $article = $('article.hovered')
+  onCollectionOutArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
-#     $article.css
-#       opacity: .1
+    console.log 'out'
+    $article.css
+      opacity: 1
 
   onOpenCollectionsMenu: () ->
     $menu       = $(constants.dom.collectionsMenu )
@@ -254,7 +251,6 @@ window.init =
         $(ui.helper).hover stopProp, stopProp
       stop: (event, ui) ->
         $(ui.helper).off 'hover'
-
     $collections.each ->
       $collection = $(@)
       $collection.zIndex(2).
@@ -267,12 +263,6 @@ window.init =
           event.preventDefault())
       $collection.css
         width: $(@).width()  
-      console.log 'hi', $(@).width()
-  #       mousedown ->
-  #         console.log $collection
-  #         # keep width the same on drag
-  #         $(@).css
-  #           width: $(@).width()  
 
   article: ($articles) ->
     $articles.each ->
@@ -284,12 +274,13 @@ window.init =
       greedy: true
       hoverClass: "hovered"
       over: (event, object) ->
-        events.onCollectionOverArticle event, object.draggable
+        events.onCollectionOverArticle $(@), event, object.draggable
       out: (event, object) ->
-        events.onCollectionOutArticle event, object.draggable
+        events.onCollectionOutArticle $(@), event, object.draggable
       drop: ( event, ui ) ->
         $collection = ui.draggable.clone()
         $collection.css 'top':0, 'left':0
+        $.Velocity.hook($collection.find('.contents'), 'translateY', "0px")
         init.collection $collection
         $collection.show()
         articleModel.addCollection $(@), $collection
@@ -307,7 +298,6 @@ window.init =
       progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
       progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
       { x: progressX, y: progressY }
-      
     getRotateValues = ($element, progress) ->
       maxRotateY = if $element.is('a') then 22 else 22
       maxRotateX = if $element.is('a') then 22 else 22
@@ -320,7 +310,7 @@ window.init =
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.125
       perspective = if $element.is('a') then 400 else 800
-      duration = 500
+      duration = if $element.is('a') then 250 else 500
       $element.mouseenter (event) ->
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
@@ -381,7 +371,6 @@ window.init =
             y: 0
             easing: constants.style.easing
             duration: duration
-    
 
   container: ($container) ->
     $container.packery
