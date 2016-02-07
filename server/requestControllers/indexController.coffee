@@ -25,7 +25,8 @@ module.exports =
     models.User.find( options ).done (err, user) ->
       return callback err, res if err?
       return indexPage res unless user?
-
+      
+      user.Articles.length = 20
       collections = {}
       for collection in user.Collections 
         key = collection.collectionKey

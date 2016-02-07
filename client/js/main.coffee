@@ -339,7 +339,7 @@ window.init =
           offset =
             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-          console.log offset
+          # console.log offset
           $(@).transition
             scale: scale
             x: "#{offset.x}px"

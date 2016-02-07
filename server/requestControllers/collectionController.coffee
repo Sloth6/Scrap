@@ -57,12 +57,13 @@ module.exports =
         callback null
 
   uploadFile : (req, res, app, callback) ->
-    { title, type, collectionKey } = req.query
+    userId = req.session.currentUserId
+    { title, type } = req.query
     title = title or 'undefined'
     
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
     file_key = uuid.v4().split('-')[0] # Generate uuid for filename
-    path = "collections/#{collectionKey}/#{file_key}/#{title}"
+    path = "users/#{userId}/#{file_key}/#{title}"
 
     # Creates the JSON policy according to Amazon S3's CORS uploads specfication (http://aws.amazon.com/articles/1434)
     policy = JSON.stringify({

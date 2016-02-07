@@ -32,8 +32,6 @@ module.exports =
 
     newArticle rawContent, user, (err, article) ->
       return callback(err) if err
-      console.log article
-      console.log user
       # if collection?
       #   html = articleRenderer article, [collection]
       #   room = collection.collectionKey    
