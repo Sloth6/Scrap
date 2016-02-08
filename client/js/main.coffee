@@ -211,6 +211,12 @@ window.events =
 #             position: 'absolute'
 #             top: 0
 #           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
+    $destinationLabel.find('a').transition
+      scale: 1
+      rotateX: 0
+      rotateY: 0
+      easing: constants.style.easing
+      duration: options.duration
     $labels.not($destinationLabel).each ->
       $label = $(@)
       if $destinationLabel.index() < $label.index() # below
