@@ -395,9 +395,9 @@ window.init =
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.125
-      perspective = if $element.is('a') then 400 else 800
       duration = if $element.is('a') then 250 else 250
       $element.mouseenter (event) ->
+        perspective = $element.height()*2
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
         $element.transition
