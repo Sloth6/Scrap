@@ -49,25 +49,24 @@ unobscureArticles = ($articles) ->
   
 retractNav = ->
   $sections = $(constants.dom.nav).children()
-  console.log 'retractNav'
-  $sections.each ->
-    translateY = if $(@).hasClass('center') then -$(@).height()*1.25 / 2 else -$(@).height()*1.25
-    $(@).velocity
-      properties:
-        translateY: translateY
-#         opacity: 0
-      options:
-        duration: 1000
-        easing: constants.velocity.easing.smooth
+  unless $(constants.dom.collectionsMenu).hasClass('open')
+    $sections.each ->
+      translateY = if $(@).hasClass('center') then -$(@).height()*1.25 / 2 else -$(@).height()*1.25
+      $(@).velocity
+        properties:
+          translateY: translateY
+        options:
+          duration: 1000
+          easing: constants.velocity.easing.smooth
 
 extendNav = ->
   $sections = $(constants.dom.nav).children()
-  console.log 'extendNav'
   $sections.velocity
     properties:
       translateY: 0
     options:
       duration: 1000
+      queue: false
       easing: constants.velocity.easing.smooth
   
 window.events =
@@ -170,7 +169,6 @@ window.events =
 
   onCollectionOutArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
-    console.log 'out'
     $article.css
       opacity: 1
 
@@ -273,12 +271,16 @@ window.events =
 #             position: 'absolute'
 #             top: 0
 #           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
-    $destinationLabel.find('a').transition
-      scale: 1
-      rotateX: 0
-      rotateY: 0
-      easing: constants.style.easing
-      duration: options.duration
+    $destinationLabel.find('span').velocity
+      properties:
+        scale: 1
+        rotateX: 0
+        rotateY: 0
+        translateX: 0
+        translateY: 0
+      options:
+        duration: options.duration
+        easing:   options.easing
     $labels.not($destinationLabel).each ->
       $label = $(@)
       if $destinationLabel.index() < $label.index() # below
@@ -366,25 +368,19 @@ window.events =
         if window.scrollDirection isnt 'up'
           events.onChangeScrollDirection 'up'
       window.oldScrollTop = scrollTop
-#     console.log scrollTop
-    if scrollTop < 36
+    if scrollTop <= 0
       extendNav() unless $('nav').children().hasClass('velocity-animating')
-      console.log 'extend'
     else
       unless window.scrollDirection is 'up'
         retractNav() unless $('nav').children().hasClass('velocity-animating')
-        console.log 'retract'
         
   onChangeScrollDirection: (direction) ->
     window.scrollDirection = direction
-    if $(window).scrollTop() > 36
+    if $(window).scrollTop() > 0
       if direction is 'up'
         extendNav()
-        console.log 'extend'
       else
-  #       unless $(window).scrollTop() < 50
         retractNav()
-        console.log 'retract'
 
 window.articleModel = 
   getCollectionKeys: ($article) ->
@@ -425,11 +421,12 @@ window.init =
       $collection.zIndex(2).
         draggable(draggableOptions).
         find('a').click((event) ->
+          event.stopPropagation()
+          event.preventDefault()
           collectionKey = $collection.data('collectionkey')
           events.onSwitchToCollection collectionKey
           events.onCloseCollectionsMenu()
-          event.stopPropagation()
-          event.preventDefault())
+        )
       $collection.css
         width: $(@).width()  
 
@@ -462,7 +459,6 @@ window.init =
         $article = $(@)
         $('body').click (event) ->
           events.onArticleClose(event, $article) unless $article.is(':hover')
-  #         console.log 
     $articles.mouseenter -> events.onArticleMouseenter event, $(@)
     $articles.mousemove  -> events.onArticleMousemove  event, $(@)
     $articles.mouseleave -> events.onArticleMouseleave event, $(@)
@@ -497,7 +493,6 @@ window.init =
       $element.addClass 'parallaxHover'
       $element.mouseenter (event) ->
         unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
-          console.log 'scale', scale
           $element.wrapInner '<span></span>' if $element.is('a')
           perspective = $element.height()*2
           $element.wrapInner $('<div></div>').addClass('transform')
@@ -607,8 +602,7 @@ window.init =
       event.preventDefault()
       
   nav: ($nav) ->
-    $nav.mouseenter ->
-      extendNav()
+    $nav.hover extendNav, retractNav
 
   collectionsMenu: ($menu) ->
     # cycle colors on Recents
@@ -620,8 +614,8 @@ window.init =
         $a.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
       , 1000
     $menu.find('li a').click (event) ->
+      event.stopPropagation()
       if $(@).parents('li').hasClass('openMenuButton') # only run if is the current open menu button
-        event.stopPropagation()
         if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
           events.onOpenCollectionsMenu()
         else # not ready to open
