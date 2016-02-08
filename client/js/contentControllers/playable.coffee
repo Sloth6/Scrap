@@ -1,29 +1,26 @@
 # Every playable type passes the function for creating its iframe
-# All .playable types must have a preview and header
-bindPlayableControls = ($content, getIframe) ->
-  preview = $content.find '.preview'
-  header  = $content.find 'header'
+# All .playable types must have a $preview and header
+bindPlayableControls = ($article, getIframe) ->
+  $preview    = $article.find '.preview'
+  $header     = $article.find 'header'
+  $playButton = $article.find '.playButton'
 
-  unless preview.length
-    throw 'playable object does not have preview'+ $content[0]
+  unless $preview.length
+    throw 'playable object does not have preview'+ $article[0]
 
-  unless header.length
-    throw 'playable object does not have header'+ $content[0]
+  unless $header.length
+    throw 'playable object does not have header'+ $article[0]
   
   #Load iframe, hide preview
-  $content.click () ->
-    unless $content.hasClass 'playing'
-      getIframe($content).insertBefore preview
-      preview.hide()
-      $content.addClass 'playing'
-      
-  #Remove iframe, show preview
-#   header.click (event) ->
-#     if $content.hasClass 'playing'
-#       stopPlaying $content
-#       event.stopPropagation()
+  $article.click () ->
+    unless $article.hasClass 'playing'
+      getIframe($article).insertBefore $preview
+      $preview.hide()
+      $playButton.hide()
+      $article.addClass 'playing'
 
-stopPlaying = ($content) ->
-  $content.removeClass 'playing'
-  $content.find('iframe').remove()
-  $content.find('.preview').show()
+stopPlaying = ($article) ->
+  $article.removeClass 'playing'
+  $article.find('iframe').remove()
+  $article.find('.playButton').show()
+  $article.find('.preview').show()

@@ -14,11 +14,38 @@ window.constants =
     collections: 'ul.collectionsMenu li.collection'
 
 stopProp = (event) -> event.stopPropagation()
+
+obscureArticles = ($articles) ->
+  $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+  options     =
+    duration: 500
+    easing:   constants.velocity.easing.smooth
+  $articles.velocity
+    properties:
+      opacity: .5
+    options: options
+  $contents.velocity
+    properties:
+      opacity: 0
+    options: options
+    
+unobscureArticles = ($articles) ->
+  $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+  options     =
+    duration: 500
+    easing:   constants.velocity.easing.smooth
+  $articles.velocity
+    properties:
+      opacity: 1
+    options: options
+  $contents.velocity
+    properties:
+      opacity: 1
+    options: options
   
 window.events =
   onArticleLoad: ($article) ->
     if $article.hasClass('playable')
-      console.log 'hiii'
       $article.find('.artist', '.source').css
         position: 'absolute'
         opacity: 0
@@ -42,6 +69,7 @@ window.events =
         scale: 1
         easing: constants.style.easing
         duration: 250
+      
   
   onArticleMousemove: (event, $article) ->
     if $article.hasClass('playable')
@@ -61,6 +89,16 @@ window.events =
         cursor: 'none'
       $article.find('.artist, .source').css
         opacity: 0
+        
+  onArticleOpen: (event, $article) ->
+    obscureArticles ($(constants.dom.articleContainer).find('article').not($article))
+    console.log 'open'
+    
+  onArticleClose: (event, $article) ->
+    unobscureArticles ($(constants.dom.articleContainer).find('article').not($article))
+    if $article.hasClass('playable')
+      stopPlaying $article
+    console.log 'close'
   
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
@@ -82,7 +120,6 @@ window.events =
     $labelsButton = $menu.find('li.labelsButton')
     $labels     = $menuItems.not('li.labelsButton')
     $openLabel  = $menu.children(".#{window.openCollection}")
-    $articleContents = $container.find('article .card').children().add($container.find('article ul, article .articleControls'))
     options     =
       duration: 1000
       easing:   constants.velocity.easing.smooth
@@ -133,15 +170,7 @@ window.events =
             $label.css
               position: ''
               top: ''
-    # hide articles
-    $container.velocity
-      properties:
-        opacity: .5
-      options: options
-    $articleContents.velocity
-      properties:
-        opacity: 0
-      options: options
+    obscureArticles $container.find('article')
     $menu.data 'canOpen', false
 
   onCloseCollectionsMenu: () ->
@@ -206,8 +235,7 @@ window.events =
               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
                 events.onOpenCollectionsMenu() # open menu after close animation finishes
                 window.triedToOpen = false
-    $container.velocity 'reverse'
-    $articleContents.velocity 'reverse'
+    unobscureArticles $container.find('article')
 
   onArticleResize: ($article) ->
     $article.width  $article.children('.card').outerWidth()
@@ -333,6 +361,12 @@ window.init =
         event.stopPropagation()
         true
     
+    $articles.click ->
+      events.onArticleOpen event, $(@)
+      $article = $(@)
+      $('body').click (event) ->
+        events.onArticleClose(event, $article) unless $article.is(':hover')
+#         console.log 
     $articles.mouseenter -> events.onArticleMouseenter event, $(@)
     $articles.mousemove  -> events.onArticleMousemove  event, $(@)
     $articles.mouseleave -> events.onArticleMouseleave event, $(@)
