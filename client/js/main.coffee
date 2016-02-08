@@ -16,6 +16,12 @@ window.constants =
 stopProp = (event) -> event.stopPropagation()
   
 window.events =
+  onArticleMouseenter: ($article) ->
+  
+  onArticleMousemove: ($article) ->
+
+  onArticleMouseleave: ($article) ->
+  
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
     $color = $('<div></div>').appendTo('article')
@@ -164,8 +170,8 @@ window.events =
     $articleContents.velocity 'reverse'
 
   onArticleResize: ($article) ->
-    $(@).width $(@).children('.card').outerWidth()
-    $(@).height $(@).children('.card').outerHeight()
+    $article.width  $article.children('.card').outerWidth()
+    $article.height $article.children('.card').outerHeight()
     $( constants.dom.articleContainer ).packery()
 
   # direction = ['up', 'down']
@@ -287,7 +293,10 @@ window.init =
         event.stopPropagation()
         true
     
-    $articles.each () -> events.onArticleResize($(@))
+    $articles.each -> events.onArticleResize $(@)
+    $articles.mouseenter -> events.onArticleMouseenter $(@)
+    $articles.mousemove  -> events.onArticleMousemove $(@)
+    $articles.mouseleave -> events.onArticleMouseleave $(@)
     $articles.find('img').load () -> 
       events.onArticleResize($(@))
       
@@ -310,7 +319,7 @@ window.init =
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.125
       perspective = if $element.is('a') then 400 else 800
-      duration = if $element.is('a') then 250 else 500
+      duration = if $element.is('a') then 250 else 250
       $element.mouseenter (event) ->
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
@@ -349,7 +358,7 @@ window.init =
           offset =
             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-          parallax = 50 * depth
+          parallax = 100 * depth
           $(@).css
             x: offset.x + (parallax * (-1 * (progress.x - .5)))
             y: offset.y + (parallax * (-1 * (progress.y - .5)))

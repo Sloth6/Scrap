@@ -69,24 +69,27 @@ mixin articleMixin(article, collections)
             source(src = content.url)
         
         when 'soundcloud'
-          .preview(title='Play “' + content.title + '”')
+          .preview.parallaxLayer(data-parallaxdepth='0', title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
           header
-            .top
-              h1.headerType.title!=content.title
-              .artist.smallType!=content.author_name
-            .detail
+            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -48})
+              .artist.smallType.parallaxLayer(data-parallaxdepth='.2')!=content.author_name
+              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.25')!=content.title
+            .detail.parallaxLayer(data-parallaxdepth='.2', data-parallaxoffset={x: 0, y: 24})
               .source.smallType.smallCaps SoundCloud
+          .playButton.parallaxLayer(data-parallaxdepth='.3')
         
         when 'youtube'
-          .preview(title='Play “' + content.title + '”')
+          .preview.parallaxLayer(data-parallaxdepth='0', title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
           header
-            .top
-              h1.headerType.title!=content.title
+            .top.parallaxLayer(data-parallaxdepth='.2', data-parallaxoffset={x: 0, y: -48})
               .artist.smallType Artist
-            .detail
+              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.05')!=content.title
+            .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 24})
               .source.smallType.smallCaps youtube
+          .playButton.parallaxLayer(data-parallaxdepth='.5')
+          
   
         when 'text'
           //- contentEditable="false", designmode="on"

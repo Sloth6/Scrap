@@ -217,22 +217,6 @@ body {
             }
         }
         
-        &.youtube {
-            width: intrinsic;
-            
-            .content {
-                
-                .card {
-                    max-width: $articleWidthVideo;
-                    width: intrinsic;
-                    padding: 0px;
-                    
-                    iframe {
-                        margin: $hideImageWhiteBorder;
-                    }
-                }
-            }
-        }
         
         &.file {
             $foldWidth: 48px;
@@ -288,8 +272,34 @@ body {
             }
         }
         
-        &.playable {
+        &.soundcloud {
+          
+            .card {
+                width: $articleSide;
+                height: $articleSide;
+            }
+        }
+                  
+        &.youtube {
             
+            .content {
+                
+                .card {
+                    max-width: $articleWidthVideo;
+                    width: -webkit-fit-content;
+                    width: fit-content;
+                    padding: 0px;
+                    
+                    iframe {
+                        margin: $hideImageWhiteBorder;
+                    }
+                }
+            }
+        }
+        
+        
+        &.playable {
+          
             &.playing, &.playing.hover {
                 .card {
                     header {
@@ -300,32 +310,11 @@ body {
             }
             
             .card {
-                width: $articleSide;
                 padding: 0;
                 position: relative;
-                
-                &.hover, &:hover {
-                    
-                    .preview {
-                        &:after {
-                            opacity: 1;
-                            @include transform(scale(1)); 
-                        }
-                        
-                        
-                        img {
-                            opacity: .9;
-                        }
-                    }
-                    
-                    
-                    header {
-                        opacity: 1;
-                    }
-                }
-                
+                                
                 &:active {
-                    .preview:after {
+                    .playButtonr {
                         -webkit-filter: invert(1);
                         @include transform(scale(.95)); 
                     }
@@ -340,28 +329,6 @@ body {
                         @include transition(opacity .25s $defaultCurve);
                     }
                     
-                    &:after {
-                        content: '';
-                        background: url('/images/playButton.png') no-repeat;
-                        background-size: cover;
-                        height: 72px;
-                        width:  72px;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        margin-top: -36px;
-                        margin-left: -36px;
-                        z-index: 9000000;
-            
-                        opacity: 0;
-                        @include transform(scale(0));
-                        @include transition(.1825s $defaultCurve);
-                        @include transition-property(opacity,
-                                                     transform,
-                                             -webkit-transform,
-                                                -moz-transform);
-                                                
-                    }                
                 }
                 
                 header {
@@ -369,15 +336,12 @@ body {
                     padding: $cardPadding;
                     position: absolute;
                     top: 0;
-                    color: $colorCardBackground;
-                    opacity: 0;
-                    @include transition(opacity .25s $defaultCurve);
-                    background-image: -webkit-linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 90%, rgba(0,0,0,0.5) 100%);
-                    width: 100%;
-                    height: 100%;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
                     
                     .artist {
-                        margin-top: $cell/2;
+                        margin-bottom: $cell/2;
                     }
                     
                     .detail {
@@ -386,6 +350,20 @@ body {
             //                     margin-top: $midMargin; 
                     }
                 }
+                
+                .playButton {
+                    background: url('/images/playButton.png') no-repeat;
+                    background-size: cover;
+                    height: 72px;
+                    width:  72px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 9000000;
+//                     @include transition(.1825s $defaultCurve);
+//                     @include transition-property(-webkit-filter);
+                                            
+                }                
             }
         }
                 

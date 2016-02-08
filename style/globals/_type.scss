@@ -231,9 +231,13 @@ html {
     @include typeOutlineClear;
 }
 
+.typeOutlineWhite {
+    @include typeOutlineWhite;
+}
 .typeHeaderOutline {
     @include typeHeaderOutline;
 }
+
 
 .typeOutlineBlackOnHover {
     &:hover {
