@@ -10,6 +10,7 @@ window.constants =
       smooth: [20, 10]
       spring: [75, 10]
   dom:
+    nav: 'nav.main'
     collectionsMenu: 'ul.collectionsMenu'
     articleContainer: '#articleContainer'
     collections: 'ul.collectionsMenu li.collection'
@@ -45,6 +46,29 @@ unobscureArticles = ($articles) ->
       opacity: 1
     options: options
   $articles.removeClass 'obscured'
+  
+retractNav = ->
+  $sections = $(constants.dom.nav).children()
+  console.log 'retractNav'
+  $sections.each ->
+    translateY = if $(@).hasClass('center') then -$(@).height()*1.25 / 2 else -$(@).height()*1.25
+    $(@).velocity
+      properties:
+        translateY: translateY
+#         opacity: 0
+      options:
+        duration: 1000
+        easing: constants.velocity.easing.smooth
+
+extendNav = ->
+  $sections = $(constants.dom.nav).children()
+  console.log 'extendNav'
+  $sections.velocity
+    properties:
+      translateY: 0
+    options:
+      duration: 1000
+      easing: constants.velocity.easing.smooth
   
 window.events =
   onArticleLoad: ($article) ->
@@ -286,9 +310,6 @@ window.events =
     $article.height $article.children('.card').outerHeight()
     $( constants.dom.articleContainer ).packery()
 
-  # direction = ['up', 'down']
-  onChangeScrollDirection: (direction) ->
-
   onSwitchToCollection: (collectionKey) ->
     $container  = $(constants.dom.articleContainer)
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
@@ -334,6 +355,36 @@ window.events =
   onResize: () ->
 
   onScroll: () ->
+    scrollTop = $(window).scrollTop()
+    
+    # detect direction change
+    if window.oldScrollTop isnt scrollTop
+      if window.oldScrollTop < scrollTop
+        if window.scrollDirection isnt 'down'
+          events.onChangeScrollDirection 'down'
+      else
+        if window.scrollDirection isnt 'up'
+          events.onChangeScrollDirection 'up'
+      window.oldScrollTop = scrollTop
+#     console.log scrollTop
+    if scrollTop < 36
+      extendNav() unless $('nav').children().hasClass('velocity-animating')
+      console.log 'extend'
+    else
+      unless window.scrollDirection is 'up'
+        retractNav() unless $('nav').children().hasClass('velocity-animating')
+        console.log 'retract'
+        
+  onChangeScrollDirection: (direction) ->
+    window.scrollDirection = direction
+    if $(window).scrollTop() > 36
+      if direction is 'up'
+        extendNav()
+        console.log 'extend'
+      else
+  #       unless $(window).scrollTop() < 50
+        retractNav()
+        console.log 'retract'
 
 window.articleModel = 
   getCollectionKeys: ($article) ->
@@ -499,7 +550,7 @@ window.init =
           $element.data('closingHover', true)
           $transform = $element.find('.transform')
           $element.add($element.parents('li')).css
-            zIndex: 0
+            zIndex: ''
           $transform.velocity
             properties:
               scale: 1
@@ -554,6 +605,10 @@ window.init =
       $('#newCollectionForm [type=text]').val ''
       socket.emit 'addCollection', { name }
       event.preventDefault()
+      
+  nav: ($nav) ->
+    $nav.mouseenter ->
+      extendNav()
 
   collectionsMenu: ($menu) ->
     # cycle colors on Recents
@@ -584,6 +639,7 @@ $ ->
   init.container $( constants.dom.articleContainer )
   init.collection $( constants.dom.collections )
   init.collectionsMenu $( constants.dom.collectionsMenu )
+  init.nav $(constants.dom.nav)
   init.addCollectionForm()
   init.parallaxHover()
   initAddArticleForm()
@@ -605,8 +661,10 @@ $ ->
   events.onResize()
   $(window).scroll -> events.onScroll()
   events.onScroll()
+  window.oldScrollTop = 0
+  window.scrollDirection = 'down'
 
-  # if draggable
+  # if  draggable
   #   itemElems = $container.packery('getItemElements')
   #   for elem in itemElems
   #     draggie = new Draggabilly( elem )
