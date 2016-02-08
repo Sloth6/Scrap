@@ -16,11 +16,30 @@ window.constants =
 stopProp = (event) -> event.stopPropagation()
   
 window.events =
-  onArticleMouseenter: ($article) ->
+  onArticleMouseenter: (event, $article) ->
+#     console.log $article
+    if $article.hasClass('playable')
+      $button = $article.find('.playButton')
+      $button.data('startPos', {x: $button.offset().left, y: $button.offset().top})
+      $('body').css
+        cursor: 'none'
+#       console.log $button.data('startPos')
   
-  onArticleMousemove: ($article) ->
+  onArticleMousemove: (event, $article) ->
+    if $article.hasClass('playable')
+      $button = $article.find('.playButton')
+#       console.log $button.data('startPos')
+      $button.css
+        x: (event.clientX * (1/1)) - $button.data('startPos').x - $button.width()  / 2
+        y: (event.clientY * (1/1))- $button.data('startPos').y - $button.height() / 2
 
-  onArticleMouseleave: ($article) ->
+  onArticleMouseleave: (event, $article) ->
+    if $article.hasClass('playable')
+      $('.playButton').transition
+        x: 0
+        y: 0
+      $('body').css
+        cursor: 'none'
   
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
@@ -294,9 +313,9 @@ window.init =
         true
     
     $articles.each -> events.onArticleResize $(@)
-    $articles.mouseenter -> events.onArticleMouseenter $(@)
-    $articles.mousemove  -> events.onArticleMousemove $(@)
-    $articles.mouseleave -> events.onArticleMouseleave $(@)
+    $articles.mouseenter -> events.onArticleMouseenter event, $(@)
+    $articles.mousemove  -> events.onArticleMousemove  event, $(@)
+    $articles.mouseleave -> events.onArticleMouseleave event, $(@)
     $articles.find('img').load () -> 
       events.onArticleResize($(@))
       
