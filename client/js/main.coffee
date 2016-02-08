@@ -4,6 +4,7 @@ window.constants =
   style:
     gutter: 36
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
+    globalScale: 1/2
   velocity:
     easing:
       smooth: [20, 10]
@@ -22,7 +23,7 @@ obscureArticles = ($articles) ->
     easing:   constants.velocity.easing.smooth
   $articles.velocity
     properties:
-      opacity: .5
+      opacity: .125
     options: options
   $contents.velocity
     properties:
@@ -93,32 +94,55 @@ window.events =
   onArticleOpen: (event, $article) ->
     obscureArticles ($(constants.dom.articleContainer).find('article').not($article))
     $container = $(constants.dom.articleContainer)
+    scale = 1 / constants.style.globalScale
+    $article.addClass 'open'
     offset = 
       x: $article.offset().left - $(window).scrollLeft()
       y: $article.offset().top  - $(window).scrollTop()
     $container.velocity
       properties:
-        translateX: ($(window).width() / 2) -  offset.x - $article.outerWidth()  / 2
-        translateY: ($(window).height() / 2) - offset.y - $article.outerHeight() / 2
+        translateX: ($(window).width() / 2)  - (scale * offset.x) - ($article.outerWidth()  / 2)
+        translateY: ($(window).height() / 2) - (scale * offset.y) - ($article.outerHeight() / 2)
+        scale: 1
       options:
         duration: 1000
         easing: constants.velocity.easing.smooth
-    console.log 'open'
-    
+    $article.velocity
+      properties:
+        translateX: 0
+        translateY: 0
+        rotateX:    0
+        rotateY:    0
+        scale:      1
+      options:
+        duration: 1000
+        easing: constants.velocity.easing.smooth
+
   onArticleClose: (event, $article) ->
     unobscureArticles ($(constants.dom.articleContainer).find('article').not($article))
     $container = $(constants.dom.articleContainer)
+    $article.removeClass 'open'
     if $article.hasClass('playable')
       stopPlaying $article
     $container.velocity
       properties:
         translateX: 0
         translateY: 0
+        scale:      constants.style.globalScale
       options:
         duration: 1000
         easing: constants.velocity.easing.smooth
-    
-    console.log 'close'
+    $article.velocity
+      properties:
+        translateX: 0
+        translateY: 0
+        rotateX:    0
+        rotateY:    0
+        scale:      1
+      options:
+        duration: 1000
+        easing: constants.velocity.easing.smooth
+
   
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
@@ -420,7 +444,7 @@ window.init =
     $elements.each ->
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
-      scale = if $element.is('a') then 1.25 else 1.125
+      scale = if $element.is('a') then 1.25 else 1.5
       duration = if $element.is('a') then 250 else 250
       $element.mouseenter (event) ->
         perspective = $element.height()*2
@@ -449,45 +473,47 @@ window.init =
             easing: constants.style.easing
             duration: duration
       $element.mousemove (event) ->
-        progress = getProgressValues($element, scale)
-        rotate = getRotateValues($element, progress)
-        $element.css
-          scale: scale
-          z: 250
-          rotateX: "#{rotate.x}deg"
-          rotateY: "#{rotate.y}deg"
-        $layers.each ->
-          depth = parseFloat $(@).data('parallaxdepth')
-          offset =
-            x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
-            y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-          parallax = 100 * depth
-          $(@).css
-            x: offset.x + (parallax * (-1 * (progress.x - .5)))
-            y: offset.y + (parallax * (-1 * (progress.y - .5)))
+        unless $element.hasClass('open')
+          progress = getProgressValues($element, scale)
+          rotate = getRotateValues($element, progress)
+          $element.css
+            z: 250
+            rotateX: "#{rotate.x}deg"
+            rotateY: "#{rotate.y}deg"
+          $layers.each ->
+            depth = parseFloat $(@).data('parallaxdepth')
+            offset =
+              x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
+              y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+            parallax = 100 * depth
+            $(@).css
+              x: offset.x + (parallax * (-1 * (progress.x - .5)))
+              y: offset.y + (parallax * (-1 * (progress.y - .5)))
       $element.mouseleave ->
-        $element.css
-          zIndex: 0
-        $element.parents('.contents').css
-          zIndex: 0
-        $element.transition
-          scale: 1
-          rotateX: 0
-          rotateY: 0
-          easing: constants.style.easing
-          duration: duration
-        $layers.each ->
-          $(@).transition
+        unless $element.hasClass('open')
+          $element.css
+            zIndex: 0
+          $element.parents('.contents').css
+            zIndex: 0
+          $element.transition
             scale: 1
-            x: 0
-            y: 0
+            rotateX: 0
+            rotateY: 0
             easing: constants.style.easing
             duration: duration
+          $layers.each ->
+            $(@).transition
+              scale: 1
+              x: 0
+              y: 0
+              easing: constants.style.easing
+              duration: duration
 
   container: ($container) ->
     $container.packery
       itemSelector: 'article'
       isOriginTop: true
+      transitionDuration: '0.5s'
       gutter: 0 #constants.style.gutter
 
     $container.packery 'bindResize'
@@ -497,6 +523,11 @@ window.init =
       drop: (event, ui) ->
         $collection = ui.draggable
         articleModel.removeCollection $collection.parent().parent(), $collection
+    $container.css
+      width: "#{100/constants.style.globalScale}%"
+    $container.velocity
+      properties:
+        scale: constants.style.globalScale
 
   addCollectionForm: () ->
     $('#newCollectionForm').submit (event) ->

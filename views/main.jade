@@ -81,9 +81,10 @@ html.no-js(lang='en')
                 input(type='submit', value='Add')
       section.right
         include partials/settingsMenu
-    #articleContainer
-      for article in user.Articles
-        +articleMixin(article, article.Collections)
+    .wrapper
+      #articleContainer
+        for article in user.Articles
+          +articleMixin(article, article.Collections)
 
     //- .comments
     //-   ul
