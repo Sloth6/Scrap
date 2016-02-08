@@ -83,12 +83,12 @@ $cardBorderRadius:          0; // $cell/4;
 }
 
 @mixin cardDraggable {
-    @include cursorGrab;
+//     @include cursorGrab;
 }
 
 @mixin cardDragging {
     @include cardHover;
-    @include cursorGrabbing;
+//     @include cursorGrabbing;
 }
 
 @mixin cardEditing {

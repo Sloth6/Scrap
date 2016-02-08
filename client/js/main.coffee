@@ -16,30 +16,51 @@ window.constants =
 stopProp = (event) -> event.stopPropagation()
   
 window.events =
+  onArticleLoad: ($article) ->
+    if $article.hasClass('playable')
+      console.log 'hiii'
+      $article.find('.artist', '.source').css
+        position: 'absolute'
+        opacity: 0
+        scale: 0
+      
   onArticleMouseenter: (event, $article) ->
-#     console.log $article
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
-      $button.data('startPos', {x: $button.offset().left, y: $button.offset().top})
-      $('body').css
+      x = $button.offset().left - $(window).scrollLeft()
+      y = $button.offset().top  - $(window).scrollTop()
+      $button.data('startPos', {x: x, y: y})
+      $button.transition
+        x: (event.clientX * (1/1)) - x - $button.width()  / 2
+        y: (event.clientY * (1/1)) - y - $button.height() / 2
+        easing: constants.style.easing
+        duration: 250
+      $article.css
         cursor: 'none'
-#       console.log $button.data('startPos')
+      $article.find('.artist, .source').transition
+        opacity: 1
+        scale: 1
+        easing: constants.style.easing
+        duration: 250
   
   onArticleMousemove: (event, $article) ->
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
-#       console.log $button.data('startPos')
       $button.css
         x: (event.clientX * (1/1)) - $button.data('startPos').x - $button.width()  / 2
-        y: (event.clientY * (1/1))- $button.data('startPos').y - $button.height() / 2
+        y: (event.clientY * (1/1)) - $button.data('startPos').y - $button.height() / 2
 
   onArticleMouseleave: (event, $article) ->
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0
         y: 0
-      $('body').css
+        easing: constants.style.easing
+        duration: 250
+      $article.css
         cursor: 'none'
+      $article.find('.artist, .source').css
+        opacity: 0
   
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
@@ -312,10 +333,13 @@ window.init =
         event.stopPropagation()
         true
     
-    $articles.each -> events.onArticleResize $(@)
     $articles.mouseenter -> events.onArticleMouseenter event, $(@)
     $articles.mousemove  -> events.onArticleMousemove  event, $(@)
     $articles.mouseleave -> events.onArticleMouseleave event, $(@)
+    $articles.each ->
+      events.onArticleResize  $(@)
+      events.onArticleLoad    $(@)
+      
     $articles.find('img').load () -> 
       events.onArticleResize($(@))
       

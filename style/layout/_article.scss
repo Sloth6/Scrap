@@ -5,7 +5,7 @@ body {
   
     .label {
         &.stack {
-            @include cursorGrab;
+//             @include cursorGrab;
         }
     }
         
@@ -18,7 +18,7 @@ body {
         transform-origin: center center;
         -webkit-transform-origin: center center;
         -moz-transform-origin: center center;
-        cursor: pointer;
+//         cursor: pointer;
         
         // EVENTS
         
@@ -314,7 +314,7 @@ body {
                 position: relative;
                                 
                 &:active {
-                    .playButtonr {
+                    .playButton {
                         -webkit-filter: invert(1);
                         @include transform(scale(.95)); 
                     }
@@ -357,8 +357,10 @@ body {
                     height: 72px;
                     width:  72px;
                     position: absolute;
-                    top: 0;
-                    left: 0;
+                    top: 50%;
+                    left: 50%;
+                    margin-top:  -36px;
+                    margin-left: -36px;
                     z-index: 9000000;
 //                     @include transition(.1825s $defaultCurve);
 //                     @include transition-property(-webkit-filter);
@@ -570,7 +572,7 @@ body {
     
     .translate {
         position: relative;
-        cursor: pointer;
+//         cursor: pointer;
         @include transform(translate(0px, 0px));
         @include transition(1s $defaultCurve);
         @include transition-property(transform,
