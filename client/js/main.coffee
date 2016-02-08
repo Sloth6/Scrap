@@ -430,7 +430,6 @@ window.init =
       offsetY = $element.offset().top  - $(window).scrollTop()
       progressY = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
       progressX = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
-      console.log progressX, progressY
       { x: progressX, y: progressY }
     getRotateValues = ($element, progress) ->
       maxRotateY = if $element.is('a') then 22 else 22
@@ -443,10 +442,11 @@ window.init =
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.5
-      duration = if $element.is('a') then 250 else 500
+      duration = if $element.is('a') then 500 else 500
       $element.addClass 'parallaxHover'
       $element.mouseenter (event) ->
-        unless $element.hasClass('open') or $element.hasClass('obscured')
+        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
+          console.log 'scale', scale
           $element.wrapInner '<span></span>' if $element.is('a')
           perspective = $element.height()*2
           $element.wrapInner $('<div></div>').addClass('transform')
@@ -461,7 +461,7 @@ window.init =
             properties:
               scale: scale
             options:
-              easing: constants.velocity.easing.smooth
+              easing: constants.velocity.easing.spring
               duration: duration
           $perspective.velocity
             properties:
@@ -470,18 +470,17 @@ window.init =
               duration: 1
           $layers.each ->
             depth = parseFloat $(@).data('parallaxdepth')
-            scale = (((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
             offset =
               x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
               y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
             $(@).velocity
               properties:
-                scale: scale
+                scale: (((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
               options:
-                easing: constants.velocity.easing.smooth
+                easing: constants.velocity.easing.spring
                 duration: duration    
       $element.mousemove (event) ->
-        unless $element.hasClass('open') or $element.hasClass('obscured')
+        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
           $transform = $element.find('.transform')
           progress = getProgressValues($element, scale)
           rotate = getRotateValues($element, progress)
@@ -497,6 +496,7 @@ window.init =
             $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
       $element.mouseleave ->
         unless $element.hasClass('open') or $element.hasClass('obscured')
+          $element.data('closingHover', true)
           $transform = $element.find('.transform')
           $element.add($element.parents('li')).css
             zIndex: 0
@@ -506,7 +506,8 @@ window.init =
               rotateX: 0
               rotateY: 0
             options:
-              easing: constants.velocity.easing.smooth
+              queue: false
+              easing: constants.velocity.easing.spring
               duration: duration
           $layers.velocity
             properties:
@@ -516,13 +517,15 @@ window.init =
               translateX: 0
               translateY: 0
             options:
-              easing: constants.velocity.easing.smooth
+              easing: constants.velocity.easing.spring
               duration: duration
+              queue: false
               complete: ->
                 $transform.children().appendTo $element
                 $transform.unwrap $element.find('.perspective')
                 $transform.remove()
                 $element.find('.perspective').remove()
+                $element.data('closingHover', false)
 
 
   container: ($container) ->
