@@ -2639,23 +2639,21 @@ nav section .addForm article {
 }
 
 /* line 111, ../../style/prototype.scss */
-#articleContainer {
-  width: 100%;
-  /*
-              transform-origin: center center;
-      -webkit-transform-origin: center center;
-  */
-}
-/* line 122, ../../style/prototype.scss */
-#articleContainer article {
-  background: yellow;
-}
-/* line 125, ../../style/prototype.scss */
-#articleContainer article .parallaxLayer {
+.parallaxHover .perspective, .parallaxHover .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 129, ../../style/prototype.scss */
+/* line 116, ../../style/prototype.scss */
+.parallaxHover .parallaxLayer {
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+}
+
+/* line 122, ../../style/prototype.scss */
+#articleContainer {
+  width: 100%;
+}
+/* line 126, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections {
   white-space: nowrap;
   z-index: 2;
@@ -2663,15 +2661,15 @@ nav section .addForm article {
   top: -4pt;
   left: 0;
 }
-/* line 136, ../../style/prototype.scss */
+/* line 133, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection {
   display: inline-block;
 }
-/* line 140, ../../style/prototype.scss */
+/* line 137, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection:first-child a {
   border-left-width: 1px;
 }
-/* line 145, ../../style/prototype.scss */
+/* line 142, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection a {
   display: block;
   border: 1px solid #000000;
@@ -2690,7 +2688,7 @@ nav section .addForm article {
   -webkit-transition-property: height, padding, color;
   transition-property: height, padding, color;
 }
-/* line 161, ../../style/prototype.scss */
+/* line 158, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   text-indent: 0;
   height: 16pt;

@@ -21,14 +21,15 @@ obscureArticles = ($articles) ->
   options     =
     duration: 500
     easing:   constants.velocity.easing.smooth
-  $articles.velocity
-    properties:
-      opacity: .125
-    options: options
+#   $articles.velocity
+#     properties:
+#       opacity: .125
+#     options: options
   $contents.velocity
     properties:
       opacity: 0
     options: options
+  $articles.addClass 'obscured'
     
 unobscureArticles = ($articles) ->
   $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
@@ -43,6 +44,7 @@ unobscureArticles = ($articles) ->
     properties:
       opacity: 1
     options: options
+  $articles.removeClass 'obscured'
   
 window.events =
   onArticleLoad: ($article) ->
@@ -92,10 +94,10 @@ window.events =
         opacity: 0
         
   onArticleOpen: (event, $article) ->
+    event.stopPropagation()
     obscureArticles ($(constants.dom.articleContainer).find('article').not($article))
     $container = $(constants.dom.articleContainer)
     scale = 1 / constants.style.globalScale
-    $article.addClass 'open'
     offset = 
       x: $article.offset().left - $(window).scrollLeft()
       y: $article.offset().top  - $(window).scrollTop()
@@ -107,16 +109,8 @@ window.events =
       options:
         duration: 1000
         easing: constants.velocity.easing.smooth
-    $article.velocity
-      properties:
-        translateX: 0
-        translateY: 0
-        rotateX:    0
-        rotateY:    0
-        scale:      1
-      options:
-        duration: 1000
-        easing: constants.velocity.easing.smooth
+    $article.trigger 'mouseleave'
+    $article.addClass 'open'
 
   onArticleClose: (event, $article) ->
     unobscureArticles ($(constants.dom.articleContainer).find('article').not($article))
@@ -132,16 +126,16 @@ window.events =
       options:
         duration: 1000
         easing: constants.velocity.easing.smooth
-    $article.velocity
-      properties:
-        translateX: 0
-        translateY: 0
-        rotateX:    0
-        rotateY:    0
-        scale:      1
-      options:
-        duration: 1000
-        easing: constants.velocity.easing.smooth
+#     $article.add('.parallaxLayer').velocity
+#       properties:
+#         translateX: 0
+#         translateY: 0
+#         rotateX:    0
+#         rotateY:    0
+#         scale:      1
+#       options:
+#         duration: 1000
+#         easing: constants.velocity.easing.smooth
 
   
   onCollectionOverArticle: ($article, event, $collection) ->
@@ -412,11 +406,12 @@ window.init =
         true
     
     $articles.click ->
-      events.onArticleOpen event, $(@)
-      $article = $(@)
-      $('body').click (event) ->
-        events.onArticleClose(event, $article) unless $article.is(':hover')
-#         console.log 
+      unless $(@).hasClass 'open'
+        events.onArticleOpen event, $(@)
+        $article = $(@)
+        $('body').click (event) ->
+          events.onArticleClose(event, $article) unless $article.is(':hover')
+  #         console.log 
     $articles.mouseenter -> events.onArticleMouseenter event, $(@)
     $articles.mousemove  -> events.onArticleMousemove  event, $(@)
     $articles.mouseleave -> events.onArticleMouseleave event, $(@)
@@ -427,12 +422,15 @@ window.init =
     $articles.find('img').load () -> 
       events.onArticleResize($(@))
       
-  fancyHover: ->
+  parallaxHover: ->
     getProgressValues = ($element, scale) ->
+      # if article, compensate for global scale
+      offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
       offsetX = $element.offset().left - $(window).scrollLeft()
       offsetY = $element.offset().top  - $(window).scrollTop()
-      progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
-      progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
+      progressY = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
+      progressX = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
+      console.log progressX, progressY
       { x: progressX, y: progressY }
     getRotateValues = ($element, progress) ->
       maxRotateY = if $element.is('a') then 22 else 22
@@ -445,69 +443,87 @@ window.init =
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.5
-      duration = if $element.is('a') then 250 else 250
+      duration = if $element.is('a') then 250 else 500
+      $element.addClass 'parallaxHover'
       $element.mouseenter (event) ->
-        perspective = $element.height()*2
-        progress = getProgressValues($element, scale)
-        rotate = getRotateValues($element, progress)
-        $element.transition
-          scale: scale
-          easing: constants.style.easing
-          duration: duration
-        $element.css
-          zIndex: 2
-          perspective: perspective
-        $element.parents('.contents').css
-          zIndex: 2
-        $layers.each ->
-          depth = parseFloat $(@).data('parallaxdepth')
-          scale = (((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
-          offset =
-            x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
-            y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-          # console.log offset
-          $(@).transition
-            scale: scale
-            x: "#{offset.x}px"
-            y: "#{offset.y}px"
-            easing: constants.style.easing
-            duration: duration
-      $element.mousemove (event) ->
-        unless $element.hasClass('open')
+        unless $element.hasClass('open') or $element.hasClass('obscured')
+          $element.wrapInner '<span></span>' if $element.is('a')
+          perspective = $element.height()*2
+          $element.wrapInner $('<div></div>').addClass('transform')
+          $transform = $element.find('.transform')
+          $transform.wrap $('<div></div>').addClass('perspective')
+          $perspective = $element.find('.perspective')
           progress = getProgressValues($element, scale)
           rotate = getRotateValues($element, progress)
-          $element.css
-            z: 250
-            rotateX: "#{rotate.x}deg"
-            rotateY: "#{rotate.y}deg"
+          $element.add($element.parents('li')).css
+            zIndex: 2
+          $transform.velocity
+            properties:
+              scale: scale
+            options:
+              easing: constants.velocity.easing.smooth
+              duration: duration
+          $perspective.velocity
+            properties:
+              perspective: perspective
+            options:
+              duration: 1
+          $layers.each ->
+            depth = parseFloat $(@).data('parallaxdepth')
+            scale = (((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
+            offset =
+              x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
+              y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+            $(@).velocity
+              properties:
+                scale: scale
+              options:
+                easing: constants.velocity.easing.smooth
+                duration: duration    
+      $element.mousemove (event) ->
+        unless $element.hasClass('open') or $element.hasClass('obscured')
+          $transform = $element.find('.transform')
+          progress = getProgressValues($element, scale)
+          rotate = getRotateValues($element, progress)
+          $.Velocity.hook $transform, 'rotateX', "#{rotate.x}deg"
+          $.Velocity.hook $transform, 'rotateY', "#{rotate.y}deg"
           $layers.each ->
             depth = parseFloat $(@).data('parallaxdepth')
             offset =
               x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
               y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
             parallax = 100 * depth
-            $(@).css
-              x: offset.x + (parallax * (-1 * (progress.x - .5)))
-              y: offset.y + (parallax * (-1 * (progress.y - .5)))
+            $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
+            $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
       $element.mouseleave ->
-        unless $element.hasClass('open')
-          $element.css
+        unless $element.hasClass('open') or $element.hasClass('obscured')
+          $transform = $element.find('.transform')
+          $element.add($element.parents('li')).css
             zIndex: 0
-          $element.parents('.contents').css
-            zIndex: 0
-          $element.transition
-            scale: 1
-            rotateX: 0
-            rotateY: 0
-            easing: constants.style.easing
-            duration: duration
-          $layers.each ->
-            $(@).transition
+          $transform.velocity
+            properties:
               scale: 1
-              x: 0
-              y: 0
-              easing: constants.style.easing
+              rotateX: 0
+              rotateY: 0
+            options:
+              easing: constants.velocity.easing.smooth
               duration: duration
+          $layers.velocity
+            properties:
+              scale: 1
+              rotateX: 0
+              rotateY: 0
+              translateX: 0
+              translateY: 0
+            options:
+              easing: constants.velocity.easing.smooth
+              duration: duration
+              complete: ->
+                $transform.children().appendTo $element
+                $transform.unwrap $element.find('.perspective')
+                $transform.remove()
+                $element.find('.perspective').remove()
+
 
   container: ($container) ->
     $container.packery
@@ -566,7 +582,7 @@ $ ->
   init.collection $( constants.dom.collections )
   init.collectionsMenu $( constants.dom.collectionsMenu )
   init.addCollectionForm()
-  init.fancyHover()
+  init.parallaxHover()
   initAddArticleForm()
 
   $('article').each () ->

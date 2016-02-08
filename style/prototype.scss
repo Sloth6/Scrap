@@ -105,27 +105,24 @@ nav {
 .wrapper {
     padding: $broadMargin;
     position: relative;
+}
+
+.parallaxHover {
+    .perspective, .transform {
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
+    }
     
+    .parallaxLayer {
+                transform-origin: center center;
+        -webkit-transform-origin: center center;
+    }
 }
 
 #articleContainer {
     width: 100%;
-/*
-            transform-origin: center center;
-    -webkit-transform-origin: center center;
-*/
     
-//     @include transform(scale3d(.5, .5, 0));
-//     width: 190vw;
-    .scale {
-    }
     article {
-        background: yellow;
-        
-        .parallaxLayer {
-                    transform-origin: center center;
-            -webkit-transform-origin: center center;
-        }
         ul.articleCollections {
             white-space: nowrap;
             z-index: 2;
