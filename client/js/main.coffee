@@ -92,12 +92,32 @@ window.events =
         
   onArticleOpen: (event, $article) ->
     obscureArticles ($(constants.dom.articleContainer).find('article').not($article))
+    $container = $(constants.dom.articleContainer)
+    offset = 
+      x: $article.offset().left - $(window).scrollLeft()
+      y: $article.offset().top  - $(window).scrollTop()
+    $container.velocity
+      properties:
+        translateX: ($(window).width() / 2) -  offset.x - $article.outerWidth()  / 2
+        translateY: ($(window).height() / 2) - offset.y - $article.outerHeight() / 2
+      options:
+        duration: 1000
+        easing: constants.velocity.easing.smooth
     console.log 'open'
     
   onArticleClose: (event, $article) ->
     unobscureArticles ($(constants.dom.articleContainer).find('article').not($article))
+    $container = $(constants.dom.articleContainer)
     if $article.hasClass('playable')
       stopPlaying $article
+    $container.velocity
+      properties:
+        translateX: 0
+        translateY: 0
+      options:
+        duration: 1000
+        easing: constants.velocity.easing.smooth
+    
     console.log 'close'
   
   onCollectionOverArticle: ($article, event, $collection) ->
