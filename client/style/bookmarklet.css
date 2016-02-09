@@ -2540,7 +2540,7 @@ body {
   background: none;
 }
 
-/* line 9, ../../style/bookmarklet.scss */
+/* line 8, ../../style/bookmarklet.scss */
 h1, li a {
   font-size: 48pt;
   font-weight: 500;
@@ -2554,7 +2554,7 @@ h1, li a {
   transition: -webkit-text-fill-color 1s linear;
 }
 
-/* line 14, ../../style/bookmarklet.scss */
+/* line 13, ../../style/bookmarklet.scss */
 h1, ul {
   position: absolute;
   top: 0;
@@ -2562,7 +2562,7 @@ h1, ul {
   right: 0;
 }
 
-/* line 21, ../../style/bookmarklet.scss */
+/* line 20, ../../style/bookmarklet.scss */
 .container {
   position: absolute;
   top: 0;
@@ -2572,16 +2572,16 @@ h1, ul {
   background-color: transparent;
 }
 
-/* line 30, ../../style/bookmarklet.scss */
+/* line 29, ../../style/bookmarklet.scss */
 ul.collectionsMenu {
   list-style-type: none;
 }
-/* line 37, ../../style/bookmarklet.scss */
+/* line 36, ../../style/bookmarklet.scss */
 ul.collectionsMenu li.header a {
   position: relative;
   top: .125em;
 }
-/* line 43, ../../style/bookmarklet.scss */
+/* line 42, ../../style/bookmarklet.scss */
 ul.collectionsMenu li a {
   width: -webkit-fit-content;
   width: -moz-fit-content;

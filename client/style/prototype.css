@@ -2663,20 +2663,19 @@ nav section .addForm article {
 /* line 134, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections {
   white-space: nowrap;
-  z-index: 2;
   position: absolute;
   top: -4pt;
   left: 0;
 }
-/* line 141, ../../style/prototype.scss */
+/* line 140, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection {
   display: inline-block;
 }
-/* line 145, ../../style/prototype.scss */
+/* line 144, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection:first-child a {
   border-left-width: 1px;
 }
-/* line 150, ../../style/prototype.scss */
+/* line 149, ../../style/prototype.scss */
 #articleContainer article ul.articleCollections li.collection a {
   display: block;
   border: 1px solid #000000;
@@ -2689,7 +2688,7 @@ nav section .addForm article {
   top: -8.75pt;
   color: transparent;
 }
-/* line 169, ../../style/prototype.scss */
+/* line 168, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   text-indent: 0;
   height: 16pt;

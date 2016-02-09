@@ -85,8 +85,10 @@ html.no-js(lang='en')
         include partials/settingsMenu
     .wrapper
       #articleContainer
-        for article in user.Articles
-          +articleMixin(article, article.Collections)
+        if user.Articles != undefined
+          if user.Articles.length
+            for article in user.Articles
+              +articleMixin(article, article.Collections)
 
     //- .comments
     //-   ul

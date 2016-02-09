@@ -93,6 +93,8 @@ window.events =
       $.Velocity.hook($article.find('.artist', '.source'), 'scale', '0')
       
   onArticleMouseenter: (event, $article) ->
+    $article.find('ul.articleCollections').css
+      zIndex: 2
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       x = $button.offset().left - $(window).scrollLeft()
@@ -122,6 +124,8 @@ window.events =
         y: (event.clientY * (1/1)) - $button.data('startPos').y - $button.height() / 2
 
   onArticleMouseleave: (event, $article) ->
+    $article.find('ul.articleCollections').css
+      zIndex: ''
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0
@@ -225,6 +229,7 @@ window.events =
     $labels.not($openLabel).find('.contents').css
       opacity: 0
     $menuItems.show()
+    console.log 'OPEN MENU'
     $.Velocity.hook($openLabel.find('.contents'), 'translateY', "#{-$openLabel.offset().top}px")
     $menu.css
       width: $menu.width()
@@ -326,9 +331,9 @@ window.events =
               $menuItems.not('.openMenuButton, .ui-draggable-dragging').hide()
               $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
               $menu.data 'canOpen', true
-              if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
-                events.onOpenCollectionsMenu() # open menu after close animation finishes
-                window.triedToOpen = false
+#               if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
+#                 events.onOpenCollectionsMenu() # open menu after close animation finishes
+#                 window.triedToOpen = false
     unobscureArticles $container.find('article')
     extendNav()
 
@@ -465,9 +470,23 @@ window.init =
 
   article: ($articles) ->
     $articles.each ->
+      $firstLabel = $(@).find('ul.articleCollections li.collection').first().find('a')
+      console.log typeof($firstLabel.data('color')), $firstLabel.data('color')
       $(@).css
         marginTop:  12 + Math.random() * constants.style.gutter
         marginLeft: 12 + Math.random() * constants.style.gutter
+      if $firstLabel.length
+        $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
+          backgroundColor: $firstLabel.css('background-color')
+          position: 'absolute'
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          opacity: .5
+          zIndex: -1
+        $(@).find('.card').css
+          backgroundColor: 'transparent'
     
     $articles.droppable
       greedy: true
