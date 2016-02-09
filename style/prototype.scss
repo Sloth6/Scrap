@@ -15,6 +15,7 @@ nav {
         width: intrinsic;
         position: absolute;
         height: 100%;
+        top: 0;
         
         &.left, &.right {
             z-index: 2;
@@ -42,9 +43,12 @@ nav {
             text-align: center;
         }
         
-        .headerButton {
+        .headerButton {            
             a {
                 @include navText;
+                display: block;
+                transform-origin: center center;
+                -webkit-transform-origin: center center;
             }
         }
         
@@ -95,8 +99,6 @@ nav {
                 
                 a {
                     display: block;
-                    transform-origin: center center;
-                    -webkit-transform-origin: center center;
                 }
             }
             article {

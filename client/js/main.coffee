@@ -483,10 +483,7 @@ window.init =
           left: 0
           right: 0
           bottom: 0
-          opacity: .5
-          zIndex: -1
-        $(@).find('.card').css
-          backgroundColor: 'transparent'
+          opacity: .25
     
     $articles.droppable
       greedy: true
@@ -543,14 +540,23 @@ window.init =
       scale = if $element.is('a') then 1.25 else 1.5
       duration = 500
       $element.addClass 'parallaxHover'
+      
+      $element.wrapInner '<span></span>' if $element.is('a')
+      perspective = $element.height() * 2
+      $element.wrapInner $('<div></div>').addClass('transform')
+      $transform = $element.find('.transform')
+      $transform.wrap $('<div></div>').addClass('perspective')
+      $perspective = $element.find('.perspective')
+      $perspective.velocity
+        properties:
+          perspective: perspective
+        options:
+          duration: 1
+      
       $element.mouseenter (event) ->
+#         console.log $element.attr 'class'
+#         console.log $element.hasClass('open') or $element.hasClass('obscured') or $element.hasClass('ui-draggable-dragging')
         unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
-          $element.wrapInner '<span></span>' if $element.is('a')
-          perspective = $element.height() * 2
-          $element.wrapInner $('<div></div>').addClass('transform')
-          $transform = $element.find('.transform')
-          $transform.wrap $('<div></div>').addClass('perspective')
-          $perspective = $element.find('.perspective')
           progress = getProgressValues($element, scale)
           rotate = getRotateValues($element, progress)
           # offset if element too close to edge
@@ -570,11 +576,6 @@ window.init =
             options:
               easing: constants.velocity.easing.smooth
               duration: duration
-          $perspective.velocity
-            properties:
-              perspective: perspective
-            options:
-              duration: 1
           $layers.each ->
             depth = parseFloat $(@).data('parallaxdepth')
             offset =
@@ -619,10 +620,10 @@ window.init =
               easing: constants.velocity.easing.smooth
               duration: duration
               complete: ->
-                $transform.children().appendTo $element
-                $transform.unwrap $element.find('.perspective')
-                $transform.remove()
-                $element.find('.perspective').remove()
+#                 $transform.children().appendTo $element
+#                 $transform.unwrap $element.find('.perspective')
+#                 $transform.remove()
+#                 $element.find('.perspective').remove()
                 $element.data('closingHover', false)
               
           $layers.velocity

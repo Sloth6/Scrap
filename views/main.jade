@@ -80,9 +80,10 @@ html.no-js(lang='en')
                 input(type="text", placeholder="new collection", maxlength="20")
                 input(type='submit', value='Add')
       section.right
-        .headerButton
-          a(href='#') Settings
-        include partials/settingsMenu
+        div
+          .headerButton
+            a(href='#') Settings
+          include partials/settingsMenu
     .wrapper
       #articleContainer
         if user.Articles != undefined
