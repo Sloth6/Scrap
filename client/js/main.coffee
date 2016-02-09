@@ -47,6 +47,17 @@ unobscureArticles = ($articles) ->
     options: options
   $articles.removeClass 'obscured'
   
+hideNav = ->
+  $sections = $(constants.dom.nav).children()
+  unless $(constants.dom.collectionsMenu).hasClass('open')
+    $sections.each ->
+      $(@).velocity
+        properties:
+          translateY: -$(@).height()*1.25
+        options:
+          duration: 1000
+          easing: constants.velocity.easing.smooth
+          
 retractNav = ->
   $sections = $(constants.dom.nav).children()
   unless $(constants.dom.collectionsMenu).hasClass('open')
@@ -134,6 +145,7 @@ window.events =
         easing: constants.velocity.easing.smooth
     $article.trigger 'mouseleave'
     $article.addClass 'open'
+    hideNav()
 
   onArticleClose: (event, $article) ->
     unobscureArticles ($(constants.dom.articleContainer).find('article').not($article))
@@ -149,16 +161,7 @@ window.events =
       options:
         duration: 1000
         easing: constants.velocity.easing.smooth
-#     $article.add('.parallaxLayer').velocity
-#       properties:
-#         translateX: 0
-#         translateY: 0
-#         rotateX:    0
-#         rotateY:    0
-#         scale:      1
-#       options:
-#         duration: 1000
-#         easing: constants.velocity.easing.smooth
+    extendNav()
 
   
   onCollectionOverArticle: ($article, event, $collection) ->
@@ -230,8 +233,10 @@ window.events =
             $label.css
               position: ''
               top: ''
+          complete: ->
+            $menu.data 'canOpen', false
     obscureArticles $container.find('article')
-    $menu.data 'canOpen', false
+    extendNav()
 
   onCloseCollectionsMenu: () ->
     isHome      = window.openCollection is 'recent'
@@ -266,21 +271,7 @@ window.events =
       options:
         duration: options.duration
         easing:   options.easing
-#         complete: ->
-#           $destinationLabel.css
-#             position: 'absolute'
-#             top: 0
-#           $.Velocity.hook($destinationLabel.find('.contents'), 'translateY', 0)
-    $destinationLabel.find('span').velocity
-      properties:
-        scale: 1
-        rotateX: 0
-        rotateY: 0
-        translateX: 0
-        translateY: 0
-      options:
-        duration: options.duration
-        easing:   options.easing
+    $destinationLabel.find('span').trigger('mouseleave')
     $labels.not($destinationLabel).each ->
       $label = $(@)
       if $destinationLabel.index() < $label.index() # below
@@ -306,6 +297,7 @@ window.events =
                 events.onOpenCollectionsMenu() # open menu after close animation finishes
                 window.triedToOpen = false
     unobscureArticles $container.find('article')
+    extendNav()
 
   onArticleResize: ($article) ->
     $article.width  $article.children('.card').outerWidth()
@@ -368,7 +360,7 @@ window.events =
         if window.scrollDirection isnt 'up'
           events.onChangeScrollDirection 'up'
       window.oldScrollTop = scrollTop
-    if scrollTop <= 0
+    if scrollTop <= 10
       extendNav() unless $('nav').children().hasClass('velocity-animating')
     else
       unless window.scrollDirection is 'up'
@@ -376,7 +368,7 @@ window.events =
         
   onChangeScrollDirection: (direction) ->
     window.scrollDirection = direction
-    if $(window).scrollTop() > 0
+    if $(window).scrollTop() > 10
       if direction is 'up'
         extendNav()
       else
@@ -507,7 +499,7 @@ window.init =
             properties:
               scale: scale
             options:
-              easing: constants.velocity.easing.spring
+              easing: constants.velocity.easing.smooth
               duration: duration
           $perspective.velocity
             properties:
@@ -519,12 +511,12 @@ window.init =
             offset =
               x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
               y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-            $(@).velocity
-              properties:
-                scale: (((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
-              options:
-                easing: constants.velocity.easing.spring
-                duration: duration    
+#             $(@).velocity
+#               properties:
+#                 translateZ: 500 * depth #(((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
+#               options:
+#                 easing: constants.velocity.easing.smooth
+#                 duration: duration    
       $element.mousemove (event) ->
         unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
           $transform = $element.find('.transform')
@@ -537,7 +529,7 @@ window.init =
             offset =
               x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
               y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-            parallax = 100 * depth
+            parallax = 144 * depth
             $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
             $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
       $element.mouseleave ->
@@ -553,8 +545,15 @@ window.init =
               rotateY: 0
             options:
               queue: false
-              easing: constants.velocity.easing.spring
+              easing: constants.velocity.easing.smooth
               duration: duration
+              complete: ->
+                $transform.children().appendTo $element
+                $transform.unwrap $element.find('.perspective')
+                $transform.remove()
+                $element.find('.perspective').remove()
+                $element.data('closingHover', false)
+              
           $layers.velocity
             properties:
               scale: 1
@@ -563,15 +562,9 @@ window.init =
               translateX: 0
               translateY: 0
             options:
-              easing: constants.velocity.easing.spring
+              easing: constants.velocity.easing.smooth
               duration: duration
               queue: false
-              complete: ->
-                $transform.children().appendTo $element
-                $transform.unwrap $element.find('.perspective')
-                $transform.remove()
-                $element.find('.perspective').remove()
-                $element.data('closingHover', false)
 
 
   container: ($container) ->
@@ -604,15 +597,7 @@ window.init =
   nav: ($nav) ->
     $nav.hover extendNav, retractNav
 
-  collectionsMenu: ($menu) ->
-    # cycle colors on Recents
-    $menu.find('li.recent a, li.labelsButton a').each ->
-      hue = Math.floor(Math.random() * 360)
-      $a = $(@)
-      setInterval ->
-        hue += 30
-        $a.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
-      , 1000
+  collectionsMenu: ($menu) ->  
     $menu.find('li a').click (event) ->
       event.stopPropagation()
       if $(@).parents('li').hasClass('openMenuButton') # only run if is the current open menu button
@@ -657,6 +642,20 @@ $ ->
   events.onScroll()
   window.oldScrollTop = 0
   window.scrollDirection = 'down'
+  
+  rotateColor = ($element, hue)->
+    $element.css
+      '-webkit-text-fill-color': "hsl(#{hue},100%,75%)"
+    
+  $('li.recent a, li.labelsButton a').each ->
+    $(@).data('hue', Math.floor(Math.random() * 360))
+    rotateColor $(@), $(@).data('hue')
+    
+  setInterval ->
+    $('li.recent a, li.labelsButton a').each ->
+      $(@).data('hue', $(@).data('hue') + 30)
+      rotateColor $(@), $(@).data('hue')
+  , 1000
 
   # if  draggable
   #   itemElems = $container.packery('getItemElements')

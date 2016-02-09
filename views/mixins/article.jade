@@ -72,7 +72,7 @@ mixin articleMixin(article, collections)
           .preview(title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
           header
-            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -24})
+            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
               .artist.smallType.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: -24})!=content.author_name
               h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.25')!=content.title
             .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
@@ -83,7 +83,7 @@ mixin articleMixin(article, collections)
           .preview(title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
           header
-            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -24})
+            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
               .artist.smallType.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: -24}) Artist
               h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.25')!=content.title
             .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
