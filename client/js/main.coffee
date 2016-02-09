@@ -2,7 +2,7 @@
 
 window.constants =
   style:
-    gutter: 36
+    gutter: 48
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
     globalScale: 1/2
     duration:
@@ -57,16 +57,16 @@ hideNav = ->
     $sections.each ->
       $(@).velocity
         properties:
-          translateY: -$(@).height()*1.25
+          translateY: -$(@).height()*1.5
         options:
           duration: 1000
           easing: constants.velocity.easing.smooth
           
 retractNav = ->
   $sections = $(constants.dom.nav).children()
-  unless $(constants.dom.collectionsMenu).hasClass('open')
+  unless $(constants.dom.collectionsMenu).hasClass('open') or $(window).scrollTop() < 10
     $sections.each ->
-      translateY = if $(@).hasClass('center') then -$(@).height()*1.25 / 2 else -$(@).height()*1.25
+      translateY = if $(@).hasClass('center') then -$(@).height()*1.5 / 2 else -$(@).height()*1.5
       $(@).velocity
         properties:
           translateY: translateY
@@ -185,14 +185,28 @@ window.events =
   
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
-    $color = $('<div></div>').appendTo('article')
-    $article.css
-      opacity: .2
+    console.log 'over!'
+    $color = $('<div></div>').appendTo($article).addClass('backgroundColor').css
+      position: 'absolute'
+      zIndex: -1
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      backgroundColor: $collection.find('a').css '-webkit-text-fill-color'
+    $article.find('.card').transition
+      'mix-blend-mode': 'multiply'
+      '-webkit-filter': 'grayscale(1)'
+      duration: 500
+      easing: constants.style.easing
 
   onCollectionOutArticle: ($article, event, $collection) ->
-    $card = $article.children('.card')
-    $article.css
-      opacity: 1
+    $('.backgroundColor').remove()
+    $article.find('.card').transition
+      '-webkit-filter': ''
+      duration: 500
+      easing: constants.style.easing
+      
 
   onOpenCollectionsMenu: () ->
     $menu       = $(constants.dom.collectionsMenu )
@@ -419,6 +433,19 @@ window.init =
       revert: "true"
       start: (event, ui) ->
         events.onCloseCollectionsMenu()
+        console.log 'start'
+        $(@).find('a').trigger 'mouseleave'
+        $(@).find('a').velocity
+          properties:
+            scale: .5
+            rotateX: 0
+            rotateY: 0
+            translateX: 0
+            translateY: 0
+          options:
+            queue: false
+            easing: constants.velocity.easing.spring
+            duration: 250
         $(ui.helper).hover stopProp, stopProp
       stop: (event, ui) ->
         $(ui.helper).off 'hover'
@@ -490,7 +517,7 @@ window.init =
       rotateX = maxRotateY * (progress.y - .5)
       rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
       { x: rotateX, y: rotateY}
-    $elements = $('#articleContainer article, ul.collectionsMenu li a, .addForm .headerButton a')
+    $elements = $('#articleContainer article, ul.collectionsMenu li a, .left .headerButton, .right .headerButton a')
     $elements.each ->
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
@@ -498,9 +525,9 @@ window.init =
       duration = 500
       $element.addClass 'parallaxHover'
       $element.mouseenter (event) ->
-        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
+        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
           $element.wrapInner '<span></span>' if $element.is('a')
-          perspective = $element.height()
+          perspective = $element.height() * 2
           $element.wrapInner $('<div></div>').addClass('transform')
           $transform = $element.find('.transform')
           $transform.wrap $('<div></div>').addClass('perspective')
@@ -514,7 +541,6 @@ window.init =
           else
             translateY = 0
             translateX = 0
-          console.log 'hi', translateY
           $element.add($element.parents('li')).css
             zIndex: 2
           $transform.velocity
@@ -542,7 +568,7 @@ window.init =
 #                 easing: constants.velocity.easing.smooth
 #                 duration: duration    
       $element.mousemove (event) ->
-        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
+        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
           $transform = $element.find('.transform')
           progress = getProgressValues($element, scale)
           rotate = getRotateValues($element, progress)
@@ -553,11 +579,11 @@ window.init =
             offset =
               x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
               y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-            parallax = 144 * depth
+            parallax = 72 * depth
             $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
             $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
       $element.mouseleave ->
-        unless $element.hasClass('open') or $element.hasClass('obscured')
+        unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
           $element.data('closingHover', true)
           $transform = $element.find('.transform')
           $element.add($element.parents('li')).css

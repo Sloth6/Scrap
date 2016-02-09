@@ -22,10 +22,18 @@ nav {
         
         &.left {
             left: 0;
+            
+            .headerButton a {
+                margin-left: $cell;
+            }
         }
         
         &.right {
             right: 0;
+            
+            .headerButton a {
+                margin-right: $cell;
+            }
         }
         
         &.center {
@@ -103,7 +111,7 @@ nav {
 
 
 .wrapper {
-    padding: $broadMargin;
+    padding: $broadMargin * 1.25 $broadMargin;
     position: relative;
 }
 
@@ -147,9 +155,12 @@ nav {
                     height: $cell;
                     width: $cell;
                     padding: 0;
+                    position: relative;
+                    top: -($cell + $cardBorderWidth);
                     color: transparent;
-                    @include transition(.25s $defaultCurve);
-                    @include transition-property(height, padding, color);
+//                     border-radius: $cell;
+//                     @include transition(.25s $defaultCurve);
+//                     @include transition-property(height, padding, color);
                 }
             }
         }

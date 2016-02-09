@@ -29,7 +29,7 @@ mixin articleMixin(article, collections)
       - if(article.Creator !== undefined)
         author.smallType!=article.Creator.name
 
-    ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.125',data-parallaxoffset={x: 0, y: -24})
+    ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.125',data-parallaxoffset={x: 0, y: -12})
       - for (var i = 0; i < collections.length; i++)
         - var collection = collections[i]
         - var key = collection.collectionKey
