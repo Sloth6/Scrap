@@ -63,14 +63,14 @@ $headerLeftMarginOffset:
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
     font-weight:    $fontWeightMedium;
-    letter-spacing: -(1em / 20);
+    letter-spacing: 0; // (1em / 32);
     line-height:    $typeHeaderLeading;
 }
 
 @mixin typeHeaderOutline {
     @include typeHeader;
     font-weight:    $fontWeightBold;
-    letter-spacing: -(1em / 32);
+//     letter-spacing: -(1em / 32);
     @include typeOutlineClear;
 }
 

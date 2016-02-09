@@ -5,6 +5,8 @@ window.constants =
     gutter: 36
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
     globalScale: 1/2
+    duration:
+      openArticle: 1000
   velocity:
     easing:
       smooth: [20, 10]
@@ -20,7 +22,7 @@ stopProp = (event) -> event.stopPropagation()
 obscureArticles = ($articles) ->
   $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
   options     =
-    duration: 500
+    duration: constants.style.duration.openArticle
     easing:   constants.velocity.easing.smooth
 #   $articles.velocity
 #     properties:
@@ -29,21 +31,23 @@ obscureArticles = ($articles) ->
   $contents.velocity
     properties:
       opacity: 0
+#       blur: 5
     options: options
   $articles.addClass 'obscured'
     
 unobscureArticles = ($articles) ->
   $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
   options     =
-    duration: 500
+    duration: constants.style.duration.openArticle
     easing:   constants.velocity.easing.smooth
-  $articles.velocity
-    properties:
-      opacity: 1
-    options: options
+#   $articles.velocity
+#     properties:
+#       opacity: 1
+#     options: options
   $contents.velocity
     properties:
       opacity: 1
+#       blur: 0
     options: options
   $articles.removeClass 'obscured'
   
@@ -77,7 +81,7 @@ extendNav = ->
       translateY: 0
     options:
       duration: 1000
-      queue: false
+#       queue: false
       easing: constants.velocity.easing.smooth
   
 window.events =
@@ -86,7 +90,7 @@ window.events =
       $article.find('.artist', '.source').css
         position: 'absolute'
         opacity: 0
-        scale: 0
+      $.Velocity.hook($article.find('.artist', '.source'), 'scale', '0')
       
   onArticleMouseenter: (event, $article) ->
     if $article.hasClass('playable')
@@ -101,11 +105,13 @@ window.events =
         duration: 250
       $article.css
         cursor: 'none'
-      $article.find('.artist, .source').transition
-        opacity: 1
-        scale: 1
-        easing: constants.style.easing
-        duration: 250
+      $article.find('.artist, .source').velocity
+        properties:
+          opacity: 1
+          scale: 1
+        options:
+          easing: constants.velocity.easing.smooth
+          duration: 500
       
   
   onArticleMousemove: (event, $article) ->
@@ -124,8 +130,13 @@ window.events =
         duration: 250
       $article.css
         cursor: 'none'
-      $article.find('.artist, .source').css
-        opacity: 0
+      $article.find('.artist, .source').velocity
+        properties:
+          opacity: 0
+          scale: 0
+        options:
+          easing: constants.velocity.easing.smooth
+          duration: 500
         
   onArticleOpen: (event, $article) ->
     event.stopPropagation()
@@ -141,10 +152,14 @@ window.events =
         translateY: ($(window).height() / 2) - (scale * offset.y) - ($article.outerHeight() / 2)
         scale: 1
       options:
-        duration: 1000
+        duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
+        complete: ->
+          events.onArticleResize $article
     $article.trigger 'mouseleave'
     $article.addClass 'open'
+    $article.css # must run after trigger('mouseleave')
+      zIndex: 2
     hideNav()
 
   onArticleClose: (event, $article) ->
@@ -159,10 +174,14 @@ window.events =
         translateY: 0
         scale:      constants.style.globalScale
       options:
-        duration: 1000
+        duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
     extendNav()
 
+  onArticleResize: ($article) ->
+    $article.width  $article.children('.card').outerWidth()
+    $article.height $article.children('.card').outerHeight()
+    $( constants.dom.articleContainer ).packery()
   
   onCollectionOverArticle: ($article, event, $collection) ->
     $card = $article.children('.card')
@@ -199,9 +218,9 @@ window.events =
       $labelsButton.find('.contents').velocity
         properties:
           translateY: -$button.height() * 3
-#           scaleY: 2
-#           scaleX: .125
-#           rotateZ: 45 * (Math.random() - .5)
+          scaleY: 2
+          scaleX: .125
+          rotateZ: 45 * (Math.random() - .5)
         options:
           duration: options.duration
           easing:   options.easing
@@ -215,15 +234,15 @@ window.events =
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
         translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
-#       scaleY = if $openLabel.index() is $label.index() then 1 else 2
-#       scaleX = if $openLabel.index() is $label.index() then 1 else .125
-#       rotateZ = if $openLabel.index() is $label.index() then 1 else 22 * (Math.random() - .5)
+      scaleY = if $openLabel.index() is $label.index() then 1 else 2
+      scaleX = if $openLabel.index() is $label.index() then 1 else .125
+      rotateZ = if $openLabel.index() is $label.index() then 1 else 22 * (Math.random() - .5)
       $label.find('.contents').velocity
         properties:
           translateY: [-$button.height(), translateY]
-#           scaleY: [1, scaleY]
-#           scaleX: [1, scaleX]
-#           rotateZ: [0, rotateZ]
+          scaleY: [1, scaleY]
+          scaleX: [1, scaleX]
+          rotateZ: [0, rotateZ]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
@@ -265,9 +284,9 @@ window.events =
     $destinationLabel.find('.contents').velocity
       properties:
         translateY: -$destinationLabel.offset().top
-#         rotateZ: 0
-#         scaleY: 1
-#         scaleX: 1
+        rotateZ: 0
+        scaleY: 1
+        scaleX: 1
       options:
         duration: options.duration
         easing:   options.easing
@@ -281,9 +300,9 @@ window.events =
       $label.find('.contents').velocity
         properties:
           translateY: translateY
-#           scaleY: 2
-#           scaleX: .125
-#           rotateZ: 22 * (Math.random() - .5)
+          scaleY: 2
+          scaleX: .125
+          rotateZ: 22 * (Math.random() - .5)
         options:
           duration: options.duration
           easing:   options.easing
@@ -298,11 +317,6 @@ window.events =
                 window.triedToOpen = false
     unobscureArticles $container.find('article')
     extendNav()
-
-  onArticleResize: ($article) ->
-    $article.width  $article.children('.card').outerWidth()
-    $article.height $article.children('.card').outerHeight()
-    $( constants.dom.articleContainer ).packery()
 
   onSwitchToCollection: (collectionKey) ->
     $container  = $(constants.dom.articleContainer)
@@ -481,23 +495,33 @@ window.init =
       $element = $(@)
       $layers = $element.find('.parallaxLayer')
       scale = if $element.is('a') then 1.25 else 1.5
-      duration = if $element.is('a') then 500 else 500
+      duration = 500
       $element.addClass 'parallaxHover'
       $element.mouseenter (event) ->
         unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover')
           $element.wrapInner '<span></span>' if $element.is('a')
-          perspective = $element.height()*2
+          perspective = $element.height()
           $element.wrapInner $('<div></div>').addClass('transform')
           $transform = $element.find('.transform')
           $transform.wrap $('<div></div>').addClass('perspective')
           $perspective = $element.find('.perspective')
           progress = getProgressValues($element, scale)
           rotate = getRotateValues($element, progress)
+          # offset if element too close to edge
+          if $element.is 'article'
+            translateY = if ($element.offset().top  - $(window).scrollTop() ) < 72 then 48 else 0
+            translateX = if ($element.offset().left - $(window).scrollLeft()) < 72 then 48 else 0
+          else
+            translateY = 0
+            translateX = 0
+          console.log 'hi', translateY
           $element.add($element.parents('li')).css
             zIndex: 2
           $transform.velocity
             properties:
               scale: scale
+              translateX: translateX
+              translateY: translateY
             options:
               easing: constants.velocity.easing.smooth
               duration: duration
@@ -543,6 +567,8 @@ window.init =
               scale: 1
               rotateX: 0
               rotateY: 0
+              translateY: 0
+              translateX: 0
             options:
               queue: false
               easing: constants.velocity.easing.smooth
