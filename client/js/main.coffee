@@ -475,7 +475,7 @@ window.init =
       $(@).css
         marginTop:  12 + Math.random() * constants.style.gutter
         marginLeft: 12 + Math.random() * constants.style.gutter
-      if $firstLabel.length
+      if $firstLabel.length and $(@).hasClass('text') or $(@).hasClass('website') 
         $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
           backgroundColor: $firstLabel.css('background-color')
           position: 'absolute'
@@ -657,7 +657,10 @@ window.init =
       width: "#{100/constants.style.globalScale}%"
     $container.velocity
       properties:
+        translateZ: 0
         scale: constants.style.globalScale
+      options:
+        duration: 1
 
   addCollectionForm: () ->
     $('#newCollectionForm').submit (event) ->
