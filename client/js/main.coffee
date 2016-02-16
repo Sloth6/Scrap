@@ -512,11 +512,11 @@ window.init =
     $articles.mousemove  -> events.onArticleMousemove  event, $(@)
     $articles.mouseleave -> events.onArticleMouseleave event, $(@)
     $articles.each ->
-      events.onArticleResize  $(@)
+#       events.onArticleResize  $(@)
       events.onArticleLoad    $(@)
       
     $articles.find('img').load () -> 
-      events.onArticleResize($(@))
+      events.onArticleResize $(@)
       
   parallaxHover: ->
     getProgressValues = ($element, scale) ->

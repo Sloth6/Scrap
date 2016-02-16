@@ -11,7 +11,7 @@ indexPage = (res) ->
 
 module.exports =
   index: (req, res, app, callback) ->
-    if !req.session.currentUserId
+    if !req?.session?.currentUserId
       return indexPage res
     
     userId = req.session.currentUserId

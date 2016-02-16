@@ -196,22 +196,30 @@ body {
         &.image {
                           
             .card {
+                height: auto !important;
+                width: auto !important;
                 padding: 0px;
+/*
                 max-height: 100vh;
                 max-width: 100vw;
+*/
+/*
                 min-height: 0 !important;
                 min-width:  0 !important;
                 height:     auto !important;
                 width:      auto !important;
+*/
                 overflow: hidden;
                 
                 img {
-                    height: auto;
-                    width: auto;
-                    max-height: $col * 6;
-                    max-width:  $col * 6;
-                    min-height: auto !important;
-                    min-width:  auto !important;
+//                     width: auto !important;
+//                     height: auto !important;
+//                     min-height: $col * 4;
+//                     min-width:  $col * 4;
+                    min-height: $col;
+                    min-width:  $col;
+                    max-width: $col * 4;
+                    max-width: $col * 4;
                     margin: $hideImageWhiteBorder;
                 }
             }
