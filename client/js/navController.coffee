@@ -1,0 +1,47 @@
+$ ->
+  initNav $(constants.dom.nav)
+  initAddCollectionForm $('#newCollectionForm')
+  
+hideNav = ->
+  $sections = $(constants.dom.nav).children()
+  unless $(constants.dom.collectionsMenu).hasClass('open')
+    $sections.each ->
+      $(@).velocity
+        properties:
+          translateY: -$(@).height()*1.5
+        options:
+          duration: 1000
+          easing: constants.velocity.easing.smooth
+          
+retractNav = ->
+  $sections = $(constants.dom.nav).children()
+  unless $(constants.dom.collectionsMenu).hasClass('open') or $(window).scrollTop() < 10
+    $sections.each ->
+      translateY = if $(@).hasClass('center') then -$(@).height()*1.5 / 2 else -$(@).height()*1.5
+      $(@).velocity
+        properties:
+          translateY: translateY
+        options:
+          duration: 1000
+          easing: constants.velocity.easing.smooth
+
+extendNav = ->
+  $sections = $(constants.dom.nav).children()
+  $sections.velocity
+    properties:
+      translateY: 0
+    options:
+      duration: 1000
+#       queue: false
+      easing: constants.velocity.easing.smooth
+  
+initNav = ($nav) ->
+  $nav.hover extendNav, retractNav
+  parallaxHover $('.left .headerButton, .right .headerButton a')
+  
+initAddCollectionForm = ($form) ->
+  $form.submit (event) ->
+    name = $('#newCollectionForm [type=text]').val()
+    $('#newCollectionForm [type=text]').val ''
+    socket.emit 'addCollection', { name }
+    event.preventDefault()
