@@ -26,7 +26,7 @@ module.exports =
       return callback err, res if err?
       return indexPage res unless user?
       
-      user.Articles.length = 20
+      user.Articles.length = 100
       collections = {}
       for collection in user.Collections 
         key = collection.collectionKey

@@ -31,7 +31,6 @@ obscureArticles = ($articles) ->
   $contents.velocity
     properties:
       opacity: 0
-#       blur: 5
     options: options
   $articles.addClass 'obscured'
     
@@ -47,7 +46,6 @@ unobscureArticles = ($articles) ->
   $contents.velocity
     properties:
       opacity: 1
-#       blur: 0
     options: options
   $articles.removeClass 'obscured'
   
@@ -114,14 +112,13 @@ window.events =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
-      
   
   onArticleMousemove: (event, $article) ->
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       $button.css
-        x: (event.clientX * (1/1)) - $button.data('startPos').x - $button.width()  / 2
-        y: (event.clientY * (1/1)) - $button.data('startPos').y - $button.height() / 2
+        x: (event.clientX) - $button.data('startPos').x - $button.width()  / 2
+        y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
 
   onArticleMouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css
@@ -147,7 +144,7 @@ window.events =
     obscureArticles ($(constants.dom.articleContainer).find('article').not($article))
     $container = $(constants.dom.articleContainer)
     scale = 1 / constants.style.globalScale
-    offset = 
+    offset = # distance of article top/left to window top/left
       x: $article.offset().left - $(window).scrollLeft()
       y: $article.offset().top  - $(window).scrollTop()
     $container.velocity
@@ -210,7 +207,6 @@ window.events =
       '-webkit-filter': ''
       duration: 500
       easing: constants.style.easing
-      
 
   onOpenCollectionsMenu: () ->
     $menu       = $(constants.dom.collectionsMenu )
@@ -390,7 +386,7 @@ window.events =
         if window.scrollDirection isnt 'down'
           events.onChangeScrollDirection 'down'
       else
-        if window.scrollDirection isnt 'up'
+        if scrollDirection isnt 'up'
           events.onChangeScrollDirection 'up'
       window.oldScrollTop = scrollTop
     if scrollTop <= 10
@@ -438,9 +434,7 @@ window.init =
       revert: "true"
       start: (event, ui) ->
         events.onCloseCollectionsMenu()
-        console.log 'start'
-        $(@).find('a').trigger 'mouseleave'
-        $(@).find('a').velocity
+        $(ui.helper).find('a').trigger('mouseleave').velocity
           properties:
             scale: .5
             rotateX: 0
@@ -471,7 +465,6 @@ window.init =
   article: ($articles) ->
     $articles.each ->
       $firstLabel = $(@).find('ul.articleCollections li.collection').first().find('a')
-      console.log typeof($firstLabel.data('color')), $firstLabel.data('color')
       $(@).css
         marginTop:  12 + Math.random() * constants.style.gutter
         marginLeft: 12 + Math.random() * constants.style.gutter
@@ -542,7 +535,7 @@ window.init =
       $element.addClass 'parallaxHover'
       
       $element.wrapInner '<span></span>' if $element.is('a')
-      perspective = $element.height() * 2
+      perspective = if $element.hasClass('image') then $element.height() * 8 else $element.height() * 2
       $element.wrapInner $('<div></div>').addClass('transform')
       $transform = $element.find('.transform')
       $transform.wrap $('<div></div>').addClass('perspective')
@@ -602,6 +595,7 @@ window.init =
             parallax = 72 * depth
             $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
             $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
+#           console.log progress.y
       $element.mouseleave ->
         unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
           $element.data('closingHover', true)
@@ -705,11 +699,6 @@ $ ->
       when 'file'       then initFile $(@)
       when 'soundcloud' then initSoundCloud $(@)
       when 'youtube'    then initYoutube $(@)
-
-  # $('article').zoomTarget {
-  #   duration: 450
-  #   targetsize: 0.9    
-  # }
 
   $(window).resize -> events.onResize()
   events.onResize()
