@@ -40,22 +40,24 @@ window.parallaxHover = ($elements) ->
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
         edgeOffset = 24
-
-        # Offsets element toward middle of page if element too close to edge of page
-        if ($element.offset().left - $(window).scrollLeft()) < 144
-          translateX = edgeOffset
-        else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
-          translateX = -edgeOffset
+        if $element.is 'article'
+          # Offsets element toward middle of page if element too close to edge of page
+          if ($element.offset().left - $(window).scrollLeft()) < 144
+            translateX = edgeOffset
+          else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
+            translateX = -edgeOffset
+          else
+            translateX = 0
+  
+          if ($element.offset().top  - $(window).scrollTop())  < 144
+            translateY = edgeOffset
+          else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
+            translateY = -edgeOffset
+          else
+            translateY = 0
         else
           translateX = 0
-
-        if ($element.offset().top  - $(window).scrollTop())  < 144
-          translateY = edgeOffset
-        else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
-          translateY = -edgeOffset
-        else
           translateY = 0
-          
         $element.add($element.parents('li')).css
           zIndex: 2
         $transform.velocity

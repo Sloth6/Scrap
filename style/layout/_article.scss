@@ -327,6 +327,7 @@ body {
                     margin-top:  -36px;
                     margin-left: -36px;
                     z-index: 9000000;
+                    @include transformOriginCenter;
 //                     @include transition(.1825s $defaultCurve);
 //                     @include transition-property(-webkit-filter);
 

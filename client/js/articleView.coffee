@@ -36,22 +36,16 @@ window.articleView =
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
     # If playable, special treatment
-    console.log 'show!!!'
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       x = $button.offset().left - $(window).scrollLeft()
       y = $button.offset().top  - $(window).scrollTop()
       $button.data('startPos', {x: x, y: y})
-      $button.show()
-      $button.velocity
-        properties:
-          translateX: 0 # (event.clientX * (1/1)) - x - $button.width()  / 2
-          translateY: 0 # (event.clientY * (1/1)) - y - $button.height() / 2
-          scale: [1, 0]
-        options:
-          easing: constants.velocity.easing.smooth
-          duration: 500
-#           begin: -> $button.show()
+      $button.transition
+        x: (event.clientX * (1/1)) - x - $button.width()  / 2
+        y: (event.clientY * (1/1)) - y - $button.height() / 2
+        easing: constants.style.easing
+        duration: 250
       $article.css
         cursor: 'none'
       $article.find('.artist, .source').velocity
@@ -88,60 +82,46 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
+
     
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: 2
-    articleView.showMeta($article) unless $article.hasClass('open') or $article.hasClass('opening') or $article.hasClass('obscured')
+    articleView.showMeta($article) # unless $article.hasClass('open') or $article.hasClass('opening')
 
   mousemove: (event, $article) ->
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
-#       $button.css
-      $.Velocity.hook $button, 'translateX', "#{(event.clientX) - $button.data('startPos').x - $button.width()  / 2}px"
-      $.Velocity.hook $button, 'translateY', "#{(event.clientY) - $button.data('startPos').y - $button.height() / 2}px"
+      $button.css
+        x: (event.clientX) - $button.data('startPos').x - $button.width()  / 2
+        y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: ''
-    articleView.hideMeta($article) unless $article.hasClass('open') or $article.hasClass('opening') or $article.hasClass('obscured')
+    articleView.hideMeta($article) # unless $article.hasClass('open') or $article.hasClass('opening')
 
   open: (event, $article) ->
     event.stopPropagation()
     $article.addClass 'opening'
     articleView.obscure $(constants.dom.articleContainer).find('article').not($article)
     $container = $(constants.dom.articleContainer)
-    scaleOffset = 1 / constants.style.globalScale
-    scaleTo =  if $article.hasClass 'image' then 1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight)) else 1
+    scale = if $article.hasClass 'image' then 1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight)) else 1 / constants.style.globalScale
     offset = # distance of article top/left to window top/left
       x: $article.offset().left - $(window).scrollLeft()
       y: $article.offset().top  - $(window).scrollTop()
     $container.velocity
       properties:
-        translateX: ($(window).width() / 2)  - (scaleOffset * offset.x) - ($article.outerWidth()  / 2)
-        translateY: ($(window).height() / 2) - (scaleOffset * offset.y) - ($article.outerHeight() / 2)
-        scale: scaleTo
+        translateX: ($(window).width() / 2)  - (scale * offset.x) - ($article.outerWidth()  / 2)
+        translateY: ($(window).height() / 2) - (scale * offset.y) - ($article.outerHeight() / 2)
+        scale: if $article.hasClass 'image' then scale else 1
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
         complete: ->
           $article.addClass('open').removeClass('opening')
-          
         #   articleView.resize $article
     $article.trigger 'mouseleave'
-    
-    $article.find(constants.dom.articleMeta).find('li').each ->
-      $(@).velocity
-        properties:
-          scale: 1 / scaleTo
-          opacity: .5
-        options:
-#           queue: false
-          duration: constants.style.duration.hoverArticle
-          easing: constants.velocity.easing.smooth
-    
-    $('article').find('.card').css
-      borderWidth: Math.max .5, 1/scaleTo
     $article.css # must run after trigger('mouseleave')
       zIndex: 2
     $article.find(constants.dom.articleMeta).find('li').velocity
@@ -173,8 +153,6 @@ window.articleView =
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
-    $('article').find('.card').css
-      borderWidth: 1/constants.style.globalScale
     extendNav()
 
   onCollectionOver: ($article, event, $collection) ->
