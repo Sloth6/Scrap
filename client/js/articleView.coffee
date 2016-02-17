@@ -1,6 +1,6 @@
 window.articleView =
   obscure: ($articles) ->
-    $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+    $contents   = $articles.find('.card').children().add($articles.find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -20,10 +20,8 @@ window.articleView =
         opacity: 1
       options: options
     $articles.removeClass 'obscured'
-
-  mouseenter: (event, $article) ->
-    $article.find('ul.articleCollections').css
-      zIndex: 2
+  
+  showMeta: ($article) ->
     # Animate in article metadata
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:
@@ -37,6 +35,7 @@ window.articleView =
             opacity: 0
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
+    # If playable, special treatment
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       x = $button.offset().left - $(window).scrollLeft()
@@ -56,17 +55,9 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
-
-  mousemove: (event, $article) ->
-    if $article.hasClass('playable')
-      $button = $article.find('.playButton')
-      $button.css
-        x: (event.clientX) - $button.data('startPos').x - $button.width()  / 2
-        y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
-
-  mouseleave: (event, $article) ->
-    $article.find('ul.articleCollections').css
-      zIndex: ''
+          
+  hideMeta: ($article) ->
+    console.log 'sho'
     # Animate out article metadata
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:
@@ -76,6 +67,7 @@ window.articleView =
         complete: -> $article.find(constants.dom.articleMeta).hide()
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
+    # If playable, special treatment
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0
@@ -92,9 +84,28 @@ window.articleView =
           easing: constants.velocity.easing.smooth
           duration: 500
 
+    
+  mouseenter: (event, $article) ->
+    $article.find('ul.articleCollections').css
+      zIndex: 2
+    articleView.showMeta($article) # unless $article.hasClass('open') or $article.hasClass('opening')
+
+  mousemove: (event, $article) ->
+    if $article.hasClass('playable')
+      $button = $article.find('.playButton')
+      $button.css
+        x: (event.clientX) - $button.data('startPos').x - $button.width()  / 2
+        y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
+
+  mouseleave: (event, $article) ->
+    $article.find('ul.articleCollections').css
+      zIndex: ''
+    articleView.hideMeta($article) # unless $article.hasClass('open') or $article.hasClass('opening')
+
   open: (event, $article) ->
     event.stopPropagation()
-    articleView.obscure ($(constants.dom.articleContainer).find('article').not($article))
+    $article.addClass 'opening'
+    articleView.obscure $(constants.dom.articleContainer).find('article').not($article)
     $container = $(constants.dom.articleContainer)
     scale = 1 / constants.style.globalScale
     offset = # distance of article top/left to window top/left
@@ -108,12 +119,20 @@ window.articleView =
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
-        # complete: ->
+        complete: ->
+          $article.addClass('open').removeClass('opening')
         #   articleView.resize $article
     $article.trigger 'mouseleave'
-    $article.addClass 'open'
     $article.css # must run after trigger('mouseleave')
       zIndex: 2
+    $article.find(constants.dom.articleMeta).find('li').velocity
+      properties:
+        scale: 1
+        translateY: 0
+        opacity: 1
+      options:
+        duration: constants.style.duration.hoverArticle
+        easing: constants.velocity.easing.smooth
     hideNav()
 
   resize: ($article) ->
