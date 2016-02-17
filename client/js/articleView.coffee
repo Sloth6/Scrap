@@ -106,7 +106,7 @@ window.articleView =
     $article.addClass 'opening'
     articleView.obscure $(constants.dom.articleContainer).find('article').not($article)
     $container = $(constants.dom.articleContainer)
-    scale = 1 / constants.style.globalScale
+    scale = if $article.hasClass 'image' then 1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight)) else 1 / constants.style.globalScale
     offset = # distance of article top/left to window top/left
       x: $article.offset().left - $(window).scrollLeft()
       y: $article.offset().top  - $(window).scrollTop()
@@ -114,7 +114,7 @@ window.articleView =
       properties:
         translateX: ($(window).width() / 2)  - (scale * offset.x) - ($article.outerWidth()  / 2)
         translateY: ($(window).height() / 2) - (scale * offset.y) - ($article.outerHeight() / 2)
-        scale: 1
+        scale: if $article.hasClass 'image' then scale else 1
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth

@@ -1,4 +1,4 @@
-# TODO: re-refactor and imprive
+# TODO: re-refactor and improve
 
 window.parallaxHover = ($elements) ->
   getProgressValues = ($element, scale) ->
@@ -11,8 +11,8 @@ window.parallaxHover = ($elements) ->
     { x: progressX, y: progressY }
   getRotateValues = ($element, progress) ->
     # TODO: extra fix below
-    maxRotateY = if $element.is('a') then 22 else 22
-    maxRotateX = if $element.is('a') then 22 else 22
+    maxRotateY = 22
+    maxRotateX = 22
     rotateX = maxRotateY * (progress.y - .5)
     rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
     { x: rotateX, y: rotateY}
@@ -24,7 +24,7 @@ window.parallaxHover = ($elements) ->
     $element.addClass 'parallaxHover'
 
     $element.wrapInner '<span></span>' if $element.is('a')
-    perspective = if $element.hasClass('image') then $element.height() * 8 else $element.height() * 2
+    perspective = if $element.hasClass('image') then (($element.height() + $element.width()) / 2) * 32 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
     $transform = $element.find('.transform')
     $transform.wrap $('<div></div>').addClass('perspective')
