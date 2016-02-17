@@ -1,6 +1,6 @@
 window.onScroll = () ->
   scrollTop = $(window).scrollTop()
-  
+
   # detect direction change
   if window.oldScrollTop isnt scrollTop
     if window.oldScrollTop < scrollTop
@@ -15,7 +15,7 @@ window.onScroll = () ->
   else
     unless window.scrollDirection is 'up'
       retractNav() unless $('nav').children().hasClass('velocity-animating')
-      
+
 window.onChangeScrollDirection = (direction) ->
   window.scrollDirection = direction
   if $(window).scrollTop() > 10
@@ -27,6 +27,6 @@ window.onChangeScrollDirection = (direction) ->
 $ ->
   window.oldScrollTop     = 0
   window.scrollDirection  = 'down'
-  
+
   $(window).scroll -> onScroll()
   onScroll()
