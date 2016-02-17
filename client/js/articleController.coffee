@@ -3,7 +3,7 @@ $ ->
   initContainer $( constants.dom.articleContainer )
   
 obscureArticles = ($articles) ->
-  $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+  $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
   options     =
     duration: constants.style.duration.openArticle
     easing:   constants.velocity.easing.smooth

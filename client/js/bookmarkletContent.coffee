@@ -19,11 +19,11 @@ fancyHover = ($elements) ->
     progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
     { x: progressX, y: progressY }
   getRotateValues = ($element, progress) ->
-    maxRotateY = if $element.is('a') then 22 else 22
-    maxRotateX = if $element.is('a') then 22 else 22
+    maxRotateY = 22
+    maxRotateX = 22
     rotateX = maxRotateY * (progress.y - .5)
     rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
-    { x: rotateX, y: rotateY}
+    { x: rotateX, y: rotateY }
   $elements.each ->
     $element = $(@)
     $parent = $element.parent()
