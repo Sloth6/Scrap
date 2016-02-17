@@ -6,7 +6,7 @@ articleRenderer = require '../modules/articleRenderer.coffee'
 
 getCollectionKeys = (articleId, callback) ->
   q = """
-      SELECT "collectionKey" FROM "Collections" where "id" in 
+      SELECT "collectionKey" FROM "Collections" where "id" in
         (SELECT "CollectionId" from "ArticlesCollections"
         WHERE "ArticleId"=:articleId)
       """
@@ -24,7 +24,7 @@ module.exports =
     rawContent = decodeURIComponent data.content
     # userId = socket.handshake.session.userId
     user = socket.handshake.session.user
-    
+
     console.log 'newArticle:'
     console.log "\tuserId: #{user.id}"
     console.log "\tcollectionKey: #{collectionKey}"
@@ -34,16 +34,14 @@ module.exports =
       return callback(err) if err
       # if collection?
       #   html = articleRenderer article, [collection]
-      #   room = collection.collectionKey    
+      #   room = collection.collectionKey
       # else
       html = articleRenderer article, []
       room = "user:#{user.id}"
-      
+
       console.log 'emitting to ', room
       sio.to(room).emit 'newArticle', { html: encodeURIComponent(html) }
       callback null
-        
-          
 
   # delete the article
   deleteArticle : (sio, socket, data, callback) =>
@@ -53,7 +51,7 @@ module.exports =
 
     return callback('no id passed to deleteArticle') unless id
     return callback('no collectionKey passed to deleteArticle') unless collectionKey
-    
+
     console.log "Delete article #{id} in #{collectionKey}"
     q1 = "
         DELETE FROM \"Articles\"
@@ -62,7 +60,7 @@ module.exports =
       "
     models.sequelize.query(q1, replacements: { id }).done (err, results) ->
       return console.log('error deleting article') if err?
-      
+
       console.log 'emiting deleteArticle', { id, collectionKey }
       sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
       { contentType, content } = results[0][0]
@@ -72,7 +70,7 @@ module.exports =
       if contentType in ['file', 'video', 'image']
         s3.delete content, (err) ->
           console.log err if err
-  
+
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
     { content, articleId } = data

@@ -13,9 +13,9 @@ module.exports =
   index: (req, res, app, callback) ->
     if !req?.session?.currentUserId
       return indexPage res
-    
+
     userId = req.session.currentUserId
-    options = 
+    options =
       where: { id: userId }
       include: [
         { model: models.Collection }
@@ -25,10 +25,10 @@ module.exports =
     models.User.find( options ).done (err, user) ->
       return callback err, res if err?
       return indexPage res unless user?
-      
-      user.Articles.length = 100
+
+      user.Articles.length = 20
       collections = {}
-      for collection in user.Collections 
+      for collection in user.Collections
         key = collection.collectionKey
         collections[key] = collection.dataValues
 

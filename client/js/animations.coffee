@@ -1,8 +1,6 @@
-rotateColor = ($elements, hue)->
-  $elements.css
-    '-webkit-text-fill-color': "hsl(#{hue},100%,75%)"
+# TODO: re-refactor and imprive
 
-parallaxHover = ($elements) ->
+window.parallaxHover = ($elements) ->
   getProgressValues = ($element, scale) ->
     # if article, compensate for global scale
     offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
@@ -12,6 +10,7 @@ parallaxHover = ($elements) ->
     progressX = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
     { x: progressX, y: progressY }
   getRotateValues = ($element, progress) ->
+    # TODO: extra fix below
     maxRotateY = if $element.is('a') then 22 else 22
     maxRotateX = if $element.is('a') then 22 else 22
     rotateX = maxRotateY * (progress.y - .5)
@@ -23,7 +22,7 @@ parallaxHover = ($elements) ->
     scale = if $element.is('a') then 1.25 else 1.5
     duration = 500
     $element.addClass 'parallaxHover'
-    
+
     $element.wrapInner '<span></span>' if $element.is('a')
     perspective = if $element.hasClass('image') then $element.height() * 8 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
@@ -35,10 +34,10 @@ parallaxHover = ($elements) ->
         perspective: perspective
       options:
         duration: 1
-    
+
     $element.mouseenter (event) ->
-#         console.log $element.attr 'class'
-#         console.log $element.hasClass('open') or $element.hasClass('obscured') or $element.hasClass('ui-draggable-dragging')
+        # console.log $element.attr 'class'
+        # console.log $element.hasClass('open') or $element.hasClass('obscured') or $element.hasClass('ui-draggable-dragging')
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
@@ -64,12 +63,12 @@ parallaxHover = ($elements) ->
           offset =
             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-#             $(@).velocity
-#               properties:
-#                 translateZ: 500 * depth #(((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
-#               options:
-#                 easing: constants.velocity.easing.smooth
-#                 duration: duration    
+            # $(@).velocity
+            #   properties:
+            #     translateZ: 500 * depth #(((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
+            #   options:
+            #     easing: constants.velocity.easing.smooth
+            #     duration: duration
     $element.mousemove (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         $transform = $element.find('.transform')
@@ -85,7 +84,7 @@ parallaxHover = ($elements) ->
           parallax = 72 * depth
           $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
           $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
-#           console.log progress.y
+          # console.log progress.y
     $element.mouseleave ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         $element.data('closingHover', true)
@@ -104,12 +103,12 @@ parallaxHover = ($elements) ->
             easing: constants.velocity.easing.smooth
             duration: duration
             complete: ->
-#                 $transform.children().appendTo $element
-#                 $transform.unwrap $element.find('.perspective')
-#                 $transform.remove()
-#                 $element.find('.perspective').remove()
+                # $transform.children().appendTo $element
+                # $transform.unwrap $element.find('.perspective')
+                # $transform.remove()
+                # $element.find('.perspective').remove()
               $element.data('closingHover', false)
-            
+
         $layers.velocity
           properties:
             scale: 1

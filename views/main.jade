@@ -10,27 +10,43 @@ html.no-js(lang='en')
     script(src="/js/jquery/jquery.zoomooz.js")
     script(src="/js/jquery/jquery.fileupload.js")
 
-    script(src="/js/menuControllers/header.js")
-    script(src="/js/menuControllers/settings.js")
+    script(src="/js/menus/header.js")
+    script(src="/js/menus/settings.js")
 
-    script(src="/js/lib/dragabilly.min.js")
-    script(src="/js/lib/velocity.min.js")
-    script(src="/js/lib/packery.js")
-    script(src='/js/animations.js')
-    script(src='/js/scrollController.js')
-    script(src='/js/collectionModel.js')
-    script(src='/js/collectionController.js')
-    script(src='/js/navModel.js')
-    script(src='/js/navController.js')
-    script(src='/js/articleModel.js')
-    script(src='/js/articleController.js')
-    script(src='/js/main.js')
+    script(src="/js/menus/addCollectionsMenuController.js")
+
+    script(src="/js/menus/collectionsMenuController.js")
+
+    script(src="/js/menus/collectionsMenuView.js")
+
+    script(src="/js/menus/addArticleMenuController.js")
+    //- script(src="/js/menus/addArticleView.js")
 
     script(src='/socket.io/socket.io.js')
     script(src='/js/lib/soundcloud-api.js')
     script(src='/js/lib/pen.js')
+    script(src="/js/lib/dragabilly.min.js")
+    script(src="/js/lib/velocity.min.js")
+    script(src="/js/lib/packery.js")
+
+    script(src='/js/animations.js')
+    script(src='/js/scrollController.js')
+
+    script(src='/js/navModel.js')
+    script(src='/js/navController.js')
+
+    script(src='/js/collectionView.js')
+    script(src='/js/collectionController.js')
+
+
+    script(src='/js/articleView.js')
+    script(src='/js/articleController.js')
+
+    script(src='/js/containerController.js')
+    script(src='/js/containerView.js')
+
     script(src="/js/uploadForm.js")
-    
+
     script(src="/js/contentControllers/file.js")
     script(src="/js/contentControllers/gif.js")
     script(src="/js/contentControllers/soundCloud.js")
@@ -45,14 +61,13 @@ html.no-js(lang='en')
     script(src="/js/contentEmitters/upload.js")
 
     script(src="/js/utilityFunctions.js")
-    script(src="/js/menuControllers/addArticle.js")
-
     script(src="/js/socketListeners.js")
+    script(src='/js/main.js')
 
     link(rel='stylesheet', href='/style/prototype.css')
     // link(rel='stylesheet', href='http://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
 
-    
+
     include mixins/article
     include mixins/addArticleForm
 
@@ -115,4 +130,4 @@ html.no-js(lang='en')
     //-     li.comment
     //-       author.typeBody.smallCaps Vulputate Fermentum
     //-       div Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-    //-       
+    //-
