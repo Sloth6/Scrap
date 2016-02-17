@@ -57,7 +57,6 @@ window.articleView =
           duration: 500
           
   hideMeta: ($article) ->
-    console.log 'sho'
     # Animate out article metadata
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:
