@@ -2,13 +2,7 @@ $labelOpenTransitionDuration: 1s;
 $hideImageWhiteBorder: -2px -1px -4px -2px;
 
 body {
-  
-    .label {
-        &.stack {
-//             @include cursorGrab;
-        }
-    }
-        
+
     article {
         color: $colorType;
         position: absolute;
@@ -18,7 +12,6 @@ body {
         transform-origin: center center;
         -webkit-transform-origin: center center;
         -moz-transform-origin: center center;
-//         cursor: pointer;
         
         // EVENTS
         

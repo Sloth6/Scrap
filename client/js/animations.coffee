@@ -36,25 +36,35 @@ window.parallaxHover = ($elements) ->
         duration: 1
 
     $element.mouseenter (event) ->
-        # console.log $element.attr 'class'
-        # console.log $element.hasClass('open') or $element.hasClass('obscured') or $element.hasClass('ui-draggable-dragging')
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
-        # offset if element too close to edge
-        if $element.is 'article'
-          translateY = if ($element.offset().top  - $(window).scrollTop() ) < 72 then 48 else 0
-          translateX = if ($element.offset().left - $(window).scrollLeft()) < 72 then 48 else 0
+
+        # Offsets element toward middle of page if element too close to edge of page
+        if ($element.offset().left - $(window).scrollLeft()) < 144
+          originX = 'left'
+        else if ($(window).width() - ($element.offset().left + $element.width())) < 144
+          originX = 'right'
         else
-          translateY = 0
-          translateX = 0
+          originX = 'center'
+
+        if ($element.offset().top  - $(window).scrollTop())  < 144
+          originY = 'top'
+        else if ($(window).height() - ($element.offset().top + $element.height())) < 144
+          originY = 'bottom'
+        else
+          originY = 'center'
+
+        $transform.css
+          transformOrigin:        "#{originX} #{originY}"
+          webkitTransformOrigin:  "#{originX} #{originY}"
         $element.add($element.parents('li')).css
           zIndex: 2
         $transform.velocity
           properties:
             scale: scale
-            translateX: translateX
-            translateY: translateY
+            translateX: 0
+            translateY: 0
           options:
             easing: constants.velocity.easing.smooth
             duration: duration
