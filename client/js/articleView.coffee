@@ -24,6 +24,19 @@ window.articleView =
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: 2
+    # Animate in article metadata
+    $article.find(constants.dom.articleMeta).find('li').velocity
+      properties:
+        scale: [1, 0]
+        translateY: [0, -12]
+        opacity: [1, 1]
+      options:
+        begin: =>
+          $article.find(constants.dom.articleMeta).show()
+          $(@).css
+            opacity: 0
+        duration: constants.style.duration.hoverArticle
+        easing: constants.velocity.easing.smooth
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       x = $button.offset().left - $(window).scrollLeft()
@@ -54,6 +67,15 @@ window.articleView =
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: ''
+    # Animate out article metadata
+    $article.find(constants.dom.articleMeta).find('li').velocity
+      properties:
+        scale: 0
+        translateY: -12
+      options:
+        complete: -> $article.find(constants.dom.articleMeta).hide()
+        duration: constants.style.duration.hoverArticle
+        easing: constants.velocity.easing.smooth
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0

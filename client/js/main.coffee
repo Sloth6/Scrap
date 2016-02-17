@@ -7,6 +7,7 @@ window.constants =
     globalScale: 1/2
     duration:
       openArticle: 1000
+      hoverArticle: 250
   velocity:
     easing:
       smooth: [20, 10]
@@ -18,6 +19,7 @@ window.constants =
     articleContainer: '#articleContainer'
     collections: 'ul.collectionsMenu li.collection'
     articles: 'article'
+    articleMeta: 'footer .meta'
 
 
 $ ->

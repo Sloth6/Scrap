@@ -80,7 +80,8 @@ window.articleController =
 
       $articles.find('img').load () =>
         articleView.resize $(@)
-
+        
+      $(@).find(constants.dom.articleMeta).hide()
       if $(@).hasClass('playable')
         $(@).find('.artist', '.source').css
           position: 'absolute'
