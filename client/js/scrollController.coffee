@@ -5,10 +5,10 @@ window.onScroll = () ->
   if window.oldScrollTop isnt scrollTop
     if window.oldScrollTop < scrollTop
       if window.scrollDirection isnt 'down'
-        events.onChangeScrollDirection 'down'
+        onChangeScrollDirection 'down'
     else
       if scrollDirection isnt 'up'
-        events.onChangeScrollDirection 'up'
+        onChangeScrollDirection 'up'
     window.oldScrollTop = scrollTop
   if scrollTop <= 10
     extendNav() unless $('nav').children().hasClass('velocity-animating')
