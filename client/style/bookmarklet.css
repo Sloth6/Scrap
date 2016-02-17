@@ -607,7 +607,7 @@ html {
 .typeTitle {
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
 }
 /* line 181, ../../style/globals/_type.scss */
@@ -693,7 +693,7 @@ html {
 .typeNav {
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
@@ -1578,11 +1578,6 @@ body article .articleControls {
   -o-transition-property: opacity;
   -webkit-transition-property: opacity;
   transition-property: opacity;
-  opacity: 0;
-  top: -20px;
-  left: -8pt;
-  right: 8pt;
-  position: absolute;
   z-index: 5000;
   font-style: normal;
   color: #000000;
@@ -1592,13 +1587,7 @@ body article .articleControls .articleDeleteButton, body article .articleControl
   color: #000000;
   text-decoration: none;
   border: 0;
-  position: absolute;
   display: block;
-  bottom: 0;
-}
-/* line 72, ../../style/layout/_article.scss */
-body article .articleControls .articleDeleteButton {
-  left: 0;
 }
 /* line 76, ../../style/layout/_article.scss */
 body article .articleControls author {
@@ -2548,7 +2537,7 @@ body {
 h1, li a {
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;

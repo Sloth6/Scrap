@@ -2,6 +2,10 @@ $ ->
   initNav $(constants.dom.nav)
   initAddCollectionForm $('#newCollectionForm')
   
+# window.nav =
+#   init: ->
+#   hide: ->
+  
 hideNav = ->
   $sections = $(constants.dom.nav).children()
   unless $(constants.dom.collectionsMenu).hasClass('open')

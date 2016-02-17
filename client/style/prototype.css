@@ -607,7 +607,7 @@ html {
 .typeTitle {
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
 }
 /* line 181, ../../style/globals/_type.scss */
@@ -693,7 +693,7 @@ html {
 .typeNav {
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
@@ -1578,11 +1578,6 @@ body article .articleControls {
   -o-transition-property: opacity;
   -webkit-transition-property: opacity;
   transition-property: opacity;
-  opacity: 0;
-  top: -20px;
-  left: -8pt;
-  right: 8pt;
-  position: absolute;
   z-index: 5000;
   font-style: normal;
   color: #000000;
@@ -1592,13 +1587,7 @@ body article .articleControls .articleDeleteButton, body article .articleControl
   color: #000000;
   text-decoration: none;
   border: 0;
-  position: absolute;
   display: block;
-  bottom: 0;
-}
-/* line 72, ../../style/layout/_article.scss */
-body article .articleControls .articleDeleteButton {
-  left: 0;
 }
 /* line 76, ../../style/layout/_article.scss */
 body article .articleControls author {
@@ -2584,7 +2573,7 @@ nav section.center {
 nav section .headerButton a {
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
@@ -2623,7 +2612,7 @@ nav section ul.collectionsMenu li .contents a {
   margin: 0 auto;
   font-size: 48pt;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.03125em;
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
@@ -2666,23 +2655,20 @@ nav section .addForm article {
 #articleContainer {
   width: 100%;
 }
-/* line 136, ../../style/prototype.scss */
-#articleContainer article ul.articleCollections {
+/* line 138, ../../style/prototype.scss */
+#articleContainer article .meta ul.articleCollections {
   white-space: nowrap;
-  position: absolute;
-  top: -4pt;
-  left: 0;
 }
-/* line 142, ../../style/prototype.scss */
-#articleContainer article ul.articleCollections li.collection {
+/* line 144, ../../style/prototype.scss */
+#articleContainer article .meta ul.articleCollections li.collection {
   display: inline-block;
 }
-/* line 146, ../../style/prototype.scss */
-#articleContainer article ul.articleCollections li.collection:first-child a {
+/* line 148, ../../style/prototype.scss */
+#articleContainer article .meta ul.articleCollections li.collection:first-child a {
   border-left-width: 1px;
 }
-/* line 151, ../../style/prototype.scss */
-#articleContainer article ul.articleCollections li.collection a {
+/* line 153, ../../style/prototype.scss */
+#articleContainer article .meta ul.articleCollections li.collection a {
   display: block;
   border: 1px solid #000000;
   border-left-width: 0;
@@ -2694,7 +2680,7 @@ nav section .addForm article {
   top: -8.75pt;
   color: transparent;
 }
-/* line 170, ../../style/prototype.scss */
+/* line 173, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   text-indent: 0;
   height: 16pt;

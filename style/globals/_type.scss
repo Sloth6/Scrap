@@ -48,7 +48,7 @@ $headerLeftMarginOffset:
 @mixin typeTitle {
     font-size:      $typeTitleSize;
     font-weight:    $fontWeightMedium;
-    letter-spacing: 0;
+    letter-spacing: (1em / 32);
     line-height:    $typeTitleLeading;
 }
 

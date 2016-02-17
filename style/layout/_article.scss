@@ -53,24 +53,24 @@ body {
         .articleControls {
             @include transition(.25s $defaultCurve);
             @include transition-property(opacity);
-            opacity: 0; 
-            top: -20px;
-            left: -$cell;
-            right: $cell;
-            position: absolute;
+//             opacity: 0; 
+//             top: -20px;
+//             left: -$cell;
+//             right: $cell;
+//             position: absolute;
             z-index: 5000;
             font-style: normal;
             color: $colorType;
             
             .articleDeleteButton, author {
                 @include linkReset;
-                position: absolute;
+//                 position: absolute;
                 display: block;
-                bottom: 0;
+//                 bottom: 0;
             }
             
             .articleDeleteButton {
-                left: 0;
+//                 left: 0;
             }
             
             author {

@@ -133,35 +133,38 @@ nav {
     width: 100%;
     
     article {
-        ul.articleCollections {
-            white-space: nowrap;
-            position: absolute;
-            top: -$cell/2;
-            left:0;
-            
-            li.collection {
-                display: inline-block;
+      
+        .meta {
+            ul.articleCollections {
+                white-space: nowrap;
+//                 position: absolute;
+//                 top: -$cell/2;
+//                 left:0;
                 
-                &:first-child {
-                    a {
-                        border-left-width: $cardBorderWidth;
+                li.collection {
+                    display: inline-block;
+                    
+                    &:first-child {
+                        a {
+                            border-left-width: $cardBorderWidth;
+                        }
                     }
-                }
-                
-                a {
-                    display: block;
-                    border: $cardBorder;
-                    border-left-width: 0;
-                    text-indent: -9999em;
-                    height: $cell;
-                    width: $cell;
-                    padding: 0;
-                    position: relative;
-                    top: -($cell + $cardBorderWidth);
-                    color: transparent;
-//                     border-radius: $cell;
-//                     @include transition(.25s $defaultCurve);
-//                     @include transition-property(height, padding, color);
+                    
+                    a {
+                        display: block;
+                        border: $cardBorder;
+                        border-left-width: 0;
+                        text-indent: -9999em;
+                        height: $cell;
+                        width: $cell;
+                        padding: 0;
+                        position: relative;
+                        top: -($cell + $cardBorderWidth);
+                        color: transparent;
+            //                     border-radius: $cell;
+            //                     @include transition(.25s $defaultCurve);
+            //                     @include transition-property(height, padding, color);
+                    }
                 }
             }
         }
