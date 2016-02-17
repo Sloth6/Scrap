@@ -25,18 +25,13 @@ mixin articleMixin(article, collections)
     data-creatorid  = article.creatorId, 
     data-content    = article.content
   )
-    .meta
-      author.smallType Justo Sollicitudin
-      input.articleDeleteButton(type='button', value='Delete')
-      // - if(article.Creator !== undefined)
-      //   author.smallType!=article.Creator.name
-      ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.2',data-parallaxoffset={x: 0, y: -12})
+    header
+      ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.2',data-parallaxoffset={x: 0, y: -24})
         - for (var i = 0; i < collections.length; i++)
           - var collection = collections[i]
           - var key = collection.collectionKey
           li.collection(data-collectionKey=key, class=key)
             a.typeSmall(href='#', style='background-color:'+collection.color+';', data-color=collection.color)!=collection.name
-    
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
         
@@ -102,5 +97,13 @@ mixin articleMixin(article, collections)
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content
-    
-      
+    footer
+      .meta
+        ul
+          li.left
+            author.smallType Justo Sollicitudin
+          li.right
+            input.articleDeleteButton.smallType(type='button', value='Delete')
+        // - if(article.Creator !== undefined)
+        //   author.smallType!=article.Creator.name
+              

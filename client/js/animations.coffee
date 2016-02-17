@@ -44,21 +44,22 @@ parallaxHover = ($elements) ->
         # Offsets element toward middle of page if element too close to edge of page
         if ($element.offset().left - $(window).scrollLeft()) < 144 
           originX = 'left'
-        else if ($(window).width() - ($element.offset().left + $element.width())) < 144
+        else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
           originX = 'right'
         else
           originX = 'center'
-          
         if ($element.offset().top  - $(window).scrollTop())  < 144
           originY = 'top'
-        else if ($(window).height() - ($element.offset().top + $element.height())) < 144
+        else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
           originY = 'bottom'
         else
           originY = 'center'
-
         $transform.css
           transformOrigin:        "#{originX} #{originY}"
+          msTransformOrigin:      "#{originX} #{originY}"
+          mozTransformOrigin:     "#{originX} #{originY}"
           webkitTransformOrigin:  "#{originX} #{originY}"
+          
         $element.add($element.parents('li')).css
           zIndex: 2
         $transform.velocity

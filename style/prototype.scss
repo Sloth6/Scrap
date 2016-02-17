@@ -134,12 +134,13 @@ nav {
     
     article {
       
-        .meta {
+        header {
             ul.articleCollections {
                 white-space: nowrap;
-//                 position: absolute;
-//                 top: -$cell/2;
-//                 left:0;
+                position: absolute;
+                top: -$cell/2;
+                left:0;
+                z-index: 2;
                 
                 li.collection {
                     display: inline-block;
@@ -159,7 +160,7 @@ nav {
                         width: $cell;
                         padding: 0;
                         position: relative;
-                        top: -($cell + $cardBorderWidth);
+                        top: 0; // -($cell + $cardBorderWidth);
                         color: transparent;
             //                     border-radius: $cell;
             //                     @include transition(.25s $defaultCurve);
@@ -176,6 +177,19 @@ nav {
                 width: -webkit-fit-content;
                 padding: 0 2pt;
                 color: $colorType;
+            }
+        }
+        
+        footer {
+            
+            ul {
+                li {
+                    display: inline-block;
+                    
+                    &.right {
+                        float: right;
+                    }
+                }
             }
         }
     }

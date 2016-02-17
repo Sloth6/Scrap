@@ -17,10 +17,6 @@ body {
         
         &.hover {
             @include cursorGrab;
-            
-            .articleControls {
-                opacity: 1;
-            }
         }
 
         &.dragging, &.ui-draggable-dragging, &.active, &:active {
@@ -40,38 +36,7 @@ body {
                 opacity: .5;
             }
         }
-                
-        // CONTENTS
-        
-        .articleControls {
-            @include transition(.25s $defaultCurve);
-            @include transition-property(opacity);
-//             opacity: 0; 
-//             top: -20px;
-//             left: -$cell;
-//             right: $cell;
-//             position: absolute;
-            z-index: 5000;
-            font-style: normal;
-            color: $colorType;
-            
-            .articleDeleteButton, author {
-                @include linkReset;
-//                 position: absolute;
-                display: block;
-//                 bottom: 0;
-            }
-            
-            .articleDeleteButton {
-//                 left: 0;
-            }
-            
-            author {
-                right:  0;
-                white-label: nowrap;
-            }
-        }
-        
+                        
         // CONTENT
         
         &.text {
