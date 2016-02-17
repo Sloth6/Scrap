@@ -83,6 +83,7 @@ window.articleController =
         
       $(@).find(constants.dom.articleMeta).hide()
       if $(@).hasClass('playable')
+        $(@).find('.playButton').hide()
         $(@).find('.artist', '.source').css
           position: 'absolute'
           opacity: 0

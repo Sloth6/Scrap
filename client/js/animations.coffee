@@ -19,7 +19,7 @@ window.parallaxHover = ($elements) ->
   $elements.each ->
     $element = $(@)
     $layers = $element.find('.parallaxLayer')
-    scale = if $element.is('a') then 1.25 else 1.5
+    scale = if $element.is('a') then 1.25 else .75 / constants.style.globalScale
     duration = 500
     $element.addClass 'parallaxHover'
 

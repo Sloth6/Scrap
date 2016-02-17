@@ -2,9 +2,9 @@
 
 window.constants =
   style:
-    gutter: 48
+    gutter: 24 / (1/3)
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    globalScale: 1/2
+    globalScale: 1/3
     duration:
       openArticle: 1000
       hoverArticle: 250
