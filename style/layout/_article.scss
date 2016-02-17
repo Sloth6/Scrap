@@ -168,15 +168,17 @@ body {
                 width:      auto !important;
 */
                 overflow: hidden;
-/*
                 img {
-                    min-height: $col;
+                    height: auto;
+                    width:  auto;
+/*
                     min-width:  $col;
-                    max-width: $col * 4;
-                    max-width: $col * 4;
+                    min-height: $col;
+*/
+                    max-width:  $articleSideWide;
+                    max-height: $articleSideWide;
                     margin: $hideImageWhiteBorder;
                 }
-*/
             }
         }
 
