@@ -80,8 +80,11 @@ window.articleController =
 
       $articles.find('img').load () =>
         articleView.resize $(@)
-
+        
+      $(@).find(constants.dom.articleMeta).hide()
       if $(@).hasClass('playable')
+        $(@).find('.playButton').css
+          opacity: 0
         $(@).find('.artist', '.source').css
           position: 'absolute'
           opacity: 0
@@ -92,4 +95,4 @@ window.articleController =
     $articles.mousemove  -> articleView.mousemove  event, $(@)
     $articles.mouseleave -> articleView.mouseleave event, $(@)
 
-    parallaxHover $articles
+    parallaxHover $articles, 500, .5 / constants.style.globalScale

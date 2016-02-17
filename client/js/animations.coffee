@@ -1,6 +1,6 @@
-# TODO: re-refactor and imprive
+# TODO: re-refactor and improve
 
-window.parallaxHover = ($elements) ->
+window.parallaxHover = ($elements, duration, scale) ->
   getProgressValues = ($element, scale) ->
     # if article, compensate for global scale
     offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
@@ -11,20 +11,18 @@ window.parallaxHover = ($elements) ->
     { x: progressX, y: progressY }
   getRotateValues = ($element, progress) ->
     # TODO: extra fix below
-    maxRotateY = if $element.is('a') then 22 else 22
-    maxRotateX = if $element.is('a') then 22 else 22
+    maxRotateY = 22
+    maxRotateX = 22
     rotateX = maxRotateY * (progress.y - .5)
     rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
     { x: rotateX, y: rotateY}
   $elements.each ->
     $element = $(@)
     $layers = $element.find('.parallaxLayer')
-    scale = if $element.is('a') then 1.25 else 1.5
-    duration = 500
     $element.addClass 'parallaxHover'
 
     $element.wrapInner '<span></span>' if $element.is('a')
-    perspective = if $element.hasClass('image') then $element.height() * 8 else $element.height() * 2
+    perspective = if $element.hasClass('image') then (($element.height() + $element.width()) / 2) * 32 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
     $transform = $element.find('.transform')
     $transform.wrap $('<div></div>').addClass('perspective')
@@ -39,34 +37,32 @@ window.parallaxHover = ($elements) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         progress = getProgressValues($element, scale)
         rotate = getRotateValues($element, progress)
-
-        # Offsets element toward middle of page if element too close to edge of page
-        if ($element.offset().left - $(window).scrollLeft()) < 144
-          originX = 'left'
-        else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
-          originX = 'right'
+        edgeOffset = 24
+        if $element.is 'article'
+          # Offsets element toward middle of page if element too close to edge of page
+          if ($element.offset().left - $(window).scrollLeft()) < 144
+            translateX = edgeOffset
+          else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
+            translateX = -edgeOffset
+          else
+            translateX = 0
+  
+          if ($element.offset().top  - $(window).scrollTop())  < 144
+            translateY = edgeOffset
+          else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
+            translateY = -edgeOffset
+          else
+            translateY = 0
         else
-          originX = 'center'
-
-        if ($element.offset().top  - $(window).scrollTop())  < 144
-          originY = 'top'
-        else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
-          originY = 'bottom'
-        else
-          originY = 'center'
-        $transform.css
-          transformOrigin:        "#{originX} #{originY}"
-          msTransformOrigin:      "#{originX} #{originY}"
-          mozTransformOrigin:     "#{originX} #{originY}"
-          webkitTransformOrigin:  "#{originX} #{originY}"
-          
+          translateX = 0
+          translateY = 0
         $element.add($element.parents('li')).css
           zIndex: 2
         $transform.velocity
           properties:
             scale: scale
-            translateX: 0
-            translateY: 0
+            translateX: translateX
+            translateY: translateY
           options:
             easing: constants.velocity.easing.smooth
             duration: duration

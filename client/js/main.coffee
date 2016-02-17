@@ -2,11 +2,12 @@
 
 window.constants =
   style:
-    gutter: 48
+    gutter: 24 / (1/3)
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    globalScale: 1/2
+    globalScale: 1/3
     duration:
       openArticle: 1000
+      hoverArticle: 250
   velocity:
     easing:
       smooth: [20, 10]
@@ -18,6 +19,7 @@ window.constants =
     articleContainer: '#articleContainer'
     collections: 'ul.collectionsMenu li.collection'
     articles: 'article'
+    articleMeta: 'footer .meta'
 
 window.scrapState =
   waitingForContent: false

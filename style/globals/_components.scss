@@ -34,6 +34,14 @@ $cardBoxShadow:             $cardBoxShadowDimensions $cardBoxShadowColor;
 
 $cardBorderRadius:          0; // $cell/4;
 
+
+@mixin transformOriginCenter {
+    -webkit-transform-origin: center center;
+       -moz-transform-origin: center center;
+        -ms-transform-origin: center center;
+            transform-origin: center center;
+}
+
 @mixin cursorGrab {
     cursor: move;
     cursor: -webkit-grab;
