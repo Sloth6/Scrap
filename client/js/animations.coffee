@@ -50,11 +50,11 @@ parallaxHover = ($elements) ->
           originX = 'center'
           
         if ($element.offset().top  - $(window).scrollTop())  < 144
-          originX = 'top'
+          originY = 'top'
         else if ($(window).height() - ($element.offset().top + $element.height())) < 144
-          originX = 'bottom'
+          originY = 'bottom'
         else
-          originX = 'center'
+          originY = 'center'
 
         $transform.css
           transformOrigin:        "#{originX} #{originY}"
