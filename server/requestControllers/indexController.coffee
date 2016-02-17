@@ -26,8 +26,8 @@ module.exports =
       return callback err, res if err?
       return indexPage res unless user?
 
-      user.Articles.reverse()
-      user.Articles.length = 20
+      # user.Articles.reverse()
+      user.Articles.length = 0
 
       collections = {}
       for collection in user.Collections

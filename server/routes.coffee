@@ -14,7 +14,7 @@ module.exports = (app) ->
   app.get '/', (req,res) ->
     controllers.indexController.index req, res, app, errorHandler
 
-  app.get '/collectionContent/:collectionKey', (req, res) ->
+  app.get '/collectionContent', (req, res) ->
     controllers.collectionController.collectionContent req, res, app, errorHandler
 
   app.get '/sign_s3', (req, res) ->

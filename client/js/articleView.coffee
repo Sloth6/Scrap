@@ -95,6 +95,7 @@ window.articleView =
     hideNav()
 
   resize: ($article) ->
+    console.log 'resize'
     $article.width  $article.children('.card').outerWidth()
     $article.height $article.children('.card').outerHeight()
     $( constants.dom.articleContainer ).packery()

@@ -19,6 +19,8 @@ window.constants =
     collections: 'ul.collectionsMenu li.collection'
     articles: 'article'
 
+window.scrapState =
+  waitingForContent: false
 
 $ ->
   window.socket = io.connect()

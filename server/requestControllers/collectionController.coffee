@@ -7,56 +7,38 @@ async = require 'async'
 config_path = __dirname+'/../config.json'
 config = JSON.parse(require('fs').readFileSync(config_path, 'utf8'))
 
-formatCollection = (collection) ->
-  articles = collection.Articles or []
-  children = collection.children or []
-
-  collection.content = articles.concat children
-  articleOrder       = collection.articleOrder
-
-  collection.content.sort (a, b) ->
-    if a instanceof models.Collection.Instance
-      a_i = articleOrder.indexOf(a.collectionKey)
-    else
-      a_i = articleOrder.indexOf("#{a.id}")
-
-    if b instanceof models.Collection.Instance
-      b_i = articleOrder.indexOf(b.collectionKey)
-    else
-      b_i = articleOrder.indexOf("#{b.id}")
-
-    if a_i > b_i then 1 else -1
-
-  collection
-
 module.exports =
   collectionContent: (req, res, app, callback) ->
     userId = req.session?.currentUserId
-    { collectionKey, o, n } = req.params
-    return res.send(400) unless (collectionKey and o and n and userId)?
+    { o, n } = req.query
+    console.log { o, n }
+    return res.send(400) unless (o and n and userId)?
 
-    models.Collection.find({
-      where: { collectionKey }
-      include:[
-        { model:models.Article, include: [ model:models.User, as: 'Creator' ] }
-        { model:models.Collection, as: 'children', include: [
-          { model:models.Article, include: [ model:models.User, as: 'Creator' ]}
-        ] }
+    options =
+      where: { id: userId }
+      include: [
+        { model: models.Collection }
+        { model: models.Article, order: '"createdAt" ASC', include: [{ model:models.Collection, required: false }] }
       ]
-    }).done (err, collection) ->
-      return callback(err, res) if err?
-      return callback "No collection found for '#{collectionKey}'", res unless collection?
+    models.User.find( options ).done (err, user) ->
+      return callback err, res if err?
+      return indexPage res unless user?
 
-      formatCollection collection
+      user.Articles.reverse()
+      user.Articles = user.Articles.slice(o, o+n)
 
-      unless collection.root
-        for child in collection.children
-          formatCollection child
+      collections = {}
+      for collection in user.Collections
+        key = collection.collectionKey
+        collections[key] = collection.dataValues
 
-      app.render 'partials/collectionContent', { collection }, (err, html) ->
-        return callback err if err?
-        res.status(200).send html
-        callback null
+      console.log "Showing #{user.Articles.length} articles"
+
+      res.render 'partials/articles', { user }
+      # app.render 'partials/articles', { user }, (err, html) ->
+      #   return callback err if err?
+      #   res.status(200).send html
+      #   callback null
 
   uploadFile : (req, res, app, callback) ->
     userId = req.session.currentUserId
