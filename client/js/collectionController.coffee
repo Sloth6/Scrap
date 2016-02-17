@@ -21,5 +21,3 @@ window.collectionController =
 
       $collection.css
         width: $(@).width()
-    parallaxHover $collections.find('a')
-

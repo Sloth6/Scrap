@@ -41,9 +41,14 @@ window.articleView =
       x = $button.offset().left - $(window).scrollLeft()
       y = $button.offset().top  - $(window).scrollTop()
       $button.data('startPos', {x: x, y: y})
+#       $button.show()
+      $button.css
+        scale: 0
+        opacity: 1
       $button.transition
         x: (event.clientX * (1/1)) - x - $button.width()  / 2
         y: (event.clientY * (1/1)) - y - $button.height() / 2
+        scale: 1
         easing: constants.style.easing
         duration: 250
       $article.css
@@ -71,8 +76,13 @@ window.articleView =
       $('.playButton').transition
         x: 0
         y: 0
+        scale: 0
         easing: constants.style.easing
         duration: 250
+      setTimeout ->
+        $('.playButton').css
+          opacity: 0
+      , 250
       $article.css
         cursor: 'none'
       $article.find('.artist, .source').velocity
@@ -157,17 +167,21 @@ window.articleView =
 
   onCollectionOver: ($article, event, $collection) ->
     $card = $article.children('.card')
-    console.log 'over!'
     $color = $('<div></div>').appendTo($article).addClass('backgroundColor').css
       position: 'absolute'
-      zIndex: -1
+      zIndex: 5
       top: 0
       left: 0
       right: 0
       bottom: 0
+      backgroundColor: 'transparent'
+      'mix-blend-mode': 'multiply'  
+    $color.transition
       backgroundColor: $collection.find('a').css '-webkit-text-fill-color'
+      duration: 500
+      easing: constants.style.easing
     $article.find('.card').transition
-      'mix-blend-mode': 'multiply'
+#       'mix-blend-mode': 'multiply'
       '-webkit-filter': 'grayscale(1)'
       duration: 500
       easing: constants.style.easing

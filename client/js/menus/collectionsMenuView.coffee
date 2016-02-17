@@ -1,13 +1,13 @@
 window.collectionsMenuView =
 	open: () ->
-    $menu       = $(constants.dom.collectionsMenu )
-    $container  = $(constants.dom.articleContainer)
-    $menuItems  = $menu.children()
-    $button     = $menu.find('.openMenuButton')
+    $menu         = $(constants.dom.collectionsMenu)
+    $container    = $(constants.dom.articleContainer)
+    $menuItems    = $menu.children()
+    $button       = $menu.find('.openMenuButton')
     $labelsButton = $menu.find('li.labelsButton')
-    $labels     = $menuItems.not('li.labelsButton')
-    $openLabel  = $menu.children(".#{window.openCollection}")
-    options     =
+    $labels       = $menuItems.not('li.labelsButton')
+    $openLabel    = $menu.children(".#{window.openCollection}")
+    options       =
       duration: 1000
       easing:   constants.velocity.easing.smooth
     isHome      = window.openCollection is 'recent'

@@ -1,6 +1,6 @@
 # TODO: re-refactor and improve
 
-window.parallaxHover = ($elements) ->
+window.parallaxHover = ($elements, duration, scale) ->
   getProgressValues = ($element, scale) ->
     # if article, compensate for global scale
     offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
@@ -19,8 +19,6 @@ window.parallaxHover = ($elements) ->
   $elements.each ->
     $element = $(@)
     $layers = $element.find('.parallaxLayer')
-    scale = if $element.is('a') then 1.25 else .75 / constants.style.globalScale
-    duration = 500
     $element.addClass 'parallaxHover'
 
     $element.wrapInner '<span></span>' if $element.is('a')

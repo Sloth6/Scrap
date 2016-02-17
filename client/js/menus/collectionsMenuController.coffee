@@ -7,6 +7,7 @@ window.collectionsMenuController =
           collectionsMenuView.open()
         else # not ready to open
           window.triedToOpen = true # register attempt to open
+    parallaxHover $menu.find('li a'), 250, 1.25
     $('body').click ->
       collectionsMenuView.close() if $menu.hasClass 'open'
     $menu.find('li').not('.openMenuButton').hide()
