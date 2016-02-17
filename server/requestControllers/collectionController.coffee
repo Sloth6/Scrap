@@ -12,9 +12,9 @@ formatCollection = (collection) ->
   children = collection.children or []
 
   collection.content = articles.concat children
-  articleOrder       = collection.articleOrder      
-        
-  collection.content.sort (a, b) -> 
+  articleOrder       = collection.articleOrder
+
+  collection.content.sort (a, b) ->
     if a instanceof models.Collection.Instance
       a_i = articleOrder.indexOf(a.collectionKey)
     else
@@ -31,20 +31,22 @@ formatCollection = (collection) ->
 
 module.exports =
   collectionContent: (req, res, app, callback) ->
-    { collectionKey } = req.params
-    return res.send(400) unless collectionKey?
+    userId = req.session?.currentUserId
+    { collectionKey, o, n } = req.params
+    return res.send(400) unless (collectionKey and o and n and userId)?
+
     models.Collection.find({
       where: { collectionKey }
       include:[
         { model:models.Article, include: [ model:models.User, as: 'Creator' ] }
         { model:models.Collection, as: 'children', include: [
-          { model:models.Article, include: [ model:models.User, as: 'Creator' ]} 
+          { model:models.Article, include: [ model:models.User, as: 'Creator' ]}
         ] }
       ]
     }).done (err, collection) ->
       return callback(err, res) if err?
       return callback "No collection found for '#{collectionKey}'", res unless collection?
-      
+
       formatCollection collection
 
       unless collection.root
@@ -60,7 +62,7 @@ module.exports =
     userId = req.session.currentUserId
     { title, type } = req.query
     title = title or 'undefined'
-    
+
     expire = moment().utc().add('hour', 1).toJSON("YYYY-MM-DDTHH:mm:ss Z") # Set policy expire date +30 minutes in UTC
     file_key = uuid.v4().split('-')[0] # Generate uuid for filename
     path = "users/#{userId}/#{file_key}/#{title}"

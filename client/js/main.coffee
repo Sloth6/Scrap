@@ -33,6 +33,7 @@ $ ->
 
   # $(window).resize -> articleView.resize()
   # articleView.resize()
+
   $( constants.dom.articleContainer ).packery()
 
   $('li.recent a, li.labelsButton a').each ->

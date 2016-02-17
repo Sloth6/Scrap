@@ -86,8 +86,8 @@ window.articleView =
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
-        complete: ->
-          articleView.resize $article
+        # complete: ->
+        #   articleView.resize $article
     $article.trigger 'mouseleave'
     $article.addClass 'open'
     $article.css # must run after trigger('mouseleave')

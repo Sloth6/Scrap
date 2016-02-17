@@ -75,7 +75,12 @@ window.articleController =
           articleView.close(event, $article) unless $article.is(':hover')
 
     $articles.each () ->
-      articleView.resize $(@)
+      unless $(@).hasClass 'image'
+        articleView.resize $(@)
+
+      $articles.find('img').load () =>
+        articleView.resize $(@)
+
       if $(@).hasClass('playable')
         $(@).find('.artist', '.source').css
           position: 'absolute'
@@ -86,10 +91,5 @@ window.articleController =
     $articles.mouseenter -> articleView.mouseenter event, $(@)
     $articles.mousemove  -> articleView.mousemove  event, $(@)
     $articles.mouseleave -> articleView.mouseleave event, $(@)
-
-    $articles.find('img').load () ->
-      articleView.resize $(@)
-
-
 
     parallaxHover $articles
