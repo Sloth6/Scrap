@@ -15,9 +15,10 @@ window.collectionController =
         find('a').click (event) ->
           event.stopPropagation()
           event.preventDefault()
-          collectionKey = $collection.data('collectionkey')
-          containerView.switchToCollection collectionKey
-          collectionsMenuView.close() unless $collection.hasClass 'openMenuButton'
+          unless $collection.hasClass 'openMenuButton'
+            collectionKey = $collection.data('collectionkey')
+            containerView.switchToCollection collectionKey
+            collectionsMenuView.close()
       $collection.css
         width: $(@).width()
         

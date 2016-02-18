@@ -3,14 +3,16 @@ window.containerView =
     $container  = $(constants.dom.articleContainer)
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
-
+    
+    console.log 'Switch!'
+    
     # Hide unmatched articles
     $unmatched.each ->
       $(@).velocity
         properties:
-          translateY: $(window).height() * (Math.random() - .5)
-          translateX: if ($(@).offset().left > $(window).width() / 2) then $(window).width() else -$(window).width()
-          rotateZ: 90 * (Math.random() - .5)
+          translateY: ($(window).height() / constants.style.globalScale) * (Math.random() - .5)
+          translateX: if ($(@).offset().left > $(window).width() / 2) then $(window).width() / constants.style.globalScale else -$(window).width()  / constants.style.globalScale
+          rotateZ: 270 * (Math.random() - .5)
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
@@ -28,7 +30,7 @@ window.containerView =
         properties:
           translateY: [0, $(window).height() * (Math.random() - .5)]
           translateX: [0, startX]
-          rotateZ: [0, 90 * (Math.random() - .5)]
+          rotateZ: [0, 270 * (Math.random() - .5)]
           opacity: [1, 0]
         options:
           duration: 500
