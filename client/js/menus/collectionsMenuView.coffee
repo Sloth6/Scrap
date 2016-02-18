@@ -123,17 +123,7 @@ window.collectionsMenuView =
       else if $destinationLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
-        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
-# 
-#       
-#       if $label.is $openLabel
-#         translateY = if $label.is($labelsButton) then 0 else $(window).height() - ($label.offset().top - $label.height() * 2)
-#       else if $label.is $destinationLabel
-#         translateY = -$label.offset().top
-#       else if $openLabel.index() < $label.index() # below
-#         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
-#       else
-#         translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+        translateY = -$(window).height()
       
       $contents.velocity
         properties:
@@ -147,6 +137,9 @@ window.collectionsMenuView =
 #               $menuItems.not($destinationLabel).hide() 
               console.log 'done closing'
 
+    $button.removeClass        'openMenuButton'
+    $destinationLabel.addClass 'openMenuButton'
+      
     
 #     isHome      = window.openCollection is 'recent'
 #     $menu       = $(constants.dom.collectionsMenu )
