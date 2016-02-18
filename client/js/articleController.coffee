@@ -73,6 +73,9 @@ window.articleController =
         $article = $(@)
         $('body').click (event) ->
           articleView.close(event, $article) unless $article.is(':hover')
+          
+    # Scale up labels indicator inversely proportional to global scale
+    $.Velocity.hook $articles.find('ul.articleCollections .scale'), 'scale', 1 / constants.style.globalScale
 
     $articles.each () ->
       unless $(@).hasClass 'image'
@@ -95,4 +98,4 @@ window.articleController =
     $articles.mousemove  -> articleView.mousemove  event, $(@)
     $articles.mouseleave -> articleView.mouseleave event, $(@)
 
-    parallaxHover $articles, 500, .5 / constants.style.globalScale
+    parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale

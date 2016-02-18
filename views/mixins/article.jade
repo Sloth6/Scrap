@@ -27,11 +27,12 @@ mixin articleMixin(article, collections)
   )
     header
       ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.2',data-parallaxoffset={x: 0, y: -24})
-        - for (var i = 0; i < collections.length; i++)
-          - var collection = collections[i]
-          - var key = collection.collectionKey
-          li.collection(data-collectionKey=key, class=key)
-            a.typeSmall(href='#', style='background-color:'+collection.color+';', data-color=collection.color)!=collection.name
+        .scale
+          - for (var i = 0; i < collections.length; i++)
+            - var collection = collections[i]
+            - var key = collection.collectionKey
+            li.collection(data-collectionKey=key, class=key)
+              a.typeSmall(href='#', style='background-color:'+collection.color+';', data-color=collection.color)!=collection.name
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
         

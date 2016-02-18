@@ -8,6 +8,7 @@ window.constants =
     duration:
       openArticle: 1000
       hoverArticle: 250
+    articleHoverScale: .5
   velocity:
     easing:
       smooth: [20, 10]
