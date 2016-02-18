@@ -85,8 +85,10 @@ html.no-js(lang='en')
             a(href='#') Add
           +addArticleFormMixin()
       section.center
+        .headerButton.openMenuButton(style='z-index: 2; position: relative;')
+          a(href='#', style='position: absolute; left: 0; right: 0; text-indent: -9999em;') Open Menu
         ul.collectionsMenu
-          li.labelsButton.openMenuButton
+          li.labelsButton.openCollection
             .contents
               a(href='#') Labels
           li.collection.recent(data-collectionkey='recent')

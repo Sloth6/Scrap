@@ -2654,27 +2654,43 @@ nav section .addForm article {
   display: block;
   border: 1px solid #000000;
   border-left-width: 0;
-  text-indent: -9999em;
-  height: 8pt;
-  width: 8pt;
+  height: 4pt;
+  width: 4pt;
   padding: 0;
   position: relative;
   top: 0;
   color: transparent;
+  /*
+                          text-shadow:  -1px -1px  0 #000,  
+                                         1px -1px  0 #000,
+                                        -1px  1px  0 #000,
+                                         1px  1px  0 #000,
+                                       -.5px -.5px 0 #000, 
+                                        .5px -.5px 0 #000,
+                                       -.5px  .5px 0 #000,
+                                        .5px  .5px 0 #000;
+  */
+  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  -moz-transition-property: color, background-color, height, width;
+  -o-transition-property: color, background-color, height, width;
+  -webkit-transition-property: color, background-color, height, width;
+  transition-property: color, background-color, height, width;
 }
-/* line 174, ../../style/prototype.scss */
+/* line 186, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   text-indent: 0;
   height: 16pt;
-  width: -webkit-fit-content;
-  padding: 0 2pt;
+  width: 96pt;
   color: #000000;
 }
-/* line 186, ../../style/prototype.scss */
+/* line 200, ../../style/prototype.scss */
 #articleContainer article footer ul li {
   display: inline-block;
 }
-/* line 189, ../../style/prototype.scss */
+/* line 203, ../../style/prototype.scss */
 #articleContainer article footer ul li.right {
   float: right;
 }

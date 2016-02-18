@@ -1,14 +1,14 @@
 window.collectionsMenuController =
   init: ($menu) ->
-    $menu.find('li a').click (event) ->
+    $openMenuButton = $menu.siblings('.openMenuButton').children('a')
+    $openMenuButton.click (event) ->
       event.stopPropagation()
-      if $(@).parents('li').hasClass('openMenuButton') # only run if is the current open menu button
-        if $menu.data('canOpen') # ready to open (i.e., not in middle of close animation)
-          collectionsMenuView.open()
-        else # not ready to open
-          window.triedToOpen = true # register attempt to open
+      event.preventDefault()
+      collectionsMenuView.open()
+      console.log 'clicked'
     parallaxHover $menu.find('li a'), 250, 1.25
-    $('body').click ->
-      collectionsMenuView.close() if $menu.hasClass 'open'
-    $menu.find('li').not('.openMenuButton').hide()
+    # Close menu on body click
+    $('body').click -> collectionsMenuView.close()
+    $menu.find('li').not('.openMenuButton, .openCollection').hide()
+    collectionsMenuView.close()
     $menu.data 'canOpen', true

@@ -155,16 +155,28 @@ nav {
                         display: block;
                         border: $cardBorder;
                         border-left-width: 0;
-                        text-indent: -9999em;
-                        height: $cell;
-                        width: $cell;
+//                         text-indent: -9999em;
+                        height: $cell/2;
+                        width: $cell/2;
                         padding: 0;
                         position: relative;
                         top: 0; // -($cell + $cardBorderWidth);
                         color: transparent;
-            //                     border-radius: $cell;
-            //                     @include transition(.25s $defaultCurve);
-            //                     @include transition-property(height, padding, color);
+//                         font-weight: $fontWeightExtraBold;
+//                         -webkit-text-stroke-width: .5px;
+/*
+                        text-shadow:  -1px -1px  0 #000,  
+                                       1px -1px  0 #000,
+                                      -1px  1px  0 #000,
+                                       1px  1px  0 #000,
+                                     -.5px -.5px 0 #000, 
+                                      .5px -.5px 0 #000,
+                                     -.5px  .5px 0 #000,
+                                      .5px  .5px 0 #000;
+*/
+//                         border-radius: $cell;
+                        @include transition(.5s $defaultCurve);
+                        @include transition-property(color, background-color, height, width);
                     }
                 }
             }
@@ -174,9 +186,11 @@ nav {
             ul.articleCollections li.collection a {
                 text-indent: 0;
                 height: $cell * 2;
-                width: -webkit-fit-content;
-                padding: 0 2pt;
+                width: $cell * 12;
+//                 padding: 0 2pt;
                 color: $colorType;
+//                 background-color: transparent !important;
+//                 border-color:     transparent !important;
             }
         }
         

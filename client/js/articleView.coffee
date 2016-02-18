@@ -11,7 +11,7 @@ window.articleView =
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
-    $contents = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+    $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -51,8 +51,6 @@ window.articleView =
         scale: 1
         easing: constants.style.easing
         duration: 250
-      $article.css
-        cursor: 'none'
       $article.find('.artist, .source').velocity
         properties:
           opacity: 1
@@ -60,6 +58,12 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
+    $article.find('ul.articleCollections .scale').velocity
+      properties:
+        scale: constants.style.articleHoverScale / constants.style.globalScale
+      options:
+        easing: constants.velocity.easing.smooth
+        duration: 500
           
   hideMeta: ($article) ->
     # Animate out article metadata
@@ -83,8 +87,6 @@ window.articleView =
         $('.playButton').css
           opacity: 0
       , 250
-      $article.css
-        cursor: 'none'
       $article.find('.artist, .source').velocity
         properties:
           opacity: 0
@@ -92,12 +94,21 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
+    $article.find('ul.articleCollections .scale').velocity
+      properties:
+        scale: 1 / constants.style.globalScale
+      options:
+        easing: constants.velocity.easing.smooth
+        duration: 500
 
     
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: 2
     articleView.showMeta($article) # unless $article.hasClass('open') or $article.hasClass('opening')
+    $article.css
+      cursor: 'none'
+    
 
   mousemove: (event, $article) ->
     if $article.hasClass('playable')
@@ -110,6 +121,8 @@ window.articleView =
     $article.find('ul.articleCollections').css
       zIndex: ''
     articleView.hideMeta($article) # unless $article.hasClass('open') or $article.hasClass('opening')
+    $article.css
+      cursor: ''
 
   open: (event, $article) ->
     event.stopPropagation()
@@ -185,6 +198,7 @@ window.articleView =
       '-webkit-filter': 'grayscale(1)'
       duration: 500
       easing: constants.style.easing
+    $article.trigger 'mouseleave'
 
   onCollectionOut: ($article, event, $collection) ->
     $('.backgroundColor').remove()
