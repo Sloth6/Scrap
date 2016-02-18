@@ -20,3 +20,4 @@ window.collectionController =
           collectionsMenuView.close() unless $collection.hasClass 'openMenuButton'
       $collection.css
         width: $(@).width()
+        

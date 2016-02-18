@@ -12,37 +12,36 @@ window.collectionsMenuView =
     options       =
       duration: 1000
       easing:   constants.velocity.easing.smooth
-      
     $menuItems.show()
-    
     # Animate in labels
     $labels.each ->
       $label = $(@)
       $contents = $label.find('.contents')
       $contents.css 'opacity', 0 # Hide to prevent flash before animating in
+      toY = if $label.is $labelsButton then -$labelsButton.height() else -$labelsButton.height()
       if $label.is $openLabel
-        translateY = if $label.is('.recents') then -500 else -$label.offset().top
+        fromY = if $label.is('.recent') then $(window).height() else -$label.offset().top
         unparallax $openLabel.find('.transform'), options.duration, options.easing
       else if $openLabel.index() < $label.index() # below
-        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+        fromY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
-        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+        fromY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
       $contents.not($labelsButton).velocity
         properties:
-          translateY: [-$labelsButton.height(), translateY]
+          translateY: [toY, fromY]
           opacity: [1, 1]
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
           delay:    $label.index() * 60    
     # Animate up labels button
-    $labelsButton.velocity
+    $labelsButton.find('.contents').velocity
       properties:
         translateY: -$labelsButton.height()
       options:
         duration: options.duration # + ($label.index() * 60)
         easing:   options.easing
-
+    unparallax $labelsButton.find('.transform'), options.duration, options.easing
     articleView.obscure $container.find('article')
     extendNav()
 
@@ -59,10 +58,8 @@ window.collectionsMenuView =
     options       =
       duration: 750
       easing:   constants.velocity.easing.smooth
-      
     $button.removeClass        'openMenuButton'
     $destinationLabel.addClass 'openMenuButton'
-
     $menuItems.each ->
       $label = $(@)
       $contents = $label.find('.contents')
@@ -84,10 +81,11 @@ window.collectionsMenuView =
           delay:    0 # 400 * Math.abs delay 
           complete: ->
             if $label.index() is $labels.length - 1
-#               $menuItems.not($destinationLabel).hide() 
-              console.log 'done closing'
-              
-    unparallax $destinationLabel.find('.transform'), options.duration, options.easing
+              console.log isHome
+              translateY = if isHome then 0 else -$labelsButton.height()
+              $.Velocity.hook $destinationLabel.find('.contents'), 'translateY', "#{translateY}px"
+              $labels.not('.openMenuButton').hide() 
+    unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()
     
