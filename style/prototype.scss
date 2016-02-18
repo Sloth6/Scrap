@@ -88,6 +88,14 @@ nav {
         
 //                               	    	  	border: lime 1px solid;
                   	  }
+                  	  
+                  	  input {
+              	    	    	  	@include navText;
+              	    	    	  	border: 0;
+              	    	    	  	text-align: center;
+              	    	    	  	display: block;
+              	    	    	  	width: 100%;
+                  	  }
                 	}
             }
         }            

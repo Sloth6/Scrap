@@ -1,5 +1,16 @@
 # TODO: re-refactor and improve
 
+window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax hover class
+  $transform.velocity
+    properties:
+      rotateX: 0
+      rotateY: 0
+      scale: 1
+    options:
+      duration: duration
+      easing:   easing
+  
+
 window.parallaxHover = ($elements, duration, scale) ->
   getProgressValues = ($element, scale) ->
     # if article, compensate for global scale

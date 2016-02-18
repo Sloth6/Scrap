@@ -85,10 +85,8 @@ html.no-js(lang='en')
             a(href='#') Add
           +addArticleFormMixin()
       section.center
-        .headerButton.openMenuButton(style='z-index: 2; position: relative;')
-          a(href='#', style='position: absolute; left: 0; right: 0; text-indent: -9999em;') Open Menu
         ul.collectionsMenu
-          li.labelsButton.openCollection
+          li.labelsButton.openCollection.openMenuButton
             .contents
               a(href='#') Labels
           li.collection.recent(data-collectionkey='recent')
@@ -103,8 +101,9 @@ html.no-js(lang='en')
           li.newCollection
             .contents
               form(id='newCollectionForm')
-                input(type="text", placeholder="new collection", maxlength="20")
-                input(type='submit', value='Add')
+                input(type="text", placeholder="New collection", maxlength="32")
+                label.typeSmall.smallCaps.invisible Press enter to save
+                // input(type='submit', value='Add')
       section.right
         div
           .headerButton
