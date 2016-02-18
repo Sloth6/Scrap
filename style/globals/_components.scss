@@ -247,6 +247,7 @@ a, input[type=submit], input[type=button] {
 
 .invisible {
     opacity: 0;
+    @include transition(opacity .25s $defaultCurve);
 }
 
 .backButton {

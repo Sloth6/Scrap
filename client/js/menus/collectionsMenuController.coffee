@@ -9,5 +9,8 @@ window.collectionsMenuController =
     parallaxHover $menu.find('li a'), 250, 1.25
     $('body').click -> collectionsMenuView.close() # Close menu on body click
     $menu.find('li').not('.openMenuButton, .openCollection').hide()
-    collectionsMenuView.close()
-    $menu.data 'canOpen', true
+    
+    $menu.find('li.newCollection input').click ->
+      event.stopPropagation()
+      $(@).attr 'placeholder', ''
+      $(@).siblings('label').removeClass 'invisible'
