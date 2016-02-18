@@ -1,5 +1,6 @@
 window.collectionsMenuView =
 	open: () ->
+    isHome        = window.openCollection is 'recent'
     $menu         = $(constants.dom.collectionsMenu)
     $container    = $(constants.dom.articleContainer)
     $menuItems    = $menu.children()
@@ -7,12 +8,45 @@ window.collectionsMenuView =
     $labelsButton = $menuItems.filter('li.labelsButton')
     $labels       = $menuItems.not('li.labelsButton')
     $openLabel    = $menuItems.filter("li.#{window.openCollection}")
-    isHome        = window.openCollection is 'recent'
     options       =
       duration: 1000
       easing:   constants.velocity.easing.smooth
       
     $menuItems.show()
+    
+    console.log 'open menu'
+    
+    # Animate in labels
+    $labels.each ->
+      $label = $(@)
+      $contents = $label.find('.contents')
+      $contents.css 'opacity', 0 # Hide to prevent flash before animating in
+      if $label.is $openLabel
+        translateY = if $label.is('.recents') then -500 else -$label.offset().top
+      else if $openLabel.index() < $label.index() # below
+        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+      else
+        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+      $contents.not($labelsButton).velocity
+        properties:
+          translateY: [-$labelsButton.height(), translateY]
+          opacity: [1, 1]
+        options:
+          duration: options.duration # + ($label.index() * 60)
+          easing:   options.easing
+          delay:    $label.index() * 60
+#           begin: -> $label.show()
+        
+      # Animate up labels button
+      $labelsButton.velocity
+        properties:
+          translateY: -$labelsButton.height()
+#           opacity: [1, 1]
+        options:
+          duration: options.duration # + ($label.index() * 60)
+          easing:   options.easing
+
+#     $menuItems.show()
 #     $menu.addClass 'open'
 #     # animate in labels
 #     $labels.not($openLabel).find('.contents').css
@@ -74,11 +108,45 @@ window.collectionsMenuView =
     $labelsButton = $menuItems.filter('li.labelsButton')
     $labels       = $menuItems.not('li.labelsButton')
     $openLabel    = if isHome then $labelsButton else $menuItems.filter("li.#{window.openCollection}") 
+    $destinationLabel  = if isHome then $labelsButton else $menu.children(".#{window.openCollection}")
     options       =
       duration: 1000
       easing:   constants.velocity.easing.smooth
       
-    $menuItems.not($openLabel).hide()
+    console.log 'close menu'
+    $menuItems.each ->
+      $label = $(@)
+      $contents = $label.find('.contents')
+      
+      if $label.is $destinationLabel
+        translateY = -$destinationLabel.offset().top
+      else if $destinationLabel.index() < $label.index() # below
+        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+      else
+        translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+# 
+#       
+#       if $label.is $openLabel
+#         translateY = if $label.is($labelsButton) then 0 else $(window).height() - ($label.offset().top - $label.height() * 2)
+#       else if $label.is $destinationLabel
+#         translateY = -$label.offset().top
+#       else if $openLabel.index() < $label.index() # below
+#         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+#       else
+#         translateY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
+      
+      $contents.velocity
+        properties:
+          translateY: translateY
+        options:
+          duration: options.duration # + ($label.index() * 60)
+          easing:   options.easing
+          delay:    60 * (($labels.length ) - $label.index())
+          complete: ->
+            if $label.index() is $labels.length - 1
+#               $menuItems.not($destinationLabel).hide() 
+              console.log 'done closing'
+
     
 #     isHome      = window.openCollection is 'recent'
 #     $menu       = $(constants.dom.collectionsMenu )
