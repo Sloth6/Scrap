@@ -1,3 +1,4 @@
+
 window.collectionsMenuView =
 	open: () ->
     isHome        = window.openCollection is 'recent'
@@ -23,6 +24,7 @@ window.collectionsMenuView =
       $contents.css 'opacity', 0 # Hide to prevent flash before animating in
       if $label.is $openLabel
         translateY = if $label.is('.recents') then -500 else -$label.offset().top
+        unparallax $openLabel.find('.transform'), options.duration, options.easing
       else if $openLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
@@ -35,17 +37,18 @@ window.collectionsMenuView =
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
           delay:    $label.index() * 60
-#           begin: -> $label.show()
-        
-      # Animate up labels button
-      $labelsButton.velocity
-        properties:
-          translateY: -$labelsButton.height()
+#           begin: -> $label.show()        
+    # Animate up labels button
+    $labelsButton.velocity
+      properties:
+        translateY: -$labelsButton.height()
 #           opacity: [1, 1]
-        options:
-          duration: options.duration # + ($label.index() * 60)
-          easing:   options.easing
+      options:
+        duration: options.duration # + ($label.index() * 60)
+        easing:   options.easing
 
+    articleView.obscure $container.find('article')
+    extendNav()
 #     $menuItems.show()
 #     $menu.addClass 'open'
 #     # animate in labels
@@ -96,8 +99,7 @@ window.collectionsMenuView =
 #               top: ''
 #           complete: ->
 #             $menu.data 'canOpen', false
-#     articleView.obscure $container.find('article')
-#     extendNav()
+
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -113,17 +115,26 @@ window.collectionsMenuView =
       duration: 1000
       easing:   constants.velocity.easing.smooth
       
-    console.log 'close menu'
+    $button.removeClass        'openMenuButton'
+    $destinationLabel.addClass 'openMenuButton'
+
     $menuItems.each ->
       $label = $(@)
       $contents = $label.find('.contents')
       
+      
       if $label.is $destinationLabel
         translateY = -$destinationLabel.offset().top
+        delay = 0
       else if $destinationLabel.index() < $label.index() # below
         translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+        delay = $destinationLabel.index() - $label.index()
       else
         translateY = -$(window).height()
+        delay = $label.index() - $destinationLabel.index()
+        
+#       delay = if # 
+      console.log $label.text(), $label.index(), delay
       
       $contents.velocity
         properties:
@@ -131,15 +142,15 @@ window.collectionsMenuView =
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
-          delay:    60 * (($labels.length ) - $label.index())
+          delay:    0 # 400 * Math.abs delay 
           complete: ->
             if $label.index() is $labels.length - 1
 #               $menuItems.not($destinationLabel).hide() 
               console.log 'done closing'
-
-    $button.removeClass        'openMenuButton'
-    $destinationLabel.addClass 'openMenuButton'
-      
+              
+    unparallax $destinationLabel.find('.transform'), options.duration, options.easing
+    articleView.unobscure $container.find('article')
+    extendNav()
     
 #     isHome      = window.openCollection is 'recent'
 #     $menu       = $(constants.dom.collectionsMenu )
@@ -198,5 +209,4 @@ window.collectionsMenuView =
 #               # if window.triedToOpen and $menu.is(':hover') # if user tried to open menu before ready, and is still hovering
 #               #   events.onOpenCollectionsMenu() # open menu after close animation finishes
 #               #   window.triedToOpen = false
-#     articleView.unobscure $container.find('article')
-#     extendNav()
+

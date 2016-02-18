@@ -18,6 +18,5 @@ window.collectionController =
           collectionKey = $collection.data('collectionkey')
           containerView.switchToCollection collectionKey
           collectionsMenuView.close() unless $collection.hasClass 'openMenuButton'
-
       $collection.css
         width: $(@).width()
