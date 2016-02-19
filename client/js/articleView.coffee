@@ -54,7 +54,7 @@ window.articleView =
       x = $button.offset().left - $(window).scrollLeft()
       y = $button.offset().top  - $(window).scrollTop()
       $button.data('startPos', {x: x, y: y})
-#       $button.show()
+      # $button.show()
       $button.css
         scale: 0
         opacity: 1
@@ -114,14 +114,12 @@ window.articleView =
         easing: constants.velocity.easing.smooth
         duration: 500
 
-
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: 2
     articleView.showMeta($article)
     # $article.css
     #   cursor: 'none'
-
 
   mousemove: (event, $article) ->
     if $article.hasClass('playable')
@@ -131,15 +129,12 @@ window.articleView =
         y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
 
   mouseleave: (event, $article) ->
-    $article.find('ul.articleCollections').css
-      zIndex: ''
-    articleView.hideMeta($article)
-    $article.css
-      cursor: ''
+    $article.find('ul.articleCollections').css { zIndex: '' }
+    articleView.hideMeta($article) unless $article.hasClass('open')
+    $article.css { cursor: '' }
 
   open: (event, $article) ->
     $container = $(constants.dom.articleContainer)
-    console.log 'open'
 
     articleView.obscure $('article').not($article)
 
@@ -161,8 +156,11 @@ window.articleView =
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
         queue: false
+        complete: () ->
+          $article.addClass 'open'
 
     $article.trigger 'mouseleave'
+    unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
     $article.css {zIndex: 2}# must run after trigger('mouseleave')
 
     $article.find(constants.dom.articleMeta).find('li').velocity
@@ -198,6 +196,8 @@ window.articleView =
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
+        begin: () ->
+          $article.removeClass 'open'
 
     extendNav()
 

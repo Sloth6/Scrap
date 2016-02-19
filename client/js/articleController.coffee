@@ -100,4 +100,4 @@ window.articleController =
     $articles.mousemove  -> articleView.mousemove  event, $(@)
     $articles.mouseleave -> articleView.mouseleave event, $(@)
 
-    # parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale
+    parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale

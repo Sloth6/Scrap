@@ -2,13 +2,13 @@
 
 window.constants =
   style:
-    gutter: 24 / (1/3)
+    gutter: 24 / (1/2)
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    globalScale: 1
+    globalScale: .5
     duration:
       openArticle: 1000
       hoverArticle: 250
-    articleHoverScale: .5
+    articleHoverScale: .75
   velocity:
     easing:
       smooth: [20, 10]
