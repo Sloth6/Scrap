@@ -49,7 +49,35 @@ window.articleView =
             opacity: 0
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
-    # If playable, special treatment
+    $article.find('ul.articleCollections .scale').velocity
+      properties:
+        scale: constants.style.articleHoverScale / constants.style.globalScale
+      options:
+        easing: constants.velocity.easing.smooth
+        duration: 500
+
+  hideMeta: ($article) ->
+    # Animate out article metadata
+    $article.find(constants.dom.articleMeta).find('li').velocity
+      properties:
+        scale: 0
+        translateY: -12
+      options:
+        complete: -> $article.find(constants.dom.articleMeta).hide()
+        duration: constants.style.duration.hoverArticle
+        easing: constants.velocity.easing.smooth
+    $article.find('ul.articleCollections .scale').velocity
+      properties:
+        scale: 1 / constants.style.globalScale
+      options:
+        easing: constants.velocity.easing.smooth
+        duration: 500
+
+  mouseenter: (event, $article) ->
+    $article.find('ul.articleCollections').css
+      zIndex: 2
+    articleView.showMeta($article) unless $article.hasClass('open')
+    $article.css 'cursor', 'none'
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       x = $button.offset().left - $(window).scrollLeft()
@@ -72,24 +100,37 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
-    $article.find('ul.articleCollections .scale').velocity
-      properties:
-        scale: constants.style.articleHoverScale / constants.style.globalScale
-      options:
-        easing: constants.velocity.easing.smooth
-        duration: 500
+    if $article.hasClass 'website'
+      $h1 = $article.find('h1')
+      $card = $article.find('.card')
+      $header = $article.find('header')
+      $img = $article.find('img')
 
-  hideMeta: ($article) ->
-    # Animate out article metadata
-    $article.find(constants.dom.articleMeta).find('li').velocity
-      properties:
-        scale: 0
-        translateY: -12
-      options:
-        complete: -> $article.find(constants.dom.articleMeta).hide()
-        duration: constants.style.duration.hoverArticle
-        easing: constants.velocity.easing.smooth
-    # If playable, special treatment
+      $h1.transition
+        '-webkit-text-fill-color': 'black'
+        '-webkit-text-stroke-color': 'transparent'
+        duration: 500
+        easing: constants.style.easing
+      $img.velocity
+        properties:
+          marginTop: $header.height() + parseFloat($header.css('padding-top')) + parseFloat($header.css('padding-bottom'))
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+      $header.find('.source,.description').velocity
+        properties:
+          opacity: 1
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+      
+    # $article.css
+    #   cursor: 'none'
+
+  mouseleave: (event, $article) ->
+    $article.find('ul.articleCollections').css { zIndex: '' }
+    articleView.hideMeta($article) unless $article.hasClass('open')
+    $article.css 'cursor', ''
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0
@@ -108,31 +149,35 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
-    $article.find('ul.articleCollections .scale').velocity
-      properties:
-        scale: 1 / constants.style.globalScale
-      options:
-        easing: constants.velocity.easing.smooth
+    if $article.hasClass 'website'
+      $h1 = $article.find('h1')
+      $card = $article.find('.card')
+      $header = $article.find('header')
+      $img = $article.find('img')
+      $h1.transition
+        '-webkit-text-fill-color': ''
+        '-webkit-text-stroke-color': ''
         duration: 500
-
-  mouseenter: (event, $article) ->
-    $article.find('ul.articleCollections').css
-      zIndex: 2
-    articleView.showMeta($article)
-    # $article.css
-    #   cursor: 'none'
-
+        easing: constants.style.easing
+      $img.velocity
+        properties:
+          marginTop: 0
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+      $header.find('.source,.description').velocity
+        properties:
+          opacity: 0
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+    
   mousemove: (event, $article) ->
     if $article.hasClass('playable')
       $button = $article.find('.playButton')
       $button.css
         x: (event.clientX) - $button.data('startPos').x - $button.width()  / 2
         y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
-
-  mouseleave: (event, $article) ->
-    $article.find('ul.articleCollections').css { zIndex: '' }
-    articleView.hideMeta($article) unless $article.hasClass('open')
-    $article.css { cursor: '' }
 
   open: (event, $article) ->
     $container = $(constants.dom.articleContainer)

@@ -41,12 +41,11 @@ mixin articleMixin(article, collections)
 
         when 'website'
           -var url = decodeURIComponent(content.url)
-          .text
-            header
-              h1.headerType.parallaxLayer(data-parallaxdepth='.25')!=content.title
-              .url.smallType.smallCaps!=content.domain
-            .description.smallType.parallaxLayer(data-parallaxdepth='.125')!=content.description
-          img.parallaxLayer(data-parallaxdepth='.0625', src=content.image)
+          header
+            h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
+            .source.smallType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
+            .description.smallType.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
+          img.parallaxLayer(data-parallaxdepth='.5', src=content.image)
           a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
 
         when 'file'

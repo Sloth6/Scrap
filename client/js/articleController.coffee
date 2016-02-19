@@ -80,7 +80,7 @@ window.articleController =
     $.Velocity.hook $articles.find('ul.articleCollections .scale'), 'scale', 1 / constants.style.globalScale
 
     $articles.each () ->
-      unless $(@).hasClass 'image'
+      unless $(@).hasClass('image') or  $(@).hasClass('website')
         articleView.resize $(@)
 
       $(@).find('img').load () =>
@@ -93,7 +93,13 @@ window.articleController =
         $(@).find('.artist', '.source').css
           position: 'absolute'
           opacity: 0
-        $.Velocity.hook($(@).find('.artist', '.source'), 'scale', '0')
+        $.Velocity.hook($(@).find('.artist, .source'), 'scale', '0')
+      else if $(@).hasClass 'website'
+        $(@).find('header').css
+          position: 'absolute'
+          top: 0
+        $.Velocity.hook($(@).find('.description, .source'), 'opacity', '0')
+                
 
     # Bind other article events.
     $articles.mouseenter -> articleView.mouseenter event, $(@)

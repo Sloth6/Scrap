@@ -1,5 +1,13 @@
 @import "screen.scss";
 
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include typeTitle;
+    @include typeOutlineClear;
+}
+
 // _nav.scss
 
 nav {

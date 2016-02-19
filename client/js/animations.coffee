@@ -130,7 +130,7 @@ window.parallaxHover = ($elements, duration, scale) ->
 
         $layers.velocity
           properties:
-            scale: 1
+#             scale: 1
             rotateX: 0
             rotateY: 0
             translateX: 0
