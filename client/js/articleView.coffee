@@ -3,7 +3,7 @@ scaleWhenOpen = ($article) ->
   if $article.hasClass 'image'
     1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight))
   else
-    1 / constants.style.globalScale
+    2 / constants.style.globalScale
 
 window.articleView =
   obscure: ($articles) ->
@@ -135,23 +135,22 @@ window.articleView =
 
   open: (event, $article) ->
     $container = $(constants.dom.articleContainer)
-
     articleView.obscure $('article').not($article)
 
     centerX = ($elem) ->
       return $(window).width()/2 if $elem.is($(window))
-      $elem.width()/2 + $elem.offset().left
+      $elem.offset().left + ($elem.width()/2)*constants.style.globalScale
     centerY = ($elem) ->
       return $(window).height()/2 if $elem.is($(window))
-      $elem.height()/2 + $elem.offset().top
+      $elem.offset().top + ($elem.height()/2)*constants.style.globalScale
 
     $article.velocity
       properties:
-        scale: scaleWhenOpen($article)
+        scale: 1#scaleWhenOpen($article)
     $container.velocity
       properties:
-        translateX: - (centerX($article) - centerX($(window)))
-        translateY: - (centerY($article) - centerY($(window))) + $(window).scrollTop()
+        translateX: (- (centerX($article) - centerX($(window)))) / constants.style.globalScale
+        translateY: (- (centerY($article) - centerY($(window))) + $(window).scrollTop())/constants.style.globalScale
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
