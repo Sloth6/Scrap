@@ -44,6 +44,13 @@ window.collectionsMenuView =
     unparallax $labelsButton.find('.transform'), options.duration, options.easing
     articleView.obscure $container.find('article')
     extendNav()
+    $('nav section.left .headerButton, nav section.right .headerButton').each ->
+      $(@).velocity
+        properties:
+          translateY: -$(@).height()
+        options:
+          duration: options.duration
+          easing:   options.easing
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -88,4 +95,11 @@ window.collectionsMenuView =
     unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()
+    $('nav section.left .headerButton, nav section.right .headerButton').each ->
+      $(@).velocity
+        properties:
+          translateY: 0
+        options:
+          duration: options.duration
+          easing:   options.easing
     

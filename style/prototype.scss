@@ -55,6 +55,10 @@ nav {
         ul.collectionsMenu {
             width: -webkit-fit-content;
             margin: 0 auto;
+            height: 100vh;
+            min-width: 50vw;
+            overflow-y: scroll;
+            overflow-x: visible;
 //             height: 0;
 //                         background-color: rgba(0, 255, 61, 0.41);
             
@@ -82,7 +86,8 @@ nav {
                   	  a {
                   	    	  display: inline-block;
                   	    	  margin: 0 auto;
-                  	    	  	@include navText;
+                	    	  	@include navText;
+                	    	  	font-weight: $fontWeightExtraBold;
                       	    	  		  transform-origin:  center center;
               	    	  		  -webkit-transform-origin:  center center;
         

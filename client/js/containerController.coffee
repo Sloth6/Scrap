@@ -5,6 +5,7 @@ window.containerController =
       isOriginTop: true
       transitionDuration: '0.0s'
       gutter: 0 #constants.style.gutter
+#       isOriginTop: false
 
     $container.packery 'bindResize'
 
@@ -16,6 +17,8 @@ window.containerController =
 
     $container.css
       width: "#{100/constants.style.globalScale}%"
+#       minHeight: "#{85/constants.style.globalScale}vh"
+#       maxHeight: $container.height()/8
     $container.velocity
       properties:
         translateZ: 0

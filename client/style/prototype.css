@@ -2561,28 +2561,32 @@ nav section .headerButton a {
 nav section ul.collectionsMenu {
   width: -webkit-fit-content;
   margin: 0 auto;
+  height: 100vh;
+  min-width: 50vw;
+  overflow-y: scroll;
+  overflow-x: visible;
 }
-/* line 61, ../../style/prototype.scss */
+/* line 65, ../../style/prototype.scss */
 nav section ul.collectionsMenu li {
   width: 100%;
   margin: 0 auto;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 70, ../../style/prototype.scss */
+/* line 74, ../../style/prototype.scss */
 nav section ul.collectionsMenu li.recent .contents a, nav section ul.collectionsMenu li.labelsButton .contents a {
   -moz-transition: -webkit-text-fill-color 1s linear;
   -o-transition: -webkit-text-fill-color 1s linear;
   -webkit-transition: -webkit-text-fill-color 1s linear;
   transition: -webkit-text-fill-color 1s linear;
 }
-/* line 77, ../../style/prototype.scss */
+/* line 81, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 82, ../../style/prototype.scss */
+/* line 86, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents a {
   display: inline-block;
   margin: 0 auto;
@@ -2592,10 +2596,11 @@ nav section ul.collectionsMenu li .contents a {
   line-height: 48pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
+  font-weight: 800;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 92, ../../style/prototype.scss */
+/* line 97, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents input {
   font-size: 48pt;
   font-weight: 500;
@@ -2608,43 +2613,43 @@ nav section ul.collectionsMenu li .contents input {
   display: block;
   width: 100%;
 }
-/* line 104, ../../style/prototype.scss */
+/* line 109, ../../style/prototype.scss */
 nav section .addForm .headerButton {
   position: absolute;
   top: 0;
 }
-/* line 108, ../../style/prototype.scss */
+/* line 113, ../../style/prototype.scss */
 nav section .addForm .headerButton a {
   display: block;
 }
-/* line 112, ../../style/prototype.scss */
+/* line 117, ../../style/prototype.scss */
 nav section .addForm article {
   position: absolute;
   top: 0;
 }
 
-/* line 123, ../../style/prototype.scss */
+/* line 128, ../../style/prototype.scss */
 .wrapper {
   padding: 50pt 40pt;
   position: relative;
 }
 
-/* line 129, ../../style/prototype.scss */
+/* line 134, ../../style/prototype.scss */
 .parallaxHover .perspective, .parallaxHover .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 134, ../../style/prototype.scss */
+/* line 139, ../../style/prototype.scss */
 .parallaxHover .parallaxLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 
-/* line 140, ../../style/prototype.scss */
+/* line 145, ../../style/prototype.scss */
 #articleContainer {
   width: 100%;
 }
-/* line 146, ../../style/prototype.scss */
+/* line 151, ../../style/prototype.scss */
 #articleContainer article header ul.articleCollections {
   white-space: nowrap;
   position: absolute;
@@ -2652,15 +2657,15 @@ nav section .addForm article {
   left: 0;
   z-index: 2;
 }
-/* line 153, ../../style/prototype.scss */
+/* line 158, ../../style/prototype.scss */
 #articleContainer article header ul.articleCollections li.collection {
   display: inline-block;
 }
-/* line 157, ../../style/prototype.scss */
+/* line 162, ../../style/prototype.scss */
 #articleContainer article header ul.articleCollections li.collection:first-child a {
   border-left-width: 1px;
 }
-/* line 162, ../../style/prototype.scss */
+/* line 167, ../../style/prototype.scss */
 #articleContainer article header ul.articleCollections li.collection a {
   display: block;
   border: 1px solid #000000;
@@ -2690,18 +2695,18 @@ nav section .addForm article {
   -webkit-transition-property: color, background-color, height, width;
   transition-property: color, background-color, height, width;
 }
-/* line 194, ../../style/prototype.scss */
+/* line 199, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   text-indent: 0;
   height: 16pt;
   width: 96pt;
   color: #000000;
 }
-/* line 208, ../../style/prototype.scss */
+/* line 213, ../../style/prototype.scss */
 #articleContainer article footer ul li {
   display: inline-block;
 }
-/* line 211, ../../style/prototype.scss */
+/* line 216, ../../style/prototype.scss */
 #articleContainer article footer ul li.right {
   float: right;
 }
