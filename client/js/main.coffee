@@ -19,7 +19,7 @@ window.constants =
     addArticleMenu: '.addArticleForm'
     articleContainer: '#articleContainer'
     collections: 'ul.collectionsMenu li.collection'
-    articles: 'article'
+    articles: '#articleContainer article'
     articleMeta: 'footer .meta'
 
 window.scrapState =

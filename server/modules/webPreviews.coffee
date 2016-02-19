@@ -7,26 +7,27 @@ extractTitle = ($) ->
   if title?
     console.log 'Got title from meta tag:', title
     return title
-  
+
   title = $("title").text()
   if title?
     console.log 'Got title from title:', title
-    return title 
-  
+    return title
+
   console.log 'Did not find a title'
   return null
 
 extractImage = ($) ->
-  
-  img = $('meta[property="og:image"]').attr('content')
-  return img if img?
-  
+  # img = $('meta[property="og:image"]').attr('content')
+  # return img if img?
+
   max = 0
   srcMax = ''
+  # console.log $('img')
   for img in $('img')
-  
+
     size = $(img).attr('width') * $(img).attr('height')
     src = $(img).attr('src')
+    return src
     # console.log src, $(img).attr('width'), $(img).attr('height')
     # Take the first image larger than our min size,
     if size >= 40000
@@ -36,9 +37,9 @@ extractImage = ($) ->
       max = size
       srcMax = src
 
-  return srcMax if max > 0
+  # return srcMax if max > 0
   # console.log 'found none'
-  return null
+  # return null
 
 extractDescription = ($) ->
   $('meta[property="og:description"]').attr('content') or ''

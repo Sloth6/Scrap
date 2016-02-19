@@ -1,5 +1,6 @@
 # TODO, clean this
 scaleWhenOpen = ($article) ->
+  # return 3
   if $article.hasClass 'image'
     1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight))
   else
@@ -146,7 +147,7 @@ window.articleView =
 
     $article.velocity
       properties:
-        scale: 1#scaleWhenOpen($article)
+        scale: scaleWhenOpen($article)
     $container.velocity
       properties:
         translateX: (- (centerX($article) - centerX($(window)))) / constants.style.globalScale
