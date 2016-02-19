@@ -1,13 +1,13 @@
 'use strict'
-$ ->  
+$ ->
   socket = io.connect()
 
   socket.on 'newArticle', (data) ->
     { html } = data
     $article = $(decodeURIComponent(html))
-    console.log "new $article", $article.attr('class')    
+    console.log "new $article", $article.attr('class')
     $(constants.dom.articleContainer).prepend $article
-    init.article $article
+    articleController.init $article
     $(constants.dom.articleContainer).packery 'prepended', $article
 
   socket.on 'newCollection', (data) ->
@@ -28,7 +28,7 @@ $ ->
   # socket.on 'deleteArticle', (data) ->
   #   console.log 'deleteArticle', data, $("\##{data.id}")
   #   { id, collectionKey } = data
-    
+
   #   toRemove = $("\##{data.id}")
   #   toRemove.fadeOut ->
   #     toRemove.remove()
