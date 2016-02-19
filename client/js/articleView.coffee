@@ -137,10 +137,7 @@ window.articleView =
     $article.css
       cursor: ''
 
-
-
   open: (event, $article) ->
-
     $container = $(constants.dom.articleContainer)
     console.log 'open'
 

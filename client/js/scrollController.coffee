@@ -43,6 +43,32 @@ window.onChangeScrollDirection = (direction) ->
     else
       retractNav()
 
+
+preventDefault = (e) ->
+  e = e || window.event
+  e.preventDefault() if (e.preventDefault)
+  e.returnValue = false
+
+
+window.scrollController =
+  disableScroll: ->
+    preventDefaultForScrollKeys = (e) ->
+      keys = {37: true, 38: true, 39: true, 40: true}
+      if keys[e.keyCode]
+        preventDefault e
+        false
+
+    window.onwheel = preventDefault; #modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; #older browsers, IE
+    window.ontouchmove  = preventDefault; #mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+
+  enableScroll: ->
+      window.onmousewheel = document.onmousewheel = null
+      window.onwheel = null
+      window.ontouchmove = null
+      document.onkeydown = null
+
 $ ->
   window.oldScrollTop     = 0
   window.scrollDirection  = 'down'

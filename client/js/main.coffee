@@ -48,6 +48,7 @@ $ ->
       console.log 'Closeing article', scrapState.openArticle.attr('id')
       articleView.close event, scrapState.openArticle# unless $article.is(':hover')
       scrapState.openArticle = null
+      scrollController.enableScroll()
 
 
 

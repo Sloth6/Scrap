@@ -70,9 +70,9 @@ window.articleController =
     $articles.click (event) ->
       return if scrapState.openArticle?
       console.log 'opening', $(@).attr 'id'
-
       articleView.open event, $(@)
       scrapState.openArticle = $(@)
+      scrollController.disableScroll()
       event.stopPropagation()
 
 
