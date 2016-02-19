@@ -42,6 +42,9 @@ $ ->
 
   $( constants.dom.articleContainer ).packery()
 
+  $(window).scroll scrollController.onScroll
+  scrollController.onScroll()
+
   $('body').click (event) ->
     console.log 'click body'
     if scrapState.openArticle?
