@@ -70,8 +70,6 @@ body {
             .editable {
                 height: 100%;
                 margin-bottom: $broadMargin;
-                padding-left: $gutter * 2;
-                padding-right: $gutter;
                 @include typeBody;
 
                 h1 {
@@ -345,16 +343,6 @@ body {
 
                 &.hover {
                     @include hoverLinkAnimation;
-
-                    .text {
-
-                        header {
-
-                            .url {
-                                opacity: 1;
-                            }
-                        }
-                    }
                 }
 
                 a {

@@ -40,8 +40,7 @@ $typeLargeLeading:      24pt;
 $typeTitleLeading:      48pt;
 $typeSubtitleLeading:   36pt;
 
-
-$typeSmallLetterSpacing:      (1em / 32);
+$typeSmallLetterSpacing: (1em / 32);
 
 $headerLeftMarginOffset:
                     -1.667pt;
@@ -62,8 +61,8 @@ $headerLeftMarginOffset:
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightMedium;
-    letter-spacing: 0; // (1em / 32);
+    font-weight:    $fontWeightBold;
+    letter-spacing: (1em / 32);
     line-height:    $typeHeaderLeading;
 }
 

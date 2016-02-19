@@ -148,6 +148,9 @@ window.articleView =
     $article.velocity
       properties:
         scale: scaleWhenOpen($article)
+      options:
+        duration: constants.style.duration.openArticle
+        easing: constants.velocity.easing.smooth
     $container.velocity
       properties:
         translateX: (- (centerX($article) - centerX($(window)))) / constants.style.globalScale
