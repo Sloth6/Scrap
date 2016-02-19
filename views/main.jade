@@ -84,26 +84,26 @@ html.no-js(lang='en')
           .headerButton
             a(href='#') Add
           +addArticleFormMixin()
-      section.center
-        ul.collectionsMenu
-          li.labelsButton.openCollection.openMenuButton
-            .contents
-              a(href='#') Labels
-          li.collection.recent(data-collectionkey='recent')
-            .contents
-              a(href='#') Everything
-          each collection, collectionKey in collections
-            if typeof(collection.name) != undefined
-              - var key = collection.collectionKey
-              li.collection(data-collectionkey=key, class=key)
-                .contents
-                  a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
-          li.newCollection
-            .contents
-              form(id='newCollectionForm')
-                input(type="text", placeholder="New label", maxlength="32")
-                label.typeSmall.smallCaps.invisible Press enter to save
-                // input(type='submit', value='Add')
+      //- section.center
+      //-   ul.collectionsMenu
+      //-     li.labelsButton.openCollection.openMenuButton
+      //-       .contents
+      //-         a(href='#') Labels
+      //-     li.collection.recent(data-collectionkey='recent')
+      //-       .contents
+      //-         a(href='#') Everything
+      //-     each collection, collectionKey in collections
+      //-       if typeof(collection.name) != undefined
+      //-         - var key = collection.collectionKey
+      //-         li.collection(data-collectionkey=key, class=key)
+      //-           .contents
+      //-             a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+      //-     li.newCollection
+      //-       .contents
+      //-         form(id='newCollectionForm')
+      //-           input(type="text", placeholder="New label", maxlength="32")
+      //-           label.typeSmall.smallCaps.invisible Press enter to save
+      //-           // input(type='submit', value='Add')
       section.right
         div
           .headerButton

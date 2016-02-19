@@ -12,7 +12,7 @@ mixin articleMixin(article, collections)
     // var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
     // var hue = color.match(pattern)[1]
     // var hslLight = 'hsl('+hue+',100%, 98%)'
-        
+
     // if (article.contentType == 'text'){
     //   var backgroundColor = hslLight
     // } else {
@@ -21,24 +21,24 @@ mixin articleMixin(article, collections)
 
   article(id=article.id, style= posString,
     class = classes,
-    data-contenttype= article.contentType, 
-    data-creatorid  = article.creatorId, 
+    data-contenttype= article.contentType,
+    data-creatorid  = article.creatorId,
     data-content    = article.content
   )
-    header
-      ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.2',data-parallaxoffset={x: 0, y: -24})
-        .scale
-          - for (var i = 0; i < collections.length; i++)
-            - var collection = collections[i]
-            - var key = collection.collectionKey
-            li.collection(data-collectionKey=key, class=key)
-              a.typeSmall(href='#', style='background-color:'+collection.color+';', data-color=collection.color)!=collection.name
+    //- header
+    //-   ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.2',data-parallaxoffset={x: 0, y: -24})
+    //-     .scale
+    //-       - for (var i = 0; i < collections.length; i++)
+    //-         - var collection = collections[i]
+    //-         - var key = collection.collectionKey
+    //-         li.collection(data-collectionKey=key, class=key)
+    //-           a.typeSmall(href='#', style='background-color:'+collection.color+';', data-color=collection.color)!=collection.name
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
-        
+
         when 'image'
           img(src = content.original_url)
-        
+
         when 'website'
           -var url = decodeURIComponent(content.url)
           .text
@@ -48,7 +48,7 @@ mixin articleMixin(article, collections)
             .description.smallType.parallaxLayer(data-parallaxdepth='.125')!=content.description
           img.parallaxLayer(data-parallaxdepth='.0625', src=content.image)
           a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
-  
+
         when 'file'
           .fakeCard
             header
@@ -60,11 +60,11 @@ mixin articleMixin(article, collections)
               li
                 a.download.confirm(href='#') Download
           .decorative.fold
-  
+
         when 'video'
           video()
             source(src = content.url)
-        
+
         when 'soundcloud'
           .preview(title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
@@ -75,7 +75,7 @@ mixin articleMixin(article, collections)
             .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
               .source.smallType.smallCaps SoundCloud
           .playButton
-        
+
         when 'youtube'
           .preview(title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
@@ -86,8 +86,8 @@ mixin articleMixin(article, collections)
             .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
               .source.smallType.smallCaps youtube
           .playButton
-          
-  
+
+
         when 'text'
           //- contentEditable="false", designmode="on"
           .editable.parallaxLayer(data-parallaxdepth='.25')
@@ -107,4 +107,4 @@ mixin articleMixin(article, collections)
             input.articleDeleteButton.smallType(type='button', value='Delete')
         // - if(article.Creator !== undefined)
         //   author.smallType!=article.Creator.name
-              
+

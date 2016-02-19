@@ -4,7 +4,7 @@ scaleWhenOpen = ($article) ->
   if $article.hasClass 'image'
     1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight))
   else
-    2 / constants.style.globalScale
+    1 / constants.style.globalScale
 
 window.articleView =
   obscure: ($articles) ->
