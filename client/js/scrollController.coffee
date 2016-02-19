@@ -1,4 +1,4 @@
-window.onScroll = () ->
+window.onScroll = (event) ->
   scrollTop = $(window).scrollTop()
   scrollBottom = $(document).height() - $(window).height() - scrollTop
 
@@ -31,7 +31,7 @@ window.onScroll = () ->
           $( constants.dom.articleContainer ).append $(foo)
           articleController.init $(foo)
           $( constants.dom.articleContainer ).packery('appended', $(foo))
-        scrapState.waitingForContent = false
+        # scrapState.waitingForContent = false
 
 
 
@@ -47,5 +47,5 @@ $ ->
   window.oldScrollTop     = 0
   window.scrollDirection  = 'down'
 
-  $(window).scroll -> onScroll()
+  $(window).scroll onScroll
   onScroll()

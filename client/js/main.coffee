@@ -4,7 +4,7 @@ window.constants =
   style:
     gutter: 24 / (1/3)
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    globalScale: 1/3
+    globalScale: 1
     duration:
       openArticle: 1000
       hoverArticle: 250
@@ -24,6 +24,7 @@ window.constants =
 
 window.scrapState =
   waitingForContent: false
+  openArticle: null
 
 $ ->
   window.socket = io.connect()
@@ -40,6 +41,15 @@ $ ->
   # articleView.resize()
 
   $( constants.dom.articleContainer ).packery()
+
+  $('body').click (event) ->
+    console.log 'click body'
+    if scrapState.openArticle?
+      console.log 'Closeing article', scrapState.openArticle.attr('id')
+      articleView.close event, scrapState.openArticle# unless $article.is(':hover')
+      scrapState.openArticle = null
+
+
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))

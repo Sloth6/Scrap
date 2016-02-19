@@ -66,14 +66,16 @@ window.articleController =
         event.stopPropagation()
         true
 
-    # Articles zoom on click.
-    $articles.click ->
-      unless $(@).hasClass 'open'
-        articleView.open event, $(@)
-        $article = $(@)
-        $('body').click (event) ->
-          articleView.close(event, $article) unless $article.is(':hover')
-          
+      # Articles zoom on click.
+    $articles.click (event) ->
+      return if scrapState.openArticle?
+      console.log 'opening', $(@).attr 'id'
+
+      articleView.open event, $(@)
+      scrapState.openArticle = $(@)
+      event.stopPropagation()
+
+
     # Scale up labels indicator inversely proportional to global scale
     $.Velocity.hook $articles.find('ul.articleCollections .scale'), 'scale', 1 / constants.style.globalScale
 
@@ -83,7 +85,7 @@ window.articleController =
 
       $articles.find('img').load () =>
         articleView.resize $(@)
-        
+
       $(@).find(constants.dom.articleMeta).hide()
       if $(@).hasClass('playable')
         $(@).find('.playButton').css
@@ -98,4 +100,4 @@ window.articleController =
     $articles.mousemove  -> articleView.mousemove  event, $(@)
     $articles.mouseleave -> articleView.mouseleave event, $(@)
 
-    parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale
+    # parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale
