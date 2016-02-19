@@ -62,8 +62,12 @@ window.scrollController =
       $.get('collectionContent', {o, n}).
         fail(() -> 'failed to get content').
         done (data) ->
+          derp = $('<div>')
           for foo in $(data)
-            $( constants.dom.articleContainer ).append $(foo)
-            articleController.init $(foo)
-            $( constants.dom.articleContainer ).packery('appended', $(foo))
-          # scrapState.waitingForContent = false
+            derp.append $(foo)
+
+          $articles = derp.children()
+          $( constants.dom.articleContainer ).append $articles
+          articleController.init $articles
+          $( constants.dom.articleContainer ).packery('appended', $articles)
+          scrapState.waitingForContent = false

@@ -37,8 +37,9 @@ $ ->
   articleController.init         $(constants.dom.articles)
   collectionController.init      $(constants.dom.collections)
 
-  # $(window).resize -> articleView.resize()
-  # articleView.resize()
+  # window.pack = new DomCoolTest ( () ->
+  #   $(constants.dom.articleContainer).packery()
+  # ), 200
 
   $( constants.dom.articleContainer ).packery()
 

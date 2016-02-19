@@ -83,7 +83,7 @@ window.articleController =
       unless $(@).hasClass 'image'
         articleView.resize $(@)
 
-      $articles.find('img').load () =>
+      $(@).find('img').load () =>
         articleView.resize $(@)
 
       $(@).find(constants.dom.articleMeta).hide()

@@ -12,7 +12,7 @@ window.yTransform = ($element) ->
 #   transform = $element.css('transform')
 #   new WebKitCSSMatrix(transform).f
   parseFloat $.Velocity.hook($element, 'translateY')
-  
+
 window.getRotateZ = ($element) ->
   parseFloat $.Velocity.hook($element, 'rotateZ')
 
@@ -25,3 +25,19 @@ validateEmail = (email) ->
 
 $.fn.hasScrollBar = () ->
   @get(0).scrollHeight > @get(0).clientHeight
+
+
+class window.DomCoolTest
+  constructor: (@onCool, @t) ->
+    @timer = null
+
+  warm : () =>
+    if @timer?
+      clearTimeout @timer
+      @timer = null
+    @timer = setTimeout (()=>
+      @timer = null
+      @onCool()
+    ), @t
+
+  isWarm : () -> @timer?
