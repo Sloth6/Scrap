@@ -806,7 +806,7 @@ a, input[type=submit], input[type=button] {
 .card {
   background-color: white;
   border: 1px solid #000000;
-  padding: 12pt 4pt 4pt 12pt;
+  padding: 16pt 4pt 4pt 16pt;
   border-radius: 0;
   transform-origin: right bottom;
   -webkit-transform-origin: right bottom;
@@ -834,8 +834,8 @@ a, input[type=submit], input[type=button] {
 .cardActions {
   position: absolute;
   bottom: 4pt;
-  left: 12pt;
-  right: 12pt;
+  left: 16pt;
+  right: 16pt;
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
@@ -1134,7 +1134,7 @@ ul.headerMenu.hidden.right {
 /* line 462, ../../style/globals/_components.scss */
 ul.headerMenu.open {
   border-color: #000000;
-  padding: 12pt 4pt 4pt 12pt;
+  padding: 16pt 4pt 4pt 16pt;
   -moz-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   -ms-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
@@ -1661,7 +1661,7 @@ body article.text .editable ul li:before, body article.text .editable ol li:befo
   text-align: right;
   position: absolute;
   width: 16pt;
-  left: -28pt;
+  left: -32pt;
 }
 /* line 131, ../../style/layout/_article.scss */
 body article.text .editable ul li:before {
@@ -1721,7 +1721,7 @@ body article.file {
 body article.file .fakeCard {
   background-color: white;
   border: 1px solid #000000;
-  padding: 12pt 4pt 4pt 12pt;
+  padding: 16pt 4pt 4pt 16pt;
   border-radius: 0;
   transform-origin: right bottom;
   -webkit-transform-origin: right bottom;
@@ -1816,7 +1816,7 @@ body article.playable .card .preview img {
 /* line 297, ../../style/layout/_article.scss */
 body article.playable .card header {
   border-top: 0;
-  padding: 12pt 4pt 4pt 12pt;
+  padding: 16pt 4pt 4pt 16pt;
   position: absolute;
   top: 0;
   left: 0;
@@ -1857,7 +1857,7 @@ body article .card {
 body article .card.website {
   background-color: white;
   border: 1px solid #000000;
-  padding: 12pt 4pt 4pt 12pt;
+  padding: 16pt 4pt 4pt 16pt;
   border-radius: 0;
   transform-origin: right bottom;
   -webkit-transform-origin: right bottom;
@@ -2377,7 +2377,7 @@ body article .card img {
 .cover .card ul.users li.add ul li input[type=submit], .cover.card ul.users li.add ul li input[type=submit] {
   height: 14pt;
   width: 32pt;
-  padding-left: 24pt;
+  padding-left: 32pt;
   color: rgba(0, 0, 0, 0.25);
   -moz-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: color 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -2488,7 +2488,7 @@ footer.main ul.actions li.action label {
   padding-bottom: 8pt !important;
   background-color: white;
   border: 1px solid #000000;
-  padding: 12pt 4pt 4pt 12pt;
+  padding: 16pt 4pt 4pt 16pt;
   border-radius: 0;
   transform-origin: right bottom;
   -webkit-transform-origin: right bottom;
