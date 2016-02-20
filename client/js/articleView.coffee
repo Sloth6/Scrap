@@ -78,21 +78,8 @@ window.articleView =
       zIndex: 2
     articleView.showMeta($article) unless $article.hasClass('open')
     $article.css 'cursor', 'none'
-    if $article.hasClass('playable')
-      $button = $article.find('.playButton')
-      x = $button.offset().left - $(window).scrollLeft()
-      y = $button.offset().top  - $(window).scrollTop()
-      $button.data('startPos', {x: x, y: y})
-      # $button.show()
-      $button.css
-        scale: 0
-        opacity: 1
-      $button.transition
-        x: (event.clientX * (1/1)) - x - $button.width()  / 2
-        y: (event.clientY * (1/1)) - y - $button.height() / 2
-        scale: 1
-        easing: constants.style.easing
-        duration: 250
+    if $article.hasClass 'playable'
+      cursor = '▶︎'
       $article.find('.artist, .source').velocity
         properties:
           opacity: 1
@@ -100,12 +87,12 @@ window.articleView =
         options:
           easing: constants.velocity.easing.smooth
           duration: 500
-    if $article.hasClass 'website'
+    else if $article.hasClass 'website'
+      cursor = '→'
       $h1 = $article.find('h1')
       $card = $article.find('.card')
       $header = $article.find('header')
       $img = $article.find('img')
-
       $h1.transition
         '-webkit-text-fill-color': 'black'
         '-webkit-text-stroke-color': 'transparent'
@@ -123,9 +110,15 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      
-    # $article.css
-    #   cursor: 'none'
+    else if $article.hasClass 'image'
+      cursor = '+'
+    else if $article.hasClass 'text'
+      cursor = '✎'
+    else
+      cursor = 'Open'
+    cursorView.start cursor, $article, (1 / constants.style.globalScale)
+#     $article.css
+#       cursor: 'none'
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
@@ -171,14 +164,11 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
+    cursorView.end()
     
   mousemove: (event, $article) ->
-    if $article.hasClass('playable')
-      $button = $article.find('.playButton')
-      $button.css
-        x: (event.clientX) - $button.data('startPos').x - $button.width()  / 2
-        y: (event.clientY) - $button.data('startPos').y - $button.height() / 2
-
+    cursorView.move event, (1 / constants.style.globalScale)
+    
   open: (event, $article) ->
     $container = $(constants.dom.articleContainer)
     articleView.obscure $('article').not($article)

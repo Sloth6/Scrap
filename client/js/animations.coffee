@@ -33,7 +33,7 @@ window.parallaxHover = ($elements, duration, scale) ->
     $element.addClass 'parallaxHover'
 
     $element.wrapInner '<span></span>' if $element.is('a')
-    perspective = if $element.hasClass('image') then (($element.height() + $element.width()) / 2) * 32 else $element.height() * 2
+    perspective = if $element.hasClass('image') then (($element.height() + $element.width()) / 2) * 8 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
     $transform = $element.find('.transform')
     $transform.wrap $('<div></div>').addClass('perspective')

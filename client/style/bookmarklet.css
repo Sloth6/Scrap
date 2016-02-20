@@ -1688,7 +1688,6 @@ body article.image .card {
   height: auto !important;
   width: auto !important;
   padding: 0px;
-  overflow: hidden;
 }
 /* line 160, ../../style/layout/_article.scss */
 body article.image .card img {
@@ -1755,7 +1754,6 @@ body article.website .card img {
   min-width: 224pt;
   max-height: 100%;
   max-width: 100%;
-  mix-blend-mode: multiply;
   /*
                       z-index: 12;
                       position: relative;

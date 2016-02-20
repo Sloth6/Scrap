@@ -37,7 +37,7 @@ mixin articleMixin(article, collections)
       case article.contentType
 
         when 'image'
-          img(src = content.original_url)
+          img.parallaxLayer(data-parallaxdepth='.5', src = content.original_url)
 
         when 'website'
           -var url = decodeURIComponent(content.url)
@@ -73,7 +73,7 @@ mixin articleMixin(article, collections)
               h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.25')!=content.title
             .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
               .source.smallType.smallCaps SoundCloud
-          .playButton
+          // .playButton
 
         when 'youtube'
           .preview(title='Play “' + content.title + '”')

@@ -75,7 +75,6 @@ window.articleController =
       scrollController.disableScroll()
       event.stopPropagation()
 
-
     # Scale up labels indicator inversely proportional to global scale
     $.Velocity.hook $articles.find('ul.articleCollections .scale'), 'scale', 1 / constants.style.globalScale
 
