@@ -29,8 +29,8 @@ window.cursorView =
     
   move: (event, scale) ->
     $cursor = $('.cursor')
-    x = (event.clientX * scale) - $cursor.width()  / 2 # * 1.5
-    y = (event.clientY * scale) - $cursor.height() / 2 # * 2
+    x = (event.clientX * scale)# - $cursor.width()  / 2 # * 1.5
+    y = (event.clientY * scale)# - $cursor.height() / 2 # * 2
     $.Velocity.hook $cursor, 'translateX', "#{x}px"
     $.Velocity.hook $cursor, 'translateY', "#{y}px"
     

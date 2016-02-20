@@ -26,9 +26,12 @@ window.articleController =
     $articles.each ->
       # Base color by first label.
       $firstLabel = $(@).find('ul.articleCollections li.collection').first().find('a')
+      $card       = $(@).find('.card')
       $(@).css
         marginTop:  12 + Math.random() * constants.style.gutter
         marginLeft: 12 + Math.random() * constants.style.gutter
+      $card.css
+        borderWidth: .75 / constants.style.globalScale
 
       if $firstLabel.length and $(@).hasClass('text') or $(@).hasClass('website')
         $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css

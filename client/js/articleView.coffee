@@ -8,8 +8,8 @@ scaleWhenOpen = ($article) ->
 
 window.articleView =
   obscure: ($articles) ->
-    $articles.hide()
-    return
+#     $articles.hide()
+#     return
     $contents   = $articles.find('.card').children().add($articles.find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
@@ -22,8 +22,8 @@ window.articleView =
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
-    $articles.show()
-    return
+#     $articles.show()
+#     return
     $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
@@ -117,6 +117,8 @@ window.articleView =
     else
       cursor = 'Open'
     cursorView.start(cursor, $article, (1 / constants.style.globalScale)) unless $article.hasClass ('open')
+    cursorView.end $(constants.dom.articles).not($article), $(constants.dom.articles).not($article).find('.cursor')
+    cursorView.end $('.wrapper'), $('.wrapper').children('.cursor')
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }

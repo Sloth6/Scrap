@@ -51,7 +51,6 @@ window.addArticleMenuController =
 
     showForm = (event) ->
       event.stopPropagation()
-      console.log 'show me'
       $button.velocity
         properties:
           translateY: [-$button.height() * 2, 0]
@@ -72,7 +71,6 @@ window.addArticleMenuController =
           begin: -> $form.show()
 
     hideForm = ->
-      console.log 'hide me'
       $button.velocity
         properties:
           translateY: 0

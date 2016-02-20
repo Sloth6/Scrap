@@ -42,3 +42,14 @@ window.containerView =
                 transitionDuration: 500
     window.openCollection = collectionKey
     $container.packery()
+  
+  insertNewArticleForm: ->
+    $container = $(constants.dom.articleContainer)
+    $form = $('<article>Hello there</article>')
+#     $container.append($form)
+    $form.css
+      backgroundColor: 'red'
+      height: 500
+      width:  500
+    $container.append($form).packery('appended', $form)
+    console.log $form

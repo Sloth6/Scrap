@@ -416,97 +416,10 @@ body {
     }
 }
 
-.addProjectForm {
-    &:hover, &.hover, &.editing, &.typing {
-        h1.typeOutlineClear {
-            @include typeOutlineFillBlack;
-        }
-    }
-
-    .card {
-        width: $coverWidth;
-    }
-}
-
-.addArticleForm, .addProjectForm {
-    // Compact view
-    &.peek {
-        &.onEdge {
-            &:hover {
-                .translate {
-                  		@include transform(translate(-$col/2, 0px));
-                }
-            }
-
-            &.slideInFromSide, &.slideInFromSide:hover {
-                z-index: 99999999 !important;
-
-                .translate {
-                    		@include transform(translate(-$articleSideNarrow, 0px));
-
-                    		.card .editable, .card .cardActions {
-                    				opacity: 1;
-                      		  @include transform(translate(0px, 0px));
-                  		  }
-
-
-                      &:after {
-                        		@include transform(translate(-48px, 0px));
-                      }
-                }
-
-                &.cover {
-
-                    .translate, &.onEdge:hover .translate {
-                        @include transform(translate(-$coverWidth, 0px));
-                    }
-                }
-            }
-
-            .translate {
-              		.card .editable, .card .cardActions {
-              				opacity: 0;
-                		  @include transform(translate($articleSideNarrow, 0px));
-            		  }
-
-                &:after {
-                  		@include transform(translate(0px, 0px));
-                }
-            }
-        }
-
-        .translate {
-          		@include transform(translate(0px, 0px));
-
-            &:after {
-              		@include transform(translate(-48px, 0px));
-            }
-        }
-
-        .card .editable, .card .cardActions {
-            opacity: 1;
-            display: block;
-          		@include transform(translate(0px, 0px));
-            @include transition(1s $defaultCurve);
-          		@include transition-property(opacity, transform,
-          		                     -webkit-transform,
-          		                        -moz-transform);
-        }
-    }
+.addArticleForm {
 
     &.typing, &.typing:hover {
         z-index: 99999999 !important;
-
-        .translate, .translate:hover {
-            &:after {
-                @include transform(translate(-48px, 0px));
-            }
-
-          		.card .editable, .card .cardActions {
-              		opacity: 1;
-          		  		@include transform(translate(0px, 0px));
-          		}
-        }
 
         .cardActions ul li {
             &.upload {
@@ -521,32 +434,6 @@ body {
 
     .translate {
         position: relative;
-//         cursor: pointer;
-        @include transform(translate(0px, 0px));
-        @include transition(1s $defaultCurve);
-        @include transition-property(transform,
-                             -webkit-transform,
-                                -moz-transform);
-
-        // Plus sign for compact view
-        &:after {
-            content: "";
-            height: 24px;
-            width:  24px;
-            font-weight: $fontWeightLight;
-            background: url('/images/add.png') no-repeat;
-            background-size: cover;
-            position: absolute;
-            left:    $cell*.75;
-            top:  $cell*.75;
-            //-webkit-transform-origin: center center;
-            //        transform-origin: center center;
-          		@include transform(translate(0px, 0px));
-            @include transition(1s $defaultCurve);
-            @include transition-property(transform,
-                                 -webkit-transform,
-                                    -moz-transform);
-        }
 
         .card {
             overflow: visible;
