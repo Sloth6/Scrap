@@ -2531,7 +2531,7 @@ nav section .headerButton a {
 nav section ul.collectionsMenu {
   width: -webkit-fit-content;
   margin: 0 auto;
-  height: 100vh;
+  max-height: 100vh;
   min-width: 50vw;
   overflow-y: scroll;
   overflow-x: visible;
