@@ -44,6 +44,7 @@ window.collectionsMenuView =
     unparallax $labelsButton.find('.transform'), options.duration, options.easing
     articleView.obscure $container.find('article')
     extendNav()
+    # Animate other header buttons away
     $('nav section.left .headerButton, nav section.right .headerButton').each ->
       $(@).velocity
         properties:
@@ -51,6 +52,10 @@ window.collectionsMenuView =
         options:
           duration: options.duration
           easing:   options.easing
+    # Cursor
+    cursorView.start '✕', $('body'), 1
+    cursorView.move event, 1
+    $('body').mousemove (event) -> cursorView.move event, 1
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -95,6 +100,7 @@ window.collectionsMenuView =
     unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()
+    # Animate other header buttons back in
     $('nav section.left .headerButton, nav section.right .headerButton').each ->
       $(@).velocity
         properties:
@@ -102,4 +108,6 @@ window.collectionsMenuView =
         options:
           duration: options.duration
           easing:   options.easing
+    # Remove cursor
+    cursorView.end $('body'), $('body').find('.cursor')
     

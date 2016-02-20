@@ -77,7 +77,6 @@ window.articleView =
     $article.find('ul.articleCollections').css
       zIndex: 2
     articleView.showMeta($article) unless $article.hasClass('open')
-    $article.css 'cursor', 'none'
     if $article.hasClass 'playable'
       cursor = '▶︎'
       $article.find('.artist, .source').velocity
@@ -117,14 +116,11 @@ window.articleView =
       cursor = '✎'
     else
       cursor = 'Open'
-    cursorView.start cursor, $article, (1 / constants.style.globalScale)
-#     $article.css
-#       cursor: 'none'
+    cursorView.start(cursor, $article, (1 / constants.style.globalScale)) unless $article.hasClass ('open')
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
     articleView.hideMeta($article) unless $article.hasClass('open')
-    $article.css 'cursor', ''
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0
@@ -165,10 +161,10 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-    cursorView.end()
+    cursorView.end($article, $article.find('.cursor')) unless $article.hasClass ('open')
     
   mousemove: (event, $article) ->
-    cursorView.move event, (1 / constants.style.globalScale)
+    cursorView.move event, (1 / constants.style.globalScale) unless $article.hasClass ('open')
     
   open: (event, $article) ->
     $container = $(constants.dom.articleContainer)
@@ -201,6 +197,10 @@ window.articleView =
     $article.trigger 'mouseleave'
     unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
     $article.css {zIndex: 2}# must run after trigger('mouseleave')
+    cursorView.end $('article'), $('article').find('cursor')
+    cursorView.start '✕', $('body'), 1
+    cursorView.move event, 1
+    $('body').mousemove (event) -> cursorView.move event, 1
 
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:
@@ -239,6 +239,7 @@ window.articleView =
           $article.removeClass 'open'
 
     extendNav()
+    cursorView.end $('body'), $('body').find('.cursor')
 
   onCollectionOver: ($article, event, $collection) ->
     $card = $article.children('.card')
