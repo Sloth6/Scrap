@@ -10,6 +10,8 @@ window.cursorView =
         duration: 250
         easing: constants.velocity.easing.smooth
         begin: -> $cursor.appendTo($parent)
+    $('body').mousedown -> $cursor.css '-webkit-text-fill-color', 'black'
+    $('body').mouseup   -> $cursor.css '-webkit-text-fill-color', ''
     
   end: () ->
     $cursor = $('.cursor')

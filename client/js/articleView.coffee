@@ -93,6 +93,7 @@ window.articleView =
       $card = $article.find('.card')
       $header = $article.find('header')
       $img = $article.find('img')
+      $article.find('a').css 'cursor', 'none'
       $h1.transition
         '-webkit-text-fill-color': 'black'
         '-webkit-text-stroke-color': 'transparent'

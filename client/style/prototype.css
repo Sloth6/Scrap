@@ -1745,6 +1745,7 @@ body article.website .card a {
   bottom: 0;
   right: 0;
   display: block;
+  z-index: 14;
 }
 /* line 222, ../../style/layout/_article.scss */
 body article.website .card img {
