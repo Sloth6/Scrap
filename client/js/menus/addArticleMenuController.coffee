@@ -2,7 +2,6 @@
 
 window.addArticleMenuController =
   init: ($form) ->
-    $button = $('.addForm .headerButton')
     $input = $form.find '.editable'
     
     $form.hide() # Hide form on load

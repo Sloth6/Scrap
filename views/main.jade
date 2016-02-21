@@ -81,11 +81,11 @@ html.no-js(lang='en')
 
   body
     nav.main
-      section.left
-        .addForm
-          .headerButton
-            a(href='#') Add
-          +addArticleFormMixin()
+      // section.left
+      //   .addForm
+      //     .headerButton
+      //       a(href='#') Add
+          
       section.center
         ul.collectionsMenu
           li.labelsButton.openCollection.openMenuButton
@@ -113,6 +113,7 @@ html.no-js(lang='en')
           include partials/settingsMenu
     .wrapper
       #articleContainer
+        +addArticleFormMixin()
         for article in user.Articles
           if article != undefined
             +articleMixin(article, article.Collections)
