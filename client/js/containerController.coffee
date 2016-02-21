@@ -16,21 +16,23 @@ window.containerController =
     $container.packery 'bindResize'
     
     $wrapper.mousemove (event) ->
-      if $("#{constants.dom.articles}:hover").length # If over article
-        if isOverArticle
-          cursorView.end $wrapper, $wrapper.children('.cursor')
-          $container.data 'canInsertFormOnClick', false
-        isOverArticle = false
-      else
-        if isOverArticle
-          cursorView.move event, 1
-          $container.data 'canInsertFormOnClick', true
-        else
-          cursorView.start '+', $wrapper, 1
-        isOverArticle = true
+      unless scrapState.openArticle?
+        if $("#{constants.dom.articles}:hover").length # If over article
+          unless isOverArticle
+            cursorView.end $wrapper, $wrapper.children('.cursor')
+            $container.data 'canInsertFormOnClick', false
+          isOverArticle = true
+        else # If over wrapper but not any article
+          unless isOverArticle
+            cursorView.move event, 1
+            $container.data 'canInsertFormOnClick', true
+          unless $wrapper.children('.cursor').length # If no cursor, make one
+            cursorView.start '+', $wrapper, 1
+          isOverArticle = false
     
     $wrapper.click (event) ->
-      containerView.insertNewArticleForm() if $container.data('canInsertFormOnClick')
+      containerView.insertNewArticleForm(event) if $container.data('canInsertFormOnClick')
+      cursorView.end $wrapper, $wrapper.children('.cursor')
 
     $container.droppable
       greedy: true

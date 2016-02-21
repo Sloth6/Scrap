@@ -7,7 +7,7 @@ window.collectionsMenuController =
       if $(@).parents('li').hasClass 'openMenuButton'
         collectionsMenuView.open()
     parallaxHover $menu.find('li a'), 250, 1.25
-    $('body').click -> collectionsMenuView.close() # Close menu on body click
+#     $('body').click -> collectionsMenuView.close() if $menu.hasClass('open') # Close menu on body click
     
     $(constants.dom.collections).each ->
 #       console.log $(@).offset().top

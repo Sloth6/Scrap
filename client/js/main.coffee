@@ -24,6 +24,7 @@ window.constants =
 
 window.scrapState =
   waitingForContent: false
+#   addingArticle: false
   openArticle: null
 
 $ ->
@@ -48,13 +49,14 @@ $ ->
 
   $('body').click (event) ->
     console.log 'click body'
+    # Close article if article is open
     if scrapState.openArticle?
-      console.log 'Closeing article', scrapState.openArticle.attr('id')
+      console.log 'Closing article', scrapState.openArticle.attr('id')
       articleView.close event, scrapState.openArticle# unless $article.is(':hover')
+      if scrapState.openArticle.hasClass 'addArticleForm'
+        addArticleMenuController.hide scrapState.openArticle
       scrapState.openArticle = null
       scrollController.enableScroll()
-
-
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))

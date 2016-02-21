@@ -43,13 +43,15 @@ window.containerView =
     window.openCollection = collectionKey
     $container.packery()
   
-  insertNewArticleForm: ->
+  insertNewArticleForm: (event) ->
     $container = $(constants.dom.articleContainer)
-    $form = $('<article>Hello there</article>')
-#     $container.append($form)
-    $form.css
-      backgroundColor: 'red'
-      height: 500
-      width:  500
+    $form = $(constants.dom.addArticleMenu)
+    $form.show()
     $container.append($form).packery('appended', $form)
+    articleView.open event, $form
+#     scrapState.addingArticle = true
+    setTimeout ->
+      scrapState.openArticle = $form
+    , constants.style.duration.openArticle
+    addArticleMenuController.focus $form
     console.log $form
