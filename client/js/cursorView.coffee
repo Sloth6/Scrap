@@ -1,21 +1,22 @@
 window.cursorView =
   start: (label, $parent, scale) ->
-#     $('.cursor').remove() # Remove old un-removed cursors
-    $cursor = $("<div>#{label}</div>").addClass('cursor')
-    $cursor.velocity
+    console.log 'start'
+    $cursor = $('.cursor')
+    $cursor.text(label).velocity
       properties:
         scale: [scale, 0]
         rotateZ: [0, (Math.random() - .5) * 180]
       options:
         duration: 500
         easing: constants.velocity.easing.smooth
-        begin: -> $cursor.appendTo($parent)
+        begin: -> $cursor.appendTo($parent).show()
     $('body').mousedown -> $cursor.css '-webkit-text-fill-color', 'black'
     $('body').mouseup   -> $cursor.css '-webkit-text-fill-color', ''
     $parent.css
       cursor: 'none'
     
   end: ($parent, $cursor) ->
+    console.log 'end'
     $cursor.velocity
       properties:
         scale: 0
@@ -23,7 +24,7 @@ window.cursorView =
       options:
         duration: 500
         easing: constants.velocity.easing.smooth
-        complete: -> $cursor.remove()
+        complete: -> $cursor.appendTo($('body')).hide()
     $parent.css
       cursor: ''
     

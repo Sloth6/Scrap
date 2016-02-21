@@ -21,6 +21,7 @@ window.constants =
     collections: 'ul.collectionsMenu li.collection'
     articles: '#articleContainer article'
     articleMeta: 'footer .meta'
+    cursor: '.cursor'
 
 window.scrapState =
   waitingForContent: false
@@ -37,6 +38,8 @@ $ ->
 
   articleController.init         $(constants.dom.articles)
   collectionController.init      $(constants.dom.collections)
+  
+  cursorController.init          $(constants.dom.cursor)
 
   # window.pack = new DomCoolTest ( () ->
   #   $(constants.dom.articleContainer).packery()
