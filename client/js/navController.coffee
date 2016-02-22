@@ -41,6 +41,9 @@ extendNav = ->
 initNav = ($nav) ->
   $nav.hover extendNav, retractNav
   parallaxHover $('.left .headerButton, .right .headerButton a')
+  $nav.find('a').mouseenter ->
+    # Hide special cursor
+    cursorView.end()
   
 initAddCollectionForm = ($form) ->
   $form.submit (event) ->

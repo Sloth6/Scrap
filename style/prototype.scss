@@ -11,6 +11,12 @@
     @include transformOriginCenter;
 //     background-color: yellow;
     pointer-events: none;
+    
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }
 
 // _nav.scss

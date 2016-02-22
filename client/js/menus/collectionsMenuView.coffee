@@ -53,9 +53,12 @@ window.collectionsMenuView =
           duration: options.duration
           easing:   options.easing
     # Cursor
-    cursorView.start '✕', $('body'), 1
-    cursorView.move event, 1
-    $('body').mousemove (event) -> cursorView.move event, 1
+    cursorView.start '✕'
+    cursorView.move event
+    # Disable scroll
+    $('body').css
+      overflow: 'hidden'
+#     scrollController.disableScroll()
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -108,6 +111,6 @@ window.collectionsMenuView =
         options:
           duration: options.duration
           easing:   options.easing
-    # Remove cursor
-    cursorView.end $('body'), $('body').find('.cursor')
-    
+    # Enable scroll
+    $('body').css
+      overflow: '' 
