@@ -2,6 +2,11 @@ request = require 'request'
 cheerio = require 'cheerio'
 urlUtil = require 'url'
 
+http = require('http')
+sizeOf = require('image-size')
+
+async = require 'async'
+
 extractTitle = ($) ->
   title = $('meta[property="og:title"]').attr('content')
   if title?
@@ -16,30 +21,31 @@ extractTitle = ($) ->
   console.log 'Did not find a title'
   return null
 
-extractImage = ($) ->
+
+
+imageSize = (url, callback) ->
+  http.get urlUtil.parse(url), (response) ->
+    chunks = []
+    response.
+      on('data', (chunk) -> chunks.push(chunk)).
+      on 'end', () ->
+        buffer = Buffer.concat(chunks)
+        size   = sizeOf(buffer)
+        callback null, {size, url}
+
+extractImage = ($, callback) ->
   # img = $('meta[property="og:image"]').attr('content')
   # return img if img?
 
-  max = 0
-  srcMax = ''
-  # console.log $('img')
-  for img in $('img')
+  # Look at only first n images.
+  n = 5
+  imgs = (img.attribs.src for img in $('img').toArray().slice(0,n))
+  async.map imgs, imageSize, (err, mapped) ->
 
-    size = $(img).attr('width') * $(img).attr('height')
-    src = $(img).attr('src')
-    return src
-    # console.log src, $(img).attr('width'), $(img).attr('height')
-    # Take the first image larger than our min size,
-    if size >= 40000
-      return src
-    # Or take the largest image
-    if size > max
-      max = size
-      srcMax = src
+    mapped.sort (a, b) ->
+      a.size.width*a.size.height < b.size.width*b.size.height
 
-  # return srcMax if max > 0
-  # console.log 'found none'
-  # return null
+    callback mapped[0].url
 
 extractDescription = ($) ->
   $('meta[property="og:description"]').attr('content') or ''
@@ -62,14 +68,19 @@ module.exports = (url, callback) ->
 
   request options, (error, response, body) ->
     if error or response.statusCode isnt 200
-      callback error or response.statusCode
-    else
-      $ = cheerio.load body
+      return callback error or response.statusCode
+    $ = cheerio.load body
+
+    extractImage $, (imgUrl) ->
       url = extractUrl($) or url
       metadata =
         title: extractTitle($)
-        image: formatImageUrl(url, extractImage($))
+        image: formatImageUrl(url, imgUrl)
         url: url
         description: extractDescription($)
         domain: urlUtil.parse(url).hostname.replace('www.', '')
       callback null, metadata
+
+url = 'http://www.nytimes.com/2016/02/22/opinion/bernie-sanders-hits-a-roadblock.html'
+module.exports url, (err, data) ->
+  console.log data
