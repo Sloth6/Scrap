@@ -32,20 +32,24 @@ imageSize = (url, callback) ->
         buffer = Buffer.concat(chunks)
         size   = sizeOf(buffer)
         callback null, {size, url}
+  # catch e
+  #   callback null, {size:{ width:0, height:0 }, url }
 
 extractImage = ($, callback) ->
-  # img = $('meta[property="og:image"]').attr('content')
-  # return img if img?
+  img = $('meta[property="og:image"]').attr('content')
+  return callback(img) if img?
+
+  return callback null, $('img').toArray()[0]?.attr('src') or null
 
   # Look at only first n images.
-  n = 5
-  imgs = (img.attribs.src for img in $('img').toArray().slice(0,n))
-  async.map imgs, imageSize, (err, mapped) ->
+  # n = 5
+  # imgs = (img.attribs.src for img in $('img').toArray().slice(0,n))
+  # async.map imgs, imageSize, (err, mapped) ->
 
-    mapped.sort (a, b) ->
-      a.size.width*a.size.height < b.size.width*b.size.height
+  #   mapped.sort (a, b) ->
+  #     a.size.width*a.size.height < b.size.width*b.size.height
 
-    callback mapped[0].url
+  #   callback mapped[0].url
 
 extractDescription = ($) ->
   $('meta[property="og:description"]').attr('content') or ''
@@ -81,6 +85,6 @@ module.exports = (url, callback) ->
         domain: urlUtil.parse(url).hostname.replace('www.', '')
       callback null, metadata
 
-url = 'http://www.nytimes.com/2016/02/22/opinion/bernie-sanders-hits-a-roadblock.html'
-module.exports url, (err, data) ->
-  console.log data
+# url = 'http://www.nationalreview.com/article/430434/cat-trapped-woman-body-norway'
+# module.exports url, (err, data) ->
+#   console.log data
