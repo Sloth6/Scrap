@@ -28,10 +28,10 @@ window.scrollController =
     document.onkeydown  = preventDefaultForScrollKeys;
 
   enableScroll: ->
-      window.onmousewheel = document.onmousewheel = null
-      window.onwheel = null
-      window.ontouchmove = null
-      document.onkeydown = null
+    window.onmousewheel = document.onmousewheel = null
+    window.onwheel = null
+    window.ontouchmove = null
+    document.onkeydown = null
 
   onScroll: (event) ->
     scrollTop = $(window).scrollTop()
