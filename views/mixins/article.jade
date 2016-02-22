@@ -45,7 +45,9 @@ mixin articleMixin(article, collections)
             h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
             .source.smallType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
             .description.smallType.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
-          img.parallaxLayer(data-parallaxdepth='.5', src=content.image)
+          .image.parallaxLayer(data-parallaxdepth='.5')
+            .background
+            img(src=content.image)
           a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
 
         when 'file'

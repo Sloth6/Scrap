@@ -91,7 +91,7 @@ window.articleView =
       $h1 = $article.find('h1')
       $card = $article.find('.card')
       $header = $article.find('header')
-      $img = $article.find('img')
+      $img = $article.find('.image')
       $article.find('a').css 'cursor', 'none'
       $h1.transition
         '-webkit-text-fill-color': 'black'
@@ -143,7 +143,7 @@ window.articleView =
       $h1 = $article.find('h1')
       $card = $article.find('.card')
       $header = $article.find('header')
-      $img = $article.find('img')
+      $img = $article.find('.image')
       $h1.transition
         '-webkit-text-fill-color': ''
         '-webkit-text-stroke-color': ''

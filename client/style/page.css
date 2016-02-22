@@ -1695,8 +1695,8 @@ body article.image .card img {
   width: auto;
   min-width: 56pt;
   min-height: 56pt;
-  max-width: 280pt;
-  max-height: 280pt;
+  max-width: 336pt;
+  max-height: 336pt;
   margin: -2px -1px -4px -2px;
 }
 /* line 173, ../../style/layout/_article.scss */
@@ -1709,8 +1709,8 @@ body article.website .card {
   -webkit-transform-origin: right bottom;
   padding: 0;
   width: 224pt;
-  height: auto !important;
   min-height: 168pt;
+  max-height: 336pt;
   position: relative;
 }
 /* line 182, ../../style/layout/_article.scss */
@@ -1748,24 +1748,29 @@ body article.website .card a {
   z-index: 14;
 }
 /* line 222, ../../style/layout/_article.scss */
-body article.website .card img {
-  height: auto !important;
-  width: auto !important;
-  min-height: 168pt;
-  min-width: 224pt;
-  max-height: 100%;
-  max-width: 100%;
-  /*
-                      z-index: 12;
-                      position: relative;
-  */
+body article.website .card .image {
+  position: relative;
 }
-/* line 238, ../../style/layout/_article.scss */
+/* line 225, ../../style/layout/_article.scss */
+body article.website .card .image .background {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+/* line 236, ../../style/layout/_article.scss */
+body article.website .card .image img {
+  width: 224pt;
+}
+/* line 246, ../../style/layout/_article.scss */
 body article.file {
   position: relative;
   max-width: 224pt;
 }
-/* line 243, ../../style/layout/_article.scss */
+/* line 251, ../../style/layout/_article.scss */
 body article.file .fakeCard {
   background-color: white;
   border: 1px solid #000000;
@@ -1778,7 +1783,7 @@ body article.file .fakeCard {
   border-right: 0;
   position: relative;
 }
-/* line 251, ../../style/layout/_article.scss */
+/* line 259, ../../style/layout/_article.scss */
 body article.file .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1789,7 +1794,7 @@ body article.file .decorative.fold {
   background: transparent url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 261, ../../style/layout/_article.scss */
+/* line 269, ../../style/layout/_article.scss */
 body article.file .decorative.fold:after {
   content: " ";
   left: -1px;
@@ -1803,44 +1808,44 @@ body article.file .decorative.fold:after {
   border-left: 0;
   border-top: 0;
 }
-/* line 276, ../../style/layout/_article.scss */
+/* line 284, ../../style/layout/_article.scss */
 body article.file .card {
   width: 168pt;
   border: 0;
   background: transparent;
   padding: 0;
 }
-/* line 284, ../../style/layout/_article.scss */
+/* line 292, ../../style/layout/_article.scss */
 body article.file .card header h1 {
   word-wrap: break-word;
 }
-/* line 294, ../../style/layout/_article.scss */
+/* line 302, ../../style/layout/_article.scss */
 body article.soundcloud .card {
   width: 224pt;
   height: 224pt;
 }
-/* line 304, ../../style/layout/_article.scss */
+/* line 312, ../../style/layout/_article.scss */
 body article.youtube .content .card {
   max-width: 1344pt;
   width: -webkit-fit-content;
   width: fit-content;
   padding: 0px;
 }
-/* line 310, ../../style/layout/_article.scss */
+/* line 318, ../../style/layout/_article.scss */
 body article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 322, ../../style/layout/_article.scss */
+/* line 330, ../../style/layout/_article.scss */
 body article.playable.playing .card header, body article.playable.playing.hover .card header {
   opacity: 0;
   display: none;
 }
-/* line 329, ../../style/layout/_article.scss */
+/* line 337, ../../style/layout/_article.scss */
 body article.playable .card {
   padding: 0;
   position: relative;
 }
-/* line 334, ../../style/layout/_article.scss */
+/* line 342, ../../style/layout/_article.scss */
 body article.playable .card:active .playButton {
   -webkit-filter: invert(1);
   -moz-transform: scale(0.95);
@@ -1848,13 +1853,13 @@ body article.playable .card:active .playButton {
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
-/* line 340, ../../style/layout/_article.scss */
+/* line 348, ../../style/layout/_article.scss */
 body article.playable .card .preview {
   position: relative;
   cursor: pointer;
   background: black;
 }
-/* line 345, ../../style/layout/_article.scss */
+/* line 353, ../../style/layout/_article.scss */
 body article.playable .card .preview img {
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -1862,7 +1867,7 @@ body article.playable .card .preview img {
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   width: 100%;
 }
-/* line 352, ../../style/layout/_article.scss */
+/* line 360, ../../style/layout/_article.scss */
 body article.playable .card header {
   border-top: 0;
   padding: 16pt 8pt 16pt 16pt;
@@ -1872,16 +1877,16 @@ body article.playable .card header {
   right: 0;
   bottom: 0;
 }
-/* line 361, ../../style/layout/_article.scss */
+/* line 369, ../../style/layout/_article.scss */
 body article.playable .card header .artist {
   margin-bottom: 4pt;
 }
-/* line 365, ../../style/layout/_article.scss */
+/* line 373, ../../style/layout/_article.scss */
 body article.playable .card header .detail {
   position: absolute;
   bottom: 32pt;
 }
-/* line 372, ../../style/layout/_article.scss */
+/* line 380, ../../style/layout/_article.scss */
 body article.playable .card .playButton {
   background: url("/images/playButton.png") no-repeat;
   background-size: cover;
@@ -1898,50 +1903,50 @@ body article.playable .card .playButton {
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 391, ../../style/layout/_article.scss */
+/* line 399, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
 }
-/* line 399, ../../style/layout/_article.scss */
+/* line 407, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 404, ../../style/layout/_article.scss */
+/* line 412, ../../style/layout/_article.scss */
 body article .card img {
   margin-bottom: -2.66667pt;
 }
 
-/* line 414, ../../style/layout/_article.scss */
+/* line 422, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 168pt;
 }
 
-/* line 421, ../../style/layout/_article.scss */
+/* line 429, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 425, ../../style/layout/_article.scss */
+/* line 433, ../../style/layout/_article.scss */
 .addArticleForm.typing .cardActions ul li.upload, .addArticleForm.typing:hover .cardActions ul li.upload {
   opacity: 0;
 }
-/* line 429, ../../style/layout/_article.scss */
+/* line 437, ../../style/layout/_article.scss */
 .addArticleForm.typing .cardActions ul li.done, .addArticleForm.typing:hover .cardActions ul li.done {
   opacity: 1;
 }
-/* line 435, ../../style/layout/_article.scss */
+/* line 443, ../../style/layout/_article.scss */
 .addArticleForm .translate {
   position: relative;
 }
-/* line 438, ../../style/layout/_article.scss */
+/* line 446, ../../style/layout/_article.scss */
 .addArticleForm .translate .card {
   overflow: visible;
 }
-/* line 441, ../../style/layout/_article.scss */
+/* line 449, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions {
   width: 168pt;
 }
-/* line 448, ../../style/layout/_article.scss */
+/* line 456, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload {
   opacity: 1;
   display: inline-block;
@@ -1950,7 +1955,7 @@ body article .card img {
   overflow: hidden;
   position: relative;
 }
-/* line 457, ../../style/layout/_article.scss */
+/* line 465, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload:hover a {
   -webkit-animation: hoverLinkFlicker 20s infinite linear;
   -moz-animation: hoverLinkFlicker 20s infinite linear;
@@ -1961,7 +1966,7 @@ body article .card img {
       border-color: blue;
   */
 }
-/* line 462, ../../style/layout/_article.scss */
+/* line 470, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload form {
   height: 100%;
   width: 200%;
@@ -1969,7 +1974,7 @@ body article .card img {
   left: 0;
   position: absolute;
 }
-/* line 469, ../../style/layout/_article.scss */
+/* line 477, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.upload form input {
   height: 100%;
   width: 100%;
@@ -1979,14 +1984,14 @@ body article .card img {
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 481, ../../style/layout/_article.scss */
+/* line 489, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.done {
   display: inline-block;
   height: 16pt;
   float: right;
   width: intrinsic;
 }
-/* line 487, ../../style/layout/_article.scss */
+/* line 495, ../../style/layout/_article.scss */
 .addArticleForm .translate .card .cardActions ul li.done a {
   border: 0;
   padding: 0;
