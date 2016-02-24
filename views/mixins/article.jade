@@ -25,16 +25,40 @@ mixin articleMixin(article, collections)
     data-creatorid  = article.creatorId,
     data-content    = article.content
   )
-    ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='1')
-      li.addCollection
-        a Add label
-        .dot(style='height: 0; width: 0; opacity: 0; display: none; visibility: hidden;')
-      - for (var i = 0; i < collections.length; i++)
-        - var collection = collections[i]
-        - var key = collection.collectionKey
-        li.collection(data-collectionKey=key, class=key)
-          a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)!=collection.name
-          .dot(style='background-color:'+collection.color+';')
+    .collections.parallaxLayer(data-parallaxdepth='1')
+      ul.articleCollections(style='position:absolute;')
+        li.addCollection
+          a Add label
+          .dot(style='height: 0; width: 0; opacity: 0; display: none; visibility: hidden;')
+        - for (var i = 0; i < collections.length; i++)
+          - var collection = collections[i]
+          - var key = collection.collectionKey
+          li.collection(data-collectionKey=key, class=key)
+            a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)!=collection.name
+            .dot(style='background-color:'+collection.color+';')
+      ul.addCollectionMenu
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        li.collection
+          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
+        // each collection, collectionKey in collections
+        //   if typeof(collection.name) != undefined
+        //     - var key = collection.collectionKey
+        //     li.collection(data-collectionkey=key, class=key)
+        //       a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+      
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
 
@@ -46,7 +70,7 @@ mixin articleMixin(article, collections)
           header
             - if (collections[0] != undefined)
               - var color = collections[0].color
-            h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375', style='-webkit-text-fill-color:'+color+';')!=content.title
+            h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
             .source.smallType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
             .description.smallType.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
           .image.parallaxLayer(data-parallaxdepth='.5')

@@ -80,12 +80,9 @@ window.articleView =
       easing: constants.velocity.easing.spring
     $article.find('ul.articleCollections li').each ->
       $label = $(@)
-      $a = $label.find('a')
-      $dot = $label.find('.dot')
+      $a =   $label.children 'a'
+      $dot = $label.children '.dot'
       delay = $label.index() * 60
-            
-#       $.Velocity.hook $label, 'translateX', "#{dotWidths}px"
-      
       $label.velocity
         properties:
           translateX: dotWidths
@@ -93,7 +90,6 @@ window.articleView =
         options:
           duration: options.duration + delay
           easing: options.easing
-#           delay: delay
       $a.velocity
         properties:
           scaleX: [$dot.width()  / $a.width(), 1]
@@ -102,7 +98,6 @@ window.articleView =
         options:
           duration: options.duration + delay
           easing: options.easing
-#           delay: delay
           complete: -> $a.hide()
       $dot.velocity
         properties:
@@ -112,7 +107,6 @@ window.articleView =
         options:
           duration: options.duration + delay
           easing: options.easing
-#           delay: delay
           begin: -> $dot.show()
       dotWidths += $dot.data 'naturalWidth'
     
@@ -123,10 +117,8 @@ window.articleView =
     labelHeights = -72
     $article.find('ul.articleCollections li').each ->
       $label = $(@)
-      $a = $label.find('a')
-      $dot = $label.find('.dot')
-      console.log $label.text()
-      
+      $a =   $label.children 'a'
+      $dot = $label.children '.dot'      
       delay = $label.index() * 60
       $label.velocity
         properties:
@@ -135,7 +127,6 @@ window.articleView =
         options:
           duration: options.duration + delay
           easing: options.easing
-#           delay: delay
       $a.velocity
         properties:
           scaleX: [1, $dot.data('naturalWidth')  / $a.data('naturalWidth') ]
@@ -144,7 +135,6 @@ window.articleView =
         options:
           duration: options.duration + delay
           easing: options.easing
-#           delay: delay
           begin: -> $a.show()
       $dot.velocity
         properties:
@@ -154,10 +144,48 @@ window.articleView =
         options:
           duration: options.duration + delay
           easing: options.easing
-#           delay: delay
           complete: -> $dot.hide()
       labelHeights -= $a.data 'naturalHeight'
-
+      
+  showAddCollectionMenu: ($article) ->
+    $collections  = $article.find 'ul.articleCollections'
+    $menu         = $article.find 'ul.addCollectionMenu'
+    $button       = $collections.find('li.addCollection a')
+    
+    $menu.find('li').each ->
+      delay = $(@).index() * 125
+      $(@).velocity
+        properties:
+          translateY: [0, $(window).height()]
+          opacity: 1
+          scale: [1, 0]
+          rotateZ: [0, 90 * (Math.random() - .5)]
+        options:
+          duration: 250 + delay
+          easing: constants.velocity.easing.smooth
+    $menu.show()
+    $menu.find('li').css 'opacity', 0
+    $button.text('Nevermind')
+    
+  hideAddCollectionMenu: ($article) ->
+    $collections  = $article.find 'ul.articleCollections'
+    $menu         = $article.find 'ul.addCollectionMenu'
+    $button       = $collections.find('li.addCollection a')
+    
+    $menu.find('li').each ->
+      delay = ($menu.find('li').length - $(@).index()) * 125
+      $(@).velocity
+        properties:
+          translateY: $(window).height()
+          scale: 0
+          rotateZ: 90 * (Math.random() - .5)
+        options:
+          duration: 250 + delay
+          easing: constants.velocity.easing.smooth
+          complete: -> $menu.hide() if $(@).index() is $menu.find('li').length - 1
+    $button.text('Add label')
+    
+  
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: 2
@@ -208,6 +236,7 @@ window.articleView =
     $article.find('ul.articleCollections').css { zIndex: '' }
     articleView.hideMeta($article) unless $article.hasClass('open')
     articleView.closeLabels($article) unless $article.hasClass('open')
+    articleView.hideAddCollectionMenu $article
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0

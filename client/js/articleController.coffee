@@ -82,39 +82,54 @@ window.articleController =
     $.Velocity.hook $articles.find('ul.articleCollections .scale'), 'scale', 1 / constants.style.globalScale
 
     $articles.each () ->
-      unless $(@).hasClass('image') or  $(@).hasClass('website')
-        articleView.resize $(@)
+      $article = $(@)
+      
+      articleView.resize($article) unless $article.hasClass('image') or $article.hasClass('website')
 
-      $(@).find('img').load () =>
-        articleView.resize $(@)
+      $article.find('img').load -> articleView.resize $article
 
-      $(@).find(constants.dom.articleMeta).hide()
+      $article.find(constants.dom.articleMeta).hide()
       
       # Set up label indicators
-      $(@).find('ul.articleCollections li').each ->
-        $a =   $(@).find('a')
-        $dot = $(@).find('.dot')
+      $article.find('ul.articleCollections li').each ->
+        $a   = $(@).children('a')
+        $dot = $(@).children('.dot')
         $a.data   'naturalHeight', $a.height()
         $a.data   'naturalWidth',  $a.width()
         $dot.data 'naturalHeight', $dot.height()
         $dot.data 'naturalWidth',  $dot.width()
+        # parallaxHover $a, 250, 1.5
         $(@).mouseenter -> cursorView.start '☛'
-      articleView.closeLabels $(@)
+        
+      # Click to add label
+      $article.find('ul.articleCollections li.addCollection a').click ->
+        $menu = $article.find('ul.addCollectionMenu')
+        event.stopPropagation()
+        event.preventDefault()
+        
+        if $menu.hasClass('open')
+          articleView.hideAddCollectionMenu $article
+          $menu.removeClass 'open'
+        else
+          articleView.showAddCollectionMenu $article
+          $menu.addClass 'open'
+        
+      # Hide labels and add label menu
+      articleView.hideAddCollectionMenu $article
+      articleView.closeLabels           $article
       
-      
-      if $(@).hasClass('playable')
-        $(@).find('.playButton').css
+      if $article.hasClass('playable')
+        $article.find('.playButton').css
           opacity: 0
-        $(@).find('.artist', '.source').css
+        $article.find('.artist', '.source').css
           position: 'absolute'
           opacity: 0
-        $.Velocity.hook($(@).find('.artist, .source'), 'scale', '0')
-      else if $(@).hasClass 'website'
-        $(@).find('header').css
+        $.Velocity.hook($article.find('.artist, .source'), 'scale', '0')
+      else if $article.hasClass 'website'
+        $article.find('header').css
           position: 'absolute'
           top: 0
-        $.Velocity.hook($(@).find('.description, .source'), 'opacity', '0')
-                
+        $.Velocity.hook($article.find('.description, .source'), 'opacity', '0')
 
     # Bind other article events.
     $articles.mouseenter -> articleView.mouseenter event, $(@)

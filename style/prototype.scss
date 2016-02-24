@@ -165,50 +165,57 @@ nav {
 
 #articleContainer {
     width: 100%;
-    margin-top: 50vh;
+    margin-top: 25vh;
     
     article {
-            
-        ul.articleCollections {
-            white-space: nowrap;
-            z-index: 2;
-            z-index: 20;
+        .collections {
             position: absolute;
             top: 0;
             left:0;
+            z-index: 20;
             
-            
-            li {
-                display: block;
+            li a {
+                @include typeHeader;
+                @include typeOutlineClear;
+                width: -webkit-fit-content;
+            }
+
+            ul.articleCollections {
+                white-space: nowrap;
                 
-                &:first-child {
-                    a {
-                        border-left-width: $cardBorderWidth;
-                    }
-                }
-                
-                &.addCollection {
-                    a {
-                        @include typeOutlineWhite;
-                    }
-                }
-                
-                a {
+                li {
                     display: block;
-                    @include typeHeader;
-                    @include typeOutlineClear;
-                    padding: 0;
-                    position: absolute;
-                    top: 0;
-                    width: -webkit-fit-content;
+                    
+                    &:first-child {
+                        a {
+                            border-left-width: $cardBorderWidth;
+                        }
+                    }
+                    
+                    &.addCollection {
+                        a {
+                            @include typeOutlineWhite;
+                        }
+                    }
+                    
+                    a {
+                        display: block;
+                        padding: 0;
+                        position: absolute;
+                        top: 0;
+                    }
+                    
+                    .dot {
+                        height: $cell;
+                        width:  $cell;
+                        border: $cardBorder;
+                        position: absolute;
+                    }
                 }
-                
-                .dot {
-                    height: $cell;
-                    width:  $cell;
-                    border: $cardBorder;
-                    position: absolute;
-                }
+            }
+            
+            ul.addCollectionMenu {
+                margin-left: $cardPaddingLeft;
             }
         }
         
