@@ -77,13 +77,13 @@ window.articleView =
     dotWidths = 0
     options =
       duration: 500
-      easing: constants.velocity.easing.smooth
+      easing: constants.velocity.easing.spring
     $article.find('ul.articleCollections li').each ->
       $label = $(@)
       $a = $label.find('a')
       $dot = $label.find('.dot')
-#       delay = $label.index() * 60
-      
+      delay = $label.index() * 60
+            
 #       $.Velocity.hook $label, 'translateX', "#{dotWidths}px"
       
       $label.velocity
@@ -91,7 +91,7 @@ window.articleView =
           translateX: dotWidths
           translateY: 0
         options:
-          duration: options.duration
+          duration: options.duration + delay
           easing: options.easing
 #           delay: delay
       $a.velocity
@@ -100,7 +100,7 @@ window.articleView =
           scaleY: [$dot.height() / $a.height(),1]
           opacity: [0, 1]
         options:
-          duration: options.duration
+          duration: options.duration + delay
           easing: options.easing
 #           delay: delay
           complete: -> $a.hide()
@@ -110,7 +110,7 @@ window.articleView =
           scaleY: [1, $a.data('naturalHeight') / $dot.data('naturalHeight')]
           opacity: 1
         options:
-          duration: options.duration
+          duration: options.duration + delay
           easing: options.easing
 #           delay: delay
           begin: -> $dot.show()
@@ -119,7 +119,7 @@ window.articleView =
   expandLabels: ($article) ->
     options =
       duration: 500
-      easing: constants.velocity.easing.smooth
+      easing: constants.velocity.easing.spring
     labelHeights = -72
     $article.find('ul.articleCollections li').each ->
       $label = $(@)
@@ -127,13 +127,13 @@ window.articleView =
       $dot = $label.find('.dot')
       console.log $label.text()
       
-#       delay = $label.index() * 60
+      delay = $label.index() * 60
       $label.velocity
         properties:
           translateX: constants.style.margin.articleText.left
           translateY: labelHeights
         options:
-          duration: options.duration
+          duration: options.duration + delay
           easing: options.easing
 #           delay: delay
       $a.velocity
@@ -142,7 +142,7 @@ window.articleView =
           scaleY: [1, $dot.data('naturalHeight') / $a.data('naturalHeight')]
           opacity: 1
         options:
-          duration: options.duration
+          duration: options.duration + delay
           easing: options.easing
 #           delay: delay
           begin: -> $a.show()
@@ -152,7 +152,7 @@ window.articleView =
           scaleY: $a.data('naturalHeight') / $dot.data('naturalHeight')
           opacity: [-1, 1]
         options:
-          duration: options.duration
+          duration: options.duration + delay
           easing: options.easing
 #           delay: delay
           complete: -> $dot.hide()

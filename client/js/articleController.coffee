@@ -98,6 +98,7 @@ window.articleController =
         $a.data   'naturalWidth',  $a.width()
         $dot.data 'naturalHeight', $dot.height()
         $dot.data 'naturalWidth',  $dot.width()
+        $(@).mouseenter -> cursorView.start '☛'
       articleView.closeLabels $(@)
       
       
