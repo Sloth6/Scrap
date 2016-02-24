@@ -72,11 +72,97 @@ window.articleView =
       options:
         easing: constants.velocity.easing.smooth
         duration: 500
+        
+  closeLabels: ($article) ->
+    dotWidths = 0
+    options =
+      duration: 500
+      easing: constants.velocity.easing.smooth
+    $article.find('ul.articleCollections li').each ->
+      $label = $(@)
+      $a = $label.find('a')
+      $dot = $label.find('.dot')
+#       delay = $label.index() * 60
+      
+#       $.Velocity.hook $label, 'translateX', "#{dotWidths}px"
+      
+      $label.velocity
+        properties:
+          translateX: dotWidths
+          translateY: 0
+        options:
+          duration: options.duration
+          easing: options.easing
+#           delay: delay
+      $a.velocity
+        properties:
+          scaleX: [$dot.width()  / $a.width(), 1]
+          scaleY: [$dot.height() / $a.height(),1]
+          opacity: [0, 1]
+        options:
+          duration: options.duration
+          easing: options.easing
+#           delay: delay
+          complete: -> $a.hide()
+      $dot.velocity
+        properties:
+          scaleX: [1, $a.data('naturalWidth') /  $dot.data('naturalWidth')]
+          scaleY: [1, $a.data('naturalHeight') / $dot.data('naturalHeight')]
+          opacity: 1
+        options:
+          duration: options.duration
+          easing: options.easing
+#           delay: delay
+          begin: -> $dot.show()
+      dotWidths += $dot.data 'naturalWidth'
+    
+  expandLabels: ($article) ->
+    options =
+      duration: 500
+      easing: constants.velocity.easing.smooth
+    labelHeights = -72
+    $article.find('ul.articleCollections li').each ->
+      $label = $(@)
+      $a = $label.find('a')
+      $dot = $label.find('.dot')
+      console.log $label.text()
+      
+#       delay = $label.index() * 60
+      $label.velocity
+        properties:
+          translateX: constants.style.margin.articleText.left
+          translateY: labelHeights
+        options:
+          duration: options.duration
+          easing: options.easing
+#           delay: delay
+      $a.velocity
+        properties:
+          scaleX: [1, $dot.data('naturalWidth')  / $a.data('naturalWidth') ]
+          scaleY: [1, $dot.data('naturalHeight') / $a.data('naturalHeight')]
+          opacity: 1
+        options:
+          duration: options.duration
+          easing: options.easing
+#           delay: delay
+          begin: -> $a.show()
+      $dot.velocity
+        properties:
+          scaleX: $a.data('naturalWidth')  / $dot.data('naturalWidth')
+          scaleY: $a.data('naturalHeight') / $dot.data('naturalHeight')
+          opacity: [-1, 1]
+        options:
+          duration: options.duration
+          easing: options.easing
+#           delay: delay
+          complete: -> $dot.hide()
+      labelHeights -= $a.data 'naturalHeight'
 
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css
       zIndex: 2
     articleView.showMeta($article) unless $article.hasClass('open')
+    articleView.expandLabels($article) unless $article.hasClass('open')
     if $article.hasClass 'playable'
       cursor = '▶︎'
       $article.find('.artist, .source').velocity
@@ -121,6 +207,7 @@ window.articleView =
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
     articleView.hideMeta($article) unless $article.hasClass('open')
+    articleView.closeLabels($article) unless $article.hasClass('open')
     if $article.hasClass('playable')
       $('.playButton').transition
         x: 0
@@ -164,7 +251,7 @@ window.articleView =
 #     cursorView.end()
     
   mousemove: (event, $article) ->
-    cursorView.move event
+#     cursorView.move event
     
   open: (event, $article) ->
     $container = $(constants.dom.articleContainer)
@@ -199,8 +286,8 @@ window.articleView =
     $article.css {zIndex: 2}# must run after trigger('mouseleave')
 #     cursorView.end()
     cursorView.start '✕'
-    cursorView.move event
-    $('body').mousemove (event) -> cursorView.move event
+#     cursorView.move event
+#     $('body').mousemove (event) -> cursorView.move event
 
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:

@@ -89,6 +89,18 @@ window.articleController =
         articleView.resize $(@)
 
       $(@).find(constants.dom.articleMeta).hide()
+      
+      # Set up label indicators
+      $(@).find('ul.articleCollections li').each ->
+        $a =   $(@).find('a')
+        $dot = $(@).find('.dot')
+        $a.data   'naturalHeight', $a.height()
+        $a.data   'naturalWidth',  $a.width()
+        $dot.data 'naturalHeight', $dot.height()
+        $dot.data 'naturalWidth',  $dot.width()
+      articleView.closeLabels $(@)
+      
+      
       if $(@).hasClass('playable')
         $(@).find('.playButton').css
           opacity: 0

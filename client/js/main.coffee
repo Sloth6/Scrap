@@ -3,6 +3,9 @@
 window.constants =
   style:
     gutter: 24 / (1/2)
+    margin:
+      articleText:
+        left: 16 / .75 # convert pt to px
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
     globalScale: .5
     duration:

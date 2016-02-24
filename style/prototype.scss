@@ -12,11 +12,13 @@
 //     background-color: yellow;
     pointer-events: none;
     
+/*
     div {
         position: absolute;
         top: 0;
         left: 0;
     }
+*/
 }
 
 // _nav.scss
@@ -76,8 +78,8 @@ nav {
             margin: 0 auto;
             max-height: 100vh;
             min-width: 50vw;
-            overflow-y: scroll;
-            overflow-x: visible;
+            overflow-y: visible;
+//             overflow-x: visible;
 //             height: 0;
 //                         background-color: rgba(0, 255, 61, 0.41);
             
@@ -103,22 +105,22 @@ nav {
                   	  -webkit-transform-origin:  center center;
 //                               	  border: blue 1px soild;
                   	  a {
-                  	    	  display: inline-block;
-                  	    	  margin: 0 auto;
-                	    	  	@include navText;
-                	    	  	font-weight: $fontWeightExtraBold;
-                      	    	  		  transform-origin:  center center;
-              	    	  		  -webkit-transform-origin:  center center;
-        
+                	    	  display: inline-block;
+                	    	  margin: 0 auto;
+              	    	  	@include navText;
+              	    	  	font-weight: $fontWeightExtraBold;
+                    	    	  		  transform-origin:  center center;
+            	    	  		  -webkit-transform-origin:  center center;
 //                               	    	  	border: lime 1px solid;
                   	  }
                   	  
                   	  input {
-              	    	    	  	@include navText;
-              	    	    	  	border: 0;
-              	    	    	  	text-align: center;
-              	    	    	  	display: block;
-              	    	    	  	width: 100%;
+        	    	    	  	@include navText;
+  	    	  		    	  	font-weight: $fontWeightExtraBold;
+        	    	    	  	border: 0;
+        	    	    	  	text-align: center;
+        	    	    	  	display: block;
+        	    	    	  	width: 100%;
                   	  }
                 	}
             }
@@ -163,64 +165,60 @@ nav {
 
 #articleContainer {
     width: 100%;
+    margin-top: 50vh;
     
     article {
-      
-        header {
-            ul.articleCollections {
-                white-space: nowrap;
-                position: absolute;
-                top: -$cell/2;
-                left:0;
-                z-index: 2;
+            
+        ul.articleCollections {
+            white-space: nowrap;
+            z-index: 2;
+            z-index: 20;
+            position: absolute;
+            top: 0;
+            left:0;
+            
+            
+            li {
+                display: block;
                 
-                li.collection {
-                    display: inline-block;
-                    
-                    &:first-child {
-                        a {
-                            border-left-width: $cardBorderWidth;
-                        }
-                    }
-                    
+                &:first-child {
                     a {
-                        display: block;
-                        border: $cardBorder;
-                        border-left-width: 0;
-//                         text-indent: -9999em;
-                        height: $cell/2;
-                        width: $cell/2;
-                        padding: 0;
-                        position: relative;
-                        top: 0; // -($cell + $cardBorderWidth);
-                        color: transparent;
-//                         font-weight: $fontWeightExtraBold;
-//                         -webkit-text-stroke-width: .5px;
-/*
-                        text-shadow:  -1px -1px  0 #000,  
-                                       1px -1px  0 #000,
-                                      -1px  1px  0 #000,
-                                       1px  1px  0 #000,
-                                     -.5px -.5px 0 #000, 
-                                      .5px -.5px 0 #000,
-                                     -.5px  .5px 0 #000,
-                                      .5px  .5px 0 #000;
-*/
-//                         border-radius: $cell;
-                        @include transition(.5s $defaultCurve);
-                        @include transition-property(color, background-color, height, width);
+                        border-left-width: $cardBorderWidth;
                     }
+                }
+                
+                &.addCollection {
+                    a {
+                        @include typeOutlineWhite;
+                    }
+                }
+                
+                a {
+                    display: block;
+                    @include typeHeader;
+                    @include typeOutlineClear;
+                    padding: 0;
+                    position: absolute;
+                    top: 0;
+                    width: -webkit-fit-content;
+                }
+                
+                .dot {
+                    height: $cell;
+                    width:  $cell;
+                    border: $cardBorder;
+                    position: absolute;
                 }
             }
         }
         
         &:hover {
             ul.articleCollections li.collection a {
-                text-indent: 0;
-                height: $cell * 2;
-                width: $cell * 12;
+                background-color: transparent !important;
+//                 height: $cell * 2;
+//                 width: $cell * 12;
 //                 padding: 0 2pt;
-                color: $colorType;
+//                 color: $colorType;
 //                 background-color: transparent !important;
 //                 border-color:     transparent !important;
             }

@@ -59,6 +59,8 @@ window.collectionsMenuView =
     $('body').css
       overflow: 'hidden'
 #     scrollController.disableScroll()
+    $menu.css
+      overflowY: 'scroll'
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -114,3 +116,6 @@ window.collectionsMenuView =
     # Enable scroll
     $('body').css
       overflow: '' 
+    $menu.css
+      overflowY: 'visible'
+      

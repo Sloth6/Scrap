@@ -25,30 +25,35 @@ mixin articleMixin(article, collections)
     data-creatorid  = article.creatorId,
     data-content    = article.content
   )
-    //- header
-    //-   ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='.2',data-parallaxoffset={x: 0, y: -24})
-    //-     .scale
-    //-       - for (var i = 0; i < collections.length; i++)
-    //-         - var collection = collections[i]
-    //-         - var key = collection.collectionKey
-    //-         li.collection(data-collectionKey=key, class=key)
-    //-           a.typeSmall(href='#', style='background-color:'+collection.color+';', data-color=collection.color)!=collection.name
+    ul.articleCollections.parallaxLayer(style='position:absolute;',data-parallaxdepth='1')
+      li.addCollection
+        a Add label
+        .dot(style='height: 0; width: 0; opacity: 0; display: none; visibility: hidden;')
+      - for (var i = 0; i < collections.length; i++)
+        - var collection = collections[i]
+        - var key = collection.collectionKey
+        li.collection(data-collectionKey=key, class=key)
+          a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)!=collection.name
+          .dot(style='background-color:'+collection.color+';')
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
 
         when 'image'
-          img.parallaxLayer(data-parallaxdepth='.5', src = content.original_url)
+          img.parallaxLayer(data-parallaxdepth='.25', src = content.original_url)
 
         when 'website'
           -var url = decodeURIComponent(content.url)
           header
-            h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
+            - if (collections[0] != undefined)
+              - var color = collections[0].color
+            h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375', style='-webkit-text-fill-color:'+color+';')!=content.title
             .source.smallType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
             .description.smallType.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
           .image.parallaxLayer(data-parallaxdepth='.5')
             .background
             img(src=content.image)
-          a(href=url, target='_blank', title='Open “' + content.title + '” in a new tab')
+          a(href=url, target='_blank')
+          // title='Open “' + content.title + '” in a new tab')
 
         when 'file'
           .fakeCard
@@ -67,31 +72,31 @@ mixin articleMixin(article, collections)
             source(src = content.url)
 
         when 'soundcloud'
-          .preview(title='Play “' + content.title + '”')
+          .preview.parallaxLayer(data-parallaxdepth='.25', title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
           header
             .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
-              .artist.smallType.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: -24})!=content.author_name
-              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.25')!=content.title
-            .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
+              .artist.smallType.parallaxLayer(data-parallaxdepth='.125', data-parallaxoffset={x: 0, y: -24})!=content.author_name
+              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.375')!=content.title
+            .detail.parallaxLayer(data-parallaxdepth='.125', data-parallaxoffset={x: 0, y: 36})
               .source.smallType.smallCaps SoundCloud
           // .playButton
 
         when 'youtube'
-          .preview(title='Play “' + content.title + '”')
+          .preview.parallaxLayer(data-parallaxdepth='.25', title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
           header
             .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
               // .artist.smallType.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: -24}) Artist
-              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.25')!=content.title
-            .detail.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: 36})
+              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.375')!=content.title
+            .detail.parallaxLayer(data-parallaxdepth='.125', data-parallaxoffset={x: 0, y: 36})
               .source.smallType.smallCaps youtube
           .playButton
 
 
         when 'text'
           //- contentEditable="false", designmode="on"
-          .editable.parallaxLayer(data-parallaxdepth='.25')
+          .editable.parallaxLayer(data-parallaxdepth='.375')
             | !{article.content.text}
           ul.cardActions
             li.right.showOnEditing
