@@ -18,7 +18,7 @@ window.cursorView =
       return
     $('body').mousedown -> $cursor.css '-webkit-text-fill-color', 'black'
     $('body').mouseup   -> $cursor.css '-webkit-text-fill-color', ''
-    $('body, article, a').css
+    $('body, article, a, input').css
       cursor: 'none'
       
   end: ->
@@ -33,7 +33,7 @@ window.cursorView =
         complete: ->
           $cursor.hide()
           $cursor.text('')
-          $('body, article, a').css
+          $('body, article, a, input').css
             cursor: ''
     
   move: (event) ->

@@ -134,6 +134,10 @@ window.articleController =
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
       
+      # Init delete button
+      $article.find('.articleDeleteButton').mouseenter ->
+        cursorView.start '🔫'
+      
       if $article.hasClass('playable')
         $article.find('.playButton').css
           opacity: 0
