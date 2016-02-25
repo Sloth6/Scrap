@@ -10,7 +10,7 @@ window.articleView =
   obscure: ($articles) ->
 #     $articles.hide()
 #     return
-    $contents   = $articles.find('.card').children().add($articles.find('article ul, article .articleControls'))
+    $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -255,7 +255,7 @@ window.articleView =
       cursor = '✎'
     else
       cursor = 'Open'
-    cursorView.start cursor
+    cursorView.start(cursor)
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
@@ -339,10 +339,9 @@ window.articleView =
     $article.trigger 'mouseleave'
     unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
     $article.css {zIndex: 2}# must run after trigger('mouseleave')
-#     cursorView.end()
-    cursorView.start '✕'
-#     cursorView.move event
-#     $('body').mousemove (event) -> cursorView.move event
+
+    $article.mouseleave -> cursorView.start '✕'
+    $article.mouseenter -> cursorView.end()
 
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:

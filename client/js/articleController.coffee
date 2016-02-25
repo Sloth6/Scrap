@@ -159,10 +159,14 @@ window.articleController =
           position: 'absolute'
           top: 0
         $.Velocity.hook($article.find('.description, .source'), 'opacity', '0')
-
-    # Bind other article events.
-    $articles.mouseenter -> articleView.mouseenter event, $(@)
-    $articles.mousemove  -> articleView.mousemove  event, $(@)
-    $articles.mouseleave -> articleView.mouseleave event, $(@)
-
+      
+      # Bind other article events.
+      $article.mouseenter ->
+        unless $article.hasClass('open') or $article.hasClass('obscured')
+          articleView.mouseenter event, $article
+      $article.mousemove  -> articleView.mousemove  event, $(@)
+      $article.mouseleave ->
+        unless $article.hasClass('open') or $article.hasClass('obscured')
+          articleView.mouseleave event, $article
+      
     parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale
