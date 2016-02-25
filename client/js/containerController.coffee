@@ -4,7 +4,7 @@ window.containerController =
     $wrapper      = $('.wrapper')
     
     # Will clicking the wrapper insert a new add form?
-    $container.data 'canInsertFormOnClick', false
+    $container.data 'canInsertFormOnClick', true
     
     $container.packery
       itemSelector: 'article'
