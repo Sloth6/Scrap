@@ -163,7 +163,7 @@ window.articleView =
         options:
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
-    $menu.show()
+    $menu.find('li').show()
     $menu.find('li').css 'opacity', 0
     $button.text('Nevermind')
     
@@ -172,7 +172,7 @@ window.articleView =
     $menu         = $article.find 'ul.addCollectionMenu'
     $button       = $collections.find('li.addCollection a')
     
-    $menu.find('li').each ->
+    $menu.find('li').not('.added').each ->
       delay = ($menu.find('li').length - $(@).index()) * 125
       $(@).velocity
         properties:
@@ -182,9 +182,30 @@ window.articleView =
         options:
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
-          complete: -> $menu.hide() if $(@).index() is $menu.find('li').length - 1
+          complete: -> $(@).hide # $menu.hide() if $(@).index() is $menu.find('li').length - 1
     $button.text('Add label')
-    
+  
+  addCollection: ($article, $label) ->
+    $collectionsList = $article.find('ul.articleCollections')
+    y = $collectionsList.children('li.addCollection').offset().top - $label.offset().top
+    $label.addClass 'added'
+    $label.velocity
+      properties:
+        translateY: y - $label.height()
+      options:
+        duration: 500
+        easing: constants.velocity.easing.smooth
+        complete: -> $label.appendTo $collectionsList
+    $collectionsList.children('li').not('.addCollection').each ->
+      startY = parseInt $.Velocity.hook($(@), 'translateY')
+      $(@).velocity
+        properties:
+          translateY: startY-$label.height()
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+#           complete: -> 
+    articleView.hideAddCollectionMenu $article
   
   mouseenter: (event, $article) ->
     $article.find('ul.articleCollections').css

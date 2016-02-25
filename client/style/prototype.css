@@ -2534,10 +2534,6 @@ nav section .addForm article {
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 217, ../../style/prototype.scss */
-#articleContainer article .collections ul.addCollectionMenu {
-  margin-left: 32pt;
-}
 /* line 223, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;

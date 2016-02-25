@@ -101,18 +101,29 @@ window.articleController =
         # parallaxHover $a, 250, 1.5
         $(@).mouseenter -> cursorView.start '☛'
         
-      # Click to add label
+      # Open/close collections menu
       $article.find('ul.articleCollections li.addCollection a').click ->
         $menu = $article.find('ul.addCollectionMenu')
         event.stopPropagation()
         event.preventDefault()
-        
         if $menu.hasClass('open')
           articleView.hideAddCollectionMenu $article
           $menu.removeClass 'open'
         else
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
+              
+      $article.find('ul.addCollectionMenu li').each ->
+        $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
+
+      # Click to add label
+      $article.find('ul.addCollectionMenu li a').click ->
+        $menu = $article.find('ul.addCollectionMenu')
+        $label = $(@).parent()
+        event.stopPropagation()
+        event.preventDefault()
+        articleView.addCollection $article, $label
+        
         
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
