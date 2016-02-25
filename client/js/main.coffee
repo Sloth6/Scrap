@@ -41,7 +41,7 @@ $ ->
 
   articleController.init         $(constants.dom.articles)
   collectionController.init      $(constants.dom.collections)
-  
+
   cursorController.init          $(constants.dom.cursor)
 
   # window.pack = new DomCoolTest ( () ->

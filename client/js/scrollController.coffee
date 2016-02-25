@@ -57,7 +57,7 @@ window.scrollController =
       return if scrapState.waitingForContent
       scrapState.waitingForContent = true
       o = $('article').not('.addArticleForm').length
-      n = 100
+      n = 10
       console.log {o, n}
       $.get('collectionContent', {o, n}).
         fail(() -> 'failed to get content').

@@ -8,16 +8,6 @@ mixin articleMixin(article, collections)
     if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
       classes.push('playable')
     }
-    // var color = collection.color
-    // var pattern = /^hsl\(([-.0-9]+),(0|100|\d{1,2})%,([-.0-9]+)%\)$/
-    // var hue = color.match(pattern)[1]
-    // var hslLight = 'hsl('+hue+',100%, 98%)'
-
-    // if (article.contentType == 'text'){
-    //   var backgroundColor = hslLight
-    // } else {
-    //   var backgroundColor = ''
-    // }
 
   article(id=article.id, style= posString,
     class = classes,
@@ -37,36 +27,7 @@ mixin articleMixin(article, collections)
             a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)!=collection.name
             .dot(style='background-color:'+collection.color+';')
       ul.addCollectionMenu
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        li.collection
-          a(href='#', style='-webkit-text-fill-color:rgb(150,255,255)') Collection
-          .dot(style='background-color:rgb(150,255,255);')
-        // each collection, collectionKey in collections
-        //   if typeof(collection.name) != undefined
-        //     - var key = collection.collectionKey
-        //     li.collection(data-collectionkey=key, class=key)
-        //       a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
-      
+
     .card.cardHover.cardDrag(class=article.contentType)
       case article.contentType
 
@@ -132,7 +93,7 @@ mixin articleMixin(article, collections)
             | !{article.content.text}
           ul.cardActions
             li.right.showOnEditing
-              a.done.confirm(href='#')  
+              a.done.confirm(href='#')
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content

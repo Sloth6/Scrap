@@ -22,6 +22,27 @@ window.articleController =
     $collection.remove()
     socket.emit 'removeArticleCollection', { articleId, collectionKey }
 
+  initAddCollectionsMenu: ($article) ->
+    $menu = $article.find 'ul.addCollectionMenu'
+
+    $menu.append $(document.body).children('.addCollectionMenu').children().clone()
+
+    labelHeights = 0
+    $article.find('ul.addCollectionMenu li').each ->
+      $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
+      $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
+      $(@).data 'translateY', labelHeights
+      labelHeights += $(@).height()
+      console.log labelHeights
+
+    # Click to add label
+    $article.find('ul.addCollectionMenu li a').click ->
+      $menu = $article.find('ul.addCollectionMenu')
+      $label = $(@).parent()
+      event.stopPropagation()
+      event.preventDefault()
+      articleView.addCollection $article, $label
+
   init: ($articles) ->
     $articles.each ->
       # Base color by first label.
@@ -83,13 +104,13 @@ window.articleController =
 
     $articles.each () ->
       $article = $(@)
-      
+
       articleView.resize($article) unless $article.hasClass('image') or $article.hasClass('website')
 
       $article.find('img').load -> articleView.resize $article
 
       $article.find(constants.dom.articleMeta).hide()
-      
+
       # Set up label indicators
       $article.find('ul.articleCollections li').each ->
         $a   = $(@).children('a')
@@ -100,7 +121,7 @@ window.articleController =
         $dot.data 'naturalWidth',  $dot.width()
         # parallaxHover $a, 250, 1.5
         $(@).mouseenter -> cursorView.start '☛'
-        
+
       # Open/close collections menu
       $article.find('ul.articleCollections li.addCollection a').click ->
         $menu = $article.find('ul.addCollectionMenu')
@@ -112,28 +133,13 @@ window.articleController =
         else
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
-              
-      labelHeights = 0
-      $article.find('ul.addCollectionMenu li').each ->
-        $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
-        $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
-        $(@).data 'translateY', labelHeights
-        labelHeights += $(@).height()
-        console.log labelHeights
 
-      # Click to add label
-      $article.find('ul.addCollectionMenu li a').click ->
-        $menu = $article.find('ul.addCollectionMenu')
-        $label = $(@).parent()
-        event.stopPropagation()
-        event.preventDefault()
-        articleView.addCollection $article, $label
-        
-        
+
+
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
-      
+
       if $article.hasClass('playable')
         $article.find('.playButton').css
           opacity: 0

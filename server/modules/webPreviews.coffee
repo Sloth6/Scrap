@@ -39,7 +39,9 @@ extractImage = ($, callback) ->
   img = $('meta[property="og:image"]').attr('content')
   return callback(img) if img?
 
-  return callback null, $('img').toArray()[0]?.attr('src') or null
+  imgs = $('img')#.toArray()
+  return callback(null) unless imgs.length
+  callback imgs.first().attr('src')
 
   # Look at only first n images.
   # n = 5
@@ -85,6 +87,6 @@ module.exports = (url, callback) ->
         domain: urlUtil.parse(url).hostname.replace('www.', '')
       callback null, metadata
 
-# url = 'http://www.nationalreview.com/article/430434/cat-trapped-woman-body-norway'
-# module.exports url, (err, data) ->
-#   console.log data
+url = 'http://www.madisonseating.com/life-chair-fully-adjustable-model-by-knoll-en-2.html?gclid=CjwKEAiA27G1BRCEopST9M39gykSJADQyqAlGU6EHJeh_B-g911Z1EMClbSxqDHMYMlVUSVQHgUWMRoCCibw_wcB'
+module.exports url, (err, data) ->
+  console.log data
