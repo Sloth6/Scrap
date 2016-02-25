@@ -10,7 +10,8 @@ config = JSON.parse(require('fs').readFileSync(config_path, 'utf8'))
 module.exports =
   collectionContent: (req, res, app, callback) ->
     userId = req.session?.currentUserId
-    { o, n } = req.query
+    o = parseInt(req.query.o)
+    n = parseInt(req.query.n)
     console.log { o, n }
     return res.send(400) unless (o and n and userId)?
 
@@ -24,7 +25,7 @@ module.exports =
       return callback err, res if err?
       return indexPage res unless user?
 
-      user.Articles.reverse()
+      # user.Articles.reverse()
       user.Articles = user.Articles.slice(o, o+n)
 
       collections = {}

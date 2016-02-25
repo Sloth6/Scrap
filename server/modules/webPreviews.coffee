@@ -87,6 +87,6 @@ module.exports = (url, callback) ->
         domain: urlUtil.parse(url).hostname.replace('www.', '')
       callback null, metadata
 
-url = 'http://www.madisonseating.com/life-chair-fully-adjustable-model-by-knoll-en-2.html?gclid=CjwKEAiA27G1BRCEopST9M39gykSJADQyqAlGU6EHJeh_B-g911Z1EMClbSxqDHMYMlVUSVQHgUWMRoCCibw_wcB'
-module.exports url, (err, data) ->
-  console.log data
+# url = 'http://www.madisonseating.com/life-chair-fully-adjustable-model-by-knoll-en-2.html?gclid=CjwKEAiA27G1BRCEopST9M39gykSJADQyqAlGU6EHJeh_B-g911Z1EMClbSxqDHMYMlVUSVQHgUWMRoCCibw_wcB'
+# module.exports url, (err, data) ->
+#   console.log data
