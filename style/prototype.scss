@@ -254,6 +254,11 @@ nav {
                     &.right {
                         float: right;
                     }
+                    
+                    .articleDeleteButton {
+                        padding-bottom: $cell * 2;
+                        padding-left: $cell * 2;
+                    }
                 }
             }
         }

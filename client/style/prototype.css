@@ -2557,3 +2557,8 @@ nav section .addForm article {
 #articleContainer article footer ul li.right {
   float: right;
 }
+/* line 258, ../../style/prototype.scss */
+#articleContainer article footer ul li .articleDeleteButton {
+  padding-bottom: 16pt;
+  padding-left: 16pt;
+}
