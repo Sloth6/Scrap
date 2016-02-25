@@ -120,7 +120,7 @@ html.no-js(lang='en')
       each collection, collectionKey in collections
         if typeof(collection.name) != undefined
           - var key = collection.collectionKey
-          li.collection
+          li.collection(data-key = key)
             a(href='#', style='-webkit-text-fill-color:'+collection.color+';')!=collection.name
             .dot(style='background-color:'+collection.color+';')
 

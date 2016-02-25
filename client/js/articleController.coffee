@@ -6,12 +6,12 @@ window.articleController =
         keys.append(c.data('collectionkey'))
     keys
 
-  addCollection: ($article, $collection) ->
-    $article.addClass($collection.data('collectionkey'))
-    $article.children('ul.articleCollections').append $collection
-
+  addCollection: ($article, $label) ->
     articleId     = $article.attr 'id'
-    collectionKey = "#{$collection.data 'collectionkey'}"
+    collectionKey = "#{$label.data 'key'}"
+    articleView.addCollection $article, $label
+    if !(articleId? and collectionKey?)
+      throw "Invalid params #{{articleId, collectionKey}}"
     socket.emit 'addArticleCollection', { articleId, collectionKey }
 
   removeCollection: ($article, $collection) ->
@@ -22,10 +22,12 @@ window.articleController =
     $collection.remove()
     socket.emit 'removeArticleCollection', { articleId, collectionKey }
 
+  # Must be called everytime an article opens the add menu.
   initAddCollectionsMenu: ($article) ->
     $menu = $article.find 'ul.addCollectionMenu'
 
-    $menu.append $(document.body).children('.addCollectionMenu').children().clone()
+    content = $(document.body).children('.addCollectionMenu').children().clone()
+    $menu.append content
 
     labelHeights = 0
     $article.find('ul.addCollectionMenu li').each ->
@@ -41,7 +43,8 @@ window.articleController =
       $label = $(@).parent()
       event.stopPropagation()
       event.preventDefault()
-      articleView.addCollection $article, $label
+      articleController.addCollection $article, $label
+
 
   init: ($articles) ->
     $articles.each ->
