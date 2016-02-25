@@ -67,7 +67,10 @@ window.scrollController =
             derp.append $(foo)
 
           $articles = derp.children()
-          $( constants.dom.articleContainer ).append $articles
+          $( constants.dom.articleContainer ).prepend $articles
           articleController.init $articles
-          $( constants.dom.articleContainer ).packery('appended', $articles)
+          $( constants.dom.articleContainer ).packery('prepended', $articles)
           scrapState.waitingForContent = false
+          # Update height
+          containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
+          

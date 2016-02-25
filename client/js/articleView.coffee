@@ -256,7 +256,6 @@ window.articleView =
     else
       cursor = 'Open'
     cursorView.start cursor
-    $(constants.dom.articleContainer).data 'canInsertFormOnClick', false
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
@@ -303,6 +302,7 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
+#     $(constants.dom.articleContainer).data 'canInsertFormOnClick', true
 #     cursorView.end()
 
   mousemove: (event, $article) ->
@@ -379,7 +379,6 @@ window.articleView =
         begin: () ->
           $article.removeClass 'open'
     extendNav()
-    $(constants.dom.articleContainer).data 'canInsertFormOnClick', true
 
   onCollectionOver: ($article, event, $collection) ->
     $card = $article.children('.card')

@@ -2339,7 +2339,7 @@ footer.main ul.actions li.action label {
   */
 }
 
-/* line 26, ../../style/prototype.scss */
+/* line 25, ../../style/prototype.scss */
 nav {
   top: 0;
   left: 0;
@@ -2348,40 +2348,40 @@ nav {
   z-index: 3;
   height: 40pt;
 }
-/* line 35, ../../style/prototype.scss */
+/* line 34, ../../style/prototype.scss */
 nav section {
   width: intrinsic;
   position: absolute;
   height: 100%;
   top: 0;
 }
-/* line 41, ../../style/prototype.scss */
+/* line 40, ../../style/prototype.scss */
 nav section.left, nav section.right {
   z-index: 2;
 }
-/* line 45, ../../style/prototype.scss */
+/* line 44, ../../style/prototype.scss */
 nav section.left {
   left: 0;
 }
-/* line 48, ../../style/prototype.scss */
+/* line 47, ../../style/prototype.scss */
 nav section.left .headerButton a {
   margin-left: 8pt;
 }
-/* line 53, ../../style/prototype.scss */
+/* line 52, ../../style/prototype.scss */
 nav section.right {
   right: 0;
 }
-/* line 56, ../../style/prototype.scss */
+/* line 55, ../../style/prototype.scss */
 nav section.right .headerButton a {
   margin-right: 8pt;
 }
-/* line 61, ../../style/prototype.scss */
+/* line 60, ../../style/prototype.scss */
 nav section.center {
   left: 0;
   right: 0;
   text-align: center;
 }
-/* line 68, ../../style/prototype.scss */
+/* line 67, ../../style/prototype.scss */
 nav section .headerButton a {
   font-size: 48pt;
   font-weight: 500;
@@ -2393,7 +2393,7 @@ nav section .headerButton a {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 76, ../../style/prototype.scss */
+/* line 75, ../../style/prototype.scss */
 nav section ul.collectionsMenu {
   width: -webkit-fit-content;
   margin: 0 auto;
@@ -2401,27 +2401,27 @@ nav section ul.collectionsMenu {
   min-width: 50vw;
   overflow-y: visible;
 }
-/* line 86, ../../style/prototype.scss */
+/* line 85, ../../style/prototype.scss */
 nav section ul.collectionsMenu li {
   width: 100%;
   margin: 0 auto;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 95, ../../style/prototype.scss */
+/* line 94, ../../style/prototype.scss */
 nav section ul.collectionsMenu li.recent .contents a, nav section ul.collectionsMenu li.labelsButton .contents a {
   -moz-transition: -webkit-text-fill-color 1s linear;
   -o-transition: -webkit-text-fill-color 1s linear;
   -webkit-transition: -webkit-text-fill-color 1s linear;
   transition: -webkit-text-fill-color 1s linear;
 }
-/* line 102, ../../style/prototype.scss */
+/* line 101, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 107, ../../style/prototype.scss */
+/* line 106, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents a {
   display: inline-block;
   margin: 0 auto;
@@ -2435,7 +2435,7 @@ nav section ul.collectionsMenu li .contents a {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 117, ../../style/prototype.scss */
+/* line 116, ../../style/prototype.scss */
 nav section ul.collectionsMenu li .contents input {
   font-size: 48pt;
   font-weight: 500;
@@ -2449,51 +2449,51 @@ nav section ul.collectionsMenu li .contents input {
   display: block;
   width: 100%;
 }
-/* line 130, ../../style/prototype.scss */
+/* line 129, ../../style/prototype.scss */
 nav section .addForm .headerButton {
   position: absolute;
   top: 0;
 }
-/* line 134, ../../style/prototype.scss */
+/* line 133, ../../style/prototype.scss */
 nav section .addForm .headerButton a {
   display: block;
 }
-/* line 138, ../../style/prototype.scss */
+/* line 137, ../../style/prototype.scss */
 nav section .addForm article {
   position: absolute;
   top: 0;
 }
 
-/* line 149, ../../style/prototype.scss */
+/* line 148, ../../style/prototype.scss */
 .wrapper {
   padding: 50pt 40pt;
   position: relative;
 }
 
-/* line 155, ../../style/prototype.scss */
+/* line 154, ../../style/prototype.scss */
 .parallaxHover .perspective, .parallaxHover .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 160, ../../style/prototype.scss */
+/* line 159, ../../style/prototype.scss */
 .parallaxHover .parallaxLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 
-/* line 166, ../../style/prototype.scss */
+/* line 165, ../../style/prototype.scss */
 #articleContainer {
   width: 100%;
   margin-top: 25vh;
 }
-/* line 171, ../../style/prototype.scss */
+/* line 170, ../../style/prototype.scss */
 #articleContainer article .collections {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 20;
 }
-/* line 178, ../../style/prototype.scss */
+/* line 177, ../../style/prototype.scss */
 #articleContainer article .collections li a {
   font-size: 24pt;
   font-weight: 700;
@@ -2503,61 +2503,61 @@ nav section .addForm article {
   -webkit-text-fill-color: transparent;
   width: -webkit-fit-content;
 }
-/* line 184, ../../style/prototype.scss */
+/* line 183, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 190, ../../style/prototype.scss */
+/* line 189, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections {
   white-space: nowrap;
 }
-/* line 193, ../../style/prototype.scss */
+/* line 192, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 197, ../../style/prototype.scss */
+/* line 196, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 203, ../../style/prototype.scss */
+/* line 202, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 208, ../../style/prototype.scss */
+/* line 207, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
   position: absolute;
   top: 0;
 }
-/* line 215, ../../style/prototype.scss */
+/* line 214, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 227, ../../style/prototype.scss */
+/* line 225, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 237, ../../style/prototype.scss */
+/* line 235, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }
-/* line 251, ../../style/prototype.scss */
+/* line 243, ../../style/prototype.scss */
 #articleContainer article footer ul li {
   display: inline-block;
 }
-/* line 254, ../../style/prototype.scss */
+/* line 246, ../../style/prototype.scss */
 #articleContainer article footer ul li.right {
   float: right;
 }
-/* line 258, ../../style/prototype.scss */
+/* line 250, ../../style/prototype.scss */
 #articleContainer article footer ul li .articleDeleteButton {
   padding-bottom: 16pt;
   padding-left: 16pt;

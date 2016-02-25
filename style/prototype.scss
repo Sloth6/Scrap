@@ -9,7 +9,6 @@
     @include typeOutlineWhite;
 //     @include typeTitleSmallCaps;
     @include transformOriginCenter;
-//     background-color: yellow;
     pointer-events: none;
     
 /*
@@ -222,7 +221,6 @@ nav {
             }
             
             ul.addCollectionMenu {
-//                 margin-left: $cardPaddingLeft/2;
 
                 li {
                     position: absolute;
@@ -236,12 +234,6 @@ nav {
         &:hover {
             ul.articleCollections li.collection a {
                 background-color: transparent !important;
-//                 height: $cell * 2;
-//                 width: $cell * 12;
-//                 padding: 0 2pt;
-//                 color: $colorType;
-//                 background-color: transparent !important;
-//                 border-color:     transparent !important;
             }
         }
         

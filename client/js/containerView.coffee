@@ -55,3 +55,9 @@ window.containerView =
     , constants.style.duration.openArticle
     addArticleMenuController.focus $form
     console.log $form
+  
+  updateHeight: ($wrapper, $container) ->
+    console.log 'height', $container.height()
+    $wrapper.css
+      height:    $container.height() * constants.style.globalScale
+      minHeight: $container.height() * constants.style.globalScale

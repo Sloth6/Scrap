@@ -1,10 +1,6 @@
 window.containerController =
   init: ($container) ->
-    isOverArticle = false
     $wrapper      = $('.wrapper')
-    
-    # Will clicking the wrapper insert a new add form?
-    $container.data 'canInsertFormOnClick', true
     
     $container.packery
       itemSelector: 'article'
@@ -20,7 +16,9 @@ window.containerController =
         cursorView.start '+'
             
     $wrapper.click (event) ->
-      containerView.insertNewArticleForm(event) if $container.data('canInsertFormOnClick')
+      unless scrapState.openArticle? or $("#{constants.dom.articles}:hover").length 
+        containerView.insertNewArticleForm(event)
+        console.log 'click wrapper', $container.data 'canInsertFormOnClick'
 #       cursorView.end()
 
     $container.droppable
@@ -29,10 +27,9 @@ window.containerController =
         $collection = ui.draggable
         articleController.removeCollection $collection.parent().parent(), $collection
 
+    containerView.updateHeight $wrapper, $container
     $container.css
       width: "#{100/constants.style.globalScale}%"
-#       minHeight: "#{85/constants.style.globalScale}vh"
-#       maxHeight: $container.height()/8
     $container.velocity
       properties:
         translateZ: 0
