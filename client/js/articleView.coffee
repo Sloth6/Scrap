@@ -154,9 +154,11 @@ window.articleView =
     
     $menu.find('li').each ->
       delay = $(@).index() * 125
+      toY = $(@).data 'translateY'
+#       console.log(parseInt $.Velocity.hook($(@), 'translateY'))
       $(@).velocity
         properties:
-          translateY: [0, $(window).height()]
+          translateY: [toY, $(window).height()]
           opacity: 1
           scale: [1, 0]
           rotateZ: [0, 90 * (Math.random() - .5)]
@@ -204,7 +206,6 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-#           complete: -> 
     articleView.hideAddCollectionMenu $article
   
   mouseenter: (event, $article) ->

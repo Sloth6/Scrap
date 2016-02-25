@@ -113,8 +113,13 @@ window.articleController =
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
               
+      labelHeights = 0
       $article.find('ul.addCollectionMenu li').each ->
         $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
+        $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
+        $(@).data 'translateY', labelHeights
+        labelHeights += $(@).height()
+        console.log labelHeights
 
       # Click to add label
       $article.find('ul.addCollectionMenu li a').click ->

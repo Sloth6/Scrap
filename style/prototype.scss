@@ -174,10 +174,17 @@ nav {
             left:0;
             z-index: 20;
             
-            li a {
-                @include typeHeader;
-                @include typeOutlineClear;
-                width: -webkit-fit-content;
+            li {
+                a {
+                    @include typeHeader;
+                    @include typeOutlineClear;
+                    width: -webkit-fit-content;
+                }
+                
+                .dot {
+                    display: none;
+                    opacity: 0;
+                }
             }
 
             ul.articleCollections {
@@ -216,6 +223,13 @@ nav {
             
             ul.addCollectionMenu {
 //                 margin-left: $cardPaddingLeft/2;
+
+                li {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    
+                }
             }
         }
         

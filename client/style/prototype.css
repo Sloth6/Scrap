@@ -2493,7 +2493,7 @@ nav section .addForm article {
   left: 0;
   z-index: 20;
 }
-/* line 177, ../../style/prototype.scss */
+/* line 178, ../../style/prototype.scss */
 #articleContainer article .collections li a {
   font-size: 24pt;
   font-weight: 700;
@@ -2503,46 +2503,57 @@ nav section .addForm article {
   -webkit-text-fill-color: transparent;
   width: -webkit-fit-content;
 }
-/* line 183, ../../style/prototype.scss */
+/* line 184, ../../style/prototype.scss */
+#articleContainer article .collections li .dot {
+  display: none;
+  opacity: 0;
+}
+/* line 190, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections {
   white-space: nowrap;
 }
-/* line 186, ../../style/prototype.scss */
+/* line 193, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 190, ../../style/prototype.scss */
+/* line 197, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 196, ../../style/prototype.scss */
+/* line 203, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 201, ../../style/prototype.scss */
+/* line 208, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
   position: absolute;
   top: 0;
 }
-/* line 208, ../../style/prototype.scss */
+/* line 215, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 223, ../../style/prototype.scss */
+/* line 227, ../../style/prototype.scss */
+#articleContainer article .collections ul.addCollectionMenu li {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 237, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }
-/* line 237, ../../style/prototype.scss */
+/* line 251, ../../style/prototype.scss */
 #articleContainer article footer ul li {
   display: inline-block;
 }
-/* line 240, ../../style/prototype.scss */
+/* line 254, ../../style/prototype.scss */
 #articleContainer article footer ul li.right {
   float: right;
 }
