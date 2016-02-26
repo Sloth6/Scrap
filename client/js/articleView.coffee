@@ -371,7 +371,7 @@ window.articleView =
       properties:
         translateX: 0
         translateY: 0
-        scale:      constants.style.globalScale
+#         scale:      constants.style.globalScale
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
