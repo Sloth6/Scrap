@@ -7,7 +7,7 @@ window.containerController =
       itemSelector: 'article'
       isOriginTop: false
       transitionDuration: '0.0s'
-      gutter: constants.style.gutter
+      gutter: 0
 
     $container.packery 'bindResize'
 

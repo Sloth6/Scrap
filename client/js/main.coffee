@@ -2,7 +2,7 @@
 
 window.constants =
   style:
-    gutter: 32
+    gutter: 24 / (1/2)
     margin:
       articleText:
         left: 16 / .75 # convert pt to px
@@ -30,6 +30,7 @@ window.scrapState =
   waitingForContent: false
 #   addingArticle: false
   openArticle: null
+  menuIsOpen: false
 
 $ ->
   window.socket = io.connect()
@@ -51,15 +52,18 @@ $ ->
 
 
   $('body').click (event) ->
-    console.log 'click body'
     # Close article if article is open
+    console.log 'body click'
     if scrapState.openArticle?
-      console.log 'Closing article', scrapState.openArticle.attr('id')
-      articleView.close event, scrapState.openArticle# unless $article.is(':hover')
-      if scrapState.openArticle.hasClass 'addArticleForm'
-        addArticleMenuController.hide scrapState.openArticle
-      scrapState.openArticle = null
-      scrollController.enableScroll()
+      unless scrapState.menuIsOpen
+#         console.log 'Closing article', scrapState.openArticle.attr('id')
+        articleView.close event, scrapState.openArticle# unless $article.is(':hover')
+        if scrapState.openArticle.hasClass 'addArticleForm'
+          addArticleMenuController.hide scrapState.openArticle
+        scrapState.openArticle = null
+        scrollController.enableScroll()
+    if scrapState.menuIsOpen
+      collectionsMenuView.close()
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))
