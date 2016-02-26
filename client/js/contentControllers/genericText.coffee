@@ -6,7 +6,7 @@ window.initGenericText = ($content, options = {}) ->
   $done     = $actions.find '.done'
   $cancel   = $actions.find '.cancel'
   
-  $actions.find('.showOnEditing').hide()
+#   $actions.find('.showOnEditing').hide()
 
   maxHeight = $(window).height()
 
