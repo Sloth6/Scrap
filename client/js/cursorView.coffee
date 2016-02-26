@@ -10,7 +10,6 @@ window.cursorView =
           opacity: [1, 0]
         options:
           duration: 500
-          queue: false
           easing: constants.velocity.easing.smooth
           begin: ->
             $cursor.show()
@@ -21,7 +20,7 @@ window.cursorView =
     $('body').mouseup   -> $cursor.css '-webkit-text-fill-color', ''
     $('body, article, a, input').css
       cursor: 'none'
-
+      
   end: ->
     $cursor = $('.cursor')
     $cursor.velocity
@@ -36,11 +35,11 @@ window.cursorView =
           $cursor.text('')
           $('body, article, a, input').css
             cursor: ''
-
+    
   move: (event) ->
     $cursor = $('.cursor')
     x = event.clientX - $cursor.width()  / 2 # * 1.5
     y = event.clientY - $cursor.height() / 2 # * 2
     $.Velocity.hook $cursor, 'translateX', "#{x}px"
     $.Velocity.hook $cursor, 'translateY', "#{y}px"
-
+    

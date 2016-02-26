@@ -2,7 +2,7 @@
 
 window.constants =
   style:
-    gutter: 32
+    gutter: 24 / (1/2)
     margin:
       articleText:
         left: 16 / .75 # convert pt to px
@@ -44,11 +44,14 @@ $ ->
 
   cursorController.init          $(constants.dom.cursor)
 
-  # $( constants.dom.articleContainer ).packery()
-  containerController.getArticles(40)
+  # window.pack = new DomCoolTest ( () ->
+  #   $(constants.dom.articleContainer).packery()
+  # ), 200
+
+  $( constants.dom.articleContainer ).packery()
+
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
-
 
   $('body').click (event) ->
     console.log 'click body'

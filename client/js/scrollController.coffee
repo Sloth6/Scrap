@@ -54,4 +54,23 @@ window.scrollController =
         retractNav() unless $('nav').children().hasClass('velocity-animating')
 
     if scrollBottom < 200
-      containerController.getArticles(10)
+      return if scrapState.waitingForContent
+      scrapState.waitingForContent = true
+      o = $('article').not('.addArticleForm').length
+      n = 10
+      console.log {o, n}
+      $.get('collectionContent', {o, n}).
+        fail(() -> 'failed to get content').
+        done (data) ->
+          derp = $('<div>')
+          for foo in $(data)
+            derp.append $(foo)
+
+          $articles = derp.children()
+          $( constants.dom.articleContainer ).prepend $articles
+          articleController.init $articles
+          $( constants.dom.articleContainer ).packery('prepended', $articles)
+          scrapState.waitingForContent = false
+          # Update height
+          containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
+          
