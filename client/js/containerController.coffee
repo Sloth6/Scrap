@@ -1,6 +1,7 @@
 window.containerController =
   init: ($container) ->
     $wrapper      = $('.wrapper')
+    $scale        = $wrapper.children('.scale')
 
     $container.packery
       itemSelector: 'article'
@@ -27,9 +28,9 @@ window.containerController =
         articleController.removeCollection $collection.parent().parent(), $collection
 
     containerView.updateHeight $wrapper, $container
-    $container.css
+    $scale.css
       width: "#{100/constants.style.globalScale}%"
-    $container.velocity
+    $scale.velocity
       properties:
         translateZ: 0
         scale: constants.style.globalScale

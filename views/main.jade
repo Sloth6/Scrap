@@ -125,11 +125,12 @@ html.no-js(lang='en')
             .dot(style='background-color:'+collection.color+';')
 
     .wrapper
-      #articleContainer
-        +addArticleFormMixin()
-        for article in user.Articles
-          if article != undefined
-            +articleMixin(article, article.Collections)
+      .scale
+        #articleContainer
+          +addArticleFormMixin()
+          for article in user.Articles
+            if article != undefined
+              +articleMixin(article, article.Collections)
 
     //- .comments
     //-   ul
