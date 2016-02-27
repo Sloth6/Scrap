@@ -113,6 +113,9 @@ window.articleController =
       $article.find('img').load -> articleView.resize $article
 
       $article.find(constants.dom.articleMeta).hide()
+      
+      $article.find('ul.articleCollections').each ->
+        simpleHover $(@), 250, 1.25
 
       # Set up label indicators
       $article.find('ul.articleCollections li').each ->
@@ -136,8 +139,6 @@ window.articleController =
         else
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
-
-
 
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article

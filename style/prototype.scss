@@ -171,13 +171,17 @@ nav {
             position: absolute;
             top: 0;
             left:0;
+            right: 0;
             z-index: 20;
             
             li {
+                @include transformOriginCenter;
+                
                 a {
                     @include typeHeader;
                     @include typeOutlineClear;
                     width: -webkit-fit-content;
+                    @include transformOriginCenter;
                 }
                 
                 .dot {

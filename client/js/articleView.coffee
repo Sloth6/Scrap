@@ -166,10 +166,12 @@ window.articleView =
         options:
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
+          complete: -> simpleHover $(@), 250, 1.25
+
     $menu.find('li').show()
     $menu.find('li').css 'opacity', 0
     $button.text 'Never mind'
-
+    
   hideAddCollectionMenu: ($article) ->
     $collections  = $article.find     'ul.articleCollections'
     $menu         = $article.find     'ul.addCollectionMenu'
@@ -360,6 +362,7 @@ window.articleView =
     $( constants.dom.articleContainer ).packery()
 
   close: (event, $article) ->
+    console.log 'close'
     $article.velocity
       scale: 1
     articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))

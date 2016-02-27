@@ -9,7 +9,23 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
     options:
       duration: duration
       easing:   easing
-  
+      
+window.simpleHover = ($elements, duration, scale) ->
+  $elements.mouseenter ->
+    console.log 'simpleHover'
+    $(@).velocity
+      properties:
+        scale: scale
+      options:
+        duration: duration
+        easing: constants.velocity.easing.spring
+  $elements.mouseleave ->
+    $(@).velocity
+      properties:
+        scale: 1
+      options:
+        duration: duration
+        easing: constants.velocity.easing.spring
 
 window.parallaxHover = ($elements, duration, scale) ->
   getProgressValues = ($element, scale) ->
