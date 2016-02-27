@@ -27,7 +27,7 @@ $ ->
   #     $(document.body).css { width: size }
 
   socket.on 'deleteArticle', ({id}) ->
-    console.log 'deleteArticle', data, $("\##{id}")
+    console.log 'deleteArticle', id
     throw 'Invalid parameters sent on deleteArticle' unless id
     containerController.removeArticle $("##{id}")
 

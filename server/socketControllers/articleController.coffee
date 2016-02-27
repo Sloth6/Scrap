@@ -47,8 +47,8 @@ module.exports =
   deleteArticle : (sio, socket, data, callback) =>
     userId   = socket.handshake.session.currentUserId
     id       = data.articleId
-    return callback('no id passed to deleteArticle') unless id
-    console.log "Delete article #{id}"
+    return callback('no id passed to deleteArticle') unless id?
+    console.log "Delete Article \n\tid:#{id}\n\tuserId:#{userId}"
 
     q1 = """
         DELETE FROM "Articles"
@@ -59,13 +59,12 @@ module.exports =
     models.sequelize.query(q1, replacements: { id }).done (err, results) ->
       return console.log('error deleting article'+err) if err?
       { contentType, content } = results[0][0]
-
-      console.log 'emiting deleteArticle', { id }
+      console.log "\t#{contentType}, #{content}"
       sio.to("user:#{userId}").emit 'deleteArticle', { id }
 
-      if contentType in ['file', 'video', 'image'] #, 'gif'
-        s3.delete content, (err) ->
-          console.log err if err
+      # if contentType in ['file', 'video', 'image'] #, 'gif'
+      #   s3.delete content, (err) ->
+      #     console.log err if err
 
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId
