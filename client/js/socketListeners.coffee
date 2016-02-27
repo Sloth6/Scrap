@@ -26,9 +26,13 @@ $ ->
   #     size = contentModel.getSize $('.collection.open')
   #     $(document.body).css { width: size }
 
-  # socket.on 'deleteArticle', (data) ->
-  #   console.log 'deleteArticle', data, $("\##{data.id}")
-  #   { id, collectionKey } = data
+  socket.on 'deleteArticle', (data) ->
+    console.log 'deleteArticle', data, $("\##{data.id}")
+    { id } = data
+    if !(id)
+      throw 'Invalid parameters sent on deleteArticle'
+
+    containerController.removeArticle $("##{id}")
 
   #   toRemove = $("\##{data.id}")
   #   toRemove.fadeOut ->

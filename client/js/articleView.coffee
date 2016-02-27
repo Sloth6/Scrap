@@ -27,8 +27,6 @@ window.articleView =
         opacity: .25
 
   obscure: ($articles) ->
-#     $articles.hide()
-#     return
     $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
@@ -41,8 +39,6 @@ window.articleView =
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
-#     $articles.show()
-#     return
     $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
@@ -55,7 +51,6 @@ window.articleView =
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->
-    # Animate in article metadata
     $article.find(constants.dom.articleMeta).find('li').velocity
       properties:
         scale: [1, 0]
