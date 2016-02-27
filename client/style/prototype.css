@@ -2501,7 +2501,7 @@ nav section .addForm article {
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 181, ../../style/prototype.scss */
+/* line 180, ../../style/prototype.scss */
 #articleContainer article .collections li a {
   font-size: 24pt;
   font-weight: 700;
@@ -2514,15 +2514,12 @@ nav section .addForm article {
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
   transform-origin: center center;
+  white-space: nowrap;
 }
 /* line 188, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
-}
-/* line 194, ../../style/prototype.scss */
-#articleContainer article .collections ul.articleCollections {
-  white-space: nowrap;
 }
 /* line 197, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {

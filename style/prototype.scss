@@ -182,6 +182,7 @@ nav {
                     @include typeOutlineClear;
                     width: -webkit-fit-content;
                     @include transformOriginCenter;
+                    white-space: nowrap;
                 }
                 
                 .dot {
@@ -191,7 +192,7 @@ nav {
             }
 
             ul.articleCollections {
-                white-space: nowrap;
+//                 width: 100%;
                 
                 li {
                     display: block;

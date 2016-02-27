@@ -12,7 +12,6 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
       
 window.simpleHover = ($elements, duration, scale) ->
   $elements.mouseenter ->
-    console.log 'simpleHover'
     $(@).velocity
       properties:
         scale: scale
