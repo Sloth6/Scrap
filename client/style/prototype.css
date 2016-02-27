@@ -2491,9 +2491,20 @@ nav section .addForm article {
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 20;
+  width: 100%;
+  height: 100%;
 }
-/* line 177, ../../style/prototype.scss */
+/* line 180, ../../style/prototype.scss */
+#articleContainer article .collections li {
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  width: 100%;
+}
+/* line 185, ../../style/prototype.scss */
 #articleContainer article .collections li a {
   font-size: 24pt;
   font-weight: 700;
@@ -2502,62 +2513,66 @@ nav section .addForm article {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
   width: -webkit-fit-content;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  white-space: nowrap;
 }
-/* line 183, ../../style/prototype.scss */
+/* line 194, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 189, ../../style/prototype.scss */
-#articleContainer article .collections ul.articleCollections {
-  white-space: nowrap;
-}
-/* line 192, ../../style/prototype.scss */
+/* line 203, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 196, ../../style/prototype.scss */
+/* line 207, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 202, ../../style/prototype.scss */
+/* line 213, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 207, ../../style/prototype.scss */
+/* line 218, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 224pt;
 }
-/* line 214, ../../style/prototype.scss */
+/* line 230, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 225, ../../style/prototype.scss */
+/* line 241, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 235, ../../style/prototype.scss */
+/* line 251, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }
-/* line 243, ../../style/prototype.scss */
+/* line 259, ../../style/prototype.scss */
 #articleContainer article footer ul li {
   display: inline-block;
 }
-/* line 246, ../../style/prototype.scss */
+/* line 262, ../../style/prototype.scss */
 #articleContainer article footer ul li.right {
   float: right;
 }
-/* line 250, ../../style/prototype.scss */
+/* line 266, ../../style/prototype.scss */
 #articleContainer article footer ul li .articleDeleteButton {
   padding-bottom: 16pt;
   padding-left: 16pt;

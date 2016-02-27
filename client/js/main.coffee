@@ -4,7 +4,7 @@ window.contentControllers ?= {}
 
 window.constants =
   style:
-    gutter: 32
+    gutter: 24 / (1/2)
     margin:
       articleText:
         left: 16 / .75 # convert pt to px
@@ -32,6 +32,7 @@ window.scrapState =
   waitingForContent: false
 #   addingArticle: false
   openArticle: null
+  menuIsOpen: false
 
 $ ->
   window.socket = io.connect()
@@ -53,13 +54,18 @@ $ ->
 
   $('body').click (event) ->
     # Close article if article is open
-    if scrapState.openArticle?
-      articleController.close scrapState.openArticle
-      scrollController.enableScroll()
+    console.log 'body click'
+
+    if scrapState.menuIsOpen
+      collectionsMenuView.close()
     else
-      unless scrapState.openArticle?
-        contentControllers.newArticle.init $newArticleForm
-        containerController.insertNewArticleForm $newArticleForm
+      if scrapState.openArticle?
+        articleController.close scrapState.openArticle
+        scrollController.enableScroll()
+      else
+        unless scrapState.openArticle?
+          contentControllers.newArticle.init $newArticleForm
+          containerController.insertNewArticleForm $newArticleForm
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))

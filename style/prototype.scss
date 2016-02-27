@@ -171,13 +171,24 @@ nav {
             position: absolute;
             top: 0;
             left:0;
+            right: 0;
             z-index: 20;
+            width: 100%;
+            height: 100%;
+//             background: yellow;
             
             li {
+                @include transformOriginCenter;
+//                 background: teal;
+                width: 100%;
+                
                 a {
                     @include typeHeader;
                     @include typeOutlineClear;
                     width: -webkit-fit-content;
+                    @include transformOriginCenter;
+                    white-space: nowrap;
+//                     background: green;
                 }
                 
                 .dot {
@@ -187,7 +198,7 @@ nav {
             }
 
             ul.articleCollections {
-                white-space: nowrap;
+//                 width: 100%;
                 
                 li {
                     display: block;
@@ -208,7 +219,12 @@ nav {
                         display: block;
                         padding: 0;
                         position: absolute;
+//                         background: red;
+//                         border: blue 4pt solid;
                         top: 0;
+                        left: 0;
+                        right: 0;
+                        width: $articleSide;
                     }
                     
                     .dot {

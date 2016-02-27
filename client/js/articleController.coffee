@@ -78,6 +78,7 @@ window.articleController =
     if contentControllers[contentType]?.close
       contentControllers[contentType]?.close $article
     scrapState.openArticle = null
+    scrollController.enableScroll()
     extendNav()
 
   init: ($articles) ->
@@ -103,6 +104,9 @@ window.articleController =
       $article.find('img').load -> articleView.resize $article
 
       $article.find(constants.dom.articleMeta).hide()
+
+      $article.find('ul.articleCollections li a').each ->
+        simpleHover $(@), 250, 1.25
 
       # Set up label indicators
       $article.find('ul.articleCollections li').each ->

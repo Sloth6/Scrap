@@ -8,7 +8,7 @@ window.containerController =
       itemSelector: 'article'
       isOriginTop: false
       transitionDuration: '0.0s'
-      gutter: constants.style.gutter
+      gutter: 0
 
     $container.packery 'bindResize'
 
@@ -35,8 +35,8 @@ window.containerController =
   addArticles: ($articles) ->
     $container = $(constants.dom.articleContainer)
     $container.
-      append($articles).
-      packery 'appended', $articles
+      prepend($articles).
+      packery 'prepended', $articles
     containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
 
   getArticles: (n) ->

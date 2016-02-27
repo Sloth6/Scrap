@@ -12,6 +12,7 @@ window.collectionsMenuView =
     options       =
       duration: 1000
       easing:   constants.velocity.easing.smooth
+    scrapState.menuIsOpen = true
     $menuItems.show()
     # Animate in labels
     $labels.each ->
@@ -30,6 +31,9 @@ window.collectionsMenuView =
         properties:
           translateY: [toY, fromY]
           opacity: [1, 1]
+          scaleY: [1, 2]
+          scaleX: [1, 0]
+          rotateZ: [0, 0]
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
@@ -75,6 +79,7 @@ window.collectionsMenuView =
     options       =
       duration: 750
       easing:   constants.velocity.easing.smooth
+    scrapState.menuIsOpen = false
     $button.removeClass        'openMenuButton'
     $destinationLabel.addClass 'openMenuButton'
     $menuItems.each ->
@@ -83,15 +88,19 @@ window.collectionsMenuView =
       if $label.is $destinationLabel
         translateY = -$destinationLabel.offset().top
         delay = 0
+        rotateZ = 0
       else if $destinationLabel.index() < $label.index() # below
-        translateY = $(window).height() - ($label.offset().top - $label.height() * 2)
+        translateY = $(window).height() - ($label.offset().top - $label.height() * 4)
         delay = $destinationLabel.index() - $label.index()
+        rotateZ = 45 * (Math.random() - .5)
       else
         translateY = -$(window).height()
         delay = $label.index() - $destinationLabel.index()
+        rotateZ = 45 * (Math.random() - .5)
       $contents.velocity
         properties:
           translateY: translateY
+          rotateZ: rotateZ
         options:
           duration: options.duration + 250 * Math.abs delay
           easing:   options.easing
