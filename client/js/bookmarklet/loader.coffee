@@ -1,10 +1,10 @@
-host = 'http://localhost:9001/'
+host = 'http://tryscrap.com/'
 iframe_url = host + 'bookmarkletContent'
 
 iframe = document.createElement 'iframe'
 iframe.allowtransparency = true
 iframe.id = 'scrap_iframe'
-iframe.src = 'http://localhost:9001/bookmarkletContent?referrer='+window.location
+iframe.src = host+'bookmarkletContent?referrer='+window.location
 iframe.style.top = '0px'
 iframe.style.left = '0px'
 iframe.style.position = 'fixed'
