@@ -173,9 +173,14 @@ nav {
             left:0;
             right: 0;
             z-index: 20;
+            width: 100%;
+            height: 100%;
+//             background: yellow;
             
             li {
                 @include transformOriginCenter;
+//                 background: teal;
+                width: 100%;
                 
                 a {
                     @include typeHeader;
@@ -183,6 +188,7 @@ nav {
                     width: -webkit-fit-content;
                     @include transformOriginCenter;
                     white-space: nowrap;
+//                     background: green;
                 }
                 
                 .dot {
@@ -213,7 +219,12 @@ nav {
                         display: block;
                         padding: 0;
                         position: absolute;
+//                         background: red;
+//                         border: blue 4pt solid;
                         top: 0;
+                        left: 0;
+                        right: 0;
+                        width: $articleSide;
                     }
                     
                     .dot {

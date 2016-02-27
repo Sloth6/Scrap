@@ -114,7 +114,7 @@ window.articleController =
 
       $article.find(constants.dom.articleMeta).hide()
       
-      $article.find('ul.articleCollections').each ->
+      $article.find('ul.articleCollections li a').each ->
         simpleHover $(@), 250, 1.25
 
       # Set up label indicators
