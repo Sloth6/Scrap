@@ -1,24 +1,15 @@
 window.collectionController =
   init: ($collections) ->
-    draggableOptions =
-      helper: "clone"
-      revert: "true"
-      start: (event, ui) ->
-        collectionsMenuView.close()
-        collectionView.shrinkOnDragOffMenu $(ui.helper)
-      stop: (event, ui) ->
-        $(ui.helper).off 'hover'
     $collections.each ->
       $collection = $(@)
       $collection.zIndex(2).
-        draggable(draggableOptions).
         find('a').click (event) ->
-          event.stopPropagation()
-          event.preventDefault()
           unless $collection.hasClass 'openMenuButton'
             collectionKey = $collection.data('collectionkey')
             containerView.switchToCollection collectionKey
             collectionsMenuView.close()
+          event.stopPropagation()
+          event.preventDefault()
       $collection.css
         width: $(@).width()
-        
+

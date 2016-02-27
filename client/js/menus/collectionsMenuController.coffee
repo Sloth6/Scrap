@@ -1,4 +1,4 @@
-liClick: (event) ->
+liClick = (event) ->
   if $(@).parents('li').hasClass 'openMenuButton'
     collectionsMenuView.open()
   event.stopPropagation()
@@ -28,7 +28,10 @@ window.collectionsMenuController =
       click(liClick).
       text(name).
       css { color }
+
     $label.insertBefore $menu.children().last()
+    collectionController.init $label
+    parallaxHover $label, 250, 1.25
 
     newLabelButton = $menu.find('li.newCollection input')
     newLabelButton.attr 'placeholder', 'New label'
