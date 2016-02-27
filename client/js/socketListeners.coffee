@@ -26,20 +26,10 @@ $ ->
   #     size = contentModel.getSize $('.collection.open')
   #     $(document.body).css { width: size }
 
-  socket.on 'deleteArticle', (data) ->
-    console.log 'deleteArticle', data, $("\##{data.id}")
-    { id } = data
-    if !(id)
-      throw 'Invalid parameters sent on deleteArticle'
-
+  socket.on 'deleteArticle', ({id}) ->
+    console.log 'deleteArticle', data, $("\##{id}")
+    throw 'Invalid parameters sent on deleteArticle' unless id
     containerController.removeArticle $("##{id}")
-
-  #   toRemove = $("\##{data.id}")
-  #   toRemove.fadeOut ->
-  #     toRemove.remove()
-  #     collectionViewController.draw $('.collection.open'), {animate: true}
-  #     size = contentModel.getSize $('.collection.open')
-  #     $(document.body).css { width: size }
 
   socket.on 'updateArticle', ({ collectionKey, userId, articleId, content }) ->
     return if data.userId is window.userId
