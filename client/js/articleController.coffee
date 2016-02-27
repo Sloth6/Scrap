@@ -53,10 +53,9 @@ window.articleController =
     scrollController.disableScroll()
     $article.addClass 'open'
 
-    console.log 'canzoom', contentControllers[contentType]?.canZoom
-
-    if contentControllers[contentType]?.canZoom
+    if contentControllers[contentType]?.canZoom?
       articleView.open $article
+
     # Handle specific contentTypes.
     if contentControllers[contentType]?.open
       contentControllers[contentType].open $article

@@ -30,7 +30,7 @@ module.exports =
       user.Articles.length = 0
 
       collections = {}
-      for collection in user.Collections
+      for collection in user.Collections.reverse()
         key = collection.collectionKey
         collections[key] = collection.dataValues
 

@@ -12,8 +12,10 @@ $ ->
   socket.on 'newCollection', (data) ->
     console.log 'socket.on.newCollection', data
     { name, collectionKey, color } = data
+    if !(name? and collectionKey? and color?)
+      throw 'Invalid parameters sent on newCollection'
     collections[collectionKey] = data
-    $('li.newCollection')
+    collectionsMenuController.add name, collectionKey, color
 
   # socket.on 'deleteCollection', (data) ->
   #   { collectionKey } = data

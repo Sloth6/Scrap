@@ -37,7 +37,7 @@ window.collectionsMenuView =
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
-          delay:    $label.index() * 60    
+          delay:    $label.index() * 60
     # Animate up labels button
     $labelsButton.find('.contents').velocity
       properties:
@@ -62,7 +62,6 @@ window.collectionsMenuView =
     # Disable scroll
     $('body').css
       overflow: 'hidden'
-#     scrollController.disableScroll()
     $menu.css
       overflowY: 'scroll'
 
@@ -74,7 +73,7 @@ window.collectionsMenuView =
     $button       = $menuItems.filter('.openMenuButton')
     $labelsButton = $menuItems.filter('li.labelsButton')
     $labels       = $menuItems.not('li.labelsButton')
-    $openLabel    = if isHome then $labelsButton else $menuItems.filter("li.#{window.openCollection}") 
+    $openLabel    = if isHome then $labelsButton else $menuItems.filter("li.#{window.openCollection}")
     $destinationLabel  = if isHome then $labelsButton else $menu.children(".#{window.openCollection}")
     options       =
       duration: 750
@@ -104,13 +103,13 @@ window.collectionsMenuView =
         options:
           duration: options.duration + 250 * Math.abs delay
           easing:   options.easing
-          delay:    0 # 400 * Math.abs delay 
+          delay:    0 # 400 * Math.abs delay
           complete: ->
             if $label.index() is $labels.length - 1
               console.log isHome
               translateY = if isHome then 0 else -$labelsButton.height()
               $.Velocity.hook $destinationLabel.find('.contents'), 'translateY', "#{translateY}px"
-              $labels.not('.openMenuButton').hide() 
+              $labels.not('.openMenuButton').hide()
     unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()
@@ -124,7 +123,7 @@ window.collectionsMenuView =
           easing:   options.easing
     # Enable scroll
     $('body').css
-      overflow: '' 
+      overflow: ''
     $menu.css
       overflowY: 'visible'
-      
+

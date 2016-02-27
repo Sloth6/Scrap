@@ -3,7 +3,7 @@ mail = require '../adapters/nodemailer'
 async = require 'async'
 coverColor = require '../modules/coverColor'
 
-toTitleCase = (str) -> 
+toTitleCase = (str) ->
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
 
 inviteEmailHtml = (user, collection) ->
@@ -12,7 +12,7 @@ inviteEmailHtml = (user, collection) ->
   collectionKey = collection.collectionKey
   title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
   subject = "#{creator.name} invited you to #{collection.name} on Scrap."
-  
+
   html = "
     <h1>View #{title} on Scrap.</h1>
     <p>If you do not yet have an account, register with email '#{user.email}' to view.</p><br>
@@ -34,13 +34,13 @@ module.exports =
   #     console.log "updated name of #{collectionKey} to #{name}"
   #     callback null
         # sio.to("#{collectionKey}").emit 'updateArticle', data
-  
+
   inviteToCollection: (sio, socket, data, callback) =>
     { email, collectionKey } = data
     console.log "Inviting #{email} to #{collectionKey}"
     return callback('invalid email') unless email?
     return callback('invalid collectionKey') unless collectionKey?
-    
+
     done = (user, collection) ->
       collection.addUser(user).done (err) ->
         return callback(err) if err?
@@ -48,7 +48,7 @@ module.exports =
         mail.send { to: email, subject: subject, text: html, html: html }
         callback null
 
-    params = 
+    params =
       where: { collectionKey }
       include: [{ model: models.User, as: 'Creator' }]
 
@@ -69,7 +69,7 @@ module.exports =
     userId = socket.handshake.session.userId
     return console.log('no userid', res) unless userId?
     return console.log('no name sent', res) unless name?
-  
+
     options = { name }
     models.Collection.create({ name }).done (err, collection) ->
       return callback(err) if err?
@@ -79,8 +79,8 @@ module.exports =
           return callback(err) if err?
           user.addCollection(collection).done (err) ->
             return callback(err) if err?
-            console.log 'new collection', collection.collectionKey
-            socket.emit 'newcollection', collection.dataValues
+            console.log 'newCollection', collection.collectionKey
+            socket.emit 'newCollection', collection.dataValues
             socket.join collection.collectionKey
             callback null
 
