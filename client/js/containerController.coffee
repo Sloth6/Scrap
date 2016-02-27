@@ -35,8 +35,8 @@ window.containerController =
   addArticles: ($articles) ->
     $container = $(constants.dom.articleContainer)
     $container.
-      prepend($articles).
-      packery 'prepended', $articles
+      append($articles).
+      packery 'appended', $articles
     containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
 
   getArticles: (n) ->
