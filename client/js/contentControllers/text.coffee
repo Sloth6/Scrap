@@ -1,28 +1,36 @@
-'use strict'
 lengthForLong = 500
+window.contentControllers ?= {}
 
-initText = ($article) ->
-  timeout       = null
-  emitInterval  = 500
-  oldHeight = $article.height()
+contentControllers['text'] =
+  canZoom: true
 
-  onChange = (text) ->
+  open: ($article) ->
+    contentControllers.genericText.startEditing $article
 
-    if timeout
-      clearTimeout timeout 
-      timeout = null
+  close: ($article) ->
+    contentControllers.genericText.stopEditing $article
 
-    if $article.children('card').outerHeight() != oldHeight
-      oldHeight = $article.children('.card').outerHeight()
-      events.onArticleResize $article
-      # $(constants.dom.articleContainer).packery()
+  init: ($article) ->
+    timeout       = null
+    emitInterval  = 500
+    oldHeight = $article.height()
 
-    timeout = setTimeout (() ->
-      data =
-        articleId: $article.attr('id')
-        content: { text }
+    onChange = (text) ->
+      if timeout
+        clearTimeout timeout
+        timeout = null
 
-      socket.emit 'updateArticle', data
-    ), emitInterval
+      if $article.children('card').outerHeight() != oldHeight
+        oldHeight = $article.children('.card').outerHeight()
+        # events.onArticleResize $article
 
-  initGenericText $article, { onChange }
+      timeout = setTimeout (() ->
+        data =
+          articleId: $article.attr('id')
+          content: { text }
+
+        socket.emit 'updateArticle', data
+      ), emitInterval
+
+    contentControllers.genericText.init $article, { onChange }
+

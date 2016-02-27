@@ -1,15 +1,15 @@
-initVideo = (elems) ->
-  videos = elems.find('video')
-  
-  hoverIn  = () -> @setAttribute "controls", "controls"
-  hoverOut = () -> @removeAttribute "controls"
-  videos.hover hoverIn, hoverOut
+# initVideo = (elems) ->
+#   videos = elems.find('video')
 
-  videos.mousedown (e) ->
-    $(@).data 'lastX', e.clientX
-    $(@).data 'lastY', e.clientY
+#   hoverIn  = () -> @setAttribute "controls", "controls"
+#   hoverOut = () -> @removeAttribute "controls"
+#   videos.hover hoverIn, hoverOut
 
-  videos.mouseup (e) ->
-    return if $(@).data('lastX') != e.clientX
-    return if $(@).data('lastY') != e.clientY
-    if @paused then @play() else @pause()
+#   videos.mousedown (e) ->
+#     $(@).data 'lastX', e.clientX
+#     $(@).data 'lastY', e.clientY
+
+#   videos.mouseup (e) ->
+#     return if $(@).data('lastX') != e.clientX
+#     return if $(@).data('lastY') != e.clientY
+#     if @paused then @play() else @pause()

@@ -3,9 +3,9 @@ window.containerView =
     $container  = $(constants.dom.articleContainer)
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
-    
+
     console.log 'Switch!'
-    
+
     # Hide unmatched articles
     $unmatched.each ->
       $(@).velocity
@@ -42,22 +42,10 @@ window.containerView =
                 transitionDuration: 500
     window.openCollection = collectionKey
     $container.packery()
-  
-  insertNewArticleForm: (event) ->
-    $container = $(constants.dom.articleContainer)
-    $form = $(constants.dom.addArticleMenu)
-    $form.show()
-    $container.append($form).packery('appended', $form)
-    articleView.open event, $form
-#     scrapState.addingArticle = true
-    setTimeout ->
-      scrapState.openArticle = $form
-    , constants.style.duration.openArticle
-    addArticleMenuController.focus $form
-    console.log $form
-  
+
   updateHeight: ($wrapper, $container) ->
     console.log 'height', $container.height()
     $wrapper.css
       height:    $container.height() * constants.style.globalScale
       minHeight: $container.height() * constants.style.globalScale
+

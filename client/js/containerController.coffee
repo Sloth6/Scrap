@@ -1,3 +1,4 @@
+# Only code that calls packery
 window.containerController =
   init: ($container) ->
     $wrapper      = $('.wrapper')
@@ -15,18 +16,6 @@ window.containerController =
       unless scrapState.openArticle? or $("#{constants.dom.articles}:hover").length
         cursorView.start '+'
 
-    $wrapper.click (event) ->
-      unless scrapState.openArticle? or $("#{constants.dom.articles}:hover").length
-        containerView.insertNewArticleForm(event)
-        console.log 'click wrapper', $container.data 'canInsertFormOnClick'
-#       cursorView.end()
-
-    $container.droppable
-      greedy: true
-      drop: (event, ui) ->
-        $collection = ui.draggable
-        articleController.removeCollection $collection.parent().parent(), $collection
-
     containerView.updateHeight $wrapper, $container
     $scale.css
       width: "#{100/constants.style.globalScale}%"
@@ -36,6 +25,19 @@ window.containerController =
         scale: constants.style.globalScale
       options:
         duration: 1
+
+  removeArticle: ($articles) ->
+    $container = $(constants.dom.articleContainer)
+    $container.
+      packery 'remove', $articles
+    $articles.remove()
+
+  addArticles: ($articles) ->
+    $container = $(constants.dom.articleContainer)
+    $container.
+      append($articles).
+      packery 'appended', $articles
+    containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
 
   getArticles: (n) ->
     return if scrapState.waitingForContent
@@ -49,8 +51,10 @@ window.containerController =
           derp.append $(foo)
 
         $articles = derp.children()
-        $( constants.dom.articleContainer ).prepend $articles
+        containerController.addArticles $articles
         articleController.init $articles
-        $( constants.dom.articleContainer ).packery('prepended', $articles)
         scrapState.waitingForContent = false
-        containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
+
+  insertNewArticleForm: ($form) ->
+    containerController.addArticles $form
+    articleController.open $form

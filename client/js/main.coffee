@@ -1,5 +1,7 @@
 'use strict'
 
+window.contentControllers ?= {}
+
 window.constants =
   style:
     gutter: 32
@@ -37,29 +39,27 @@ $ ->
 
   collectionsMenuController.init $(constants.dom.collectionsMenu)
   containerController.init       $(constants.dom.articleContainer)
-  addArticleMenuController.init  $(constants.dom.addArticleMenu)
 
   articleController.init         $(constants.dom.articles)
   collectionController.init      $(constants.dom.collections)
 
   cursorController.init          $(constants.dom.cursor)
 
-  # $( constants.dom.articleContainer ).packery()
   containerController.getArticles(40)
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
 
+  $newArticleForm = $(constants.dom.addArticleMenu).remove()
 
   $('body').click (event) ->
-    console.log 'click body'
     # Close article if article is open
     if scrapState.openArticle?
-      console.log 'Closing article', scrapState.openArticle.attr('id')
-      articleView.close event, scrapState.openArticle# unless $article.is(':hover')
-      if scrapState.openArticle.hasClass 'addArticleForm'
-        addArticleMenuController.hide scrapState.openArticle
-      scrapState.openArticle = null
+      articleController.close scrapState.openArticle
       scrollController.enableScroll()
+    else
+      unless scrapState.openArticle?
+        contentControllers.newArticle.init $newArticleForm
+        containerController.insertNewArticleForm $newArticleForm
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))

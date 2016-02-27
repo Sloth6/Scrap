@@ -1,7 +1,7 @@
 mixin addArticleFormMixin()
   article(
     class = ['addArticleForm', 'slider', 'peek', 'text']
-    data-contenttype="addArticleForm"
+    data-contenttype="newArticle"
   )
     .translate.content
       .card.cardHover.text.note.closed.tall.expandable.newCard
@@ -24,5 +24,4 @@ mixin addArticleFormMixin()
                 input(type='hidden', name='Content-Type')
                 input(type='file', class='file-input', name='file')
             li.right.showOnEditing
-              a.cancel.bodyType.warning(href='#') Cancel
               a.done.bodyType.confirm(href='#') Save

@@ -1,22 +1,33 @@
-'use strict'
+window.contentControllers ?= {}
 
-window.addArticleMenuController =
-  init: ($form) ->
-    $input = $form.find '.editable'
-    
-    $form.hide() # Hide form on load
+contentControllers['newArticle'] =
+  canZoom: true
+  init: ($menu) ->
+    $input = $menu.find '.editable'
+    $onEditing  = $menu.find('.showOnEditing').hide()
+    $onNotEditing  = $menu.find('.showOnNotEditing').show()
 
-    genericText = initGenericText $form, {
-      clearOnDone: true
+    genericText = contentControllers['genericText'].init $menu, {
       onDone: (text) ->
         emitNewArticle text, window.openCollection
+        articleController.close $menu
+        # contentControllers.newArticle.close $menu
+      onChange: (dom, text) ->
+        if text.length > 0
+          $onEditing.show()
+          $onNotEditing.hide()
+        else
+          $onEditing.hide()
+          $onNotEditing.show()
     }
 
-    $form.find('input.file-input').click (event) ->
+    contentControllers.genericText.reset $menu
+
+    $menu.find('input.file-input').click (event) ->
       event.stopPropagation()
       genericText.clear()
 
-    $form.find('form.upload').fileupload fileuploadOptions()
+    $menu.find('form.upload').fileupload fileuploadOptions()
 
     # Bind paste event.
     $input.bind "paste", () ->
@@ -24,12 +35,14 @@ window.addArticleMenuController =
       setTimeout (() ->
         # Use .text() to get link without divs around it
         emitNewArticle $input.text(), window.openCollection
-        genericText.clear()
+        articleController.close $menu
       ), 20
 
-  focus: ($form) ->
-    $input = $form.find '.editable'
+  open: ($menu) ->
+    $input = $menu.find '.editable'
     $input.focus()
-    
-  hide: ($form) ->
-    $form.hide()
+
+  close: ($menu) ->
+    console.log 'closing menu', $menu.length
+    containerController.removeArticle $menu
+

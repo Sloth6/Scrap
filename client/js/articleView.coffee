@@ -7,6 +7,25 @@ scaleWhenOpen = ($article) ->
     1 / constants.style.globalScale
 
 window.articleView =
+  init: ($article) ->
+    $card       = $article.find('.card')
+    $firstLabel = $article.find('ul.articleCollections li.collection').first().find('a')
+    $article.css
+      marginTop:  12 + Math.random() * constants.style.gutter
+      marginLeft: 12 + Math.random() * constants.style.gutter
+    $card.css
+      borderWidth: .75 / constants.style.globalScale
+    # Base color by first label.
+    if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
+      $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
+        backgroundColor: $firstLabel.css('background-color')
+        position: 'absolute'
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        opacity: .25
+
   obscure: ($articles) ->
 #     $articles.hide()
 #     return
@@ -308,7 +327,7 @@ window.articleView =
   mousemove: (event, $article) ->
 #     cursorView.move event
 
-  open: (event, $article) ->
+  open: ($article) ->
     $container = $(constants.dom.articleContainer)
     articleView.obscure $('article').not($article)
 
@@ -351,7 +370,7 @@ window.articleView =
       options:
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
-    hideNav()
+
 
   resize: ($article) ->
     console.log 'resize'
@@ -359,25 +378,22 @@ window.articleView =
     $article.height $article.children('.card').outerHeight()
     $( constants.dom.articleContainer ).packery()
 
-  close: (event, $article) ->
+  close: ($article) ->
     $article.velocity
       scale: 1
     articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))
     $container = $(constants.dom.articleContainer)
-    $article.removeClass 'open'
-    if $article.hasClass('playable')
-      stopPlaying $article
+
     $container.velocity
       properties:
         translateX: 0
         translateY: 0
-#         scale:      constants.style.globalScale
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
         begin: () ->
           $article.removeClass 'open'
-    extendNav()
+
 
   onCollectionOver: ($article, event, $collection) ->
     $card = $article.children('.card')

@@ -45,61 +45,51 @@ window.articleController =
       event.preventDefault()
       articleController.addCollection $article, $label
 
+  open: ($article) ->
+    contentType = $article.data 'contenttype'
+    return if scrapState.openArticle?
+    console.log 'Opening article', $article.attr('class')
+    scrapState.openArticle = $article
+    scrollController.disableScroll()
+    $article.addClass 'open'
+
+    console.log 'canzoom', contentControllers[contentType]?.canZoom
+
+    if contentControllers[contentType]?.canZoom
+      articleView.open $article
+    # Handle specific contentTypes.
+    if contentControllers[contentType]?.open
+      contentControllers[contentType].open $article
+    hideNav()
+
+  close: ($article) ->
+    throw "No article passed to closed" unless $article?
+    console.log 'Closing article', $article.attr('class')
+
+    contentType = $article.data 'contenttype'
+    console.log 'content type', contentType, '\n'
+    $article.removeClass 'open'
+    articleView.close $article
+
+    # if $article.hasClass('playable')
+    #   stopPlaying $article
+
+    # Handle specific contenttypes.
+    if contentControllers[contentType]?.close
+      contentControllers[contentType]?.close $article
+    scrapState.openArticle = null
+    extendNav()
 
   init: ($articles) ->
     $articles.each ->
-      # Base color by first label.
-      $firstLabel = $(@).find('ul.articleCollections li.collection').first().find('a')
-      $card       = $(@).find('.card')
-      $(@).css
-        marginTop:  12 + Math.random() * constants.style.gutter
-        marginLeft: 12 + Math.random() * constants.style.gutter
-      $card.css
-        borderWidth: .75 / constants.style.globalScale
+      articleView.init $(@)
+      contentType = $(@).data 'contenttype'
+      if window.contentControllers[contentType]
+        window.contentControllers[contentType].init $(@)
 
-      if $firstLabel.length and $(@).hasClass('text') or $(@).hasClass('website')
-        $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
-          backgroundColor: $firstLabel.css('background-color')
-          position: 'absolute'
-          top: 0
-          left: 0
-          right: 0
-          bottom: 0
-          opacity: .25
-
-      # Handle specific contenttypes.
-      switch $(@).data 'contenttype'
-        when 'text'       then initText $(@)
-        when 'video'      then initVideo $(@)
-        when 'file'       then initFile $(@)
-        when 'soundcloud' then initSoundCloud $(@)
-        when 'youtube'    then initYoutube $(@)
-
-    # Allow labels to drop on article.
-    $articles.droppable
-      greedy: true
-      hoverClass: "hovered"
-      over: (event, object) ->
-        articleView.onCollectionOver $(@), event, object.draggable
-      out: (event, object) ->
-        articleView.onCollectionOut $(@), event, object.draggable
-      drop: ( event, ui ) ->
-        $collection = ui.draggable.clone()
-        $collection.css 'top':0, 'left':0
-        $.Velocity.hook($collection.find('.contents'), 'translateY', "0px")
-        collectionController.init $collection
-        $collection.show()
-        articleController.addCollection $(@), $collection
-        event.stopPropagation()
-        true
-
-      # Articles zoom on click.
+    # Articles zoom on click.
     $articles.click (event) ->
-      return if scrapState.openArticle?
-      console.log 'opening', $(@).attr 'id'
-      articleView.open event, $(@)
-      scrapState.openArticle = $(@)
-      scrollController.disableScroll()
+      articleController.open $(@)
       event.stopPropagation()
 
     # Scale up labels indicator inversely proportional to global scale
@@ -137,8 +127,6 @@ window.articleController =
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
 
-
-
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
@@ -159,7 +147,7 @@ window.articleController =
           position: 'absolute'
           top: 0
         $.Velocity.hook($article.find('.description, .source'), 'opacity', '0')
-      
+
       # Bind other article events.
       $article.mouseenter ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
@@ -168,5 +156,5 @@ window.articleController =
       $article.mouseleave ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseleave event, $article
-      
+
     parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale
