@@ -9,5 +9,6 @@ migrations
 *.swp
 *.tar
 *.scssc
+certs/*
 server/config.json
 client/images/placeholder
