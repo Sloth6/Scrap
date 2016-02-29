@@ -63,3 +63,11 @@ db.sequelize.sync().complete(function(err) {
         console.log('Listening on port:' + port );
     }
 });
+
+app_insecure = express()
+app_insecure.listen(9003)
+// set up a route to redirect http to https
+app_insecure.get('*', function(req,res){
+    res.redirect('https://tryscrap.com')
+})
+
