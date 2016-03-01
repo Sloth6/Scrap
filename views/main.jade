@@ -10,22 +10,22 @@ html.no-js(lang='en')
     script(src="/js/jquery/jquery-mousewheel.min.js")
     script(src="/js/jquery/jquery.fileupload.js")
 
+    // For some reason this has to be here. Probably changes transform origin.
+    // TODO: remove this
+    script(src="/js/jquery/jquery.zoomooz.min.js")
+
     script(src="/js/menus/header.js")
     script(src="/js/menus/settings.js")
 
-    //- script(src="/js/menus/addCollectionMenuController.js")
 
     script(src="/js/menus/collectionsMenuController.js")
 
     script(src="/js/menus/collectionsMenuView.js")
 
     script(src="/js/menus/addArticleMenuController.js")
-    //- script(src="/js/menus/addArticleView.js")
 
     script(src='/socket.io/socket.io.js')
-    //- script(src='/js/lib/soundcloud-api.js')
     script(src='/js/lib/pen.js')
-    //- script(src="/js/lib/dragabilly.min.js")
     script(src="/js/lib/velocity.min.js")
     script(src="/js/lib/packery.js")
 
