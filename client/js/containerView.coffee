@@ -4,11 +4,6 @@ window.containerView =
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
 
-<<<<<<< HEAD
-=======
-    console.log 'Switching to ', collectionKey
-
->>>>>>> origin/labels-real
     # Hide unmatched articles
     $unmatched.each ->
       $(@).velocity

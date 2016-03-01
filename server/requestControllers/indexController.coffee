@@ -1,6 +1,6 @@
 models = require '../../models'
 
-indexPage = (res) ->
+landingPage = (res) ->
   res.render 'index.jade',
     title : 'Scrap'
     description: ''
@@ -12,27 +12,26 @@ indexPage = (res) ->
 module.exports =
   index: (req, res, app, callback) ->
     if !req?.session?.currentUserId
-      return indexPage res
+      return landingPage res
 
     userId = req.session.currentUserId
     options =
       where: { id: userId }
       include: [
         { model: models.Collection }
-        { model: models.Article, order: '"createdAt" ASC', include: [{ model:models.Collection, required: false }] }
+        # { model: models.Article, order: '"createdAt" ASC', include: [{ model:models.Collection, required: false }] }
       ]
 
     models.User.find( options ).done (err, user) ->
       return callback err, res if err?
-      return indexPage res unless user?
+      return landingPage res unless user?
 
       # user.Articles.reverse()
-      user.Articles.length = 0
-
+      # user.Articles.length = 0
+      user.Articles = []
       collections = {}
       for collection in user.Collections.reverse()
         key = collection.collectionKey
         collections[key] = collection.dataValues
 
-      console.log "Showing #{user.Articles.length} articles"
       res.render 'main', { user, collections }

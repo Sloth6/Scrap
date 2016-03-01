@@ -7,16 +7,16 @@ window.constants =
       smooth: [30, 10]
       spring: [70, 10]
     duration: 1000
-    
+
 randomRotate = ->
   22 * (Math.random() - .5)
-    
+
 fancyHover = ($elements) ->
   getProgressValues = ($element, scale) ->
     offsetX = $element.offset().left - $(window).scrollLeft()
     offsetY = $element.offset().top  - $(window).scrollTop()
     progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
-    progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))      
+    progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
     { x: progressX, y: progressY }
   getRotateValues = ($element, progress) ->
     maxRotateY = 22
@@ -60,7 +60,7 @@ fancyHover = ($elements) ->
         rotateY: 0
         easing: constants.style.easing
         duration: duration
-    
+
 launch = ($header, $collections) ->
   $header.css('opacity', 0).hide()
   $collections.css('opacity', 0).hide()
@@ -125,11 +125,11 @@ slideInLabels = ($header, $menu, $collections) ->
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
       begin: -> $('.container').css 'background-color', 'transparent'
-      
+
 removeFrame = ->
   parent.window.postMessage("removetheiframe", "*")
   console.log 'remove'
-      
+
 close = ($header, $menu, $collections) ->
   $chosen = $collections.filter('.chosen')
   $header.velocity
@@ -191,26 +191,26 @@ close = ($header, $menu, $collections) ->
     options:
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
-              
+
 
 addCollection = ($collection) ->
   $collection.addClass('chosen')
   collectionKey = $collection.data 'collectionkey'
   console.log "addCollection #{collectionKey} to #{articleId}"
   host = document.location.host
-  $.post("http://localhost:9001/addArticleCollection", { articleId, collectionKey }).
+  $.post("https://tryscrap.com/addArticleCollection", { articleId, collectionKey }).
     fail(() -> console.log 'Failed to addCollection')
-  
+
 $ ->
   $header = $('h1')
   $menu = $('ul.collectionsMenu')
   $collections = $menu.find('li')
-    
+
   launch $header, $collections
-  
+
 #   rotateColor = ($element, hue)->
 #     $element.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
-#     
+#
 #   $header.add($collections.first().find('a')).each ->
 #     hue = Math.floor(Math.random() * 360)
 #     $a = $(@)
@@ -218,9 +218,9 @@ $ ->
 #     setInterval ->
 #       hue += 30
 #     , 1000
-  
+
   $collections.first().mouseenter -> slideInLabels $header, $menu, $collections
-  
+
   $collections.each ->
     $collection = $(@)
     $collection.find('a').click (event) ->
