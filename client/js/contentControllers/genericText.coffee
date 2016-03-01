@@ -50,6 +50,15 @@ contentControllers['genericText'] =
     unless $editable.length
       throw 'generticText object does not have editable'+ $article[0]
 
+    pen = new Pen {
+      editor: $editable[0]
+      stay: false # dont block user from reloading page
+      list: [
+        'blockquote', 'h1', 'h2', 'h3', 'p', 'insertorderedlist',
+        'insertunorderedlist', 'indent', 'outdent', 'bold', 'underline' #'italic',
+      ]
+    }
+    pen.focus()
 
 
     stopPropagation = (event) ->
