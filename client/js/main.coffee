@@ -66,6 +66,8 @@ $ ->
         unless scrapState.openArticle?
           contentControllers.newArticle.init $newArticleForm
           containerController.insertNewArticleForm $newArticleForm
+  
+  buttonView.init $('.actionButton')
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))

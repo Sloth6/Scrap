@@ -4,8 +4,6 @@ window.containerView =
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
 
-    console.log 'Switch!'
-
     # Hide unmatched articles
     $unmatched.each ->
       $(@).velocity
@@ -44,7 +42,6 @@ window.containerView =
     $container.packery()
 
   updateHeight: ($wrapper, $container) ->
-    console.log 'height', $container.height()
     $wrapper.css
       height:    $container.height() * constants.style.globalScale
       minHeight: $container.height() * constants.style.globalScale

@@ -143,6 +143,12 @@ $cardBorderRadius:          0; // $cell/4;
 @mixin button {
 }
 
+@mixin actionButton {
+    @include typeOutlineWhite;
+    @include typeHeader;
+    display: block;
+}
+
 @mixin blackHover {
     background-color: $colorType !important;
     color: $colorCardBackground !important;
@@ -271,6 +277,10 @@ a, input[type=submit], input[type=button] {
                                     -moz-transform);
         }
     }
+}
+
+.actionButton, input.actionButton, a.actionButton {
+    @include actionButton;
 }
 
 // Forms
