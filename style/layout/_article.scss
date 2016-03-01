@@ -95,6 +95,18 @@ body {
                     cursor: text;
                 }
             }
+            
+            &.short {
+                .card .editable {
+                    @include typeHuge;
+                }
+            }
+            
+            &.long {
+                .card .editable {
+                    @include typeLarge;
+                }
+            }
 
             .card {
                 width: $articleSide;
@@ -118,7 +130,10 @@ body {
                 height: 100%;
                 margin-bottom: $broadMargin;
                 @include typeBody;
+                
+                
 
+/*
                 h1 {
                     @include typeLarge;
                     margin-top: $typeBodyLeading;
@@ -193,6 +208,7 @@ body {
                         }
                     }
                 }
+*/
             }
         }
 
