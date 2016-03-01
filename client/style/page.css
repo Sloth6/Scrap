@@ -589,7 +589,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 172, ../../style/globals/_type.scss */
+/* line 187, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -603,14 +603,14 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 177, ../../style/globals/_type.scss */
+/* line 192, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 48pt;
   font-weight: 500;
   letter-spacing: 0.03125em;
   line-height: 48pt;
 }
-/* line 180, ../../style/globals/_type.scss */
+/* line 195, ../../style/globals/_type.scss */
 .typeTitle.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -620,7 +620,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 185, ../../style/globals/_type.scss */
+/* line 200, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -628,7 +628,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 189, ../../style/globals/_type.scss */
+/* line 204, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 700;
@@ -636,7 +636,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 193, ../../style/globals/_type.scss */
+/* line 208, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -644,7 +644,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.01563em;
 }
-/* line 196, ../../style/globals/_type.scss */
+/* line 211, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -654,15 +654,33 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 201, ../../style/globals/_type.scss */
+/* line 216, ../../style/globals/_type.scss */
+.hugeType {
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 48pt;
+  font-weight: 400;
+  line-height: 48pt;
+  letter-spacing: 0;
+}
+/* line 219, ../../style/globals/_type.scss */
+.hugeType.smallCaps {
+  font-size: .666em;
+  letter-spacing: .03125em;
+  text-transform: uppercase !important;
+  font-size: 31.968pt;
+  font-weight: 400;
+  letter-spacing: 0.0625em;
+}
+
+/* line 224, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 204, ../../style/globals/_type.scss */
+/* line 227, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -672,14 +690,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 209, ../../style/globals/_type.scss */
+/* line 232, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 212, ../../style/globals/_type.scss */
+/* line 235, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -689,7 +707,7 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 217, ../../style/globals/_type.scss */
+/* line 240, ../../style/globals/_type.scss */
 .typeNav {
   font-size: 48pt;
   font-weight: 500;
@@ -698,7 +716,7 @@ html {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 220, ../../style/globals/_type.scss */
+/* line 243, ../../style/globals/_type.scss */
 .typeNav.smallCaps, .typeNav .smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -708,24 +726,24 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 225, ../../style/globals/_type.scss */
+/* line 248, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 229, ../../style/globals/_type.scss */
+/* line 252, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 233, ../../style/globals/_type.scss */
+/* line 256, ../../style/globals/_type.scss */
 .typeOutlineWhite {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
 
-/* line 236, ../../style/globals/_type.scss */
+/* line 259, ../../style/globals/_type.scss */
 .typeHeaderOutline {
   font-size: 24pt;
   font-weight: 700;
@@ -736,20 +754,20 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 242, ../../style/globals/_type.scss */
+/* line 265, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 247, ../../style/globals/_type.scss */
+/* line 270, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 253, ../../style/globals/_type.scss */
+/* line 276, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1635,25 +1653,41 @@ body article.text {
 body article.text.editing:hover, body article.text.editing .card:hover {
   cursor: text;
 }
-/* line 99, ../../style/layout/_article.scss */
+/* line 100, ../../style/layout/_article.scss */
+body article.text.short .card .editable {
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 48pt;
+  font-weight: 400;
+  line-height: 48pt;
+  letter-spacing: 0;
+}
+/* line 106, ../../style/layout/_article.scss */
+body article.text.long .card .editable {
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 18pt;
+  font-weight: 400;
+  line-height: 24pt;
+  letter-spacing: -0.01563em;
+}
+/* line 111, ../../style/layout/_article.scss */
 body article.text .card {
   width: 224pt;
   min-height: 224pt;
   max-width: 50vh !important;
 }
-/* line 105, ../../style/layout/_article.scss */
+/* line 117, ../../style/layout/_article.scss */
 body article.text * {
   outline: none;
 }
-/* line 109, ../../style/layout/_article.scss */
+/* line 121, ../../style/layout/_article.scss */
 body article.text em {
   font-style: italic;
 }
-/* line 113, ../../style/layout/_article.scss */
+/* line 125, ../../style/layout/_article.scss */
 body article.text strong {
   font-weight: 700;
 }
-/* line 117, ../../style/layout/_article.scss */
+/* line 129, ../../style/layout/_article.scss */
 body article.text .editable {
   height: 100%;
   margin-bottom: 40pt;
@@ -1662,92 +1696,90 @@ body article.text .editable {
   font-weight: 400;
   line-height: 16pt;
   letter-spacing: 0.01563em;
+  /*
+                  h1 {
+                      @include typeLarge;
+                      margin-top: $typeBodyLeading;
+  
+                      &:first-child {
+                          margin-top: 0;
+                      }
+                  }
+  
+                  h2 {
+                      @include typeBodySmallCaps;
+  
+                      &:first-child {
+                          margin-top: $typeBodyLeading/2;
+                      }
+                  }
+  
+                  p + h2, ul + h2, ol + h2, blockquote + h2 {
+                      margin-top: $typeBodyLeading;
+                  }
+  
+                  div, p, ul, ol, span, blockquote, h1, h2 {
+                      margin-bottom: $typeBodyLeading/2;
+                  }
+  
+                  > p, > ul, > ol {
+                      &:first-child {
+                          margin-top: $typeBodyLeading/3;
+                      }
+                  }
+  
+                  blockquote {
+                      border-left: 1px solid rgba(0,0,0,.25);
+                      padding-left: $cell/1.5;
+                      position: relative;
+                      left: -$cell/1.5;
+                      margin-left: -1px;
+                      font-style: italic;
+                  }
+  
+                  ul, ol {
+                      position: relative;
+  
+                      li {
+                          &:before {
+                              text-align: right;
+                              position: absolute;
+                              width: $gutter * 2;
+                              left: -($gutter * 2) - $cardPaddingLeft/2;
+                          }
+                      }
+                  }
+  
+                  ul {
+  
+                      li {
+                          &:before {
+                              content: '–';
+                          }
+                      }
+                  }
+  
+                  ol {
+                      counter-reset: li;
+  
+                      li {
+                          &:before {
+                              content:counter(li);
+                              counter-increment:li;
+                              @include typeBodySmallCaps;
+                              margin-top: .1em;
+                          }
+                      }
+                  }
+  */
 }
-/* line 122, ../../style/layout/_article.scss */
-body article.text .editable h1 {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 18pt;
-  font-weight: 300;
-  line-height: 24pt;
-  letter-spacing: -0.01563em;
-  margin-top: 16pt;
-}
-/* line 126, ../../style/layout/_article.scss */
-body article.text .editable h1:first-child {
-  margin-top: 0;
-}
-/* line 131, ../../style/layout/_article.scss */
-body article.text .editable h2 {
-  font-size: .666em;
-  letter-spacing: .03125em;
-  text-transform: uppercase !important;
-  font-size: 7.992pt;
-  font-weight: 500;
-  letter-spacing: 0.0625em;
-}
-/* line 134, ../../style/layout/_article.scss */
-body article.text .editable h2:first-child {
-  margin-top: 8pt;
-}
-/* line 139, ../../style/layout/_article.scss */
-body article.text .editable p + h2, body article.text .editable ul + h2, body article.text .editable ol + h2, body article.text .editable blockquote + h2 {
-  margin-top: 16pt;
-}
-/* line 143, ../../style/layout/_article.scss */
-body article.text .editable div, body article.text .editable p, body article.text .editable ul, body article.text .editable ol, body article.text .editable span, body article.text .editable blockquote, body article.text .editable h1, body article.text .editable h2 {
-  margin-bottom: 8pt;
-}
-/* line 148, ../../style/layout/_article.scss */
-body article.text .editable > p:first-child, body article.text .editable > ul:first-child, body article.text .editable > ol:first-child {
-  margin-top: 5.33333pt;
-}
-/* line 153, ../../style/layout/_article.scss */
-body article.text .editable blockquote {
-  border-left: 1px solid rgba(0, 0, 0, 0.25);
-  padding-left: 5.33333pt;
-  position: relative;
-  left: -5.33333pt;
-  margin-left: -1px;
-  font-style: italic;
-}
-/* line 162, ../../style/layout/_article.scss */
-body article.text .editable ul, body article.text .editable ol {
-  position: relative;
-}
-/* line 166, ../../style/layout/_article.scss */
-body article.text .editable ul li:before, body article.text .editable ol li:before {
-  text-align: right;
-  position: absolute;
-  width: 16pt;
-  left: -32pt;
-}
-/* line 178, ../../style/layout/_article.scss */
-body article.text .editable ul li:before {
-  content: '–';
-}
-/* line 184, ../../style/layout/_article.scss */
-body article.text .editable ol {
-  counter-reset: li;
-}
-/* line 188, ../../style/layout/_article.scss */
-body article.text .editable ol li:before {
-  content: counter(li);
-  counter-increment: li;
-  font-size: .666em;
-  letter-spacing: .03125em;
-  text-transform: uppercase !important;
-  font-size: 7.992pt;
-  font-weight: 500;
-  letter-spacing: 0.0625em;
-  margin-top: .1em;
-}
-/* line 201, ../../style/layout/_article.scss */
+/* line 217, ../../style/layout/_article.scss */
 body article.image .card {
   height: auto !important;
   width: auto !important;
   padding: 0px;
 }
-/* line 207, ../../style/layout/_article.scss */
+/* line 223, ../../style/layout/_article.scss */
 body article.image .card img {
   height: auto;
   width: auto;
@@ -1757,7 +1789,7 @@ body article.image .card img {
   max-height: 336pt;
   margin: -2px -1px -4px -2px;
 }
-/* line 220, ../../style/layout/_article.scss */
+/* line 236, ../../style/layout/_article.scss */
 body article.website .card {
   background-color: white;
   border: 1px solid #000000;
@@ -1771,31 +1803,31 @@ body article.website .card {
   max-height: 336pt;
   position: relative;
 }
-/* line 229, ../../style/layout/_article.scss */
+/* line 245, ../../style/layout/_article.scss */
 body article.website .card header {
   padding: 16pt 8pt 16pt 16pt;
   position: relative;
   z-index: 10;
 }
-/* line 234, ../../style/layout/_article.scss */
+/* line 250, ../../style/layout/_article.scss */
 body article.website .card header h1 {
   /*
                           position: relative;
                           z-index: 13;
   */
 }
-/* line 242, ../../style/layout/_article.scss */
+/* line 258, ../../style/layout/_article.scss */
 body article.website .card header .source {
   line-height: 24pt;
 }
-/* line 246, ../../style/layout/_article.scss */
+/* line 262, ../../style/layout/_article.scss */
 body article.website .card header .description, body article.website .card header .source {
   /*
                           z-index: 11;
                           position: relative;
   */
 }
-/* line 259, ../../style/layout/_article.scss */
+/* line 275, ../../style/layout/_article.scss */
 body article.website .card a {
   position: absolute;
   top: 0;
@@ -1805,11 +1837,11 @@ body article.website .card a {
   display: block;
   z-index: 14;
 }
-/* line 269, ../../style/layout/_article.scss */
+/* line 285, ../../style/layout/_article.scss */
 body article.website .card .image {
   position: relative;
 }
-/* line 272, ../../style/layout/_article.scss */
+/* line 288, ../../style/layout/_article.scss */
 body article.website .card .image .background {
   height: 100%;
   width: 100%;
@@ -1819,16 +1851,16 @@ body article.website .card .image .background {
   right: 0;
   bottom: 0;
 }
-/* line 283, ../../style/layout/_article.scss */
+/* line 299, ../../style/layout/_article.scss */
 body article.website .card .image img {
   width: 224pt;
 }
-/* line 293, ../../style/layout/_article.scss */
+/* line 309, ../../style/layout/_article.scss */
 body article.file {
   position: relative;
   max-width: 224pt;
 }
-/* line 298, ../../style/layout/_article.scss */
+/* line 314, ../../style/layout/_article.scss */
 body article.file .fakeCard {
   background-color: white;
   border: 1px solid #000000;
@@ -1841,7 +1873,7 @@ body article.file .fakeCard {
   border-right: 0;
   position: relative;
 }
-/* line 306, ../../style/layout/_article.scss */
+/* line 322, ../../style/layout/_article.scss */
 body article.file .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1852,7 +1884,7 @@ body article.file .decorative.fold {
   background: transparent url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 316, ../../style/layout/_article.scss */
+/* line 332, ../../style/layout/_article.scss */
 body article.file .decorative.fold:after {
   content: " ";
   left: -1px;
@@ -1866,44 +1898,44 @@ body article.file .decorative.fold:after {
   border-left: 0;
   border-top: 0;
 }
-/* line 331, ../../style/layout/_article.scss */
+/* line 347, ../../style/layout/_article.scss */
 body article.file .card {
   width: 168pt;
   border: 0;
   background: transparent;
   padding: 0;
 }
-/* line 339, ../../style/layout/_article.scss */
+/* line 355, ../../style/layout/_article.scss */
 body article.file .card header h1 {
   word-wrap: break-word;
 }
-/* line 349, ../../style/layout/_article.scss */
+/* line 365, ../../style/layout/_article.scss */
 body article.soundcloud .card {
   width: 224pt;
   height: 224pt;
 }
-/* line 359, ../../style/layout/_article.scss */
+/* line 375, ../../style/layout/_article.scss */
 body article.youtube .content .card {
   max-width: 1344pt;
   width: -webkit-fit-content;
   width: fit-content;
   padding: 0px;
 }
-/* line 365, ../../style/layout/_article.scss */
+/* line 381, ../../style/layout/_article.scss */
 body article.youtube .content .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 376, ../../style/layout/_article.scss */
+/* line 392, ../../style/layout/_article.scss */
 body article.playable.playing .card header, body article.playable.playing.hover .card header {
   opacity: 0;
   display: none;
 }
-/* line 383, ../../style/layout/_article.scss */
+/* line 399, ../../style/layout/_article.scss */
 body article.playable .card {
   padding: 0;
   position: relative;
 }
-/* line 388, ../../style/layout/_article.scss */
+/* line 404, ../../style/layout/_article.scss */
 body article.playable .card:active .playButton {
   -webkit-filter: invert(1);
   -moz-transform: scale(0.95);
@@ -1911,13 +1943,13 @@ body article.playable .card:active .playButton {
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
-/* line 394, ../../style/layout/_article.scss */
+/* line 410, ../../style/layout/_article.scss */
 body article.playable .card .preview {
   position: relative;
   cursor: pointer;
   background: black;
 }
-/* line 399, ../../style/layout/_article.scss */
+/* line 415, ../../style/layout/_article.scss */
 body article.playable .card .preview img {
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -1925,7 +1957,7 @@ body article.playable .card .preview img {
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   width: 100%;
 }
-/* line 406, ../../style/layout/_article.scss */
+/* line 422, ../../style/layout/_article.scss */
 body article.playable .card header {
   border-top: 0;
   padding: 16pt 8pt 16pt 16pt;
@@ -1935,16 +1967,16 @@ body article.playable .card header {
   right: 0;
   bottom: 0;
 }
-/* line 415, ../../style/layout/_article.scss */
+/* line 431, ../../style/layout/_article.scss */
 body article.playable .card header .artist {
   margin-bottom: 4pt;
 }
-/* line 419, ../../style/layout/_article.scss */
+/* line 435, ../../style/layout/_article.scss */
 body article.playable .card header .detail {
   position: absolute;
   bottom: 32pt;
 }
-/* line 426, ../../style/layout/_article.scss */
+/* line 442, ../../style/layout/_article.scss */
 body article.playable .card .playButton {
   background: url("/images/playButton.png") no-repeat;
   background-size: cover;
@@ -1961,51 +1993,51 @@ body article.playable .card .playButton {
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 445, ../../style/layout/_article.scss */
+/* line 461, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
 }
-/* line 453, ../../style/layout/_article.scss */
+/* line 469, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 458, ../../style/layout/_article.scss */
+/* line 474, ../../style/layout/_article.scss */
 body article .card img {
   margin-bottom: -2.66667pt;
 }
-/* line 465, ../../style/layout/_article.scss */
+/* line 481, ../../style/layout/_article.scss */
 body article footer {
   position: absolute;
 }
-/* line 469, ../../style/layout/_article.scss */
+/* line 485, ../../style/layout/_article.scss */
 body article footer ul li {
   display: inline-block;
 }
-/* line 472, ../../style/layout/_article.scss */
+/* line 488, ../../style/layout/_article.scss */
 body article footer ul li.right {
   float: right;
 }
-/* line 476, ../../style/layout/_article.scss */
+/* line 492, ../../style/layout/_article.scss */
 body article footer ul li .articleDeleteButton {
   padding-bottom: 16pt;
   padding-left: 16pt;
 }
 
-/* line 487, ../../style/layout/_article.scss */
+/* line 503, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 168pt;
 }
 
-/* line 494, ../../style/layout/_article.scss */
+/* line 510, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 498, ../../style/layout/_article.scss */
+/* line 514, ../../style/layout/_article.scss */
 .addArticleForm .translate {
   position: relative;
 }
-/* line 501, ../../style/layout/_article.scss */
+/* line 517, ../../style/layout/_article.scss */
 .addArticleForm .translate .card {
   overflow: visible;
 }

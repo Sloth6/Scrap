@@ -26,9 +26,10 @@ $leading:           		$cell * 2;
 
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
-$typeLargeSize:       18pt;
+$typeHugeSize:          48pt;
+$typeLargeSize:         18pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		48pt;
+$typeTitleSize:    		   48pt;
 $typeSubtitleSize:    	36pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
@@ -36,6 +37,7 @@ $typeHeaderSmallCapsSize:
 $typeHeaderLeading:     24pt;
 $typeBodyLeading:       16pt;
 $typeSmallLeading:      12pt;
+$typeHugeLeading:       48pt;
 $typeLargeLeading:      24pt;
 $typeTitleLeading:      48pt;
 $typeSubtitleLeading:   36pt;
@@ -81,10 +83,18 @@ $headerLeftMarginOffset:
     letter-spacing: (1em / 64);
 }
 
+@mixin typeHuge {
+    font-family:    $fontFamily;
+    font-size:      $typeHugeSize;
+    font-weight:    $fontWeightRegular;
+    line-height:    $typeHugeLeading;
+    letter-spacing: 0; // -(1em / 64);
+}
+
 @mixin typeLarge {
     font-family:    $fontFamily;
     font-size:      $typeLargeSize;
-    font-weight:    $fontWeightLight;
+    font-weight:    $fontWeightRegular;
     line-height:    $typeLargeLeading;
     letter-spacing: -(1em / 64);
 }
@@ -102,7 +112,6 @@ $headerLeftMarginOffset:
     text-transform: uppercase !important;
 }
 
-
 @mixin typeTitleSmallCaps {
     @include        smallCaps;
     font-size:      $typeTitleSize * .75;
@@ -114,6 +123,13 @@ $headerLeftMarginOffset:
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
     font-weight:    $fontWeightMedium;
+    letter-spacing: (1em/16);
+}
+
+@mixin typeHugeSmallCaps {
+    @include        smallCaps;
+    font-size:      $typeHugeSize * .666;
+    font-weight:    $fontWeightRegular;
     letter-spacing: (1em/16);
 }
 
@@ -134,7 +150,6 @@ $headerLeftMarginOffset:
 @mixin typeHeaderSmallCaps {
     @include typeHeader;
 }
-
 
 @mixin typeLabelName {
     @include typeHeader;
@@ -195,6 +210,14 @@ html {
             
     &.smallCaps {
       @include typeBodySmallCaps;
+    }
+}
+
+.hugeType {
+    @include typeHuge;
+            
+    &.smallCaps {
+      @include typeHugeSmallCaps;
     }
 }
 
