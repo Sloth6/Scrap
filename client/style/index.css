@@ -657,9 +657,9 @@ html {
 /* line 216, ../../style/globals/_type.scss */
 .hugeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 36pt;
+  font-size: 48pt;
   font-weight: 400;
-  line-height: 36pt;
+  line-height: 48pt;
   letter-spacing: 0;
 }
 /* line 219, ../../style/globals/_type.scss */
@@ -667,7 +667,7 @@ html {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
-  font-size: 23.976pt;
+  font-size: 31.968pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
@@ -1656,9 +1656,9 @@ body article.text.editing:hover, body article.text.editing .card:hover {
 /* line 100, ../../style/layout/_article.scss */
 body article.text.short .card .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 36pt;
+  font-size: 48pt;
   font-weight: 400;
-  line-height: 36pt;
+  line-height: 48pt;
   letter-spacing: 0;
 }
 /* line 106, ../../style/layout/_article.scss */
