@@ -8,21 +8,24 @@ contentControllers['text'] =
 
   close: ($article) ->
     contentControllers.genericText.stopEditing $article
+    if $article.data('haschangedsize')
+      articleView.resize $article
 
   init: ($article) ->
     timeout       = null
     emitInterval  = 500
     lengthForLong = 50
     oldHeight = $article.height()
+    $article.data 'haschangedsize', false
 
     onChange = (html, text) ->
+      $article.data 'haschangedsize', true
       if timeout
         clearTimeout timeout
         timeout = null
 
       if $article.children('card').outerHeight() != oldHeight
         oldHeight = $article.children('.card').outerHeight()
-        # events.onArticleResize $article
 
       console.log text.length
       if (text.length > lengthForLong)
@@ -30,7 +33,7 @@ contentControllers['text'] =
       else
         $article.addClass('short').removeClass('long')
 
-        
+
       timeout = setTimeout (() ->
         data =
           articleId: $article.attr('id')
@@ -38,7 +41,7 @@ contentControllers['text'] =
         socket.emit 'updateArticle', data
 
       ), emitInterval
-    
+
     $editable = $article.find('.editable')
     onChange($editable[0].innerHTML, $editable.text())
     contentControllers.genericText.init $article, { onChange }

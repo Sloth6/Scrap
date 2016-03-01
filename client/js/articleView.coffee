@@ -378,8 +378,8 @@ window.articleView =
 
   resize: ($article) ->
     console.log 'resize'
-    $article.width  $article.children('.card').outerWidth()
-    $article.height $article.children('.card').outerHeight()
+    $article.width  $article.find('.card').outerWidth()
+    $article.height $article.find('.card').outerHeight()
     $( constants.dom.articleContainer ).packery()
 
   close: ($article) ->
