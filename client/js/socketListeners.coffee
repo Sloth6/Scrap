@@ -12,8 +12,10 @@ $ ->
   socket.on 'newCollection', (data) ->
     console.log 'socket.on.newCollection', data
     { name, collectionKey, color } = data
+    if !(name? and collectionKey? and color?)
+      throw 'Invalid parameters sent on newCollection'
     collections[collectionKey] = data
-    $('li.newCollection')
+    collectionsMenuController.add name, collectionKey, color
 
   # socket.on 'deleteCollection', (data) ->
   #   { collectionKey } = data
@@ -24,16 +26,10 @@ $ ->
   #     size = contentModel.getSize $('.collection.open')
   #     $(document.body).css { width: size }
 
-  # socket.on 'deleteArticle', (data) ->
-  #   console.log 'deleteArticle', data, $("\##{data.id}")
-  #   { id, collectionKey } = data
-
-  #   toRemove = $("\##{data.id}")
-  #   toRemove.fadeOut ->
-  #     toRemove.remove()
-  #     collectionViewController.draw $('.collection.open'), {animate: true}
-  #     size = contentModel.getSize $('.collection.open')
-  #     $(document.body).css { width: size }
+  socket.on 'deleteArticle', ({id}) ->
+    console.log 'deleteArticle', id
+    throw 'Invalid parameters sent on deleteArticle' unless id
+    containerController.removeArticle $("##{id}")
 
   socket.on 'updateArticle', ({ collectionKey, userId, articleId, content }) ->
     return if data.userId is window.userId

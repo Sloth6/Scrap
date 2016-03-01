@@ -27,7 +27,7 @@ window.collectionsMenuView =
         fromY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
         fromY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
-      $contents.not($labelsButton).velocity
+      $contents.not($labelsButton).velocity('stop', true).velocity
         properties:
           translateY: [toY, fromY]
           opacity: [1, 1]
@@ -37,9 +37,9 @@ window.collectionsMenuView =
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
-          delay:    $label.index() * 60    
+          delay:    $label.index() * 60
     # Animate up labels button
-    $labelsButton.find('.contents').velocity
+    $labelsButton.find('.contents').velocity('stop', true).velocity
       properties:
         translateY: -$labelsButton.height()
       options:
@@ -50,7 +50,7 @@ window.collectionsMenuView =
     extendNav()
     # Animate other header buttons away
     $('nav section.left .headerButton, nav section.right .headerButton').each ->
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: -$(@).height()
         options:
@@ -62,7 +62,6 @@ window.collectionsMenuView =
     # Disable scroll
     $('body').css
       overflow: 'hidden'
-#     scrollController.disableScroll()
     $menu.css
       overflowY: 'scroll'
 
@@ -74,7 +73,7 @@ window.collectionsMenuView =
     $button       = $menuItems.filter('.openMenuButton')
     $labelsButton = $menuItems.filter('li.labelsButton')
     $labels       = $menuItems.not('li.labelsButton')
-    $openLabel    = if isHome then $labelsButton else $menuItems.filter("li.#{window.openCollection}") 
+    $openLabel    = if isHome then $labelsButton else $menuItems.filter("li.#{window.openCollection}")
     $destinationLabel  = if isHome then $labelsButton else $menu.children(".#{window.openCollection}")
     options       =
       duration: 750
@@ -97,26 +96,26 @@ window.collectionsMenuView =
         translateY = -$(window).height()
         delay = $label.index() - $destinationLabel.index()
         rotateZ = 45 * (Math.random() - .5)
-      $contents.velocity
+      $contents.velocity('stop', true).velocity
         properties:
           translateY: translateY
           rotateZ: rotateZ
         options:
           duration: options.duration + 250 * Math.abs delay
           easing:   options.easing
-          delay:    0 # 400 * Math.abs delay 
+          delay:    0 # 400 * Math.abs delay
           complete: ->
             if $label.index() is $labels.length - 1
               console.log isHome
               translateY = if isHome then 0 else -$labelsButton.height()
               $.Velocity.hook $destinationLabel.find('.contents'), 'translateY', "#{translateY}px"
-              $labels.not('.openMenuButton').hide() 
+              $labels.not('.openMenuButton').hide()
     unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()
     # Animate other header buttons back in
     $('nav section.left .headerButton, nav section.right .headerButton').each ->
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: 0
         options:
@@ -124,7 +123,7 @@ window.collectionsMenuView =
           easing:   options.easing
     # Enable scroll
     $('body').css
-      overflow: '' 
+      overflow: ''
     $menu.css
       overflowY: 'visible'
-      
+

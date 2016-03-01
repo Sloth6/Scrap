@@ -1,23 +1,39 @@
+liClick = (event) ->
+  if $(@).parents('li').hasClass 'openMenuButton'
+    collectionsMenuView.open()
+  event.stopPropagation()
+  event.preventDefault()
+
 window.collectionsMenuController =
   init: ($menu) ->
-#     $openMenuButton = $menu.siblings('.openMenuButton').children('a')
-    $menu.find('li a').click (event) ->
-      event.stopPropagation()
-      event.preventDefault()
-      if $(@).parents('li').hasClass 'openMenuButton'
-        collectionsMenuView.open()
+    $menu.find('li a').click liClick
     parallaxHover $menu.find('li a'), 250, 1.25
-#     $('body').click -> collectionsMenuView.close() if $menu.hasClass('open') # Close menu on body click
-    
+
     $(constants.dom.collections).each ->
-#       console.log $(@).offset().top
       $(@).data 'offsetTop', $(@).offset().top
-    
-    $menu.find('li.newCollection input').click ->
-    # TODO: Move into view
-      event.stopPropagation()
+
+    $menu.find('li.newCollection input').click (event) ->
       $(@).attr 'placeholder', ''
       $(@).siblings('label').removeClass 'invisible'
-      
+      event.stopPropagation()
+
     $menu.find('li').not('.openMenuButton, .openCollection').hide()
-    
+
+  add: (name, collectionKey, color) ->
+    $menu = $(constants.dom.collectionsMenu)
+    # Copy existing DOM, making it less fragile if dom changes.
+    $label = $menu.find('.recent').clone()
+    $label.data('collectionkey', collectionKey)
+    $label.find('a').
+      click(liClick).
+      text(name).
+      css { color }
+
+    $label.insertBefore $menu.children().last()
+    collectionController.init $label
+    parallaxHover $label, 250, 1.25
+
+    newLabelButton = $menu.find('li.newCollection input')
+    newLabelButton.attr 'placeholder', 'New label'
+    newLabelButton.siblings('label').addClass 'invisible'
+

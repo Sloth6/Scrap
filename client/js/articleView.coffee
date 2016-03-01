@@ -27,13 +27,11 @@ window.articleView =
         opacity: .25
 
   obscure: ($articles) ->
-#     $articles.hide()
-#     return
     $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
-    $contents.velocity
+    $contents.velocity('stop', true).velocity
       properties:
         opacity: 0
         duration: 1
@@ -41,13 +39,11 @@ window.articleView =
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
-#     $articles.show()
-#     return
     $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
-    $contents.velocity
+    $contents.velocity('stop', true).velocity
       properties:
         opacity: 1
         duration: 1
@@ -55,8 +51,8 @@ window.articleView =
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->
-    # Animate in article metadata
-    $article.find(constants.dom.articleMeta).find('li').velocity
+    li = $article.find(constants.dom.articleMeta).find('li')
+    li.velocity('stop', true).velocity
       properties:
         scale: [1, 0]
         translateY: [0, -12]
@@ -68,7 +64,9 @@ window.articleView =
             opacity: 0
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
-    $article.find('ul.articleCollections .scale').velocity
+
+    scale = $article.find('ul.articleCollections .scale')
+    scale.velocity('stop', true).velocity
       properties:
         scale: constants.style.articleHoverScale / constants.style.globalScale
       options:
@@ -77,7 +75,8 @@ window.articleView =
 
   hideMeta: ($article) ->
     # Animate out article metadata
-    $article.find(constants.dom.articleMeta).find('li').velocity
+    li = $article.find(constants.dom.articleMeta).find('li')
+    li.velocity('stop', true).velocity
       properties:
         scale: 0
         translateY: -12
@@ -85,7 +84,9 @@ window.articleView =
         complete: -> $article.find(constants.dom.articleMeta).hide()
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
-    $article.find('ul.articleCollections .scale').velocity
+
+    scale = $article.find('ul.articleCollections .scale')
+    scale.velocity('stop', true).velocity
       properties:
         scale: 1 / constants.style.globalScale
       options:
@@ -102,14 +103,14 @@ window.articleView =
       $a =   $label.children 'a'
       $dot = $label.children '.dot'
       delay = $label.index() * 60
-      $label.velocity
+      $label.velocity('stop', true).velocity
         properties:
           translateX: dotWidths
           translateY: 0
         options:
           duration: options.duration + delay
           easing: options.easing
-      $a.velocity
+      $a.velocity('stop', true).velocity
         properties:
           scaleX: [$dot.width()  / $a.width(), 1]
           scaleY: [$dot.height() / $a.height(),1]
@@ -118,7 +119,7 @@ window.articleView =
           duration: options.duration + delay
           easing: options.easing
           complete: -> $a.hide()
-      $dot.velocity
+      $dot.velocity('stop', true).velocity
         properties:
           scaleX: [1, $a.data('naturalWidth') /  $dot.data('naturalWidth')]
           scaleY: [1, $a.data('naturalHeight') / $dot.data('naturalHeight')]
@@ -139,14 +140,14 @@ window.articleView =
       $a =   $label.children 'a'
       $dot = $label.children '.dot'
       delay = $label.index() * 60
-      $label.velocity
+      $label.velocity('stop', true).velocity
         properties:
           translateX: constants.style.margin.articleText.left
           translateY: labelHeights
         options:
           duration: options.duration + delay
           easing: options.easing
-      $a.velocity
+      $a.velocity('stop', true).velocity
         properties:
           scaleX: [1, $dot.data('naturalWidth')  / $a.data('naturalWidth') ]
           scaleY: [1, $dot.data('naturalHeight') / $a.data('naturalHeight')]
@@ -155,7 +156,7 @@ window.articleView =
           duration: options.duration + delay
           easing: options.easing
           begin: -> $a.show()
-      $dot.velocity
+      $dot.velocity('stop', true).velocity
         properties:
           scaleX: $a.data('naturalWidth')  / $dot.data('naturalWidth')
           scaleY: $a.data('naturalHeight') / $dot.data('naturalHeight')
@@ -176,7 +177,7 @@ window.articleView =
     $menu.find('li').each ->
       delay = $(@).index() * 125
       toY   = $(@).data 'translateY'
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: [toY, $(window).height()]
           opacity: 1
@@ -198,7 +199,7 @@ window.articleView =
 
     $menu.find('li').not('.added').each ->
       delay = ($menu.find('li').length - $(@).index()) * 125
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: $(window).height()
           scale: 0
@@ -214,7 +215,7 @@ window.articleView =
     $collectionsList = $article.find 'ul.articleCollections'
     y = $collectionsList.children('li.addCollection').offset().top - $label.offset().top
     $label.addClass 'added'
-    $label.velocity
+    $label.velocity('stop', true).velocity
       properties:
         translateY: y - $label.height()
       options:
@@ -224,7 +225,7 @@ window.articleView =
           $label.appendTo $collectionsList
     $collectionsList.children('li').not('.addCollection').each ->
       startY = parseInt $.Velocity.hook($(@), 'translateY')
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: startY-$label.height()
         options:
@@ -239,7 +240,7 @@ window.articleView =
     articleView.expandLabels($article) unless $article.hasClass('open')
     if $article.hasClass 'playable'
       cursor = '▶︎'
-      $article.find('.artist, .source').velocity
+      $article.find('.artist, .source').velocity('stop', true).velocity
         properties:
           opacity: 1
           scale: 1
@@ -258,13 +259,13 @@ window.articleView =
         '-webkit-text-stroke-color': 'transparent'
         duration: 500
         easing: constants.style.easing
-      $img.velocity
+      $img.velocity('stop', true).velocity
         properties:
           marginTop: $header.height() + parseFloat($header.css('padding-top')) + parseFloat($header.css('padding-bottom'))
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      $header.find('.source,.description').velocity
+      $header.find('.source,.description').velocity('stop', true).velocity
         properties:
           opacity: 1
         options:
@@ -294,7 +295,7 @@ window.articleView =
         $('.playButton').css
           opacity: 0
       , 250
-      $article.find('.artist, .source').velocity
+      $article.find('.artist, .source').velocity('stop', true).velocity
         properties:
           opacity: 0
           scale: 0
@@ -311,7 +312,7 @@ window.articleView =
         '-webkit-text-stroke-color': ''
         duration: 500
         easing: constants.style.easing
-      $img.velocity
+      $img.velocity('stop', true).velocity
         properties:
           marginTop: 0
         options:
@@ -340,20 +341,21 @@ window.articleView =
       return $(window).height()/2 if $elem.is($(window))
       $elem.offset().top + ($elem.height()/2)*constants.style.globalScale
 
-    $article.velocity
+
+    $article.velocity('stop', true).velocity
       properties:
         scale: scaleWhenOpen($article)
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
-    $container.velocity
+
+    $container.velocity('stop', true).velocity
       properties:
-        translateX: (- (centerX($article) - centerX($(window)))) / constants.style.globalScale
-        translateY: (- (centerY($article) - centerY($(window))) + $(window).scrollTop())/constants.style.globalScale
+        translateX: (-(centerX($article) - centerX($(window)))) / constants.style.globalScale
+        translateY: (-(centerY($article) - centerY($(window))) + $(window).scrollTop())/constants.style.globalScale
       options:
-        duration: constants.style.duration.openArticle
-        easing: constants.velocity.easing.smooth
-        queue: false
+        # duration: constants.style.duration.openArticle
+        # easing: constants.velocity.easing.smooth
         complete: () ->
           $article.addClass 'open'
 
@@ -364,7 +366,8 @@ window.articleView =
     $article.mouseleave -> cursorView.start '✕'
     $article.mouseenter -> cursorView.end()
 
-    $article.find(constants.dom.articleMeta).find('li').velocity
+    li = $article.find(constants.dom.articleMeta).find('li')
+    li.velocity('stop', true).velocity
       properties:
         scale: 1
         translateY: 0
@@ -372,7 +375,6 @@ window.articleView =
       options:
         duration: constants.style.duration.hoverArticle
         easing: constants.velocity.easing.smooth
-
 
   resize: ($article) ->
     console.log 'resize'
@@ -382,11 +384,15 @@ window.articleView =
 
   close: ($article) ->
 
+    $article.velocity('stop', true)
+    $article.removeClass 'open'
     $article.velocity
-      scale: 1
-    articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))
-    $container = $(constants.dom.articleContainer)
+      properties: {scale: 1 }
 
+    articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))
+
+    $container = $(constants.dom.articleContainer)
+    $container.velocity('stop', true)
     $container.velocity
       properties:
         translateX: 0
@@ -394,9 +400,6 @@ window.articleView =
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
-        begin: () ->
-          $article.removeClass 'open'
-
 
   onCollectionOver: ($article, event, $collection) ->
     $card = $article.children('.card')

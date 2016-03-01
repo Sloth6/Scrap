@@ -1,4 +1,4 @@
-host = 'http://tryscrap.com/'
+host = 'https://tryscrap.com/'
 iframe_url = host + 'bookmarkletContent'
 
 iframe = document.createElement 'iframe'

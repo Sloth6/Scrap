@@ -53,10 +53,9 @@ window.articleController =
     scrollController.disableScroll()
     $article.addClass 'open'
 
-    console.log 'canzoom', contentControllers[contentType]?.canZoom
-
-    if contentControllers[contentType]?.canZoom
+    if contentControllers[contentType]?.canZoom?
       articleView.open $article
+
     # Handle specific contentTypes.
     if contentControllers[contentType]?.open
       contentControllers[contentType].open $article
@@ -83,10 +82,16 @@ window.articleController =
 
   init: ($articles) ->
     $articles.each ->
-      articleView.init $(@)
-      contentType = $(@).data 'contenttype'
+      $article = $(@)
+      articleView.init $article
+      contentType = $article.data 'contenttype'
       if window.contentControllers[contentType]
-        window.contentControllers[contentType].init $(@)
+        window.contentControllers[contentType].init $article
+
+      $article.find('.articleDeleteButton').click (event) ->
+        console.log 'Delete button clicked'
+        socket.emit 'deleteArticle', { articleId: $article.attr('id') }
+        event.stopPropagation()
 
     # Articles zoom on click.
     $articles.click (event) ->

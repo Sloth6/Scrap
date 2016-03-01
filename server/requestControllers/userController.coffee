@@ -1,5 +1,8 @@
 models = require '../../models'
 collectionController = require './collectionController'
+async = require 'async'
+startingArticles = require '../startingArticles'
+newArticle = require '../newArticle'
 
 module.exports =
   updateUser: (req, res, app)  ->
@@ -38,28 +41,36 @@ module.exports =
           else
             done user
       done = (user) ->
-        req.session.currentUserId = user.id
-        req.session.userName = user.name
-        req.session.userEmail = user.email
-        res.send "/"
-        callback null
+        raw = startingArticles.raw
+        console.log raw
+        console.log 'made user', user.dataValues
+        async.each raw, ((r, cb) -> newArticle r, user,cb), (err) ->
+          if err?
+            console.log 'err is making new user content!'
+          else
+            'made new user content'
+          req.session.currentUserId = user.id
+          req.session.userName = user.name
+          req.session.userEmail = user.email
+          res.send "/"
+          callback null
 
   # verify login creds, redirect to first collection
   login : (req, res, app, callback) ->
     { email, password } = req.body
-    
+
     models.User.find(
       where: { email }
       include: [ models.Collection ]
     ).done (err, user) ->
-      
+
       err = "No account found for that email"  if not user?
       err = "Sign up to activate this account" if user? and !user.password
 
       if err?
         console.log "LOGIN FAILED\n\temail: #{email}\n\terr: #{err}"
         return res.status(400).send err
-      
+
       user.verifyPassword password, (err, result) ->
         err = 'Incorrect password' if !err and !result
         if err?

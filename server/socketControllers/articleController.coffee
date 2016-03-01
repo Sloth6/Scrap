@@ -47,29 +47,24 @@ module.exports =
   deleteArticle : (sio, socket, data, callback) =>
     userId   = socket.handshake.session.currentUserId
     id       = data.articleId
-    collectionKey = data.collectionKey
+    return callback('no id passed to deleteArticle') unless id?
+    console.log "Delete Article \n\tid:#{id}\n\tuserId:#{userId}"
 
-    return callback('no id passed to deleteArticle') unless id
-    return callback('no collectionKey passed to deleteArticle') unless collectionKey
+    q1 = """
+        DELETE FROM "Articles"
+        WHERE "id"=:id
+        RETURNING "contentType", content
+      """
 
-    console.log "Delete article #{id} in #{collectionKey}"
-    q1 = "
-        DELETE FROM \"Articles\"
-        WHERE \"id\"=:id
-        RETURNING \"contentType\", content, \"CollectionId\"
-      "
     models.sequelize.query(q1, replacements: { id }).done (err, results) ->
-      return console.log('error deleting article') if err?
-
-      console.log 'emiting deleteArticle', { id, collectionKey }
-      sio.to(collectionKey).emit 'deleteArticle', { id, collectionKey }
+      return console.log('error deleting article'+err) if err?
       { contentType, content } = results[0][0]
-      # if contentType in ['gif', 'image']
-      #   s3.deleteImage { collectionKey, key: content, contentType }, (err) ->
+      console.log "\t#{contentType}, #{content}"
+      sio.to("user:#{userId}").emit 'deleteArticle', { id }
+
+      # if contentType in ['file', 'video', 'image'] #, 'gif'
+      #   s3.delete content, (err) ->
       #     console.log err if err
-      if contentType in ['file', 'video', 'image']
-        s3.delete content, (err) ->
-          console.log err if err
 
   updateArticle : (sio, socket, data, callback) =>
     userId = socket.handshake.session.currentUserId

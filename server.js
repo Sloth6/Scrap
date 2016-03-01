@@ -1,14 +1,22 @@
 require('coffee-script/register');
 var express = require('express')
-    , app = express()
-    , server = require('http').createServer(app)
-    , io = require('socket.io')(server)
+    , https = require('https')
+    , fs = require('fs')
+    , app = express();
+
+var options = {
+  key: fs.readFileSync('./certs/myserver.key'),
+  cert: fs.readFileSync('./certs/tryscrap_com.crt')
+}
+
+port = 443
+server = https.createServer(options, app);
+server.listen(port);
+
+var io = require('socket.io')(server)
     , sharedsession = require("express-socket.io-session")
-    , port = (process.env.PORT || 9001)
-    , db = require('./models')
-    , coffeeMiddleware = require('coffee-middleware')
-    , SequelizeStore = require('connect-session-sequelize')(express.session.Store)
-    , compass = require('compass');
+    , db = require('./models');
+    // , SequelizeStore = require('connect-session-sequelize')(express.session.Store)
 
 var pg = require('pg')
   , express_session = require('express-session')
@@ -17,7 +25,7 @@ var pg = require('pg')
 var session = express_session({
   store: new pgSession({
     pg : pg, // Use global pg-module
-    conString : process.env.POSTGRES_URL || 'postgres://localhost/scrapdb',
+    conString : process.env.POSTGRES_URL || 'postgres://joelsimon@localhost/scrapdb',
   }),
   saveUninitialized: false,
   secret: "club_sexdungeon",
@@ -33,7 +41,7 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(session)
-    app.use(coffeeMiddleware({
+    app.use(require('coffee-middleware')({
         src: __dirname + '/client',
         compress: true,
         encodeSrc: false,
@@ -45,7 +53,8 @@ app.configure(function(){
 
 io.use(sharedsession(session));
 
-db.sequelize.sync({ force: false }).complete(function(err) {
+//{ force: false }
+db.sequelize.sync().complete(function(err) {
     if (err) {
         throw err;
     } else {
@@ -55,4 +64,10 @@ db.sequelize.sync({ force: false }).complete(function(err) {
     }
 });
 
-server.listen(port);
+app_insecure = express()
+app_insecure.listen(9003)
+// set up a route to redirect http to https
+app_insecure.get('*', function(req,res){
+    res.redirect('https://tryscrap.com')
+})
+

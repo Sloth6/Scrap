@@ -1,4 +1,3 @@
-lengthForLong = 500
 window.contentControllers ?= {}
 
 contentControllers['text'] =
@@ -13,9 +12,10 @@ contentControllers['text'] =
   init: ($article) ->
     timeout       = null
     emitInterval  = 500
+    lengthForLong = 50
     oldHeight = $article.height()
 
-    onChange = (text) ->
+    onChange = (html, text) ->
       if timeout
         clearTimeout timeout
         timeout = null
@@ -24,12 +24,19 @@ contentControllers['text'] =
         oldHeight = $article.children('.card').outerHeight()
         # events.onArticleResize $article
 
+      console.log text.length
+      if (text.length > lengthForLong)
+        $article.addClass('long').removeClass('short')
+      else
+        $article.addClass('short').removeClass('long')
+
+
       timeout = setTimeout (() ->
         data =
           articleId: $article.attr('id')
           content: { text }
-
         socket.emit 'updateArticle', data
+
       ), emitInterval
 
     contentControllers.genericText.init $article, { onChange }

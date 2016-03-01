@@ -2,7 +2,7 @@ fs = require 'fs'
 path = require 'path'
 Sequelize = require 'sequelize'
 lodash = require 'lodash'
-psq_url = process.env.POSTGRES_URL || 'postgres://localhost/scrapdb'
+psq_url = process.env.POSTGRES_URL || 'postgres://joelsimon@localhost/scrapdb'
 sequelize = new Sequelize(psq_url, {logging: ->})
 db = {}
 
