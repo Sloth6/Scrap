@@ -37,6 +37,7 @@ window.containerController =
     $container.
       append($articles).
       packery 'appended', $articles
+    buttonView.init $articles.find('.actionButton')
     containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
 
   getArticles: (n) ->

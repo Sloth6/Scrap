@@ -36,7 +36,54 @@ body {
                 opacity: .5;
             }
         }
-
+        
+        ul.cardActions {
+            position: absolute;
+            bottom: -$broadMargin;
+            height: $broadMargin;
+            left: 0;
+            right: 0;
+            
+            li {
+                position: absolute;
+                top: 0;
+                padding-top: $cell;
+                width: -webkit-fit-content;
+                height: $typeHeaderLeading;
+                
+                &.upload {
+                    display: inline-block;
+                    overflow: hidden;
+                    
+                    form {
+                        height: 100%;
+                        width: 200%;
+                        top: 0;
+                        left: 0;
+                        position: absolute;
+                    
+                        input {
+                            height: 100%;
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: -50%;
+                            opacity: 0;
+                            cursor: pointer !important;
+                        }
+                    }
+                }
+                
+                &.right {
+                    right: 0;
+                }
+                
+                &.left {
+                    left: 0;
+                }
+            }
+        }
+        
         // CONTENT
 
         &.text {
@@ -322,7 +369,6 @@ body {
             }
         }
 
-
         &.playable {
 
             &.playing, &.playing.hover {
@@ -415,6 +461,25 @@ body {
 //                 background-color: $colorCardBackground;
             }
         }
+        
+        footer {
+            position: absolute;
+            
+            ul {
+                li {
+                    display: inline-block;
+                    
+                    &.right {
+                        float: right;
+                    }
+                    
+                    .articleDeleteButton {
+                        padding-bottom: $cell * 2;
+                        padding-left: $cell * 2;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -428,16 +493,6 @@ body {
 
     &.typing, &.typing:hover {
         z-index: 99999999 !important;
-
-        .cardActions ul li {
-            &.upload {
-                opacity: 0;
-            }
-
-            &.done {
-                opacity: 1;
-            }
-        }
     }
 
     .translate {
@@ -446,61 +501,6 @@ body {
         .card {
             overflow: visible;
 
-            .cardActions {
-                width: $articleSideNarrow;
-
-                ul {
-
-                    li {
-
-                        &.upload {
-                            opacity: 1;
-                            display: inline-block;
-                            width: $col * 1.5;
-                            height: $leading;
-                            overflow: hidden;
-                            position: relative;
-
-                            &:hover {
-                                a {
-                                    @include hoverLinkAnimation;
-                                }
-                            }
-
-                            form {
-                                height: 100%;
-                                width: 200%;
-                                top: 0;
-                                left: 0;
-                                position: absolute;
-
-                                input {
-                                    height: 100%;
-                                    width: 100%;
-                                    position: absolute;
-                                    top: 0;
-                                    left: -50%;
-                                    opacity: 0;
-                                    cursor: pointer !important;
-                                }
-                            }
-                        }
-
-                        &.done {
-                            display: inline-block;
-                            height: $leading;
-                            float: right;
-                            width: intrinsic;
-
-                            a {
-                                border: 0;
-                                padding: 0;
-                                margin-left: $cell;
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }

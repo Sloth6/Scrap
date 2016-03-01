@@ -18,6 +18,15 @@ window.getRotateZ = ($element) ->
 
 window.logisticFunction = (x) ->
   1 / (1 + Math.pow(Math.E, -x))
+  
+window.styleUtilities =
+  transformOriginCenter: ($elements) ->
+    $elements.css
+      transformOrigin:        'center center'
+      webkitTransformOrigin:  'center center'
+      mozTransformOrigin:     'center center'
+      msTransformOrigin:      'center center'
+  
 
 validateEmail = (email) ->
   re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i

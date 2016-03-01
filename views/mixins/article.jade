@@ -91,9 +91,9 @@ mixin articleMixin(article, collections)
           //- contentEditable="false", designmode="on"
           .editable.parallaxLayer(data-parallaxdepth='.375')
             | !{article.content.text}
-          ul.cardActions
+          ul.cardActions.parallaxLayer(data-parallaxdepth='.75')
             li.right.showOnEditing
-              a.done.confirm(href='#')
+              a.done.actionButton.confirm(href='#')
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content
