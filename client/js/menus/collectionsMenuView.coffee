@@ -27,7 +27,7 @@ window.collectionsMenuView =
         fromY = $(window).height() - ($label.offset().top - $label.height() * 2)
       else
         fromY = -$(window).height() #- ($label.offset().top - $label.height() * 2)
-      $contents.not($labelsButton).velocity
+      $contents.not($labelsButton).velocity('stop', true).velocity
         properties:
           translateY: [toY, fromY]
           opacity: [1, 1]
@@ -39,7 +39,7 @@ window.collectionsMenuView =
           easing:   options.easing
           delay:    $label.index() * 60
     # Animate up labels button
-    $labelsButton.find('.contents').velocity
+    $labelsButton.find('.contents').velocity('stop', true).velocity
       properties:
         translateY: -$labelsButton.height()
       options:
@@ -50,7 +50,7 @@ window.collectionsMenuView =
     extendNav()
     # Animate other header buttons away
     $('nav section.left .headerButton, nav section.right .headerButton').each ->
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: -$(@).height()
         options:
@@ -96,7 +96,7 @@ window.collectionsMenuView =
         translateY = -$(window).height()
         delay = $label.index() - $destinationLabel.index()
         rotateZ = 45 * (Math.random() - .5)
-      $contents.velocity
+      $contents.velocity('stop', true).velocity
         properties:
           translateY: translateY
           rotateZ: rotateZ
@@ -115,7 +115,7 @@ window.collectionsMenuView =
     extendNav()
     # Animate other header buttons back in
     $('nav section.left .headerButton, nav section.right .headerButton').each ->
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: 0
         options:

@@ -34,6 +34,7 @@ window.scrapState =
   openArticle: null
   menuIsOpen: false
 
+
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
