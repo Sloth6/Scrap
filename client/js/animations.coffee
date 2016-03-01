@@ -19,6 +19,20 @@ window.simpleHover = ($elements, duration, scale) ->
       options:
         duration: duration
         easing: constants.velocity.easing.spring
+  $elements.mousedown ->
+    $(@).velocity
+      properties:
+        scale: 1
+      options:
+        duration: duration
+        easing: constants.velocity.easing.smooth
+  $elements.mouseup ->
+    $(@).velocity
+      properties:
+        scale: 1
+      options:
+        duration: duration
+        easing: constants.velocity.easing.spring
   $elements.mouseleave ->
     $(@).velocity
       properties:
