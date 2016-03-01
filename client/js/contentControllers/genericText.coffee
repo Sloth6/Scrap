@@ -10,8 +10,15 @@ contentControllers['genericText'] =
 
     $card.add($article).addClass 'editing'
     $card.addClass 'typing'
-
-    # pen.focus()
+    pen = new Pen {
+      editor: $editable[0]
+      stay: false # dont block user from reloading page
+      list: [
+        'blockquote', 'h1', 'h2', 'h3', 'p', 'insertorderedlist',
+        'insertunorderedlist', 'indent', 'outdent', 'bold', 'underline' #'italic',
+      ]
+    }
+    pen.focus()
     # $('body').on 'mousedown', defocus
 
   stopEditing: ($article) ->
@@ -43,14 +50,7 @@ contentControllers['genericText'] =
     unless $editable.length
       throw 'generticText object does not have editable'+ $article[0]
 
-    pen = new Pen {
-      editor: $editable[0]
-      stay: false # dont block user from reloading page
-      list: [
-        'blockquote', 'h1', 'h2', 'h3', 'p', 'insertorderedlist',
-        'insertunorderedlist', 'indent', 'outdent', 'bold', 'underline' #'italic',
-      ]
-    }
+
 
     stopPropagation = (event) ->
       return if Math.abs(event.deltaX) > Math.abs(event.deltaY)
