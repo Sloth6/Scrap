@@ -10,9 +10,12 @@ window.articleView =
   init: ($article) ->
     $card       = $article.find('.card')
     $firstLabel = $article.find('ul.articleCollections li.collection').first().find('a')
+    # Add random ragged edges
     $article.css
-      marginTop:  12 + Math.random() * constants.style.gutter
-      marginLeft: 12 + Math.random() * constants.style.gutter
+      marginTop:    Math.random() * constants.style.maxGutter
+      marginRight:  Math.random() * constants.style.maxGutter
+      marginBottom: Math.random() * constants.style.maxGutter
+      marginLeft:   Math.random() * constants.style.maxGutter
     $card.css
       borderWidth: .75 / constants.style.globalScale
     # Base color by first label.

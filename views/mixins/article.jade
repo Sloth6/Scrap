@@ -39,7 +39,7 @@ mixin articleMixin(article, collections)
           header
             - if (collections[0] != undefined)
               - var color = collections[0].color
-            h1.headerType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
+            h1.hugeType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
             .source.smallType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
             .description.smallType.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
           .image.parallaxLayer(data-parallaxdepth='.5')

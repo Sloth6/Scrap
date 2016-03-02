@@ -14,7 +14,7 @@ contentControllers['text'] =
   init: ($article) ->
     timeout       = null
     emitInterval  = 500
-    lengthForLong = 50
+    lengthForLong = 140
     oldHeight = $article.height()
     $article.data 'haschangedsize', false
 
