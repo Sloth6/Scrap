@@ -10,7 +10,7 @@ hideNav = ->
   $sections = $(constants.dom.nav).children()
   unless $(constants.dom.collectionsMenu).hasClass('open')
     $sections.each ->
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: -$(@).height()*1.5
         options:
@@ -22,7 +22,7 @@ retractNav = ->
   unless $(constants.dom.collectionsMenu).hasClass('open') or $(window).scrollTop() < 10
     $sections.each ->
       translateY = if $(@).hasClass('center') then -$(@).height()*1.5 / 2 else -$(@).height()*1.5
-      $(@).velocity
+      $(@).velocity('stop', true).velocity
         properties:
           translateY: translateY
         options:
@@ -31,7 +31,7 @@ retractNav = ->
 
 extendNav = ->
   $sections = $(constants.dom.nav).children('section')
-  $sections.velocity
+  $sections.velocity('stop', true).velocity
     properties:
       translateY: 0
     options:
