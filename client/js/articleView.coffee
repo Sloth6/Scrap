@@ -18,7 +18,6 @@ window.articleView =
       marginLeft:   Math.random() * constants.style.maxGutter
     $card.css
       borderWidth: 1 / constants.style.globalScale + 'px'
-    console.log 'SCALE', 1 / constants.style.globalScale
     parallaxHover $article, 500, constants.style.articleHoverScale / constants.style.globalScale
     # Base color by first label.
     if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
@@ -275,11 +274,6 @@ window.articleView =
       $detail   = $header.find('.detail')
       $image      = $article.find('.image')
       $article.find('a').css 'cursor', 'none'
-      $h1.transition
-        '-webkit-text-fill-color': 'black'
-        '-webkit-text-stroke-color': 'transparent'
-        duration: 500
-        easing: constants.style.easing
       $detail.find('.description').velocity('stop', true).velocity
         properties:
           opacity: 1
@@ -329,11 +323,6 @@ window.articleView =
       $card = $article.find('.card')
       $header = $article.find('header')
       $image = $article.find('.image')
-      $h1.transition
-        '-webkit-text-fill-color': ''
-        '-webkit-text-stroke-color': ''
-        duration: 500
-        easing: constants.style.easing
       $image.velocity('stop', true).velocity
         properties:
           marginTop: -$header.find('.description').height()
