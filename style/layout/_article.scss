@@ -215,7 +215,7 @@ body {
             .card {
                 height: auto !important;
                 width: auto !important;
-                padding: 0px;
+                padding: $cardPaddingRight;
 //                 overflow: hidden;
                 
                 img {
@@ -338,17 +338,16 @@ body {
 
         &.youtube {
 
-            .content {
+            .card {
+                width: $articleWidthVideo;
+                padding: 0px;
+                
+                img {
+                    width: 100%;
+                }
 
-                .card {
-                    max-width: $articleWidthVideo;
-                    width: -webkit-fit-content;
-                    width: fit-content;
-                    padding: 0px;
-
-                    iframe {
-                        margin: $hideImageWhiteBorder;
-                    }
+                iframe {
+                    margin: $hideImageWhiteBorder;
                 }
             }
         }
@@ -428,11 +427,6 @@ body {
 
         .card {
             position: relative;
-//             min-height: $articleMinHeight;
-
-            &.caption, &.comment {
-                // background-color: $colorCardBackgroundLight;
-            }
 
             h1.headerType {
                 margin-left: $headerLeftMarginOffset;
@@ -440,9 +434,7 @@ body {
             }
 
             img {
-//                 width: 100%;
                 margin-bottom: -$cell/3;
-//                 background-color: $colorCardBackground;
             }
         }
         

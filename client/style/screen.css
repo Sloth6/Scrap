@@ -1580,18 +1580,19 @@ body article {
   backface-visibility: hidden;
   margin-right: -2pt;
   line-height: 1.5em;
-  transform-origin: center center;
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
 }
-/* line 18, ../../style/layout/_article.scss */
+/* line 16, ../../style/layout/_article.scss */
 body article.hover {
   cursor: move;
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
 }
-/* line 24, ../../style/layout/_article.scss */
+/* line 22, ../../style/layout/_article.scss */
 body article.dragging > .content .card, body article.ui-draggable-dragging > .content .card, body article.active > .content .card, body article:active > .content .card {
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
@@ -1606,16 +1607,16 @@ body article.dragging > .content .card, body article.ui-draggable-dragging > .co
 body article.dragging > .content .card.hover, body article.ui-draggable-dragging > .content .card.hover, body article.active > .content .card.hover, body article:active > .content .card.hover {
   border-color: #000000;
 }
-/* line 29, ../../style/layout/_article.scss */
+/* line 27, ../../style/layout/_article.scss */
 body article.locked {
   opacity: .25;
   -webkit-filter: grayscale(1);
 }
-/* line 35, ../../style/layout/_article.scss */
+/* line 33, ../../style/layout/_article.scss */
 body article.resizing .card .ui-resizable-handle {
   opacity: .5;
 }
-/* line 40, ../../style/layout/_article.scss */
+/* line 38, ../../style/layout/_article.scss */
 body article ul.cardActions {
   position: absolute;
   bottom: -40pt;
@@ -1623,7 +1624,7 @@ body article ul.cardActions {
   left: 0;
   right: 0;
 }
-/* line 47, ../../style/layout/_article.scss */
+/* line 45, ../../style/layout/_article.scss */
 body article ul.cardActions li {
   position: absolute;
   top: 0;
@@ -1631,12 +1632,12 @@ body article ul.cardActions li {
   width: -webkit-fit-content;
   height: 24pt;
 }
-/* line 54, ../../style/layout/_article.scss */
+/* line 52, ../../style/layout/_article.scss */
 body article ul.cardActions li.upload {
   display: inline-block;
   overflow: hidden;
 }
-/* line 58, ../../style/layout/_article.scss */
+/* line 56, ../../style/layout/_article.scss */
 body article ul.cardActions li.upload form {
   height: 100%;
   width: 200%;
@@ -1644,7 +1645,7 @@ body article ul.cardActions li.upload form {
   left: 0;
   position: absolute;
 }
-/* line 65, ../../style/layout/_article.scss */
+/* line 63, ../../style/layout/_article.scss */
 body article ul.cardActions li.upload form input {
   height: 100%;
   width: 100%;
@@ -1654,24 +1655,24 @@ body article ul.cardActions li.upload form input {
   opacity: 0;
   cursor: pointer !important;
 }
-/* line 77, ../../style/layout/_article.scss */
+/* line 75, ../../style/layout/_article.scss */
 body article ul.cardActions li.right {
   right: 0;
 }
-/* line 81, ../../style/layout/_article.scss */
+/* line 79, ../../style/layout/_article.scss */
 body article ul.cardActions li.left {
   left: 0;
 }
-/* line 89, ../../style/layout/_article.scss */
+/* line 87, ../../style/layout/_article.scss */
 body article.text {
   font-style: normal;
   max-width: 50vh !important;
 }
-/* line 94, ../../style/layout/_article.scss */
+/* line 92, ../../style/layout/_article.scss */
 body article.text.editing:hover, body article.text.editing .card:hover {
   cursor: text;
 }
-/* line 100, ../../style/layout/_article.scss */
+/* line 98, ../../style/layout/_article.scss */
 body article.text.short .card .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 48pt;
@@ -1679,7 +1680,7 @@ body article.text.short .card .editable {
   line-height: 48pt;
   letter-spacing: -0.01563em;
 }
-/* line 106, ../../style/layout/_article.scss */
+/* line 104, ../../style/layout/_article.scss */
 body article.text.long .card .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -1687,25 +1688,25 @@ body article.text.long .card .editable {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 111, ../../style/layout/_article.scss */
+/* line 109, ../../style/layout/_article.scss */
 body article.text .card {
   width: 336pt;
   min-height: 336pt;
   max-width: 50vh !important;
 }
-/* line 117, ../../style/layout/_article.scss */
+/* line 115, ../../style/layout/_article.scss */
 body article.text * {
   outline: none;
 }
-/* line 121, ../../style/layout/_article.scss */
+/* line 119, ../../style/layout/_article.scss */
 body article.text em {
   font-style: italic;
 }
-/* line 125, ../../style/layout/_article.scss */
+/* line 123, ../../style/layout/_article.scss */
 body article.text strong {
   font-weight: 700;
 }
-/* line 129, ../../style/layout/_article.scss */
+/* line 127, ../../style/layout/_article.scss */
 body article.text .editable {
   height: 100%;
   margin-bottom: 40pt;
@@ -1791,13 +1792,13 @@ body article.text .editable {
                   }
   */
 }
-/* line 217, ../../style/layout/_article.scss */
+/* line 215, ../../style/layout/_article.scss */
 body article.image .card {
   height: auto !important;
   width: auto !important;
-  padding: 0px;
+  padding: 16pt;
 }
-/* line 223, ../../style/layout/_article.scss */
+/* line 221, ../../style/layout/_article.scss */
 body article.image .card img {
   height: auto;
   width: auto;
@@ -1807,7 +1808,7 @@ body article.image .card img {
   max-height: 448pt;
   margin: -2px -1px -4px -2px;
 }
-/* line 236, ../../style/layout/_article.scss */
+/* line 234, ../../style/layout/_article.scss */
 body article.website .card {
   background-color: white;
   border: 1px solid #000000;
@@ -1817,24 +1818,22 @@ body article.website .card {
   -webkit-transform-origin: right bottom;
   padding: 0;
   width: 336pt;
-  min-height: 224pt;
   position: relative;
 }
-/* line 243, ../../style/layout/_article.scss */
+/* line 241, ../../style/layout/_article.scss */
 body article.website .card header {
   padding: 16pt 8pt 16pt 16pt;
   position: relative;
-  z-index: 10;
 }
-/* line 250, ../../style/layout/_article.scss */
+/* line 247, ../../style/layout/_article.scss */
 body article.website .card header .detail .source {
   line-height: 24pt;
 }
-/* line 254, ../../style/layout/_article.scss */
+/* line 251, ../../style/layout/_article.scss */
 body article.website .card header .detail .description {
   opacity: 0;
 }
-/* line 260, ../../style/layout/_article.scss */
+/* line 257, ../../style/layout/_article.scss */
 body article.website .card a {
   position: absolute;
   top: 0;
@@ -1844,16 +1843,18 @@ body article.website .card a {
   display: block;
   z-index: 14;
 }
-/* line 272, ../../style/layout/_article.scss */
+/* line 268, ../../style/layout/_article.scss */
 body article.website .card .image img {
   width: 100%;
+  position: relative;
+  z-index: 10;
 }
-/* line 279, ../../style/layout/_article.scss */
+/* line 277, ../../style/layout/_article.scss */
 body article.file {
   position: relative;
   max-width: 336pt;
 }
-/* line 284, ../../style/layout/_article.scss */
+/* line 282, ../../style/layout/_article.scss */
 body article.file .fakeCard {
   background-color: white;
   border: 1px solid #000000;
@@ -1866,7 +1867,7 @@ body article.file .fakeCard {
   border-right: 0;
   position: relative;
 }
-/* line 292, ../../style/layout/_article.scss */
+/* line 290, ../../style/layout/_article.scss */
 body article.file .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1877,7 +1878,7 @@ body article.file .decorative.fold {
   background: transparent url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 302, ../../style/layout/_article.scss */
+/* line 300, ../../style/layout/_article.scss */
 body article.file .decorative.fold:after {
   content: " ";
   left: -1px;
@@ -1891,44 +1892,46 @@ body article.file .decorative.fold:after {
   border-left: 0;
   border-top: 0;
 }
-/* line 317, ../../style/layout/_article.scss */
+/* line 315, ../../style/layout/_article.scss */
 body article.file .card {
   width: 224pt;
   border: 0;
   background: transparent;
   padding: 0;
 }
-/* line 325, ../../style/layout/_article.scss */
+/* line 323, ../../style/layout/_article.scss */
 body article.file .card header h1 {
   word-wrap: break-word;
 }
-/* line 335, ../../style/layout/_article.scss */
+/* line 333, ../../style/layout/_article.scss */
 body article.soundcloud .card {
   width: 336pt;
   height: 336pt;
 }
-/* line 345, ../../style/layout/_article.scss */
-body article.youtube .content .card {
-  max-width: 1344pt;
-  width: -webkit-fit-content;
-  width: fit-content;
+/* line 341, ../../style/layout/_article.scss */
+body article.youtube .card {
+  width: 560pt;
   padding: 0px;
 }
-/* line 351, ../../style/layout/_article.scss */
-body article.youtube .content .card iframe {
+/* line 345, ../../style/layout/_article.scss */
+body article.youtube .card img {
+  width: 100%;
+}
+/* line 349, ../../style/layout/_article.scss */
+body article.youtube .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 362, ../../style/layout/_article.scss */
+/* line 359, ../../style/layout/_article.scss */
 body article.playable.playing .card header, body article.playable.playing.hover .card header {
   opacity: 0;
   display: none;
 }
-/* line 369, ../../style/layout/_article.scss */
+/* line 366, ../../style/layout/_article.scss */
 body article.playable .card {
   padding: 0;
   position: relative;
 }
-/* line 374, ../../style/layout/_article.scss */
+/* line 371, ../../style/layout/_article.scss */
 body article.playable .card:active .playButton {
   -webkit-filter: invert(1);
   -moz-transform: scale(0.95);
@@ -1936,13 +1939,13 @@ body article.playable .card:active .playButton {
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
-/* line 380, ../../style/layout/_article.scss */
+/* line 377, ../../style/layout/_article.scss */
 body article.playable .card .preview {
   position: relative;
   cursor: pointer;
   background: black;
 }
-/* line 385, ../../style/layout/_article.scss */
+/* line 382, ../../style/layout/_article.scss */
 body article.playable .card .preview img {
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -1950,7 +1953,7 @@ body article.playable .card .preview img {
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   width: 100%;
 }
-/* line 392, ../../style/layout/_article.scss */
+/* line 389, ../../style/layout/_article.scss */
 body article.playable .card header {
   border-top: 0;
   padding: 16pt 8pt 16pt 16pt;
@@ -1960,16 +1963,16 @@ body article.playable .card header {
   right: 0;
   bottom: 0;
 }
-/* line 401, ../../style/layout/_article.scss */
+/* line 398, ../../style/layout/_article.scss */
 body article.playable .card header .artist {
   margin-bottom: 4pt;
 }
-/* line 405, ../../style/layout/_article.scss */
+/* line 402, ../../style/layout/_article.scss */
 body article.playable .card header .detail {
   position: absolute;
   bottom: 32pt;
 }
-/* line 412, ../../style/layout/_article.scss */
+/* line 409, ../../style/layout/_article.scss */
 body article.playable .card .playButton {
   background: url("/images/playButton.png") no-repeat;
   background-size: cover;
@@ -1986,51 +1989,51 @@ body article.playable .card .playButton {
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 431, ../../style/layout/_article.scss */
+/* line 428, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
 }
-/* line 439, ../../style/layout/_article.scss */
+/* line 431, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 444, ../../style/layout/_article.scss */
+/* line 436, ../../style/layout/_article.scss */
 body article .card img {
   margin-bottom: -2.66667pt;
 }
-/* line 451, ../../style/layout/_article.scss */
+/* line 441, ../../style/layout/_article.scss */
 body article footer {
   position: absolute;
 }
-/* line 455, ../../style/layout/_article.scss */
+/* line 445, ../../style/layout/_article.scss */
 body article footer ul li {
   display: inline-block;
 }
-/* line 458, ../../style/layout/_article.scss */
+/* line 448, ../../style/layout/_article.scss */
 body article footer ul li.right {
   float: right;
 }
-/* line 462, ../../style/layout/_article.scss */
+/* line 452, ../../style/layout/_article.scss */
 body article footer ul li .articleDeleteButton {
   padding-bottom: 16pt;
   padding-left: 16pt;
 }
 
-/* line 473, ../../style/layout/_article.scss */
+/* line 463, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 224pt;
 }
 
-/* line 480, ../../style/layout/_article.scss */
+/* line 470, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 484, ../../style/layout/_article.scss */
+/* line 474, ../../style/layout/_article.scss */
 .addArticleForm .translate {
   position: relative;
 }
-/* line 487, ../../style/layout/_article.scss */
+/* line 477, ../../style/layout/_article.scss */
 .addArticleForm .translate .card {
   overflow: visible;
 }

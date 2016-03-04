@@ -77,7 +77,7 @@ mixin articleMixin(article, collections)
 
         when 'youtube'
           .preview.parallaxLayer(data-parallaxdepth='.5', title='Play “' + content.title + '”')
-            img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
+            img.youtubeThumbnail(src=content.image)
           header
             .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
               // .artist.smallType.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: -24}) Artist

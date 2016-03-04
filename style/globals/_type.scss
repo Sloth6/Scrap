@@ -24,25 +24,25 @@ $fontWeightExtraBold:   800;
 
 $leading:           		$cell * 2;
 
-$typeSmallSize:     		8pt;
-$typeBodySize:      		12pt;
+$typeTitleSize:    		  60pt;
 $typeXLargeSize:        48pt;
 $typeHugeSize:          36pt;
-$typeLargeSize:         18pt;
-$typeHeaderSize:    		24pt;
-$typeTitleSize:    		  60pt;
 $typeSubtitleSize:    	36pt;
+$typeHeaderSize:    		24pt;
+$typeLargeSize:         18pt;
+$typeBodySize:      		12pt;
+$typeSmallSize:     		8pt;
 $typeHeaderSmallCapsSize:
-                    		$typeHeaderSize * .666;
+                    		$typeHeaderSize * (2/3);
 
+$typeTitleLeading:      60pt;
+$typeSubtitleLeading:   36pt;
+$typeXLargeLeading:     48pt;
+$typeHugeLeading:       36pt;
+$typeLargeLeading:      24pt;
 $typeHeaderLeading:     24pt;
 $typeBodyLeading:       16pt;
 $typeSmallLeading:      12pt;
-$typeHugeLeading:       36pt;
-$typeXLargeLeading:     48pt;
-$typeLargeLeading:      24pt;
-$typeTitleLeading:      60pt;
-$typeSubtitleLeading:   36pt;
 
 $typeSmallLetterSpacing: (1em / 32);
 
