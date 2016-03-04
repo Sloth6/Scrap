@@ -98,7 +98,7 @@ body {
             
             &.short {
                 .card .editable {
-                    @include typeHuge;
+                    @include typeXLarge;
                 }
             }
             
@@ -129,7 +129,7 @@ body {
             .editable {
                 height: 100%;
                 margin-bottom: $broadMargin;
-                @include typeBody;
+                @include typeLarge;
                 
                 
 

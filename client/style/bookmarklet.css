@@ -589,7 +589,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 186, ../../style/globals/_type.scss */
+/* line 203, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -603,24 +603,24 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 191, ../../style/globals/_type.scss */
+/* line 208, ../../style/globals/_type.scss */
 .typeTitle {
-  font-size: 48pt;
+  font-size: 60pt;
   font-weight: 500;
   letter-spacing: 0.03125em;
-  line-height: 48pt;
+  line-height: 60pt;
 }
-/* line 194, ../../style/globals/_type.scss */
+/* line 211, ../../style/globals/_type.scss */
 .typeTitle.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
-  font-size: 36pt;
+  font-size: 45pt;
   font-weight: 700;
   letter-spacing: 0.0625em;
 }
 
-/* line 199, ../../style/globals/_type.scss */
+/* line 216, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -628,7 +628,7 @@ html {
   line-height: 36pt;
 }
 
-/* line 203, ../../style/globals/_type.scss */
+/* line 220, ../../style/globals/_type.scss */
 .headerType {
   font-size: 24pt;
   font-weight: 700;
@@ -636,7 +636,7 @@ html {
   line-height: 24pt;
 }
 
-/* line 207, ../../style/globals/_type.scss */
+/* line 224, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -644,7 +644,7 @@ html {
   line-height: 16pt;
   letter-spacing: 0.03125em;
 }
-/* line 210, ../../style/globals/_type.scss */
+/* line 227, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -654,25 +654,43 @@ html {
   letter-spacing: 0.125em;
 }
 
-/* line 215, ../../style/globals/_type.scss */
+/* line 232, ../../style/globals/_type.scss */
 .hugeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 40pt;
+  font-size: 36pt;
   font-weight: 400;
-  line-height: 40pt;
+  line-height: 36pt;
   letter-spacing: 0;
 }
-/* line 218, ../../style/globals/_type.scss */
+/* line 235, ../../style/globals/_type.scss */
 .hugeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
-  font-size: 26.64pt;
+  font-size: 23.976pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
 
-/* line 223, ../../style/globals/_type.scss */
+/* line 240, ../../style/globals/_type.scss */
+.XLargeType {
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 48pt;
+  font-weight: 400;
+  line-height: 48pt;
+  letter-spacing: -0.01563em;
+}
+/* line 243, ../../style/globals/_type.scss */
+.XLargeType.smallCaps {
+  font-size: .666em;
+  letter-spacing: .03125em;
+  text-transform: uppercase !important;
+  font-size: 31.968pt;
+  font-weight: 400;
+  letter-spacing: 0.0625em;
+}
+
+/* line 248, ../../style/globals/_type.scss */
 .largeType {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 18pt;
@@ -680,7 +698,7 @@ html {
   line-height: 24pt;
   letter-spacing: -0.01563em;
 }
-/* line 226, ../../style/globals/_type.scss */
+/* line 251, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -690,14 +708,14 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 231, ../../style/globals/_type.scss */
+/* line 256, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
   letter-spacing: 0.03125em;
 }
-/* line 234, ../../style/globals/_type.scss */
+/* line 259, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -707,43 +725,43 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 239, ../../style/globals/_type.scss */
+/* line 264, ../../style/globals/_type.scss */
 .typeNav {
-  font-size: 48pt;
+  font-size: 60pt;
   font-weight: 500;
   letter-spacing: 0.03125em;
-  line-height: 48pt;
+  line-height: 60pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 242, ../../style/globals/_type.scss */
+/* line 267, ../../style/globals/_type.scss */
 .typeNav.smallCaps, .typeNav .smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
   text-transform: uppercase !important;
-  font-size: 36pt;
+  font-size: 45pt;
   font-weight: 700;
   letter-spacing: 0.0625em;
 }
 
-/* line 247, ../../style/globals/_type.scss */
+/* line 272, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 251, ../../style/globals/_type.scss */
+/* line 276, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 255, ../../style/globals/_type.scss */
+/* line 280, ../../style/globals/_type.scss */
 .typeOutlineWhite {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
 
-/* line 258, ../../style/globals/_type.scss */
+/* line 284, ../../style/globals/_type.scss */
 .typeHeaderOutline {
   font-size: 24pt;
   font-weight: 700;
@@ -754,20 +772,20 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 264, ../../style/globals/_type.scss */
+/* line 289, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 269, ../../style/globals/_type.scss */
+/* line 294, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 275, ../../style/globals/_type.scss */
+/* line 300, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1656,10 +1674,10 @@ body article.text.editing:hover, body article.text.editing .card:hover {
 /* line 100, ../../style/layout/_article.scss */
 body article.text.short .card .editable {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 40pt;
+  font-size: 48pt;
   font-weight: 400;
-  line-height: 40pt;
-  letter-spacing: 0;
+  line-height: 48pt;
+  letter-spacing: -0.01563em;
 }
 /* line 106, ../../style/layout/_article.scss */
 body article.text.long .card .editable {
@@ -1692,10 +1710,10 @@ body article.text .editable {
   height: 100%;
   margin-bottom: 40pt;
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 12pt;
+  font-size: 18pt;
   font-weight: 400;
-  line-height: 16pt;
-  letter-spacing: 0.03125em;
+  line-height: 24pt;
+  letter-spacing: -0.01563em;
   /*
                   h1 {
                       @include typeLarge;
@@ -2340,10 +2358,10 @@ body {
 
 /* line 8, ../../style/bookmarklet.scss */
 h1, li a {
-  font-size: 48pt;
+  font-size: 60pt;
   font-weight: 500;
   letter-spacing: 0.03125em;
-  line-height: 48pt;
+  line-height: 60pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
   -moz-transition: -webkit-text-fill-color 1s linear;
