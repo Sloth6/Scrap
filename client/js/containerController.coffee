@@ -29,8 +29,9 @@ window.containerController =
   removeArticle: ($articles) ->
     $container = $(constants.dom.articleContainer)
     $container.
-      packery 'remove', $articles
-    $articles.remove()
+      packery('remove', $articles).
+      packery()
+
 
   addArticles: ($articles) ->
     $container = $(constants.dom.articleContainer)
