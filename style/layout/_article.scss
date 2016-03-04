@@ -238,39 +238,24 @@ body {
                 padding: 0;
                 width: $articleSide;
                 min-height: $articleSideNarrow;
-                max-height:  $articleSideWide;
                 position: relative;
-//                 background-color: $colorWashMediumLight;
                 
                 header {
                     padding: $cardPadding;
                     position: relative;
                     z-index: 10;
                     
-                    h1 {
-/*
-                        position: relative;
-                        z-index: 13;
-*/
-//                             position: absolute;
-                    }
-                    
-                    .source {
-                        line-height: $typeHeaderLeading;
-                    }
-                    
-                    .description, .source {
-/*
-                        z-index: 11;
-                        position: relative;
-*/
+                    .detail {
+                        
+                        .source {
+                            line-height: $typeHeaderLeading;
+                        }
+                        
+                        .description {
+                            opacity: 0;
+                        }
                     }
                 }
-                
-                .parallaxHidden {
-//                         display: none;
-                }
-                
                 
                 a {
                   position: absolute;
@@ -283,24 +268,9 @@ body {
                 }
                 
                 .image {
-                    position: relative;
-                    
-                    .background {
-//                         background: black;
-                        height: 100%;
-                        width: 100%;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                    }
                     
                     img {
-                        width: $articleSide;
-//                         min-height: 100%;
-//                         background-color: $colorCardBackground;
-//                         opacity: .5;
+                        width: 100%;
                     }
                 }
             }

@@ -26,10 +26,10 @@ $leading:           		$cell * 2;
 
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
-$typeHugeSize:          48pt;
+$typeHugeSize:          40pt;
 $typeLargeSize:         18pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		   48pt;
+$typeTitleSize:    		  48pt;
 $typeSubtitleSize:    	36pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
@@ -37,7 +37,7 @@ $typeHeaderSmallCapsSize:
 $typeHeaderLeading:     24pt;
 $typeBodyLeading:       16pt;
 $typeSmallLeading:      12pt;
-$typeHugeLeading:       48pt;
+$typeHugeLeading:       40pt;
 $typeLargeLeading:      24pt;
 $typeTitleLeading:      48pt;
 $typeSubtitleLeading:   36pt;
@@ -54,7 +54,6 @@ $headerLeftMarginOffset:
 }
 
 @mixin typeSubtitle {
-//     font-family:    $fontFamilySerif;
     font-size:      $typeSubtitleSize;
     font-weight:    $fontWeightBold;
     letter-spacing: -(1em / 24);
@@ -80,7 +79,7 @@ $headerLeftMarginOffset:
     font-size:      $typeBodySize;
     font-weight:    $fontWeightRegular;
     line-height:    $typeBodyLeading;
-    letter-spacing: (1em / 64);
+    letter-spacing: (1em / 32);
 }
 
 @mixin typeHuge {
@@ -123,7 +122,7 @@ $headerLeftMarginOffset:
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
     font-weight:    $fontWeightMedium;
-    letter-spacing: (1em/16);
+    letter-spacing: (1em/8);
 }
 
 @mixin typeHugeSmallCaps {

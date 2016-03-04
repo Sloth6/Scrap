@@ -28,6 +28,14 @@ window.articleView =
         right: 0
         bottom: 0
         opacity: .25
+    if $article.hasClass 'website'
+      $article.find('.image').velocity('stop', true).velocity
+        properties:
+          marginTop: -$article.find('.description').height()
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+      
 
   obscure: ($articles) ->
     $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
@@ -251,20 +259,27 @@ window.articleView =
           easing: constants.velocity.easing.smooth
           duration: 500
     else if $article.hasClass 'website'
-      cursor = '→'
-      $h1 = $article.find('h1')
-      $card = $article.find('.card')
-      $header = $article.find('header')
-      $img = $article.find('.image')
+      cursor    = '→'
+      $h1       = $article.find('h1')
+      $card     = $article.find('.card')
+      $header   = $article.find('header')
+      $detail   = $header.find('.detail')
+      $image      = $article.find('.image')
       $article.find('a').css 'cursor', 'none'
       $h1.transition
         '-webkit-text-fill-color': 'black'
         '-webkit-text-stroke-color': 'transparent'
         duration: 500
         easing: constants.style.easing
-      $img.velocity('stop', true).velocity
+      $detail.find('.description').velocity('stop', true).velocity
         properties:
-          marginTop: $header.height() + parseFloat($header.css('padding-top')) + parseFloat($header.css('padding-bottom'))
+          opacity: 1
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+      $image.velocity('stop', true).velocity
+        properties:
+          marginTop: 0
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
@@ -309,19 +324,19 @@ window.articleView =
       $h1 = $article.find('h1')
       $card = $article.find('.card')
       $header = $article.find('header')
-      $img = $article.find('.image')
+      $image = $article.find('.image')
       $h1.transition
         '-webkit-text-fill-color': ''
         '-webkit-text-stroke-color': ''
         duration: 500
         easing: constants.style.easing
-      $img.velocity('stop', true).velocity
+      $image.velocity('stop', true).velocity
         properties:
-          marginTop: 0
+          marginTop: -$header.find('.description').height()
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      $header.find('.source,.description').velocity
+      $header.find('.description').velocity
         properties:
           opacity: 0
         options:

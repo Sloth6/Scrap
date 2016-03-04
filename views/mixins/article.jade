@@ -39,11 +39,11 @@ mixin articleMixin(article, collections)
           header
             - if (collections[0] != undefined)
               - var color = collections[0].color
-            h1.hugeType.typeOutlineWhite.parallaxLayer(data-parallaxdepth='.375')!=content.title
-            .source.smallType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
-            .description.smallType.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
+            h1.hugeType.parallaxLayer(data-parallaxdepth='.375')!=content.title
+            .detail
+              .source.bodyType.smallCaps.parallaxLayer(data-parallaxdepth='.25')!=content.domain
+              .description.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
           .image.parallaxLayer(data-parallaxdepth='.5')
-            .background
             img(src=content.image)
           a(href=url, target='_blank')
           // title='Open “' + content.title + '” in a new tab')

@@ -107,6 +107,10 @@ window.articleController =
       articleView.resize($article) unless $article.hasClass('image') or $article.hasClass('website')
 
       $article.find('img').load -> articleView.resize $article
+      
+      setTimeout ->
+        articleView.resize($article) 
+      , 2000
 
       $article.find(constants.dom.articleMeta).hide()
 
@@ -151,11 +155,6 @@ window.articleController =
           position: 'absolute'
           opacity: 0
         $.Velocity.hook($article.find('.artist, .source'), 'scale', '0')
-      else if $article.hasClass 'website'
-        $article.find('header').css
-          position: 'absolute'
-          top: 0
-        $.Velocity.hook($article.find('.description, .source'), 'opacity', '0')
 
       # Bind other article events.
       $article.mouseenter ->
