@@ -45,4 +45,5 @@ contentControllers['newArticle'] =
   close: ($menu) ->
     console.log 'closing menu', $menu.length
     containerController.removeArticle $menu
+    # $menu.hide()
 
