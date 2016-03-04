@@ -66,7 +66,7 @@ window.collectionsMenuView =
     $menu.css
       overflowY: 'scroll'
     # Focus search
-    $menu.find('li.searchCollections input').focus()
+    $menu.find('li.searchCollections input').val('').focus()
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -136,12 +136,26 @@ window.collectionsMenuView =
       duration: options.duration
       easing: options.easing
     }
-    
-      
+
   searchFocus: ($input) ->
     return
-      
-  searchChange: ($input) ->
-    console.log 'change'
-    # If no matches
-    $input.siblings('label').removeClass 'invisible'
+
+  searchChange: ($menu, $input) ->
+    $labels = $menu.find('li.collection').not('.recent')
+    $recent = $menu.find('li.collection.recent')
+    $newLabelInput = $menu.find('li.newCollection')
+    search = $input.val()
+
+    if search.length == 0
+      $recent.add($newLabelInput).show()
+      $labels.show()
+    else
+      $recent.add($newLabelInput).hide()
+      $labels.each () ->
+        key = $(@).data 'collectionkey'
+        console.log key, window.collections[key]
+        name = window.collections[key].name
+        if name.indexOf(search) == -1
+          $(@).hide()
+        else
+          $(@).show()
