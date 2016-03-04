@@ -1,7 +1,7 @@
 # TODO: re-refactor and improve
 
 window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax hover class
-  $transform.velocity
+  $transform.velocity('stop', true).velocity
     properties:
       rotateX: 0
       rotateY: 0
@@ -13,28 +13,28 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
 window.simpleHover = ($elements, duration, scale) ->
   window.styleUtilities.transformOrigin $elements, 'center', 'center'
   $elements.mouseenter ->
-    $(@).velocity
+    $(@).velocity('stop', true).velocity
       properties:
         scale: scale
       options:
         duration: duration
         easing: constants.velocity.easing.spring
   $elements.mousedown ->
-    $(@).velocity
+    $(@).velocity('stop', true).velocity
       properties:
         scale: 1
       options:
         duration: duration
         easing: constants.velocity.easing.smooth
   $elements.mouseup ->
-    $(@).velocity
+    $(@).velocity('stop', true).velocity
       properties:
         scale: 1
       options:
         duration: duration
         easing: constants.velocity.easing.spring
   $elements.mouseleave ->
-    $(@).velocity
+    $(@).velocity('stop', true).velocity
       properties:
         scale: 1
       options:
@@ -63,12 +63,12 @@ window.parallaxHover = ($elements, duration, scale) ->
     $element.addClass 'parallaxHover'
 
     $element.wrapInner '<span></span>' if $element.is('a')
-    perspective = if $element.hasClass('image') then (($element.height() + $element.width()) / 2) * 8 else $element.height() * 2
+    perspective = if $element.hasClass('image') or $element.hasClass('youtube') then (($element.height() + $element.width()) / 2) * 4 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
     $transform = $element.find('.transform')
     $transform.wrap $('<div></div>').addClass('perspective')
     $perspective = $element.find('.perspective')
-    $perspective.velocity
+    $perspective.velocity('stop', true).velocity
       properties:
         perspective: perspective
       options:
@@ -99,7 +99,7 @@ window.parallaxHover = ($elements, duration, scale) ->
           translateY = 0
         $element.add($element.parents('li')).css
           zIndex: 2
-        $transform.velocity
+        $transform.velocity('stop', true).velocity
           properties:
             scale: scale
             translateX: translateX
@@ -112,7 +112,7 @@ window.parallaxHover = ($elements, duration, scale) ->
           offset =
             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-            # $(@).velocity
+            # $(@).velocity('stop', true).velocity
             #   properties:
             #     translateZ: 500 * depth #(((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
             #   options:
@@ -133,14 +133,13 @@ window.parallaxHover = ($elements, duration, scale) ->
           parallax = 72 * depth
           $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
           $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
-          # console.log progress.y
     $element.mouseleave ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         $element.data('closingHover', true)
         $transform = $element.find('.transform')
         $element.add($element.parents('li')).css
           zIndex: ''
-        $transform.velocity
+        $transform.velocity('stop', true).velocity
           properties:
             scale: 1
             rotateX: 0
@@ -148,7 +147,6 @@ window.parallaxHover = ($elements, duration, scale) ->
             translateY: 0
             translateX: 0
           options:
-            queue: false
             easing: constants.velocity.easing.smooth
             duration: duration
             complete: ->
@@ -157,15 +155,15 @@ window.parallaxHover = ($elements, duration, scale) ->
                 # $transform.remove()
                 # $element.find('.perspective').remove()
               $element.data('closingHover', false)
-
-        $layers.velocity
+        console.log 'layers!!!!!!', $layers
+        $layers.velocity('stop', true).velocity
           properties:
-#             scale: 1
+            scale: 1
             rotateX: 0
             rotateY: 0
             translateX: 0
             translateY: 0
+#             opacity: 0
           options:
             easing: constants.velocity.easing.smooth
             duration: duration
-            queue: false
