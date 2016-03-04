@@ -97,6 +97,11 @@ html.no-js(lang='en')
           li.labelsButton.openCollection.openMenuButton
             .contents
               a(href='#') Labels
+          li.searchCollections
+            .contents
+              form(id='newCollectionForm')
+                input(type="text", placeholder="Search", maxlength="32")
+                label.typeSmall.smallCaps.invisible Save this as a new label
           li.collection.recent(data-collectionkey='recent')
             .contents
               a(href='#') Everything
@@ -118,12 +123,22 @@ html.no-js(lang='en')
           include partials/settingsMenu
 
     .addCollectionMenu(style='display:none')
+      li.searchCollections
+        .contents
+          form(id='newCollectionForm')
+            input(type="text", placeholder="Search", maxlength="32")
+            label.typeSmall.smallCaps.invisible Save this as a new label
       each collection, collectionKey in collections
         if typeof(collection.name) != undefined
           - var key = collection.collectionKey
           li.collection(data-key = key)
             a(href='#', style='-webkit-text-fill-color:'+collection.color+';')!=collection.name
             .dot(style='background-color:'+collection.color+';')
+      li.newCollection
+        .contents
+          form(id='newCollectionForm')
+            input(type="text", placeholder="New label", maxlength="32")
+            label.typeSmall.smallCaps.invisible Press enter to save
 
     .wrapper
       .scale

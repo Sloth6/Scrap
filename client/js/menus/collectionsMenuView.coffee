@@ -45,6 +45,7 @@ window.collectionsMenuView =
       options:
         duration: options.duration # + ($label.index() * 60)
         easing:   options.easing
+        complete: -> $labelsButton.css 'opacity', 0
     unparallax $labelsButton.find('.transform'), options.duration, options.easing
     articleView.obscure $container.find('article')
     extendNav()
@@ -58,12 +59,14 @@ window.collectionsMenuView =
           easing:   options.easing
     # Cursor
     cursorView.start '✕'
-    cursorView.move event
     # Disable scroll
     $('body').css
       overflow: 'hidden'
+    # Enable scrolls
     $menu.css
       overflowY: 'scroll'
+    # Focus search
+    $menu.find('li.searchCollections input').focus()
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -104,12 +107,14 @@ window.collectionsMenuView =
           duration: options.duration + 250 * Math.abs delay
           easing:   options.easing
           delay:    0 # 400 * Math.abs delay
+          begin:    -> $label.css 'opacity', 1
           complete: ->
             if $label.index() is $labels.length - 1
               console.log isHome
               translateY = if isHome then 0 else -$labelsButton.height()
               $.Velocity.hook $destinationLabel.find('.contents'), 'translateY', "#{translateY}px"
               $labels.not('.openMenuButton').hide()
+              # Scroll to top
     unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()
@@ -126,4 +131,17 @@ window.collectionsMenuView =
       overflow: ''
     $menu.css
       overflowY: 'visible'
-
+    $menuItems.first().velocity('stop', true).velocity 'scroll', {
+      container: $('container')
+      duration: options.duration
+      easing: options.easing
+    }
+    
+      
+  searchFocus: ($input) ->
+    return
+      
+  searchChange: ($input) ->
+    console.log 'change'
+    # If no matches
+    $input.siblings('label').removeClass 'invisible'

@@ -13,6 +13,7 @@ $fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
     -webkit-font-feature-settings: "pnum";
     font-feature-settings: "pnum";
 }
+
 $fontWeightThin:        100;
 $fontWeightExtraLight:  200;
 $fontWeightLight:       300;
@@ -25,26 +26,20 @@ $fontWeightExtraBold:   800;
 $leading:           		$cell * 2;
 
 $typeTitleSize:    		  60pt;
-$typeXLargeSize:        48pt;
-$typeHugeSize:          36pt;
 $typeSubtitleSize:    	36pt;
-$typeHeaderSize:    		24pt;
-$typeLargeSize:         18pt;
+$typeHeaderSize:    		36pt;
+$typeXLargeSize:        48pt;
+$typeLargeSize:         24pt;
 $typeBodySize:      		12pt;
 $typeSmallSize:     		8pt;
-$typeHeaderSmallCapsSize:
-                    		$typeHeaderSize * (2/3);
 
 $typeTitleLeading:      60pt;
 $typeSubtitleLeading:   36pt;
+$typeHeaderLeading:     36pt;
 $typeXLargeLeading:     48pt;
-$typeHugeLeading:       36pt;
-$typeLargeLeading:      24pt;
-$typeHeaderLeading:     24pt;
+$typeLargeLeading:      36pt;
 $typeBodyLeading:       16pt;
 $typeSmallLeading:      12pt;
-
-$typeSmallLetterSpacing: (1em / 32);
 
 $headerLeftMarginOffset:
                     -1.667pt;
@@ -58,22 +53,15 @@ $headerLeftMarginOffset:
 @mixin typeSubtitle {
     font-size:      $typeSubtitleSize;
     font-weight:    $fontWeightBold;
-    letter-spacing: -(1em / 24);
+    letter-spacing: 1em / 32;
     line-height:    $typeSubtitleLeading;
 }
 
 @mixin typeHeader {
     font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightBold;
+    font-weight:    $fontWeightRegular;
     letter-spacing: (1em / 32);
     line-height:    $typeHeaderLeading;
-}
-
-@mixin typeHeaderOutline {
-    @include typeHeader;
-    font-weight:    $fontWeightBold;
-//     letter-spacing: -(1em / 32);
-    @include typeOutlineClear;
 }
 
 @mixin typeBody {
@@ -84,20 +72,12 @@ $headerLeftMarginOffset:
     letter-spacing: (1em / 32);
 }
 
-@mixin typeHuge {
-    font-family:    $fontFamily;
-    font-size:      $typeHugeSize;
-    font-weight:    $fontWeightRegular;
-    line-height:    $typeHugeLeading;
-    letter-spacing: 0; // -(1em / 64);
-}
-
 @mixin typeXLarge {
     font-family:    $fontFamily;
     font-size:      $typeXLargeSize;
     font-weight:    $fontWeightRegular;
     line-height:    $typeXLargeLeading;
-    letter-spacing: -(1em / 64);
+    letter-spacing: (1em / 32);
 }
 
 @mixin typeLarge {
@@ -112,7 +92,7 @@ $headerLeftMarginOffset:
     font-size:      $typeSmallSize;
     font-weight:    $fontWeightMedium;
     line-height:    $typeSmallLeading;
-    letter-spacing: $typeSmallLetterSpacing;
+    letter-spacing: (1em/32);
 }
 
 @mixin smallCaps {
@@ -133,13 +113,6 @@ $headerLeftMarginOffset:
     font-size:      $typeBodySize * .666;
     font-weight:    $fontWeightMedium;
     letter-spacing: (1em/8);
-}
-
-@mixin typeHugeSmallCaps {
-    @include        smallCaps;
-    font-size:      $typeHugeSize * .666;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: (1em/16);
 }
 
 @mixin typeXLargeSmallCaps {
@@ -219,6 +192,10 @@ html {
 
 .headerType {
     @include typeHeader;
+    
+    &.typeOutline, &.typeOutlineClear, &.typeOutlineWhite {
+        font-weight: $fontWeightMedium;
+    }
 }
 
 .bodyType, .typeBody {
@@ -226,14 +203,6 @@ html {
             
     &.smallCaps {
       @include typeBodySmallCaps;
-    }
-}
-
-.hugeType {
-    @include typeHuge;
-            
-    &.smallCaps {
-      @include typeHugeSmallCaps;
     }
 }
 
@@ -279,10 +248,6 @@ html {
 
 .typeOutlineWhite {
     @include typeOutlineWhite;
-}
-
-.typeHeaderOutline {
-    @include typeHeaderOutline;
 }
 
 .typeOutlineBlackOnHover {

@@ -18,7 +18,13 @@ window.collectionsMenuController =
       event.stopPropagation()
 
     $menu.find('li').not('.openMenuButton, .openCollection').hide()
-
+    
+    $menu.find('li.searchCollections input').focus ->
+      collectionsMenuView.searchFocus  $(@)
+    $menu.find('li.searchCollections input').change ->
+      collectionsMenuView.searchChange $(@)
+      console.log 'search input change'
+    
   add: (name, collectionKey, color) ->
     $menu = $(constants.dom.collectionsMenu)
     # Copy existing DOM, making it less fragile if dom changes.
@@ -33,7 +39,8 @@ window.collectionsMenuController =
     collectionController.init $label
     parallaxHover $label, 250, 1.25
 
-    newLabelButton = $menu.find('li.newCollection input')
-    newLabelButton.attr 'placeholder', 'New label'
-    newLabelButton.siblings('label').addClass 'invisible'
+    $newLabelButton = $menu.find('li.newCollection input')
+    $newLabelButton.attr 'placeholder', 'New label'
+    $newLabelButton.siblings('label').addClass 'invisible'
+  
 

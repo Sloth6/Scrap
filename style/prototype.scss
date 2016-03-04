@@ -111,12 +111,14 @@ nav {
                   	  
                   	  input {
         	    	    	  	@include navText;
-//   	    	  		    	  	font-weight: $fontWeightExtraBold;
         	    	    	  	border: 0;
+        	    	    	  	padding: 0;
+        	    	    	  	margin: 0;
+        	    	    	  	height: $typeTitleLeading;
+        	    	    	  	// line-height: $typeTitleLeading / .5;
         	    	    	  	text-align: center;
         	    	    	  	display: block;
         	    	    	  	width: 100%;
-        	    	    	  	background: red;
                   	  }
                   	  
                   	  label {
@@ -176,20 +178,18 @@ nav {
             z-index: 20;
             width: 100%;
             height: 100%;
-//             background: yellow;
             
             li {
                 @include transformOriginCenter;
-//                 background: teal;
                 width: 100%;
                 
-                a {
+                a, input {
                     @include typeHeader;
                     @include typeOutlineClear;
+                    font-weight: $fontWeightMedium;
                     width: -webkit-fit-content;
                     @include transformOriginCenter;
                     white-space: nowrap;
-//                     background: green;
                 }
                 
                 .dot {

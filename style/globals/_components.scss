@@ -163,37 +163,6 @@ $cardBorderRadius:          0; // $cell/4;
     -webkit-filter: invert(1);
 }
 
-/*
-a, input[type=submit], input[type=button] {
-    @include linkReset;
-    @include transition(opacity .25s $defaultCurve);
-    
-    &:hover, &:focus {
-        opacity: .5;
-    }
-    
-    &:active {
-        opacity: .25;
-    }
-    
-    &.action {
-        &:hover {
-            @include hoverLinkAnimation;
-            opacity: 1;
-        }
-    }
-    
-    &.warning {
-        
-        &:hover {
-            @include hoverWarningAnimation;
-            opacity: 1;
-        }
-    }
-
-}
-*/
-
 .invertHover {
     &:hover {
         @include invertHover;
@@ -378,7 +347,6 @@ input {
             input {
                 text-align: left;
             }
-            
         }
         
         &.open {
@@ -681,21 +649,4 @@ ul.menu {
         &:nth-of-type(20) { @include transition-duration(1.9s); }
 */
     }
-}
-
-.mask {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
-}
-
-
-textarea {
-  @include resetInput;
-  @include typeBody;   
-  width: 100%;
-  height: $baseline;
 }
