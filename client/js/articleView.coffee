@@ -29,13 +29,13 @@ window.articleView =
         bottom: 0
         opacity: .25
     if $article.hasClass 'website'
+      styleUtilities.transformOrigin $article.find('.description'), 'center', 'top'
       $article.find('.image').velocity('stop', true).velocity
         properties:
           marginTop: -$article.find('.description').height()
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      
 
   obscure: ($articles) ->
     $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
@@ -274,18 +274,13 @@ window.articleView =
       $detail.find('.description').velocity('stop', true).velocity
         properties:
           opacity: 1
+          scale: [1, .5]
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
       $image.velocity('stop', true).velocity
         properties:
           marginTop: 0
-        options:
-          duration: 500
-          easing: constants.velocity.easing.smooth
-      $header.find('.source,.description').velocity('stop', true).velocity
-        properties:
-          opacity: 1
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
@@ -336,14 +331,13 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      $header.find('.description').velocity
+      $header.find('.description').velocity('stop', true).velocity
         properties:
           opacity: 0
+          scale: [.5, 1]
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-#     $(constants.dom.articleContainer).data 'canInsertFormOnClick', true
-#     cursorView.end()
 
   mousemove: (event, $article) ->
 #     cursorView.move event

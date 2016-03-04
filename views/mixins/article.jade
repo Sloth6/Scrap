@@ -32,7 +32,7 @@ mixin articleMixin(article, collections)
       case article.contentType
 
         when 'image'
-          img.parallaxLayer(data-parallaxdepth='.25', src = content.original_url)
+          img.parallaxLayer(data-parallaxdepth='.5', src = content.original_url)
 
         when 'website'
           -var url = decodeURIComponent(content.url)
@@ -65,7 +65,7 @@ mixin articleMixin(article, collections)
             source(src = content.url)
 
         when 'soundcloud'
-          .preview.parallaxLayer(data-parallaxdepth='.25', title='Play “' + content.title + '”')
+          .preview.parallaxLayer(data-parallaxdepth='.5', title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
           header
             .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
@@ -76,7 +76,7 @@ mixin articleMixin(article, collections)
           // .playButton
 
         when 'youtube'
-          .preview.parallaxLayer(data-parallaxdepth='.25', title='Play “' + content.title + '”')
+          .preview.parallaxLayer(data-parallaxdepth='.5', title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image, style='width:480px; height: 270px')
           header
             .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})

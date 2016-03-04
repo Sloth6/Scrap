@@ -243,7 +243,6 @@ body {
                 header {
                     padding: $cardPadding;
                     position: relative;
-                    z-index: 10;
                     
                     .detail {
                         
@@ -268,9 +267,10 @@ body {
                 }
                 
                 .image {
-                    
                     img {
                         width: 100%;
+                        position: relative;
+                        z-index: 10;
                     }
                 }
             }

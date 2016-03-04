@@ -9,6 +9,8 @@ window.containerController =
       isOriginTop: false
       transitionDuration: '0.0s'
       gutter: constants.style.minGutter
+#       columnWidth: 240
+#       rowHeight: 240
 
     $container.packery 'bindResize'
 

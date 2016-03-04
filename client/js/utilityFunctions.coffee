@@ -20,13 +20,12 @@ window.logisticFunction = (x) ->
   1 / (1 + Math.pow(Math.E, -x))
   
 window.styleUtilities =
-  transformOriginCenter: ($elements) ->
+  transformOrigin: ($elements, x, y) ->
     $elements.css
-      transformOrigin:        'center center'
-      webkitTransformOrigin:  'center center'
-      mozTransformOrigin:     'center center'
-      msTransformOrigin:      'center center'
-  
+      transformOrigin:        "#{x} #{y}"
+      webkitTransformOrigin:  "#{x} #{y}"
+      mozTransformOrigin:     "#{x} #{y}"
+      msTransformOrigin:      "#{x} #{y}"
 
 validateEmail = (email) ->
   re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
