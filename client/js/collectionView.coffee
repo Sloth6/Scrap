@@ -14,6 +14,8 @@ window.collectionView =
         easing: constants.velocity.easing.spring
         duration: 250
     $($collection).hover stopProp, stopProp
+  mouseenter: ($collection) -> cursorView.end()
+  mouseleave: ($collection) -> cursorView.start '✕'
 
 window.rotateColor = ($elements, hue)->
   $elements.css
