@@ -41,10 +41,10 @@ module.exports =
           else
             done user
       done = (user) ->
-        raw = startingArticles.raw
+        raw = startingArticles.raw.reverse()
         console.log raw
         console.log 'made user', user.dataValues
-        async.each raw, ((r, cb) -> newArticle r, user,cb), (err) ->
+        async.eachSeries raw, ((r, cb) -> newArticle r, user,cb), (err) ->
           if err?
             console.log 'err is making new user content!'
           else

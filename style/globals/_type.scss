@@ -26,10 +26,11 @@ $leading:           		$cell * 2;
 
 $typeSmallSize:     		8pt;
 $typeBodySize:      		12pt;
-$typeHugeSize:          48pt;
+$typeXLargeSize:        48pt;
+$typeHugeSize:          36pt;
 $typeLargeSize:         18pt;
 $typeHeaderSize:    		24pt;
-$typeTitleSize:    		   48pt;
+$typeTitleSize:    		  60pt;
 $typeSubtitleSize:    	36pt;
 $typeHeaderSmallCapsSize:
                     		$typeHeaderSize * .666;
@@ -37,9 +38,10 @@ $typeHeaderSmallCapsSize:
 $typeHeaderLeading:     24pt;
 $typeBodyLeading:       16pt;
 $typeSmallLeading:      12pt;
-$typeHugeLeading:       48pt;
+$typeHugeLeading:       36pt;
+$typeXLargeLeading:     48pt;
 $typeLargeLeading:      24pt;
-$typeTitleLeading:      48pt;
+$typeTitleLeading:      60pt;
 $typeSubtitleLeading:   36pt;
 
 $typeSmallLetterSpacing: (1em / 32);
@@ -54,7 +56,6 @@ $headerLeftMarginOffset:
 }
 
 @mixin typeSubtitle {
-//     font-family:    $fontFamilySerif;
     font-size:      $typeSubtitleSize;
     font-weight:    $fontWeightBold;
     letter-spacing: -(1em / 24);
@@ -80,7 +81,7 @@ $headerLeftMarginOffset:
     font-size:      $typeBodySize;
     font-weight:    $fontWeightRegular;
     line-height:    $typeBodyLeading;
-    letter-spacing: (1em / 64);
+    letter-spacing: (1em / 32);
 }
 
 @mixin typeHuge {
@@ -89,6 +90,14 @@ $headerLeftMarginOffset:
     font-weight:    $fontWeightRegular;
     line-height:    $typeHugeLeading;
     letter-spacing: 0; // -(1em / 64);
+}
+
+@mixin typeXLarge {
+    font-family:    $fontFamily;
+    font-size:      $typeXLargeSize;
+    font-weight:    $fontWeightRegular;
+    line-height:    $typeXLargeLeading;
+    letter-spacing: -(1em / 64);
 }
 
 @mixin typeLarge {
@@ -123,12 +132,19 @@ $headerLeftMarginOffset:
     @include        smallCaps;
     font-size:      $typeBodySize * .666;
     font-weight:    $fontWeightMedium;
-    letter-spacing: (1em/16);
+    letter-spacing: (1em/8);
 }
 
 @mixin typeHugeSmallCaps {
     @include        smallCaps;
     font-size:      $typeHugeSize * .666;
+    font-weight:    $fontWeightRegular;
+    letter-spacing: (1em/16);
+}
+
+@mixin typeXLargeSmallCaps {
+    @include        smallCaps;
+    font-size:      $typeXLargeSize * .666;
     font-weight:    $fontWeightRegular;
     letter-spacing: (1em/16);
 }
@@ -221,6 +237,14 @@ html {
     }
 }
 
+.XLargeType {
+    @include typeXLarge;
+            
+    &.smallCaps {
+      @include typeXLargeSmallCaps;
+    }
+}
+
 .largeType {
     @include typeLarge;
             
@@ -256,10 +280,10 @@ html {
 .typeOutlineWhite {
     @include typeOutlineWhite;
 }
+
 .typeHeaderOutline {
     @include typeHeaderOutline;
 }
-
 
 .typeOutlineBlackOnHover {
     &:hover {

@@ -10,11 +10,16 @@ window.articleView =
   init: ($article) ->
     $card       = $article.find('.card')
     $firstLabel = $article.find('ul.articleCollections li.collection').first().find('a')
+    # Add random ragged edges
     $article.css
-      marginTop:  12 + Math.random() * constants.style.gutter
-      marginLeft: 12 + Math.random() * constants.style.gutter
+      marginTop:    Math.random() * constants.style.maxGutter
+      marginRight:  Math.random() * constants.style.maxGutter
+      marginBottom: Math.random() * constants.style.maxGutter
+      marginLeft:   Math.random() * constants.style.maxGutter
     $card.css
-      borderWidth: .75 / constants.style.globalScale
+      borderWidth: 1 / constants.style.globalScale + 'px'
+    console.log 'SCALE', 1 / constants.style.globalScale
+    parallaxHover $article, 500, constants.style.articleHoverScale / constants.style.globalScale
     # Base color by first label.
     if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
       $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
@@ -25,6 +30,21 @@ window.articleView =
         right: 0
         bottom: 0
         opacity: .25
+    # Init playable
+    if $article.hasClass('playable')
+      $article.find('.artist', '.source').css
+        position: 'absolute'
+        opacity: 0
+      $.Velocity.hook($article.find('.artist, .source'), 'scale', '0')
+    # Init website
+    else if $article.hasClass 'website'
+      styleUtilities.transformOrigin $article.find('.description'), 'center', 'top'
+      $article.find('.image').velocity('stop', true).velocity
+        properties:
+          marginTop: -$article.find('.description').height()
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
 
   obscure: ($articles) ->
     $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
@@ -248,26 +268,28 @@ window.articleView =
           easing: constants.velocity.easing.smooth
           duration: 500
     else if $article.hasClass 'website'
-      cursor = '→'
-      $h1 = $article.find('h1')
-      $card = $article.find('.card')
-      $header = $article.find('header')
-      $img = $article.find('.image')
+      cursor    = '→'
+      $h1       = $article.find('h1')
+      $card     = $article.find('.card')
+      $header   = $article.find('header')
+      $detail   = $header.find('.detail')
+      $image      = $article.find('.image')
       $article.find('a').css 'cursor', 'none'
       $h1.transition
         '-webkit-text-fill-color': 'black'
         '-webkit-text-stroke-color': 'transparent'
         duration: 500
         easing: constants.style.easing
-      $img.velocity('stop', true).velocity
+      $detail.find('.description').velocity('stop', true).velocity
         properties:
-          marginTop: $header.height() + parseFloat($header.css('padding-top')) + parseFloat($header.css('padding-bottom'))
+          opacity: 1
+          scale: [1, .5]
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      $header.find('.source,.description').velocity('stop', true).velocity
+      $image.velocity('stop', true).velocity
         properties:
-          opacity: 1
+          marginTop: 0
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
@@ -306,26 +328,25 @@ window.articleView =
       $h1 = $article.find('h1')
       $card = $article.find('.card')
       $header = $article.find('header')
-      $img = $article.find('.image')
+      $image = $article.find('.image')
       $h1.transition
         '-webkit-text-fill-color': ''
         '-webkit-text-stroke-color': ''
         duration: 500
         easing: constants.style.easing
-      $img.velocity('stop', true).velocity
+      $image.velocity('stop', true).velocity
         properties:
-          marginTop: 0
+          marginTop: -$header.find('.description').height()
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-      $header.find('.source,.description').velocity
+      $header.find('.description').velocity('stop', true).velocity
         properties:
           opacity: 0
+          scale: [.5, 1]
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-#     $(constants.dom.articleContainer).data 'canInsertFormOnClick', true
-#     cursorView.end()
 
   mousemove: (event, $article) ->
 #     cursorView.move event

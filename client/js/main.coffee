@@ -4,7 +4,8 @@ window.contentControllers ?= {}
 
 window.constants =
   style:
-    gutter: 24 / (1/2)
+    minGutter: 24
+    maxGutter: 72
     margin:
       articleText:
         left: 16 / .75 # convert pt to px
@@ -40,9 +41,8 @@ $ ->
   window.openCollection = 'recent'
 
   collectionsMenuController.init $(constants.dom.collectionsMenu)
-  containerController.init       $(constants.dom.articleContainer)
-
   articleController.init         $(constants.dom.articles)
+  containerController.init       $(constants.dom.articleContainer)
   collectionController.init      $(constants.dom.collections)
 
   cursorController.init          $(constants.dom.cursor)

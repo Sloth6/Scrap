@@ -11,7 +11,7 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
       easing:   easing
       
 window.simpleHover = ($elements, duration, scale) ->
-  window.styleUtilities.transformOriginCenter $elements
+  window.styleUtilities.transformOrigin $elements, 'center', 'center'
   $elements.mouseenter ->
     $(@).velocity
       properties:
