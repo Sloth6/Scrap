@@ -41,9 +41,11 @@ window.articleController =
     $article.find('ul.addCollectionMenu li a').click ->
       $menu = $article.find('ul.addCollectionMenu')
       $label = $(@).parent()
-      event.stopPropagation()
       event.preventDefault()
       articleController.addCollection $article, $label
+      
+    $article.find('ul.addCollectionMenu li input').click ->
+      event.stopPropagation()
 
   open: ($article) ->
     contentType = $article.data 'contenttype'
