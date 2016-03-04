@@ -14,19 +14,19 @@ hideNav = ->
         properties:
           translateY: -$(@).height()*1.5
         options:
-          duration: 1000
+          duration: 500
           easing: constants.velocity.easing.smooth
           
 retractNav = ->
   $sections = $(constants.dom.nav).children('section')
   unless $(constants.dom.collectionsMenu).hasClass('open') or $(window).scrollTop() < 10
     $sections.each ->
-      translateY = if $(@).hasClass('center') then -$(@).height()*1.5 / 2 else -$(@).height()*1.5
+      translateY = if $(@).hasClass('center') then -$(@).height() else -$(@).height()*1.5
       $(@).velocity('stop', true).velocity
         properties:
           translateY: translateY
         options:
-          duration: 1000
+          duration: 500
           easing: constants.velocity.easing.smooth
 
 extendNav = ->
@@ -35,7 +35,7 @@ extendNav = ->
     properties:
       translateY: 0
     options:
-      duration: 1000
+      duration: 500
       easing: constants.velocity.easing.smooth
   
 initNav = ($nav) ->
