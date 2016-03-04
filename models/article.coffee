@@ -11,7 +11,4 @@ module.exports = (sequelize, DataTypes) ->
       associate: (models) ->
         Article.belongsTo models.User, foreignKey: 'creatorId', as: 'Creator'
         Article.hasMany models.Collection
-        # Article.belongsToMany models.Collection, {
-        #   through: ['ArticleCollection']
-        # }
   }

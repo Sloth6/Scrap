@@ -18,8 +18,15 @@ module.exports =
     options =
       where: { id: userId }
       include: [
-        { model: models.Collection }
-        { model: models.Article, order: '"createdAt" ASC', include: [{ model:models.Collection, required: false }] }
+        { model: models.Collection },
+        {
+          model: models.Article,
+          order: '"createdAt" ASC',
+          include: [
+            { model:models.Collection, required: false },
+            { model:models.User, as: 'Creator'}
+          ]
+        }
       ]
     models.User.find( options ).done (err, user) ->
       return callback err, res if err?

@@ -101,9 +101,7 @@ mixin articleMixin(article, collections)
       .meta
         ul
           li.left
-            author.smallType Justo Sollicitudin
+            if article.Creator !== undefined
+              author.smallType!=article.Creator.name
           li.right
             input.articleDeleteButton.smallType(type='button', value='Delete')
-        // - if(article.Creator !== undefined)
-        //   author.smallType!=article.Creator.name
-
