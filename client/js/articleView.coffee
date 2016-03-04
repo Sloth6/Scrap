@@ -17,7 +17,9 @@ window.articleView =
       marginBottom: Math.random() * constants.style.maxGutter
       marginLeft:   Math.random() * constants.style.maxGutter
     $card.css
-      borderWidth: .75 / constants.style.globalScale
+      borderWidth: 1 / constants.style.globalScale + 'px'
+    console.log 'SCALE', 1 / constants.style.globalScale
+    parallaxHover $article, 500, constants.style.articleHoverScale / constants.style.globalScale
     # Base color by first label.
     if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
       $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
@@ -28,7 +30,14 @@ window.articleView =
         right: 0
         bottom: 0
         opacity: .25
-    if $article.hasClass 'website'
+    # Init playable
+    if $article.hasClass('playable')
+      $article.find('.artist', '.source').css
+        position: 'absolute'
+        opacity: 0
+      $.Velocity.hook($article.find('.artist, .source'), 'scale', '0')
+    # Init website
+    else if $article.hasClass 'website'
       styleUtilities.transformOrigin $article.find('.description'), 'center', 'top'
       $article.find('.image').velocity('stop', true).velocity
         properties:

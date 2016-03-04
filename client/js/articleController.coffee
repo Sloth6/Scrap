@@ -103,20 +103,14 @@ window.articleController =
 
     $articles.each () ->
       $article = $(@)
-
+      # Resize
       articleView.resize($article) unless $article.hasClass('image') or $article.hasClass('website')
-
       $article.find('img').load -> articleView.resize $article
-      
-      setTimeout ->
-        articleView.resize($article) 
-      , 2000
-
+      # Hide meta element
       $article.find(constants.dom.articleMeta).hide()
-
+      # Apply simple hover effect to labels
       $article.find('ul.articleCollections li a').each ->
         simpleHover $(@), 250, 1.25
-
       # Set up label indicators
       $article.find('ul.articleCollections li').each ->
         $a   = $(@).children('a')
@@ -127,7 +121,6 @@ window.articleController =
         $dot.data 'naturalWidth',  $dot.width()
         # parallaxHover $a, 250, 1.5
         $(@).mouseenter -> cursorView.start '☛'
-
       # Open/close collections menu
       $article.find('ul.articleCollections li.addCollection a').click ->
         $menu = $article.find('ul.addCollectionMenu')
@@ -139,23 +132,12 @@ window.articleController =
         else
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
-
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
-
       # Init delete button
       $article.find('.articleDeleteButton').mouseenter ->
         cursorView.start '🔫'
-
-      if $article.hasClass('playable')
-        $article.find('.playButton').css
-          opacity: 0
-        $article.find('.artist', '.source').css
-          position: 'absolute'
-          opacity: 0
-        $.Velocity.hook($article.find('.artist, .source'), 'scale', '0')
-
       # Bind other article events.
       $article.mouseenter ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
@@ -164,5 +146,3 @@ window.articleController =
       $article.mouseleave ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseleave event, $article
-
-    parallaxHover $articles, 500, constants.style.articleHoverScale / constants.style.globalScale
