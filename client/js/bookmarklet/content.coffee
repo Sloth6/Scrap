@@ -195,7 +195,6 @@ close = ($header, $menu, $collections) ->
 addCollection = ($collection) ->
   $collection.addClass('chosen')
   collectionKey = $collection.data 'collectionkey'
-  console.log "addCollection #{collectionKey} to #{articleId}"
   host = document.location.host
   $.post("https://tryscrap.com/addArticleCollection", { articleId, collectionKey }).
     fail(() -> console.log 'Failed to addCollection')

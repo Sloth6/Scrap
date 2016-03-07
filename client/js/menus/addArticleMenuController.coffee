@@ -43,7 +43,7 @@ contentControllers['newArticle'] =
     $input.focus()
 
   close: ($menu) ->
-    console.log 'closing menu', $menu.length
+    # console.log 'closing menu', $menu.length
     containerController.removeArticle $menu
     # $menu.hide()
 

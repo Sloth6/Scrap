@@ -34,6 +34,7 @@ window.scrapState =
 #   addingArticle: false
   openArticle: null
   collectionsMenuIsOpen: false
+  waitToOpenCollectionsMenu: false
 
 
 $ ->

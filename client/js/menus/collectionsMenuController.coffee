@@ -1,25 +1,29 @@
-liClick = (event) ->
-  if $(@).parents('li').hasClass 'openMenuButton'
+liClick = ($li, event) ->
+  if $li.hasClass 'openMenuButton'
+#     console.log 'liclick', $li.text(), $li.attr 'class'
+    scrapState.waitToOpenCollectionsMenu = true
     collectionsMenuView.open()
   event.stopPropagation()
   event.preventDefault()
 
 window.collectionsMenuController =
   init: ($menu) ->
-    $menuItems    = $menu.children()
-    $menuItems.find('a').click liClick
-    parallaxHover $menuItems.find('.contents > a'), 250, 1.25
+    $lis    = $menu.children()
+
+    parallaxHover $lis.find('.contents > a'), 250, 1.25
 
     $(constants.dom.collections).each ->
       $(@).data 'offsetTop', $(@).offset().top
+      
+    $lis.each ->
+      $lis.find('.contents > a').click => liClick $(@), event
 
     $menu.find('li.newCollection input').click (event) ->
       $(@).attr 'placeholder', ''
       $(@).siblings('label').removeClass 'invisible'
       
-    $menu.find('input, a').click ->
-      event.stopPropagation()
-    $menuItems.not('.openMenuButton, .openCollection').hide()
+    $menu.find('input, a').click -> event.stopPropagation()
+    $lis.not('.openMenuButton, .openCollection').hide()
 
     $menu.find('li.searchCollections input').focus ->
       collectionsMenuView.searchFocus  $(@)
@@ -32,8 +36,8 @@ window.collectionsMenuController =
     # Copy existing DOM, making it less fragile if dom changes.
     $label = $menu.find('.recent').clone()
     $label.data('collectionkey', collectionKey)
-    $label.find('a').
-      click(liClick).
+    $label.find('.contents > as').
+      click(=> liClick $label, event).
       text(name).
       css { color }
 

@@ -10,11 +10,14 @@ window.collectionController =
       $collection.data 'nativeHeight', Math.max($collection.find('.contents a').height(), $collection.find('.contents input').height())
       
       $collection.zIndex(2)
-      $collection.find('.contents a').click (event) ->
+      $collection.find('.contents > a').click (event) ->
         unless $collection.hasClass 'openMenuButton'
+          scrapState.waitToOpenCollectionsMenu = true
           collectionKey = $collection.data('collectionkey')
+          console.log 'switch to colleciton', $(@).attr 'class'
           containerView.switchToCollection collectionKey
           collectionsMenuView.close()
+          scrapState.waitToOpenCollectionsMenu = false
         event.stopPropagation()
         event.preventDefault()
       $collection.css

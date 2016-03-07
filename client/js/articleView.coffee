@@ -70,8 +70,8 @@ window.articleView =
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->
-    li = $article.find(constants.dom.articleMeta).find('li')
-    li.velocity('stop', true).velocity
+    $li = $article.find(constants.dom.articleMeta).find('li')
+    $li.velocity('stop', true).velocity
       properties:
         scale: [1, 0]
         translateY: [0, -12]
@@ -94,8 +94,8 @@ window.articleView =
 
   hideMeta: ($article) ->
     # Animate out article metadata
-    li = $article.find(constants.dom.articleMeta).find('li')
-    li.velocity('stop', true).velocity
+    $li = $article.find(constants.dom.articleMeta).find('li')
+    $li.velocity('stop', true).velocity
       properties:
         scale: 0
         translateY: -12
@@ -369,8 +369,8 @@ window.articleView =
     $article.mouseleave -> cursorView.start '✕'
     $article.mouseenter -> cursorView.end()
 
-    li = $article.find(constants.dom.articleMeta).find('li')
-    li.velocity('stop', true).velocity
+    $li = $article.find(constants.dom.articleMeta).find('li')
+    $li.velocity('stop', true).velocity
       properties:
         scale: 1
         translateY: 0
