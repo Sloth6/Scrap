@@ -52,6 +52,7 @@ window.collectionsMenuView =
           complete: ->
             $labelsButton.css 'opacity', 0
             scrapState.waitToOpenCollectionsMenu = false
+#             collectionController.updateHeight $collection
       unparallax $labelsButton.find('.transform'), options.duration, options.easing
       articleView.obscure $container.find('article')
       extendNav()
@@ -129,7 +130,6 @@ window.collectionsMenuView =
               translateY = if isHome then 0 else -$labelsButton.height()
               $.Velocity.hook $destinationLabel.find('.contents'), 'translateY', "#{translateY}px"
               $labels.not('.openMenuButton').hide()
-              # Scroll to top
     unparallax $menuItems.find('.transform'), options.duration, options.easing
     articleView.unobscure $container.find('article')
     extendNav()

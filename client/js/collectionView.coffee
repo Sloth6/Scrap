@@ -55,27 +55,29 @@ window.collectionView =
         duration: 500
         easing: constants.velocity.easing.smooth
         
-  hide: ($collection) ->
-    $collection.velocity('stop', true).velocity
-      properties:
-        scale: 0
-        opacity: 0
-        height: 0
-      options:
-        duration: 500
-        easing: constants.velocity.easing.smooth
-        complete: -> $collection.hide()
+  hide: ($collections) ->
+    $collections.each ->
+      $(@).velocity('stop', true).velocity
+        properties:
+          scale: 0
+          opacity: 0
+          height: 0
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+          complete: => $(@).hide()
 
-  show: ($collection) ->
-    $collection.velocity('stop', true).velocity
-      properties:
-        scale: 1
-        opacity: 1
-        height: $collection.data 'nativeHeight'
-      options:
-        duration: 500
-        easing: constants.velocity.easing.smooth
-        begin: -> $collection.show()
+  show: ($collections) ->
+    $collections.each ->
+      $(@).velocity('stop', true).velocity
+        properties:
+          scale: 1
+          opacity: 1
+          height: $(@).data 'nativeHeight'
+        options:
+          duration: 500
+          easing: constants.velocity.easing.smooth
+          begin: => $(@).show()
 
 window.rotateColor = ($elements, hue)->
   $elements.css

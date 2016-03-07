@@ -7,7 +7,7 @@ window.collectionController =
       $collection = $(@)
       
       # Store actual height
-      $collection.data 'nativeHeight', Math.max($collection.find('.contents a').height(), $collection.find('.contents input').height())
+      collectionController.updateHeight $collection
       
       $collection.zIndex(2)
       $collection.find('.contents > a').click (event) ->
@@ -39,5 +39,7 @@ window.collectionController =
         if $collection.hasClass('openMenuButton')
           unless scrapState.collectionsMenuIsOpen
             collectionView.hideSettings $collection
-        
+
+  updateHeight: ($collection) ->
+    $collection.data 'nativeHeight', Math.max($collection.find('.contents > a').height(), $collection.find('.contents > input').height())
       
