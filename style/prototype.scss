@@ -104,6 +104,7 @@ nav {
                 	    	  display: block;
                 	    	  margin: 0 auto;
               	    	  	@include navText;
+              	    	  	width: -webkit-fit-content;
 //               	    	  	font-weight: $fontWeightExtraBold;
                     	    	  		  transform-origin:  center center;
             	    	  		  -webkit-transform-origin:  center center;

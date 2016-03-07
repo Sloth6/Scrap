@@ -1749,15 +1749,19 @@ body article.website .card header {
   padding: 16pt 8pt 16pt 16pt;
   position: relative;
 }
-/* line 247, ../../style/layout/_article.scss */
+/* line 245, ../../style/layout/_article.scss */
+body article.website .card header h1 {
+  font-family: "times";
+}
+/* line 251, ../../style/layout/_article.scss */
 body article.website .card header .detail .source {
   line-height: 36pt;
 }
-/* line 251, ../../style/layout/_article.scss */
+/* line 255, ../../style/layout/_article.scss */
 body article.website .card header .detail .description {
   opacity: 0;
 }
-/* line 257, ../../style/layout/_article.scss */
+/* line 261, ../../style/layout/_article.scss */
 body article.website .card a {
   position: absolute;
   top: 0;
@@ -1767,18 +1771,18 @@ body article.website .card a {
   display: block;
   z-index: 14;
 }
-/* line 268, ../../style/layout/_article.scss */
+/* line 272, ../../style/layout/_article.scss */
 body article.website .card .image img {
   width: 100%;
   position: relative;
   z-index: 10;
 }
-/* line 277, ../../style/layout/_article.scss */
+/* line 281, ../../style/layout/_article.scss */
 body article.file {
   position: relative;
   max-width: 336pt;
 }
-/* line 282, ../../style/layout/_article.scss */
+/* line 286, ../../style/layout/_article.scss */
 body article.file .fakeCard {
   background-color: white;
   border: 1px solid #000000;
@@ -1791,7 +1795,7 @@ body article.file .fakeCard {
   border-right: 0;
   position: relative;
 }
-/* line 290, ../../style/layout/_article.scss */
+/* line 294, ../../style/layout/_article.scss */
 body article.file .decorative.fold {
   z-index: 10;
   position: absolute;
@@ -1802,7 +1806,7 @@ body article.file .decorative.fold {
   background: transparent url("/images/fileCorner.png") no-repeat top right;
   background-size: 48px 48px;
 }
-/* line 300, ../../style/layout/_article.scss */
+/* line 304, ../../style/layout/_article.scss */
 body article.file .decorative.fold:after {
   content: " ";
   left: -1px;
@@ -1816,46 +1820,46 @@ body article.file .decorative.fold:after {
   border-left: 0;
   border-top: 0;
 }
-/* line 315, ../../style/layout/_article.scss */
+/* line 319, ../../style/layout/_article.scss */
 body article.file .card {
   width: 224pt;
   border: 0;
   background: transparent;
   padding: 0;
 }
-/* line 323, ../../style/layout/_article.scss */
+/* line 327, ../../style/layout/_article.scss */
 body article.file .card header h1 {
   word-wrap: break-word;
 }
-/* line 333, ../../style/layout/_article.scss */
+/* line 337, ../../style/layout/_article.scss */
 body article.soundcloud .card {
   width: 336pt;
   height: 336pt;
 }
-/* line 341, ../../style/layout/_article.scss */
+/* line 345, ../../style/layout/_article.scss */
 body article.youtube .card {
   width: 560pt;
   padding: 0px;
 }
-/* line 345, ../../style/layout/_article.scss */
+/* line 349, ../../style/layout/_article.scss */
 body article.youtube .card img {
   width: 100%;
 }
-/* line 349, ../../style/layout/_article.scss */
+/* line 353, ../../style/layout/_article.scss */
 body article.youtube .card iframe {
   margin: -2px -1px -4px -2px;
 }
-/* line 359, ../../style/layout/_article.scss */
+/* line 363, ../../style/layout/_article.scss */
 body article.playable.playing .card header, body article.playable.playing.hover .card header {
   opacity: 0;
   display: none;
 }
-/* line 366, ../../style/layout/_article.scss */
+/* line 370, ../../style/layout/_article.scss */
 body article.playable .card {
   padding: 0;
   position: relative;
 }
-/* line 371, ../../style/layout/_article.scss */
+/* line 375, ../../style/layout/_article.scss */
 body article.playable .card:active .playButton {
   -webkit-filter: invert(1);
   -moz-transform: scale(0.95);
@@ -1863,13 +1867,13 @@ body article.playable .card:active .playButton {
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
-/* line 377, ../../style/layout/_article.scss */
+/* line 381, ../../style/layout/_article.scss */
 body article.playable .card .preview {
   position: relative;
   cursor: pointer;
   background: black;
 }
-/* line 382, ../../style/layout/_article.scss */
+/* line 386, ../../style/layout/_article.scss */
 body article.playable .card .preview img {
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -1877,7 +1881,7 @@ body article.playable .card .preview img {
   transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   width: 100%;
 }
-/* line 389, ../../style/layout/_article.scss */
+/* line 393, ../../style/layout/_article.scss */
 body article.playable .card header {
   border-top: 0;
   padding: 16pt 8pt 16pt 16pt;
@@ -1887,16 +1891,16 @@ body article.playable .card header {
   right: 0;
   bottom: 0;
 }
-/* line 398, ../../style/layout/_article.scss */
+/* line 402, ../../style/layout/_article.scss */
 body article.playable .card header .artist {
   margin-bottom: 4pt;
 }
-/* line 402, ../../style/layout/_article.scss */
+/* line 406, ../../style/layout/_article.scss */
 body article.playable .card header .detail {
   position: absolute;
   bottom: 32pt;
 }
-/* line 409, ../../style/layout/_article.scss */
+/* line 413, ../../style/layout/_article.scss */
 body article.playable .card .playButton {
   background: url("/images/playButton.png") no-repeat;
   background-size: cover;
@@ -1913,51 +1917,51 @@ body article.playable .card .playButton {
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 428, ../../style/layout/_article.scss */
+/* line 432, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
 }
-/* line 431, ../../style/layout/_article.scss */
+/* line 435, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 436, ../../style/layout/_article.scss */
+/* line 440, ../../style/layout/_article.scss */
 body article .card img {
   margin-bottom: -2.66667pt;
 }
-/* line 441, ../../style/layout/_article.scss */
+/* line 445, ../../style/layout/_article.scss */
 body article footer {
   position: absolute;
 }
-/* line 445, ../../style/layout/_article.scss */
+/* line 449, ../../style/layout/_article.scss */
 body article footer ul li {
   display: inline-block;
 }
-/* line 448, ../../style/layout/_article.scss */
+/* line 452, ../../style/layout/_article.scss */
 body article footer ul li.right {
   float: right;
 }
-/* line 452, ../../style/layout/_article.scss */
+/* line 456, ../../style/layout/_article.scss */
 body article footer ul li .articleDeleteButton {
   padding-bottom: 16pt;
   padding-left: 16pt;
 }
 
-/* line 463, ../../style/layout/_article.scss */
+/* line 467, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 224pt;
 }
 
-/* line 470, ../../style/layout/_article.scss */
+/* line 474, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 474, ../../style/layout/_article.scss */
+/* line 478, ../../style/layout/_article.scss */
 .addArticleForm .translate {
   position: relative;
 }
-/* line 477, ../../style/layout/_article.scss */
+/* line 481, ../../style/layout/_article.scss */
 .addArticleForm .translate .card {
   overflow: visible;
 }
@@ -2397,10 +2401,11 @@ nav section ul.collectionsMenu > li .contents a {
   line-height: 60pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
+  width: -webkit-fit-content;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 112, ../../style/prototype.scss */
+/* line 113, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents > form input[type='text'] {
   font-size: 60pt;
   font-weight: 500;
@@ -2417,87 +2422,87 @@ nav section ul.collectionsMenu > li .contents > form input[type='text'] {
   width: 100%;
   position: relative;
 }
-/* line 125, ../../style/prototype.scss */
+/* line 126, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings {
   padding: 10pt 0;
   left: 0;
   right: 0;
 }
-/* line 131, ../../style/prototype.scss */
+/* line 132, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users {
   display: inline-block;
 }
-/* line 134, ../../style/prototype.scss */
+/* line 135, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li {
   display: inline-block;
   white-space: nowrap;
 }
-/* line 140, ../../style/prototype.scss */
+/* line 141, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:before {
   content: " ";
 }
-/* line 144, ../../style/prototype.scss */
+/* line 145, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:after {
   content: ', ';
 }
-/* line 149, ../../style/prototype.scss */
+/* line 150, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:last-of-type:before {
   content: " and ";
 }
-/* line 153, ../../style/prototype.scss */
+/* line 154, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:last-of-type:after {
   content: '';
 }
-/* line 159, ../../style/prototype.scss */
+/* line 160, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users .add {
   display: inline-block;
 }
-/* line 162, ../../style/prototype.scss */
+/* line 163, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users .add input {
   display: inline-block;
 }
-/* line 166, ../../style/prototype.scss */
+/* line 167, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users .add label {
   display: block;
 }
-/* line 177, ../../style/prototype.scss */
+/* line 178, ../../style/prototype.scss */
 nav section .addForm .headerButton {
   position: absolute;
   top: 0;
 }
-/* line 181, ../../style/prototype.scss */
+/* line 182, ../../style/prototype.scss */
 nav section .addForm .headerButton a {
   display: block;
 }
-/* line 185, ../../style/prototype.scss */
+/* line 186, ../../style/prototype.scss */
 nav section .addForm article {
   position: absolute;
   top: 0;
 }
 
-/* line 196, ../../style/prototype.scss */
+/* line 197, ../../style/prototype.scss */
 .wrapper {
   padding: 50pt 40pt;
   position: relative;
 }
 
-/* line 202, ../../style/prototype.scss */
+/* line 203, ../../style/prototype.scss */
 .parallaxHover .perspective, .parallaxHover .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 207, ../../style/prototype.scss */
+/* line 208, ../../style/prototype.scss */
 .parallaxHover .parallaxLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 
-/* line 213, ../../style/prototype.scss */
+/* line 214, ../../style/prototype.scss */
 #articleContainer {
   width: 100%;
   margin-top: 25vh;
 }
-/* line 218, ../../style/prototype.scss */
+/* line 219, ../../style/prototype.scss */
 #articleContainer article .collections {
   position: absolute;
   top: 0;
@@ -2507,7 +2512,7 @@ nav section .addForm article {
   width: 100%;
   height: 100%;
 }
-/* line 227, ../../style/prototype.scss */
+/* line 228, ../../style/prototype.scss */
 #articleContainer article .collections li {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
@@ -2515,7 +2520,7 @@ nav section .addForm article {
   transform-origin: center center;
   width: 100%;
 }
-/* line 231, ../../style/prototype.scss */
+/* line 232, ../../style/prototype.scss */
 #articleContainer article .collections li a, #articleContainer article .collections li input {
   font-size: 36pt;
   font-weight: 400;
@@ -2531,25 +2536,25 @@ nav section .addForm article {
   transform-origin: center center;
   white-space: nowrap;
 }
-/* line 240, ../../style/prototype.scss */
+/* line 241, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 249, ../../style/prototype.scss */
+/* line 250, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 253, ../../style/prototype.scss */
+/* line 254, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 259, ../../style/prototype.scss */
+/* line 260, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 264, ../../style/prototype.scss */
+/* line 265, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
@@ -2559,20 +2564,20 @@ nav section .addForm article {
   right: 0;
   width: 336pt;
 }
-/* line 276, ../../style/prototype.scss */
+/* line 277, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 287, ../../style/prototype.scss */
+/* line 288, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 297, ../../style/prototype.scss */
+/* line 298, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }

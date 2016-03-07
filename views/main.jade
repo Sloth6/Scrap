@@ -110,7 +110,7 @@ html.no-js(lang='en')
               li.collection(data-collectionkey=key, class=key)
                 .contents
                   a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
-                  .collectionSettings.bodyType
+                  .collectionSettings.smallType
                     .sharing
                       span Shared with 
                       ul.users
@@ -120,14 +120,14 @@ html.no-js(lang='en')
                         li.user Sunny Li
                         li.user Ruth Bader-Ginsburg
                         span.add
-                          input.bodyType.smallCaps(type='button', value='Add')
-                          input(type='text', placeholder='email address')
-                          label.bodyType.smallCaps Press enter to send
+                          input.smallType.smallCaps(type='button', value='Add')
+                          input.smallType(type='text', placeholder='email address')
+                          label.smallType.smallCaps Press enter to send
                     ul
                       li
-                        input.bodyType.smallCaps(type='button', value='Rename')
+                        input.smallType.smallCaps(type='button', value='Rename')
                       li
-                        input.bodyType.smallCaps(type='button', value='Delete')
+                        input.smallType.smallCaps(type='button', value='Delete')
           li.newCollection
             .contents
               form(id='newCollectionForm')

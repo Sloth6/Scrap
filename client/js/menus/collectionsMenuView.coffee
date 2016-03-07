@@ -31,8 +31,8 @@ window.collectionsMenuView =
         properties:
           translateY: [toY, fromY]
           opacity: [1, 1]
-          scaleY: [1, 2]
-          scaleX: [1, 0]
+#           scaleY: [1, 2]
+#           scaleX: [1, 0]
           rotateZ: [0, 0]
         options:
           duration: options.duration # + ($label.index() * 60)
@@ -67,6 +67,13 @@ window.collectionsMenuView =
       overflowY: 'scroll'
     # Focus search
     $menu.find('li.searchCollections input').val('').focus()
+    
+    # Scroll to open label
+    $openLabel.velocity('stop', true).velocity 'scroll', {
+      container: $menu
+      duration: options.duration
+      easing: options.easing
+    }
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -131,8 +138,8 @@ window.collectionsMenuView =
       overflow: ''
     $menu.css
       overflowY: 'visible'
-    $menuItems.first().velocity('stop', true).velocity 'scroll', {
-      container: $('container')
+    $menuItems.eq(0).velocity('stop', true).velocity 'scroll', {
+      container: $menu
       duration: options.duration
       easing: options.easing
     }

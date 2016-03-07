@@ -242,6 +242,10 @@ body {
                     padding: $cardPadding;
                     position: relative;
                     
+                    h1 {
+                        font-family: $fontFamilySerif;
+                    }
+                    
                     .detail {
                         
                         .source {

@@ -3,7 +3,7 @@
 $fontFamily:           'Neue Haas Unica W01', -apple-system, "Helvetica Neue", sans-serif;
 //  'Univers Next W01', 'Univers Next W04'
 // $fontFamily:            -apple-system, 'Neue Haas Unica W01', "Helvetica Neue";
-$fontFamilySerif:       "Adobe Caslon Pro", papyrus, "BemboStd";
+$fontFamilySerif:       'times'; // "Adobe Caslon Pro", papyrus, "BemboStd";
 
 
 @mixin proportionalNums {
