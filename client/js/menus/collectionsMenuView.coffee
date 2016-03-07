@@ -79,6 +79,7 @@ window.collectionsMenuView =
         container: $menu
         duration: options.duration
         easing: options.easing
+        offset: -$openLabel.height()
       }
 
   close: () ->

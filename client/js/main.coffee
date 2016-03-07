@@ -28,6 +28,7 @@ window.constants =
     articles: '#articleContainer article'
     articleMeta: 'footer .meta'
     cursor: '.cursor'
+    wrapper: '.wrapper'
 
 window.scrapState =
   waitingForContent: false

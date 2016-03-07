@@ -46,6 +46,7 @@ window.containerView =
                 transitionDuration: 500
     window.openCollection = collectionKey
     $container.packery()
+    containerView.updateHeight $(constants.dom.wrapper), $container
 
   updateHeight: ($wrapper, $container) ->
     $wrapper.css

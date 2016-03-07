@@ -83,9 +83,11 @@ nav {
 //                         background-color: rgba(0, 255, 61, 0.41);
             
             > li {
-                width: 100%; //-webkit-fit-content;
+//                 width: 100%; //-webkit-fit-content;
                 margin: 0 auto;
             	  @include transformOriginCenter;
+//             	  background: blue;
+            	  padding: 0 $col;
               	  
               	  &.recent, &.labelsButton {
                 	    .contents {
@@ -99,12 +101,14 @@ nav {
                   	  position: relative;
                   	  transform-origin:  center center;
                   	  -webkit-transform-origin:  center center;
+//                   	  background: red;
 
                   	  a {
                 	    	  display: block;
                 	    	  margin: 0 auto;
               	    	  	@include navText;
               	    	  	width: -webkit-fit-content;
+//               	    	  	background: yellow;
 //               	    	  	font-weight: $fontWeightExtraBold;
                     	    	  		  transform-origin:  center center;
             	    	  		  -webkit-transform-origin:  center center;

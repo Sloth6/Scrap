@@ -2371,27 +2371,27 @@ nav section ul.collectionsMenu {
 }
 /* line 85, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li {
-  width: 100%;
   margin: 0 auto;
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
   transform-origin: center center;
+  padding: 0 56pt;
 }
-/* line 92, ../../style/prototype.scss */
+/* line 94, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li.recent .contents a, nav section ul.collectionsMenu > li.labelsButton .contents a {
   -moz-transition: -webkit-text-fill-color 1s linear;
   -o-transition: -webkit-text-fill-color 1s linear;
   -webkit-transition: -webkit-text-fill-color 1s linear;
   transition: -webkit-text-fill-color 1s linear;
 }
-/* line 98, ../../style/prototype.scss */
+/* line 100, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 103, ../../style/prototype.scss */
+/* line 106, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents a {
   display: block;
   margin: 0 auto;
@@ -2405,7 +2405,7 @@ nav section ul.collectionsMenu > li .contents a {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 113, ../../style/prototype.scss */
+/* line 117, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents > form input[type='text'] {
   font-size: 60pt;
   font-weight: 500;
@@ -2422,87 +2422,87 @@ nav section ul.collectionsMenu > li .contents > form input[type='text'] {
   width: 100%;
   position: relative;
 }
-/* line 126, ../../style/prototype.scss */
+/* line 130, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings {
   padding: 10pt 0;
   left: 0;
   right: 0;
 }
-/* line 132, ../../style/prototype.scss */
+/* line 136, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users {
   display: inline-block;
 }
-/* line 135, ../../style/prototype.scss */
+/* line 139, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li {
   display: inline-block;
   white-space: nowrap;
 }
-/* line 141, ../../style/prototype.scss */
+/* line 145, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:before {
   content: " ";
 }
-/* line 145, ../../style/prototype.scss */
+/* line 149, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:after {
   content: ', ';
 }
-/* line 150, ../../style/prototype.scss */
+/* line 154, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:last-of-type:before {
   content: " and ";
 }
-/* line 154, ../../style/prototype.scss */
+/* line 158, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users li.user:last-of-type:after {
   content: '';
 }
-/* line 160, ../../style/prototype.scss */
+/* line 164, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users .add {
   display: inline-block;
 }
-/* line 163, ../../style/prototype.scss */
+/* line 167, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users .add input {
   display: inline-block;
 }
-/* line 167, ../../style/prototype.scss */
+/* line 171, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings ul.users .add label {
   display: block;
 }
-/* line 178, ../../style/prototype.scss */
+/* line 182, ../../style/prototype.scss */
 nav section .addForm .headerButton {
   position: absolute;
   top: 0;
 }
-/* line 182, ../../style/prototype.scss */
+/* line 186, ../../style/prototype.scss */
 nav section .addForm .headerButton a {
   display: block;
 }
-/* line 186, ../../style/prototype.scss */
+/* line 190, ../../style/prototype.scss */
 nav section .addForm article {
   position: absolute;
   top: 0;
 }
 
-/* line 197, ../../style/prototype.scss */
+/* line 201, ../../style/prototype.scss */
 .wrapper {
   padding: 50pt 40pt;
   position: relative;
 }
 
-/* line 203, ../../style/prototype.scss */
+/* line 207, ../../style/prototype.scss */
 .parallaxHover .perspective, .parallaxHover .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 208, ../../style/prototype.scss */
+/* line 212, ../../style/prototype.scss */
 .parallaxHover .parallaxLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 
-/* line 214, ../../style/prototype.scss */
+/* line 218, ../../style/prototype.scss */
 #articleContainer {
   width: 100%;
   margin-top: 25vh;
 }
-/* line 219, ../../style/prototype.scss */
+/* line 223, ../../style/prototype.scss */
 #articleContainer article .collections {
   position: absolute;
   top: 0;
@@ -2512,7 +2512,7 @@ nav section .addForm article {
   width: 100%;
   height: 100%;
 }
-/* line 228, ../../style/prototype.scss */
+/* line 232, ../../style/prototype.scss */
 #articleContainer article .collections li {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
@@ -2520,7 +2520,7 @@ nav section .addForm article {
   transform-origin: center center;
   width: 100%;
 }
-/* line 232, ../../style/prototype.scss */
+/* line 236, ../../style/prototype.scss */
 #articleContainer article .collections li a, #articleContainer article .collections li input {
   font-size: 36pt;
   font-weight: 400;
@@ -2536,25 +2536,25 @@ nav section .addForm article {
   transform-origin: center center;
   white-space: nowrap;
 }
-/* line 241, ../../style/prototype.scss */
+/* line 245, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 250, ../../style/prototype.scss */
+/* line 254, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 254, ../../style/prototype.scss */
+/* line 258, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 260, ../../style/prototype.scss */
+/* line 264, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 265, ../../style/prototype.scss */
+/* line 269, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
@@ -2564,20 +2564,20 @@ nav section .addForm article {
   right: 0;
   width: 336pt;
 }
-/* line 277, ../../style/prototype.scss */
+/* line 281, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 288, ../../style/prototype.scss */
+/* line 292, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 298, ../../style/prototype.scss */
+/* line 302, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }
