@@ -17,7 +17,6 @@ html.no-js(lang='en')
     script(src="/js/menus/header.js")
     script(src="/js/menus/settings.js")
 
-
     script(src="/js/menus/collectionsMenuController.js")
 
     script(src="/js/menus/collectionsMenuView.js")
@@ -97,20 +96,38 @@ html.no-js(lang='en')
           li.labelsButton.openCollection.openMenuButton
             .contents
               a(href='#') Labels
+          li.collection.recent(data-collectionkey='recent')
+            .contents
+              a(href='#') All
           li.searchCollections
             .contents
               form(id='newCollectionForm')
                 input(type="text", placeholder="Search", maxlength="32")
                 label.typeSmall.smallCaps.invisible Save this as a new label
-          li.collection.recent(data-collectionkey='recent')
-            .contents
-              a(href='#') Everything
           each collection, collectionKey in collections
             if typeof(collection.name) != undefined
               - var key = collection.collectionKey
               li.collection(data-collectionkey=key, class=key)
                 .contents
                   a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+                  .collectionSettings.bodyType
+                    .sharing
+                      span Shared with 
+                      ul.users
+                        li.user Joel Simon
+                        li.user Antonio Ono
+                        li.user Cody Simon
+                        li.user Sunny Li
+                        li.user Ruth Bader-Ginsburg
+                        span.add
+                          input.bodyType.smallCaps(type='button', value='Add')
+                          input(type='text', placeholder='email address')
+                          label.bodyType.smallCaps Press enter to send
+                    ul
+                      li
+                        input.bodyType.smallCaps(type='button', value='Rename')
+                      li
+                        input.bodyType.smallCaps(type='button', value='Delete')
           li.newCollection
             .contents
               form(id='newCollectionForm')

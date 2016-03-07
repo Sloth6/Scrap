@@ -12,7 +12,7 @@ window.collectionsMenuView =
     options       =
       duration: 1000
       easing:   constants.velocity.easing.smooth
-    scrapState.menuIsOpen = true
+    scrapState.collectionsMenuIsOpen = true
     $menuItems.show()
     # Animate in labels
     $labels.each ->
@@ -67,6 +67,11 @@ window.collectionsMenuView =
       overflowY: 'scroll'
     # Focus search
     $menu.find('li.searchCollections input').focus()
+    
+    $labels.each ->
+      # Hide settings menu on labels not the current one
+      unless $(@).is($openLabel)
+        collectionView.hideSettings $(@)
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -81,7 +86,7 @@ window.collectionsMenuView =
     options       =
       duration: 750
       easing:   constants.velocity.easing.smooth
-    scrapState.menuIsOpen = false
+    scrapState.collectionsMenuIsOpen = false
     $button.removeClass        'openMenuButton'
     $destinationLabel.addClass 'openMenuButton'
     $menuItems.each ->
@@ -137,6 +142,9 @@ window.collectionsMenuView =
       easing: options.easing
     }
     
+    $labels.each ->
+      # Hide settings menu on labels
+      collectionView.hideSettings $(@)
       
   searchFocus: ($input) ->
     return
@@ -145,3 +153,6 @@ window.collectionsMenuView =
     console.log 'change'
     # If no matches
     $input.siblings('label').removeClass 'invisible'
+    # Fix weird baseline issue
+    $input.css
+      top: '-.5em'

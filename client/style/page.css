@@ -595,7 +595,7 @@ html {
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.0625em;
   font-variant-numeric: proportional-nums;
   -moz-font-feature-settings: "pnum";
   -ms-font-feature-settings: "pnum";
@@ -646,7 +646,7 @@ html {
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.0625em;
 }
 /* line 204, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
@@ -693,15 +693,19 @@ html {
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
-
 /* line 225, ../../style/globals/_type.scss */
+.largeType.typeOutline, .largeType.typeOutlineClear, .largeType.typeOutlineWhite {
+  font-weight: 500;
+}
+
+/* line 230, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.08333em;
 }
-/* line 228, ../../style/globals/_type.scss */
+/* line 233, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -711,7 +715,7 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 233, ../../style/globals/_type.scss */
+/* line 238, ../../style/globals/_type.scss */
 .typeNav {
   font-size: 60pt;
   font-weight: 500;
@@ -720,7 +724,7 @@ html {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 236, ../../style/globals/_type.scss */
+/* line 241, ../../style/globals/_type.scss */
 .typeNav.smallCaps, .typeNav .smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -730,37 +734,37 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 241, ../../style/globals/_type.scss */
+/* line 246, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 245, ../../style/globals/_type.scss */
+/* line 250, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 249, ../../style/globals/_type.scss */
+/* line 254, ../../style/globals/_type.scss */
 .typeOutlineWhite {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
 
-/* line 254, ../../style/globals/_type.scss */
+/* line 259, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 259, ../../style/globals/_type.scss */
+/* line 264, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 265, ../../style/globals/_type.scss */
+/* line 270, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -821,7 +825,7 @@ p + p {
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.0625em;
 }
 /* line 202, ../../style/globals/_components.scss */
 .cardActions li.right {
@@ -896,10 +900,11 @@ p + p {
 .actionButton, input.actionButton, a.actionButton {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
-  font-size: 36pt;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 24pt;
   font-weight: 400;
-  letter-spacing: 0.03125em;
   line-height: 36pt;
+  letter-spacing: -0.01563em;
   display: block;
 }
 
@@ -954,7 +959,7 @@ input {
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.0625em;
   color: #000000;
   border-bottom: 1px #000000 solid;
   max-width: 100%;
@@ -1078,7 +1083,7 @@ ul.headerMenu {
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.0625em;
   -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -2110,7 +2115,7 @@ body article footer ul li .articleDeleteButton {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.08333em;
   -moz-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -2315,7 +2320,7 @@ section.page footer {
   font-size: 8pt;
   font-weight: 500;
   line-height: 12pt;
-  letter-spacing: 0.03125em;
+  letter-spacing: 0.08333em;
   width: 100vw;
   padding-bottom: 8pt;
   text-align: center;

@@ -69,7 +69,7 @@ $headerLeftMarginOffset:
     font-size:      $typeBodySize;
     font-weight:    $fontWeightRegular;
     line-height:    $typeBodyLeading;
-    letter-spacing: (1em / 32);
+    letter-spacing: (1em / 16);
 }
 
 @mixin typeXLarge {
@@ -92,7 +92,7 @@ $headerLeftMarginOffset:
     font-size:      $typeSmallSize;
     font-weight:    $fontWeightMedium;
     line-height:    $typeSmallLeading;
-    letter-spacing: (1em/32);
+    letter-spacing: (1em/12);
 }
 
 @mixin smallCaps {
@@ -219,6 +219,11 @@ html {
             
     &.smallCaps {
       @include typeLargeSmallCaps;
+    }
+    
+    
+    &.typeOutline, &.typeOutlineClear, &.typeOutlineWhite {
+        font-weight: $fontWeightMedium;
     }
 }
 

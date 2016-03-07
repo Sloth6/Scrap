@@ -6,8 +6,9 @@ liClick = (event) ->
 
 window.collectionsMenuController =
   init: ($menu) ->
-    $menu.find('li a').click liClick
-    parallaxHover $menu.find('li a'), 250, 1.25
+    $menuItems    = $menu.children()
+    $menuItems.find('a').click liClick
+    parallaxHover $menuItems.find('.contents > a'), 250, 1.25
 
     $(constants.dom.collections).each ->
       $(@).data 'offsetTop', $(@).offset().top
@@ -15,16 +16,18 @@ window.collectionsMenuController =
     $menu.find('li.newCollection input').click (event) ->
       $(@).attr 'placeholder', ''
       $(@).siblings('label').removeClass 'invisible'
+      
+    $menu.find('input, a').click ->
       event.stopPropagation()
-
-    $menu.find('li').not('.openMenuButton, .openCollection').hide()
+    
+    $menuItems.not('.openMenuButton, .openCollection').hide()
     
     $menu.find('li.searchCollections input').focus ->
       collectionsMenuView.searchFocus  $(@)
     $menu.find('li.searchCollections input').change ->
       collectionsMenuView.searchChange $(@)
       console.log 'search input change'
-    
+          
   add: (name, collectionKey, color) ->
     $menu = $(constants.dom.collectionsMenu)
     # Copy existing DOM, making it less fragile if dom changes.
@@ -37,7 +40,7 @@ window.collectionsMenuController =
 
     $label.insertBefore $menu.children().last()
     collectionController.init $label
-    parallaxHover $label, 250, 1.25
+    parallaxHover $label.find('.contents > a'), 250, 1.25
 
     $newLabelButton = $menu.find('li.newCollection input')
     $newLabelButton.attr 'placeholder', 'New label'

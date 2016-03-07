@@ -33,7 +33,7 @@ window.scrapState =
   waitingForContent: false
 #   addingArticle: false
   openArticle: null
-  menuIsOpen: false
+  collectionsMenuIsOpen: false
 
 
 $ ->
@@ -57,7 +57,7 @@ $ ->
     # Close article if article is open
     console.log 'body click'
 
-    if scrapState.menuIsOpen
+    if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()
     else
       if scrapState.openArticle?

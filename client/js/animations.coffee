@@ -155,7 +155,7 @@ window.parallaxHover = ($elements, duration, scale) ->
                 # $transform.remove()
                 # $element.find('.perspective').remove()
               $element.data('closingHover', false)
-        console.log 'layers!!!!!!', $layers
+#         console.log 'layers!!!!!!', $layers
         $layers.velocity('stop', true).velocity
           properties:
             scale: 1

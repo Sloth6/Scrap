@@ -82,7 +82,7 @@ nav {
 //             height: 0;
 //                         background-color: rgba(0, 255, 61, 0.41);
             
-            li {
+            > li {
                 width: 100%; //-webkit-fit-content;
                 margin: 0 auto;
             	  @include transformOriginCenter;
@@ -101,7 +101,7 @@ nav {
                   	  -webkit-transform-origin:  center center;
 
                   	  a {
-                	    	  display: inline-block;
+                	    	  display: block;
                 	    	  margin: 0 auto;
               	    	  	@include navText;
 //               	    	  	font-weight: $fontWeightExtraBold;
@@ -109,7 +109,7 @@ nav {
             	    	  		  -webkit-transform-origin:  center center;
                   	  }
                   	  
-                  	  input {
+                  	  > form input[type='text'] {
         	    	    	  	@include navText;
         	    	    	  	border: 0;
         	    	    	  	padding: 0;
@@ -119,10 +119,55 @@ nav {
         	    	    	  	text-align: center;
         	    	    	  	display: block;
         	    	    	  	width: 100%;
+        	    	    	  	position: relative;
                   	  }
                   	  
-                  	  label {
-                    	    position: absolute;
+                  	  .collectionSettings {
+                    	    padding: ($typeTitleLeading / 6) 0;
+//                     	    background: yellow;
+                    	    left: 0;
+                    	    right: 0;
+                    	    
+                    	    ul.users {
+                    	        display: inline-block;
+
+                      	      li {
+                        	        display: inline-block;
+                        	        white-space: nowrap;
+                      	      }
+                      	    
+                      	      li.user {
+            	        	          &:before {
+            	          	            content: ' '
+            	        	          }
+                        	        
+                        	        &:after {
+                          	          content: ', ';
+                        	        }
+                        	        
+                        	        &:last-of-type {
+                          	          &:before {
+                            	            content: ' and '
+                          	          }
+                          	          
+                	          	        &:after {
+                	            	          content: '';
+                	          	        }
+                        	        }
+                      	      }
+                      	      
+                      	      .add {
+            	        	          display: inline-block;
+                        	        
+                        	        input {
+                          	          display: inline-block;
+                        	        }
+                        	        
+                        	        label {
+                          	          display: block;
+                        	        }
+                      	      }
+                    	    }
                   	  }
                 	}
             }

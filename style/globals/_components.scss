@@ -145,7 +145,7 @@ $cardBorderRadius:          0; // $cell/4;
 
 @mixin actionButton {
     @include typeOutlineWhite;
-    @include typeHeader;
+    @include typeLarge;
     display: block;
 }
 
