@@ -3,6 +3,12 @@ window.containerView =
     $container  = $(constants.dom.articleContainer)
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
+    
+    # Scroll to top
+    $('body').velocity('stop', true).velocity 'scroll', {
+      duration: 1000
+      easing: constants.velocity.easing.smooth
+    }
 
     # Hide unmatched articles
     $unmatched.each ->
