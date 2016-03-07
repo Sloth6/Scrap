@@ -48,7 +48,6 @@ $ ->
       $('ul.submenu li.hidden').removeClass 'hidden'
       $('li.hideOnOpenSubmenu').addClass 'hidden'
       $menu.addClass('paddingBottom')
-      console.log 'subMenuIsOpen'
   
     $menu.find($('.backButton a')).click (event) ->
       event.preventDefault()

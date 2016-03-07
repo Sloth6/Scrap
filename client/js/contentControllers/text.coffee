@@ -27,7 +27,6 @@ contentControllers['text'] =
       if $article.children('card').outerHeight() != oldHeight
         oldHeight = $article.children('.card').outerHeight()
 
-      console.log text.length
       if (text.length > lengthForLong)
         $article.addClass('long').removeClass('short')
       else

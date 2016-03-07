@@ -26,7 +26,6 @@ window.collectionsMenuController =
 
     $menu.find('li.searchCollections input').on 'input', () ->
       collectionsMenuView.searchChange $menu, $(@)
-      # console.log 'search input change'
 
   add: (name, collectionKey, color) ->
     $menu = $(constants.dom.collectionsMenu)

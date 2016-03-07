@@ -380,7 +380,6 @@ window.articleView =
         easing: constants.velocity.easing.smooth
 
   resize: ($article) ->
-    console.log 'resize'
     $article.width  $article.find('.card').outerWidth()
     $article.height $article.find('.card').outerHeight()
     $( constants.dom.articleContainer ).packery()

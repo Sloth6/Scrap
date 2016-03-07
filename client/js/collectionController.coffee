@@ -8,7 +8,6 @@ window.collectionController =
       
       # Store actual height
       $collection.data 'nativeHeight', Math.max($collection.find('.contents a').height(), $collection.find('.contents input').height())
-#       console.log 'HEIGHTHEIGHT', Math.max($collection.find('.contents a').height(), $collection.find('.contents input').height())
       
       $collection.zIndex(2)
       $collection.find('.contents a').click (event) ->

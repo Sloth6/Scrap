@@ -5,12 +5,12 @@ $ ->
   socket.on 'newArticle', (data) ->
     { html } = data
     $article = $(decodeURIComponent(html))
-    console.log "new $article", $article.attr('class')
+    # console.log "new $article", $article.attr('class')
     containerController.addArticles $article
     articleController.init $article
 
   socket.on 'newCollection', (data) ->
-    console.log 'socket.on.newCollection', data
+    # console.log 'socket.on.newCollection', data
     { name, collectionKey, color } = data
     if !(name? and collectionKey? and color?)
       throw 'Invalid parameters sent on newCollection'
@@ -27,7 +27,7 @@ $ ->
   #     $(document.body).css { width: size }
 
   socket.on 'deleteArticle', ({id}) ->
-    console.log 'deleteArticle', id
+    # console.log 'deleteArticle', id
     throw 'Invalid parameters sent on deleteArticle' unless id
     containerController.removeArticle $("##{id}")
 

@@ -19,7 +19,6 @@ window.collectionView =
     cursorView.end()
     
   mouseleave: ($collection) ->
-    console.log 'state', scrapState.collectionsMenuIsOpen, $collection.hasClass('openMenuButton')
     cursorView.start '✕'
     
   showSettings: ($collection) ->

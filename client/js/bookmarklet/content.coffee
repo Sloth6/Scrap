@@ -128,7 +128,6 @@ slideInLabels = ($header, $menu, $collections) ->
 
 removeFrame = ->
   parent.window.postMessage("removetheiframe", "*")
-  console.log 'remove'
 
 close = ($header, $menu, $collections) ->
   $chosen = $collections.filter('.chosen')

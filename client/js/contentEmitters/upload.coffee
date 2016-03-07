@@ -17,7 +17,7 @@ fileuploadOptions = () ->
         type: add_data.files[0].type
       async: false
       success: (success_data) ->
-        console.log 'a', success_data
+        # console.log 'a', success_data
         # Now that we have our data, we update the form so it contains all
         # the needed data to sign the request
         $('input[name=key]').val success_data.path

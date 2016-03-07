@@ -55,8 +55,6 @@ $ ->
 
   $('body').click (event) ->
     # Close article if article is open
-    console.log 'body click'
-
     if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()
     else

@@ -35,7 +35,6 @@ window.articleController =
       $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
       $(@).data 'translateY', labelHeights
       labelHeights += $(@).height()
-      console.log labelHeights
 
     # Click to add label
     $article.find('ul.addCollectionMenu li a').click ->
@@ -50,7 +49,6 @@ window.articleController =
   open: ($article) ->
     contentType = $article.data 'contenttype'
     return if scrapState.openArticle?
-    console.log 'Opening article', $article.attr('class')
     scrapState.openArticle = $article
     scrollController.disableScroll()
     $article.addClass 'open'
@@ -65,10 +63,8 @@ window.articleController =
 
   close: ($article) ->
     throw "No article passed to closed" unless $article?
-    console.log 'Closing article', $article.attr('class')
 
     contentType = $article.data 'contenttype'
-    console.log 'content type', contentType, '\n'
     $article.removeClass 'open'
     articleView.close $article
 
@@ -91,7 +87,6 @@ window.articleController =
         window.contentControllers[contentType].init $article
 
       $article.find('.articleDeleteButton').click (event) ->
-        console.log 'Delete button clicked'
         socket.emit 'deleteArticle', { articleId: $article.attr('id') }
         event.stopPropagation()
 
