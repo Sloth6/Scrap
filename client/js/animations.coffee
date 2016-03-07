@@ -9,7 +9,7 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
     options:
       duration: duration
       easing:   easing
-      
+
 window.simpleHover = ($elements, duration, scale) ->
   window.styleUtilities.transformOrigin $elements, 'center', 'center'
   $elements.mouseenter ->
@@ -87,7 +87,7 @@ window.parallaxHover = ($elements, duration, scale) ->
             translateX = -edgeOffset
           else
             translateX = 0
-  
+
           if ($element.offset().top  - $(window).scrollTop())  < 144
             translateY = edgeOffset
           else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
@@ -155,7 +155,7 @@ window.parallaxHover = ($elements, duration, scale) ->
                 # $transform.remove()
                 # $element.find('.perspective').remove()
               $element.data('closingHover', false)
-#         console.log 'layers!!!!!!', $layers
+              
         $layers.velocity('stop', true).velocity
           properties:
             scale: 1

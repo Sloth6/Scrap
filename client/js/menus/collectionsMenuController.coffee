@@ -19,15 +19,15 @@ window.collectionsMenuController =
       
     $menu.find('input, a').click ->
       event.stopPropagation()
-    
-    $menuItems.not('.openMenuButton, .openCollection').hide()
-    
+    $menu.find('li').not('.openMenuButton, .openCollection').hide()
+
     $menu.find('li.searchCollections input').focus ->
       collectionsMenuView.searchFocus  $(@)
-    $menu.find('li.searchCollections input').change ->
-      collectionsMenuView.searchChange $(@)
-      console.log 'search input change'
-          
+
+    $menu.find('li.searchCollections input').on 'input', () ->
+      collectionsMenuView.searchChange $menu, $(@)
+      # console.log 'search input change'
+
   add: (name, collectionKey, color) ->
     $menu = $(constants.dom.collectionsMenu)
     # Copy existing DOM, making it less fragile if dom changes.
@@ -45,5 +45,5 @@ window.collectionsMenuController =
     $newLabelButton = $menu.find('li.newCollection input')
     $newLabelButton.attr 'placeholder', 'New label'
     $newLabelButton.siblings('label').addClass 'invisible'
-  
+
 

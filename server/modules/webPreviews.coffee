@@ -36,21 +36,21 @@ imageSize = (url, callback) ->
   #   callback null, {size:{ width:0, height:0 }, url }
 
 extractImage = ($, callback) ->
-  img = $('meta[property="og:image"]').attr('content')
-  return callback(img) if img?
+  # img = $('meta[property="og:image"]').attr('content')
+  # return callback(img) if img?
+  # console.log $('img')
 
-  imgs = $('img')#.toArray()
+  imgs = $('img')
   return callback(null) unless imgs.length
-  callback imgs.first().attr('src')
+  return callback imgs.first().attr('src')
 
   # Look at only first n images.
   # n = 5
   # imgs = (img.attribs.src for img in $('img').toArray().slice(0,n))
+  # console.log imgs
   # async.map imgs, imageSize, (err, mapped) ->
-
   #   mapped.sort (a, b) ->
   #     a.size.width*a.size.height < b.size.width*b.size.height
-
   #   callback mapped[0].url
 
 extractDescription = ($) ->
@@ -67,6 +67,8 @@ module.exports = (url, callback) ->
   jar = request.jar()
 
   options =
+    headers:
+      'User-Agent': 'javascript'
     method: 'GET'
     url: url
     followAllRedirects: true
@@ -74,6 +76,7 @@ module.exports = (url, callback) ->
 
   request options, (error, response, body) ->
     if error or response.statusCode isnt 200
+      console.log 'Error requesting.', response.statusCode, error
       return callback error or response.statusCode
     $ = cheerio.load body
 
