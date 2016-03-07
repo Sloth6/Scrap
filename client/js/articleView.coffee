@@ -301,40 +301,33 @@ window.articleView =
     articleView.closeLabels($article) unless $article.hasClass('open')
     articleView.hideAddCollectionMenu $article
     if $article.hasClass('playable')
-      $('.playButton').transition
-        x: 0
-        y: 0
-        scale: 0
-        easing: constants.style.easing
-        duration: 250
-      setTimeout ->
-        $('.playButton').css
-          opacity: 0
-      , 250
-      $article.find('.artist, .source').velocity('stop', true).velocity
+      $article.find('.artist, .source').velocity
         properties:
           opacity: 0
           scale: 0
         options:
           easing: constants.velocity.easing.smooth
+          queue: false
           duration: 500
     if $article.hasClass 'website'
       $h1 = $article.find('h1')
       $card = $article.find('.card')
       $header = $article.find('header')
       $image = $article.find('.image')
-      $image.velocity('stop', true).velocity
+      $image.velocity
         properties:
           marginTop: -$header.find('.description').height()
         options:
           duration: 500
+          queue: false
           easing: constants.velocity.easing.smooth
-      $header.find('.description').velocity('stop', true).velocity
+      $header.find('.description').velocity
         properties:
           opacity: 0
           scale: [.5, 1]
         options:
           duration: 500
+          queue: false
           easing: constants.velocity.easing.smooth
 
   mousemove: (event, $article) ->

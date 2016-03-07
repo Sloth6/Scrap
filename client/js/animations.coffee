@@ -163,7 +163,6 @@ window.parallaxHover = ($elements, duration, scale) ->
             rotateY: 0
             translateX: 0
             translateY: 0
-#             opacity: 0
           options:
             easing: constants.velocity.easing.smooth
             duration: duration
