@@ -591,7 +591,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
 /* line 176, ../../style/globals/_type.scss */
 html {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -642,7 +642,7 @@ html {
 
 /* line 201, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -660,7 +660,7 @@ html {
 
 /* line 209, ../../style/globals/_type.scss */
 .XLargeType {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 48pt;
   font-weight: 400;
   line-height: 48pt;
@@ -678,7 +678,7 @@ html {
 
 /* line 217, ../../style/globals/_type.scss */
 .largeType {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 24pt;
   font-weight: 400;
   line-height: 36pt;
@@ -821,7 +821,7 @@ p + p {
   bottom: 16pt;
   left: 16pt;
   right: 16pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -900,7 +900,7 @@ p + p {
 .actionButton, input.actionButton, a.actionButton {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 24pt;
   font-weight: 400;
   line-height: 36pt;
@@ -955,7 +955,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -1079,7 +1079,7 @@ ul.headerMenu {
   background: white;
   top: -1px;
   width: 224pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 12pt;
   font-weight: 400;
   line-height: 16pt;
@@ -1598,7 +1598,7 @@ body article.text.editing:hover, body article.text.editing .card:hover {
 }
 /* line 98, ../../style/layout/_article.scss */
 body article.text.short .card .editable {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 48pt;
   font-weight: 400;
   line-height: 48pt;
@@ -1606,7 +1606,7 @@ body article.text.short .card .editable {
 }
 /* line 104, ../../style/layout/_article.scss */
 body article.text.long .card .editable {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 24pt;
   font-weight: 400;
   line-height: 36pt;
@@ -1634,7 +1634,7 @@ body article.text strong {
 body article.text .editable {
   height: 100%;
   margin-bottom: 40pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: Arial;
   font-size: 24pt;
   font-weight: 400;
   line-height: 36pt;
