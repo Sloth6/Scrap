@@ -19,7 +19,7 @@ window.collectionsMenuController =
       
     $menu.find('input, a').click ->
       event.stopPropagation()
-    $menu.find('li').not('.openMenuButton, .openCollection').hide()
+    $menuItems.not('.openMenuButton, .openCollection').hide()
 
     $menu.find('li.searchCollections input').focus ->
       collectionsMenuView.searchFocus  $(@)

@@ -40,10 +40,10 @@ $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
 
+  collectionController.init      $(constants.dom.collections)
   collectionsMenuController.init $(constants.dom.collectionsMenu)
   articleController.init         $(constants.dom.articles)
   containerController.init       $(constants.dom.articleContainer)
-  collectionController.init      $(constants.dom.collections)
 
   cursorController.init          $(constants.dom.cursor)
 

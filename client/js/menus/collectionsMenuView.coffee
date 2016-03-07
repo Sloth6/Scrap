@@ -158,15 +158,15 @@ window.collectionsMenuView =
     search = $input.val()
 
     if search.length == 0
-      $recent.add($newLabelInput).show()
-      $labels.show()
+#       .show()
+      collectionView.show $recent.add($newLabelInput)
+      collectionView.show $labels
     else
-      $recent.add($newLabelInput).hide()
+      collectionView.hide $recent.add($newLabelInput)
       $labels.each () ->
         key = $(@).data 'collectionkey'
-        console.log key, window.collections[key]
         name = window.collections[key].name
         if name.indexOf(search) == -1
-          $(@).hide()
+          collectionView.hide $(@)
         else
-          $(@).show()
+          collectionView.show $(@)
