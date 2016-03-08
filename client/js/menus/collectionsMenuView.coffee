@@ -1,4 +1,3 @@
-
 window.collectionsMenuView =
   open: () ->
     if scrapState.waitToOpenCollectionsMenu

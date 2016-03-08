@@ -4,7 +4,7 @@ window.cursorView =
     if (label isnt $cursor.text()) and $cursor.text().length # Switch symbol
       $cursor.text(label)
     else if $cursor.text().length < 1 # Cursor is empty, i.e. first start() call
-      $cursor.velocity
+      $cursor.velocity('stop', true).velocity
         properties:
           scale: [1, 0]
           opacity: [1, 0]
@@ -24,7 +24,7 @@ window.cursorView =
 
   end: ->
     $cursor = $('.cursor')
-    $cursor.velocity
+    $cursor.velocity('stop', true).velocity
       properties:
         scale: 0
         rotateZ: [0, -180]

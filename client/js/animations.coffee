@@ -40,23 +40,25 @@ window.simpleHover = ($elements, duration, scale) ->
       options:
         duration: duration
         easing: constants.velocity.easing.spring
-
+        
+getPercentageAcrossElement = ($element, pointer, scale) ->
+  # If article, compensate for global scale
+  offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
+  offsetX = $element.offset().left - $(window).scrollLeft()
+  offsetY = $element.offset().top  - $(window).scrollTop()
+  progressY = offsetGlobalScale * Math.max(0, Math.min(1, (pointer.y - offsetY) / ($element.height() * scale)))
+  progressX = offsetGlobalScale * Math.max(0, Math.min(1, (pointer.x - offsetX) / ($element.width()  * scale)))
+  { x: progressX, y: progressY }
+  
+getRotateZValues = ($element, progress) ->
+  # TODO: extra fix below
+  maxRotateY = 22
+  maxRotateX = 22
+  rotateX = maxRotateY * (progress.y - .5)
+  rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
+  { x: rotateX, y: rotateY}
+        
 window.parallaxHover = ($elements, duration, scale) ->
-  getProgressValues = ($element, scale) ->
-    # if article, compensate for global scale
-    offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
-    offsetX = $element.offset().left - $(window).scrollLeft()
-    offsetY = $element.offset().top  - $(window).scrollTop()
-    progressY = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
-    progressX = offsetGlobalScale * Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
-    { x: progressX, y: progressY }
-  getRotateValues = ($element, progress) ->
-    # TODO: extra fix below
-    maxRotateY = 22
-    maxRotateX = 22
-    rotateX = maxRotateY * (progress.y - .5)
-    rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
-    { x: rotateX, y: rotateY}
   $elements.each ->
     $element = $(@)
     $layers = $element.find('.parallaxLayer')
@@ -72,10 +74,11 @@ window.parallaxHover = ($elements, duration, scale) ->
         perspective: perspective
       options:
         duration: 1
-    $element.mouseenter (event) ->
+    $element.on 'touchstart mouseenter', (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
-        progress = getProgressValues($element, scale)
-        rotate = getRotateValues($element, progress)
+        pointer = getPointer(event)
+        progress = getPercentageAcrossElement($element, pointer, scale)
+        rotate = getRotateZValues($element, progress)
         edgeOffset = 24
         if $element.is 'article'
           # Offsets element toward middle of page if element too close to edge of page
@@ -110,17 +113,16 @@ window.parallaxHover = ($elements, duration, scale) ->
           offset =
             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
-            # $(@).velocity('stop', true).velocity
-            #   properties:
-            #     translateZ: 500 * depth #(((scale - 1) + depth) / 2) + 1 # average depth with scale of whole $element
-            #   options:
-            #     easing: constants.velocity.easing.smooth
-            #     duration: duration
-    $element.mousemove (event) ->
+    $element.on 'touchmove mousemove', (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
+        
+        event.preventDefault() # Prevent triggering of mouse events on touch
+        
+        
         $transform = $element.find('.transform')
-        progress = getProgressValues($element, scale)
-        rotate = getRotateValues($element, progress)
+        pointer = getPointer(event)
+        progress = getPercentageAcrossElement($element, pointer, scale)
+        rotate = getRotateZValues($element, progress)
         $.Velocity.hook $transform, 'rotateX', "#{rotate.x}deg"
         $.Velocity.hook $transform, 'rotateY', "#{rotate.y}deg"
         $layers.each ->
@@ -131,7 +133,7 @@ window.parallaxHover = ($elements, duration, scale) ->
           parallax = 72 * depth
           $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
           $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
-    $element.mouseleave ->
+    $element.on 'touchend or mouseleave', ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         $element.data('closingHover', true)
         $transform = $element.find('.transform')

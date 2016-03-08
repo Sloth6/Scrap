@@ -12,6 +12,10 @@
     }
 }
 
+body {
+    margin-bottom: $col;
+}
+
 .cursor {
     position: fixed;
     top: 0;

@@ -19,6 +19,18 @@ window.getRotateZ = ($element) ->
 window.logisticFunction = (x) ->
   1 / (1 + Math.pow(Math.E, -x))
   
+# Returns x/y of mouse or touch irrespective of event type  
+window.getPointer = (event) ->
+  # If event.type contains 'mouse'
+  if event.type.indexOf('mouse') >= 0
+    { x: event.clientX, y: event.clientY }
+  # If event.type contains 'touch'
+  else if event.type.indexOf('touch') >= 0
+    { x: event.originalEvent.touches[0].clientX, y: event.originalEvent.touches[0].clientY }
+  else
+    throw 'Invalid event'
+    null
+  
 window.styleUtilities =
   transformOrigin: ($elements, x, y) ->
     $elements.css
