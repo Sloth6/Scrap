@@ -7,6 +7,12 @@ window.collectionView =
     $settings.find('.sharing .add form').hide()
     # Open add user form on button click
     $settings.find('input.addSomeone').click -> collectionView.addSomeone $collection
+    # Make settings hide-able if user blurs email input
+    $settings.find('input[type=email]').blur -> 
+      $collection.data 'settingsInUse', false
+      $('body').mousemove ->
+        unless $collection.is('.hover')
+          $collection.find('.contents > a').trigger 'mouseleave'
     # Regular cursor on settings
     $settings.mousemove -> cursorView.end()
     $settings.find('.actions input[type=button]').click ->

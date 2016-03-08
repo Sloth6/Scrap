@@ -43,56 +43,41 @@ $typeSmallLeading:      12pt;
 
 $headerLeftMarginOffset:
                     -1.667pt;
+                    
+@mixin typeStyle ($size, $weight, $tracking, $leading) {
+    font-size:      $size;
+    font-weight:    $weight;
+    letter-spacing: $tracking;
+    line-height:    $leading;
+}
+
 @mixin typeTitle {
-    font-size:      $typeTitleSize;
-    font-weight:    $fontWeightMedium;
-    letter-spacing: (1em / 32);
-    line-height:    $typeTitleLeading;
+    @include typeStyle($typeTitleSize, $fontWeightMedium, (1em / 32), $typeTitleLeading);
 }
 
 @mixin typeSubtitle {
-    font-size:      $typeSubtitleSize;
-    font-weight:    $fontWeightBold;
-    letter-spacing: 1em / 32;
-    line-height:    $typeSubtitleLeading;
+    @include typeStyle($typeSubtitleSize, $fontWeightBold, (1em / 32), $typeSubtitleLeading);
 }
 
 @mixin typeHeader {
-    font-size:      $typeHeaderSize;
-    font-weight:    $fontWeightRegular;
-    letter-spacing: (1em / 32);
-    line-height:    $typeHeaderLeading;
+    @include typeStyle($typeHeaderSize, $fontWeightRegular, (1em / 32), $typeHeaderLeading);
 }
 
 @mixin typeBody {
     font-family:    $fontFamily;
-    font-size:      $typeBodySize;
-    font-weight:    $fontWeightRegular;
-    line-height:    $typeBodyLeading;
-    letter-spacing: (1em / 16);
+    @include typeStyle($typeBodySize, $fontWeightRegular, (1em / 16), $typeBodyLeading);    
 }
 
 @mixin typeXLarge {
-    font-family:    $fontFamily;
-    font-size:      $typeXLargeSize;
-    font-weight:    $fontWeightRegular;
-    line-height:    $typeXLargeLeading;
-    letter-spacing: (1em / 32);
+    @include typeStyle($typeXLargeSize, $fontWeightRegular, (1em / 32), $typeXLargeLeading);
 }
 
 @mixin typeLarge {
-    font-family:    $fontFamily;
-    font-size:      $typeLargeSize;
-    font-weight:    $fontWeightRegular;
-    line-height:    $typeLargeLeading;
-    letter-spacing: -(1em / 64);
+    @include typeStyle($typeLargeSize, $fontWeightRegular, (1em / 32), $typeLargeLeading);
 }
 
 @mixin typeSmall {
-    font-size:      $typeSmallSize;
-    font-weight:    $fontWeightMedium;
-    line-height:    $typeSmallLeading;
-    letter-spacing: (1em/12);
+    @include typeStyle($typeSmallSize, $fontWeightMedium, (1em / 12), $typeSmallLeading);
 }
 
 @mixin smallCaps {
