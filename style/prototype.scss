@@ -1,5 +1,17 @@
 @import "screen.scss";
 
+.ruler {
+    display: none;
+    
+    .col {
+        width: $col;
+    }
+    
+    .cell {
+        width: $cell;
+    }
+}
+
 .cursor {
     position: fixed;
     top: 0;

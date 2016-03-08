@@ -4,6 +4,9 @@ window.contentControllers ?= {}
 
 window.constants =
   style:
+    grid:
+      col: null
+      cell: null
     minGutter: 24
     maxGutter: 72
     margin:
@@ -79,3 +82,9 @@ $ ->
       $(@).data('hue', $(@).data('hue') + 30)
       rotateColor $(@), $(@).data('hue')
   , 1000
+
+  # Init grid (makes CSS constants accessible in JS)
+  constants.style.grid.col  = $('.ruler  .col').width()
+  constants.style.grid.cell = $('.ruler .cell').width()
+  $('.ruler').remove()
+  
