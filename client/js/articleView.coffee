@@ -11,11 +11,11 @@ window.articleView =
     $card       = $article.find('.card')
     $firstLabel = $article.find('ul.articleCollections li.collection').first().find('a')
     # Add random ragged edges
-#     $article.css
-#       marginTop:    Math.random() * constants.style.maxGutter
-#       marginRight:  Math.random() * constants.style.maxGutter
-#       marginBottom: Math.random() * constants.style.maxGutter
-#       marginLeft:   Math.random() * constants.style.maxGutter
+    $article.css
+      marginTop:    Math.random() * constants.style.maxGutter
+      marginRight:  Math.random() * constants.style.maxGutter
+      marginBottom: Math.random() * constants.style.maxGutter
+      marginLeft:   Math.random() * constants.style.maxGutter
     parallaxHover $article, 500, constants.style.articleHoverScale / constants.style.globalScale
     # Base color by first label.
     if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
