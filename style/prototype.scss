@@ -85,112 +85,126 @@ nav {
             > li {
 //                 width: 100%; //-webkit-fit-content;
                 margin: 0 auto;
-            	  @include transformOriginCenter;
-//             	  background: blue;
-            	  padding: 0 $col;
-              	  
-              	  &.recent, &.labelsButton {
-                	    .contents {
-                  	      a {
-                    	        @include transition(-webkit-text-fill-color 1s linear);
-                  	      }
-                	    }
-              	  }
+                @include transformOriginCenter;
+//                 background: blue;
+                padding: 0 $col;
+                  
+                  &.recent, &.labelsButton {
+                      .contents {
+                          a {
+                              @include transition(-webkit-text-fill-color 1s linear);
+                          }
+                      }
+                  }
         
-                	.contents {
-                  	  position: relative;
-                  	  transform-origin:  center center;
-                  	  -webkit-transform-origin:  center center;
-//                   	  background: red;
+                  .contents {
+                      position: relative;
+                      transform-origin:  center center;
+                      -webkit-transform-origin:  center center;
+//                       background: red;
 
-                  	  a {
-                	    	  display: block;
-                	    	  margin: 0 auto;
-              	    	  	@include navText;
-              	    	  	width: -webkit-fit-content;
-//               	    	  	background: yellow;
-//               	    	  	font-weight: $fontWeightExtraBold;
-                    	    	  		  transform-origin:  center center;
-            	    	  		  -webkit-transform-origin:  center center;
-                  	  }
-                  	  
-                  	  > form input[type='text'] {
-        	    	    	  	@include navText;
-        	    	    	  	border: 0;
-        	    	    	  	padding: 0;
-        	    	    	  	margin: 0;
-        	    	    	  	height: $typeTitleLeading;
-        	    	    	  	// line-height: $typeTitleLeading / .5;
-        	    	    	  	text-align: center;
-        	    	    	  	display: block;
-        	    	    	  	width: 100%;
-        	    	    	  	position: relative;
-                  	  }
-                  	  
-                  	  .collectionSettings {
-                    	    padding: ($typeTitleLeading / 6) 0;
-//                     	    background: yellow;
-                    	    left: 0;
-                    	    right: 0;
-                    	    
-                    	    .actions {
-                      	      li {
-                        	        display: inline-block;
-                      	      }
-                    	    }
-                    	    
-                    	    .sharing {
-                      	    
-                        	    ul.users {
-                        	        display: inline-block;
+                      a {
+                          display: block;
+                          margin: 0 auto;
+                          @include navText;
+                          width: -webkit-fit-content;
+//                           background: yellow;
+//                           font-weight: $fontWeightExtraBold;
+                                    transform-origin:  center center;
+                            -webkit-transform-origin:  center center;
+                      }
+                      
+                      > form input[type='text'] {
+                          @include navText;
+                          border: 0;
+                          padding: 0;
+                          margin: 0;
+                          height: $typeTitleLeading;
+                          // line-height: $typeTitleLeading / .5;
+                          text-align: center;
+                          display: block;
+                          width: 100%;
+                          position: relative;
+                      }
+                      
+                      .collectionSettings {
+                          padding: ($typeTitleLeading / 6) 0;
+//                           background: yellow;
+                          left: 0;
+                          right: 0;
+                          
+                          .actions {
+                              li {
+                                  display: inline-block;
+                                  
+                                  input[type=button] {
+                                      padding: $cell;
+                                  }
+                              }
+                          }
+                          
+                          .sharing {
+                            
+                              ul.users {
+                                  display: inline-block;
     
-                          	      li {
-                            	        display: inline-block;
-                            	        white-space: nowrap;
-                          	      }
-                          	    
-                          	      li.user {
-                            	        &:after {
-                              	          content: ',\00a0';
-                            	        }
-                            	        
-                            	        &:last-of-type {
-                              	          &:before {
-                                	            content: 'and\00a0'
-                              	          }
-                              	          
-                    	          	        &:after {
-                    	            	          content: '';
-                    	          	        }
-                            	        }
-                          	      }
-                        	    }
-                        	    
-                      	      .add {
-            	        	          display: inline-block;
-                        	        
-                        	        input {
-                          	          display: inline-block;
-                        	        }
-                        	        
-                        	        form {
-                	          	        input, label {
-                	              	        display: block;
-                	          	        }
-                	          	        
-                	          	        label {
-                  	          	          position: absolute;
-                  	          	          top: $typeSmallLeading;
-                	          	        }
-                	          	        
-                	          	        input[type=submit] {
-                	              	        display: none;
-                	          	        }
-                        	        }
-                      	      }
-                    	    }
-                  	  }
-                	}
+                                  li {
+                                      display: inline-block;
+                                      white-space: nowrap;
+                                  }
+                                
+                                  li.user {
+                                      &:after {
+                                          content: ',\00a0';
+                                      }
+                                      
+                                      &:last-of-type {
+                                          &:before {
+                                              content: 'and\00a0'
+                                          }
+                                          
+                                          &:after {
+                                              content: '';
+                                          }
+                                      }
+                                  }
+                              }
+                              
+                              .add {
+                                  position: relative;
+                                  display: inline-block;
+                                  padding-left: .5em;
+                                  
+                                  input {
+                                      display: inline-block;
+                                      
+                                      &.addSomeone {
+                                          @include transformOriginCenter;
+                                      }
+                                  }
+                                  
+                                  form {
+                                      position: absolute;
+                                      top: 0;
+                                      @include transformOriginCenter;
+                                      
+                                      input, label {
+                                          display: block;
+                                      }
+                                      
+                                      label {
+                                          position: absolute;
+                                          top: $typeSmallLeading;
+                                      }
+                                      
+                                      input[type=submit] {
+                                          display: none;
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
             }
         }            
         

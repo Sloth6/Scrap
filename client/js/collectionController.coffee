@@ -8,6 +8,9 @@ window.collectionController =
       
       collectionView.init $collection
       
+      # True if user is doing something in collection settings UI
+      $collection.data('settingsInUse', false)
+      
       # Store actual height
       collectionController.updateHeight $collection
       
@@ -38,7 +41,7 @@ window.collectionController =
       $collection.find('.contents').mouseleave ->
         # If that collection is open and the menu is not open
         if $collection.hasClass('openMenuButton')
-          unless scrapState.collectionsMenuIsOpen
+          unless scrapState.collectionsMenuIsOpen or $collection.data('settingsInUse')
             collectionView.hideSettings $collection
       
 

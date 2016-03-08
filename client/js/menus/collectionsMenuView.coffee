@@ -1,7 +1,7 @@
 
 window.collectionsMenuView =
-	open: () ->
-	  if scrapState.waitToOpenCollectionsMenu
+  open: () ->
+    if scrapState.waitToOpenCollectionsMenu
       isHome        = window.openCollection is 'recent'
       yOffsetTop    = $(window).height() + $(window).scrollTop() # Top of page to bottom of window
       $menu         = $(constants.dom.collectionsMenu)
