@@ -2,7 +2,7 @@ liClick = ($li, event) ->
   if $li.hasClass 'openMenuButton'
 #     console.log 'liclick', $li.text(), $li.attr 'class'
     scrapState.waitToOpenCollectionsMenu = true
-    collectionsMenuView.open()
+    collectionsMenuView.open(event)
   event.stopPropagation()
   event.preventDefault()
 

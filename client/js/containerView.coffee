@@ -47,6 +47,17 @@ window.containerView =
     window.openCollection = collectionKey
     $container.packery()
     containerView.updateHeight $(constants.dom.wrapper), $container
+    
+  updateScale: () ->
+    $scale = $(constants.dom.containerScale)
+    $scale.css
+      width: "#{100/constants.style.globalScale}%"
+    $scale.velocity
+      properties:
+        translateZ: 0
+        scale: constants.style.globalScale
+      options:
+        duration: 1
 
   updateHeight: ($wrapper, $container) ->
     $wrapper.css

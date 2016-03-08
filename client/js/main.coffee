@@ -7,6 +7,12 @@ window.constants =
     grid:
       col: null
       cell: null
+    sizeClasses:
+      xSmall: null
+      small: null
+      medium: null
+      large: null
+      xLarge: null
     minGutter: 24
     maxGutter: 72
     margin:
@@ -32,6 +38,8 @@ window.constants =
     articleMeta: 'footer .meta'
     cursor: '.cursor'
     wrapper: '.wrapper'
+    containerScale: '.wrapper > .scale'
+
 
 window.scrapState =
   waitingForContent: false
@@ -39,6 +47,7 @@ window.scrapState =
   openArticle: null
   collectionsMenuIsOpen: false
   waitToOpenCollectionsMenu: false
+  sizeClass: null
 
 
 $ ->
@@ -82,9 +91,37 @@ $ ->
       $(@).data('hue', $(@).data('hue') + 30)
       rotateColor $(@), $(@).data('hue')
   , 1000
-
+  
   # Init grid (makes CSS constants accessible in JS)
-  constants.style.grid.col  = $('.ruler  .col').width()
-  constants.style.grid.cell = $('.ruler .cell').width()
+  constants.style.grid.col      = $('.ruler .grid .col').width()
+  constants.style.grid.cell     = $('.ruler .grid .cell').width()
+  constants.style.sizeClasses.xSmall  = $('.ruler .break .xSmall').width()
+  constants.style.sizeClasses.small   = $('.ruler .break .small').width()
+  constants.style.sizeClasses.medium  = $('.ruler .break .medium').width()
+  constants.style.sizeClasses.large   = $('.ruler .break .large').width()
+  constants.style.sizeClasses.xLarge  = $('.ruler .break .xLarge').width()
   $('.ruler').remove()
+  
+  window.onResize = ->
+    width = $(window).width()
+    # Set current sizeClass
+    scrapState.sizeClass = switch
+      when width <= constants.style.sizeClasses.xSmall then 'xSmall' 
+      when width <= constants.style.sizeClasses.small  then 'small' 
+      when width <= constants.style.sizeClasses.medium then 'medium' 
+      when width <= constants.style.sizeClasses.large  then 'large' 
+      when width >  constants.style.sizeClasses.large  then 'xLarge'
+    constants.style.globalScale = switch
+      when scrapState.sizeClass is 'xSmall' then 1/4
+      when scrapState.sizeClass is 'small'  then 1/4
+      when scrapState.sizeClass is 'medium' then 1/3
+      when scrapState.sizeClass is 'large'  then 1/2
+      when scrapState.sizeClass is 'xLarge' then 1/2
+    containerView.updateScale()
+    articleView.updateScale $(constants.dom.articles)
+        
+  onResize()
+  
+  $(window).resize(onResize)
+  
   

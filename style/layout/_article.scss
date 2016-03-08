@@ -86,7 +86,7 @@ body {
 
         &.text {
             font-style: normal;
-            max-width: 50vh !important;
+            width: $articleSide;
 
             &.editing, &.editing .card {
                 &:hover {

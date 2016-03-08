@@ -3,12 +3,36 @@
 .ruler {
     display: none;
     
-    .col {
-        width: $col;
+    .grid {
+        .col {
+            width: $col;
+        }
+        
+        .cell {
+            width: $cell;
+        }
     }
     
-    .cell {
-        width: $cell;
+    .break {
+        .xSmall {
+            width: $breakXSmall;
+        }
+        
+        .small {
+            width: $breakSmall;
+        }
+        
+        .medium {
+            width: $breakMedium;
+        }
+        
+        .large {
+            width: $breakLarge;
+        }
+        
+        .xLarge {
+            width: $breakXLarge;
+        }
     }
 }
 

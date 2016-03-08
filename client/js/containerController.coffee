@@ -1,8 +1,7 @@
 # Only code that calls packery
 window.containerController =
   init: ($container) ->
-    $wrapper      = $('.wrapper')
-    $scale        = $wrapper.children('.scale')
+    $wrapper      = $(constants.dom.wrapper)
 
     $container.packery
       itemSelector: 'article'
@@ -19,14 +18,7 @@ window.containerController =
         cursorView.start '+', event
 
     containerView.updateHeight $wrapper, $container
-    $scale.css
-      width: "#{100/constants.style.globalScale}%"
-    $scale.velocity
-      properties:
-        translateZ: 0
-        scale: constants.style.globalScale
-      options:
-        duration: 1
+    containerView.updateScale()
 
   removeArticle: ($articles) ->
     $container = $(constants.dom.articleContainer)

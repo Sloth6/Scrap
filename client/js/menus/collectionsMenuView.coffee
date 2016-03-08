@@ -1,5 +1,5 @@
 window.collectionsMenuView =
-  open: () ->
+  open: (event) ->
     if scrapState.waitToOpenCollectionsMenu
       isHome        = window.openCollection is 'recent'
       yOffsetTop    = $(window).height() + $(window).scrollTop() # Top of page to bottom of window
@@ -69,8 +69,9 @@ window.collectionsMenuView =
       # Enable scrolls
       $menu.css
         overflowY: 'scroll'
-      # Focus search
-      $menu.find('li.searchCollections input').val('').focus()
+      # Focus search if menu opened with mouse
+      if pointerType(event) is 'mouse'
+        $menu.find('li.searchCollections input').val('').focus()
 
       # Scroll to open label
       $openLabel.velocity('stop', true).velocity 'scroll', {

@@ -91,7 +91,7 @@ window.articleController =
         event.stopPropagation()
 
     # Articles zoom on click.
-    $articles.click (event) ->
+    $articles.on 'touchend mouseup', (event) ->
       articleController.open $(@)
       event.stopPropagation()
 
@@ -136,10 +136,10 @@ window.articleController =
       $article.find('.articleDeleteButton').mouseenter (event) ->
         cursorView.start '🔫', event
       # Bind other article events.
-      $article.mouseenter ->
+      $article.on 'touchstart mouseenter', ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseenter event, $article
-      $article.mousemove  -> articleView.mousemove  event, $(@)
-      $article.mouseleave ->
+      $article.on 'touchmove mousemove', -> articleView.mousemove  event, $(@)
+      $article.on 'touchend mouseleave', ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseleave event, $article

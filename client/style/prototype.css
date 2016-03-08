@@ -74,8 +74,9 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
-/* line 14, ../../style/globals/_boilerplate.scss */
+/* line 17, ../../style/globals/_boilerplate.scss */
 html *[contentEditable=true] {
   outline: 0;
   -webkit-touch-callout: text;
@@ -86,13 +87,13 @@ html *[contentEditable=true] {
   user-select: text;
 }
 
-/* line 25, ../../style/globals/_boilerplate.scss */
+/* line 28, ../../style/globals/_boilerplate.scss */
 [placeholder]:empty:before {
   content: attr(placeholder);
   color: #555;
 }
 
-/* line 30, ../../style/globals/_boilerplate.scss */
+/* line 33, ../../style/globals/_boilerplate.scss */
 [placeholder]:empty:focus:before {
   content: "";
 }
@@ -1636,7 +1637,7 @@ body article ul.cardActions li.left {
 /* line 87, ../../style/layout/_article.scss */
 body article.text {
   font-style: normal;
-  max-width: 50vh !important;
+  width: 336pt;
 }
 /* line 92, ../../style/layout/_article.scss */
 body article.text.editing:hover, body article.text.editing .card:hover {
@@ -2349,21 +2350,41 @@ footer.main ul.actions li.action label {
 .ruler {
   display: none;
 }
-/* line 6, ../../style/prototype.scss */
-.ruler .col {
+/* line 7, ../../style/prototype.scss */
+.ruler .grid .col {
   width: 56pt;
 }
-/* line 10, ../../style/prototype.scss */
-.ruler .cell {
+/* line 11, ../../style/prototype.scss */
+.ruler .grid .cell {
   width: 8pt;
 }
+/* line 17, ../../style/prototype.scss */
+.ruler .break .xSmall {
+  width: 320px;
+}
+/* line 21, ../../style/prototype.scss */
+.ruler .break .small {
+  width: 768px;
+}
+/* line 25, ../../style/prototype.scss */
+.ruler .break .medium {
+  width: 1024px;
+}
+/* line 29, ../../style/prototype.scss */
+.ruler .break .large {
+  width: 1280px;
+}
+/* line 33, ../../style/prototype.scss */
+.ruler .break .xLarge {
+  width: 1440px;
+}
 
-/* line 15, ../../style/prototype.scss */
+/* line 39, ../../style/prototype.scss */
 body {
   margin-bottom: 56pt;
 }
 
-/* line 19, ../../style/prototype.scss */
+/* line 43, ../../style/prototype.scss */
 .cursor {
   position: fixed;
   top: 0;
@@ -2389,14 +2410,14 @@ body {
   */
 }
 @media (max-width: 1024px) {
-  /* line 19, ../../style/prototype.scss */
+  /* line 43, ../../style/prototype.scss */
   .cursor {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
 
-/* line 41, ../../style/prototype.scss */
+/* line 65, ../../style/prototype.scss */
 nav {
   top: 0;
   left: 0;
@@ -2405,40 +2426,40 @@ nav {
   z-index: 3;
   height: 40pt;
 }
-/* line 50, ../../style/prototype.scss */
+/* line 74, ../../style/prototype.scss */
 nav section {
   width: intrinsic;
   position: absolute;
   height: 100%;
   top: 0;
 }
-/* line 56, ../../style/prototype.scss */
+/* line 80, ../../style/prototype.scss */
 nav section.left, nav section.right {
   z-index: 2;
 }
-/* line 60, ../../style/prototype.scss */
+/* line 84, ../../style/prototype.scss */
 nav section.left {
   left: 0;
 }
-/* line 63, ../../style/prototype.scss */
+/* line 87, ../../style/prototype.scss */
 nav section.left .headerButton a {
   margin-left: 8pt;
 }
-/* line 68, ../../style/prototype.scss */
+/* line 92, ../../style/prototype.scss */
 nav section.right {
   right: 0;
 }
-/* line 71, ../../style/prototype.scss */
+/* line 95, ../../style/prototype.scss */
 nav section.right .headerButton a {
   margin-right: 8pt;
 }
-/* line 76, ../../style/prototype.scss */
+/* line 100, ../../style/prototype.scss */
 nav section.center {
   left: 0;
   right: 0;
   text-align: center;
 }
-/* line 83, ../../style/prototype.scss */
+/* line 107, ../../style/prototype.scss */
 nav section .headerButton a {
   font-size: 60pt;
   font-weight: 500;
@@ -2451,13 +2472,13 @@ nav section .headerButton a {
   -webkit-transform-origin: center center;
 }
 @media (max-width: 1024px) {
-  /* line 83, ../../style/prototype.scss */
+  /* line 107, ../../style/prototype.scss */
   nav section .headerButton a {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 91, ../../style/prototype.scss */
+/* line 115, ../../style/prototype.scss */
 nav section ul.collectionsMenu {
   width: -webkit-fit-content;
   margin: 0 auto;
@@ -2465,7 +2486,7 @@ nav section ul.collectionsMenu {
   min-width: 50vw;
   overflow-y: visible;
 }
-/* line 101, ../../style/prototype.scss */
+/* line 125, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li {
   margin: 0 auto;
   -webkit-transform-origin: center center;
@@ -2474,20 +2495,20 @@ nav section ul.collectionsMenu > li {
   transform-origin: center center;
   padding: 0 56pt;
 }
-/* line 110, ../../style/prototype.scss */
+/* line 134, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li.recent .contents a, nav section ul.collectionsMenu > li.labelsButton .contents a {
   -moz-transition: -webkit-text-fill-color 1s linear;
   -o-transition: -webkit-text-fill-color 1s linear;
   -webkit-transition: -webkit-text-fill-color 1s linear;
   transition: -webkit-text-fill-color 1s linear;
 }
-/* line 116, ../../style/prototype.scss */
+/* line 140, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents {
   position: relative;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 122, ../../style/prototype.scss */
+/* line 146, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents a {
   display: block;
   margin: 0 auto;
@@ -2502,13 +2523,13 @@ nav section ul.collectionsMenu > li .contents a {
   -webkit-transform-origin: center center;
 }
 @media (max-width: 1024px) {
-  /* line 122, ../../style/prototype.scss */
+  /* line 146, ../../style/prototype.scss */
   nav section ul.collectionsMenu > li .contents a {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 133, ../../style/prototype.scss */
+/* line 157, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents > form input[type='text'] {
   font-size: 60pt;
   font-weight: 500;
@@ -2526,65 +2547,65 @@ nav section ul.collectionsMenu > li .contents > form input[type='text'] {
   position: relative;
 }
 @media (max-width: 1024px) {
-  /* line 133, ../../style/prototype.scss */
+  /* line 157, ../../style/prototype.scss */
   nav section ul.collectionsMenu > li .contents > form input[type='text'] {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 146, ../../style/prototype.scss */
+/* line 170, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings {
   padding: 10pt 0;
   left: 0;
   right: 0;
 }
-/* line 153, ../../style/prototype.scss */
+/* line 177, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .actions li {
   display: inline-block;
 }
-/* line 156, ../../style/prototype.scss */
+/* line 180, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .actions li input[type=button] {
   padding: 8pt;
 }
-/* line 164, ../../style/prototype.scss */
+/* line 188, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing ul.users {
   display: inline-block;
 }
-/* line 167, ../../style/prototype.scss */
+/* line 191, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing ul.users li {
   display: inline-block;
   white-space: nowrap;
 }
-/* line 173, ../../style/prototype.scss */
+/* line 197, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing ul.users li.user:after {
   content: ',\00a0';
 }
-/* line 178, ../../style/prototype.scss */
+/* line 202, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing ul.users li.user:last-of-type:before {
   content: "and ";
 }
-/* line 182, ../../style/prototype.scss */
+/* line 206, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing ul.users li.user:last-of-type:after {
   content: '';
 }
-/* line 189, ../../style/prototype.scss */
+/* line 213, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add {
   position: relative;
   display: inline-block;
   padding-left: .5em;
 }
-/* line 194, ../../style/prototype.scss */
+/* line 218, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add input {
   display: inline-block;
 }
-/* line 197, ../../style/prototype.scss */
+/* line 221, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add input.addSomeone {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 202, ../../style/prototype.scss */
+/* line 226, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add form {
   position: absolute;
   top: 0;
@@ -2593,57 +2614,57 @@ nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add 
   -ms-transform-origin: center center;
   transform-origin: center center;
 }
-/* line 207, ../../style/prototype.scss */
+/* line 231, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add form input, nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add form label {
   display: block;
 }
-/* line 211, ../../style/prototype.scss */
+/* line 235, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add form label {
   position: absolute;
   top: 12pt;
 }
-/* line 216, ../../style/prototype.scss */
+/* line 240, ../../style/prototype.scss */
 nav section ul.collectionsMenu > li .contents .collectionSettings .sharing .add form input[type=submit] {
   display: none;
 }
-/* line 228, ../../style/prototype.scss */
+/* line 252, ../../style/prototype.scss */
 nav section .addForm .headerButton {
   position: absolute;
   top: 0;
 }
-/* line 232, ../../style/prototype.scss */
+/* line 256, ../../style/prototype.scss */
 nav section .addForm .headerButton a {
   display: block;
 }
-/* line 236, ../../style/prototype.scss */
+/* line 260, ../../style/prototype.scss */
 nav section .addForm article {
   position: absolute;
   top: 0;
 }
 
-/* line 247, ../../style/prototype.scss */
+/* line 271, ../../style/prototype.scss */
 .wrapper {
   padding: 50pt 40pt;
   position: relative;
 }
 
-/* line 253, ../../style/prototype.scss */
+/* line 277, ../../style/prototype.scss */
 .parallaxHover .perspective, .parallaxHover .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 258, ../../style/prototype.scss */
+/* line 282, ../../style/prototype.scss */
 .parallaxHover .parallaxLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 
-/* line 264, ../../style/prototype.scss */
+/* line 288, ../../style/prototype.scss */
 #articleContainer {
   width: 100%;
   margin-top: 25vh;
 }
-/* line 269, ../../style/prototype.scss */
+/* line 293, ../../style/prototype.scss */
 #articleContainer article .collections {
   position: absolute;
   top: 0;
@@ -2653,7 +2674,7 @@ nav section .addForm article {
   width: 100%;
   height: 100%;
 }
-/* line 278, ../../style/prototype.scss */
+/* line 302, ../../style/prototype.scss */
 #articleContainer article .collections li {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
@@ -2661,7 +2682,7 @@ nav section .addForm article {
   transform-origin: center center;
   width: 100%;
 }
-/* line 282, ../../style/prototype.scss */
+/* line 306, ../../style/prototype.scss */
 #articleContainer article .collections li a, #articleContainer article .collections li input {
   font-size: 36pt;
   font-weight: 400;
@@ -2678,31 +2699,31 @@ nav section .addForm article {
   white-space: nowrap;
 }
 @media (max-width: 1024px) {
-  /* line 282, ../../style/prototype.scss */
+  /* line 306, ../../style/prototype.scss */
   #articleContainer article .collections li a, #articleContainer article .collections li input {
     font-size: 27pt;
     line-height: 27pt;
   }
 }
-/* line 291, ../../style/prototype.scss */
+/* line 315, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 300, ../../style/prototype.scss */
+/* line 324, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 304, ../../style/prototype.scss */
+/* line 328, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 310, ../../style/prototype.scss */
+/* line 334, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 315, ../../style/prototype.scss */
+/* line 339, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
@@ -2712,20 +2733,20 @@ nav section .addForm article {
   right: 0;
   width: 336pt;
 }
-/* line 327, ../../style/prototype.scss */
+/* line 351, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 338, ../../style/prototype.scss */
+/* line 362, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 348, ../../style/prototype.scss */
+/* line 372, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }

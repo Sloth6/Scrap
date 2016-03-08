@@ -74,8 +74,9 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
-/* line 14, ../../style/globals/_boilerplate.scss */
+/* line 17, ../../style/globals/_boilerplate.scss */
 html *[contentEditable=true] {
   outline: 0;
   -webkit-touch-callout: text;
@@ -86,13 +87,13 @@ html *[contentEditable=true] {
   user-select: text;
 }
 
-/* line 25, ../../style/globals/_boilerplate.scss */
+/* line 28, ../../style/globals/_boilerplate.scss */
 [placeholder]:empty:before {
   content: attr(placeholder);
   color: #555;
 }
 
-/* line 30, ../../style/globals/_boilerplate.scss */
+/* line 33, ../../style/globals/_boilerplate.scss */
 [placeholder]:empty:focus:before {
   content: "";
 }
@@ -1636,7 +1637,7 @@ body article ul.cardActions li.left {
 /* line 87, ../../style/layout/_article.scss */
 body article.text {
   font-style: normal;
-  max-width: 50vh !important;
+  width: 336pt;
 }
 /* line 92, ../../style/layout/_article.scss */
 body article.text.editing:hover, body article.text.editing .card:hover {
