@@ -86,7 +86,11 @@ body {
 
         &.text {
             font-style: normal;
-            width: $articleSide;
+            
+            .card {
+                width: $articleSide;
+                min-height: $articleSide;
+            }
 
             &.editing, &.editing .card {
                 &:hover {
@@ -106,12 +110,6 @@ body {
                 }
             }
 
-            .card {
-                width: $articleSide;
-                min-height: $articleSide;
-                max-width: 50vh !important;
-            }
-
             * {
                 outline: none;
             }
@@ -127,8 +125,6 @@ body {
             .editable {
                 height: 100%;
                 margin-bottom: $broadMargin;
-                @include typeLarge;
-                
                 
 
 /*
@@ -234,8 +230,7 @@ body {
             .card {
                 @include cardStyle;
                 padding: 0;
-                width: $articleSide;
-//                 min-height: $articleSideNarrow;
+                width: $articleSideNarrow;
                 position: relative;
                 
                 header {
