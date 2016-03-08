@@ -74,7 +74,7 @@ window.collectionsMenuView =
         overflowY: 'scroll'
       # Focus search
       $menu.find('li.searchCollections input').val('').focus()
-      
+
       # Scroll to open label
       $openLabel.velocity('stop', true).velocity 'scroll', {
         container: $menu
@@ -158,7 +158,7 @@ window.collectionsMenuView =
     setTimeout ->
       $destinationLabel.addClass 'openMenuButton'
     , 1000
-    
+
 
   searchFocus: ($input) ->
     return
@@ -167,17 +167,16 @@ window.collectionsMenuView =
     $labels = $menu.find('li.collection').not('.recent')
     $recent = $menu.find('li.collection.recent')
     $newLabelInput = $menu.find('li.newCollection')
-    search = $input.val()
+    search = $input.val().toLowerCase()
 
     if search.length == 0
-#       .show()
       collectionView.show $recent.add($newLabelInput)
       collectionView.show $labels
     else
       collectionView.hide $recent.add($newLabelInput)
       $labels.each () ->
         key = $(@).data 'collectionkey'
-        name = window.collections[key].name
+        name = window.collections[key].name.toLowerCase()
         if name.indexOf(search) == -1
           collectionView.hide $(@)
         else
