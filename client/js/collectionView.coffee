@@ -38,8 +38,8 @@ window.collectionView =
   mouseenter: ($collection) ->
     cursorView.end()
     
-  mouseleave: ($collection) ->
-    cursorView.start '✕'
+  mouseleave: ($collection, event) ->
+    cursorView.start '✕', event
     
   showSettings: ($collection) ->
     $settings = $collection.find '.collectionSettings'

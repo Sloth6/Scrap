@@ -117,7 +117,7 @@ window.articleController =
         $dot.data 'naturalHeight', $dot.height()
         $dot.data 'naturalWidth',  $dot.width()
         # parallaxHover $a, 250, 1.5
-        $(@).mouseenter -> cursorView.start '☛'
+        $(@).mouseenter (event) -> cursorView.start '☛', event
       # Open/close collections menu
       $article.find('ul.articleCollections li.addCollection a').click ->
         $menu = $article.find('ul.addCollectionMenu')
@@ -133,8 +133,8 @@ window.articleController =
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
       # Init delete button
-      $article.find('.articleDeleteButton').mouseenter ->
-        cursorView.start '🔫'
+      $article.find('.articleDeleteButton').mouseenter (event) ->
+        cursorView.start '🔫', event
       # Bind other article events.
       $article.mouseenter ->
         unless $article.hasClass('open') or $article.hasClass('obscured')

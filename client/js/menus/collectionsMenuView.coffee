@@ -63,8 +63,6 @@ window.collectionsMenuView =
           options:
             duration: options.duration
             easing:   options.easing
-      # Cursor
-      cursorView.start '✕'
       # Disable scroll
       $('body').css
         overflow: 'hidden'

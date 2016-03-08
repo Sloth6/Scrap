@@ -293,7 +293,7 @@ window.articleView =
       cursor = '✎'
     else
       cursor = 'Open'
-    cursorView.start(cursor)
+    cursorView.start cursor, event
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
@@ -366,7 +366,7 @@ window.articleView =
     unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
     $article.css {zIndex: 2}# must run after trigger('mouseleave')
 
-    $article.mouseleave -> cursorView.start '✕'
+    $article.mouseleave (event) -> cursorView.start '✕', event
     $article.mouseenter -> cursorView.end()
 
     $li = $article.find(constants.dom.articleMeta).find('li')

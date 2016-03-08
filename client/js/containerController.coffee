@@ -16,7 +16,7 @@ window.containerController =
 
     $wrapper.mousemove (event) ->
       unless scrapState.openArticle? or $("#{constants.dom.articles}:hover").length
-        cursorView.start '+'
+        cursorView.start '+', event
 
     containerView.updateHeight $wrapper, $container
     $scale.css
