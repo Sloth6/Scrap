@@ -90,6 +90,7 @@ body {
             .card {
                 width: $articleSide;
                 min-height: $articleSide;
+                background-color: $colorWashMediumLight;
             }
 
             &.editing, &.editing .card {
@@ -330,8 +331,8 @@ body {
         &.soundcloud {
 
             .card {
-                width: $articleSide;
-                height: $articleSide;
+                width:  $articleSideNarrow;
+                height: $articleSideNarrow;
             }
         }
 
