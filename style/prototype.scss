@@ -133,34 +133,39 @@ nav {
                     	    left: 0;
                     	    right: 0;
                     	    
-                    	    ul.users {
-                    	        display: inline-block;
-
+                    	    .actions {
                       	      li {
                         	        display: inline-block;
-                        	        white-space: nowrap;
                       	      }
+                    	    }
+                    	    
+                    	    .sharing {
                       	    
-                      	      li.user {
-            	        	          &:before {
-            	          	            content: ' '
-            	        	          }
-                        	        
-                        	        &:after {
-                          	          content: ', ';
-                        	        }
-                        	        
-                        	        &:last-of-type {
-                          	          &:before {
-                            	            content: ' and '
-                          	          }
-                          	          
-                	          	        &:after {
-                	            	          content: '';
-                	          	        }
-                        	        }
-                      	      }
-                      	      
+                        	    ul.users {
+                        	        display: inline-block;
+    
+                          	      li {
+                            	        display: inline-block;
+                            	        white-space: nowrap;
+                          	      }
+                          	    
+                          	      li.user {
+                            	        &:after {
+                              	          content: ',\00a0';
+                            	        }
+                            	        
+                            	        &:last-of-type {
+                              	          &:before {
+                                	            content: 'and\00a0'
+                              	          }
+                              	          
+                    	          	        &:after {
+                    	            	          content: '';
+                    	          	        }
+                            	        }
+                          	      }
+                        	    }
+                        	    
                       	      .add {
             	        	          display: inline-block;
                         	        
@@ -168,8 +173,19 @@ nav {
                           	          display: inline-block;
                         	        }
                         	        
-                        	        label {
-                          	          display: block;
+                        	        form {
+                	          	        input, label {
+                	              	        display: block;
+                	          	        }
+                	          	        
+                	          	        label {
+                  	          	          position: absolute;
+                  	          	          top: $typeSmallLeading;
+                	          	        }
+                	          	        
+                	          	        input[type=submit] {
+                	              	        display: none;
+                	          	        }
                         	        }
                       	      }
                     	    }

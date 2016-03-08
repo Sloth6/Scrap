@@ -61,7 +61,6 @@ window.parallaxHover = ($elements, duration, scale) ->
     $element = $(@)
     $layers = $element.find('.parallaxLayer')
     $element.addClass 'parallaxHover'
-
     $element.wrapInner '<span></span>' if $element.is('a')
     perspective = if $element.hasClass('image') or $element.hasClass('youtube') then (($element.height() + $element.width()) / 2) * 4 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
@@ -73,7 +72,6 @@ window.parallaxHover = ($elements, duration, scale) ->
         perspective: perspective
       options:
         duration: 1
-
     $element.mouseenter (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
         progress = getProgressValues($element, scale)

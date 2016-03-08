@@ -6,6 +6,8 @@ window.collectionController =
     $collections.each ->
       $collection = $(@)
       
+      collectionView.init $collection
+      
       # Store actual height
       collectionController.updateHeight $collection
       
@@ -22,7 +24,6 @@ window.collectionController =
         event.preventDefault()
       $collection.css
         width: $(@).width()
-        
       
       $collection.find('.contents > a').mouseenter ->
         collectionView.mouseenter $collection
@@ -39,6 +40,7 @@ window.collectionController =
         if $collection.hasClass('openMenuButton')
           unless scrapState.collectionsMenuIsOpen
             collectionView.hideSettings $collection
+      
 
   updateHeight: ($collection) ->
     $collection.data 'nativeHeight', Math.max($collection.find('.contents > a').height(), $collection.find('.contents > input').height())

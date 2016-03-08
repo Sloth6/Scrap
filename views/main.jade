@@ -119,15 +119,18 @@ html.no-js(lang='en')
                         li.user Cody Simon
                         li.user Sunny Li
                         li.user Ruth Bader-Ginsburg
-                      span.add
-                        input.smallType.smallCaps(type='button', value='Add')
-                        input.smallType(type='text', placeholder='email address')
-                        label.smallType.smallCaps Press enter to send
-                    ul
-                      li
-                        input.smallType.smallCaps(type='button', value='Rename')
-                      li
-                        input.smallType.smallCaps(type='button', value='Delete')
+                      .add 
+                        input.smallType.smallCaps.addSomeone(type='button', value='Add someone')
+                        form
+                          input.smallType(type='email', placeholder='email address')
+                          label.smallType.smallCaps Press enter to send
+                          input(type='submit')
+                    .actions
+                      ul
+                        li
+                          input.smallType.smallCaps(type='button', value='Rename')
+                        li
+                          input.smallType.smallCaps(type='button', value='Delete')
           li.newCollection
             .contents
               form(id='newCollectionForm')

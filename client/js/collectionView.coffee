@@ -1,7 +1,14 @@
 stopProp = (e) -> e.stopPropagation()
 
 window.collectionView =
-	shrinkOnDragOffMenu: ($collection) ->
+
+  init: ($collection) ->
+    $settings = $collection.find('.collectionSettings')
+    $settings.find('.sharing .add form').hide()
+    console.log "FORM", $settings.find('.sharing .add form')
+    $settings.find('input.addSomeone').click -> collectionView.addSomeone $collection
+    
+  shrinkOnDragOffMenu: ($collection) ->
     $collection.find('a').trigger('mouseleave').velocity
       properties:
         scale: .5
@@ -78,6 +85,20 @@ window.collectionView =
           duration: 500
           easing: constants.velocity.easing.smooth
           begin: => $(@).show()
+          
+  resetForm: ($collection) ->
+    
+  addSomeone: ($collection) ->
+    $addSection = $collection.find '.contents .collectionSettings .add'
+    $emailInput = $addSection.find 'input[type=email]'
+    $button     = $addSection.find 'input.addSomeone[type=button]'
+    $form       = $addSection.find 'form'
+    $button.click ->
+      $button.hide()
+      $form.show()
+      $emailInput.focus()
+    # TODO: on submit, do stuff
+      
 
 window.rotateColor = ($elements, hue)->
   $elements.css
