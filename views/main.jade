@@ -91,7 +91,7 @@ html.no-js(lang='en')
         ul.collectionsMenu
           li.labelsButton.openCollection.openMenuButton
             .contents
-              a(href='#') Labels
+              a(href='#').headerButton Labels
           li.collection.recent(data-collectionkey='recent')
             .contents
               a(href='#') All
@@ -134,8 +134,6 @@ html.no-js(lang='en')
                 label.typeSmall.smallCaps.invisible Press enter to save
       section.right
         div
-          // .headerButton
-          //   a(href='#') Settings
           include partials/settingsMenu
 
     .addCollectionMenu(style='display:none')

@@ -21,10 +21,9 @@ retractNav = ->
   $sections = $(constants.dom.nav).children('section')
   unless $(constants.dom.collectionsMenu).hasClass('open') or $(window).scrollTop() < 10
     $sections.each ->
-      translateY = if $(@).hasClass('center') then -$(@).height() else -$(@).height()*1.5
       $(@).velocity('stop', true).velocity
         properties:
-          translateY: translateY
+          translateY: if $(@).hasClass('center') then -$(@).find('.headerButton').height() / 2 else -$(@).height()
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
