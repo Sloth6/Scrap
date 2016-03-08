@@ -115,10 +115,7 @@ window.parallaxHover = ($elements, duration, scale) ->
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
     $element.on 'touchmove mousemove', (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
-        
         event.preventDefault() # Prevent triggering of mouse events on touch
-        
-        
         $transform = $element.find('.transform')
         pointer = getPointer(event)
         progress = getPercentageAcrossElement($element, pointer, scale)
@@ -135,6 +132,7 @@ window.parallaxHover = ($elements, duration, scale) ->
           $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
     $element.on 'touchend or mouseleave', ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
+        event.preventDefault() # Prevent triggering of mouse events on touch
         $element.data('closingHover', true)
         $transform = $element.find('.transform')
         $element.add($element.parents('li')).css
