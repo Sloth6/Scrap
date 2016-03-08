@@ -51,29 +51,42 @@ $headerLeftMarginOffset:
     line-height:    $leading;
 }
 
+@mixin compactTypeStyle ($size, $leading, $scale) {
+    @media (max-width: $breakMedium) {
+        font-size:      $size    * $scale;
+        line-height:    $leading * $scale;
+    }
+}
+
 @mixin typeTitle {
     @include typeStyle($typeTitleSize, $fontWeightMedium, (1em / 32), $typeTitleLeading);
+    @include compactTypeStyle($typeTitleSize, $typeTitleLeading, (2/3));
 }
 
 @mixin typeSubtitle {
     @include typeStyle($typeSubtitleSize, $fontWeightBold, (1em / 32), $typeSubtitleLeading);
+    @include compactTypeStyle($typeTitleSize, $typeTitleLeading, .75);
+    
 }
 
 @mixin typeHeader {
     @include typeStyle($typeHeaderSize, $fontWeightRegular, (1em / 32), $typeHeaderLeading);
+    @include compactTypeStyle($typeHeaderSize, $typeHeaderLeading, .75);
+}
+
+@mixin typeXLarge {
+    @include typeStyle($typeXLargeSize, $fontWeightRegular, (1em / 32), $typeXLargeLeading);
+    @include compactTypeStyle($typeXLargeSize, $typeXLargeLeading, .75);
+}
+
+@mixin typeLarge {
+    @include typeStyle($typeLargeSize, $fontWeightRegular, (1em / 32), $typeLargeLeading);
+    @include compactTypeStyle($typeLargeSize, $typeLargeLeading, .75);
 }
 
 @mixin typeBody {
     font-family:    $fontFamily;
     @include typeStyle($typeBodySize, $fontWeightRegular, (1em / 16), $typeBodyLeading);    
-}
-
-@mixin typeXLarge {
-    @include typeStyle($typeXLargeSize, $fontWeightRegular, (1em / 32), $typeXLargeLeading);
-}
-
-@mixin typeLarge {
-    @include typeStyle($typeLargeSize, $fontWeightRegular, (1em / 32), $typeLargeLeading);
 }
 
 @mixin typeSmall {

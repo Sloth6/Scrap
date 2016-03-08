@@ -589,7 +589,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 161, ../../style/globals/_type.scss */
+/* line 174, ../../style/globals/_type.scss */
 html {
   font-family: Arial;
   font-size: 12pt;
@@ -603,14 +603,21 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 166, ../../style/globals/_type.scss */
+/* line 179, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 60pt;
   font-weight: 500;
   letter-spacing: 0.03125em;
   line-height: 60pt;
 }
-/* line 169, ../../style/globals/_type.scss */
+@media (max-width: 1024px) {
+  /* line 179, ../../style/globals/_type.scss */
+  .typeTitle {
+    font-size: 40pt;
+    line-height: 40pt;
+  }
+}
+/* line 182, ../../style/globals/_type.scss */
 .typeTitle.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -620,27 +627,41 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 174, ../../style/globals/_type.scss */
+/* line 187, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
   letter-spacing: 0.03125em;
   line-height: 36pt;
 }
+@media (max-width: 1024px) {
+  /* line 187, ../../style/globals/_type.scss */
+  .typeSubtitle {
+    font-size: 45pt;
+    line-height: 45pt;
+  }
+}
 
-/* line 178, ../../style/globals/_type.scss */
+/* line 191, ../../style/globals/_type.scss */
 .headerType {
   font-size: 36pt;
   font-weight: 400;
   letter-spacing: 0.03125em;
   line-height: 36pt;
 }
-/* line 181, ../../style/globals/_type.scss */
+@media (max-width: 1024px) {
+  /* line 191, ../../style/globals/_type.scss */
+  .headerType {
+    font-size: 27pt;
+    line-height: 27pt;
+  }
+}
+/* line 194, ../../style/globals/_type.scss */
 .headerType.typeOutline, .headerType.typeOutlineClear, .headerType.typeOutlineWhite {
   font-weight: 500;
 }
 
-/* line 186, ../../style/globals/_type.scss */
+/* line 199, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: Arial;
   font-size: 12pt;
@@ -648,7 +669,7 @@ html {
   letter-spacing: 0.0625em;
   line-height: 16pt;
 }
-/* line 189, ../../style/globals/_type.scss */
+/* line 202, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -658,14 +679,21 @@ html {
   letter-spacing: 0.125em;
 }
 
-/* line 194, ../../style/globals/_type.scss */
+/* line 207, ../../style/globals/_type.scss */
 .XLargeType {
   font-size: 48pt;
   font-weight: 400;
   letter-spacing: 0.03125em;
   line-height: 48pt;
 }
-/* line 197, ../../style/globals/_type.scss */
+@media (max-width: 1024px) {
+  /* line 207, ../../style/globals/_type.scss */
+  .XLargeType {
+    font-size: 36pt;
+    line-height: 36pt;
+  }
+}
+/* line 210, ../../style/globals/_type.scss */
 .XLargeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -675,14 +703,21 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 202, ../../style/globals/_type.scss */
+/* line 215, ../../style/globals/_type.scss */
 .largeType {
   font-size: 24pt;
   font-weight: 400;
   letter-spacing: 0.03125em;
   line-height: 36pt;
 }
-/* line 205, ../../style/globals/_type.scss */
+@media (max-width: 1024px) {
+  /* line 215, ../../style/globals/_type.scss */
+  .largeType {
+    font-size: 18pt;
+    line-height: 27pt;
+  }
+}
+/* line 218, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -691,19 +726,19 @@ html {
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
-/* line 210, ../../style/globals/_type.scss */
+/* line 223, ../../style/globals/_type.scss */
 .largeType.typeOutline, .largeType.typeOutlineClear, .largeType.typeOutlineWhite {
   font-weight: 500;
 }
 
-/* line 215, ../../style/globals/_type.scss */
+/* line 228, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   letter-spacing: 0.08333em;
   line-height: 12pt;
 }
-/* line 218, ../../style/globals/_type.scss */
+/* line 231, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -713,7 +748,7 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 223, ../../style/globals/_type.scss */
+/* line 236, ../../style/globals/_type.scss */
 .typeNav {
   font-size: 60pt;
   font-weight: 500;
@@ -722,7 +757,14 @@ html {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 226, ../../style/globals/_type.scss */
+@media (max-width: 1024px) {
+  /* line 236, ../../style/globals/_type.scss */
+  .typeNav {
+    font-size: 40pt;
+    line-height: 40pt;
+  }
+}
+/* line 239, ../../style/globals/_type.scss */
 .typeNav.smallCaps, .typeNav .smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -732,37 +774,37 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 231, ../../style/globals/_type.scss */
+/* line 244, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 235, ../../style/globals/_type.scss */
+/* line 248, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 239, ../../style/globals/_type.scss */
+/* line 252, ../../style/globals/_type.scss */
 .typeOutlineWhite {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
 
-/* line 244, ../../style/globals/_type.scss */
+/* line 257, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 249, ../../style/globals/_type.scss */
+/* line 262, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 255, ../../style/globals/_type.scss */
+/* line 268, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -903,6 +945,13 @@ p + p {
   letter-spacing: 0.03125em;
   line-height: 36pt;
   display: block;
+}
+@media (max-width: 1024px) {
+  /* line 251, ../../style/globals/_components.scss */
+  .actionButton, input.actionButton, a.actionButton {
+    font-size: 18pt;
+    line-height: 27pt;
+  }
 }
 
 /* line 257, ../../style/globals/_components.scss */
@@ -1600,12 +1649,26 @@ body article.text.short .card .editable {
   letter-spacing: 0.03125em;
   line-height: 48pt;
 }
+@media (max-width: 1024px) {
+  /* line 98, ../../style/layout/_article.scss */
+  body article.text.short .card .editable {
+    font-size: 36pt;
+    line-height: 36pt;
+  }
+}
 /* line 104, ../../style/layout/_article.scss */
 body article.text.long .card .editable {
   font-size: 24pt;
   font-weight: 400;
   letter-spacing: 0.03125em;
   line-height: 36pt;
+}
+@media (max-width: 1024px) {
+  /* line 104, ../../style/layout/_article.scss */
+  body article.text.long .card .editable {
+    font-size: 18pt;
+    line-height: 27pt;
+  }
 }
 /* line 109, ../../style/layout/_article.scss */
 body article.text .card {
@@ -1709,6 +1772,13 @@ body article.text .editable {
                       }
                   }
   */
+}
+@media (max-width: 1024px) {
+  /* line 127, ../../style/layout/_article.scss */
+  body article.text .editable {
+    font-size: 18pt;
+    line-height: 27pt;
+  }
 }
 /* line 215, ../../style/layout/_article.scss */
 body article.image .card {
@@ -2293,6 +2363,13 @@ h1, li a {
   -o-transition: -webkit-text-fill-color 1s linear;
   -webkit-transition: -webkit-text-fill-color 1s linear;
   transition: -webkit-text-fill-color 1s linear;
+}
+@media (max-width: 1024px) {
+  /* line 8, ../../style/bookmarklet.scss */
+  h1, li a {
+    font-size: 40pt;
+    line-height: 40pt;
+  }
 }
 
 /* line 13, ../../style/bookmarklet.scss */
