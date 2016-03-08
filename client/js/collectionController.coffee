@@ -15,16 +15,17 @@ window.collectionController =
       collectionController.updateHeight $collection
       
       $collection.zIndex(2)
-      $collection.find('.contents > a').click (event) ->
+
+      # Main click event
+      $collection.find('.contents > a').on 'touchend mouseup', (event) ->
+        event.stopPropagation()
+        event.preventDefault()
         unless $collection.hasClass 'openMenuButton'
           scrapState.waitToOpenCollectionsMenu = true
           collectionKey = $collection.data('collectionkey')
-          console.log 'switch to colleciton', $(@).attr 'class'
           containerView.switchToCollection collectionKey
           collectionsMenuView.close()
           scrapState.waitToOpenCollectionsMenu = false
-        event.stopPropagation()
-        event.preventDefault()
       $collection.css
         width: $(@).width()
       
@@ -35,8 +36,8 @@ window.collectionController =
           unless scrapState.collectionsMenuIsOpen
             collectionView.showSettings $collection
             
-      $collection.find('.contents > a').mouseleave ->
-        collectionView.mouseleave $collection
+      $collection.find('.contents > a').mouseleave (event) ->
+        collectionView.mouseleave $collection, event
       
       $collection.find('.contents').mouseleave ->
         # If that collection is open and the menu is not open

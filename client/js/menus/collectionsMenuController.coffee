@@ -16,7 +16,7 @@ window.collectionsMenuController =
       $(@).data 'offsetTop', $(@).offset().top
       
     $lis.each ->
-      $lis.find('.contents > a').click => liClick $(@), event
+      $lis.find('.contents > a').on 'touchend mouseup', => liClick $(@), event
 
     $menu.find('li.newCollection input').click (event) ->
       $(@).attr 'placeholder', ''
