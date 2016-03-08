@@ -118,7 +118,7 @@ $ ->
       when scrapState.sizeClass is 'large'  then 1/2
       when scrapState.sizeClass is 'xLarge' then 1/2
     containerView.updateScale()
-    articleView.updateScale $(constants.dom.articles)
+    articleView.updateScale $(constants.dom.articles), constants.style.globalScale
         
   onResize()
   

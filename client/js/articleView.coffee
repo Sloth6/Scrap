@@ -44,10 +44,11 @@ window.articleView =
           easing: constants.velocity.easing.smooth
           
   # When global scale or article scale is changed
-  updateScale: ($articles) ->
-    $card       = $articles.find('.card')
-    $card.css
-      borderWidth: 1 / constants.style.globalScale + 'px'
+  updateScale: ($articles, scale) ->
+    $articles.each ->
+      $card       = $(@).find('.card')
+      $card.css
+        borderWidth: 1 / scale + 'px'
     
   obscure: ($articles) ->
     $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
@@ -257,6 +258,7 @@ window.articleView =
     articleView.hideAddCollectionMenu $article
 
   mouseenter: (event, $article) ->
+    $card     = $article.find('.card')
     $article.find('ul.articleCollections').css
       zIndex: 2
     articleView.showMeta($article) unless $article.hasClass('open')
@@ -273,7 +275,6 @@ window.articleView =
     else if $article.hasClass 'website'
       cursor    = '→'
       $h1       = $article.find('h1')
-      $card     = $article.find('.card')
       $header   = $article.find('header')
       $detail   = $header.find('.detail')
       $image      = $article.find('.image')
@@ -298,6 +299,8 @@ window.articleView =
     else
       cursor = 'Open'
     cursorView.start cursor, event
+    # Adjust border width
+    articleView.updateScale $article, $.Velocity.hook $article.find('.transform'), 'scale'
 
   mouseleave: (event, $article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
@@ -333,6 +336,8 @@ window.articleView =
           duration: 500
           queue: false
           easing: constants.velocity.easing.smooth
+    # Adjust border width
+    articleView.updateScale $article, constants.style.globalScale
 
   mousemove: (event, $article) ->
 #     cursorView.move event
