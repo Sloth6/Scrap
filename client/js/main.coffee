@@ -66,7 +66,7 @@ $ ->
 
   $newArticleForm = $(constants.dom.addArticleMenu).remove()
 
-  $('body').click (event) ->
+  $('body').on 'mouseup', (event) ->
     # Close article if article is open
     if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()

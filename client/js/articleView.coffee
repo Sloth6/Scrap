@@ -10,6 +10,10 @@ window.articleView =
   init: ($article) ->
     $card       = $article.find('.card')
     $firstLabel = $article.find('ul.articleCollections li.collection').first().find('a')
+
+        # Scale up labels indicator inversely proportional to global scale
+    scale = 1 / constants.style.globalScale
+    $.Velocity.hook $article.find('ul.articleCollections .scale'), 'scale', scale
     # Add random ragged edges
 #     $article.css
 #       marginTop:    Math.random() * constants.style.maxGutter
@@ -42,14 +46,14 @@ window.articleView =
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-          
+
   # When global scale or article scale is changed
   updateScale: ($articles, scale) ->
     $articles.each ->
       $card       = $(@).find('.card')
       $card.css
         borderWidth: 1 / scale + 'px'
-    
+
   obscure: ($articles) ->
     $cards      = $articles.find('.card')
     $contents   = $cards.children().add($articles.find('ul, .articleControls'))
@@ -61,10 +65,10 @@ window.articleView =
         opacity: 0
         duration: 1
       options: options
-    # Store original background color
+
+    # # Store original background color
     $cards.each ->
       $(@).data 'originalBackground', $(@).css('background-color')
-      console.log 'BGGG', $(@).css('background-color')
       # Transition card background color to white
       $(@).transition
         backgroundColor: 'white'
@@ -85,7 +89,6 @@ window.articleView =
       options: options
     # Transition card background color to original
     $cards.each ->
-      console.log "BACKGRERND ERMAGERGH", $(@).data('originalBackground')
       $(@).transition
         backgroundColor: $(@).data 'originalBackground'
         duration: 500
@@ -237,7 +240,7 @@ window.articleView =
         duration: 500
         easing: constants.style.easing
 #     articleView.obscure $(constants.dom.articles).not($article)
-      
+
   hideAddCollectionMenu: ($article) ->
     $collections  = $article.find     'ul.articleCollections'
     $menu         = $article.find     'ul.addCollectionMenu'
@@ -329,7 +332,7 @@ window.articleView =
     # Adjust border width
     articleView.updateScale $article, $.Velocity.hook $article.find('.transform'), 'scale'
 
-  mouseleave: (event, $article) ->
+  mouseleave: ($article) ->
     $article.find('ul.articleCollections').css { zIndex: '' }
     articleView.hideMeta($article) unless $article.hasClass('open')
     articleView.closeLabels($article) unless $article.hasClass('open')
@@ -380,27 +383,23 @@ window.articleView =
       return $(window).height()/2 if $elem.is($(window))
       $elem.offset().top + ($elem.height()/2)*constants.style.globalScale
 
-
     $article.velocity('stop', true).velocity
       properties:
         scale: scaleWhenOpen($article)
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
+        complete: () ->
+          $article.addClass 'open'
 
     $container.velocity('stop', true).velocity
       properties:
         translateX: (-(centerX($article) - centerX($(window)))) / constants.style.globalScale
         translateY: (-(centerY($article) - centerY($(window))) + $(window).scrollTop())/constants.style.globalScale
-      options:
-        # duration: constants.style.duration.openArticle
-        # easing: constants.velocity.easing.smooth
-        complete: () ->
-          $article.addClass 'open'
 
     $article.trigger 'mouseleave'
     unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
-    $article.css {zIndex: 2}# must run after trigger('mouseleave')
+    $article.css { zIndex: 2 }# must run after trigger('mouseleave')
 
     $article.mouseleave (event) -> cursorView.start '✕', event
     $article.mouseenter -> cursorView.end()
