@@ -51,7 +51,8 @@ window.articleView =
         borderWidth: 1 / scale + 'px'
     
   obscure: ($articles) ->
-    $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
+    $cards      = $articles.find('.card')
+    $contents   = $cards.children().add($articles.find('ul, .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -60,10 +61,20 @@ window.articleView =
         opacity: 0
         duration: 1
       options: options
+    # Store original background color
+    $cards.each ->
+      $(@).data 'originalBackground', $(@).css('background-color')
+      console.log 'BGGG', $(@).css('background-color')
+      # Transition card background color to white
+      $(@).transition
+        backgroundColor: 'white'
+        duration: 500
+        easing: constants.style.easing
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
-    $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+    $cards      = $articles.find('.card')
+    $contents   = $cards.children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -72,6 +83,13 @@ window.articleView =
         opacity: 1
         duration: 1
       options: options
+    # Transition card background color to original
+    $cards.each ->
+      console.log "BACKGRERND ERMAGERGH", $(@).data('originalBackground')
+      $(@).transition
+        backgroundColor: $(@).data 'originalBackground'
+        duration: 500
+        easing: constants.style.easing
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->
@@ -195,9 +213,7 @@ window.articleView =
     $collections  = $article.find 'ul.articleCollections'
     $menu         = $article.find 'ul.addCollectionMenu'
     $button       = $collections.find('li.addCollection a')
-
     articleController.initAddCollectionsMenu $article
-
     $menu.find('li').each ->
       delay = $(@).index() * 125
       toY   = $(@).data 'translateY'
@@ -210,17 +226,22 @@ window.articleView =
         options:
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
-          complete: -> simpleHover $(@), 250, 1.25
-
+          complete: -> simpleHover $(@).find('a div'), 250, 1.25
     $menu.find('li').show()
     $menu.find('li').css 'opacity', 0
     $button.text 'Never mind'
-
+    # Hide contents of article
+    $article.find('.card').contents().each ->
+      $(@).transition
+        opacity: 0
+        duration: 500
+        easing: constants.style.easing
+#     articleView.obscure $(constants.dom.articles).not($article)
+      
   hideAddCollectionMenu: ($article) ->
     $collections  = $article.find     'ul.articleCollections'
     $menu         = $article.find     'ul.addCollectionMenu'
     $button       = $collections.find 'li.addCollection a'
-
     $menu.find('li').not('.added').each ->
       delay = ($menu.find('li').length - $(@).index()) * 125
       $(@).velocity('stop', true).velocity
@@ -232,8 +253,14 @@ window.articleView =
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
           complete: -> $(@).remove()
-
     $button.text('Add label')
+    # Show contents of article
+    $article.find('.card').contents().each ->
+      $(@).transition
+        opacity: 1
+        duration: 500
+        easing: constants.style.easing
+#     articleView.unobscure $(constants.dom.articles).not($article)
 
   addCollection: ($article, $label) ->
     $collectionsList = $article.find 'ul.articleCollections'

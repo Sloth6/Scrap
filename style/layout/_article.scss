@@ -101,7 +101,8 @@ body {
             
             &.short {
                 .card .editable {
-                    @include typeXLarge;
+                    @include typeHeader;
+//                     @include typeXLarge;
                 }
             }
             

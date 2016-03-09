@@ -18,13 +18,15 @@ mixin articleMixin(article, collections)
     .collections.parallaxLayer(data-parallaxdepth='1')
       ul.articleCollections(style='position:absolute;')
         li.addCollection
-          a Add label
+          a
+            .simpleHover Add label
           .dot(style='height: 0; width: 0; opacity: 0; display: none; visibility: hidden;')
         - for (var i = 0; i < collections.length; i++)
           - var collection = collections[i]
           - var key = collection.collectionKey
           li.collection(data-collectionKey=key, class=key)
-            a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)!=collection.name
+            a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)
+              .simpleHover!=collection.name
             .dot(style='background-color:'+collection.color+';')
       ul.addCollectionMenu
 
@@ -39,7 +41,7 @@ mixin articleMixin(article, collections)
           header
             - if (collections[0] != undefined)
               - var color = collections[0].color
-            h1.XLargeType.parallaxLayer(data-parallaxdepth='.5')!=content.title
+            h1.headerType.parallaxLayer(data-parallaxdepth='.5')!=content.title
             .detail
               .source.bodyType.smallCaps.parallaxLayer(data-parallaxdepth='.375')!=content.domain
               .description.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description

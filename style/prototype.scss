@@ -318,6 +318,11 @@ nav {
                     width: -webkit-fit-content;
                     @include transformOriginCenter;
                     white-space: nowrap;
+                    
+                    .simpleHover {
+                        @include transformOriginCenter;
+                        width: -webkit-fit-content;
+                    }
                 }
                 
                 .dot {
@@ -331,6 +336,7 @@ nav {
                 
                 li {
                     display: block;
+                    
                     
                     &:first-child {
                         a {
@@ -372,6 +378,12 @@ nav {
                     top: 0;
                     left: 0;
                     
+                    input {
+                        border: 0;
+                        padding: 0;
+                        margin: 0;
+                        height: $typeHeaderLeading;
+                    }
                 }
             }
         }
