@@ -1,15 +1,15 @@
 window.collectionsMenuController =
   init: ($menu) ->
     $lis    = $menu.children()
-    $button = $lis.filter '.openMenuButton'
-
     parallaxHover $lis.find('.contents > a'), 250, 1.25
 
     $(constants.dom.collections).each ->
       $(@).data 'offsetTop', $(@).offset().top
       
-    $button.on 'touchend mouseup', (event) ->
-      collectionsMenuController.open $menu, event
+    $lis.each ->
+      $(@).find('.contents > a').on 'touchend mouseup', (event) =>
+        if $(@).hasClass 'openMenuButton'
+         collectionsMenuController.open $menu, event
 
     $menu.find('li.newCollection input').click (event) ->
       $(@).attr 'placeholder', ''

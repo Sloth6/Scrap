@@ -22,7 +22,6 @@ window.collectionController =
       console.log $collection.attr 'class'
       # Main click event
       $a.on 'touchend mouseup', (event) ->
-        console.log 'CLICKITY'
         collectionController.click($collection, event)
 
       $a.on 'touchstart mouseenter', (event) ->
