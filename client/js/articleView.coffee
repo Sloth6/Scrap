@@ -51,7 +51,8 @@ window.articleView =
         borderWidth: 1 / scale + 'px'
     
   obscure: ($articles) ->
-    $contents   = $articles.find('.card').children().add($articles.find('ul, .articleControls'))
+    $cards      = $articles.find('.card')
+    $contents   = $cards.children().add($articles.find('ul, .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -60,10 +61,20 @@ window.articleView =
         opacity: 0
         duration: 1
       options: options
+    # Store original background color
+    $cards.each ->
+      $(@).data 'originalBackground', $(@).css('background-color')
+      console.log 'BGGG', $(@).css('background-color')
+      # Transition card background color to white
+      $(@).transition
+        backgroundColor: 'white'
+        duration: 500
+        easing: constants.style.easing
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
-    $contents   = $articles.find('.card').children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
+    $cards      = $articles.find('.card')
+    $contents   = $cards.children().add($(constants.dom.articleContainer).find('article ul, article .articleControls'))
     options     =
       duration: constants.style.duration.openArticle
       easing:   constants.velocity.easing.smooth
@@ -72,6 +83,13 @@ window.articleView =
         opacity: 1
         duration: 1
       options: options
+    # Transition card background color to original
+    $cards.each ->
+      console.log "BACKGRERND ERMAGERGH", $(@).data('originalBackground')
+      $(@).transition
+        backgroundColor: $(@).data 'originalBackground'
+        duration: 500
+        easing: constants.style.easing
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->
