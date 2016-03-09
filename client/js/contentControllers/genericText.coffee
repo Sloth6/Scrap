@@ -5,7 +5,6 @@ contentControllers['genericText'] =
     $editable = $article.find '.editable'
     $card     = $article.find '.card'
     $actions  = $article.find '.cardActions'
-    $done     = $actions.find '.done'
     $cancel   = $actions.find '.cancel'
 
     $card.add($article).addClass 'editing'
@@ -40,12 +39,8 @@ contentControllers['genericText'] =
     $editable = $article.find '.editable'
     $card     = $article.find '.card'
     $actions  = $article.find '.cardActions'
-    $done     = $actions.find '.done'
 
     maxHeight = $(window).height()
-
-    unless $done.length
-      throw 'generticText object does not have done'+ $article[0]
 
     unless $editable.length
       throw 'generticText object does not have editable'+ $article[0]
@@ -81,12 +76,5 @@ contentControllers['genericText'] =
       css('overflow-y':'auto', 'max-height': maxHeight).
       scroll(stopPropagation).
       mousewheel(stopPropagation)
-
-    $done.click (event) ->
-      contentControllers.genericText.stopEditing $article
-      options.onDone($editable[0].innerHTML) if options.onDone?
-      event.preventDefault()
-      event.stopPropagation()
-
 
     return { content: () -> $editable[0].innerHTML }
