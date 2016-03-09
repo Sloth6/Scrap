@@ -19,14 +19,14 @@ mixin articleMixin(article, collections)
       ul.articleCollections(style='position:absolute;')
         li.addCollection
           a
-            .simpleHover Add label
+            .animate Add label
           .dot(style='height: 0; width: 0; opacity: 0; display: none; visibility: hidden;')
         - for (var i = 0; i < collections.length; i++)
           - var collection = collections[i]
           - var key = collection.collectionKey
           li.collection(data-collectionKey=key, class=key)
             a.typeSmall(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';', data-color=collection.color)
-              .simpleHover!=collection.name
+              .animate!=collection.name
             .dot(style='background-color:'+collection.color+';')
       ul.addCollectionMenu
 
@@ -93,9 +93,9 @@ mixin articleMixin(article, collections)
           //- contentEditable="false", designmode="on"
           .editable.parallaxLayer(data-parallaxdepth='.375')
             | !{article.content.text}
-          ul.cardActions.parallaxLayer(data-parallaxdepth='.75')
-            li.right.showOnEditing
-              a.done.actionButton.confirm(href='#') Done
+          // ul.cardActions.parallaxLayer(data-parallaxdepth='.75')
+          //   li.right.showOnEditing
+          //     a.done.actionButton.confirm(href='#') Done
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content
