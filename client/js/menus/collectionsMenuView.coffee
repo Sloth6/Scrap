@@ -98,7 +98,7 @@ window.collectionsMenuView =
     scrapState.collectionsMenuIsOpen = false
     scrapState.waitToOpenCollectionsMenu = false
     $button.removeClass        'openMenuButton'
-    console.log 'CLOSE'
+    $destinationLabel.addClass 'openMenuButton'
     $menuItems.each ->
       $label = $(@)
       $contents = $label.find('.contents')
@@ -153,10 +153,6 @@ window.collectionsMenuView =
     $labels.each ->
       # Hide settings menu on labels
       collectionView.hideSettings $(@)
-    setTimeout ->
-      $destinationLabel.addClass 'openMenuButton'
-    , 1000
-
 
   searchFocus: ($input) ->
     return

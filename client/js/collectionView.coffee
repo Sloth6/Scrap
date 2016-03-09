@@ -164,8 +164,6 @@ window.collectionView =
       # $label.text "#{name@example.com} successfully invited"
       # resetForm $collection
 
-
-
 window.rotateColor = ($elements, hue)->
   $elements.css
     '-webkit-text-fill-color': "hsl(#{hue},100%,75%)"

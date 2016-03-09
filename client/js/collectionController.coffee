@@ -14,14 +14,15 @@ window.collectionController =
         width: $(@).width()
         zIndex: 2
 
-      # True if user is doing something in collection settings UI
-      $collection.data('settingsInUse', false)
-
       # Store actual height
       collectionController.updateHeight $collection
 
+      # True if collection settings UI is in use
+      $collection.data('settingsInUse', false)
+      console.log $collection.attr 'class'
       # Main click event
       $a.on 'touchend mouseup', (event) ->
+        console.log 'CLICKITY'
         collectionController.click($collection, event)
 
       $a.on 'touchstart mouseenter', (event) ->
@@ -37,10 +38,7 @@ window.collectionController =
     $collection.data 'nativeHeight', Math.max($collection.find('.contents > a').height(), $collection.find('.contents > input').height())
 
   click: ($collection, event) ->
-    if $collection.hasClass 'openMenuButton'
-      scrapState.waitToOpenCollectionsMenu = true
-      collectionsMenuView.open(event)
-    else
+    unless $collection.hasClass 'openMenuButton'
       scrapState.waitToOpenCollectionsMenu = true
       collectionKey = $collection.data('collectionkey')
       containerView.switchToCollection collectionKey
