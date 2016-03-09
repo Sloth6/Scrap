@@ -2705,25 +2705,33 @@ nav section .addForm article {
     line-height: 27pt;
   }
 }
-/* line 323, ../../style/prototype.scss */
+/* line 322, ../../style/prototype.scss */
+#articleContainer article .collections li a .simpleHover, #articleContainer article .collections li input .simpleHover {
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  width: -webkit-fit-content;
+}
+/* line 328, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 332, ../../style/prototype.scss */
+/* line 337, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 337, ../../style/prototype.scss */
+/* line 342, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 343, ../../style/prototype.scss */
+/* line 348, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 348, ../../style/prototype.scss */
+/* line 353, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
@@ -2733,27 +2741,27 @@ nav section .addForm article {
   right: 0;
   width: 336pt;
 }
-/* line 360, ../../style/prototype.scss */
+/* line 365, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 8pt;
   width: 8pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 371, ../../style/prototype.scss */
+/* line 376, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 376, ../../style/prototype.scss */
+/* line 381, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li input {
   border: 0;
   padding: 0;
   margin: 0;
   height: 36pt;
 }
-/* line 387, ../../style/prototype.scss */
+/* line 392, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }

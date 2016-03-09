@@ -318,6 +318,11 @@ nav {
                     width: -webkit-fit-content;
                     @include transformOriginCenter;
                     white-space: nowrap;
+                    
+                    .simpleHover {
+                        @include transformOriginCenter;
+                        width: -webkit-fit-content;
+                    }
                 }
                 
                 .dot {

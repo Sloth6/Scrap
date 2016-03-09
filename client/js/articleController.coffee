@@ -106,7 +106,7 @@ window.articleController =
       # Hide meta element
       $article.find(constants.dom.articleMeta).hide()
       # Apply simple hover effect to labels
-      $article.find('ul.articleCollections li a').each ->
+      $article.find('ul.articleCollections li a div').each ->
         simpleHover $(@), 250, 1.25
       # Set up label indicators
       $article.find('ul.articleCollections li').each ->
