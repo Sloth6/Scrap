@@ -99,7 +99,6 @@ html.no-js(lang='en')
             .contents
               form(id='newCollectionForm')
                 input(type="text", placeholder="Search", maxlength="32")
-                label.typeSmall.smallCaps.invisible Save this as a new label
           each collection, collectionKey in collections
             if typeof(collection.name) != undefined
               - var key = collection.collectionKey
@@ -141,7 +140,6 @@ html.no-js(lang='en')
         .contents
           form(id='newCollectionForm')
             input(type="text", placeholder="Search", maxlength="32")
-            label.typeSmall.smallCaps.invisible Save this as a new label
       each collection, collectionKey in collections
         if typeof(collection.name) != undefined
           - var key = collection.collectionKey

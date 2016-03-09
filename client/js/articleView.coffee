@@ -195,9 +195,7 @@ window.articleView =
     $collections  = $article.find 'ul.articleCollections'
     $menu         = $article.find 'ul.addCollectionMenu'
     $button       = $collections.find('li.addCollection a')
-
     articleController.initAddCollectionsMenu $article
-
     $menu.find('li').each ->
       delay = $(@).index() * 125
       toY   = $(@).data 'translateY'
@@ -211,16 +209,21 @@ window.articleView =
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
           complete: -> simpleHover $(@), 250, 1.25
-
     $menu.find('li').show()
     $menu.find('li').css 'opacity', 0
     $button.text 'Never mind'
-
+    # Hide contents of article
+    $article.find('.card').contents().each ->
+      $(@).transition
+        opacity: 0
+        duration: 500
+        easing: constants.style.easing
+#     articleView.obscure $(constants.dom.articles).not($article)
+      
   hideAddCollectionMenu: ($article) ->
     $collections  = $article.find     'ul.articleCollections'
     $menu         = $article.find     'ul.addCollectionMenu'
     $button       = $collections.find 'li.addCollection a'
-
     $menu.find('li').not('.added').each ->
       delay = ($menu.find('li').length - $(@).index()) * 125
       $(@).velocity('stop', true).velocity
@@ -232,8 +235,14 @@ window.articleView =
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
           complete: -> $(@).remove()
-
     $button.text('Add label')
+    # Show contents of article
+    $article.find('.card').contents().each ->
+      $(@).transition
+        opacity: 1
+        duration: 500
+        easing: constants.style.easing
+#     articleView.unobscure $(constants.dom.articles).not($article)
 
   addCollection: ($article, $label) ->
     $collectionsList = $article.find 'ul.articleCollections'

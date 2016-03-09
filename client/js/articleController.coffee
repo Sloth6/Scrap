@@ -119,7 +119,7 @@ window.articleController =
         # parallaxHover $a, 250, 1.5
         $(@).mouseenter (event) -> cursorView.start '☛', event
       # Open/close collections menu
-      $article.find('ul.articleCollections li.addCollection a').click ->
+      $article.find('ul.articleCollections li.addCollection a').on 'touchend mouseup', ->
         $menu = $article.find('ul.addCollectionMenu')
         event.stopPropagation()
         event.preventDefault()
