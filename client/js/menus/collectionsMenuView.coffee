@@ -1,85 +1,86 @@
 window.collectionsMenuView =
   open: (event) ->
-    if scrapState.waitToOpenCollectionsMenu
-      isHome        = window.openCollection is 'recent'
-      yOffsetTop    = $(window).height() + $(window).scrollTop() # Top of page to bottom of window
-      $menu         = $(constants.dom.collectionsMenu)
-      $container    = $(constants.dom.articleContainer)
-      $menuItems    = $menu.children()
-      $button       = $menuItems.filter('.openMenuButton')
-      $labelsButton = $menuItems.filter('li.labelsButton')
-      $labels       = $menuItems.not('li.labelsButton')
-      $openLabel    = $menuItems.filter("li.#{window.openCollection}")
-      options       =
-        duration: 1000
-        easing:   constants.velocity.easing.smooth
-      scrapState.collectionsMenuIsOpen = true
-      scrapState.waitToOpenCollectionsMenu = false
-      console.log 'OPEN'
-      $menuItems.show()
-      # Animate in labels
-      $labels.each ->
-        $label = $(@)
-        $contents = $label.find('.contents')
-        $contents.css 'opacity', 0 # Hide to prevent flash before animating in
-        toY = if $label.is $labelsButton then -$labelsButton.height() else -$labelsButton.height()
-        if $label.is $openLabel
-          fromY = if $label.is('.recent') then yOffsetTop else -$label.offset().top
-          unparallax $openLabel.find('.transform'), options.duration, options.easing
-        else if $openLabel.index() < $label.index() # Below
-          fromY = yOffsetTop - ($label.offset().top - $label.height() * 2)
-        else # Above
-          fromY = -$(window).height()
-        $contents.not($labelsButton).velocity('stop', true).velocity
-          properties:
-            translateY: [toY, fromY]
-            opacity: [1, 1]
-  #           scaleY: [1, 2]
-  #           scaleX: [1, 0]
-            rotateZ: [0, 0]
-          options:
-            duration: options.duration # + ($label.index() * 60)
-            easing:   options.easing
-            delay:    $label.index() * 60
-      # Animate up labels button
-      $labelsButton.find('.contents').velocity('stop', true).velocity
+    isHome        = window.openCollection is 'recent'
+    yOffsetTop    = $(window).height() + $(window).scrollTop() # Top of page to bottom of window
+    $menu         = $(constants.dom.collectionsMenu)
+    $container    = $(constants.dom.articleContainer)
+    $menuItems    = $menu.children()
+    # The button that when clicked opens the collections menu
+    $button       = $menuItems.filter('.openMenuButton')
+    # The list item that says "Labels"
+    $labelsButton = $menuItems.filter('li.labelsButton')
+    # All of the list items except the labels button
+    $labels       = $menuItems.not('li.labelsButton')
+    # The currently opened collection
+    $openLabel    = $menuItems.filter("li.#{window.openCollection}")
+    options       =
+      duration: 1000
+      easing:   constants.velocity.easing.smooth
+    scrapState.collectionsMenuIsOpen = true
+    console.log 'OPEN'
+    $menuItems.show()
+    # Animate in labels
+    $labels.each ->
+      $label = $(@)
+      $contents = $label.find('.contents')
+      $contents.css 'opacity', 0 # Hide to prevent flash before animating in
+      toY = if $label.is $labelsButton then -$labelsButton.height() else -$labelsButton.height()
+      if $label.is $openLabel
+        fromY = if $label.is('.recent') then yOffsetTop else -$label.offset().top
+        unparallax $openLabel.find('.transform'), options.duration, options.easing
+      else if $openLabel.index() < $label.index() # Below
+        fromY = yOffsetTop - ($label.offset().top - $label.height() * 2)
+      else # Above
+        fromY = -$(window).height()
+      $contents.not($labelsButton).velocity('stop', true).velocity
         properties:
-          translateY: -$labelsButton.height()
+          translateY: [toY, fromY]
+          opacity: [1, 1]
+#           scaleY: [1, 2]
+#           scaleX: [1, 0]
+          rotateZ: [0, 0]
         options:
           duration: options.duration # + ($label.index() * 60)
           easing:   options.easing
-          complete: ->
-            $labelsButton.css 'opacity', 0
-            scrapState.waitToOpenCollectionsMenu = false
+          delay:    $label.index() * 60
+    # Animate up labels button
+    $labelsButton.find('.contents').velocity('stop', true).velocity
+      properties:
+        translateY: -$labelsButton.height()
+      options:
+        duration: options.duration # + ($label.index() * 60)
+        easing:   options.easing
+        complete: ->
+          $labelsButton.css 'opacity', 0
 #             collectionController.updateHeight $collection
-      unparallax $labelsButton.find('.transform'), options.duration, options.easing
-      articleView.obscure $container.find('article')
-      extendNav()
-      # Animate other header buttons away
-      $('nav section.left .headerButton, nav section.right .headerButton').each ->
-        $(@).velocity('stop', true).velocity
-          properties:
-            translateY: -$(@).height()
-          options:
-            duration: options.duration
-            easing:   options.easing
-      # Disable scroll
-      $('body').css
-        overflow: 'hidden'
-      # Enable scrolls
-      $menu.css
-        overflowY: 'scroll'
-      # Focus search if menu opened with mouse
-      if pointerType(event) is 'mouse'
-        $menu.find('li.searchCollections input').val('').focus()
+    unparallax $labelsButton.find('.transform'), options.duration, options.easing
+    articleView.obscure $container.find('article')
+    extendNav()
+    # Animate other header buttons away
+    $('nav section.left .headerButton, nav section.right .headerButton').each ->
+      $(@).velocity('stop', true).velocity
+        properties:
+          translateY: -$(@).height()
+        options:
+          duration: options.duration
+          easing:   options.easing
+    # Disable scroll
+    $('body').css
+      overflow: 'hidden'
+    # Enable scrolls
+    $menu.css
+      overflowY: 'scroll'
+    # Focus search if menu opened with mouse
+    if pointerType(event) is 'mouse'
+      $menu.find('li.searchCollections input').val('').focus()
 
-      # Scroll to open label
-      $openLabel.velocity('stop', true).velocity 'scroll', {
-        container: $menu
-        duration: options.duration
-        easing: options.easing
-        offset: -$openLabel.height()
-      }
+    # Scroll to open label
+    $openLabel.velocity('stop', true).velocity 'scroll', {
+      container: $menu
+      duration: options.duration
+      easing: options.easing
+      offset: -$openLabel.height()
+    }
 
   close: () ->
     isHome        = window.openCollection is 'recent'
@@ -96,7 +97,6 @@ window.collectionsMenuView =
       duration: 750
       easing:   constants.velocity.easing.smooth
     scrapState.collectionsMenuIsOpen = false
-    scrapState.waitToOpenCollectionsMenu = false
     $button.removeClass        'openMenuButton'
     $destinationLabel.addClass 'openMenuButton'
     $menuItems.each ->

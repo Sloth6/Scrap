@@ -25,7 +25,6 @@ window.collectionsMenuController =
       collectionsMenuView.searchChange $menu, $(@)
       
   open: ($menu, event) ->
-    scrapState.waitToOpenCollectionsMenu = true
     collectionsMenuView.open(event)
 
   add: (name, collectionKey, color) ->

@@ -38,7 +38,6 @@ window.collectionController =
 
   click: ($collection, event) ->
     unless $collection.hasClass 'openMenuButton'
-      scrapState.waitToOpenCollectionsMenu = true
       collectionKey = $collection.data('collectionkey')
       containerView.switchToCollection collectionKey
       collectionsMenuView.close()
