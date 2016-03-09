@@ -8,7 +8,7 @@ window.collectionView =
     # Open add user form on button click
     $settings.find('input.addSomeone').click -> collectionView.addSomeone $collection
     # Make settings hide-able if user blurs email input
-    $settings.find('input[type=email]').blur -> 
+    $settings.find('input[type=email]').blur ->
       $collection.data 'settingsInUse', false
       $('body').mousemove ->
         unless $collection.is('.hover')
@@ -20,7 +20,7 @@ window.collectionView =
       alert 'Confirmation UI goes here'
       # After completing dialog
       # $collection.data 'settingsInUse', false
-    
+
   shrinkOnDragOffMenu: ($collection) ->
     $collection.find('a').trigger('mouseleave').velocity
       properties:
@@ -34,13 +34,8 @@ window.collectionView =
         easing: constants.velocity.easing.spring
         duration: 250
     $($collection).hover stopProp, stopProp
-    
-  mouseenter: ($collection) ->
-    cursorView.end()
-    
-  mouseleave: ($collection, event) ->
-    cursorView.start '✕', event
-    
+
+
   showSettings: ($collection) ->
     $settings = $collection.find '.collectionSettings'
     $collection.velocity('stop', true).velocity
@@ -57,7 +52,7 @@ window.collectionView =
         duration: 500
         easing: constants.velocity.easing.smooth
         begin: -> $settings.show()
-  
+
   hideSettings: ($collection) ->
     $settings = $collection.find '.collectionSettings'
     $settings.velocity('stop', true).velocity
@@ -74,7 +69,7 @@ window.collectionView =
       options:
         duration: 500
         easing: constants.velocity.easing.smooth
-        
+
   hide: ($collections) ->
     $collections.each ->
       $(@).velocity('stop', true).velocity
@@ -98,7 +93,7 @@ window.collectionView =
           duration: 500
           easing: constants.velocity.easing.smooth
           begin: => $(@).show()
-          
+
   resetForm: ($collection) ->
     $addSection = $collection.find '.contents .collectionSettings .add'
     $emailInput = $addSection.find 'input[type=email]'
@@ -128,7 +123,7 @@ window.collectionView =
         easing: constants.velocity.easing.smooth
         complete: -> $form.hide()
     $collection.data 'settingsInUse', true
-    
+
   addSomeone: ($collection) ->
     $addSection = $collection.find '.contents .collectionSettings .add'
     $emailInput = $addSection.find 'input[type=email]'
@@ -168,8 +163,8 @@ window.collectionView =
     # Else if successful submit
       # $label.text "#{name@example.com} successfully invited"
       # resetForm $collection
-    
-      
+
+
 
 window.rotateColor = ($elements, hue)->
   $elements.css

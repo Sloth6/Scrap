@@ -1,28 +1,17 @@
-liClick = ($li, event) ->
-  if $li.hasClass 'openMenuButton'
-#     console.log 'liclick', $li.text(), $li.attr 'class'
-    scrapState.waitToOpenCollectionsMenu = true
-    collectionsMenuView.open(event)
-  event.stopPropagation()
-  event.preventDefault()
-
 window.collectionsMenuController =
   init: ($menu) ->
-    $lis    = $menu.children()
+    $lis = $menu.children()
 
     parallaxHover $lis.find('.contents > a'), 250, 1.25
 
     $(constants.dom.collections).each ->
       $(@).data 'offsetTop', $(@).offset().top
-      
-    $lis.each ->
-      $lis.find('.contents > a').on 'touchend mouseup', => liClick $(@), event
 
     $menu.find('li.newCollection input').click (event) ->
       $(@).attr 'placeholder', ''
       $(@).siblings('label').removeClass 'invisible'
-      
-    $menu.find('input, a').click -> event.stopPropagation()
+
+    $menu.find('input, a').click (event) -> event.stopPropagation()
     $lis.not('.openMenuButton, .openCollection').hide()
 
     $menu.find('li.searchCollections input').focus ->
@@ -37,7 +26,7 @@ window.collectionsMenuController =
     $label = $menu.find('.recent').clone()
     $label.data('collectionkey', collectionKey)
     $label.find('.contents > as').
-      click(=> liClick $label, event).
+      click((event) => liClick $label, event).
       text(name).
       css { color }
 

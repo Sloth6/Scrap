@@ -3,7 +3,7 @@ window.containerView =
     $container  = $(constants.dom.articleContainer)
     $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
     $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
-    
+
     # Scroll to top
     $('body').velocity('stop', true).velocity 'scroll', {
       duration: 1000
@@ -23,6 +23,7 @@ window.containerView =
           complete: ->
             $(@).hide()
             $(constants.dom.articleContainer).packery()
+
     # Show matched articles
     $matched.show()
     $matched.css 'opacity', 0
@@ -44,10 +45,11 @@ window.containerView =
             if $matched.index() is $matched.length - 1 # last article
               $container.packery
                 transitionDuration: 500
+
     window.openCollection = collectionKey
     $container.packery()
     containerView.updateHeight $(constants.dom.wrapper), $container
-    
+
   updateScale: () ->
     $scale = $(constants.dom.containerScale)
     $scale.css
