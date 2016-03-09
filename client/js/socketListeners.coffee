@@ -14,6 +14,7 @@ $ ->
     { name, collectionKey, color } = data
     if !(name? and collectionKey? and color?)
       throw 'Invalid parameters sent on newCollection'
+    console.log 'Recieved new collection', data
     collections[collectionKey] = data
     collectionsMenuController.add name, collectionKey, color
 

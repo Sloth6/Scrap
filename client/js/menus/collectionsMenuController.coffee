@@ -1,48 +1,60 @@
 window.collectionsMenuController =
   init: ($menu) ->
-    $lis    = $menu.children()
-    parallaxHover $lis.find('.contents > a'), 250, 1.25
+    $lis = $menu.children()
+    $newForm    = $menu.find('.newCollectionForm')
+    $searchForm = $menu.find('.searchCollectionsForm')
 
-    $(constants.dom.collections).each ->
-      $(@).data 'offsetTop', $(@).offset().top
-      
-    $lis.each ->
-      $(@).find('.contents > a').on 'touchend mouseup', (event) =>
-        if $(@).hasClass 'openMenuButton'
-         collectionsMenuController.open $menu, event
+    $menu.find('input, a').click (event) ->
+      event.stopPropagation()
 
-    $menu.find('li.newCollection input').click (event) ->
-      $(@).attr 'placeholder', ''
-      $(@).siblings('label').removeClass 'invisible'
-
-    $menu.find('input, a').click (event) -> event.stopPropagation()
     $lis.not('.openMenuButton, .openCollection').hide()
 
+    # Binding for search.
     $menu.find('li.searchCollections input').focus ->
-      collectionsMenuView.searchFocus  $(@)
+      collectionsMenuView.searchFocus $(@)
 
     $menu.find('li.searchCollections input').on 'input', () ->
       collectionsMenuView.searchChange $menu, $(@)
-      
-  open: ($menu, event) ->
-    collectionsMenuView.open(event)
+
+    # Bindings for creating new collections.
+    $newForm.find('input[type=text]').on 'input', () ->
+      console.log 'input'
+      $(@).siblings('label').removeClass 'invisible'
+
+    $newForm.submit (event) ->
+      name = $.trim($(@).find('input').val())
+      # Dont take empty names or a name of only whitespace.
+      if name != ''
+        $(@).find('input').val('').blur()
+        console.log 'emitting new collection', name
+        socket.emit 'addCollection', { name }
+        event.preventDefault()
+
+  open: ($menu, $li, event) ->
+    if $li.hasClass 'openMenuButton'
+      console.log 'open called. Li has classes:', $li.attr 'class'
+      collectionsMenuView.open(event)
 
   add: (name, collectionKey, color) ->
     $menu = $(constants.dom.collectionsMenu)
+
     # Copy existing DOM, making it less fragile if dom changes.
-    $label = $menu.find('.recent').clone()
+    # Todo. emit html from sever
+    $label = $menu.find('.collection').not('.recent').first().clone()
+    $label.removeClass()# $label.data('collectionkey')
+    $label.addClass 'collection'
     $label.data('collectionkey', collectionKey)
-    $label.find('.contents > as').
-      click((event) => liClick $label, event).
+    $label.addClass collectionKey
+
+    console.log 'Label has clases', $label.attr('class')
+    console.log 'Label has key', $label.data('collectionkey')
+
+    $label.find('.contents > a').
       text(name).
       css { color }
 
     $label.insertBefore $menu.children().last()
+
     collectionController.init $label
-    parallaxHover $label.find('.contents > a'), 250, 1.25
-
-    $newLabelButton = $menu.find('li.newCollection input')
-    $newLabelButton.attr 'placeholder', 'New label'
-    $newLabelButton.siblings('label').addClass 'invisible'
-
-
+    # console.log 'the new label', $label.attr('class'), $label
+#

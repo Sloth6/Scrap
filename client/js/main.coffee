@@ -54,10 +54,10 @@ $ ->
   window.openCollection = 'recent'
 
   collectionController.init      $(constants.dom.collections)
+  collectionController.init      $(constants.dom.collectionsMenu).find('.labelsButton')
   collectionsMenuController.init $(constants.dom.collectionsMenu)
   articleController.init         $(constants.dom.articles)
   containerController.init       $(constants.dom.articleContainer)
-
   cursorController.init          $(constants.dom.cursor)
 
   containerController.getArticles(40)
@@ -78,7 +78,7 @@ $ ->
         unless scrapState.openArticle?
           contentControllers.newArticle.init $newArticleForm
           containerController.insertNewArticleForm $newArticleForm
-  
+
   buttonView.init $('.actionButton')
 
   $('li.recent a, li.labelsButton a').each ->
@@ -90,7 +90,7 @@ $ ->
       $(@).data('hue', $(@).data('hue') + 30)
       rotateColor $(@), $(@).data('hue')
   , 1000
-  
+
   # Init grid (makes CSS constants accessible in JS)
   constants.style.grid.col      = $('.ruler .grid .col').width()
   constants.style.grid.cell     = $('.ruler .grid .cell').width()
@@ -100,15 +100,15 @@ $ ->
   constants.style.sizeClasses.large   = $('.ruler .break .large').width()
   constants.style.sizeClasses.xLarge  = $('.ruler .break .xLarge').width()
   $('.ruler').remove()
-  
+
   window.onResize = ->
     width = $(window).width()
     # Set current sizeClass
     scrapState.sizeClass = switch
-      when width <= constants.style.sizeClasses.xSmall then 'xSmall' 
-      when width <= constants.style.sizeClasses.small  then 'small' 
-      when width <= constants.style.sizeClasses.medium then 'medium' 
-      when width <= constants.style.sizeClasses.large  then 'large' 
+      when width <= constants.style.sizeClasses.xSmall then 'xSmall'
+      when width <= constants.style.sizeClasses.small  then 'small'
+      when width <= constants.style.sizeClasses.medium then 'medium'
+      when width <= constants.style.sizeClasses.large  then 'large'
       when width >  constants.style.sizeClasses.large  then 'xLarge'
     constants.style.globalScale = switch
       when scrapState.sizeClass is 'xSmall' then 1/4
@@ -118,9 +118,9 @@ $ ->
       when scrapState.sizeClass is 'xLarge' then 1/2
     containerView.updateScale()
     articleView.updateScale $(constants.dom.articles), constants.style.globalScale
-        
+
   onResize()
-  
+
   $(window).resize(onResize)
-  
-  
+
+

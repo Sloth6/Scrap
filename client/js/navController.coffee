@@ -1,11 +1,10 @@
 $ ->
   initNav $(constants.dom.nav)
-  initAddCollectionForm $('#newCollectionForm')
-  
+
 # window.nav =
 #   init: ->
 #   hide: ->
-  
+
 hideNav = ->
   $sections = $(constants.dom.nav).children()
   unless $(constants.dom.collectionsMenu).hasClass('open')
@@ -16,7 +15,7 @@ hideNav = ->
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
-          
+
 retractNav = ->
   $sections = $(constants.dom.nav).children('section')
   unless $(constants.dom.collectionsMenu).hasClass('open') or $(window).scrollTop() < 10
@@ -36,17 +35,10 @@ extendNav = ->
     options:
       duration: 500
       easing: constants.velocity.easing.smooth
-  
+
 initNav = ($nav) ->
   $nav.hover extendNav, retractNav
   parallaxHover $('.left .headerButton, .right .headerButton a')
   $nav.find('a').mouseenter ->
     # Hide special cursor
     cursorView.end()
-  
-initAddCollectionForm = ($form) ->
-  $form.submit (event) ->
-    name = $('#newCollectionForm [type=text]').val()
-    $('#newCollectionForm [type=text]').val ''
-    socket.emit 'addCollection', { name }
-    event.preventDefault()

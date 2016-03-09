@@ -97,8 +97,12 @@ window.collectionsMenuView =
       duration: 750
       easing:   constants.velocity.easing.smooth
     scrapState.collectionsMenuIsOpen = false
-    $button.removeClass        'openMenuButton'
-    $destinationLabel.addClass 'openMenuButton'
+    $button.removeClass 'openMenuButton'
+    if $destinationLabel.is('.recents')
+      $labelsButton.addClass 'openMenuButton'
+    else
+      $destinationLabel.addClass 'openMenuButton'
+
     $menuItems.each ->
       $label = $(@)
       $contents = $label.find('.contents')

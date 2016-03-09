@@ -1,0 +1,44 @@
+ul.collectionsMenu
+  li.labelsButton.openCollection.openMenuButton
+    .contents
+      a(href='#').headerButton Labels
+  li.collection.recent(data-collectionkey='recent')
+    .contents
+      a(href='#') All
+  li.searchCollections
+    .contents
+      form.searchCollectionsForm
+        input(type="text", placeholder="Search", maxlength="32")
+        label.typeSmall.smallCaps.invisible Save this as a new label
+  each collection, collectionKey in collections
+    if typeof(collection.name) != undefined
+      - var key = collection.collectionKey
+      li.collection(data-collectionkey=key, class=key)
+        .contents
+          a(href='#', style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+          .collectionSettings.smallType
+            .sharing
+              span Shared with
+              ul.users
+                li.user Joel Simon
+                li.user Antonio Ono
+                li.user Cody Simon
+                li.user Sunny Li
+                li.user Ruth Bader-Ginsburg
+              .add
+                input.smallType.smallCaps.addSomeone(type='button', value='Add someone')
+                form
+                  input.smallType(type='email', placeholder='email address')
+                  label.invisible.smallType.smallCaps Press enter to send
+                  input(type='submit')
+            .actions
+              ul
+                li
+                  input.smallType.smallCaps(type='button', value='Rename')
+                li
+                  input.smallType.smallCaps(type='button', value='Delete')
+  li.newCollection
+    .contents
+      form.newCollectionForm
+        input(type="text", placeholder="New label", maxlength="32")
+        label.typeSmall.smallCaps.invisible Press enter to save

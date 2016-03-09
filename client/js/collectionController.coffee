@@ -10,6 +10,8 @@ window.collectionController =
 
       collectionView.init $collection
 
+      $collection.data 'offsetTop', $collection.offset().top
+
       $collection.css
         width: $(@).width()
         zIndex: 2
@@ -18,8 +20,10 @@ window.collectionController =
       collectionController.updateHeight $collection
 
       # True if collection settings UI is in use
-      $collection.data('settingsInUse', false)
-      console.log $collection.attr 'class'
+      $collection.data 'settingsInUse', false
+
+      parallaxHover $a, 250, 1.25
+
       # Main click event
       $a.on 'touchend mouseup', (event) ->
         collectionController.click($collection, event)
@@ -37,7 +41,11 @@ window.collectionController =
     $collection.data 'nativeHeight', Math.max($collection.find('.contents > a').height(), $collection.find('.contents > input').height())
 
   click: ($collection, event) ->
-    unless $collection.hasClass 'openMenuButton'
+    console.log 'label click', $collection.attr 'class'
+    if $collection.hasClass 'openMenuButton'
+      console.log 'openMenuButton click'
+      collectionsMenuController.open $(constants.dom.collectionsMenu), $collection, event
+    else
       collectionKey = $collection.data('collectionkey')
       containerView.switchToCollection collectionKey
       collectionsMenuView.close()
