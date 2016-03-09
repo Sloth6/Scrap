@@ -283,7 +283,30 @@ window.articleView =
           duration: 500
           easing: constants.velocity.easing.smooth
     articleView.hideAddCollectionMenu $article
+  
+  articleCollectionEnter: ($animate, event) ->
+    $animate.velocity('stop', true).velocity
+      properties:
+        scale: 1.25
+      options:
+        duration: 250
+        easing: constants.velocity.easing.smooth
+        complete: ->
+          $animate.addClass 'parallaxLayer'
+          $animate.attr 'data-parallaxdepth', '.5'
 
+  articleCollectionLeave: ($animate, event) ->
+    $animate.removeClass 'parallaxLayer'
+    $animate.attr 'data-parallaxdepth', ''
+    $animate.velocity('stop', true).velocity
+      properties:
+        scale: 1
+        translateY: 0
+        translateX: 0
+      options:
+        duration: 250
+        easing: constants.velocity.easing.smooth
+  
   mouseenter: (event, $article) ->
     $card     = $article.find('.card')
     $article.find('ul.articleCollections').css
@@ -421,17 +444,13 @@ window.articleView =
     $( constants.dom.articleContainer ).packery()
 
   close: ($article) ->
-
     $article.velocity('stop', true)
     $article.removeClass 'open'
     $article.velocity
       properties: {scale: 1 }
-
     articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))
-
     $container = $(constants.dom.articleContainer)
-    $container.velocity('stop', true)
-    $container.velocity
+    $container.velocity('stop', true).velocity
       properties:
         translateX: 0
         translateY: 0

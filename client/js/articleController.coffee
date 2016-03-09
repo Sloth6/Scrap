@@ -30,22 +30,25 @@ window.articleController =
     $menu.append content
 
     labelHeights = 0
+    # Transform labels to starting positions
     $article.find('ul.addCollectionMenu li').each ->
       $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
       $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
       $(@).data 'translateY', labelHeights
       labelHeights += $(@).height()
-
     # Click to add label
     $article.find('ul.addCollectionMenu li a').click ->
       $menu = $article.find('ul.addCollectionMenu')
       $label = $(@).parent()
       event.preventDefault()
       articleController.addCollection $article, $label
-      
     $article.find('ul.addCollectionMenu li input').click ->
       event.stopPropagation()
-
+    $article.find('.collections li a').on 'touchstart mouseenter', ->
+      articleView.articleCollectionEnter $(@).find('.animate'), event
+    $article.find('.collections li a').on 'touchend mouseleave', ->
+      articleView.articleCollectionLeave $(@).find('.animate'), event
+      
   open: ($article) ->
     contentType = $article.data 'contenttype'
     return if scrapState.openArticle?

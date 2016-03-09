@@ -61,7 +61,6 @@ getRotateZValues = ($element, progress) ->
 window.parallaxHover = ($elements, duration, scale) ->
   $elements.each ->
     $element = $(@)
-    $layers = $element.find('.parallaxLayer')
     $element.addClass 'parallaxHover'
     $element.wrapInner '<span></span>' if $element.is('a')
     perspective = if $element.hasClass('image') or $element.hasClass('youtube') then (($element.height() + $element.width()) / 2) * 4 else $element.height() * 2
@@ -76,6 +75,7 @@ window.parallaxHover = ($elements, duration, scale) ->
         duration: 1
     $element.on 'touchstart mouseenter', (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
+        $layers = $element.find('.parallaxLayer')
         pointer = getPointer(event)
         progress = getPercentageAcrossElement($element, pointer, scale)
         rotate = getRotateZValues($element, progress)
@@ -108,13 +108,22 @@ window.parallaxHover = ($elements, duration, scale) ->
           options:
             easing: constants.velocity.easing.smooth
             duration: duration
-        $layers.each ->
-          depth = parseFloat $(@).data('parallaxdepth')
-          offset =
-            x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
-            y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+#         $layers.each ->
+#           depth = parseFloat $(@).data('parallaxdepth')
+#           offset =
+#             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
+#             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+#           parallax = 72 * depth
+#           $(@).velocity('stop', true).velocity
+#             properties:
+#               translateX: offset.x + (parallax * (-1 * (progress.x - .5)))
+#               translateY: offset.y + (parallax * (-1 * (progress.y - .5)))
+#             options:
+#               duration: duration
+#               easing: constants.velocity.easing.smooth
     $element.on 'touchmove mousemove', (event) ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
+        $layers = $element.find('.parallaxLayer')
         event.preventDefault() # Prevent triggering of mouse events on touch
         $transform = $element.find('.transform')
         pointer = getPointer(event)
@@ -128,10 +137,24 @@ window.parallaxHover = ($elements, duration, scale) ->
             x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
             y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
           parallax = 72 * depth
+#           if $.Velocity.hook($(@), 'translateX') is 0
+#             readyToAnimate = false
+#             $(@).velocity('stop', true).velocity
+#               properties:
+#                 translateX: offset.x + (parallax * (-1 * (progress.x - .5)))
+#                 translateY: offset.y + (parallax * (-1 * (progress.y - .5)))
+#               options:
+#                 duration: 1000
+#                 easing: constants.velocity.easing.smooth
+#                 complete: -> readyToAnimate = true
+#           else
+#             readyToTranslate = true
+#           if readyToTranslate
           $.Velocity.hook $(@), 'translateX', "#{offset.x + (parallax * (-1 * (progress.x - .5)))}px"
           $.Velocity.hook $(@), 'translateY', "#{offset.y + (parallax * (-1 * (progress.y - .5)))}px"
     $element.on 'touchend or mouseleave', ->
       unless $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
+        $layers = $element.find('.parallaxLayer')
         event.preventDefault() # Prevent triggering of mouse events on touch
         $element.data('closingHover', true)
         $transform = $element.find('.transform')
