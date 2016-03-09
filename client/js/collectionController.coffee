@@ -41,7 +41,6 @@ window.collectionController =
       collectionKey = $collection.data('collectionkey')
       containerView.switchToCollection collectionKey
       collectionsMenuView.close()
-      scrapState.waitToOpenCollectionsMenu = false
     event.stopPropagation()
     event.preventDefault()
 
