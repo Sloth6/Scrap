@@ -34,14 +34,8 @@ window.containerController =
       $container.packery 'appended', $articles
     else
       $articles.insertBefore $(constants.dom.addArticleMenu)
-      # $container.append $articles
-      # $container.append  #ensure at top
-      # $container.packery 'appended', $articles
       $container.packery 'reloadItems'
 
-
-    #what is buttonview? why is init here??
-    buttonView.init $articles.find('.actionButton')
     containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
 
   getArticles: (n) ->

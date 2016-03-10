@@ -1,8 +1,10 @@
 window.containerView =
   switchToCollection: (collectionKey) ->
-    $container  = $(constants.dom.articleContainer)
-    $matched    = if collectionKey is 'recent' then $container.find('article') else $container.find("article.#{collectionKey}")
-    $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
+    $container = $(constants.dom.articleContainer)
+    $articles  = $container.find('article').not $(constants.dom.addArticleMenu)
+    $matched   = if collectionKey is 'recent' then $articles else $articles.filter(".#{collectionKey}")
+    # $unmatched  = if collectionKey is 'recent' then $('')                      else $container.find('article').not(".#{collectionKey}")
+    $unmatched = $articles.not ".#{collectionKey}"
 
     # Scroll to top
     $('body').velocity('stop', true).velocity 'scroll', {

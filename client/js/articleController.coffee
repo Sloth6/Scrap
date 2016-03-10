@@ -160,4 +160,4 @@ window.articleController =
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
 
-
+      buttonView.init $article.find('.actionButton')
