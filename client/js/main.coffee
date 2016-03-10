@@ -66,6 +66,7 @@ $ ->
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
 
+  # Main body click handler.
   $('body').on 'mouseup', (event) ->
     if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()
@@ -73,6 +74,10 @@ $ ->
     else if scrapState.openArticle?
       articleController.close scrapState.openArticle
       scrollController.enableScroll()
+    else
+      $(window).scrollTop 0
+      articleController.open $(constants.dom.addArticleMenu)
+
 
   buttonView.init $('.actionButton')
 
