@@ -42,7 +42,8 @@ window.containerController =
     return if scrapState.waitingForContent
     scrapState.waitingForContent = true
     o = $('article').not('.addArticleForm').length
-    $.get('collectionContent', {o, n}).
+    data = { o, n, collectionKey: window.openCollection }
+    $.get('collectionContent', data).
       fail(() -> 'failed to get content').
       done (data) ->
         derp = $('<div>')

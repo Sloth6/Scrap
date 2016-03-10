@@ -12,41 +12,40 @@ module.exports =
     userId = req.session?.currentUserId
     o = parseInt(req.query.o)
     n = parseInt(req.query.n)
-    console.log { o, n }
+    collectionKey = req.query.collectionKey
+
+    console.log { o, n, collectionKey }
     return res.send(400) unless (o and n and userId)?
 
-    options =
-      where: { id: userId }
+    done = (articles) ->
+      articles = articles.slice o, o+n
+      console.log "Showing #{articles.length} articles"
+      res.render 'partials/articles', { articles }
+
+    articleOptions =
+      model: models.Article,
+      order: '"createdAt" ASC',
       include: [
-        { model: models.Collection },
-        {
-          model: models.Article,
-          order: '"createdAt" ASC',
-          include: [
-            { model:models.Collection, required: false },
-            { model:models.User, as: 'Creator'}
-          ]
-        }
+        { model:models.Collection, required: false },
+        { model:models.User, as: 'Creator'}
       ]
-    models.User.find( options ).done (err, user) ->
-      return callback err, res if err?
-      return indexPage res unless user?
 
-      # user.Articles.reverse()
-      user.Articles = user.Articles.slice(o, o+n)
+    if collectionKey != 'recent'
+      options =
+        where: { collectionKey }
+        include: [ articleOptions ]
+      models.Collection.find( options ).done (err, collection) ->
+        return callback err, res if err?
+        done collection.Articles
+    else
 
-      collections = {}
-      for collection in user.Collections
-        key = collection.collectionKey
-        collections[key] = collection.dataValues
+      options =
+        where: { id: userId }
+        include: [ { model: models.Collection }, articleOptions ]
+      models.User.find( options ).done (err, user) ->
+        return callback err, res if err?
+        done user.Articles
 
-      console.log "Showing #{user.Articles.length} articles"
-
-      res.render 'partials/articles', { user }
-      # app.render 'partials/articles', { user }, (err, html) ->
-      #   return callback err if err?
-      #   res.status(200).send html
-      #   callback null
 
   uploadFile : (req, res, app, callback) ->
     userId = req.session.currentUserId

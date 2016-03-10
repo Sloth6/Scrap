@@ -1,4 +1,4 @@
 include ../mixins/article
-for article in user.Articles
+for article in articles
   if article != undefined
     +articleMixin(article, article.Collections)
