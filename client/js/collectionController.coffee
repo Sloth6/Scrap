@@ -22,7 +22,7 @@ window.collectionController =
       # True if collection settings UI is in use
       $collection.data 'settingsInUse', false
 
-      parallaxHover $a, 250, 1.25
+      popController.init $a, 250, 1.25
 
       # Main click event
       $a.on 'touchend mouseup', (event) ->

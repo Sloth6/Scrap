@@ -2653,12 +2653,12 @@ nav section .addForm article {
 }
 
 /* line 243, ../../style/prototype.scss */
-.parallaxHover .perspective, .parallaxHover .transform {
+.pop .perspective, .pop .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 /* line 248, ../../style/prototype.scss */
-.parallaxHover .parallaxLayer {
+.pop .popLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }

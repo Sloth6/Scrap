@@ -15,7 +15,7 @@ mixin articleMixin(article, collections)
     data-creatorid  = article.creatorId,
     data-content    = article.content
   )
-    .collections.parallaxLayer(data-parallaxdepth='1')
+    .collections.popLayer(data-popdepth='1')
       ul.articleCollections(style='position:absolute;')
         li.addCollection
           a
@@ -34,18 +34,18 @@ mixin articleMixin(article, collections)
       case article.contentType
 
         when 'image'
-          img.parallaxLayer(data-parallaxdepth='.5', src = content.original_url)
+          img.popLayer(data-popdepth='.5', src = content.original_url)
 
         when 'website'
           -var url = decodeURIComponent(content.url)
           header
             - if (collections[0] != undefined)
               - var color = collections[0].color
-            h1.headerType.parallaxLayer(data-parallaxdepth='.5')!=content.title
+            h1.headerType.popLayer(data-popdepth='.5')!=content.title
             .detail
-              .source.bodyType.smallCaps.parallaxLayer(data-parallaxdepth='.375')!=content.domain
-              .description.parallaxLayer.parallaxHidden(data-parallaxdepth='.25')!=content.description
-          .image.parallaxLayer(data-parallaxdepth='.5')
+              .source.bodyType.smallCaps.popLayer(data-popdepth='.375')!=content.domain
+              .description.popLayer.popHidden(data-popdepth='.25')!=content.description
+          .image.popLayer(data-popdepth='.5')
             img(src=content.image)
           a(href=url, target='_blank')
           // title='Open “' + content.title + '” in a new tab')
@@ -67,39 +67,39 @@ mixin articleMixin(article, collections)
             source(src = content.url)
 
         when 'soundcloud'
-          .preview.parallaxLayer(data-parallaxdepth='.5', title='Play “' + content.title + '”')
+          .preview.popLayer(data-popdepth='.5', title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
           header
-            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
-              .artist.smallType.parallaxLayer(data-parallaxdepth='.125', data-parallaxoffset={x: 0, y: -24})!=content.author_name
-              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.375')!=content.title
-            .detail.parallaxLayer(data-parallaxdepth='.125', data-parallaxoffset={x: 0, y: 36})
+            .top.popLayer(data-popdepth='0', data-poptranslate={x: 0, y: -0})
+              .artist.smallType.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: -24})!=content.author_name
+              h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.375')!=content.title
+            .detail.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: 36})
               .source.smallType.smallCaps SoundCloud
           // .playButton
 
         when 'youtube'
-          .preview.parallaxLayer(data-parallaxdepth='.5', title='Play “' + content.title + '”')
+          .preview.popLayer(data-popdepth='.5', title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image)
           header
-            .top.parallaxLayer(data-parallaxdepth='0', data-parallaxoffset={x: 0, y: -0})
-              // .artist.smallType.parallaxLayer(data-parallaxdepth='.1', data-parallaxoffset={x: 0, y: -24}) Artist
-              h1.headerType.typeOutlineWhite.title.parallaxLayer(data-parallaxdepth='.375')!=content.title
-            .detail.parallaxLayer(data-parallaxdepth='.125', data-parallaxoffset={x: 0, y: 36})
+            .top.popLayer(data-popdepth='0', data-poptranslate={x: 0, y: -0})
+              // .artist.smallType.popLayer(data-popdepth='.1', data-poptranslate={x: 0, y: -24}) Artist
+              h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.375')!=content.title
+            .detail.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: 36})
               .source.smallType.smallCaps youtube
           .playButton
 
 
         when 'text'
           //- contentEditable="false", designmode="on"
-          .editable.parallaxLayer(data-parallaxdepth='.375')
+          .editable.popLayer(data-popdepth='.375')
             | !{article.content.text}
-          // ul.cardActions.parallaxLayer(data-parallaxdepth='.75')
+          // ul.cardActions.popLayer(data-popdepth='.75')
           //   li.right.showOnEditing
           //     a.done.actionButton.confirm(href='#') Done
               //- a.invisible.cancel.confirm(href='#') Cancel
         default
           p!=article.content
-    footer.parallaxLayer(data-parallaxdepth='.125')
+    footer.popLayer(data-popdepth='.125')
       .meta
         ul
           li.left

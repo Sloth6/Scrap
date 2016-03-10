@@ -1,12 +1,12 @@
-window.parallaxModel =
+window.popModel =
   easing: [20, 10] # TODO: Why is constants.velocity.easing.smooth undefined?
   duration: 500
-  canParallax: ($element) ->
+  canPop: ($element) ->
     not $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
   getTransform: ($element) ->
     $element.find('.transform')
   getLayers: ($element) ->
-    $element.find('.parallaxLayer')
+    $element.find('.popLayer')
   getPercentageAcross: ($element, pointer, scale) ->
     # If article, compensate for global scale
     offsetGlobalScale = if $element.is('article') then 1 / (constants.style.globalScale) else 1
@@ -21,9 +21,9 @@ window.parallaxModel =
     rotateX = maxRotateY * (progress.y - .5)
     rotateY = maxRotateX * (Math.abs(1 - progress.x) - .5)
     # If being raised or depressed towards pointer
-    if $element.data('parallaxState') is 'up'
+    if $element.data('popState') is 'up'
       { x: rotateX, y: rotateY}
-    else # if $element.data('parallaxState') is 'down'
+    else # if $element.data('popState') is 'down'
       { x: -rotateX, y: -rotateY}
     
 # Move on screen if at edge
@@ -48,9 +48,9 @@ window.parallaxModel =
 #   translateY = 0
 
 
-window.parallaxView =
+window.popView =
   init: ($element) ->
-    $element.addClass 'parallaxHover'
+    $element.addClass 'pop'
     $element.wrapInner '<span></span>' if $element.is('a')
     perspective = if $element.hasClass('image') or $element.hasClass('youtube') then (($element.height() + $element.width()) / 2) * 4 else $element.height() * 2
     $element.wrapInner $('<div></div>').addClass('transform')
@@ -63,10 +63,10 @@ window.parallaxView =
       options:
         duration: 1
   start: ($element, scale) ->
-    $transform  = parallaxModel.getTransform  $element
-    $layers     = parallaxModel.getLayers $element
-    progress    = parallaxModel.getPercentageAcross $element, getPointer(event), scale
-    rotate      = parallaxModel.getRotate $element, progress
+    $transform  = popModel.getTransform  $element
+    $layers     = popModel.getLayers $element
+    progress    = popModel.getPercentageAcross $element, getPointer(event), scale
+    rotate      = popModel.getRotate $element, progress
     $transform.velocity('stop', true).velocity
       properties:
         scale: scale
@@ -74,46 +74,47 @@ window.parallaxView =
         rotateY: rotate.y
       options:
         easing: constants.velocity.easing.smooth
-        duration: parallaxModel.duration
+        duration: popModel.duration
 #   down: ($element, scale) ->
-#     $transform  = parallaxModel.getTransform  $element
-#     $layers     = parallaxModel.getLayers $element
-#     progress    = parallaxModel.getPercentageAcross $element, getPointer(event), scale
-#     rotate      = parallaxModel.getRotate $element, progress
+#     $transform  = popModel.getTransform  $element
+#     $layers     = popModel.getLayers $element
+#     progress    = popModel.getPercentageAcross $element, getPointer(event), scale
+#     rotate      = popModel.getRotate $element, progress
 #     $transform.velocity('stop', true).velocity
 #       properties:
 #         scale: (1 + scale) / 2
 #         rotateX: -rotate.x
 #         rotateY: -rotate.y
 #       options:
-#         easing: parallaxModel.easing
-#         duration: parallaxModel.duration
+#         easing: popModel.easing
+#         duration: popModel.duration
   move: ($element, scale) ->
-    $transform  = parallaxModel.getTransform  $element
-    $layers     = parallaxModel.getLayers $element
-    progress    = parallaxModel.getPercentageAcross($element, getPointer(event), scale)
-    rotate      = parallaxModel.getRotate($element, progress)
+    $transform  = popModel.getTransform $element
+    $layers     = popModel.getLayers $element
+    progress    = popModel.getPercentageAcross($element, getPointer(event), scale)
+    rotate      = popModel.getRotate($element, progress)
     # Tilt whole element
     $.Velocity.hook $transform, 'rotateX', "#{rotate.x}deg"
     $.Velocity.hook $transform, 'rotateY', "#{rotate.y}deg"
     # Tilt inner layers
+    console.log $layers
     $layers.each ->
-      depth = parseFloat $(@).data('parallaxdepth')
-      offset =
-        x: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').x else 0
-        y: if $(@).data('parallaxoffset') isnt undefined then $(@).data('parallaxoffset').y else 0
+      depth = parseFloat $(@).data('popdepth')
       parallax = constants.style.grid.col * depth
+      offset =
+        x: if $(@).data('poptranslate') isnt undefined then $(@).data('poptranslate').x else 0
+        y: if $(@).data('poptranslate') isnt undefined then $(@).data('poptranslate').y else 0
       translate =
         x: offset.x + (parallax * (-1 * (progress.x - .5)))
         y: offset.y + (parallax * (-1 * (progress.y - .5)))
       # Reverse if element is being depressed
-      translate.x *= if $element.data('parallaxState') is 'up' then 1 else -1
-      translate.y *= if $element.data('parallaxState') is 'up' then 1 else -1
+      translate.x *= if $element.data('popState') is 'up' then 1 else -1
+      translate.y *= if $element.data('popState') is 'up' then 1 else -1
       $.Velocity.hook $(@), 'translateX', "#{translate.x}px"
       $.Velocity.hook $(@), 'translateY', "#{translate.y}px"
   end: ($element, scale) ->
-    $transform  = parallaxModel.getTransform  $element
-    $layers     = parallaxModel.getLayers $element
+    $transform  = popModel.getTransform  $element
+    $layers     = popModel.getLayers $element
     $element.data('closingHover', true)
     $transform = $element.find('.transform')
     $element.add($element.parents('li')).css
@@ -127,7 +128,7 @@ window.parallaxView =
         translateX: 0
       options:
         easing: constants.velocity.easing.smooth
-        duration: parallaxModel.duration
+        duration: popModel.duration
         complete: -> $element.data('closingHover', false)              
     $layers.velocity('stop', true).velocity
       properties:
@@ -138,7 +139,7 @@ window.parallaxView =
         translateY: 0
       options:
         easing: constants.velocity.easing.smooth
-        duration: parallaxModel.duration
+        duration: popModel.duration
         
 window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax hover class
   $transform.velocity('stop', true).velocity
@@ -150,27 +151,27 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
       duration: duration
       easing:   easing
         
-window.parallaxHover = ($elements, duration, scale) ->
-  $elements.each ->
-    $element = $(@)
-    parallaxView.init $element
-    
-    # Raises element and pivots
-    $element.on 'touchstart mouseenter mousedown', (event) ->
-      if parallaxModel.canParallax $element
-        # Pivot towards pointer if mouse, away from pointer if mousedown or touchstart
-        state = if event.type is 'mouseenter' then 'up' else 'down'
-        $element.data 'parallaxState', state
-        parallaxView.start $element, scale
-    # Rotates element and translates parallax layers
-    $element.on 'touchmove mousemove', (event) ->
-      if parallaxModel.canParallax $element
-        parallaxView.move $element, scale
-    # Returns to normal
-    $element.on 'touchend mouseleave', ->
-      if parallaxModel.canParallax $element
-        parallaxView.end $element, scale
-
+window.popController =
+  init: ($elements, duration, scale) ->
+    $elements.each ->
+      $element = $(@)
+      popView.init $element
+      
+      # Raises element and pivots
+      $element.on 'touchstart mouseenter mousedown', (event) ->
+        if popModel.canPop $element
+          # Pivot towards pointer if mouse, away from pointer if mousedown or touchstart
+          state = if event.type is 'mouseenter' then 'up' else 'down'
+          $element.data 'popState', state
+          popView.start $element, scale
+      # Rotates element and translates parallax layers
+      $element.on 'touchmove mousemove', (event) ->
+        if popModel.canPop $element
+          popView.move $element, scale
+      # Returns to normal
+      $element.on 'touchend mouseleave', ->
+        if popModel.canPop $element
+          popView.end $element, scale
 
 window.simpleHover = ($elements, duration, scale) ->
   window.styleUtilities.transformOrigin $elements, 'center', 'center'

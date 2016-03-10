@@ -20,7 +20,7 @@ window.articleView =
 #       marginRight:  Math.random() * constants.style.maxGutter
 #       marginBottom: Math.random() * constants.style.maxGutter
 #       marginLeft:   Math.random() * constants.style.maxGutter
-    parallaxHover $article, 500, constants.style.articleHoverScale / constants.style.globalScale
+    popController.init $article, 500, constants.style.articleHoverScale / constants.style.globalScale
     # Base color by first label.
     if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
       $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
@@ -295,12 +295,12 @@ window.articleView =
         duration: 250
         easing: constants.velocity.easing.smooth
         complete: ->
-          $animate.addClass 'parallaxLayer'
-          $animate.attr 'data-parallaxdepth', '.5'
+          $animate.addClass 'popLayer'
+          $animate.attr 'data-popdepth', '.5'
 
   articleCollectionLeave: ($animate, event) ->
-    $animate.removeClass 'parallaxLayer'
-    $animate.attr 'data-parallaxdepth', ''
+    $animate.removeClass 'popLayer'
+    $animate.attr 'data-popdepth', ''
     $animate.velocity('stop', true).velocity
       properties:
         scale: 1

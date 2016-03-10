@@ -38,7 +38,7 @@ extendNav = ->
 
 initNav = ($nav) ->
   $nav.hover extendNav, retractNav
-  parallaxHover $('.left .headerButton, .right .headerButton a')
+#   popController.init $('.left .headerButton, .right .headerButton a')
   $nav.find('a').mouseenter ->
     # Hide special cursor
     cursorView.end()
