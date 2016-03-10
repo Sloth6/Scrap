@@ -34,8 +34,11 @@ window.collectionController =
       $a.on 'touchend mouseleave', (event) ->
         collectionController.mouseleave $collection, event
 
-      $contents.mouseleave (event) ->
+      $contents.on 'touchend mouseleave', (event) ->
         collectionController.hideSettings $collection
+      
+      $contents.on 'touchmove mousemove', (event) ->
+        collectionController.contentsMove $collection
 
   updateHeight: ($collection) ->
     $collection.data 'nativeHeight', Math.max($collection.find('.contents > a').height(), $collection.find('.contents > input').height())
@@ -67,3 +70,8 @@ window.collectionController =
     if $collection.hasClass('openMenuButton')
       unless scrapState.collectionsMenuIsOpen or $collection.data('settingsInUse')
         collectionView.hideSettings $collection
+
+  contentsMove: ($collection) ->
+    # Regular cursor on settings
+    cursorView.end()
+    console.log 'ENDDDDD'

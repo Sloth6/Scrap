@@ -25,6 +25,8 @@ window.cursorView =
 
   end: ->
     $cursor = $('.cursor')
+    $('body, article, a, input').css
+      cursor: ''
     $cursor.velocity('stop', true).velocity
       properties:
         scale: 0
@@ -35,9 +37,7 @@ window.cursorView =
         complete: ->
           $cursor.hide()
           $cursor.text('')
-          $('body, article, a, input').css
-            cursor: ''
-
+          
   move: (event) ->
     return if pointerType(event) is 'touch'
     $cursor = $('.cursor')

@@ -6,16 +6,17 @@ window.collectionView =
     $settings = $collection.find('.collectionSettings')
     $settings.find('.sharing .add form').hide()
     # Open add user form on button click
-    $settings.find('input.addSomeone').click -> collectionView.addSomeone $collection
+    $settings.find('input.addSomeone').on 'touchend mouseup', (event) ->
+      event.stopPropagation()
+      collectionView.addSomeone $collection
     # Make settings hide-able if user blurs email input
     $settings.find('input[type=email]').blur ->
       $collection.data 'settingsInUse', false
       $('body').mousemove ->
         unless $collection.is('.hover')
           $collection.find('.contents > a').trigger 'mouseleave'
-    # Regular cursor on settings
-    $settings.mousemove -> cursorView.end()
-    $settings.find('.actions input[type=button]').click ->
+    $settings.find('.actions input[type=button]').on 'touchend mouseup', (event) ->
+      event.stopPropagation()
       $collection.data 'settingsInUse', true
       alert 'Confirmation UI goes here'
       # After completing dialog
@@ -134,7 +135,7 @@ window.collectionView =
     # Save label for resetForm later
     $label.data 'startingLabel', startingLabel
     $collection.data 'settingsInUse', true
-    $button.click ->
+    $button.on 'touchend mouseup', ->
       # Show button
       $button.velocity
         properties:
