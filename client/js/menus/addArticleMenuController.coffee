@@ -1,18 +1,16 @@
 window.contentControllers ?= {}
 
-contentControllers['newArticle'] =
+contentControllers.newArticle =
   canZoom: true
   init: ($menu) ->
-    $input = $menu.find '.editable'
-    $onEditing  = $menu.find('.showOnEditing').hide()
+    console.log 'init newArticleController'
+    $input         = $menu.find '.editable'
+    $onEditing     = $menu.find('.showOnEditing').hide()
     $onNotEditing  = $menu.find('.showOnNotEditing').show()
+    $done          = $menu.find '.done'
 
-    genericText = contentControllers['genericText'].init $menu, {
-      onDone: (text) ->
-        emitNewArticle text, window.openCollection
-        articleController.close $menu
-        # contentControllers.newArticle.close $menu
-      onChange: (dom, text) ->
+    genericText = contentControllers.genericText.init $menu, {
+      onChange: (html, text) ->
         if text.length > 0
           $onEditing.show()
           $onNotEditing.hide()
@@ -21,29 +19,31 @@ contentControllers['newArticle'] =
           $onNotEditing.show()
     }
 
-    contentControllers.genericText.reset $menu
+    complete = (data) ->
+      emitNewArticle data, window.openCollection
+      articleController.close $menu
 
+    $done.on 'mouseup', (event) ->
+      { text, html } = contentControllers.genericText.getData $menu
+      complete html
+      event.stopPropagation()
+
+    # Bind paste event.
+    $input.bind "paste", () ->
+      return unless $input.text() == ''
+      # Use .text() to get link without divs around it
+      setTimeout (() ->complete $input.text()), 20
+
+    # File uploading.
     $menu.find('input.file-input').click (event) ->
       event.stopPropagation()
       genericText.clear()
 
     $menu.find('form.upload').fileupload fileuploadOptions()
 
-    # Bind paste event.
-    $input.bind "paste", () ->
-      return unless $input.text() == ''
-      setTimeout (() ->
-        # Use .text() to get link without divs around it
-        emitNewArticle $input.text(), window.openCollection
-        articleController.close $menu
-      ), 20
-
   open: ($menu) ->
     $input = $menu.find '.editable'
     $input.focus()
 
   close: ($menu) ->
-    # console.log 'closing menu', $menu.length
-    containerController.removeArticle $menu
-    # $menu.hide()
-
+    contentControllers.genericText.reset $menu

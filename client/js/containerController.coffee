@@ -27,11 +27,20 @@ window.containerController =
       packery()
 
 
-  addArticles: ($articles) ->
+  addArticles: ($articles, { append }={ append: false }) ->
     $container = $(constants.dom.articleContainer)
-    $container.
-      append($articles).
-      packery 'appended', $articles
+    if append
+      $container.append($articles)
+      $container.packery 'appended', $articles
+    else
+      $articles.insertBefore $(constants.dom.addArticleMenu)
+      # $container.append $articles
+      # $container.append  #ensure at top
+      # $container.packery 'appended', $articles
+      $container.packery 'reloadItems'
+
+
+    #what is buttonview? why is init here??
     buttonView.init $articles.find('.actionButton')
     containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
 
@@ -47,10 +56,6 @@ window.containerController =
           derp.append $(foo)
 
         $articles = derp.children()
-        containerController.addArticles $articles
+        containerController.addArticles $articles, { append: false }
         articleController.init $articles
         scrapState.waitingForContent = false
-
-  insertNewArticleForm: ($form) ->
-    containerController.addArticles $form
-    articleController.open $form

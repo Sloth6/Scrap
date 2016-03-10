@@ -60,24 +60,19 @@ $ ->
   containerController.init       $(constants.dom.articleContainer)
   cursorController.init          $(constants.dom.cursor)
 
+  contentControllers.newArticle.init $(constants.dom.addArticleMenu)
+
   containerController.getArticles(40)
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
 
-  $newArticleForm = $(constants.dom.addArticleMenu).remove()
-
   $('body').on 'mouseup', (event) ->
-    # Close article if article is open
     if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()
-    else
-      if scrapState.openArticle?
-        articleController.close scrapState.openArticle
-        scrollController.enableScroll()
-      else
-        unless scrapState.openArticle?
-          contentControllers.newArticle.init $newArticleForm
-          containerController.insertNewArticleForm $newArticleForm
+    # Close article if article is open
+    else if scrapState.openArticle?
+      articleController.close scrapState.openArticle
+      scrollController.enableScroll()
 
   buttonView.init $('.actionButton')
 
