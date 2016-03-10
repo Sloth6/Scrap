@@ -1,8 +1,10 @@
 html
   head
+    meta(name='viewport', content='width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no')
     script(src='/js/jquery/jquery.js')
     script(src="/js/jquery/jquery.transit.min.js")
     script(src="/js/lib/velocity.min.js")
+    script(src="/js/utilityFunctions.js")
     script(src='/js/bookmarklet/content.js')
     link(rel='stylesheet', href='/style/bookmarklet.css')
     link(rel='stylesheet', href='https://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
@@ -10,16 +12,24 @@ html
       var articleId = "!{articleId}";
 
   body
-    // p!=url
-    .container
-      h1.typeNav Saved
-      ul.collectionsMenu
-        li.collection.header
-          .contents
-            a.typeNav.smallCaps(href='#') Add Label
-        each collection, collectionKey in collections
-          if typeof(collection.name) != undefined
-            - var key = collection.collectionKey
-              li.collection(data-collectionkey=key, class=key)
-                .contents
-                  a.typeNav(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+    h1.notice.typeNav Saved
+    ul.collectionsMenu
+      li.openMenuButton
+        .contents
+          a.typeNav(href='#') Add a label
+      li.textInput.searchCollections
+        .contents
+          form.searchCollectionsForm
+            input(type="text", placeholder="Search", maxlength="32")
+      each collection, collectionKey in collections
+        if typeof(collection.name) != undefined
+          - var key = collection.collectionKey
+            li.collection(data-collectionkey=key, class=key)
+              .contents
+                a.typeNav(href="#", style='color:'+collection.color+'; -webkit-text-fill-color:'+collection.color+';')!=collection.name
+      li.textInput.newCollection
+        .contents
+          form.newCollectionForm
+            input(type="text", placeholder="New label", maxlength="32")
+            label.typeSmall.smallCaps.invisible Press enter to save
+    .flash

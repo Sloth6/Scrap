@@ -1,7 +1,10 @@
+host = 'https://localhost/' # 'https://tryscrap.com/'
+
+# Post message stop scroll on page; remove frame doesn't work
+
 window.constants =
   style:
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    scaleY: 4
   velocity:
     easing:
       smooth: [30, 10]
@@ -9,14 +12,14 @@ window.constants =
     duration: 1000
 
 randomRotate = ->
-  22 * (Math.random() - .5)
+  90 * (Math.random() - .5)
 
 fancyHover = ($elements) ->
-  getProgressValues = ($element, scale) ->
+  getProgressValues = ($element, pointer, scale) ->
     offsetX = $element.offset().left - $(window).scrollLeft()
     offsetY = $element.offset().top  - $(window).scrollTop()
-    progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
-    progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
+    progressY = Math.max(0, Math.min(1, (pointer.y - offsetY) / ($element.height() * scale)))
+    progressX = Math.max(0, Math.min(1, (pointer.x - offsetX) / ($element.width()  * scale)))
     { x: progressX, y: progressY }
   getRotateValues = ($element, progress) ->
     maxRotateY = 22
@@ -28,10 +31,11 @@ fancyHover = ($elements) ->
     $element = $(@)
     $parent = $element.parent()
     scale = 1.25
-    perspective = 100
+    perspective = $element.width() / 4
     duration = 250
-    $element.mouseenter (event) ->
-      progress = getProgressValues($element, scale)
+    $element.on 'touchstart mouseenter', (event) ->
+      pointer = getPointer(event)
+      progress = getProgressValues($element, pointer, scale)
       rotate = getRotateValues($element, progress)
       $element.transition
         scale: scale
@@ -41,15 +45,16 @@ fancyHover = ($elements) ->
         perspective: perspective
       $parent.css
         zIndex: 2
-    $element.mousemove (event) ->
-      progress = getProgressValues($element, scale)
+    $element.on 'touchmove mousemove', (event) ->
+      pointer = getPointer(event)
+      progress = getProgressValues($element, pointer, scale)
       rotate = getRotateValues($element, progress)
       $element.css
         scale: scale
-        z: 250
+#         z: 250
         rotateX: "#{rotate.x}deg"
         rotateY: "#{rotate.y}deg"
-    $element.mouseleave ->
+    $element.on 'touchend mouseleave', ->
       $element.css
         zIndex: 0
       $element.parents('.contents').css
@@ -61,155 +66,187 @@ fancyHover = ($elements) ->
         easing: constants.style.easing
         duration: duration
 
-launch = ($header, $collections) ->
+launch = ($header, $menuItems) ->
+  $flash = $('.flash').hide()
+  $openMenuButton = $menuItems.filter('li.openMenuButton')
   $header.css('opacity', 0).hide()
-  $collections.css('opacity', 0).hide()
+  $menuItems.hide()
+  $.Velocity.hook $header, 'rotateZ', "#{randomRotate()}deg"
   $header.velocity
     properties:
-      translateY: [0, -$header.height() * constants.style.scaleY]
-      rotateZ: [0, randomRotate()]
-      scaleX: [1, 0]
-      scaleY: [1, constants.style.scaleY]
-      opacity: [1, 1]
+      opacity: [1, 0]
     options:
-      duration: constants.velocity.duration
-      easing: constants.velocity.easing.spring
+      duration: 250
+      easing: constants.velocity.easing.smooth
       begin: -> $header.show()
-  $collections.each ->
-    $(@).velocity
-      properties:
-        translateY: [$(window).height() - $(@).height() * 1.5, $(window).height()]
-        opacity: [1, 1]
-        rotateZ: [0, randomRotate()]
-        scaleX: [1, .5]
-        scaleY: [1, constants.style.scaleY]
-      options:
-        delay: 31.25 * $(@).index()
-        duration: constants.velocity.duration
-        easing: constants.velocity.easing.spring
-        begin: -> $(@).show()
+      complete: ->
+        $openMenuButton.velocity('stop', true).velocity
+          properties:
+            translateY: [0, -$openMenuButton.height()]
+          options:
+            delay: 500
+            duration: 1000
+            easing: constants.velocity.easing.smooth
+            begin: ->
+              $openMenuButton.show()
+              $('ul.collectionsMenu').css 'z-index', 10
+        $header.velocity
+          properties:
+            opacity: [0, 1]
+          options:
+            duration: 4000
+            easing: constants.velocity.easing.smooth
+  $flash.velocity
+    properties:
+      opacity: [1, 0]
+    options:
+      duration: 250
+      easing: constants.velocity.easing.smooth
+      begin: -> $flash.show()
+      complete: ->
+        $flash.velocity
+          properties:
+            opacity: [0, 1]
+          options:
+            duration: 2000
+            easing: constants.velocity.easing.smooth
+  # Set body background for smooth transition on close
+  $.Velocity.hook $('body'), 'backgroundColor', '#ffffff'
+  $.Velocity.hook $('body'), 'backgroundColorAlpha', '0'
 
-slideInLabels = ($header, $menu, $collections) ->
+slideInLabels = ($header, $menu, $menuItems, $openMenuButton) ->
   $menu.data 'open', true
-  $collections.each ->
+  # Animate all menu items except openMenuButton, which has custom animation
+  $menuItems.not($openMenuButton).each ->
     rotateZ = if $(@).index() > 1 then randomRotate() else 0
-    scaleX  = if $(@).index() > 1 then .5 else 1
-    scaleY  = if $(@).index() > 1 then constants.style.scaleY else 1
-    $(@).velocity
+    $(@).velocity('stop', true).velocity
       properties:
-        translateY: 0
+        translateY: [0, $(window).height() + $(document).scrollTop]
         rotateZ: [0, rotateZ]
-        scaleX: [1, scaleX]
-        scaleY: [1, scaleY]
       options:
         delay: 31.25 * $(@).index()
         duration: constants.velocity.duration # / 1.5
-        easing: constants.velocity.easing.spring
-  $header.velocity
+        easing: constants.velocity.easing.smooth
+        begin: -> $(@).show()
+  $header.velocity('stop', true).velocity
     properties:
-      translateY: -$header.height() * constants.style.scaleY
+      translateY: -$header.height()
       rotateZ: randomRotate()
-      scaleX: 0
-      scaleY: constants.style.scaleY
     options:
       duration: constants.velocity.duration
-      easing: constants.velocity.easing.spring
+      easing: constants.velocity.easing.smooth
       complete: ->
         $header.hide()
-        fancyHover $collections.not(':first-of-type').find('a')
-  $('.container').velocity
+        fancyHover $menuItems.not($openMenuButton).find('a')
+  # Custom animation for openMenuButton
+  $openMenuButton.velocity('stop', true).velocity
+    properties:
+      translateY: (-$header.height() * 3) - $(window).height()
+      height: 0
+      rotateZ: randomRotate()
+    options:
+      duration: constants.velocity.duration
+      easing: constants.velocity.easing.smooth
+      complete: -> $openMenuButton.hide()
+  
+  $('body').velocity('stop', true).velocity
     properties:
       backgroundColor: '#ffffff'
       backgroundColorAlpha: [0.9, 0]
     options:
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
-      begin: -> $('.container').css 'background-color', 'transparent'
-
+      begin: -> $('body').css 'background-color', 'transparent'
+  $('body').css
+    overflow: 'scroll'
+    
 removeFrame = ->
   parent.window.postMessage("removetheiframe", "*")
 
-close = ($header, $menu, $collections) ->
-  $chosen = $collections.filter('.chosen')
-  $header.velocity
+close = ($header, $menu, $menuItems) ->
+  $chosen = $menuItems.filter('.chosen')
+  $header.velocity('stop', true).velocity
     properties:
-      translateY: -$header.height() * constants.style.scaleY
+      translateY: -$header.height()
       rotateZ: randomRotate()
-      scaleX: 0
-      scaleY: constants.style.scaleY
     options:
       duration: constants.velocity.duration
-      easing: constants.velocity.easing.spring
+      easing: constants.velocity.easing.smooth
       complete: -> $header.hide()
-  $collections.not('.chosen').each ->
+  $menuItems.not('.chosen').each ->
     translateY = if $(@).index() > $chosen.index() then $(window).height() else -$(window).height()
-    $(@).velocity
+    $(@).velocity('stop', true).velocity
       properties:
         translateY: translateY
         rotateZ: randomRotate()
-        scaleX: 0
-        scaleY: constants.style.scaleY
       options:
-        delay: if $chosen.length > 0 then 0 else 31.25 * (($collections.length - 1) - $(@).index())
+        delay: if $chosen.length > 0 then 0 else 31.25 * (($menuItems.length - 1) - $(@).index())
         duration: constants.velocity.duration/1.25
-        easing: constants.velocity.easing.spring
+        easing: constants.velocity.easing.smooth
         complete: ->
-          unless $chosen.length > 0
+          unless $chosen.length > 0 # if no label chosen
             $(@).hide()
-            removeFrame() if $(@).index() is $collections.length - 1 # last collection
-  $chosen.find('.contents').velocity
+            removeFrame() if $(@).index() is $menuItems.length - 1 # if last collection
+  $('body').velocity('stop', true).velocity
     properties:
-      translateY: -$chosen.offset().top
-    options:
-      delay: 0
-      duration: constants.velocity.duration / 1.5
-      easing: constants.velocity.easing.smooth
-      complete: ->
-        $chosen.find('.contents').velocity
-          properties:
-            translateY: -$chosen.offset().top - $chosen.height() * constants.style.scaleY
-            rotateZ: randomRotate()
-            scaleX: 0
-            scaleY: constants.style.scaleY
-          options:
-            delay: 500
-            duration: constants.velocity.duration
-            easing: constants.velocity.easing.spring
-            complete: ->
-              $collections.hide()
-              removeFrame()
-  $chosen.find('a').transition
-    scale: 1
-    rotateX: 0
-    rotateY: 0
-    easing: constants.style.easing
-    duration: constants.velocity.duration
-  $('.container').velocity
-    properties:
+      backgroundColor: '#ffffff'
       backgroundColorAlpha: 0
     options:
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
-
+  if $chosen.length # If user selected a label
+    $chosen.find('.contents').velocity('stop', true).velocity
+      properties:
+        translateY: - $chosen.offset().top
+      options:
+        delay: 0
+        duration: constants.velocity.duration / 1.5
+        easing: constants.velocity.easing.smooth
+        complete: ->
+          $chosen.find('.contents').velocity('stop', true).velocity
+            properties:
+              translateY: -$chosen.offset().top - ($chosen.height() * 4)
+              rotateZ: randomRotate()
+            options:
+              delay: 2000
+              duration: constants.velocity.duration
+              easing: constants.velocity.easing.smooth
+              complete: ->
+                $menuItems.hide()
+                removeFrame()
+    $chosen.find('a').transition
+      scale: 1
+      rotateX: 0
+      rotateY: 0
+      easing: constants.style.easing
+      duration: constants.velocity.duration
 
 addCollection = ($collection) ->
   $collection.addClass('chosen')
   collectionKey = $collection.data 'collectionkey'
-  host = document.location.host
-  $.post("https://tryscrap.com/addArticleCollection", { articleId, collectionKey }).
+  $.post("#{host}addArticleCollection", { articleId, collectionKey }).
     fail(() -> console.log 'Failed to addCollection')
 
 $ ->
   $header = $('h1')
   $menu = $('ul.collectionsMenu')
-  $collections = $menu.find('li')
+  $menuItems = $menu.find('li')
+  $collections = $menu.find('li.collection')
+  $openMenuButton = $menu.find('li.openMenuButton')
+  delayToAutoHide = 4000
 
-  launch $header, $collections
+  launch $header, $menuItems
+  
+  fancyHover $openMenuButton.find('a')
+  
+  $menu.find('li input').click ->
+    event.stopPropagation()
+    event.preventDefault()
 
 #   rotateColor = ($element, hue)->
 #     $element.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
-#
-#   $header.add($collections.first().find('a')).each ->
+# 
+#   $header.add($menuItems.first().find('a')).each ->
 #     hue = Math.floor(Math.random() * 360)
 #     $a = $(@)
 #     rotateColor $a, hue
@@ -217,16 +254,19 @@ $ ->
 #       hue += 30
 #     , 1000
 
-  $collections.first().mouseenter -> slideInLabels $header, $menu, $collections
+  $openMenuButton.on 'click', (event) ->
+    event.stopPropagation()
+    event.preventDefault()
+    slideInLabels $header, $menu, $menuItems, $openMenuButton
 
   $collections.each ->
     $collection = $(@)
-    $collection.find('a').click (event) ->
+    $collection.find('a').on 'touchend mouseup', (event) ->
       event.stopPropagation()
       addCollection $collection
-      close($header, $menu, $collections)
-  $('body').click -> close($header, $menu, $collections)
+      close($header, $menu, $menuItems)
+  $('body').click -> close($header, $menu, $menuItems)
   setTimeout ->
-    close($header, $menu, $collections) unless $menu.data('open')
-  , 1500
+    close($header, $menu, $menuItems) unless $menu.data('open')
+  , delayToAutoHide
 

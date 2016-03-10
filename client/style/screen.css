@@ -592,7 +592,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
 /* line 174, ../../style/globals/_type.scss */
 html {
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -664,7 +664,7 @@ html {
 
 /* line 199, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -862,7 +862,7 @@ p + p {
   bottom: 16pt;
   left: 16pt;
   right: 16pt;
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1002,7 +1002,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1126,7 +1126,7 @@ ul.headerMenu {
   background: white;
   top: -1px;
   width: 280pt;
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;

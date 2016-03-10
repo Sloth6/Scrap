@@ -592,7 +592,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
 /* line 174, ../../style/globals/_type.scss */
 html {
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -664,7 +664,7 @@ html {
 
 /* line 199, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -862,7 +862,7 @@ p + p {
   bottom: 16pt;
   left: 16pt;
   right: 16pt;
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1002,7 +1002,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1126,7 +1126,7 @@ ul.headerMenu {
   background: white;
   top: -1px;
   width: 280pt;
-  font-family: Arial;
+  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -2338,10 +2338,37 @@ footer.main ul.actions li.action label {
 body {
   text-align: center;
   background: none;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
 }
 
-/* line 8, ../../style/bookmarklet.scss */
-h1, li a {
+/* line 11, ../../style/bookmarklet.scss */
+h1.notice {
+  font-size: .666em;
+  letter-spacing: .03125em;
+  text-transform: uppercase !important;
+  font-size: 30vw;
+  line-height: 100vh;
+  font-weight: 800;
+}
+
+/* line 19, ../../style/bookmarklet.scss */
+.flash {
+  background-color: white;
+  /*
+      height: 100vh;
+      width: 100vw;
+  */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* line 32, ../../style/bookmarklet.scss */
+h1, li a, li input {
   font-size: 60pt;
   font-weight: 500;
   letter-spacing: 0.03125em;
@@ -2354,14 +2381,14 @@ h1, li a {
   transition: -webkit-text-fill-color 1s linear;
 }
 @media (max-width: 1024px) {
-  /* line 8, ../../style/bookmarklet.scss */
-  h1, li a {
+  /* line 32, ../../style/bookmarklet.scss */
+  h1, li a, li input {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
 
-/* line 13, ../../style/bookmarklet.scss */
+/* line 37, ../../style/bookmarklet.scss */
 h1, ul {
   position: absolute;
   top: 0;
@@ -2369,26 +2396,23 @@ h1, ul {
   right: 0;
 }
 
-/* line 20, ../../style/bookmarklet.scss */
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-}
-
-/* line 29, ../../style/bookmarklet.scss */
+/* line 44, ../../style/bookmarklet.scss */
 ul.collectionsMenu {
   list-style-type: none;
+  /*
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+  */
 }
-/* line 36, ../../style/bookmarklet.scss */
-ul.collectionsMenu li.header a {
-  position: relative;
-  top: .125em;
+/* line 55, ../../style/bookmarklet.scss */
+ul.collectionsMenu li.openMenuButton {
+  /*
+              position: absolute;
+              bottom: 20vh;
+  */
 }
-/* line 42, ../../style/bookmarklet.scss */
+/* line 62, ../../style/bookmarklet.scss */
 ul.collectionsMenu li a {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -2396,4 +2420,10 @@ ul.collectionsMenu li a {
   margin: 0 auto;
   display: block;
   padding: 0;
+}
+/* line 75, ../../style/bookmarklet.scss */
+ul.collectionsMenu li input {
+  border: 0;
+  text-align: center;
+  height: 60pt;
 }

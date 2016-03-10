@@ -3,9 +3,33 @@
 body {
     text-align: center;
     background: none;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
 }
 
-h1, li a {
+h1.notice {
+    @include smallCaps;
+    font-size: 30vw;
+    line-height: 100vh;
+    font-weight: $fontWeightExtraBold;
+//     z-index: 2;
+}
+
+.flash {
+    background-color: white;
+/*
+    height: 100vh;
+    width: 100vw;
+*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+h1, li a, li input {
     @include navText;
     @include transition(-webkit-text-fill-color 1s linear);
 }
@@ -17,26 +41,22 @@ h1, ul {
     right: 0;
 }
 
-.container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: transparent;
-}
-
 ul.collectionsMenu {
     list-style-type: none;
-    
+/*
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+*/
+
     li {
 //         height: $typeTitleLeading;
       
-        &.header {
-            a {
-                position: relative;
-                top: .125em;
-            }
+        &.openMenuButton {
+/*
+            position: absolute;
+            bottom: 20vh;
+*/
         }
         
         a {
@@ -50,6 +70,12 @@ ul.collectionsMenu {
             padding: 0;
 //             margin-top: 0;
 //             height: $typeTitleLeading * .75;
+        }
+        
+        input {
+            border: 0;
+            text-align: center;
+            height: $typeTitleLeading;
         }
     }
 }
