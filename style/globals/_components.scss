@@ -651,3 +651,41 @@ ul.menu {
 */
     }
 }
+
+// Ruler object for JavaScript
+
+.ruler {
+    display: none;
+    
+    .grid {
+        .col {
+            width: $col;
+        }
+        
+        .cell {
+            width: $cell;
+        }
+    }
+    
+    .break {
+        .xSmall {
+            width: $breakXSmall;
+        }
+        
+        .small {
+            width: $breakSmall;
+        }
+        
+        .medium {
+            width: $breakMedium;
+        }
+        
+        .large {
+            width: $breakLarge;
+        }
+        
+        .xLarge {
+            width: $breakXLarge;
+        }
+    }
+}

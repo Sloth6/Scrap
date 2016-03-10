@@ -590,7 +590,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 174, ../../style/globals/_type.scss */
+/* line 175, ../../style/globals/_type.scss */
 html {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -604,7 +604,7 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 179, ../../style/globals/_type.scss */
+/* line 180, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 60pt;
   font-weight: 500;
@@ -612,13 +612,13 @@ html {
   line-height: 60pt;
 }
 @media (max-width: 1024px) {
-  /* line 179, ../../style/globals/_type.scss */
+  /* line 180, ../../style/globals/_type.scss */
   .typeTitle {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 182, ../../style/globals/_type.scss */
+/* line 183, ../../style/globals/_type.scss */
 .typeTitle.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -628,7 +628,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 187, ../../style/globals/_type.scss */
+/* line 188, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -636,14 +636,14 @@ html {
   line-height: 36pt;
 }
 @media (max-width: 1024px) {
-  /* line 187, ../../style/globals/_type.scss */
+  /* line 188, ../../style/globals/_type.scss */
   .typeSubtitle {
     font-size: 45pt;
     line-height: 45pt;
   }
 }
 
-/* line 191, ../../style/globals/_type.scss */
+/* line 192, ../../style/globals/_type.scss */
 .headerType {
   font-size: 36pt;
   font-weight: 400;
@@ -651,18 +651,18 @@ html {
   line-height: 36pt;
 }
 @media (max-width: 1024px) {
-  /* line 191, ../../style/globals/_type.scss */
+  /* line 192, ../../style/globals/_type.scss */
   .headerType {
     font-size: 27pt;
     line-height: 27pt;
   }
 }
-/* line 194, ../../style/globals/_type.scss */
+/* line 195, ../../style/globals/_type.scss */
 .headerType.typeOutline, .headerType.typeOutlineClear, .headerType.typeOutlineWhite {
   font-weight: 500;
 }
 
-/* line 199, ../../style/globals/_type.scss */
+/* line 200, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
   font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
   font-size: 12pt;
@@ -670,7 +670,7 @@ html {
   letter-spacing: 0.0625em;
   line-height: 16pt;
 }
-/* line 202, ../../style/globals/_type.scss */
+/* line 203, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -680,7 +680,7 @@ html {
   letter-spacing: 0.125em;
 }
 
-/* line 207, ../../style/globals/_type.scss */
+/* line 208, ../../style/globals/_type.scss */
 .XLargeType {
   font-size: 48pt;
   font-weight: 400;
@@ -688,13 +688,13 @@ html {
   line-height: 48pt;
 }
 @media (max-width: 1024px) {
-  /* line 207, ../../style/globals/_type.scss */
+  /* line 208, ../../style/globals/_type.scss */
   .XLargeType {
     font-size: 36pt;
     line-height: 36pt;
   }
 }
-/* line 210, ../../style/globals/_type.scss */
+/* line 211, ../../style/globals/_type.scss */
 .XLargeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -704,7 +704,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 215, ../../style/globals/_type.scss */
+/* line 216, ../../style/globals/_type.scss */
 .largeType {
   font-size: 24pt;
   font-weight: 400;
@@ -712,13 +712,13 @@ html {
   line-height: 36pt;
 }
 @media (max-width: 1024px) {
-  /* line 215, ../../style/globals/_type.scss */
+  /* line 216, ../../style/globals/_type.scss */
   .largeType {
     font-size: 18pt;
     line-height: 27pt;
   }
 }
-/* line 218, ../../style/globals/_type.scss */
+/* line 219, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -727,19 +727,19 @@ html {
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
-/* line 223, ../../style/globals/_type.scss */
+/* line 224, ../../style/globals/_type.scss */
 .largeType.typeOutline, .largeType.typeOutlineClear, .largeType.typeOutlineWhite {
   font-weight: 500;
 }
 
-/* line 228, ../../style/globals/_type.scss */
+/* line 229, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   letter-spacing: 0.08333em;
   line-height: 12pt;
 }
-/* line 231, ../../style/globals/_type.scss */
+/* line 232, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -749,7 +749,7 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 236, ../../style/globals/_type.scss */
+/* line 237, ../../style/globals/_type.scss */
 .typeNav {
   font-size: 60pt;
   font-weight: 500;
@@ -757,15 +757,16 @@ html {
   line-height: 60pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
+  text-transform: lowercase;
 }
 @media (max-width: 1024px) {
-  /* line 236, ../../style/globals/_type.scss */
+  /* line 237, ../../style/globals/_type.scss */
   .typeNav {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 239, ../../style/globals/_type.scss */
+/* line 240, ../../style/globals/_type.scss */
 .typeNav.smallCaps, .typeNav .smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -775,37 +776,37 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 244, ../../style/globals/_type.scss */
+/* line 245, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 248, ../../style/globals/_type.scss */
+/* line 249, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 252, ../../style/globals/_type.scss */
+/* line 253, ../../style/globals/_type.scss */
 .typeOutlineWhite {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
 
-/* line 257, ../../style/globals/_type.scss */
+/* line 258, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 262, ../../style/globals/_type.scss */
+/* line 263, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 268, ../../style/globals/_type.scss */
+/* line 269, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -1525,6 +1526,39 @@ ul.menu li:nth-of-type(20) {
   -o-transition-delay: 1s;
   -webkit-transition-delay: 1s;
   transition-delay: 1s;
+}
+
+/* line 657, ../../style/globals/_components.scss */
+.ruler {
+  display: none;
+}
+/* line 661, ../../style/globals/_components.scss */
+.ruler .grid .col {
+  width: 56pt;
+}
+/* line 665, ../../style/globals/_components.scss */
+.ruler .grid .cell {
+  width: 8pt;
+}
+/* line 671, ../../style/globals/_components.scss */
+.ruler .break .xSmall {
+  width: 320px;
+}
+/* line 675, ../../style/globals/_components.scss */
+.ruler .break .small {
+  width: 768px;
+}
+/* line 679, ../../style/globals/_components.scss */
+.ruler .break .medium {
+  width: 1024px;
+}
+/* line 683, ../../style/globals/_components.scss */
+.ruler .break .large {
+  width: 1280px;
+}
+/* line 687, ../../style/globals/_components.scss */
+.ruler .break .xLarge {
+  width: 1440px;
 }
 
 /* line 1, ../../style/layout/_body.scss */
@@ -2375,6 +2409,7 @@ h1, li a, li input {
   line-height: 60pt;
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
+  text-transform: lowercase;
   -moz-transition: -webkit-text-fill-color 1s linear;
   -o-transition: -webkit-text-fill-color 1s linear;
   -webkit-transition: -webkit-text-fill-color 1s linear;

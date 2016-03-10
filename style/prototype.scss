@@ -1,41 +1,5 @@
 @import "screen.scss";
 
-.ruler {
-    display: none;
-    
-    .grid {
-        .col {
-            width: $col;
-        }
-        
-        .cell {
-            width: $cell;
-        }
-    }
-    
-    .break {
-        .xSmall {
-            width: $breakXSmall;
-        }
-        
-        .small {
-            width: $breakSmall;
-        }
-        
-        .medium {
-            width: $breakMedium;
-        }
-        
-        .large {
-            width: $breakLarge;
-        }
-        
-        .xLarge {
-            width: $breakXLarge;
-        }
-    }
-}
-
 body {
     margin-bottom: $col;
 }
@@ -63,7 +27,6 @@ body {
 // _nav.scss
 
 nav {
-    
     top: 0;
     left: 0;
     right: 0;
@@ -118,15 +81,10 @@ nav {
             max-height: 100vh;
             min-width: 50vw;
             overflow-y: visible;
-//             overflow-x: visible;
-//             height: 0;
-//                         background-color: rgba(0, 255, 61, 0.41);
             
             > li {
-//                 width: 100%; //-webkit-fit-content;
                 margin: 0 auto;
                 @include transformOriginCenter;
-//                 background: blue;
                 padding: 0 $col;
                   
                   &.recent, &.labelsButton {
@@ -363,8 +321,8 @@ nav {
                     }
                     
                     .dot {
-                        height: $cell;
-                        width:  $cell;
+                        height: $cell * 1.5;
+                        width:  $cell * 1.5;
                         border: $cardBorder;
                         position: absolute;
                     }
