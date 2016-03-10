@@ -7,9 +7,9 @@ $cardPaddingLeft:       $cell * 4;
 $cardPadding:           $cardPaddingTop/2 $cardPaddingRight/2 $cardPaddingBottom/2 $cardPaddingLeft/2;
 $cardPaddingFat:        $cardPaddingTop $cardPaddingRight $cardPaddingBottom $cardPaddingLeft;
 
-$articleSideNarrow:     $col * 5;
-$articleSide:           $col * 6;
-$articleSideWide:       $col * 8;
+$articleSideNarrow:     $col * 4;
+$articleSide:           $col * 5;
+$articleSideWide:       $col * 6;
 $articleWidthVideo:     $col * 10;
 $articleMinHeight:      $articleSideNarrow;
 
@@ -17,7 +17,7 @@ $coverWidth:            $articleSide;
 $coverHeight:           $col * 6;
 
 
-$menuWidth:             $articleSideNarrow;
+$menuWidth:             $col * 3;
 $menuItemHeight:        $leading;
 $menuOffsetX:           $menuWidth * 1.5;
 
@@ -146,7 +146,8 @@ $cardBorderRadius:          0; // $cell/4;
 @mixin actionButton {
     @include typeOutlineWhite;
     @include typeLarge;
-    display: block;
+    font-weight: $fontWeightBold;
+//     display: block;
 }
 
 @mixin blackHover {
