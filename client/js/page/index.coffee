@@ -1,97 +1,46 @@
-repack = () ->
-  
-  $('.content').packery({
-    itemSelector: '.pack'
-  #     transitionDuration: '0s'
-  });
-  $('.content').packery 'stamp', $('.stamp')
+window.randomColor = ->
+  h = Math.random() * 360
+  l = Math.random() * 10 + 75
+  "hsl(#{h},100%,#{l}%)"
+
+window.constants =
+  style:
+    color: randomColor()
+    gutter: 12
+    minGutter: 12
     
-resizeCards = (minSize, gutter) ->
-  $('.pack.filler').each () ->
-    height  = minSize + (Math.round(Math.random() * (minSize*6)))
-    width   = minSize + (Math.round(Math.random() * (minSize*6)))
-  $('.pack').each () ->
-    $(@).css({
-      'padding-left':  if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-      'padding-top':   if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-      'padding-bottom':  if (parseInt($(@).css('left')) is 0) then "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-      'padding-right':   if (parseInt($(@).css('top')) is 0) then  "#{(Math.random()+.5)*minSize}px" else (Math.random()+.5) * gutter
-    })
-    
-spaceOutLetters = () ->
-  width = 0
-  left = 0
-  marginLoaf = $(window).width()
-  n = $('.lettering').children().length
-  $('.lettering').children().each () -> marginLoaf -= $(@).width()
-  $('.lettering').children().each () ->
-    margin = if $(@).index() < n - 1 then marginLoaf * ((Math.random())/(n-$(@).index() - 1)) else marginLoaf
-    marginLoaf -= margin
-    left += if $(@).index() > 0 then $(@).prev().width() + margin else 0
-    $(@).css {
-      left: "#{left}px"
-    }
-  # get space between right edge of last letter and right edge of window
-  spaceOnRight = $(window).width() - ($('.lettering').children().eq(n-1).width() + $('.lettering').children().eq(n-1).offset().left)
-  # center whole word
-  #   $('.lettering').css('left', spaceOnRight / 2)
-#   repack()
+cardView =
+  init: ($cards) ->
+    $('.pack.filler').each () ->
+      cardView.initFiller $(@).find('.card')
+    $cards.css
+      backgroundColor: constants.style.color
   
-initLettering = () ->
-  $('.lettering').lettering();
-  $('.lettering').children().addClass 'stamp letter'
-  $('.lettering').children().each () ->
-    letter = $(@).html()
-    $(@).html('')
-    $inner = $('<span></span>').addClass('inner').html(letter).appendTo($(@))
-    top = ($(window).height()/2 - $(@).height()/2) + ((Math.random() - .5) * $(window).height()/2) # px
-    $(@).css
-      position: 'absolute'
-      top: "#{top}px"
-  spaceOutLetters()
-  
-initGlyphCards = ($card) ->
-  if Math.random() < .75
-    borderless = false
-    glyphCount = 89
-    path = '/images/glyphs/border/glyph'
-  else
-    borderless = true
-    glyphCount = 9
-    path = '/images/glyphs/borderless/glyph'
-    $card.addClass 'borderless'
-  glyph = (Math.ceil(Math.random() * glyphCount)).toString()
-  size = Math.ceil((Math.random() + .5)* 8) * 12
-  if (glyph.length < 2)
-    glyph = '0' + glyph
-  $object = $("<object type='image/svg+xml' data='#{path}-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
-  $card.append $object
-  setTimeout -> # wait until after svgs load
+  initFiller: ($card) ->
+    $object = $card.find $('object')
+    size = Math.ceil((Math.random() + .5)* 8) * 24
     # make monoline
-    $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
-    $shapes.attr('vector-effect', 'non-scaling-stroke')
-    if borderless
-      $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
-      $fillable.attr('style', "fill: #{window.color}")
-    repack()
-  , 1000
-  $cardMask = $('<div></div>').addClass('cardMask').css
-    position: 'absolute'
-    zIndex: 3
-    top: 0
-    left: 0
-    bottom: 0
-    right: 0
-  $card.append $cardMask
-  $card.addClass 'svg'
-  $card.css
-    width: size
+    svgView.monoline $object
+#     cardView.colorBorderless($object) # if borderless
+    packView.repack()
+#     $cardMask = $('<div></div>').addClass('cardMask').css
+#       position: 'absolute'
+#       zIndex: 3
+#       top: 0
+#       left: 0
+#       bottom: 0
+#       right: 0
+#     $card.append $cardMask
+    $card.addClass 'svg'
+    $card.css
+      width: size
   
-initCards = ->
-  $('.pack.filler').each () -> initGlyphCards $(@).find('.card')
-  $('.card').css
-    backgroundColor: window.color
-          
+  colorBorderless: ($object) ->
+    $object[0].addEventListener 'load', ->
+      $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
+      $fillable.attr('style', "fill: #{constants.style.color}")
+    , true    
+            
 getRotateValues = ($element, scale, event) ->
   offsetY = $element.offset().top - $(window).scrollTop()
   offsetX = $element.offset().left - $(window).scrollLeft()
@@ -101,57 +50,68 @@ getRotateValues = ($element, scale, event) ->
   rotateY = 40 * (Math.abs(1 - progressX) - .5)
   { x: rotateX, y: rotateY}
   
-initHoverEffect = ->
-  $elements = $('.card')
-  $elements.parent().css
-    'perspective': '400px'
-    '-webkit-perspective': '400px'
-  $elements.each ->
-    $element = $(@)
-    scale = 1.25
-    $element.mouseenter (event) ->
-      rotate = getRotateValues($element, scale, event)
-      $element.parent().css
-        zIndex: 999
-      $(@).velocity
-        properties:
-          translateZ: 0
-          scale: scale
-          rotateX: rotate.x
-          rotateY: rotate.y
-        options:
-          duration: 250
-          easing: [60, 10]
-    $element.mousemove (event) ->
-      rotate = getRotateValues($element, scale, event)
-      $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
-      $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
-    $element.mouseleave ->
-      $(@).velocity
-        properties:
-          scale: 1
-          rotateX: 0
-          rotateY: 0
-        options:
-          duration: 250
-          easing: [40, 10]
+# initHoverEffect = ->
+#   $elements = $('.card')
+#   $elements.parent().css
+#     'perspective': '400px'
+#     '-webkit-perspective': '400px'
+#   $elements.each ->
+#     $element = $(@)
+#     scale = 1.25
+#     $element.mouseenter (event) ->
+#       rotate = getRotateValues($element, scale, event)
+#       $element.parent().css
+#         zIndex: 999
+#       $(@).velocity
+#         properties:
+#           translateZ: 0
+#           scale: scale
+#           rotateX: rotate.x
+#           rotateY: rotate.y
+#         options:
+#           duration: 250
+#           easing: [60, 10]
+#     $element.mousemove (event) ->
+#       rotate = getRotateValues($element, scale, event)
+#       $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
+#       $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
+#     $element.mouseleave ->
+#       $(@).velocity
+#         properties:
+#           scale: 1
+#           rotateX: 0
+#           rotateY: 0
+#         options:
+#           duration: 250
+#           easing: [40, 10]
           
-initPackery = ->
-  repack()
+packView =
+  init: ->
+    console.log 'init'
+    $('.pack').each () ->
+      console.log constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
+      $(@).css
+        marginLeft:   constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
+        marginTop:    constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
+        marginBottom: constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
+        marginRight:  constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
+    packView.repack()
+    
+  repack: ->
+    $('.content').packery
+      itemSelector: '.pack'
+      transitionDuration: '0s'
+    $('.content').packery 'stamp', $('.stamp')
 
-onResize = () ->
+window.onResize = ->
   cardSize = if $(window).width() < 768 then 18 else 36
   gutter   = if $(window).width() < 768 then 3 else 6
-  repack()
-  resizeCards(cardSize, gutter)
-  repack()
-  spaceOutLetters()
-  repack()
+  packView.repack()
   toggleExtraFillers()
-  repack()
+  packView.repack()
   setTimeout ->
     toggleExtraFillers()
-    repack()
+    packView.repack()
   , 100
     
 loadAnimation = () ->
@@ -180,10 +140,6 @@ loadAnimation = () ->
         easing: easing
         delay: 750 + Math.random() * 500
         
-randomColor = () ->
-  h = Math.random() * 360
-  l = Math.random() * 10 + 75
-  "hsl(#{h},100%,#{l}%)"
   
 toggleExtraFillers = () ->
 #   $('.pack.filler').find('.card').each () ->
@@ -233,27 +189,85 @@ openForm = ($card) ->
     options:
       duration: duration
       easing: easing
-  #       repack()
+  #       packView.repack()
+
+window.svgView =
+  monoline: ($object) ->
+    $object[0].addEventListener 'load', ->
+      $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
+      $shapes.attr('vector-effect', 'non-scaling-stroke')
+    , true
+    
+  
+window.headerView =
+  init: ($header) ->
+    headerView.initH1 $header
+    svgView.monoline $header.find('object')
+    
+  initH1: ($header) ->
+    $h1 = $header.children('h1') #.hide()
+    $h1s = $h1.add($h1.clone()).add($h1.clone()).prependTo($header)
+    $h1s.css
+      '-webkit-text-fill-color': constants.style.color
+    duration = 1500
+    
+    $h1s.each ->
+      $(@).hide()
+      setTimeout =>
+        $(@).show()
+        headerView.animateH1 $(@), duration
+        setInterval =>
+          headerView.animateH1 $(@), duration
+        , duration
+      , (duration / $h1s.length) * ($(@).index() + 1)
+
+  animateH1: ($h1, duration) ->
+    # Reposition Yum to random spot
+    $.Velocity.hook $h1, 'rotateZ',    "#{(Math.random() - .5) * 90}deg"
+    $.Velocity.hook $h1, 'translateY', "#{Math.random() * ($(window).height() / 4)}px"
+    $.Velocity.hook $h1, 'translateX', "#{Math.random() * ($(window).width() - $h1.width())}px"
+    # Fade in
+    $h1.velocity('stop', true).velocity
+      properties:
+        opacity: [1, 0]
+      options:
+        duration: 125
+        complete: ->
+    # Fade out
+    $h1.velocity('stop', true).velocity
+      properties:
+        opacity: [0, 1]
+      options:
+        delay: 125
+        duration: duration - 125
+        
+window.onScroll = ->
+  top = $(document).scrollTop()
+  progress = top / $(window).height()
+  opacity = Math.max(0, Math.min(1, 1 - progress))
+  $.Velocity.hook $('body'), 'backgroundColorAlpha', opacity
+  console.log opacity
 
 $ ->
-  window.color = randomColor()
-  initLettering()
-  initCards()
-  initHoverEffect()
-  initPackery()
+#   letteringView.init $('.lettering')
+  headerView.init $('header.main')
+  cardView.init $('.card')
+#   initHoverEffect()
+  packView.init()
   
   $(window).resize () -> onResize()
   onResize()
-  setTimeout ->
-    loadAnimation()
-  , 1000
+  $(window).scroll () -> onScroll()
+  onScroll()
+
+  loadAnimation()
   
-#   $('body').css({
-#     backgroundColor: window.color
-#   })
+  $('body').css({
+    backgroundColor: constants.style.color
+  })
   
   $('.typeOutlineClear, .typeHeaderOutline').css
-    '-webkit-text-fill-color': window.color
+    '-webkit-text-fill-color': constants.style.color
   
   $('.logIn .card').css
     borderRadius: '400pt / 200pt' # doesn't work in SCSS

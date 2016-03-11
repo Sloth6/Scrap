@@ -6,7 +6,7 @@ mixin addArticleFormMixin()
     .translate.content
       .card.cardHover.text.note.closed.tall.expandable.newCard
         .editable.textInput(placeholder="Write a note or paste a link")
-        ul.cardActions.parallaxLayer(data-parallaxdepth='.75')
+        ul.cardActions.popLayer(data-popdepth='.75')
           li.left.upload.showOnNotEditing
             a.actionButton.default(href='#') Upload
             form.upload(

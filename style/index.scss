@@ -1,9 +1,23 @@
 @import "screen.scss";
 
-body {
-//   margin: $broadMargin;
+header {
+    height: 100vh;
+    margin-bottom: -$col; // Hoist up main content for peek
+    
+    h1 {
+        font-size: 12.5vw;
+        font-weight: $fontWeightExtraBold;
+        @include typeOutlineClear;
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include transformOriginCenter;
+    }
+    
+    .smile {
+        margin: 50vh $col 0 $col;
+    }
 }
-
 .content {
     
     .pack, .stamp {
@@ -117,16 +131,19 @@ body {
     
     .sub {
         padding: 0 !important;
+        margin-bottom: 50vh;
+        width: 50%;
         
-        p {
-            font-size: 48pt;
-            font-weight: $fontWeightMedium;
-            line-height: 48pt;
-            letter-spacing: -(1em/32);
-            padding: 0px;
-            width: auto !important;
-            margin: 0px;
+        &:nth-child(odd) {
+            text-align: left;
+            margin-right: 50%;
         }
+        
+        &:nth-child(even) {
+            text-align: right;
+            margin-left: 50vw;
+        }
+        
     }
     
     .card {

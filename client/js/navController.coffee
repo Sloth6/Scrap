@@ -22,7 +22,7 @@ retractNav = ->
     $sections.each ->
       $(@).velocity('stop', true).velocity
         properties:
-          translateY: if $(@).hasClass('center') then -$(@).find('.headerButton').height() / 2 else -$(@).height()
+          translateY: if $(@).hasClass('center') then -$(@).find('.headerButton').height() / 1.75 else -$(@).height()
         options:
           duration: 500
           easing: constants.velocity.easing.smooth
@@ -38,7 +38,7 @@ extendNav = ->
 
 initNav = ($nav) ->
   $nav.hover extendNav, retractNav
-  parallaxHover $('.left .headerButton, .right .headerButton a')
+#   popController.init $('.left .headerButton, .right .headerButton a')
   $nav.find('a').mouseenter ->
     # Hide special cursor
     cursorView.end()

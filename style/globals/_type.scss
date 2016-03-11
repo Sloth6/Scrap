@@ -169,6 +169,7 @@ $headerLeftMarginOffset:
 @mixin navText {
     @include typeTitle;
     @include typeOutlineWhite;
+    text-transform: lowercase;
 }
 
 html {

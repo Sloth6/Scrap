@@ -29,7 +29,11 @@ html.no-js(lang='en')
     script(src="/js/lib/velocity.min.js")
     script(src="/js/lib/packery.js")
 
-    script(src='/js/animations.js')
+    script(src='/js/animation/pop/popModel.js')
+    script(src='/js/animation/pop/popController.js')
+    script(src='/js/animation/pop/popView.js')
+    script(src='/js/animation/simplePop/simplePopController.js')
+
     script(src='/js/scrollController.js')
 
     script(src='/js/navModel.js')
@@ -72,8 +76,7 @@ html.no-js(lang='en')
     script(src='/js/main.js')
 
     link(rel='stylesheet', href='/style/prototype.css')
-    // link(rel='stylesheet', href='https://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
-
+    link(rel='stylesheet', href='https://fast.fonts.net/cssapi/a196ecb3-1f45-4a57-bc9d-919fbda80ae4.css')
 
     include mixins/article
     include mixins/addArticleForm

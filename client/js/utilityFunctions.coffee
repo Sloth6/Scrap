@@ -4,13 +4,9 @@ Array.min = (array) -> Math.min.apply Math, array
 Array.prototype.last = () -> @[@length - 1]
 
 window.xTransform = ($element) ->
-#   transform = $element.css('transform')
-#   new WebKitCSSMatrix(transform).e
   parseFloat $.Velocity.hook($element, 'translateX')
 
 window.yTransform = ($element) ->
-#   transform = $element.css('transform')
-#   new WebKitCSSMatrix(transform).f
   parseFloat $.Velocity.hook($element, 'translateY')
 
 window.getRotateZ = ($element) ->
@@ -31,6 +27,7 @@ window.pointerType = (event) ->
 # Returns x/y of mouse or touch irrespective of event type  
 window.getPointer = (event) ->
   # If event.type contains 'mouse'
+  console.log event
   if pointerType(event) is 'mouse'
     { x: event.clientX, y: event.clientY }
   # If event.type contains 'touch'

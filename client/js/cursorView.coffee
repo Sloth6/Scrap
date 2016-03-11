@@ -18,6 +18,8 @@ window.cursorView =
             $cursor.text(label)
     else # Changing to self
       return
+    # Make sure cursor is right side up
+    $.Velocity.hook $cursor, 'rotateZ', '0deg'
     $('body').mousedown -> $cursor.css '-webkit-text-fill-color', 'black'
     $('body').mouseup   -> $cursor.css '-webkit-text-fill-color', ''
     $('body, article, a, input').css
