@@ -62,7 +62,7 @@ $ ->
 
   contentControllers.newArticle.init $(constants.dom.addArticleMenu)
 
-  containerController.getArticles(40)
+  containerController.getArticles(10)
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
 

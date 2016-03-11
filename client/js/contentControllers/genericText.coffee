@@ -32,9 +32,9 @@ contentControllers.genericText =
       if options.onChange?
         options.onChange @innerHTML, $(@).text()
 
-    $('.pen-menu').mousedown (event) ->
-      event.stopPropagation()
-      event.preventDefault()
+    # $('.pen-menu').mousedown (event) ->
+    #   event.stopPropagation()
+    #   event.preventDefault()
 
     $editable.
       css('overflow-y':'auto', 'max-height': maxHeight).

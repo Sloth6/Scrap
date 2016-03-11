@@ -6,12 +6,11 @@ coverColor = require '../modules/coverColor'
 toTitleCase = (str) ->
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
 
-inviteEmailHtml = (user, collection) ->
-  creator = collection.Creator
+inviteEmailHtml = (user, collection, inviter) ->
   domain = 'http://tryScrap.com'
   collectionKey = collection.collectionKey
   title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
-  subject = "#{creator.name} invited you to #{collection.name} on Scrap."
+  subject = "#{inviter.name} invited you to #{collection.name} on Scrap."
 
   html = "
     <h1>View #{title} on Scrap.</h1>
@@ -28,41 +27,44 @@ module.exports =
       console.log 'Emit order to client'
       # sio.to("#{parentcollectionKey}").emit 'newcollection', emitData
 
-  # rename: (sio, socket, data, callback) ->
-  #   { collectionKey, name } = data
-  #   models.Collection.update({ name }, where: { collectionKey }).then () ->
-  #     console.log "updated name of #{collectionKey} to #{name}"
-  #     callback null
-        # sio.to("#{collectionKey}").emit 'updateArticle', data
+  renameCollection: (sio, socket, data, callback) ->
+    { collectionKey, name } = data
+    models.Collection.update({ name }, where: { collectionKey }).then () ->
+      console.log "updated name of #{collectionKey} to #{name}"
+      callback null
+      # sio.to("#{collectionKey}").emit 'updateArticle', data
 
   inviteToCollection: (sio, socket, data, callback) =>
     { email, collectionKey } = data
+    inviter = socket.handshake.session.user
     console.log "Inviting #{email} to #{collectionKey}"
+    console.log "Inviter: #{inviter.name}"
+    collectionKey = "#{collectionKey}"
     return callback('invalid email') unless email?
     return callback('invalid collectionKey') unless collectionKey?
 
     done = (user, collection) ->
       collection.addUser(user).done (err) ->
         return callback(err) if err?
-        { html, subject } = inviteEmailHtml user, collection
+        { html, subject } = inviteEmailHtml user, collection, inviter
         mail.send { to: email, subject: subject, text: html, html: html }
         callback null
 
     params =
       where: { collectionKey }
-      include: [{ model: models.User, as: 'Creator' }]
 
     models.Collection.find( params ).done (err, collection) ->
       return callback(err) if err?
-      return callback('cannot invite to stack') unless collection.hasCover
       models.User.find( where: { email }).done (err, user) ->
         return callback(err) if err?
-        return done user, collection if user?
-        # Else no user
-        console.log "\tCreating new user"
-        models.User.createAndInitialize { email, name:email }, (err, user) ->
-          return callback(err) if err?
+
+        if user?
           done user, collection
+        else
+          console.log "\tCreating new user"
+          models.User.create({ email, name:email }).done (err, user) ->
+            return callback(err) if err?
+            done user, collection
 
   addCollection: (sio, socket, data, callback) ->
     { name } = data
@@ -85,7 +87,8 @@ module.exports =
             callback null
 
   removeCollection: (sio, socket, data, callback) ->
-    collectionKey = data.collectionKey
+    collectionKey = "#{data.collectionKey}"
+    console.log "Deleting collectoion #{collectionKey}"
     models.Collection.find( where: { collectionKey }).done (err,  collection ) ->
       return callback(err) if err?
       collection.destroy().done (err) ->

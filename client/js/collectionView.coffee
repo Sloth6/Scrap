@@ -5,22 +5,6 @@ window.collectionView =
   init: ($collection) ->
     $settings = $collection.find('.collectionSettings')
     $settings.find('.sharing .add form').hide()
-    # Open add user form on button click
-    $settings.find('input.addSomeone').on 'touchend mouseup', (event) ->
-      event.stopPropagation()
-      collectionView.addSomeone $collection
-    # Make settings hide-able if user blurs email input
-    $settings.find('input[type=email]').blur ->
-      $collection.data 'settingsInUse', false
-      $('body').mousemove ->
-        unless $collection.is('.hover')
-          $collection.find('.contents > a').trigger 'mouseleave'
-    $settings.find('.actions input[type=button]').on 'touchend mouseup', (event) ->
-      event.stopPropagation()
-      $collection.data 'settingsInUse', true
-      alert 'Confirmation UI goes here'
-      # After completing dialog
-      # $collection.data 'settingsInUse', false
 
   shrinkOnDragOffMenu: ($collection) ->
     $collection.find('a').trigger('mouseleave').velocity
@@ -125,45 +109,43 @@ window.collectionView =
         complete: -> $form.hide()
     $collection.data 'settingsInUse', true
 
-  addSomeone: ($collection) ->
+  addUser: ($collection) ->
+    input         = $collection.find('input[type=email]')
+    email         = input.val()
+    $li = $('<li>').addClass('user').text email
+    $collection.find('ul.users').append $li
+    input.val('').blur()
+
+  openAddUserForm: ($collection) ->
     $addSection = $collection.find '.contents .collectionSettings .add'
     $emailInput = $addSection.find 'input[type=email]'
     $button     = $addSection.find 'input.addSomeone[type=button]'
     $form       = $addSection.find 'form'
     $label      = $addSection.find 'label'
-    startingLabel = $label.text()
+    # startingLabel = $label.text()
     # Save label for resetForm later
-    $label.data 'startingLabel', startingLabel
-    $collection.data 'settingsInUse', true
-    $button.on 'touchend mouseup', ->
-      # Show button
-      $button.velocity
-        properties:
-          scale: 0
-          opacity: 0
-        options:
-          duration: 500
-          easing: constants.velocity.easing.smooth
-      # Hide form
-      $form.velocity
-        properties:
-          scale: [1, 0]
-          opacity: [1, 0]
-        options:
-          duration: 500
-          easing: constants.velocity.easing.smooth
-          begin: -> $form.show()
-      # Focus input
-      $emailInput.focus()
-      # When user types, show label
-      $emailInput.on 'input', ->
-        $label.removeClass 'invisible'
-    # TODO: on submit, do stuff
-    # If invalid email
-      # $label.text 'Please enter a valid address'
-    # Else if successful submit
-      # $label.text "#{name@example.com} successfully invited"
-      # resetForm $collection
+    # $label.data 'startingLabel', startingLabel
+    # $collection.data 'settingsInUse', true
+    # Show button
+    $button.velocity
+      properties:
+        scale: 0
+        opacity: 0
+      options:
+        duration: 500
+        easing: constants.velocity.easing.smooth
+    # Hide form
+    $form.velocity
+      properties:
+        scale: [1, 0]
+        opacity: [1, 0]
+      options:
+        duration: 500
+        easing: constants.velocity.easing.smooth
+        begin: -> $form.show()
+    # Focus input
+    $emailInput.focus()
+
 
 window.rotateColor = ($elements, hue)->
   $elements.css

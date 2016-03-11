@@ -18,7 +18,7 @@ module.exports =
     options =
       where: { id: userId }
       include: [
-        { model: models.Collection }
+        { model: models.Collection, include: [models.User] }
       ]
 
     models.User.find( options ).done (err, user) ->

@@ -16,11 +16,11 @@ clean = (data) ->
 module.exports = (io)->
   io.sockets.on 'connection', (socket) ->
     userId = socket.handshake.session.currentUserId
-    
+
     return unless userId?
 
     socket.handshake.session.userId = userId
-    
+
     models.User.find(
       where: { id: userId }
       include: [ { model: models.Collection }]
@@ -36,24 +36,24 @@ module.exports = (io)->
       socket.on 'newArticle',   (data) -> articleController.newArticle io, socket, clean(data), errorHandler
       socket.on 'deleteArticle', (data) -> articleController.deleteArticle io, socket, clean(data), errorHandler
       socket.on 'updateArticle', (data) -> articleController.updateArticle io, socket, data, errorHandler
-      
+
       [
         'addArticleCollection', 'removeArticleCollection'
       ].forEach (eventName) ->
         socket.on eventName, (data) ->
           articleCollectionController[eventName] io, socket, clean(data), errorHandler
-      
+
       [
-        'reorderCollection', 'addCollection',
+        'reorderCollection', 'addCollection', 'renameCollection',
         'removeCollection', 'inviteToCollection'
       ].forEach (eventName) ->
         socket.on eventName, (data) ->
           collectionController[eventName] io, socket, clean(data), errorHandler
-      
+
       # socket.on , (data) -> collectionController.reorderArticles io, socket, clean(data), errorHandler
       # socket.on 'addCollection', (data) -> collectionController.newCollection io, socket, clean(data), errorHandler
       # socket.on 'removeCollection', (data) -> collectionController.deleteCollection io, socket, clean(data), errorHandler
       # socket.on 'inviteToCollection', (data) -> collectionController.inviteToCollection io, socket, clean(data), errorHandler
-      
+
       socket.on 'disconnect', ->
         console.log 'Client Disconnected.'
