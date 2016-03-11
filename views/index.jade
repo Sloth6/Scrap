@@ -41,10 +41,10 @@ block scripts
   script(src="/js/contentControllers/genericText.js")
 
 block content
+  header.main
+    h1 Yum!
+    object.smile(type='image/svg+xml' data='/images/smile.svg')
   .content
-    header
-      a(href='/')
-        h1.lettering.typeOutlineClear Scrap
     .pack.signUp.form
       .card.interactive.unfocused.form
         h1.typeOutlineClear.typeTitle Sign up here!
@@ -56,11 +56,11 @@ block content
         ul.form
           include partials/logIn
     .pack.sub
-      p.typeTitle.typeOutlineClear Keep your
-        br
-        | embryogenesis
-        br
-        | papers here.
+      p.typeTitle.typeOutlineClear Collect everything you love in one place.
+    .pack.sub
+      p.typeTitle.typeOutlineClear Keep it all organized with labels.
+    .pack.sub
+      p.typeTitle.typeOutlineClear Share it with friends.
     - for (var i = 0; i < 50; i++) {
         .pack.filler
           .card

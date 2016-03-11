@@ -1,9 +1,23 @@
 @import "screen.scss";
 
-body {
-//   margin: $broadMargin;
+header {
+    height: 100vh;
+    margin-bottom: -$col; // Hoist up main content for peek
+    
+    h1 {
+        font-size: 12.5vw;
+        font-weight: $fontWeightExtraBold;
+        @include typeOutlineClear;
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include transformOriginCenter;
+    }
+    
+    .smile {
+        margin: 50vh $col 0 $col;
+    }
 }
-
 .content {
     
     .pack, .stamp {
