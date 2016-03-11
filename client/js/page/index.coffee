@@ -11,36 +11,29 @@ window.constants =
     
 cardView =
   init: ($cards) ->
-    $('.pack.filler').each () -> cardView.initFiller $(@).find('.card')
+    $('.pack.filler').each () ->
+      cardView.initFiller $(@).find('.card')
     $cards.css
       backgroundColor: constants.style.color
   
   initFiller: ($card) ->
-    glyphCount = 34
-    path = '/images/glyphs/glyph'
-    glyph = (Math.ceil(Math.random() * glyphCount)).toString()
+    $object = $card.find $('object')
     size = Math.ceil((Math.random() + .5)* 8) * 24
-    if (glyph.length < 2)
-      glyph = '0' + glyph
-    $object = $("<object type='image/svg+xml' data='#{path}-#{glyph}.svg' id='glyph-#{glyph}-#{$(@).index()}'></object>").addClass('svg')
-    $card.append $object
     # make monoline
     svgView.monoline $object
 #     cardView.colorBorderless($object) # if borderless
     packView.repack()
-    $cardMask = $('<div></div>').addClass('cardMask').css
-      position: 'absolute'
-      zIndex: 3
-      top: 0
-      left: 0
-      bottom: 0
-      right: 0
-    $card.append $cardMask
+#     $cardMask = $('<div></div>').addClass('cardMask').css
+#       position: 'absolute'
+#       zIndex: 3
+#       top: 0
+#       left: 0
+#       bottom: 0
+#       right: 0
+#     $card.append $cardMask
     $card.addClass 'svg'
     $card.css
       width: size
-#       border: 0
-#       backgroundColor: 'none'
   
   colorBorderless: ($object) ->
     $object[0].addEventListener 'load', ->

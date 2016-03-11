@@ -56,24 +56,19 @@ block content
         ul.form
           include partials/logIn
     .pack.sub
-      p.typeTitle.typeOutlineClear Collect everything you love in one place.
+      h2.typeTitle.typeOutlineClear Collect everything you love in one place.
     .pack.sub
-      p.typeTitle.typeOutlineClear Keep it all organized with labels.
+      h2.typeTitle.typeOutlineClear Keep it all organized with labels.
     .pack.sub
-      p.typeTitle.typeOutlineClear Share it with friends.
-    - for (var i = 0; i < 50; i++) {
-        .pack.filler
-          .card
+      h2.typeTitle.typeOutlineClear Share it with friends.    
+    - for (var i = 0; i < 34; i++) {
+      - var glyph = (i+1).toString();
+      - if (glyph.length < 2) {
+        - glyph = '0' + glyph;
+      - }
+      .pack.filler
+        .card.svg
+          object(type='image/svg+xml', data='./images/glyphs/glyph-'+glyph+'.svg', id='glyph-'+glyph+'-'+i+'')
     - }
-    
-    // - for (var i = 0; i < 42; i++) {
-    //   - var glyph = (i+1).toString();
-    //   - if (glyph.length < 2) {
-    //     - glyph = '0' + glyph;
-    //   - }
-    //   .pack.filler
-    //     .card.svg
-    //       object(type='image/svg+xml', data='./images/glyphs/glyph-'+glyph+'.svg', id='glyph-'+glyph+'-'+i+'')
-    // - }
   footer
     p.typeSmall Copyright 2015 Joel Simon and Antonio Ono
