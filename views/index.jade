@@ -52,15 +52,15 @@ block content
           include partials/signUp
     .pack.logIn.form
       .card.interactive.unfocused.form
-        h1.typeHeaderOutline Sign in
+        h1.headerType.typeOutlineClear Sign in
         ul.form
           include partials/logIn
-    .pack.sub
-      h2.typeTitle.typeOutlineClear Collect everything you love in one place.
-    .pack.sub
-      h2.typeTitle.typeOutlineClear Keep it all organized with labels.
-    .pack.sub
-      h2.typeTitle.typeOutlineClear Share it with friends.    
+    .pack.sub.stamp
+      h2.typeTitle.typeOutlineClear Collect everything you love in one place
+    .pack.sub.stamp
+      h2.typeTitle.typeOutlineClear Keep it all organized with labels
+    .pack.sub.stamp
+      h2.typeTitle.typeOutlineClear Share it with friends
     - for (var i = 0; i < 34; i++) {
       - var glyph = (i+1).toString();
       - if (glyph.length < 2) {

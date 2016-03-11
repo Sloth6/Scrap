@@ -2491,42 +2491,44 @@ header .smile {
 /* line 132, ../../style/index.scss */
 .content .sub {
   padding: 0 !important;
+  margin-bottom: 50vh;
+  width: 50%;
 }
-/* line 135, ../../style/index.scss */
-.content .sub p {
-  font-size: 48pt;
-  font-weight: 500;
-  line-height: 48pt;
-  letter-spacing: -0.03125em;
-  padding: 0px;
-  width: auto !important;
-  margin: 0px;
+/* line 137, ../../style/index.scss */
+.content .sub:nth-child(odd) {
+  text-align: left;
+  margin-right: 50%;
 }
-/* line 146, ../../style/index.scss */
+/* line 142, ../../style/index.scss */
+.content .sub:nth-child(even) {
+  text-align: right;
+  margin-left: 50vw;
+}
+/* line 149, ../../style/index.scss */
 .content .card {
   background-color: transparent;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 152, ../../style/index.scss */
+/* line 155, ../../style/index.scss */
 .content .card.interactive.unfocused:hover {
   background-color: #000000 !important;
 }
-/* line 157, ../../style/index.scss */
+/* line 160, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 160, ../../style/index.scss */
+/* line 163, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 165, ../../style/index.scss */
+/* line 168, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
 }
 
-/* line 173, ../../style/index.scss */
+/* line 176, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;

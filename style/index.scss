@@ -131,16 +131,19 @@ header {
     
     .sub {
         padding: 0 !important;
+        margin-bottom: 50vh;
+        width: 50%;
         
-        p {
-            font-size: 48pt;
-            font-weight: $fontWeightMedium;
-            line-height: 48pt;
-            letter-spacing: -(1em/32);
-            padding: 0px;
-            width: auto !important;
-            margin: 0px;
+        &:nth-child(odd) {
+            text-align: left;
+            margin-right: 50%;
         }
+        
+        &:nth-child(even) {
+            text-align: right;
+            margin-left: 50vw;
+        }
+        
     }
     
     .card {
