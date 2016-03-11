@@ -6,7 +6,7 @@ $ ->
     { html } = data
     $article = $(decodeURIComponent(html))
     # console.log "new $article", $article.attr('class')
-    containerController.addArticles $article
+    containerController.addArticles $article, {append: false}
     articleController.init $article
 
   socket.on 'newCollection', (data) ->

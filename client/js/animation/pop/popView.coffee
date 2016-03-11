@@ -34,7 +34,7 @@ window.popView =
     $.Velocity.hook $transform, 'rotateX', "#{rotate.x}deg"
     $.Velocity.hook $transform, 'rotateY', "#{rotate.y}deg"
     # Tilt inner layers
-    console.log $layers
+    # console.log $layers
     $layers.each ->
       depth = parseFloat $(@).data('popdepth')
       parallax = constants.style.grid.col * depth
@@ -64,7 +64,7 @@ window.popView =
       options:
         easing: constants.velocity.easing.smooth
         duration: popModel.duration
-        complete: -> $element.data('closingHover', false)              
+        complete: -> $element.data('closingHover', false)
     $layers.velocity('stop', true).velocity
       properties:
         scale: 1
@@ -75,7 +75,7 @@ window.popView =
       options:
         easing: constants.velocity.easing.smooth
         duration: popModel.duration
-        
+
 window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax hover class
   $transform.velocity('stop', true).velocity
     properties:
@@ -97,7 +97,7 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
 #     translateX = -edgeOffset
 #   else
 #     translateX = 0
-# 
+#
 #   if ($element.offset().top  - $(window).scrollTop())  < 144
 #     translateY = edgeOffset
 #   else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24

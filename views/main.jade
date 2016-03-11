@@ -120,6 +120,11 @@ html.no-js(lang='en')
       .scale
         #articleContainer
           +addArticleFormMixin()
+          //- Random padding to make top look jagged.
+          each val in [1, 2, 3, 4, 5]
+            // -var width = 100
+            // -var height = 100
+            .jagged
           for article in user.Articles
             if article != undefined
               +articleMixin(article, article.Collections)

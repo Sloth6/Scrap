@@ -3,9 +3,12 @@ window.containerController =
   init: ($container) ->
     $wrapper      = $(constants.dom.wrapper)
 
+    $('.jagged').each () ->
+      $(@).width(Math.random()*300 + 100).height(Math.random()*300+ 100)
+
     $container.packery
-      itemSelector: 'article'
-      isOriginTop: false
+      itemSelector: 'article,.jagged'
+      isOriginTop: true
       transitionDuration: '0.0s'
       gutter: constants.style.minGutter * 2
       columnWidth: constants.style.grid.col
@@ -33,7 +36,7 @@ window.containerController =
       $container.append($articles)
       $container.packery 'appended', $articles
     else
-      $articles.insertBefore $(constants.dom.addArticleMenu)
+      $articles.insertAfter $(constants.dom.addArticleMenu)
       $container.packery 'reloadItems'
 
     containerView.updateHeight $('.wrapper'), $(constants.dom.articleContainer)
@@ -51,6 +54,6 @@ window.containerController =
           derp.append $(foo)
 
         $articles = derp.children()
-        containerController.addArticles $articles, { append: false }
+        containerController.addArticles $articles, { append: true }
         articleController.init $articles
         scrapState.waitingForContent = false

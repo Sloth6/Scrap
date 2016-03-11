@@ -14,7 +14,7 @@ window.getRotateZ = ($element) ->
 
 window.logisticFunction = (x) ->
   1 / (1 + Math.pow(Math.E, -x))
-  
+
 # Return type of pointer event
 window.pointerType = (event) ->
   if event.type.indexOf('mouse') >= 0
@@ -23,11 +23,11 @@ window.pointerType = (event) ->
     return 'touch'
   else
     return null
-  
-# Returns x/y of mouse or touch irrespective of event type  
+
+# Returns x/y of mouse or touch irrespective of event type
 window.getPointer = (event) ->
   # If event.type contains 'mouse'
-  console.log event
+  # console.log event
   if pointerType(event) is 'mouse'
     { x: event.clientX, y: event.clientY }
   # If event.type contains 'touch'
@@ -36,7 +36,7 @@ window.getPointer = (event) ->
   else
     throw 'Invalid event'
     null
-  
+
 window.styleUtilities =
   transformOrigin: ($elements, x, y) ->
     $elements.css
