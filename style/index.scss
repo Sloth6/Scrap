@@ -19,6 +19,12 @@ header {
     }
 }
 .content {
+    position: relative;
+    margin: 0 $cell;
+    
+    @media (min-width: $breakSmall) {
+        margin: 0 $broadMargin;
+    }
     
     .pack, .stamp {
         opacity: 0;
@@ -131,19 +137,34 @@ header {
     
     .sub {
         padding: 0 !important;
-        margin-bottom: 50vh;
-        width: 50%;
+        position: absolute;
+        width: -webkit-fit-content;
         
         &:nth-child(odd) {
             text-align: left;
-            margin-right: 50%;
+            left: 0;
         }
         
         &:nth-child(even) {
             text-align: right;
-            margin-left: 50vw;
+            right: 0;
         }
         
+        &.second {
+            top: 75vh;
+        }
+        
+        &.third {
+            top: 150vh;
+        }
+        
+        .break {
+            display: inline;
+            
+            @media (min-width: $breakSmall) {
+                display: block;
+            }
+        }
     }
     
     .card {

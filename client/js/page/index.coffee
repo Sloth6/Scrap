@@ -49,47 +49,11 @@ getRotateValues = ($element, scale, event) ->
   rotateX = 40 * (progressY - .5)
   rotateY = 40 * (Math.abs(1 - progressX) - .5)
   { x: rotateX, y: rotateY}
-  
-# initHoverEffect = ->
-#   $elements = $('.card')
-#   $elements.parent().css
-#     'perspective': '400px'
-#     '-webkit-perspective': '400px'
-#   $elements.each ->
-#     $element = $(@)
-#     scale = 1.25
-#     $element.mouseenter (event) ->
-#       rotate = getRotateValues($element, scale, event)
-#       $element.parent().css
-#         zIndex: 999
-#       $(@).velocity
-#         properties:
-#           translateZ: 0
-#           scale: scale
-#           rotateX: rotate.x
-#           rotateY: rotate.y
-#         options:
-#           duration: 250
-#           easing: [60, 10]
-#     $element.mousemove (event) ->
-#       rotate = getRotateValues($element, scale, event)
-#       $.Velocity.hook $element, 'rotateX', "#{rotate.x}deg"
-#       $.Velocity.hook $element, 'rotateY', "#{rotate.y}deg"
-#     $element.mouseleave ->
-#       $(@).velocity
-#         properties:
-#           scale: 1
-#           rotateX: 0
-#           rotateY: 0
-#         options:
-#           duration: 250
-#           easing: [40, 10]
           
 packView =
   init: ->
     console.log 'init'
     $('.pack').each () ->
-      console.log constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
       $(@).css
         marginLeft:   constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
         marginTop:    constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
@@ -259,7 +223,7 @@ $ ->
   onResize()
   $(window).scroll () -> onScroll()
   onScroll()
-
+  
   loadAnimation()
   
   $('body').css({

@@ -14,7 +14,6 @@ block scripts
   script(src='/js/lib/packery.js')
   
   script(src="/js/page/stackAnimation.js")
-  script(src="/js/page/index.js")
   script(src="/js/menuControllers/header.js")
   script(src="/js/utilityFunction.js")
   
@@ -30,6 +29,8 @@ block scripts
   script(src="/js/contentControllers/text.js")
   script(src="/js/contentControllers/youtube.js")
   script(src="/js/contentControllers/playable.js")
+  
+  script(src="/js/page/index.js")
 
   script.
     var marginTop = 0;
@@ -55,12 +56,17 @@ block content
         h1.headerType.typeOutlineClear Sign in
         ul.form
           include partials/logIn
-    .pack.sub.stamp
-      h2.typeTitle.typeOutlineClear Collect everything you love in one place
-    .pack.sub.stamp
-      h2.typeTitle.typeOutlineClear Keep it all organized with labels
-    .pack.sub.stamp
-      h2.typeTitle.typeOutlineClear Share it with friends
+    .sub.first.stamp
+      h2.typeTitle.typeOutlineClear
+        .break Collect everything you 
+        .break love in one place
+    .sub.second.stamp
+      h2.typeTitle.typeOutlineClear
+        .break Keep it all organized 
+        .break with labels
+    .sub.third.stamp
+      h2.typeTitle.typeOutlineClear
+        .break Share it with friends
     - for (var i = 0; i < 34; i++) {
       - var glyph = (i+1).toString();
       - if (glyph.length < 2) {
