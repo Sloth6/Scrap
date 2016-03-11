@@ -1,26 +1,3 @@
-   
-# Move on screen if at edge
-# edgeOffset = 24
-# if $element.is 'article'
-#   # Offsets element toward middle of page if element too close to edge of page
-#   if ($element.offset().left - $(window).scrollLeft()) < 144
-#     translateX = edgeOffset
-#   else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
-#     translateX = -edgeOffset
-#   else
-#     translateX = 0
-# 
-#   if ($element.offset().top  - $(window).scrollTop())  < 144
-#     translateY = edgeOffset
-#   else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
-#     translateY = -edgeOffset
-#   else
-#     translateY = 0
-# else
-#   translateX = 0
-#   translateY = 0
-
-
 window.popView =
   init: ($element) ->
     $element.addClass 'pop'
@@ -48,19 +25,6 @@ window.popView =
       options:
         easing: constants.velocity.easing.smooth
         duration: popModel.duration
-#   down: ($element, scale) ->
-#     $transform  = popModel.getTransform  $element
-#     $layers     = popModel.getLayers $element
-#     progress    = popModel.getPercentageAcross $element, getPointer(event), scale
-#     rotate      = popModel.getRotate $element, progress
-#     $transform.velocity('stop', true).velocity
-#       properties:
-#         scale: (1 + scale) / 2
-#         rotateX: -rotate.x
-#         rotateY: -rotate.y
-#       options:
-#         easing: popModel.easing
-#         duration: popModel.duration
   move: ($element, scale) ->
     $transform  = popModel.getTransform $element
     $layers     = popModel.getLayers $element
@@ -90,8 +54,6 @@ window.popView =
     $layers     = popModel.getLayers $element
     $element.data('closingHover', true)
     $transform = $element.find('.transform')
-    $element.add($element.parents('li')).css
-      zIndex: ''
     $transform.velocity('stop', true).velocity
       properties:
         scale: 1
@@ -123,3 +85,25 @@ window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax ho
     options:
       duration: duration
       easing:   easing
+
+
+# Move on screen if at edge
+# edgeOffset = 24
+# if $element.is 'article'
+#   # Offsets element toward middle of page if element too close to edge of page
+#   if ($element.offset().left - $(window).scrollLeft()) < 144
+#     translateX = edgeOffset
+#   else if ($(window).width() - (($element.offset().left - $(window).scrollLeft()) + $element.width())) < 24
+#     translateX = -edgeOffset
+#   else
+#     translateX = 0
+# 
+#   if ($element.offset().top  - $(window).scrollTop())  < 144
+#     translateY = edgeOffset
+#   else if ($(window).height() - (($element.offset().top - $(window).scrollTop()) + $element.height())) < 24
+#     translateY = -edgeOffset
+#   else
+#     translateY = 0
+# else
+#   translateX = 0
+#   translateY = 0
