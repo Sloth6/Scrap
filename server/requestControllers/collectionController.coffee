@@ -18,13 +18,13 @@ module.exports =
     return res.send(400) unless (o and n and userId)?
 
     done = (articles) ->
-      articles = articles.slice o, o+n
+      articles = articles.reverse().slice o, o+n
       console.log "Showing #{articles.length} articles"
       res.render 'partials/articles', { articles }
 
     articleOptions =
       model: models.Article,
-      order: '"createdAt" ASC',
+      order: '"createdAt" DESC',
       include: [
         { model:models.Collection, required: false },
         { model:models.User, as: 'Creator'}
@@ -38,7 +38,6 @@ module.exports =
         return callback err, res if err?
         done collection.Articles
     else
-
       options =
         where: { id: userId }
         include: [ { model: models.Collection }, articleOptions ]

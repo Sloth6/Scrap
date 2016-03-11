@@ -14,34 +14,38 @@ getCollectionKeys = (articleId, callback) ->
     return callback(err) if err?
     callback null, (res.collectionKey for res in results[0])
 
-# getCollectionKeys 18, (a, b) ->
-#   console.log a, b
-
 module.exports =
   # create a new article and save it to db
   newArticle : (sio, socket, data, callback) =>
-    collectionKey = data.collectionKey
-    rawContent = decodeURIComponent data.content
-    # userId = socket.handshake.session.userId
-    user = socket.handshake.session.user
+    collectionKey = "#{data.collectionKey}"
+    rawContent    = decodeURIComponent data.content
+    user          = socket.handshake.session.user
 
     console.log 'newArticle:'
     console.log "\tuserId: #{user.id}"
     console.log "\tcollectionKey: #{collectionKey}"
     console.log "\trawContent: #{rawContent}"
 
-    newArticle rawContent, user, (err, article) ->
-      return callback(err) if err
-      # if collection?
-      #   html = articleRenderer article, [collection]
-      #   room = collection.collectionKey
-      # else
-      html = articleRenderer article, []
-      room = "user:#{user.id}"
-
+    done = (html, room) ->
       console.log 'emitting to ', room
       sio.to(room).emit 'newArticle', { html: encodeURIComponent(html) }
       callback null
+
+    newArticle rawContent, user, (err, article) ->
+      return callback(err) if err
+      if collectionKey == 'recent'
+        room = "user:#{user.id}"
+        html = articleRenderer article, []
+        done html, room
+      else
+        models.Collection.find(where: { collectionKey }).done (err, collection) ->
+          return callback err if err?
+          article.addCollection(collection).done (err) ->
+            return callback err if err?
+            collection.addArticle(article).done (err) ->
+              return callback err if err?
+              html = articleRenderer article, [collection]
+              done html, collectionKey
 
   # delete the article
   deleteArticle : (sio, socket, data, callback) =>
