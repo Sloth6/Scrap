@@ -1,20 +1,8 @@
-window.randomColor = ->
-  h = Math.random() * 360
-  l = Math.random() * 10 + 75
-  "hsl(#{h},100%,#{l}%)"
-
-window.constants =
-  style:
-    color: randomColor()
-    gutter: 12
-    minGutter: 12
-    
+   
 cardView =
   init: ($cards) ->
     $('.pack.filler').each () ->
       cardView.initFiller $(@).find('.card')
-    $cards.css
-      backgroundColor: constants.style.color
   
   initFiller: ($card) ->
     $object = $card.find $('object')
@@ -22,15 +10,7 @@ cardView =
     # make monoline
     svgView.monoline $object
 #     cardView.colorBorderless($object) # if borderless
-    packView.repack()
-#     $cardMask = $('<div></div>').addClass('cardMask').css
-#       position: 'absolute'
-#       zIndex: 3
-#       top: 0
-#       left: 0
-#       bottom: 0
-#       right: 0
-#     $card.append $cardMask
+    containerView.repack()
     $card.addClass 'svg'
     $card.css
       width: size
@@ -38,28 +18,46 @@ cardView =
   colorBorderless: ($object) ->
     $object[0].addEventListener 'load', ->
       $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
-      $fillable.attr('style', "fill: #{constants.style.color}")
+      $fillable.attr('style', "fill: #{globals.color}")
     , true    
-            
-getRotateValues = ($element, scale, event) ->
-  offsetY = $element.offset().top - $(window).scrollTop()
-  offsetX = $element.offset().left - $(window).scrollLeft()
-  progressY = Math.max(0, Math.min(1, (event.clientY - offsetY) / ($element.height() * scale)))
-  progressX = Math.max(0, Math.min(1, (event.clientX - offsetX) / ($element.width()  * scale)))
-  rotateX = 40 * (progressY - .5)
-  rotateY = 40 * (Math.abs(1 - progressX) - .5)
-  { x: rotateX, y: rotateY}
           
-packView =
+containerView =
   init: ->
     console.log 'init'
     $('.pack').each () ->
       $(@).css
-        marginLeft:   constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
-        marginTop:    constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
-        marginBottom: constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
-        marginRight:  constants.style.minGutter + ((Math.random()+.5) * constants.style.gutter)
-    packView.repack()
+        marginLeft:   globals.minGutter + ((Math.random()+.5) * globals.gutter)
+        marginTop:    globals.minGutter + ((Math.random()+.5) * globals.gutter)
+        marginBottom: globals.minGutter + ((Math.random()+.5) * globals.gutter)
+        marginRight:  globals.minGutter + ((Math.random()+.5) * globals.gutter)
+    containerView.repack()
+    containerView.animateIn()
+    
+  animateIn: ->
+    duration = 2000
+    easing = [20, 10]
+    $('.stamp').each () ->
+      $(@).velocity
+        properties:
+          opacity: [1, 1]
+          scale: [1, 0]
+          rotateZ: [0, (Math.random() - .5) * 45]
+  #         translateY: [0, 1000]
+        options:
+          duration: duration
+          easing: easing
+          delay: 250 + $(@).index() * 120
+    $('.pack').each () ->
+      $(@).velocity
+        properties:
+          opacity: [1, 1]
+          scale: [1, 0]
+          rotateZ: [0, (Math.random() - .5) * 45]
+  #         translateY: [0, 1000]
+        options:
+          duration: duration
+          easing: easing
+          delay: 750 + Math.random() * 500
     
   repack: ->
     $('.content').packery
@@ -70,40 +68,13 @@ packView =
 window.onResize = ->
   cardSize = if $(window).width() < 768 then 18 else 36
   gutter   = if $(window).width() < 768 then 3 else 6
-  packView.repack()
+  containerView.repack()
   toggleExtraFillers()
-  packView.repack()
+  containerView.repack()
   setTimeout ->
     toggleExtraFillers()
-    packView.repack()
-  , 100
-    
-loadAnimation = () ->
-  duration = 2000
-  easing = [20, 10]
-  $('.stamp').each () ->
-    $(@).velocity
-      properties:
-        opacity: [1, 1]
-        scale: [1, 0]
-        rotateZ: [0, (Math.random() - .5) * 45]
-#         translateY: [0, 1000]
-      options:
-        duration: duration
-        easing: easing
-        delay: 250 + $(@).index() * 120
-  $('.pack').each () ->
-    $(@).velocity
-      properties:
-        opacity: [1, 1]
-        scale: [1, 0]
-        rotateZ: [0, (Math.random() - .5) * 45]
-#         translateY: [0, 1000]
-      options:
-        duration: duration
-        easing: easing
-        delay: 750 + Math.random() * 500
-        
+    containerView.repack()
+  , 100        
   
 toggleExtraFillers = () ->
 #   $('.pack.filler').find('.card').each () ->
@@ -153,7 +124,7 @@ openForm = ($card) ->
     options:
       duration: duration
       easing: easing
-  #       packView.repack()
+  #       containerView.repack()
 
 window.svgView =
   monoline: ($object) ->
@@ -171,8 +142,6 @@ window.headerView =
   initH1: ($header) ->
     $h1 = $header.children('h1') #.hide()
     $h1s = $h1.add($h1.clone()).add($h1.clone()).prependTo($header)
-    $h1s.css
-      '-webkit-text-fill-color': constants.style.color
     duration = 1500
     
     $h1s.each ->
@@ -209,29 +178,62 @@ window.onScroll = ->
   top = $(document).scrollTop()
   progress = top / $(window).height()
   opacity = Math.max(0, Math.min(1, 1 - progress))
-  $.Velocity.hook $('body'), 'backgroundColorAlpha', opacity
-  console.log opacity
-
+  $('.bg').css 'opacity', opacity
+  
+window.colorView =
+  init: ($elements, property) ->
+    # Set initial color
+    colorView.set $elements, property
+    # Set transition duration after initial color is set
+    setTimeout ->
+      transition = "#{property} #{globals.colorShiftDuration / 1000}s linear"
+      $elements.css
+        webkitTransition: transition
+        mozTransition:    transition
+        msTransition:     transition
+        transition:       transition
+    , globals.colorShiftDuration
+    # Start incrementing color
+    setInterval ->
+      colorView.set $elements, property
+    , globals.colorShiftDuration
+    
+  set: ($elements, property) ->
+    $elements.css property, globals.color
+    
+  startIncrementing: ->
+    setInterval ->
+      globals.color = colorView.newColor()
+    , globals.colorShiftDuration
+    
+  newColor: ->
+    h = Math.random() * 360
+    l = Math.random() * 10 + 75
+    "hsl(#{h},100%,#{l}%)"    
+    
+window.globals =
+  gutter: 12
+  minGutter: 12
+  color: colorView.newColor()
+  colorShiftDuration: 4000
+    
 $ ->
-#   letteringView.init $('.lettering')
   headerView.init $('header.main')
   cardView.init $('.card')
-#   initHoverEffect()
-  packView.init()
+  containerView.init()
   
   $(window).resize () -> onResize()
   onResize()
   $(window).scroll () -> onScroll()
   onScroll()
   
-  loadAnimation()
+  colorView.startIncrementing()
   
-  $('body').css({
-    backgroundColor: constants.style.color
-  })
+  colorView.init $('.bg'), 'background-color'
+  colorView.init $('.typeOutlineClear, .typeHeaderOutline'), '-webkit-text-fill-color'
+  colorView.init $('header.main h1'), '-webkit-text-fill-color'
+  colorView.init $('.card'), 'background-color'
   
-  $('.typeOutlineClear, .typeHeaderOutline').css
-    '-webkit-text-fill-color': constants.style.color
   
   $('.logIn .card').css
     borderRadius: '400pt / 200pt' # doesn't work in SCSS

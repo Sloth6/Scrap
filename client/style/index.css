@@ -2517,11 +2517,11 @@ header .smile {
 }
 /* line 153, ../../style/index.scss */
 .content .sub.second {
-  top: 75vh;
+  top: 100vh;
 }
 /* line 157, ../../style/index.scss */
 .content .sub.third {
-  top: 150vh;
+  top: 200vh;
 }
 /* line 161, ../../style/index.scss */
 .content .sub .break {
@@ -2562,4 +2562,14 @@ footer {
   padding-top: 40pt;
   padding-bottom: 20pt;
   text-align: center;
+}
+
+/* line 203, ../../style/index.scss */
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
