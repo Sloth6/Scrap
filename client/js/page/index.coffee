@@ -22,8 +22,8 @@ cardView =
     , true    
           
 containerView =
-  init: ->
-    console.log 'init'
+  init: ($content) ->
+    $content.data('hasAnimated', false)
     $('.pack').each () ->
       $(@).css
         marginLeft:   globals.minGutter + ((Math.random()+.5) * globals.gutter)
@@ -31,11 +31,11 @@ containerView =
         marginBottom: globals.minGutter + ((Math.random()+.5) * globals.gutter)
         marginRight:  globals.minGutter + ((Math.random()+.5) * globals.gutter)
     containerView.repack()
-    containerView.animateIn()
     
-  animateIn: ->
+  animateIn: ($content) ->
     duration = 2000
     easing = [20, 10]
+    $content.data('hasAnimated', true)
     $('.stamp').each () ->
       $(@).velocity
         properties:
@@ -69,21 +69,9 @@ window.onResize = ->
   cardSize = if $(window).width() < 768 then 18 else 36
   gutter   = if $(window).width() < 768 then 3 else 6
   containerView.repack()
-  toggleExtraFillers()
-  containerView.repack()
   setTimeout ->
-    toggleExtraFillers()
     containerView.repack()
-  , 100        
-  
-toggleExtraFillers = () ->
-#   $('.pack.filler').find('.card').each () ->
-#     if $(@).offset().top > $(window).height()
-#       $(@).css('background-color', 'blue')
-#       $(@).hide()
-#     else
-#       $(@).css('background-color', 'red')
-#       $(@).show()
+  , 100
 
 openForm = ($card) ->
   $packable = $card.parent($('.pack'))
@@ -133,7 +121,6 @@ window.svgView =
       $shapes.attr('vector-effect', 'non-scaling-stroke')
     , true
     
-  
 window.headerView =
   init: ($header) ->
     headerView.initH1 $header
@@ -179,6 +166,10 @@ window.onScroll = ->
   progress = top / $(window).height()
   opacity = Math.max(0, Math.min(1, 1 - progress))
   $('.bg').css 'opacity', opacity
+  # Animate in packery elements
+  if (top > 0) and not $('.content').data('hasAnimated')
+    containerView.animateIn $('.content')
+    
   
 window.colorView =
   init: ($elements, property) ->
@@ -220,7 +211,7 @@ window.globals =
 $ ->
   headerView.init $('header.main')
   cardView.init $('.card')
-  containerView.init()
+  containerView.init $('.content')
   
   $(window).resize () -> onResize()
   onResize()
@@ -229,11 +220,11 @@ $ ->
   
   colorView.startIncrementing()
   
+  # All color inits must be called at same time  
   colorView.init $('.bg'), 'background-color'
   colorView.init $('.typeOutlineClear, .typeHeaderOutline'), '-webkit-text-fill-color'
   colorView.init $('header.main h1'), '-webkit-text-fill-color'
   colorView.init $('.card'), 'background-color'
-  
   
   $('.logIn .card').css
     borderRadius: '400pt / 200pt' # doesn't work in SCSS

@@ -2371,7 +2371,6 @@ footer.main ul.actions li.action label {
 /* line 3, ../../style/index.scss */
 header {
   height: 100vh;
-  margin-bottom: -56pt;
 }
 /* line 7, ../../style/index.scss */
 header h1 {
@@ -2392,26 +2391,26 @@ header .smile {
   margin: 50vh 56pt 0 56pt;
 }
 
-/* line 21, ../../style/index.scss */
+/* line 22, ../../style/index.scss */
 .content {
   position: relative;
   margin: 0 8pt;
 }
 @media (min-width: 768px) {
-  /* line 21, ../../style/index.scss */
+  /* line 22, ../../style/index.scss */
   .content {
     margin: 0 40pt;
   }
 }
-/* line 29, ../../style/index.scss */
+/* line 30, ../../style/index.scss */
 .content .pack, .content .stamp {
   opacity: 0;
 }
-/* line 33, ../../style/index.scss */
+/* line 34, ../../style/index.scss */
 .content header {
   max-width: 100vw;
 }
-/* line 37, ../../style/index.scss */
+/* line 38, ../../style/index.scss */
 .content header h1 {
   font-size: 36.36364vw;
   font-weight: 700;
@@ -2427,29 +2426,29 @@ header .smile {
               }
   */
 }
-/* line 46, ../../style/index.scss */
+/* line 47, ../../style/index.scss */
 .content header h1 span.letter {
   display: inline-block;
   height: .6em;
 }
-/* line 51, ../../style/index.scss */
+/* line 52, ../../style/index.scss */
 .content header h1 span.letter .inner {
   position: relative;
   top: .125em;
 }
-/* line 57, ../../style/index.scss */
+/* line 58, ../../style/index.scss */
 .content header h1 span.letter.char1 {
   height: .8em;
 }
-/* line 60, ../../style/index.scss */
+/* line 61, ../../style/index.scss */
 .content header h1 span.letter.char1 .inner {
   top: .3125em;
 }
-/* line 65, ../../style/index.scss */
+/* line 66, ../../style/index.scss */
 .content header h1 span.letter.char5 {
   height: .8em;
 }
-/* line 78, ../../style/index.scss */
+/* line 79, ../../style/index.scss */
 .content nav {
   position: fixed;
   top: 0;
@@ -2457,31 +2456,31 @@ header .smile {
   right: 0;
   z-index: 2;
 }
-/* line 86, ../../style/index.scss */
+/* line 87, ../../style/index.scss */
 .content .card.form {
   cursor: pointer;
   overflow: hidden;
   position: relative;
   padding: 0;
 }
-/* line 92, ../../style/index.scss */
+/* line 93, ../../style/index.scss */
 .content .card.form h1 {
   position: absolute;
   width: 100%;
   -webkit-text-fill-color: white !important;
 }
-/* line 97, ../../style/index.scss */
+/* line 98, ../../style/index.scss */
 .content .card.form ul.form {
   display: none;
   padding: 16pt 8pt 16pt 16pt;
 }
-/* line 104, ../../style/index.scss */
+/* line 105, ../../style/index.scss */
 .content .signUp .card {
   width: 168pt;
   height: 168pt;
   border-radius: 168pt;
 }
-/* line 109, ../../style/index.scss */
+/* line 110, ../../style/index.scss */
 .content .signUp .card h1 {
   text-align: center;
   line-height: .8em;
@@ -2489,82 +2488,82 @@ header .smile {
   margin-left: 12.5%;
   margin-top: .25em;
 }
-/* line 122, ../../style/index.scss */
+/* line 123, ../../style/index.scss */
 .content .logIn .card {
   height: 56pt;
   width: 112pt;
 }
-/* line 127, ../../style/index.scss */
+/* line 128, ../../style/index.scss */
 .content .logIn .card h1 {
   margin-top: .5em;
   text-align: center;
 }
-/* line 138, ../../style/index.scss */
+/* line 139, ../../style/index.scss */
 .content .sub {
   padding: 0 !important;
   position: absolute;
   width: -webkit-fit-content;
 }
-/* line 143, ../../style/index.scss */
+/* line 144, ../../style/index.scss */
 .content .sub:nth-child(odd) {
   text-align: left;
   left: 0;
 }
-/* line 148, ../../style/index.scss */
+/* line 149, ../../style/index.scss */
 .content .sub:nth-child(even) {
   text-align: right;
   right: 0;
 }
-/* line 153, ../../style/index.scss */
+/* line 154, ../../style/index.scss */
 .content .sub.second {
   top: 100vh;
 }
-/* line 157, ../../style/index.scss */
+/* line 158, ../../style/index.scss */
 .content .sub.third {
   top: 200vh;
 }
-/* line 161, ../../style/index.scss */
+/* line 162, ../../style/index.scss */
 .content .sub .break {
   display: inline;
 }
 @media (min-width: 768px) {
-  /* line 161, ../../style/index.scss */
+  /* line 162, ../../style/index.scss */
   .content .sub .break {
     display: block;
   }
 }
-/* line 170, ../../style/index.scss */
+/* line 171, ../../style/index.scss */
 .content .card {
   background-color: transparent;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 176, ../../style/index.scss */
+/* line 177, ../../style/index.scss */
 .content .card.interactive.unfocused:hover {
   background-color: #000000 !important;
 }
-/* line 181, ../../style/index.scss */
+/* line 182, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 184, ../../style/index.scss */
+/* line 185, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 189, ../../style/index.scss */
+/* line 190, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
 }
 
-/* line 197, ../../style/index.scss */
+/* line 198, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;
   text-align: center;
 }
 
-/* line 203, ../../style/index.scss */
+/* line 204, ../../style/index.scss */
 .bg {
   position: fixed;
   top: 0;
