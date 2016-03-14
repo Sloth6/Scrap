@@ -1,45 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 252 432" style="enable-background:new 0 0 252 432;" xml:space="preserve">
+	 viewBox="0 0 72 216" style="enable-background:new 0 0 72 216;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st1{clip-path:url(#SVGID_2_);}
-	.st2{clip-path:url(#SVGID_4_);}
+	.st1{clip-path:url(#SVGID_2_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st2{clip-path:url(#SVGID_4_);fill:none;stroke:#000000;stroke-miterlimit:10;}
 	.st3{clip-path:url(#SVGID_6_);}
-	.st4{fill:none;stroke:#231F20;stroke-miterlimit:10;}
-	.st5{clip-path:url(#SVGID_8_);}
-	.st6{clip-path:url(#SVGID_10_);}
-	.st7{clip-path:url(#SVGID_12_);}
-	.st8{clip-path:url(#SVGID_14_);fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st9{clip-path:url(#SVGID_16_);}
-	.st10{clip-path:url(#SVGID_18_);}
+	.st4{clip-path:url(#SVGID_8_);fill:none;stroke:#000000;stroke-miterlimit:10;}
 </style>
-<g>
-	<line class="st0" x1="27" y1="170.5" x2="225" y2="170.5"/>
-	<line class="st0" x1="27" y1="189.5" x2="225" y2="189.5"/>
-	<line class="st0" x1="27" y1="207.5" x2="225" y2="207.5"/>
-	<line class="st0" x1="27" y1="226.5" x2="225" y2="226.5"/>
-	<line class="st0" x1="27" y1="245.5" x2="225" y2="245.5"/>
-	<line class="st0" x1="27" y1="263.5" x2="225" y2="263.5"/>
-	<line class="st0" x1="27" y1="282.5" x2="225" y2="282.5"/>
-	<line class="st0" x1="27" y1="301.5" x2="225" y2="301.5"/>
-	<line class="st0" x1="27" y1="320.5" x2="225" y2="320.5"/>
-	<line class="st0" x1="27" y1="338.5" x2="225" y2="338.5"/>
-	<line class="st0" x1="27" y1="357.5" x2="225" y2="357.5"/>
-	<line class="st0" x1="27" y1="376.5" x2="225" y2="376.5"/>
-	<line class="st0" x1="27" y1="394.5" x2="225" y2="394.5"/>
-	<line class="st0" x1="27" y1="413.5" x2="225" y2="413.5"/>
-</g>
-<g>
-	<line class="st0" x1="27" y1="27.5" x2="117" y2="27.5"/>
-	<line class="st0" x1="27" y1="45.5" x2="117" y2="45.5"/>
-	<line class="st0" x1="27" y1="63.5" x2="117" y2="63.5"/>
-	<line class="st0" x1="27" y1="81.5" x2="117" y2="81.5"/>
-	<line class="st0" x1="27" y1="99.5" x2="117" y2="99.5"/>
-	<line class="st0" x1="27" y1="117.5" x2="117" y2="117.5"/>
-	<line class="st0" x1="27" y1="135.5" x2="117" y2="135.5"/>
-	<line class="st0" x1="27" y1="153.5" x2="117" y2="153.5"/>
-</g>
-<rect x="135" y="27" class="st0" width="90" height="126"/>
+<path class="st0" d="M36,155c14-2.2,25.1,4.7,25.1,25.1c0,12.6-12.6,19.7-25.1,19.7s-20.4-8.7-18-23.2S24.2,156.8,36,155z"/>
 </svg>

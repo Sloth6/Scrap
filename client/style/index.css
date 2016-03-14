@@ -592,7 +592,7 @@ body section.label section.content article.color9 div.card.text.comment, body se
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
 /* line 175, ../../style/globals/_type.scss */
 html {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -664,7 +664,7 @@ html {
 
 /* line 200, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -863,7 +863,7 @@ p + p {
   bottom: 16pt;
   left: 16pt;
   right: 16pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1003,7 +1003,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1127,7 +1127,7 @@ ul.headerMenu {
   background: white;
   top: -1px;
   width: 168pt;
-  font-family: "Neue Haas Unica W01", -apple-system, "Helvetica Neue", sans-serif;
+  font-family: "Univers Next W01", "Univers Next W04";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -2515,55 +2515,59 @@ header .smile {
   right: 0;
 }
 /* line 154, ../../style/index.scss */
+.content .sub.first {
+  top: 25vh;
+}
+/* line 158, ../../style/index.scss */
 .content .sub.second {
   top: 100vh;
 }
-/* line 158, ../../style/index.scss */
-.content .sub.third {
-  top: 200vh;
-}
 /* line 162, ../../style/index.scss */
+.content .sub.third {
+  top: 175vh;
+}
+/* line 166, ../../style/index.scss */
 .content .sub .break {
   display: inline;
 }
 @media (min-width: 768px) {
-  /* line 162, ../../style/index.scss */
+  /* line 166, ../../style/index.scss */
   .content .sub .break {
     display: block;
   }
 }
-/* line 171, ../../style/index.scss */
+/* line 175, ../../style/index.scss */
 .content .card {
   background-color: transparent;
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 177, ../../style/index.scss */
+/* line 181, ../../style/index.scss */
 .content .card.interactive.unfocused:hover {
   background-color: #000000 !important;
 }
-/* line 182, ../../style/index.scss */
+/* line 186, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
 }
-/* line 185, ../../style/index.scss */
+/* line 189, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 190, ../../style/index.scss */
+/* line 194, ../../style/index.scss */
 .content .card.svg object.svg {
   margin-bottom: -6px;
 }
 
-/* line 198, ../../style/index.scss */
+/* line 202, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;
   text-align: center;
 }
 
-/* line 204, ../../style/index.scss */
+/* line 208, ../../style/index.scss */
 .bg {
   position: fixed;
   top: 0;

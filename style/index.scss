@@ -151,12 +151,16 @@ header {
             right: 0;
         }
         
+        &.first {
+            top: 25vh;
+        }
+        
         &.second {
             top: 100vh;
         }
         
         &.third {
-            top: 200vh;
+            top: 175vh;
         }
         
         .break {
