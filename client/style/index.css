@@ -2420,11 +2420,6 @@ header .smile {
   -o-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   -webkit-transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  /*
-              @media (min-width: $breakSmall) {
-                  font-size: 25vw;
-              }
-  */
 }
 /* line 47, ../../style/index.scss */
 .content header h1 span.letter {
@@ -2448,7 +2443,7 @@ header .smile {
 .content header h1 span.letter.char5 {
   height: .8em;
 }
-/* line 79, ../../style/index.scss */
+/* line 73, ../../style/index.scss */
 .content nav {
   position: fixed;
   top: 0;
@@ -2456,118 +2451,109 @@ header .smile {
   right: 0;
   z-index: 2;
 }
-/* line 87, ../../style/index.scss */
+/* line 81, ../../style/index.scss */
 .content .card.form {
   cursor: pointer;
   overflow: hidden;
   position: relative;
   padding: 0;
 }
-/* line 93, ../../style/index.scss */
+/* line 87, ../../style/index.scss */
 .content .card.form h1 {
-  position: absolute;
   width: 100%;
-  -webkit-text-fill-color: white !important;
 }
-/* line 98, ../../style/index.scss */
+/* line 92, ../../style/index.scss */
 .content .card.form ul.form {
   display: none;
   padding: 16pt 8pt 16pt 16pt;
 }
-/* line 105, ../../style/index.scss */
+/* line 99, ../../style/index.scss */
 .content .signUp .card {
   width: 168pt;
   height: 168pt;
+  padding: 40pt;
   border-radius: 168pt;
 }
-/* line 110, ../../style/index.scss */
+/* line 105, ../../style/index.scss */
 .content .signUp .card h1 {
   text-align: center;
   line-height: .8em;
-  width: 75%;
-  margin-left: 12.5%;
-  margin-top: .25em;
 }
-/* line 123, ../../style/index.scss */
+/* line 116, ../../style/index.scss */
 .content .logIn .card {
-  height: 56pt;
-  width: 112pt;
+  padding: 20pt;
 }
-/* line 128, ../../style/index.scss */
-.content .logIn .card h1 {
-  margin-top: .5em;
-  text-align: center;
-}
-/* line 139, ../../style/index.scss */
+/* line 133, ../../style/index.scss */
 .content .sub {
   padding: 0 !important;
   position: absolute;
   width: -webkit-fit-content;
 }
-/* line 144, ../../style/index.scss */
+/* line 138, ../../style/index.scss */
 .content .sub:nth-child(odd) {
   text-align: left;
   left: 0;
 }
-/* line 149, ../../style/index.scss */
+/* line 143, ../../style/index.scss */
 .content .sub:nth-child(even) {
   text-align: right;
   right: 0;
 }
-/* line 154, ../../style/index.scss */
+/* line 148, ../../style/index.scss */
 .content .sub.first {
   top: 25vh;
 }
-/* line 158, ../../style/index.scss */
+/* line 152, ../../style/index.scss */
 .content .sub.second {
   top: 100vh;
 }
-/* line 162, ../../style/index.scss */
+/* line 156, ../../style/index.scss */
 .content .sub.third {
   top: 175vh;
 }
-/* line 166, ../../style/index.scss */
+/* line 160, ../../style/index.scss */
 .content .sub .break {
   display: inline;
 }
 @media (min-width: 768px) {
-  /* line 166, ../../style/index.scss */
+  /* line 160, ../../style/index.scss */
   .content .sub .break {
     display: block;
   }
 }
-/* line 175, ../../style/index.scss */
+/* line 169, ../../style/index.scss */
 .content .card {
   background-color: transparent;
-  transform-origin: center center;
   -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
 }
-/* line 181, ../../style/index.scss */
-.content .card.interactive.unfocused:hover {
-  background-color: #000000 !important;
-}
-/* line 186, ../../style/index.scss */
+/* line 173, ../../style/index.scss */
 .content .card.svg {
   padding: 0;
+  max-height: 280pt;
+  max-width: 280pt;
 }
-/* line 189, ../../style/index.scss */
+/* line 178, ../../style/index.scss */
 .content .card.svg.borderless {
   border: 0;
   background-color: transparent !important;
 }
-/* line 194, ../../style/index.scss */
-.content .card.svg object.svg {
+/* line 183, ../../style/index.scss */
+.content .card.svg object {
   margin-bottom: -6px;
+  opacity: 0;
 }
 
-/* line 202, ../../style/index.scss */
+/* line 191, ../../style/index.scss */
 footer {
   padding-top: 40pt;
   padding-bottom: 20pt;
   text-align: center;
 }
 
-/* line 208, ../../style/index.scss */
+/* line 197, ../../style/index.scss */
 .bg {
   position: fixed;
   top: 0;

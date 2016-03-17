@@ -8,7 +8,27 @@
 	.st2{clip-path:url(#SVGID_4_);fill:none;stroke:#000000;stroke-miterlimit:10;}
 	.st3{clip-path:url(#SVGID_6_);}
 	.st4{clip-path:url(#SVGID_8_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_10_);}
+	.st6{clip-path:url(#SVGID_12_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st7{clip-path:url(#SVGID_14_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st8{clip-path:url(#SVGID_16_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st9{clip-path:url(#SVGID_18_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_20_);}
+	.st11{clip-path:url(#SVGID_22_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st12{clip-path:url(#SVGID_24_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st13{clip-path:url(#SVGID_26_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st14{clip-path:url(#SVGID_28_);fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st15{clip-path:url(#SVGID_30_);fill:none;stroke:#000000;stroke-miterlimit:10;}
 </style>
-<path class="st0" d="M108,161.2c25.2,0.4,35.5-2.6,36,27.7s-19.8,82.5-36,83.5s-25.5-61.5-27-82S89,161,108,161.2z"/>
-<path class="st0" d="M203.2,62.6c0,29.4-5,104.7-12.6,0C183.1-42,203.2,33.2,203.2,62.6z"/>
+<g>
+	<defs>
+		<rect id="SVGID_29_" y="0" width="288" height="360"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_29_"  style="overflow:visible;"/>
+	</clipPath>
+	<path class="st1" d="M164.1,206.2c110.3,0.4,155-2.6,157.2,27.7c2.3,30.2-86.3,82.5-157.2,83.5s-111.2-61.5-117.9-82
+		S81.2,206,164.1,206.2z"/>
+	<path class="st1" d="M186.1,165.5c29.4,0,104.7,5,0,12.6C81.4,185.6,156.7,165.5,186.1,165.5z"/>
+</g>
 </svg>
