@@ -67,12 +67,6 @@ header {
                     height: .8em;
                 }
             }
-            
-/*
-            @media (min-width: $breakSmall) {
-                font-size: 25vw;
-            }
-*/
         }
     }
     
@@ -91,9 +85,9 @@ header {
         padding: 0;
 
         h1 {
-            position: absolute;
+//             position: absolute;
             width: 100%;
-            -webkit-text-fill-color: white !important;
+//             -webkit-text-fill-color: white !important;
         }
         ul.form {
             display: none;
@@ -105,15 +99,14 @@ header {
         .card {
             width: $col * 3;
             height: $col * 3;
+            padding: $broadMargin;
             border-radius: $col * 3;
             
             h1 {
                 text-align: center;
 //                 font-style: italic;
                 line-height: .8em;
-                width: 75%;
-                margin-left: 12.5%;
-                margin-top: .25em;
+//                 width: 75%;
             }
         }
     }
@@ -121,14 +114,15 @@ header {
     .logIn {
         
         .card {
-            height: $col;
-            width: $col * 2;
+            padding: $broadMargin / 2;
+//             height: $col;
+//             width: $col * 2;
 //             padding: 0;
 //             padding: $broadMargin;
             h1 {
 //                 line-height: $col * 1.75;
-                margin-top: .5em;
-                text-align: center;
+//                 margin-top: .5em;
+//                 text-align: center;
             }
             
             
@@ -174,29 +168,24 @@ header {
     
     .card {
         background-color: transparent;
-                transform-origin:   center center;
-        -webkit-transform-origin: center center;
+        @include transformOriginCenter;
         
-        &.interactive {
-            &.unfocused:hover {
-                background-color: $colorType !important;
-            }
-        }
-
         &.svg {
             padding: 0;
+            max-height: $articleSide;
+            max-width: $articleSide;
             
             &.borderless {
                 border: 0;
                 background-color: transparent !important;
             }
             
-            object.svg {
+            object {
                 margin-bottom: -6px;
+                opacity: 0;
             }
         }
-            }
-    
+    }    
 }
 
 footer {

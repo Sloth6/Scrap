@@ -3,24 +3,32 @@ cardView =
   init: ($cards) ->
     $('.pack.filler').each () ->
       cardView.initFiller $(@).find('.card')
+    # Set radius of login card
+    radiusX = Math.round $('.logIn .card').outerWidth()  * 4
+    radiusY = Math.round $('.logIn .card').outerHeight() * 4
+#     console.log  "#{radiusX}px / #{radiusY}px"
+    console.log Math.round $('.logIn .card').width()
+    console.log Math.round $('.logIn .card').height()
+    $('.logIn .card').css
+      borderRadius: "#{radiusX}px / #{radiusY}px" # doesn't work in SCSS
   
   initFiller: ($card) ->
     $object = $card.find $('object')
     size = Math.ceil((Math.random() + .5)* 8) * 24
     # make monoline
-    svgView.monoline $object
-#     cardView.colorBorderless($object) # if borderless
+    $object[0].addEventListener 'load', ->
+      svgView.monoline $object
+      containerView.repack()
+#       cardView.colorBorderless($object) # if borderless
+    , true
     containerView.repack()
     $card.addClass 'svg'
     $card.css
       width: size
   
   colorBorderless: ($object) ->
-    $object[0].addEventListener 'load', ->
-      $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
-      $fillable.attr('style', "fill: #{globals.color}")
-    , true    
-          
+    $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
+    $fillable.attr('style', "fill: #{globals.color}")          
 containerView =
   init: ($content) ->
     $content.data('hasAnimated', false)
@@ -116,15 +124,15 @@ openForm = ($card) ->
 
 window.svgView =
   monoline: ($object) ->
-    $object[0].addEventListener 'load', ->
-      $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
-      $shapes.attr('vector-effect', 'non-scaling-stroke')
-    , true
+    $shapes = $($object[0].contentDocument).find('path, circle, rect, line, polyline, polygon, clipPath')
+    $shapes.attr('vector-effect', 'non-scaling-stroke')
     
 window.headerView =
   init: ($header) ->
     headerView.initH1 $header
-    svgView.monoline $header.find('object')
+    $header.find('object')[0].addEventListener 'load', ->
+      svgView.monoline $header.find('object')
+    , true
     
   initH1: ($header) ->
     $h1 = $header.children('h1') #.hide()
@@ -225,10 +233,7 @@ $ ->
   colorView.init $('.typeOutlineClear, .typeHeaderOutline'), '-webkit-text-fill-color'
   colorView.init $('header.main h1'), '-webkit-text-fill-color'
   colorView.init $('.card'), 'background-color'
-  
-  $('.logIn .card').css
-    borderRadius: '400pt / 200pt' # doesn't work in SCSS
-    
+      
   $('.card.form').click ->
     if $(@).hasClass 'unfocused'
       openForm $(@)
