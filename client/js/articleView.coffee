@@ -20,7 +20,9 @@ window.articleView =
 #       marginRight:  Math.random() * constants.style.maxGutter
 #       marginBottom: Math.random() * constants.style.maxGutter
 #       marginLeft:   Math.random() * constants.style.maxGutter
+
     popController.init $article, 500, constants.style.articleHoverScale / constants.style.globalScale
+
     # Base color by first label.
     if $firstLabel.length and $article.hasClass('text') or $article.hasClass('website')
       $backgroundColor = $('<div></div>').prependTo($(@).find('.card')).css
@@ -286,7 +288,7 @@ window.articleView =
           duration: 500
           easing: constants.velocity.easing.smooth
     articleView.hideAddCollectionMenu $article
-  
+
   articleCollectionEnter: ($animate, event) ->
     $animate.velocity('stop', true).velocity
       properties:
@@ -309,7 +311,7 @@ window.articleView =
       options:
         duration: 250
         easing: constants.velocity.easing.smooth
-  
+
   mouseenter: (event, $article) ->
     $card     = $article.find('.card')
     $article.find('ul.articleCollections').css

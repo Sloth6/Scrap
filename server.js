@@ -4,6 +4,8 @@ var express = require('express')
     , fs = require('fs')
     , app = express();
 
+var config = require('./server/config.json')
+
 var options = {
   key: fs.readFileSync('./certs/myserver.key'),
   cert: fs.readFileSync('./certs/tryscrap_com.crt')
@@ -16,7 +18,6 @@ server.listen(port);
 var io = require('socket.io')(server)
     , sharedsession = require("express-socket.io-session")
     , db = require('./models');
-    // , SequelizeStore = require('connect-session-sequelize')(express.session.Store)
 
 var pg = require('pg')
   , express_session = require('express-session')
@@ -25,10 +26,10 @@ var pg = require('pg')
 var session = express_session({
   store: new pgSession({
     pg : pg, // Use global pg-module
-    conString : process.env.POSTGRES_URL || 'postgres://joelsimon@localhost/scrapdb',
+    conString : config['POSTGRES_URL']
   }),
   saveUninitialized: false,
-  secret: "club_sexdungeon",
+  secret: config["SESSION_SECRET"],
   resave: true,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 })
@@ -68,6 +69,6 @@ app_insecure = express()
 app_insecure.listen(9003)
 // set up a route to redirect http to https
 app_insecure.get('*', function(req,res){
-    res.redirect('https://tryscrap.com')
+    res.redirect(config["HOST"])
 })
 

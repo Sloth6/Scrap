@@ -1,8 +1,9 @@
+config = require('../server/config.json')
 fs = require 'fs'
 path = require 'path'
 Sequelize = require 'sequelize'
 lodash = require 'lodash'
-psq_url = process.env.POSTGRES_URL || 'postgres://joelsimon@localhost/scrapdb'
+psq_url = config.POSTGRES_URL
 sequelize = new Sequelize(psq_url, {logging: ->})
 db = {}
 

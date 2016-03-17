@@ -4,11 +4,18 @@ html
     -
       var script =
         "javascript:(function(){"+
+
         "var script=document.createElement('SCRIPT');" +
         "script.type='text/javascript';" +
-        "script.src='https://localhost/js/bookmarklet/loader.js';"+
+        "script.innerHTML='var host=\""+HOST+"\";';"+
+        "document.getElementsByTagName('head')[0].appendChild(script);"+
+
+        "var script=document.createElement('SCRIPT');" +
+        "script.type='text/javascript';" +
+        "script.src='"+HOST+"js/bookmarklet/loader.js';"+
         "document.getElementsByTagName('head')[0].appendChild(script);"+
         "})();"
+
   body(style='background-color: beige;')
     a.bookmarklet(href=(script)) BOOKMARK
     p Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere consectetur est at lobortis. Nullam id dolor id nibh ultricies vehicula ut id elit.

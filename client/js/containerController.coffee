@@ -9,7 +9,7 @@ window.containerController =
     $container.packery
       itemSelector: 'article,.jagged'
       isOriginTop: true
-      transitionDuration: '0.0s'
+      # transitionDuration: '0.0s'
       gutter: constants.style.minGutter * 2
       columnWidth: constants.style.grid.col
 #       rowHeight:    144

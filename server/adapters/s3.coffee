@@ -1,12 +1,14 @@
 async = require 'async'
 AWS = require 'aws-sdk'
-AWS.config.loadFromPath __dirname+'/../config.json'
+# AWS.config.loadFromPath __dirname+'/../config.json'
+AWS.config.update(require('../config.json')['S3']);
 s3 = new AWS.S3()
+
 Bucket = 'scrapimagesteamnap'
 async = require 'async'
 Stream = require('stream');
 
-module.exports = 
+module.exports =
   putImage: ({ key, img, collectionKey, path, type }, callback) ->
     console.log "uploading to ", "#{collectionKey}/#{key}/#{path}.#{type}"
     params =
@@ -17,12 +19,12 @@ module.exports =
       ContentType: "image/#{type}"
     s3.putObject params, callback
 
-  # getImage: 
+  # getImage:
 
   delete: (url, cb) ->
     key = url.split('s3.amazonaws.com/')[1]
     s3.deleteObject { Bucket, Key: key }, cb
-    
+
   uploadCollectionPreview: ({collectionKey, stream}, callback) ->
     # params =
     #   Bucket: Bucket

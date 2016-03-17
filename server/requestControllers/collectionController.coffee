@@ -3,9 +3,7 @@ crypto = require 'crypto'
 uuid = require('node-uuid')
 moment = require('moment')
 async = require 'async'
-
-config_path = __dirname+'/../config.json'
-config = JSON.parse(require('fs').readFileSync(config_path, 'utf8'))
+config = require '../config.json'
 
 module.exports =
   collectionContent: (req, res, app, callback) ->
@@ -59,16 +57,16 @@ module.exports =
     policy = JSON.stringify({
       "expiration": expire
       "conditions": [
-        {"bucket": config.bucket}
+        {"bucket": config.S3.bucket}
         ["eq", "$key", path]
         {"acl": "public-read"}
         {"success_action_status": "201"}
         ["starts-with", "$Content-Type", type]
-        ["content-length-range", 0, config.maxFilesize]
+        ["content-length-range", 0, config.S3.maxFilesize]
       ]
     })
     base64policy = new Buffer(policy).toString('base64') # Create base64 policy
-    signature = crypto.createHmac('sha1', config.secretAccessKey).update(base64policy).digest('base64') # Create signature
+    signature = crypto.createHmac('sha1', config.S3.secretAccessKey).update(base64policy).digest('base64') # Create signature
 
     # Return JSON View
     res.json {

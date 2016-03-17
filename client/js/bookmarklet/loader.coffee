@@ -1,5 +1,5 @@
-host = 'https://localhost/' # 'https://tryscrap.com/'
-iframe_url = host + 'bookmarkletContent'
+# Host is added in an inline script in bookmarklet.jade.
+iframe_url = host + '/bookmarkletContent'
 
 iframe = document.createElement 'iframe'
 iframe.allowtransparency = true
@@ -24,11 +24,11 @@ receiveMessage = (event) ->
     document.body.removeChild iframe
 
 stopScroll = (event) ->
-  window.body.style.overflow = 'hidden'  
-  
+  window.body.style.overflow = 'hidden'
+
 startScroll = (event) ->
   window.body.style.overflow = ''
-    
+
 window.addEventListener "message", receiveMessage, false
 window.addEventListener "stopScroll", stopScroll, false
 window.addEventListener "startScroll", startScroll, false

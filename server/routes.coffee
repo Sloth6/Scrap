@@ -2,6 +2,7 @@ models = require '../models'
 errorHandler = require './errorHandler'
 fs = require 'fs'
 path = require 'path'
+config = require './config'
 
 controllers = {}
 fs.readdirSync(__dirname + '/requestControllers').forEach (fileName) ->
@@ -39,7 +40,7 @@ module.exports = (app) ->
     controllers.extensionsControllers.addArticleCollection req, res, app, errorHandler
 
   app.get '/bookmarklet', (req, res) ->
-    res.render('partials/bookmarklet')
+    res.render('partials/bookmarklet', { HOST: config.HOST })
 
   app.get '/bookmarkletContent', (req, res) ->
     controllers.extensionsControllers.bookmarklet req, res, app, errorHandler

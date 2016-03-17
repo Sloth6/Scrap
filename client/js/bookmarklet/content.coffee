@@ -1,5 +1,3 @@
-host = 'https://localhost/' # 'https://tryscrap.com/'
-
 # Post message stop scroll on page; remove frame doesn't work
 
 window.constants =
@@ -148,7 +146,7 @@ slideInLabels = ($header, $menu, $menuItems, $openMenuButton) ->
       duration: constants.velocity.duration
       easing: constants.velocity.easing.smooth
       complete: -> $openMenuButton.hide()
-  
+
   $('body').velocity('stop', true).velocity
     properties:
       backgroundColor: '#ffffff'
@@ -159,7 +157,7 @@ slideInLabels = ($header, $menu, $menuItems, $openMenuButton) ->
       begin: -> $('body').css 'background-color', 'transparent'
   $('body').css
     overflow: 'scroll'
-    
+
 removeFrame = ->
   parent.window.postMessage("removetheiframe", "*")
 
@@ -224,7 +222,7 @@ close = ($header, $menu, $menuItems) ->
 addCollection = ($collection) ->
   $collection.addClass('chosen')
   collectionKey = $collection.data 'collectionkey'
-  $.post("#{host}addArticleCollection", { articleId, collectionKey }).
+  $.post("/addArticleCollection", { articleId, collectionKey }).
     fail(() -> console.log 'Failed to addCollection')
 
 $ ->
@@ -236,16 +234,16 @@ $ ->
   delayToAutoHide = 4000
 
   launch $header, $menuItems
-  
+
   fancyHover $openMenuButton.find('a')
-  
+
   $menu.find('li input').click ->
     event.stopPropagation()
     event.preventDefault()
 
 #   rotateColor = ($element, hue)->
 #     $element.css '-webkit-text-fill-color', "hsl(#{hue},100%,75%)"
-# 
+#
 #   $header.add($menuItems.first().find('a')).each ->
 #     hue = Math.floor(Math.random() * 360)
 #     $a = $(@)

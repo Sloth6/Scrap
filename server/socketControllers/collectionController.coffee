@@ -2,20 +2,21 @@ models = require '../../models'
 mail = require '../adapters/nodemailer'
 async = require 'async'
 coverColor = require '../modules/coverColor'
+config = require '../config.json'
+
 
 toTitleCase = (str) ->
   str.replace(/\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() )
 
 inviteEmailHtml = (user, collection, inviter) ->
-  domain = 'http://tryScrap.com'
   collectionKey = collection.collectionKey
-  title = "<a href=\"#{domain}/s/#{collectionKey}\">#{collection.name}</a>"
+  title = "<a href=\"#{config.HOST}/s/#{collectionKey}\">#{collection.name}</a>"
   subject = "#{inviter.name} invited you to #{collection.name} on Scrap."
 
   html = "
     <h1>View #{title} on Scrap.</h1>
     <p>If you do not yet have an account, register with email '#{user.email}' to view.</p><br>
-    <p><a href=\"#{domain}\">Scrap</a> is a simple visual organization tool.</p>
+    <p><a href=\"#{config.HOST}\">Scrap</a> is a simple visual organization tool.</p>
   "
   return { html, subject }
 
