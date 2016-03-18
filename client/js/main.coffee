@@ -67,7 +67,7 @@ $ ->
   scrollController.onScroll()
 
   # Main body click handler.
-  $('body').on 'mouseup', (event) ->
+  $('body').on 'touchend mouseup', (event) ->
     if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()
     # Close article if article is open

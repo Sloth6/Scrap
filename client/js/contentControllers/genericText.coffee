@@ -4,7 +4,7 @@ contentControllers.genericText =
     $editable = $article.find '.editable'
     $card     = $article.find '.card'
 
-    maxHeight = $(window).height()
+    maxHeight = $article.height()
 
     unless $editable.length
       throw 'generticText object does not have editable'+ $article[0]

@@ -69,13 +69,13 @@ window.articleView =
       options: options
 
     # # Store original background color
-    $cards.each ->
-      $(@).data 'originalBackground', $(@).css('background-color')
-      # Transition card background color to white
-      $(@).transition
-        backgroundColor: 'white'
-        duration: 500
-        easing: constants.style.easing
+    # $cards.each ->
+    #   $(@).data 'originalBackground', $(@).css('background-color')
+    #   # Transition card background color to white
+    #   $(@).transition
+    #     backgroundColor: 'white'
+    #     duration: 500
+    #     easing: constants.style.easing
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
@@ -90,11 +90,11 @@ window.articleView =
         duration: 1
       options: options
     # Transition card background color to original
-    $cards.each ->
-      $(@).transition
-        backgroundColor: $(@).data 'originalBackground'
-        duration: 500
-        easing: constants.style.easing
+    # $cards.each ->
+    #   $(@).transition
+    #     backgroundColor: $(@).data 'originalBackground'
+    #     duration: 500
+    #     easing: constants.style.easing
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->
@@ -314,6 +314,7 @@ window.articleView =
 
   mouseenter: (event, $article) ->
     $card     = $article.find('.card')
+    $article.zIndex 999
     $article.find('ul.articleCollections').css
       zIndex: 2
     articleView.showMeta($article) unless $article.hasClass('open')
@@ -358,6 +359,7 @@ window.articleView =
     articleView.updateScale $article, $.Velocity.hook $article.find('.transform'), 'scale'
 
   mouseleave: ($article) ->
+    $article.zIndex 0
     $article.find('ul.articleCollections').css { zIndex: '' }
     articleView.hideMeta($article) unless $article.hasClass('open')
     articleView.closeLabels($article) unless $article.hasClass('open')

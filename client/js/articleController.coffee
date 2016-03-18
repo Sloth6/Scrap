@@ -94,7 +94,7 @@ window.articleController =
       if window.contentControllers[contentType]
         window.contentControllers[contentType].init $article
 
-      $article.find('.articleDeleteButton').click (event) ->
+      $article.find('.articleDeleteButton').on 'touchend mouseup', (event) ->
         articleController.delete $article
         event.stopPropagation()
 
