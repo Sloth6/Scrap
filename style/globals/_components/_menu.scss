@@ -1,0 +1,45 @@
+.testBox {
+  border: 2em yellow solid;
+  padding: $col;
+  margin-top: $col * 2;
+}
+
+.menuNeue {
+    
+    ul {
+        border: $cardBorder;
+        background: $colorCardBackground;
+        padding: 0;
+        width: -webkit-fit-content;
+      
+        li {
+            $padding: $cell;
+            display: block;
+            text-align: left;
+//             border: $cardBorder;
+
+            &:first-of-type {
+                input, a {
+                    padding-top: $padding;
+                }
+            }
+
+            &:last-of-type {
+                input, a {
+                    padding-bottom: $padding;
+                }
+            }
+            
+            input, a {
+                height: auto;
+                margin: 0;
+                width: $col * 2;
+                padding: $padding/2 $padding;
+                display: block;
+//                 background: yellow;
+//                 height: 100%;
+//                 width: 100%;
+            }
+        }
+    }
+}

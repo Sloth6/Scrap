@@ -3,7 +3,6 @@ window.contentControllers ?= {}
 contentControllers.newArticle =
   canZoom: true
   init: ($menu) ->
-    console.log 'init newArticleController'
     $input         = $menu.find '.editable'
     $onEditing     = $menu.find('.showOnEditing').hide()
     $onNotEditing  = $menu.find('.showOnNotEditing').show()

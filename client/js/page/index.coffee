@@ -28,7 +28,8 @@ cardView =
   
   colorBorderless: ($object) ->
     $fillable = $($object[0].contentDocument).find('path, circle, rect, polyline, polygon, clipPath')
-    $fillable.attr('style', "fill: #{globals.color}")          
+    $fillable.attr('style', "fill: #{globals.color}")
+             
 containerView =
   init: ($content) ->
     $content.data('hasAnimated', false)

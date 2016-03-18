@@ -1561,6 +1561,42 @@ ul.menu li:nth-of-type(20) {
   width: 1440px;
 }
 
+/* line 1, ../../style/globals/_components/_menu.scss */
+.testBox {
+  border: 2em yellow solid;
+  padding: 56pt;
+  margin-top: 112pt;
+}
+
+/* line 9, ../../style/globals/_components/_menu.scss */
+.menuNeue ul {
+  border: 1px solid #000000;
+  background: white;
+  padding: 0;
+  width: -webkit-fit-content;
+}
+/* line 15, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li {
+  display: block;
+  text-align: left;
+}
+/* line 22, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li:first-of-type input, .menuNeue ul li:first-of-type a {
+  padding-top: 8pt;
+}
+/* line 28, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li:last-of-type input, .menuNeue ul li:last-of-type a {
+  padding-bottom: 8pt;
+}
+/* line 33, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li input, .menuNeue ul li a {
+  height: auto;
+  margin: 0;
+  width: 112pt;
+  padding: 4pt 8pt;
+  display: block;
+}
+
 /* line 1, ../../style/layout/_body.scss */
 body {
   height: 100%;
@@ -2029,26 +2065,21 @@ body article footer ul li {
 body article footer ul li.right {
   float: right;
 }
-/* line 453, ../../style/layout/_article.scss */
-body article footer ul li .articleDeleteButton {
-  padding-bottom: 16pt;
-  padding-left: 16pt;
-}
 
-/* line 464, ../../style/layout/_article.scss */
+/* line 459, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 224pt;
 }
 
-/* line 471, ../../style/layout/_article.scss */
+/* line 466, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 475, ../../style/layout/_article.scss */
+/* line 470, ../../style/layout/_article.scss */
 .addArticleForm .translate {
   position: relative;
 }
-/* line 478, ../../style/layout/_article.scss */
+/* line 473, ../../style/layout/_article.scss */
 .addArticleForm .translate .card {
   overflow: visible;
 }

@@ -75,7 +75,6 @@ mixin articleMixin(article, collections)
               h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.375')!=content.title
             .detail.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: 36})
               .source.smallType.smallCaps SoundCloud
-          // .playButton
 
         when 'youtube'
           .preview.popLayer(data-popdepth='.5', title='Play “' + content.title + '”')
@@ -106,4 +105,11 @@ mixin articleMixin(article, collections)
             if article.Creator !== undefined
               author.smallType!=article.Creator.name
           li.right
-            input.articleDeleteButton.smallType(type='button', value='Delete')
+            // input.articleDeleteButton.smallType(type='button', value='Delete')
+            .menuNeue
+              input.menuOpenButton(type='button', value='Settings')
+              ul.menuItems
+                li
+                  input.articleArchiveButton(type='button', value='Archive')
+                li
+                  input.articleDeleteButton(type='button', value='Delete')

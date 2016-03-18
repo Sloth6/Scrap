@@ -8,7 +8,7 @@ window.popController =
       $element.on 'touchstart mouseenter mousedown', (event) ->
         if popModel.canPop $element
           # Pivot towards pointer if mouse, away from pointer if mousedown or touchstart
-          state = if event.type is 'mouseenter' then 'up' else 'down'
+          state = 'up' # if event.type is 'mouseenter' then 'up' else 'down'
           $element.data 'popState', state
           popView.start $element, scale
       # Rotates element and translates parallax layers
@@ -19,3 +19,7 @@ window.popController =
       $element.on 'touchend mouseleave', ->
         if popModel.canPop $element
           popView.end $element, scale
+      # Pop element back up after clicking
+      $element.on 'mouseup', ->
+        $element.data 'popState', 'up'
+        popView.start $element, scale

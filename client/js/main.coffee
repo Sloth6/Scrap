@@ -39,6 +39,8 @@ window.constants =
     cursor: '.cursor'
     wrapper: '.wrapper'
     containerScale: '.wrapper > .scale'
+    controls:
+      menus: '.menuNeue'
 
 
 window.scrapState =
@@ -65,6 +67,7 @@ $ ->
   containerController.getArticles(10)
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
+  
 
   # Main body click handler.
   $('body').on 'touchend mouseup', (event) ->
@@ -74,11 +77,13 @@ $ ->
     else if scrapState.openArticle?
       articleController.close scrapState.openArticle
       scrollController.enableScroll()
-    else
-      $(window).scrollTop 0
-      articleController.open $(constants.dom.addArticleMenu)
+#     else
+#       $(window).scrollTop 0
+#       articleController.open $(constants.dom.addArticleMenu)
+    menuController.close $(constants.dom.controls.menus)
 
-
+  # Init controls; TODO: MOVE ELSEWHERE
+  menuController.init $(constants.dom.controls.menus)
   buttonView.init $('.actionButton')
 
   $('li.recent a, li.labelsButton a').each ->

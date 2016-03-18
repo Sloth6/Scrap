@@ -99,9 +99,9 @@ window.articleController =
         event.stopPropagation()
 
       # Articles zoom on click.
-      $article.on 'touchend mouseup', (event) ->
-        articleController.open $article
-        event.stopPropagation()
+#       $article.on 'touchend mouseup', (event) ->
+#         event.stopPropagation()
+#         articleController.open $article
 
       # Init delete button
       $article.find('.articleDeleteButton').mouseenter (event) ->
@@ -118,6 +118,9 @@ window.articleController =
       $article.on 'touchend mouseleave', (event) ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseleave $article
+          
+      $article.find('footer, a, input').on 'touchstart mouseenter', (event) ->
+        cursorView.end()
 
       # Resize
       imgs = $article.find('img')
@@ -155,6 +158,10 @@ window.articleController =
         else
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
+      
+      # Init menus in article
+      menuController.init $article.find(constants.dom.controls.menus)
+      
 
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
