@@ -54,6 +54,11 @@ window.scrapState =
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
+  
+    # Init controls; TODO: MOVE ELSEWHERE
+  menuController.init $(constants.dom.controls.menus)
+  buttonView.init $('.actionButton')
+
 
   collectionController.init      $(constants.dom.collections)
   collectionController.init      $(constants.dom.collectionsMenu).find('.labelsButton')
@@ -82,9 +87,6 @@ $ ->
 #       articleController.open $(constants.dom.addArticleMenu)
     menuController.close $(constants.dom.controls.menus)
 
-  # Init controls; TODO: MOVE ELSEWHERE
-  menuController.init $(constants.dom.controls.menus)
-  buttonView.init $('.actionButton')
 
   $('li.recent a, li.labelsButton a').each ->
     $(@).data('hue', Math.floor(Math.random() * 360))

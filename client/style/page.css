@@ -1568,27 +1568,34 @@ ul.menu li:nth-of-type(20) {
   margin-top: 112pt;
 }
 
-/* line 9, ../../style/globals/_components/_menu.scss */
+/* line 7, ../../style/globals/_components/_menu.scss */
+.menuNeue {
+  position: relative;
+}
+/* line 10, ../../style/globals/_components/_menu.scss */
 .menuNeue ul {
   border: 1px solid #000000;
   background: white;
   padding: 0;
   width: -webkit-fit-content;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
 }
-/* line 15, ../../style/globals/_components/_menu.scss */
+/* line 19, ../../style/globals/_components/_menu.scss */
 .menuNeue ul li {
   display: block;
   text-align: left;
 }
-/* line 22, ../../style/globals/_components/_menu.scss */
+/* line 26, ../../style/globals/_components/_menu.scss */
 .menuNeue ul li:first-of-type input, .menuNeue ul li:first-of-type a {
   padding-top: 8pt;
 }
-/* line 28, ../../style/globals/_components/_menu.scss */
+/* line 32, ../../style/globals/_components/_menu.scss */
 .menuNeue ul li:last-of-type input, .menuNeue ul li:last-of-type a {
   padding-bottom: 8pt;
 }
-/* line 33, ../../style/globals/_components/_menu.scss */
+/* line 37, ../../style/globals/_components/_menu.scss */
 .menuNeue ul li input, .menuNeue ul li a {
   height: auto;
   margin: 0;

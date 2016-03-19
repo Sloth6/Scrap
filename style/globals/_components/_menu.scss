@@ -5,12 +5,16 @@
 }
 
 .menuNeue {
+    position: relative;
     
     ul {
         border: $cardBorder;
         background: $colorCardBackground;
         padding: 0;
         width: -webkit-fit-content;
+        position: absolute;
+        top: 0;
+        overflow: hidden;
       
         li {
             $padding: $cell;

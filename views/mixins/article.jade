@@ -107,8 +107,8 @@ mixin articleMixin(article, collections)
           li.right
             // input.articleDeleteButton.smallType(type='button', value='Delete')
             .menuNeue
-              input.menuOpenButton(type='button', value='Settings')
-              ul.menuItems
+              input.menuOpenButton.actionButton(type='button', value='• • •')
+              ul.menuItems.popLayer(data-popdepth='1')
                 li
                   input.articleArchiveButton(type='button', value='Archive')
                 li

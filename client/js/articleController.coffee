@@ -24,6 +24,7 @@ window.articleController =
 
   # Must be called everytime an article opens the add menu.
   initAddCollectionsMenu: ($article) ->
+    # Init menus in article   
     $menu   = $article.find 'ul.addCollectionMenu'
     content = $(document.body).children('.addCollectionMenu').children().clone()
     $menu.append content
@@ -88,6 +89,10 @@ window.articleController =
       $article    = $(@)
       contentType = $article.data 'contenttype'
 
+      # Must be called early on so these controllers get accurate measurements
+      menuController.init $article.find(constants.dom.controls.menus)
+      buttonView.init $article.find('.actionButton')
+      
       articleView.init $article
 
       # Initialize behavior custom to contenttype
@@ -159,12 +164,8 @@ window.articleController =
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
       
-      # Init menus in article
-      menuController.init $article.find(constants.dom.controls.menus)
-      
 
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
       articleView.closeLabels           $article
 
-      buttonView.init $article.find('.actionButton')
