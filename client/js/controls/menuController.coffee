@@ -56,6 +56,8 @@ window.menuController =
   close: ($menu) ->
     menuView.close $menu
     $menu.data 'isOpen', false
+    $submenus = menuModel.getSubmenus $menu
+    menuController.closeSubmenu $submenus
     
   open: ($menu) ->
     menuView.open $menu
@@ -71,11 +73,17 @@ window.menuController =
       submenuId = $button.data 'submenu'
       console.log $submenus.data('submenu'), 'YOYOYo'
       $submenu = $submenus.filter("[data-submenu='#{submenuId}']")
-      menuController.openSubmenu $submenu
+      menuController.openSubmenu $menu, $submenu
       
   closeSubmenu: ($submenu) ->
     $submenu.hide()
 
-  openSubmenu: ($submenu) ->
-    console.log $submenu.data('submenu'), 'OPEN'
+  openSubmenu: ($menu, $submenu) ->
+    $listItems = menuModel.getListItems $menu
+    $parentListItem = $submenu.parents 'li'
+    $listItemsToClose = $listItems.not $parentListItem
+    $listItemsToClose.hide()
     $submenu.show()
+    $parentListItem.css
+      height: 'auto'
+    

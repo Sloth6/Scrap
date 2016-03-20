@@ -1573,7 +1573,7 @@ ul.menu li:nth-of-type(20) {
   position: relative;
 }
 /* line 10, ../../style/globals/_components/_menu.scss */
-.menuNeue ul {
+.menuNeue > ul {
   border: 1px solid #000000;
   background: white;
   padding: 0;
@@ -1583,20 +1583,20 @@ ul.menu li:nth-of-type(20) {
   overflow: hidden;
 }
 /* line 19, ../../style/globals/_components/_menu.scss */
-.menuNeue ul li {
+.menuNeue > ul li {
   display: block;
   text-align: left;
 }
 /* line 26, ../../style/globals/_components/_menu.scss */
-.menuNeue ul li:first-of-type input, .menuNeue ul li:first-of-type a {
+.menuNeue > ul li:first-of-type input, .menuNeue > ul li:first-of-type a {
   padding-top: 8pt;
 }
 /* line 32, ../../style/globals/_components/_menu.scss */
-.menuNeue ul li:last-of-type input, .menuNeue ul li:last-of-type a {
+.menuNeue > ul li:last-of-type input, .menuNeue > ul li:last-of-type a {
   padding-bottom: 8pt;
 }
 /* line 37, ../../style/globals/_components/_menu.scss */
-.menuNeue ul li input, .menuNeue ul li a {
+.menuNeue > ul li input, .menuNeue > ul li a {
   height: auto;
   margin: 0;
   width: 112pt;

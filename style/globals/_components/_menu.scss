@@ -7,7 +7,7 @@
 .menuNeue {
     position: relative;
     
-    ul {
+    > ul {
         border: $cardBorder;
         background: $colorCardBackground;
         padding: 0;
