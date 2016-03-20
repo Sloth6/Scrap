@@ -16,8 +16,11 @@ window.menuModel =
   getSubmenus: ($menu) ->
     $menu.find('ul.submenu')
     
-  getSubmenuButton: ($menu) ->
+  getSubmenuButtons: ($menu) ->
     $menu.find('input.submenuOpenButton')
+    
+  getSubmenuBackButton: ($submenu) ->
+    $submenu.children('li.backButton').children('a')
     
 window.menuController =
   init: ($menus) ->
@@ -28,8 +31,8 @@ window.menuController =
       $items = menuModel.getListItems $menu
       $submenus = menuModel.getSubmenus $menu
       
-      menuController.closeSubmenu $submenus
-      menuController.initSubmenuButtons $menu
+      $submenus.each ->
+        menuController.initSubmenu $menu, $(@)
 
       menuView.init $menu
       
@@ -57,32 +60,44 @@ window.menuController =
     menuView.close $menu
     $menu.data 'isOpen', false
     $submenus = menuModel.getSubmenus $menu
-    menuController.closeSubmenu $submenus
+    $submenus.each ->
+      menuController.closeSubmenu $menu, $(@)
     
   open: ($menu) ->
     menuView.open $menu
     $menu.data 'isOpen', true
     
-  initSubmenuButtons: ($menu) ->
-    $button = menuModel.getSubmenuButton $menu
-    $submenus = menuModel.getSubmenus $menu
+  initSubmenu: ($menu, $submenu) ->
+    submenuId = $submenu.data 'submenu'
+    $buttons  = menuModel.getSubmenuButtons $menu # All submenu buttons
+    $button   = $buttons.filter("[data-submenu='#{submenuId}']") # Button that matches this submenu
+    $back     = menuModel.getSubmenuBackButton $submenu
+    
+    # Close submenus on load
+    menuController.closeSubmenu $menu, $submenu
+    
+    # Bind event to submenu open button
     $button.on 'touchend mouseup', (event) ->
-      event.preventDefault()
       event.stopPropagation()
-      console.log 'hello'
-      submenuId = $button.data 'submenu'
-      console.log $submenus.data('submenu'), 'YOYOYo'
-      $submenu = $submenus.filter("[data-submenu='#{submenuId}']")
       menuController.openSubmenu $menu, $submenu
       
-  closeSubmenu: ($submenu) ->
+    # Bind back button
+    $back.on 'touchend mouseup', (event) ->
+      event.stopPropagation()
+      menuController.closeSubmenu $menu, $submenu
+      
+  closeSubmenu: ($menu, $submenu) ->
+    $listItems = menuModel.getListItems $menu
+    $parentListItem = $submenu.parents 'li'
+    $otherListItems = $listItems.not $parentListItem
+    $otherListItems.show()
     $submenu.hide()
 
   openSubmenu: ($menu, $submenu) ->
     $listItems = menuModel.getListItems $menu
     $parentListItem = $submenu.parents 'li'
-    $listItemsToClose = $listItems.not $parentListItem
-    $listItemsToClose.hide()
+    $otherListItems = $listItems.not $parentListItem
+    $otherListItems.hide()
     $submenu.show()
     $parentListItem.css
       height: 'auto'

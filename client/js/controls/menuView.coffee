@@ -12,17 +12,8 @@ window.menuView =
     $button = menuModel.getButton $menu
     $list =   menuModel.getList $menu
     $items =  menuModel.getListItems $menu
-    itemsTranslateXTo = if $menu.data('flush') is 'left' then -$list.data('nativeWidth') else $list.data('nativeWidth')
     $items.each ->
-      $(@).velocity('stop', true).velocity 
-        properties:
-          height: 0
-          translateX: itemsTranslateXTo
-        options:
-          duration: menuModel.animation.duration
-          easing: menuModel.animation.easing
-#           delay: $(@).index() * (250 /  $items.length)
-          delay: ($items.length - $(@).index()) * (250 /  $items.length)
+      menuView.slideOutItem $menu, $(@), ($items.length - $(@).index()) * (250 /  $items.length)
     $list.velocity('stop', true).velocity
       properties:
         width: 0
@@ -39,20 +30,8 @@ window.menuView =
     $list =   menuModel.getList $menu
     $items =  menuModel.getListItems $menu
     # Set direction from which items animate in
-    itemsTranslateXFrom = if $menu.data('flush') is 'left' then -$list.data('nativeWidth') else $list.data('nativeWidth')
     $items.hide().each ->
-      $(@).velocity 
-        properties:
-          height: [$(@).data('nativeHeight'), 0]
-          translateX: [0, itemsTranslateXFrom]
-        options:
-          duration: menuModel.animation.duration
-          easing: menuModel.animation.easing
-          delay: $(@).index() * (250 /  $items.length)
-          begin: ->
-            $(@).css
-              height: 0
-            $(@).show()
+      menuView.slideInItem $menu, $(@), $(@).index() * (250 /  $items.length)
     $list.velocity('stop', true).velocity
       properties:
         width: [$list.data('nativeWidth'), 0]
@@ -60,3 +39,32 @@ window.menuView =
         duration: menuModel.animation.duration / 2
         easing: menuModel.animation.easing
         begin: -> $list.show()
+
+  slideInItem: ($menu, $item, delay) ->
+    $list = menuModel.getList $menu
+    translateXFrom = if $menu.data('flush') is 'left' then -$list.data('nativeWidth') else $list.data('nativeWidth')
+    $item.velocity 
+      properties:
+        height: [$item.data('nativeHeight'), 0]
+        translateX: [0, translateXFrom]
+      options:
+        duration: menuModel.animation.duration
+        easing: menuModel.animation.easing
+        delay: delay
+        begin: ->
+          $item.css
+            height: 0
+          $item.show()
+  
+  slideOutItem: ($menu, $item, delay) ->
+    $list = menuModel.getList $menu
+    translateXTo = if $menu.data('flush') is 'left' then -$list.data('nativeWidth') else $list.data('nativeWidth')
+    $item.velocity('stop', true).velocity 
+      properties:
+        height: 0
+        translateX: translateXTo
+      options:
+        duration: menuModel.animation.duration
+        easing: menuModel.animation.easing
+    
+  
