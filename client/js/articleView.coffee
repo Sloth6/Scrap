@@ -65,17 +65,16 @@ window.articleView =
     $contents.velocity('stop', true).velocity
       properties:
         opacity: 0
-        duration: 1
       options: options
 
-    # # Store original background color
-    # $cards.each ->
-    #   $(@).data 'originalBackground', $(@).css('background-color')
-    #   # Transition card background color to white
-    #   $(@).transition
-    #     backgroundColor: 'white'
-    #     duration: 500
-    #     easing: constants.style.easing
+    # Store original background color
+    $cards.each ->
+      $(@).data 'originalBackground', $(@).css('background-color')
+      # Transition card background color to white
+      $(@).transition
+        backgroundColor: 'white'
+        duration: 500
+        easing: constants.style.easing
     $articles.addClass 'obscured'
 
   unobscure: ($articles) ->
@@ -87,14 +86,13 @@ window.articleView =
     $contents.velocity('stop', true).velocity
       properties:
         opacity: 1
-        duration: 1
       options: options
     # Transition card background color to original
-    # $cards.each ->
-    #   $(@).transition
-    #     backgroundColor: $(@).data 'originalBackground'
-    #     duration: 500
-    #     easing: constants.style.easing
+    $cards.each ->
+      $(@).transition
+        backgroundColor: $(@).data 'originalBackground'
+        duration: 500
+        easing: constants.style.easing
     $articles.removeClass 'obscured'
 
   showMeta: ($article) ->

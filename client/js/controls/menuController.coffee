@@ -13,6 +13,12 @@ window.menuModel =
     $list = menuModel.getList $menu
     $list.children('li')
     
+  getSubmenus: ($menu) ->
+    $menu.find('ul.submenu')
+    
+  getSubmenuButton: ($menu) ->
+    $menu.find('input.submenuOpenButton')
+    
 window.menuController =
   init: ($menus) ->
     $menus.each ->
@@ -20,6 +26,10 @@ window.menuController =
       $button = menuModel.getButton $menu
       $list = menuModel.getList $menu
       $items = menuModel.getListItems $menu
+      $submenus = menuModel.getSubmenus $menu
+      
+      menuController.closeSubmenu $submenus
+      menuController.initSubmenuButtons $menu
 
       menuView.init $menu
       
@@ -50,3 +60,22 @@ window.menuController =
   open: ($menu) ->
     menuView.open $menu
     $menu.data 'isOpen', true
+    
+  initSubmenuButtons: ($menu) ->
+    $button = menuModel.getSubmenuButton $menu
+    $submenus = menuModel.getSubmenus $menu
+    $button.on 'touchend mouseup', (event) ->
+      event.preventDefault()
+      event.stopPropagation()
+      console.log 'hello'
+      submenuId = $button.data 'submenu'
+      console.log $submenus.data('submenu'), 'YOYOYo'
+      $submenu = $submenus.filter("[data-submenu='#{submenuId}']")
+      menuController.openSubmenu $submenu
+      
+  closeSubmenu: ($submenu) ->
+    $submenu.hide()
+
+  openSubmenu: ($submenu) ->
+    console.log $submenu.data('submenu'), 'OPEN'
+    $submenu.show()

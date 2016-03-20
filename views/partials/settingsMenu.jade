@@ -2,7 +2,18 @@
   input.menuOpenButton(type='button', value='Settings')
   ul.menuItems
     li
-      input.articleArchiveButton(type='button', value='Edit your account')
+      input.articleArchiveButton.submenuOpenButton(type='button', value='Edit your account', data-submenu='editAccount')
+      ul.submenu(data-submenu='editAccount')
+        form
+          li.hidden.smallType Update your name, email, or password
+          li.input.inputText.hidden
+            input.name(type="text", name="user[email]", placeholder=user.name)
+          li.input.inputText.hidden
+            input.email(type="email", name="user[email]", placeholder=user.email)
+          li.input.inputText.hidden
+            input.password(type="password", name="user[email]", placeholder="••••••••")
+          li.input.submit.save.closeButton.hidden
+            input.confirm(type="submit", value="Save")
     li
       a.feedback(href="mailto:scrapspaces@gmail.com") Send feedback
     li

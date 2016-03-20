@@ -8,7 +8,7 @@ ul.collectionsMenu
   li.searchCollections
     .contents
       form.searchCollectionsForm
-        input(type="text", placeholder="Search", maxlength="32")
+        input(type='text', placeholder='Search labels', maxlength='32')
   each collection, collectionKey in collections
     if typeof(collection.name) != undefined
       - var key = collection.collectionKey
@@ -37,5 +37,5 @@ ul.collectionsMenu
   li.newCollection
     .contents
       form.newCollectionForm
-        input(type="text", placeholder="New label", maxlength="32")
+        input(type='text', placeholder='New label', maxlength='32')
         label.typeSmall.smallCaps.invisible Press enter to save

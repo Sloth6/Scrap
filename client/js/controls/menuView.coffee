@@ -7,6 +7,7 @@ window.menuView =
     $list.css flush, 0
     $menu.data 'flush', flush
     
+    
   close: ($menu) ->
     $button = menuModel.getButton $menu
     $list =   menuModel.getList $menu
@@ -31,8 +32,7 @@ window.menuView =
         easing: menuModel.animation.easing
         complete: ->
           $list.hide().css
-            width: ''
-    
+            width: ''    
 
   open: ($menu) ->
     $button = menuModel.getButton $menu
