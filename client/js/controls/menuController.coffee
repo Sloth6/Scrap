@@ -19,6 +19,17 @@ window.menuModel =
   getSubmenuButtons: ($menu) ->
     $menu.find('input.submenuOpenButton')
     
+  getMenuFromSubmenu: ($submenu) ->
+    $submenu.parents('.menuNeue')
+    
+  getSubmenuButton: ($submenu) ->
+    submenuId = $submenu.data 'submenu'
+    $menu = menuModel.getMenuFromSubmenu $submenu
+    $buttons = menuModel.getSubmenuButtons $menu
+    # Button that matches this submenu
+    $button  = $buttons.filter("[data-submenu='#{submenuId}']")
+    $button
+    
   getSubmenuBackButton: ($submenu) ->
     $submenu.children('li.backButton').children('a')
     
@@ -68,9 +79,7 @@ window.menuController =
     $menu.data 'isOpen', true
     
   initSubmenu: ($menu, $submenu) ->
-    submenuId = $submenu.data 'submenu'
-    $buttons  = menuModel.getSubmenuButtons $menu # All submenu buttons
-    $button   = $buttons.filter("[data-submenu='#{submenuId}']") # Button that matches this submenu
+    $button   = menuModel.getSubmenuButton $submenu
     $back     = menuModel.getSubmenuBackButton $submenu
     
     # Close submenus on load
@@ -90,15 +99,20 @@ window.menuController =
     $listItems = menuModel.getListItems $menu
     $parentListItem = $submenu.parents 'li'
     $otherListItems = $listItems.not $parentListItem
+    $button = menuModel.getSubmenuButton $submenu
     $otherListItems.show()
     $submenu.hide()
-
+    $parentListItem.css
+      height: ''
+    $button.show()
+    
   openSubmenu: ($menu, $submenu) ->
     $listItems = menuModel.getListItems $menu
     $parentListItem = $submenu.parents 'li'
     $otherListItems = $listItems.not $parentListItem
+    $button = menuModel.getSubmenuButton $submenu
     $otherListItems.hide()
     $submenu.show()
     $parentListItem.css
       height: 'auto'
-    
+    $button.hide()
