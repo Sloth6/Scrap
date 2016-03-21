@@ -1574,34 +1574,47 @@ ul.menu li:nth-of-type(20) {
 }
 /* line 10, ../../style/globals/_components/_menu.scss */
 .menuNeue > ul {
-  border: 1px solid #000000;
-  background: white;
-  padding: 0;
-  width: -webkit-fit-content;
   position: absolute;
   top: 0;
+  border: 1px solid #000000;
+  background: white;
+}
+/* line 17, ../../style/globals/_components/_menu.scss */
+.menuNeue ul {
+  padding: 0;
   overflow: hidden;
 }
-/* line 19, ../../style/globals/_components/_menu.scss */
-.menuNeue > ul li {
+/* line 21, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li {
   display: block;
+  width: -webkit-fit-content;
   text-align: left;
+  white-space: nowrap;
 }
-/* line 26, ../../style/globals/_components/_menu.scss */
-.menuNeue > ul li:first-of-type input, .menuNeue > ul li:first-of-type a {
+/* line 29, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li:first-of-type input, .menuNeue ul li:first-of-type a {
   padding-top: 8pt;
 }
-/* line 32, ../../style/globals/_components/_menu.scss */
-.menuNeue > ul li:last-of-type input, .menuNeue > ul li:last-of-type a {
+/* line 35, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li:last-of-type input, .menuNeue ul li:last-of-type a {
   padding-bottom: 8pt;
 }
-/* line 37, ../../style/globals/_components/_menu.scss */
-.menuNeue > ul li input, .menuNeue > ul li a {
+/* line 40, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li input, .menuNeue ul li a, .menuNeue ul li label, .menuNeue ul li p {
   height: auto;
   margin: 0;
-  width: 112pt;
-  padding: 4pt 8pt;
+  padding: 4pt 8pt 4pt 16pt;
   display: block;
+}
+/* line 47, ../../style/globals/_components/_menu.scss */
+.menuNeue ul li input[type=text],
+.menuNeue ul li input[type=email],
+.menuNeue ul li input[type=password],
+.menuNeue ul li input[type=search] {
+  width: 224pt;
+  padding: 0;
+  margin-left: 16pt;
+  margin-right: 16pt;
 }
 
 /* line 1, ../../style/layout/_body.scss */

@@ -33,6 +33,9 @@ window.menuModel =
   getSubmenuBackButton: ($submenu) ->
     $submenu.children('li.backButton').children('a')
     
+  getSubmenuItems: ($submenu) ->
+    $submenu.find 'li'
+    
 window.menuController =
   init: ($menus) ->
     $menus.each ->
@@ -71,8 +74,8 @@ window.menuController =
     menuView.close $menu
     $menu.data 'isOpen', false
     $submenus = menuModel.getSubmenus $menu
-    $submenus.each ->
-      menuController.closeSubmenu $menu, $(@)
+#     $submenus.each ->
+#       menuView.closeSubmenu $menu, $(@)
     
   open: ($menu) ->
     menuView.open $menu
@@ -81,38 +84,26 @@ window.menuController =
   initSubmenu: ($menu, $submenu) ->
     $button   = menuModel.getSubmenuButton $submenu
     $back     = menuModel.getSubmenuBackButton $submenu
+    $items    = menuModel.getSubmenuItems $submenu
+    
+    # Capture native dimensions
+    $submenu.data 'nativeHeight', $submenu.height()
+    $submenu.data 'nativeWidth',  $submenu.width()
+    $items.each ->
+      $(@).data 'nativeHeight', $(@).height()
+      $(@).data 'nativeWidth',  $(@).width()
     
     # Close submenus on load
-    menuController.closeSubmenu $menu, $submenu
+    $submenu.hide()
+#     menuView.closeSubmenu $menu, $submenu
     
     # Bind event to submenu open button
     $button.on 'touchend mouseup', (event) ->
       event.stopPropagation()
-      menuController.openSubmenu $menu, $submenu
+      menuView.openSubmenu $menu, $submenu
       
     # Bind back button
     $back.on 'touchend mouseup', (event) ->
       event.stopPropagation()
-      menuController.closeSubmenu $menu, $submenu
+      menuView.closeSubmenu $menu, $submenu
       
-  closeSubmenu: ($menu, $submenu) ->
-    $listItems = menuModel.getListItems $menu
-    $parentListItem = $submenu.parents 'li'
-    $otherListItems = $listItems.not $parentListItem
-    $button = menuModel.getSubmenuButton $submenu
-    $otherListItems.show()
-    $submenu.hide()
-    $parentListItem.css
-      height: ''
-    $button.show()
-    
-  openSubmenu: ($menu, $submenu) ->
-    $listItems = menuModel.getListItems $menu
-    $parentListItem = $submenu.parents 'li'
-    $otherListItems = $listItems.not $parentListItem
-    $button = menuModel.getSubmenuButton $submenu
-    $otherListItems.hide()
-    $submenu.show()
-    $parentListItem.css
-      height: 'auto'
-    $button.hide()

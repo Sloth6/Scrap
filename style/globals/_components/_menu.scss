@@ -8,19 +8,22 @@
     position: relative;
     
     > ul {
-        border: $cardBorder;
-        background: $colorCardBackground;
-        padding: 0;
-        width: -webkit-fit-content;
         position: absolute;
         top: 0;
+        border: $cardBorder;
+        background: $colorCardBackground;
+    }
+    
+    ul {
+        padding: 0;
         overflow: hidden;
       
         li {
             $padding: $cell;
             display: block;
+            width: -webkit-fit-content;
             text-align: left;
-//             border: $cardBorder;
+            white-space: nowrap;
 
             &:first-of-type {
                 input, a {
@@ -34,15 +37,21 @@
                 }
             }
             
-            input, a {
+            input, a, label, p {
                 height: auto;
                 margin: 0;
-                width: $col * 2;
-                padding: $padding/2 $padding;
+                padding: $padding/2 $padding $padding/2 $padding * 2;
                 display: block;
-//                 background: yellow;
-//                 height: 100%;
-//                 width: 100%;
+            }
+            
+            input[type=text],
+            input[type=email],
+            input[type=password],
+            input[type=search] {
+                width: $col * 4;
+                padding: 0;
+                margin-left:  $padding * 2;
+                margin-right: $padding * 2;
             }
         }
     }

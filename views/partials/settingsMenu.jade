@@ -2,17 +2,21 @@
   input.menuOpenButton(type='button', value='Settings')
   ul.menuItems
     li
+      label.smallCaps Antonio Ono
+    li
       input.articleArchiveButton.submenuOpenButton(type='button', value='Edit your account', data-submenu='editAccount')
+    li
       ul.submenu(data-submenu='editAccount')
         li.backButton
           a(href="#")
             span ‹
         form
-          li.smallType Update your name, email, or password
+          li.smallType
+            p Update your name, email, or password
           li.input.inputText
-            input.name(type="text", name="user[email]", placeholder=user.name)
+            input.name(type="text", name="user[email]", value=user.name)
           li.input.inputText
-            input.email(type="email", name="user[email]", placeholder=user.email)
+            input.email(type="email", name="user[email]", value=user.email)
           li.input.inputText
             input.password(type="password", name="user[email]", placeholder="••••••••")
           li.input.submit.save.closeButton

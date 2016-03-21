@@ -158,4 +158,3 @@ window.collectionController =
   contentsMove: ($collection) ->
     # Regular cursor on settings
     cursorView.end()
-    console.log 'ENDDDDD'
