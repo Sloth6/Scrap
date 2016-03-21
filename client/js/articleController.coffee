@@ -104,9 +104,9 @@ window.articleController =
         event.stopPropagation()
 
       # Articles zoom on click.
-#       $article.on 'touchend mouseup', (event) ->
-#         event.stopPropagation()
-#         articleController.open $article
+      $article.on 'touchend mouseup', (event) ->
+        event.stopPropagation()
+        articleController.open $article
 
       # Init delete button
       $article.find('.articleDeleteButton').mouseenter (event) ->
