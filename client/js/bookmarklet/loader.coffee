@@ -13,6 +13,7 @@ iframe.style.height = '100vh'
 iframe.style.border = '0'
 iframe.style.opacity = '0'
 iframe.style.overflow = 'hidden'
+iframe.style.zIndex = '9999999999999'
 
 document.body.appendChild(iframe)
 setTimeout ->
