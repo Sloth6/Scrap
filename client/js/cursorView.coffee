@@ -15,7 +15,7 @@ window.cursorView =
     $.Velocity.hook $cursor, 'rotateZ', '0deg'
     $('body, article, a, input').css
       cursor: 'none'
-      
+
   animateIn: ->
     $cursor = $('.cursor')
     $cursor.velocity('stop', true).velocity
@@ -27,7 +27,7 @@ window.cursorView =
         queue: false
         easing: constants.velocity.easing.smooth
         begin: -> $cursor.show()
-    
+
   end: ->
     console.log 'cursor end'
     $cursor = $('.cursor')
@@ -43,7 +43,7 @@ window.cursorView =
         complete: ->
           $cursor.hide()
           $cursor.text('')
-          
+
   move: (event) ->
     console.log 'cursor move'
     return if pointerType(event) is 'touch'

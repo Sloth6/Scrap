@@ -1,10 +1,11 @@
 window.articleCollectionsMenuController =
   addCollection: ($article, $label) ->
     articleId     = $article.attr 'id'
-    collectionKey = "#{$label.data 'key'}"
+    collectionKey = "#{$label.data('collectionkey')}"
     articleCollectionsMenuView.addCollection $article, $label
-    if !(articleId? and collectionKey?)
+    unless articleId? and collectionKey?
       throw "Invalid params #{{articleId, collectionKey}}"
+    console.log articleId, collectionKey
     socket.emit 'addArticleCollection', { articleId, collectionKey }
 
   removeCollection: ($article, $collection) ->
