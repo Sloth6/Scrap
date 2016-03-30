@@ -1,4 +1,5 @@
 models = require '../../models'
+config = require '../config.json'
 
 landingPage = (res) ->
   res.render 'index.jade',
@@ -31,4 +32,4 @@ module.exports =
         key = collection.collectionKey
         collections[key] = collection.dataValues
 
-      res.render 'main', { user, collections }
+      res.render 'main', { user, collections, host: config.HOST }

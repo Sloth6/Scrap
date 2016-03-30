@@ -39,8 +39,8 @@ module.exports = (app) ->
   app.post '/addArticleCollection', (req, res) ->
     controllers.extensionsControllers.addArticleCollection req, res, app, errorHandler
 
-  app.get '/bookmarklet', (req, res) ->
-    res.render('partials/bookmarklet', { HOST: config.HOST })
+  app.get '/bookmarkletTestPage', (req, res) ->
+    res.render('partials/bookmarkletTestPage', { host: config.HOST })
 
   app.get '/bookmarkletContent', (req, res) ->
     controllers.extensionsControllers.bookmarklet req, res, app, errorHandler

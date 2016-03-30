@@ -1,0 +1,16 @@
+mixin bookmarkletMixin(host)
+    -
+      var script =
+        "javascript:(function(){"+
+
+        "var script=document.createElement('SCRIPT');" +
+        "script.type='text/javascript';" +
+        "script.innerHTML='var host=\""+host+"\";';"+
+        "document.getElementsByTagName('head')[0].appendChild(script);"+
+
+        "var script=document.createElement('SCRIPT');" +
+        "script.type='text/javascript';" +
+        "script.src='"+host+"js/bookmarklet/loader.js';"+
+        "document.getElementsByTagName('head')[0].appendChild(script);"+
+        "})();"
+    a.bookmarklet(href=(script)) SCRAP BOOKMARKLET

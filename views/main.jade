@@ -64,6 +64,7 @@ html.no-js(lang='en')
     script(src="/js/contentControllers/playable.js")
     script(src="/js/contentControllers/genericText.js")
     script(src="/js/contentControllers/website.js")
+    script(src="/js/contentControllers/bookmarklet.js")
 
     script(src="/js/contentEmitters/add.js")
     //- script(src="/js/contentEmitters/delete.js")
@@ -123,12 +124,10 @@ html.no-js(lang='en')
           +addArticleFormMixin()
           //- Random padding to make top look jagged.
           each val in [1, 2, 3, 4, 5]
-            // -var width = 100
-            // -var height = 100
             .jagged
           for article in user.Articles
             if article != undefined
-              +articleMixin(article, article.Collections)
+              +articleMixin(article, article.Collections, host)
     .ruler
       .grid
         .col

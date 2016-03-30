@@ -18,7 +18,7 @@ module.exports =
     done = (articles) ->
       articles = articles.reverse().slice o, o+n
       console.log "Showing #{articles.length} articles"
-      res.render 'partials/articles', { articles }
+      res.render 'partials/articles', { articles, host:config.HOST }
 
     articleOptions =
       model: models.Article,

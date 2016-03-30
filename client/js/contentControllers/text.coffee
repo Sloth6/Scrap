@@ -32,16 +32,15 @@ contentControllers['text'] =
       else
         $article.addClass('short').removeClass('long')
 
-
       timeout = setTimeout (() ->
         data =
           articleId: $article.attr('id')
           content: { text }
+
         socket.emit 'updateArticle', data
 
       ), emitInterval
 
     $editable = $article.find('.editable')
-    onChange($editable[0].innerHTML, $editable.text())
     contentControllers.genericText.init $article, { onChange }
 

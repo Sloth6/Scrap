@@ -1,4 +1,7 @@
-mixin articleMixin(article, collections)
+include bookmarkletMixin.jade
+
+
+mixin articleMixin(article, collections, host)
   -
     var classes =  [article.contentType] //, 'zoomTarget'
     var content = article.content
@@ -7,6 +10,10 @@ mixin articleMixin(article, collections)
     }
     if (article.contentType == 'youtube' || article.contentType == 'soundcloud') {
       classes.push('playable')
+    }
+
+    if (article.content.text == '<bookmarklet>'){
+      article.contentType = 'bookmarklet'
     }
 
   article(id=article.id, style= posString,
@@ -89,13 +96,12 @@ mixin articleMixin(article, collections)
 
 
         when 'text'
-          //- contentEditable="false", designmode="on"
           .editable.popLayer(data-popdepth='.375')
             | !{article.content.text}
-          // ul.cardActions.popLayer(data-popdepth='.75')
-          //   li.right.showOnEditing
-          //     a.done.actionButton.confirm(href='#') Done
-              //- a.invisible.cancel.confirm(href='#') Cancel
+
+        when 'bookmarklet'
+          +bookmarkletMixin(host)
+
         default
           p!=article.content
     footer.popLayer(data-popdepth='.125')

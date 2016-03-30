@@ -24,7 +24,7 @@ window.articleController =
 
   # Must be called everytime an article opens the add menu.
   initAddCollectionsMenu: ($article) ->
-    # Init menus in article   
+    # Init menus in article
     $menu   = $article.find 'ul.addCollectionMenu'
     content = $(document.body).children('.addCollectionMenu').children().clone()
     $menu.append content
@@ -51,8 +51,7 @@ window.articleController =
   open: ($article) ->
     return if scrapState.openArticle?
     contentType = $article.data 'contenttype'
-
-    if contentControllers[contentType]?.canZoom?
+    if contentControllers[contentType]?.canZoom
       scrapState.openArticle = $article
       scrollController.disableScroll()
       $article.addClass 'open'
@@ -86,13 +85,14 @@ window.articleController =
 
   init: ($articles) ->
     $articles.each ->
-      $article    = $(@)
+      $article = $(@)
+      content = $article.data 'content'
       contentType = $article.data 'contenttype'
 
       # Must be called early on so these controllers get accurate measurements
       menuController.init $article.find(constants.dom.controls.menus)
       buttonView.init $article.find('.actionButton')
-      
+
       articleView.init $article
 
       # Initialize behavior custom to contenttype
@@ -123,7 +123,7 @@ window.articleController =
       $article.on 'touchend mouseleave', (event) ->
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseleave $article
-          
+
       $article.find('footer, a, input').on 'touchstart mouseenter', (event) ->
         cursorView.end()
 
@@ -163,7 +163,7 @@ window.articleController =
         else
           articleView.showAddCollectionMenu $article
           $menu.addClass 'open'
-      
+
 
       # Hide labels and add label menu
       articleView.hideAddCollectionMenu $article
