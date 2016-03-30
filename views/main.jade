@@ -107,8 +107,8 @@ html.no-js(lang='en')
             input(type="text", placeholder="Search", maxlength="32")
       each collection, collectionKey in collections
         if typeof(collection.name) != undefined
-          - var key = collection.collectionKey
-          li.collection(data-key = key)
+          // - var key = collection.collectionKey
+          li.collection(data-collectionkey = collectionKey)
             a(href='#', style='-webkit-text-fill-color:'+collection.color+';')
               .animate!=collection.name
             .dot(style='background-color:'+collection.color+';')

@@ -21,6 +21,9 @@ window.articleCollectionsMenuController =
     $menu   = $article.find 'ul.addCollectionMenu'
     content = $(document.body).children('.addCollectionMenu').children().clone()
     $menu.append content
+
+    articleCollections = articleController.getCollectionKeys $article
+
     labelHeights = 0
     $labels = $article.find '.collections li'
 
@@ -30,6 +33,9 @@ window.articleCollectionsMenuController =
 
     # Transform labels to starting positions
     $article.find('ul.addCollectionMenu li').each () ->
+      if articleCollections.indexOf($(@).data('collectionkey')) > -1
+        $(@).remove()
+
       $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
       $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
       $(@).data 'translateY', labelHeights

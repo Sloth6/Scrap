@@ -1,9 +1,8 @@
 window.articleController =
   getCollectionKeys: ($article) ->
     keys = []
-    for c in $article.find('.collection')
-      if c.length
-        keys.append(c.data('collectionkey'))
+    $article.find('.articleCollections').find('.collection').each () ->
+      keys.push($(@).data('collectionkey'))
     keys
 
   open: ($article) ->
