@@ -7,38 +7,24 @@ window.menuView =
     $list.css flush, 0
     $menu.data 'flush', flush
     
-    
   close: ($menu) ->
     $button = menuModel.getButton $menu
     $list =   menuModel.getList $menu
     $items =  menuModel.getListItems $menu
     $items.each ->
-      menuView.slideOutItem $menu, $(@), true
-#     $list.velocity('stop', true).velocity
-#       properties:
-#         width: 0
-#       options:
-#         delay: menuModel.animation.delay / 2
-#         duration: menuModel.animation.duration / 2
-#         easing: menuModel.animation.easing
-#         complete: ->
-#           $list.hide().css
-#             width: ''    
+      menuView.slideOutItem $menu, $(@), true, -> $list.css({opacity: 0})
+      # Callback to hide menu mole
 
   open: ($menu) ->
     $button = menuModel.getButton $menu
     $list =   menuModel.getList $menu
     $items =  menuModel.getListItems $menu
+    # Unhide list
+    $list.css
+      opacity: 1
     # Set direction from which items animate in
     $items.hide().each ->
       menuView.slideInItem $menu, $(@), true
-#     $list.velocity('stop', true).velocity
-#       properties:
-#         width: [$list.data('nativeWidth'), 0]
-#       options:
-#         duration: menuModel.animation.duration / 2
-#         easing: menuModel.animation.easing
-#         begin: -> 
     $list.show()
 
   slideInItem: ($menu, $item, isDelay) ->
@@ -60,7 +46,7 @@ window.menuView =
             height: 0
           $item.show()
   
-  slideOutItem: ($menu, $item, isDelay) ->
+  slideOutItem: ($menu, $item, isDelay, callback) ->
     $list = menuModel.getList $menu
     $items = $item.siblings('li').add($item)
     translateXTo = if $menu.data('flush') is 'left' then   -$menu.width() * 2 else $menu.width() * 2
@@ -74,7 +60,10 @@ window.menuView =
         delay: if isDelay then ($items.length - $item.index()) * (250 /  $items.length) else 0
         duration: menuModel.animation.duration
         easing: menuModel.animation.easing
-        
+        complete: ->
+          if $item.index() is $items.length - 1 # is last item
+            callback()
+    
   closeSubmenu: ($menu, $submenu) ->
     $list = menuModel.getList $menu
     $listItems = menuModel.getListItems $menu
