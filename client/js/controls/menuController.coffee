@@ -1,7 +1,7 @@
 window.menuModel =
   animation:
     easing: [30, 10] #constants.velocity.easing.smooth
-    duration: 1000
+    duration: 500
 
   getList: ($menu) ->
     $menu.children('ul.menuItems')

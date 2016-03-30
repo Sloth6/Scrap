@@ -226,6 +226,8 @@ window.articleView =
           easing: constants.velocity.easing.smooth
     # Adjust border width
     articleView.updateScale $article, constants.style.globalScale
+    # Close menus
+    menuController.close $article.find(constants.dom.controls.menus)
 
   mousemove: (event, $article) ->
 #     cursorView.move event
