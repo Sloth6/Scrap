@@ -8,4 +8,10 @@ window.cursorController =
       $('body, article, a, input').css
         cursor: ''      
       cursorView.end()
+    # Change color on click
+#     $('body').mousedown ->
+#       $cursor.css '-webkit-text-fill-color', 'black'
+#     $('body').mouseup ->
+#       $cursor.css '-webkit-text-fill-color', ''
+    
   

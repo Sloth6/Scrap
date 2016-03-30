@@ -1,31 +1,35 @@
 window.cursorView =
   start: (label, event) ->
+    console.log 'cursor start', label
     return if pointerType(event) is 'touch'
     $cursor = $('.cursor')
     if (label isnt $cursor.text()) and $cursor.text().length # Switch symbol
       $cursor.text(label)
+      cursorView.animateIn()
     else if $cursor.text().length < 1 # Cursor is empty, i.e. first start() call
-      $cursor.velocity('stop', true).velocity
-        properties:
-          scale: [1, 0]
-          opacity: [1, 0]
-        options:
-          duration: 500
-          queue: false
-          easing: constants.velocity.easing.smooth
-          begin: ->
-            $cursor.show()
-            $cursor.text(label)
+      $cursor.text(label)
+      cursorView.animateIn()
     else # Changing to self
       return
     # Make sure cursor is right side up
     $.Velocity.hook $cursor, 'rotateZ', '0deg'
-    $('body').mousedown -> $cursor.css '-webkit-text-fill-color', 'black'
-    $('body').mouseup   -> $cursor.css '-webkit-text-fill-color', ''
     $('body, article, a, input').css
       cursor: 'none'
-
+      
+  animateIn: ->
+    $cursor = $('.cursor')
+    $cursor.velocity('stop', true).velocity
+      properties:
+        scale: 1
+        opacity: 1
+      options:
+        duration: 500
+        queue: false
+        easing: constants.velocity.easing.smooth
+        begin: -> $cursor.show()
+    
   end: ->
+    console.log 'cursor end'
     $cursor = $('.cursor')
     $('body, article, a, input').css
       cursor: ''
@@ -41,6 +45,7 @@ window.cursorView =
           $cursor.text('')
           
   move: (event) ->
+    console.log 'cursor move'
     return if pointerType(event) is 'touch'
     $cursor = $('.cursor')
     x = event.clientX - $cursor.width()  / 2 # * 1.5
