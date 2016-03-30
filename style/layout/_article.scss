@@ -403,25 +403,7 @@ body {
                     .detail {
                         position: absolute;
                         bottom: $cardPaddingBottom;
-            //                     margin-top: $midMargin;
                     }
-                }
-
-                .playButton {
-                    background: url('/images/playButton.png') no-repeat;
-                    background-size: cover;
-                    height: 72px;
-                    width:  72px;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    margin-top:  -36px;
-                    margin-left: -36px;
-                    z-index: 9000000;
-                    @include transformOriginCenter;
-//                     @include transition(.1825s $defaultCurve);
-//                     @include transition-property(-webkit-filter);
-
                 }
             }
         }
@@ -441,13 +423,24 @@ body {
         
         footer {
             position: absolute;
+            left: 0;
+            right: 0;
             
-            ul {
-                li {
-                    display: inline-block;
-                    
-                    &.right {
-                        float: right;
+            .meta {
+              
+                > ul {
+                  
+                    > li {
+                        display: inline-block; 
+                        position: absolute;
+                        
+                        &.left {
+                            left: 0;
+                        }
+                        
+                        &.right {
+                            right: 0;
+                        }
                     }
                 }
             }

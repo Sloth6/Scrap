@@ -2043,63 +2043,53 @@ body article.playable .card header .detail {
   position: absolute;
   bottom: 32pt;
 }
-/* line 410, ../../style/layout/_article.scss */
-body article.playable .card .playButton {
-  background: url("/images/playButton.png") no-repeat;
-  background-size: cover;
-  height: 72px;
-  width: 72px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -36px;
-  margin-left: -36px;
-  z-index: 9000000;
-  -webkit-transform-origin: center center;
-  -moz-transform-origin: center center;
-  -ms-transform-origin: center center;
-  transform-origin: center center;
-}
-/* line 429, ../../style/layout/_article.scss */
+/* line 411, ../../style/layout/_article.scss */
 body article .card {
   position: relative;
 }
-/* line 432, ../../style/layout/_article.scss */
+/* line 414, ../../style/layout/_article.scss */
 body article .card h1.headerType {
   margin-left: -1.667pt;
   margin-top: -.15em;
 }
-/* line 437, ../../style/layout/_article.scss */
+/* line 419, ../../style/layout/_article.scss */
 body article .card img {
   margin-bottom: -2.66667pt;
 }
-/* line 442, ../../style/layout/_article.scss */
+/* line 424, ../../style/layout/_article.scss */
 body article footer {
   position: absolute;
+  left: 0;
+  right: 0;
 }
-/* line 446, ../../style/layout/_article.scss */
-body article footer ul li {
+/* line 433, ../../style/layout/_article.scss */
+body article footer .meta > ul > li {
   display: inline-block;
+  position: absolute;
 }
-/* line 449, ../../style/layout/_article.scss */
-body article footer ul li.right {
-  float: right;
+/* line 437, ../../style/layout/_article.scss */
+body article footer .meta > ul > li.left {
+  left: 0;
+}
+/* line 441, ../../style/layout/_article.scss */
+body article footer .meta > ul > li.right {
+  right: 0;
 }
 
-/* line 459, ../../style/layout/_article.scss */
+/* line 452, ../../style/layout/_article.scss */
 .addArticleForm .card {
   width: 224pt;
 }
 
-/* line 466, ../../style/layout/_article.scss */
+/* line 459, ../../style/layout/_article.scss */
 .addArticleForm.typing, .addArticleForm.typing:hover {
   z-index: 99999999 !important;
 }
-/* line 470, ../../style/layout/_article.scss */
+/* line 463, ../../style/layout/_article.scss */
 .addArticleForm .translate {
   position: relative;
 }
-/* line 473, ../../style/layout/_article.scss */
+/* line 466, ../../style/layout/_article.scss */
 .addArticleForm .translate .card {
   overflow: visible;
 }
