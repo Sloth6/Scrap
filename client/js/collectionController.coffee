@@ -91,7 +91,6 @@ window.collectionController =
       $a.blur()
       # change name on article collections
       $("article .collection.#{collectionKey} a").text name
-      console.log $("article .collection.#{collectionKey} a")
       socket.emit 'renameCollection', {collectionKey, name}
 
     $a.keypress (event) ->
@@ -128,9 +127,7 @@ window.collectionController =
     $collection.data 'nativeHeight', Math.max($collection.find('.contents > a').height(), $collection.find('.contents > input').height())
 
   click: ($collection, event) ->
-    console.log 'label click', $collection.attr 'class'
     if $collection.hasClass 'openMenuButton'
-      console.log 'openMenuButton click'
       collectionsMenuController.open $(constants.dom.collectionsMenu), $collection, event
     else
       collectionKey = $collection.data('collectionkey')

@@ -17,7 +17,7 @@ window.collectionsMenuView =
       duration: 1000
       easing:   constants.velocity.easing.smooth
     scrapState.collectionsMenuIsOpen = true
-    console.log 'OPEN'
+
     $menuItems.show()
     # Animate in labels
     $labels.each ->

@@ -16,7 +16,7 @@ module.exports =
     return res.send(400) unless (o and n and userId)?
 
     done = (articles) ->
-      articles = articles.reverse().slice o, o+n
+      articles = articles.slice o, o+n #.reverse()
       console.log "Showing #{articles.length} articles"
       res.render 'partials/articles', { articles, host:config.HOST }
 

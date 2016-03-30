@@ -54,7 +54,7 @@ window.scrapState =
 $ ->
   window.socket = io.connect()
   window.openCollection = 'recent'
-  
+
     # Init controls; TODO: MOVE ELSEWHERE
   menuController.init $(constants.dom.controls.menus)
   buttonView.init $('.actionButton')
@@ -72,10 +72,11 @@ $ ->
   containerController.getArticles(10)
   $(window).scroll scrollController.onScroll
   scrollController.onScroll()
-  
+
 
   # Main body click handler.
   $('body').on 'touchend mouseup', (event) ->
+    console.log 'body touchend'
     if scrapState.collectionsMenuIsOpen
       collectionsMenuView.close()
     # Close article if article is open

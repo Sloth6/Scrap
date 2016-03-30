@@ -4,7 +4,7 @@ window.collectionsMenuController =
     $newForm    = $menu.find('.newCollectionForm')
     $searchForm = $menu.find('.searchCollectionsForm')
 
-    $menu.find('input, a').click (event) ->
+    $menu.find('input, a').on 'touchend mouseup', (event) ->
       event.stopPropagation()
 
     $lis.not('.openMenuButton, .openCollection').hide()
@@ -17,6 +17,7 @@ window.collectionsMenuController =
       collectionsMenuView.searchChange $menu, $(@)
 
     # Bindings for creating new collections.
+
     $newForm.find('input[type=text]').on 'input', () ->
       console.log 'input'
       $(@).siblings('label').removeClass 'invisible'
@@ -32,7 +33,6 @@ window.collectionsMenuController =
 
   open: ($menu, $li, event) ->
     if $li.hasClass 'openMenuButton'
-      console.log 'open called. Li has classes:', $li.attr 'class'
       collectionsMenuView.open(event)
 
   add: (name, collectionKey, color) ->
@@ -51,7 +51,7 @@ window.collectionsMenuController =
 
     $label.find('.contents > a').
       text(name).
-      css { color }
+      css { color, '-webkit-text-fill-color':color }
 
     $label.insertBefore $menu.children().last()
 
