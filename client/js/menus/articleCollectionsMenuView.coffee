@@ -128,21 +128,31 @@ window.articleCollectionsMenuView =
 
   addCollection: ($article, $label) ->
     $collectionsList = $article.find 'ul.articleCollections'
-    y = $collectionsList.children('li.addCollection').offset().top - $label.offset().top
+
+    translateY = yTransform($collectionsList.children().last()) - $label.height()
+    $collectionsList.children('li.addCollection')
+
     $label.addClass 'added'
+
     $label.velocity('stop', true).velocity
       properties:
-        translateY: y - $label.height()
+        translateY: translateY
       options:
         duration: 500
         easing: constants.velocity.easing.smooth
-        complete: ->
+        complete: () ->
+          # All of the positions are stored in data attributes,
+          # VERY COMPLEX
+          # somehow workss
+          # VERY EFFICIENT - antonio
+          # BEST ANIMATION EVER - HUUUgE
           $label.appendTo $collectionsList
+
     $collectionsList.children('li').not('.addCollection').each ->
       startY = parseInt $.Velocity.hook($(@), 'translateY')
       $(@).velocity('stop', true).velocity
         properties:
-          translateY: startY-$label.height()
+          translateY: startY
         options:
           duration: 500
           easing: constants.velocity.easing.smooth

@@ -3,7 +3,7 @@ window.popController =
     $elements.each ->
       $element = $(@)
       popView.init $element
-      
+
       # Raises element and pivots
       $element.on 'touchstart mouseenter mousedown', (event) ->
         if popModel.canPop $element
