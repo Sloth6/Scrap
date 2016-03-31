@@ -14,6 +14,7 @@ mixin articleMixin(article, collections, host)
 
     if (article.content.text == '<bookmarklet>'){
       article.contentType = 'bookmarklet'
+      classes.push('long')
     }
 
   article(id=article.id, style= posString,
@@ -100,7 +101,9 @@ mixin articleMixin(article, collections, host)
             | !{article.content.text}
 
         when 'bookmarklet'
+          p Drag this bookmarklet
           +bookmarkletMixin(host)
+          p to your bookmarks bar to save stuff to Scrap anywhere on the web
 
         default
           p!=article.content

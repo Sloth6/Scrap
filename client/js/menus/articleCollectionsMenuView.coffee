@@ -74,11 +74,12 @@ window.articleCollectionsMenuView =
       labelHeights -= $a.data 'naturalHeight'
 
   showAddCollectionMenu: ($article) ->
+    articleCollectionsMenuController.initAddCollectionsMenu $article
     $collections  = $article.find 'ul.articleCollections'
     $menu         = $article.find 'ul.addCollectionMenu'
-    $button       = $collections.find('li.addCollection a')
-    articleCollectionsMenuController.initAddCollectionsMenu $article
-    $menu.find('li').each ->
+    $labels       = $menu.find 'li'
+    $button       = $collections.find 'li.addCollection a'
+    $labels.each ->
       delay = $(@).index() * 125
       toY   = $(@).data 'translateY'
       $(@).velocity('stop', true).velocity
@@ -90,9 +91,17 @@ window.articleCollectionsMenuView =
         options:
           duration: 250 + delay
           easing: constants.velocity.easing.smooth
-          complete: -> simpleHover $(@).find('a div'), 250, 1.25
-    $menu.find('li').show()
-    $menu.find('li').css 'opacity', 0
+          complete: ->
+            simpleHover $(@).find('a div'), 250, 1.25
+            # Switch label positioning from transform to static
+            if $(@).index() is $labels.length - 1
+              $.Velocity.hook $labels, 'translateY', '0px'
+              $labels.css
+                position: 'static'
+
+
+    $labels.show()
+    $labels.css 'opacity', 0
     $button.text 'Never mind'
     # Hide contents of article
     $article.find('.card').contents().each ->
@@ -100,7 +109,7 @@ window.articleCollectionsMenuView =
         opacity: 0
         duration: 500
         easing: constants.style.easing
-#     articleView.obscure $(constants.dom.articles).not($article)
+    # articleView.obscure $(constants.dom.articles).not($article)
 
   hideAddCollectionMenu: ($article) ->
     $collections  = $article.find     'ul.articleCollections'
@@ -128,6 +137,11 @@ window.articleCollectionsMenuView =
 
   addCollection: ($article, $label) ->
     $collectionsList = $article.find 'ul.articleCollections'
+
+    # Switch label positioning from static to transform
+    $label.css
+      position: ''
+    $.Velocity.hook $label, 'translateY', "#{$label.data('translateY')}px"
 
     translateY = yTransform($collectionsList.children().last()) - $label.height()
     $collectionsList.children('li.addCollection')
@@ -209,3 +223,23 @@ window.articleCollectionsMenuView =
       '-webkit-filter': ''
       duration: 500
       easing: constants.style.easing
+
+
+  searchChange: ($article) ->
+    $menu   = $article.find 'ul.addCollectionMenu'
+    $input  = $menu.find('li.searchCollections input')
+    $labels = $menu.find('li.collection')
+
+    search  = $input.val().toLowerCase()
+
+    if search.length is 0
+      $labels.show()
+    else
+      $labels.each () ->
+        key = $(@).data 'collectionkey'
+        name = window.collections[key].name.toLowerCase()
+        if name.indexOf(search) == -1
+          $(@).hide()
+        else
+          $(@).show()
+    # articleCollectionsMenuView.showAddCollectionMenu $article

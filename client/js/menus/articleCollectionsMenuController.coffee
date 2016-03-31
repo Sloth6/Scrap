@@ -31,12 +31,14 @@ window.articleCollectionsMenuController =
     $labels.find('a').on 'touchend mouseup', (event) ->
       event.stopPropagation()
       event.preventDefault()
+    $labels.find('a').on 'click', (event) ->
+      event.stopPropagation()
+      event.preventDefault()
 
     # Transform labels to starting positions
     $article.find('ul.addCollectionMenu li').each () ->
       if articleCollections.indexOf($(@).data('collectionkey')) > -1
         $(@).remove()
-
       $.Velocity.hook $(@), 'translateX', "#{constants.style.margin.articleText.left}px"
       $.Velocity.hook $(@), 'translateY', "#{labelHeights}px"
       $(@).data 'translateY', labelHeights
@@ -48,6 +50,11 @@ window.articleCollectionsMenuController =
       $label = $(@).parent()
       event.preventDefault()
       articleCollectionsMenuController.addCollection $article, $label
+
+    # Type to Search
+    $menu.find('li.searchCollections input').on 'input', () ->
+      console.log 'input'
+      articleCollectionsMenuView.searchChange $article
 
     $article.find('ul.addCollectionMenu li input').on 'touchend mouseup', (event) ->
       event.stopPropagation()

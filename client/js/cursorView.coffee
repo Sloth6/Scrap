@@ -1,6 +1,5 @@
 window.cursorView =
   start: (label, event) ->
-    console.log 'cursor start', label
     return if pointerType(event) is 'touch'
     $cursor = $('.cursor')
     if (label isnt $cursor.text()) and $cursor.text().length # Switch symbol
@@ -29,7 +28,6 @@ window.cursorView =
         begin: -> $cursor.show()
 
   end: ->
-    console.log 'cursor end'
     $cursor = $('.cursor')
     $('body, article, a, input').css
       cursor: ''
@@ -45,7 +43,6 @@ window.cursorView =
           $cursor.text('')
 
   move: (event) ->
-    console.log 'cursor move'
     return if pointerType(event) is 'touch'
     $cursor = $('.cursor')
     x = event.clientX - $cursor.width()  / 2 # * 1.5
