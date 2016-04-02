@@ -19,7 +19,7 @@ window.constants =
       articleText:
         left: 16 / .75 # convert pt to px
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    globalScale: 1#getGlobalScale()
+    globalScale: 1/2 # Default value. May be redefined on resize
     duration:
       openArticle: 1000
       hoverArticle: 250
@@ -119,13 +119,13 @@ $ ->
       when width <= constants.style.sizeClasses.large  then 'large'
       when width >  constants.style.sizeClasses.large  then 'xLarge'
     constants.style.globalScale = switch
-      when scrapState.sizeClass is 'xSmall' then 1/4
-      when scrapState.sizeClass is 'small'  then 1/4
-      when scrapState.sizeClass is 'medium' then 1/3
+      when scrapState.sizeClass is 'xSmall' then 1/2
+      when scrapState.sizeClass is 'small'  then 1/2
+      when scrapState.sizeClass is 'medium' then 1/2
       when scrapState.sizeClass is 'large'  then 1/2
       when scrapState.sizeClass is 'xLarge' then 1/2
     containerView.updateScale()
-    articleView.updateScale $(constants.dom.articles), constants.style.globalScale
+    articleView.updateScale $(constants.dom.articles), constants.style.globalScale    
 
   onResize()
 

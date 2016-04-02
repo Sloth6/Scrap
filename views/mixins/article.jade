@@ -75,29 +75,27 @@ mixin articleMixin(article, collections, host)
             source(src = content.url)
 
         when 'soundcloud'
-          .preview.popLayer(data-popdepth='.5', title='Play “' + content.title + '”')
+          .preview.popLayer(data-popdepth='.25', title='Play “' + content.title + '”')
             img.soundcloudThumbnail(src = content.thumbnail_url)
           header
             .top.popLayer(data-popdepth='0', data-poptranslate={x: 0, y: -0})
-              .artist.smallType.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: -24})!=content.author_name
-              h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.375')!=content.title
-            .detail.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: 36})
+              .artist.smallType.popLayer(data-popdepth='.5', data-poptranslate={x: 0, y: -24})!=content.author_name
+              h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.5')!=content.title
+            .detail.popLayer(data-popdepth='.5', data-poptranslate={x: 0, y: 36})
               .source.smallType.smallCaps SoundCloud
 
         when 'youtube'
-          .preview.popLayer(data-popdepth='.5', title='Play “' + content.title + '”')
+          .preview.popLayer(data-popdepth='.25', title='Play “' + content.title + '”')
             img.youtubeThumbnail(src=content.image)
           header
             .top.popLayer(data-popdepth='0', data-poptranslate={x: 0, y: -0})
               // .artist.smallType.popLayer(data-popdepth='.1', data-poptranslate={x: 0, y: -24}) Artist
-              h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.375')!=content.title
-            .detail.popLayer(data-popdepth='.125', data-poptranslate={x: 0, y: 36})
+              h1.headerType.typeOutlineWhite.title.popLayer(data-popdepth='.5')!=content.title
+            .detail.popLayer(data-popdepth='.5', data-poptranslate={x: 0, y: 36})
               .source.smallType.smallCaps youtube
-          .playButton
-
 
         when 'text'
-          .editable.popLayer(data-popdepth='.375')
+          .editable.popLayer(data-popdepth='.5')
             | !{article.content.text}
 
         when 'bookmarklet'

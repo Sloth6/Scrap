@@ -46,17 +46,15 @@ nav {
         
         &.left {
             left: 0;
-            
-            .headerButton a {
-                margin-left: $cell;
-            }
         }
         
         &.right {
             right: 0;
             
-            .headerButton a {
-                margin-right: $cell;
+            .settingsMenu {
+                .headerButton {
+                    padding-left: $col;
+                }
             }
         }
         
