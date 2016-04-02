@@ -27,7 +27,7 @@ window.collectionsMenuView =
       toY = if $label.is $labelsButton then -$labelsButton.height() else -$labelsButton.height()
       if $label.is $openLabel
         fromY = if $label.is('.recent') then yOffsetTop else -$label.offset().top
-        unparallax $openLabel.find('.transform'), options.duration, options.easing
+        popController.end collectionModel.getAnchor($openLabel)
       else if $openLabel.index() < $label.index() # Below
         fromY = yOffsetTop - ($label.offset().top - $label.height() * 2)
       else # Above
@@ -53,7 +53,7 @@ window.collectionsMenuView =
         complete: ->
           $labelsButton.css 'opacity', 0
 #             collectionController.updateHeight $collection
-    unparallax $labelsButton.find('.transform'), options.duration, options.easing
+    popController.end collectionModel.getAnchor($labelsButton)
     articleView.obscure $container.find('article')
     extendNav()
     # Animate other header buttons away
@@ -132,7 +132,7 @@ window.collectionsMenuView =
               translateY = if isHome then 0 else -$labelsButton.height()
               $.Velocity.hook $destinationLabel.find('.contents'), 'translateY', "#{translateY}px"
               $labels.not('.openMenuButton').hide()
-    unparallax $menuItems.find('.transform'), options.duration, options.easing
+    popController.end collectionModel.getAnchor($menuItems)
     articleView.unobscure $container.find('article')
     extendNav()
     # Animate other header buttons back in

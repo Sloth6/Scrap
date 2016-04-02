@@ -1,3 +1,13 @@
+window.collectionModel =
+  getAnchor: ($collection) ->
+    $collection.find('.contents > a')
+    
+  getContents: ($collection) ->
+    $collection.find('.contents')
+    
+  getActions: ($collection) ->
+    $collection.find('.actions')
+    
 window.collectionController =
   init: ($collections) ->
     $collections.find('.collectionSettings').hide().css('position', 'absolute')
@@ -5,9 +15,9 @@ window.collectionController =
 
     $collections.each () ->
       $collection = $(@)
-      $a          = $collection.find('.contents > a')
-      $contents   = $collection.find('.contents')
-      $actions    = $collection.find('.actions')
+      $a          = collectionModel.getAnchor   $collection
+      $contents   = collectionModel.getContents $collection
+      $actions    = collectionModel.getActions  $collection
 
       collectionView.init $collection
 

@@ -83,7 +83,7 @@ window.articleController =
         unless $article.hasClass('open') or $article.hasClass('obscured')
           articleView.mouseleave $article
 
-      $article.find('footer, a, input').on 'touchstart mouseenter', (event) ->
+      $article.find('footer').on 'touchstart mouseenter', (event) ->
         cursorView.end()
 
       # Resize

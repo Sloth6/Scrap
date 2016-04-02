@@ -245,7 +245,7 @@ window.articleView =
           $article.addClass 'open'
 
     $article.trigger 'mouseleave'
-    unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
+    popController.end $article
     $article.css { zIndex: 2 }# must run after trigger('mouseleave')
 
     $article.mouseleave (event) -> cursorView.start '✕', event
