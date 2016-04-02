@@ -65,7 +65,7 @@ window.popView =
         easing: constants.velocity.easing.smooth
         duration: popModel.duration
         complete: -> $element.data('closingHover', false)
-    $layers.velocity('stop', true).velocity
+    $layers.velocity
       properties:
         scale: 1
         rotateX: 0

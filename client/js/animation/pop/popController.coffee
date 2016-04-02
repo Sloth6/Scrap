@@ -1,5 +1,6 @@
 window.popController =
   init: ($elements, duration, scale) ->
+    popController.enable $elements
     $elements.each ->
       $element = $(@)
       popView.init $element
@@ -21,8 +22,16 @@ window.popController =
           popView.end $element
       # Pop element back up after clicking
       $element.on 'mouseup', ->
-        $element.data 'popState', 'up'
-        popView.start $element, scale
+        if popModel.canPop $element
+          $element.data 'popState', 'up'
+          popView.start $element, scale
+        
+  disable: ($elements) ->
+    $elements.data 'popEnabled', false
+    console.log 'DISABLE'
+        
+  enable: ($elements) ->
+    $elements.data 'popEnabled', true
         
   end: ($elements) ->
     $elements.each -> popView.end $(@)

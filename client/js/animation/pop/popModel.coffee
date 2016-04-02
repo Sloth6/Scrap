@@ -2,7 +2,7 @@ window.popModel =
   easing: [20, 10] # TODO: Why is constants.velocity.easing.smooth undefined?
   duration: 500
   canPop: ($element) ->
-    not $element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging')
+    not ($element.hasClass('open') or $element.hasClass('obscured') or $element.data('closingHover') or $element.hasClass('ui-draggable-dragging') or !$element.data('popEnabled'))
   getTransform: ($element) ->
     $element.find('.transform')
   getLayers: ($element) ->

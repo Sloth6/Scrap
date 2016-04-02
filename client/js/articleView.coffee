@@ -222,8 +222,9 @@ window.articleView =
 #     cursorView.move event
 
   open: ($article) ->
-    articleView.obscure $('article').not($article)
-
+    articleView.obscure $(constants.dom.articles).not($article)
+    
+    console.log 'articles', $(constants.dom.articles)
     # Move to center
     translateY = - $article.offset().top + $(window).scrollTop() + $(window).height()/2
     translateX = - $article.offset().left  + $(window).width()/2
@@ -244,8 +245,12 @@ window.articleView =
         complete: () ->
           $article.addClass 'open'
 
+    # End pop for all articles
+    popController.end $(constants.dom.articles)
+    # Disable pop for all articles
+    popController.disable $(constants.dom.articles)
+
     $article.trigger 'mouseleave'
-    popController.end $article
     $article.css { zIndex: 2 }# must run after trigger('mouseleave')
 
     $article.mouseleave (event) -> cursorView.start '✕', event
@@ -277,5 +282,8 @@ window.articleView =
           $article.zIndex 0
           $article.removeClass 'open'
 
-
-    articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))
+    articleView.unobscure $(constants.dom.articles).not($article)
+    
+    # Enable pop for all articles
+    popController.enable $(constants.dom.articles)
+    
