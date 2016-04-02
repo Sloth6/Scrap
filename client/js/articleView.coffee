@@ -278,7 +278,9 @@ window.articleView =
         translateY: 0
         scale: 1
       options:
-        complete: () ->
+        duration: constants.style.duration.openArticle
+        easing:   constants.velocity.easing.smooth
+        complete: ->
           $article.zIndex 0
           $article.removeClass 'open'
 
