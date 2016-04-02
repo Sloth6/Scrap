@@ -238,10 +238,9 @@ window.articleView =
         scale: scaleWhenOpen($article)
         translateX: translateX
         translateY: translateY
-
       options:
         duration: constants.style.duration.openArticle
-        easing: constants.velocity.easing.smooth
+        easing: constants.velocity.easing.spring
         complete: () ->
           $article.addClass 'open'
 
@@ -279,7 +278,7 @@ window.articleView =
         scale: 1
       options:
         duration: constants.style.duration.openArticle
-        easing:   constants.velocity.easing.smooth
+        easing:   constants.velocity.easing.spring
         complete: ->
           $article.zIndex 0
           $article.removeClass 'open'
@@ -288,4 +287,13 @@ window.articleView =
     
     # Enable pop for all articles
     popController.enable $(constants.dom.articles)
+    # End pop animations
+    popController.end $(constants.dom.articles)
+    
+    # Close article label menus
+    articleCollectionsMenuView.closeLabels($article)
+    articleCollectionsMenuView.hideAddCollectionMenu $article
+    
+    # Close standard menus
+    menuController.close $article.find(constants.dom.controls.menus)    
     
