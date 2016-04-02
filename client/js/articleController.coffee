@@ -24,7 +24,6 @@ window.articleController =
     throw "No article passed to closed" unless $article?
 
     contentType = $article.data 'contenttype'
-    $article.removeClass 'open'
     articleView.close $article
 
     if $article.hasClass('playable')
@@ -33,12 +32,18 @@ window.articleController =
     # Handle specific contenttypes.
     if contentControllers[contentType]?.close
       contentControllers[contentType]?.close $article
+
     scrapState.openArticle = null
     scrollController.enableScroll()
     extendNav()
 
   delete: ($article) ->
     socket.emit 'deleteArticle', { articleId: $article.attr('id') }
+
+  click: (event) ->
+    $article = $(@)
+    event.stopPropagation()
+    articleController.open $article
 
   init: ($articles) ->
     $articles.each ->
@@ -60,10 +65,7 @@ window.articleController =
         articleController.delete $article
         event.stopPropagation()
 
-      # Articles zoom on click.
-      $article.on 'touchend mouseup', (event) ->
-        event.stopPropagation()
-        articleController.open $article
+      $article.on 'touchend mouseup', articleController.click
 
       # Init delete button
       $article.find('.articleDeleteButton').mouseenter (event) ->

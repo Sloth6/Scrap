@@ -1,26 +1,15 @@
 # TODO, clean this
 scaleWhenOpen = ($article) ->
-  # return 3
-  if $article.hasClass 'image'
-    1 / ($article.find('img').height() / Math.min($(window).height(), $article.find('img')[0].naturalHeight))
-  else
-    1 / constants.style.globalScale
+  return 1 / constants.style.globalScale
 
 window.articleView =
   init: ($article) ->
     $card       = $article.find('.card')
     $firstLabel = $article.find('ul.articleCollections li.collection').first().find('a')
 
-        # Scale up labels indicator inversely proportional to global scale
+    # Scale up labels indicator inversely proportional to global scale
     scale = 1 / constants.style.globalScale
     $.Velocity.hook $article.find('ul.articleCollections .scale'), 'scale', scale
-    # Add random ragged edges
-#     $article.css
-#       marginTop:    Math.random() * constants.style.maxGutter
-#       marginRight:  Math.random() * constants.style.maxGutter
-#       marginBottom: Math.random() * constants.style.maxGutter
-#       marginLeft:   Math.random() * constants.style.maxGutter
-
     popController.init $article, 500, constants.style.articleHoverScale / constants.style.globalScale
 
     # Base color by first label.
@@ -233,29 +222,27 @@ window.articleView =
 #     cursorView.move event
 
   open: ($article) ->
-    $container = $(constants.dom.articleContainer)
     articleView.obscure $('article').not($article)
 
-    centerX = ($elem) ->
-      return $(window).width()/2 if $elem.is($(window))
-      $elem.offset().left + ($elem.width()/2)*constants.style.globalScale
-    centerY = ($elem) ->
-      return $(window).height()/2 if $elem.is($(window))
-      $elem.offset().top + ($elem.height()/2)*constants.style.globalScale
+    # Move to center
+    translateY = - $article.offset().top + $(window).scrollTop() + $(window).height()/2
+    translateX = - $article.offset().left  + $(window).width()/2
+
+    # Move over by half
+    translateY -= ($article.height()/(2/constants.style.globalScale))
+    translateX -= ($article.width()/(2/constants.style.globalScale))
 
     $article.velocity('stop', true).velocity
       properties:
         scale: scaleWhenOpen($article)
+        translateX: translateX
+        translateY: translateY
+
       options:
         duration: constants.style.duration.openArticle
         easing: constants.velocity.easing.smooth
         complete: () ->
           $article.addClass 'open'
-
-    $container.velocity('stop', true).velocity
-      properties:
-        translateX: (-(centerX($article) - centerX($(window)))) / constants.style.globalScale
-        translateY: (-(centerY($article) - centerY($(window))) + $(window).scrollTop())/constants.style.globalScale
 
     $article.trigger 'mouseleave'
     unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
@@ -280,16 +267,15 @@ window.articleView =
     $( constants.dom.articleContainer ).packery()
 
   close: ($article) ->
-    $article.velocity('stop', true)
-    $article.removeClass 'open'
-    $article.velocity
-      properties: {scale: 1 }
-    articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))
-    $container = $(constants.dom.articleContainer)
-    $container.velocity('stop', true).velocity
+    $article.velocity('stop', true).velocity
       properties:
         translateX: 0
         translateY: 0
+        scale: 1
       options:
-        duration: constants.style.duration.openArticle
-        easing: constants.velocity.easing.smooth
+        complete: () ->
+          $article.zIndex 0
+          $article.removeClass 'open'
+
+
+    articleView.unobscure ($(constants.dom.articleContainer).find('article').not($article))

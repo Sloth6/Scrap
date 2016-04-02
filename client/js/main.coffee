@@ -19,7 +19,7 @@ window.constants =
       articleText:
         left: 16 / .75 # convert pt to px
     easing: 'cubic-bezier(0.19, 1, 0.22, 1)'
-    globalScale: .5
+    globalScale: 1#getGlobalScale()
     duration:
       openArticle: 1000
       hoverArticle: 250

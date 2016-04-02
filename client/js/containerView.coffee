@@ -54,8 +54,14 @@ window.containerView =
 
   updateScale: () ->
     $scale = $(constants.dom.containerScale)
+    origin = 'top left'
+
     $scale.css
+      'transform-origin': origin
+      '-webkit-transform-origin': origin
+      '-ms-transform-origin': origin
       width: "#{100/constants.style.globalScale}%"
+
     $scale.velocity
       properties:
         translateZ: 0
