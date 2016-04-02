@@ -247,6 +247,7 @@ body {
                         
                         .source {
                             line-height: $typeHeaderLeading;
+                            white-space: nowrap;
                         }
                         
                         .description {

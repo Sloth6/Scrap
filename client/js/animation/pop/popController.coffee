@@ -18,8 +18,11 @@ window.popController =
       # Returns to normal
       $element.on 'touchend mouseleave', ->
         if popModel.canPop $element
-          popView.end $element, scale
+          popView.end $element
       # Pop element back up after clicking
       $element.on 'mouseup', ->
         $element.data 'popState', 'up'
         popView.start $element, scale
+        
+  end: ($elements) ->
+    $elements.each -> popView.end $(@)

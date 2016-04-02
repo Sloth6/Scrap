@@ -49,7 +49,7 @@ window.popView =
       translate.y *= if $element.data('popState') is 'up' then 1 else -1
       $.Velocity.hook $(@), 'translateX', "#{translate.x}px"
       $.Velocity.hook $(@), 'translateY', "#{translate.y}px"
-  end: ($element, scale) ->
+  end: ($element) ->
     $transform  = popModel.getTransform  $element
     $layers     = popModel.getLayers $element
     $element.data('closingHover', true)
@@ -75,17 +75,6 @@ window.popView =
       options:
         easing: constants.velocity.easing.smooth
         duration: popModel.duration
-
-window.unparallax = ($transform, duration, easing) -> # TODO: Put in parallax hover class
-  $transform.velocity('stop', true).velocity
-    properties:
-      rotateX: 0
-      rotateY: 0
-      scale: 1
-    options:
-      duration: duration
-      easing:   easing
-
 
 # Move on screen if at edge
 # edgeOffset = 24

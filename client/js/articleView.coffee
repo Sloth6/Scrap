@@ -258,7 +258,7 @@ window.articleView =
         translateY: (-(centerY($article) - centerY($(window))) + $(window).scrollTop())/constants.style.globalScale
 
     $article.trigger 'mouseleave'
-    unparallax($article.find('.transform'), 500, constants.velocity.easing.smooth)
+    popController.end $article
     $article.css { zIndex: 2 }# must run after trigger('mouseleave')
 
     $article.mouseleave (event) -> cursorView.start '✕', event
