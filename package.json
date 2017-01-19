@@ -8,7 +8,7 @@
     "aws-sdk": "^2.0.14",
     "bcrypt-nodejs": "0.0.3",
     "cheerio": "^0.18.0",
-    "coffee-middleware": "~0.2.1",
+    "coffee-middleware": "~0.3.0",
     "coffee-script": "latest",
     "coffeelint": "~1.5.2",
     "compass": "~0.1.1",
