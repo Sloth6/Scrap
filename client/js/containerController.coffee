@@ -10,7 +10,7 @@ window.containerController =
       itemSelector: 'article,.jagged'
       isOriginTop: true
       transitionDuration: '0.0s'
-      gutter: constants.style.minGutter * 2
+      gutter: 0 # constants.style.minGutter * 2
       columnWidth: constants.style.grid.col
 #       rowHeight:    144
 

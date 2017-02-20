@@ -225,9 +225,10 @@ nav {
 
 
 .wrapper {
-    padding: $cell;
+//     padding: $cell;
     position: relative;
     
+/*
     @media (min-width: $breakMedium) {
         padding: $cell * 2;
     }
@@ -235,6 +236,7 @@ nav {
     @media (min-width: $breakLarge) {
         padding: $cell * 4;
     }
+*/
 }
 
 .pop {

@@ -590,9 +590,10 @@ body section.label section.content article.color9 div.card.text.comment, body se
   }
 }
 /* $fontFamily:        'L Futura W01', 'Futura W04', Futura, "Century Gothic", sans-serif; */
-/* line 175, ../../style/globals/_type.scss */
+/* $fontFamily:           'Univers Next W01', 'Univers Next W04'; // 'Neue Haas Unica W01', -apple-system, "Helvetica Neue", sans-serif; */
+/* line 176, ../../style/globals/_type.scss */
 html {
-  font-family: "Univers Next W01", "Univers Next W04";
+  font-family: "Arial";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -604,7 +605,7 @@ html {
   font-feature-settings: "pnum";
 }
 
-/* line 180, ../../style/globals/_type.scss */
+/* line 181, ../../style/globals/_type.scss */
 .typeTitle {
   font-size: 60pt;
   font-weight: 500;
@@ -612,13 +613,13 @@ html {
   line-height: 60pt;
 }
 @media (max-width: 1024px) {
-  /* line 180, ../../style/globals/_type.scss */
+  /* line 181, ../../style/globals/_type.scss */
   .typeTitle {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 183, ../../style/globals/_type.scss */
+/* line 184, ../../style/globals/_type.scss */
 .typeTitle.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -628,7 +629,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 188, ../../style/globals/_type.scss */
+/* line 189, ../../style/globals/_type.scss */
 .typeSubtitle {
   font-size: 36pt;
   font-weight: 700;
@@ -636,14 +637,14 @@ html {
   line-height: 36pt;
 }
 @media (max-width: 1024px) {
-  /* line 188, ../../style/globals/_type.scss */
+  /* line 189, ../../style/globals/_type.scss */
   .typeSubtitle {
     font-size: 45pt;
     line-height: 45pt;
   }
 }
 
-/* line 192, ../../style/globals/_type.scss */
+/* line 193, ../../style/globals/_type.scss */
 .headerType {
   font-size: 36pt;
   font-weight: 400;
@@ -651,26 +652,26 @@ html {
   line-height: 36pt;
 }
 @media (max-width: 1024px) {
-  /* line 192, ../../style/globals/_type.scss */
+  /* line 193, ../../style/globals/_type.scss */
   .headerType {
     font-size: 27pt;
     line-height: 27pt;
   }
 }
-/* line 195, ../../style/globals/_type.scss */
+/* line 196, ../../style/globals/_type.scss */
 .headerType.typeOutline, .headerType.typeOutlineClear, .headerType.typeOutlineWhite {
   font-weight: 500;
 }
 
-/* line 200, ../../style/globals/_type.scss */
+/* line 201, ../../style/globals/_type.scss */
 .bodyType, .typeBody {
-  font-family: "Univers Next W01", "Univers Next W04";
+  font-family: "Arial";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
   line-height: 16pt;
 }
-/* line 203, ../../style/globals/_type.scss */
+/* line 204, ../../style/globals/_type.scss */
 .bodyType.smallCaps, .typeBody.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -680,7 +681,7 @@ html {
   letter-spacing: 0.125em;
 }
 
-/* line 208, ../../style/globals/_type.scss */
+/* line 209, ../../style/globals/_type.scss */
 .XLargeType {
   font-size: 48pt;
   font-weight: 400;
@@ -688,13 +689,13 @@ html {
   line-height: 48pt;
 }
 @media (max-width: 1024px) {
-  /* line 208, ../../style/globals/_type.scss */
+  /* line 209, ../../style/globals/_type.scss */
   .XLargeType {
     font-size: 36pt;
     line-height: 36pt;
   }
 }
-/* line 211, ../../style/globals/_type.scss */
+/* line 212, ../../style/globals/_type.scss */
 .XLargeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -704,7 +705,7 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 216, ../../style/globals/_type.scss */
+/* line 217, ../../style/globals/_type.scss */
 .largeType {
   font-size: 24pt;
   font-weight: 400;
@@ -712,13 +713,13 @@ html {
   line-height: 36pt;
 }
 @media (max-width: 1024px) {
-  /* line 216, ../../style/globals/_type.scss */
+  /* line 217, ../../style/globals/_type.scss */
   .largeType {
     font-size: 18pt;
     line-height: 27pt;
   }
 }
-/* line 219, ../../style/globals/_type.scss */
+/* line 220, ../../style/globals/_type.scss */
 .largeType.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -727,19 +728,19 @@ html {
   font-weight: 400;
   letter-spacing: 0.0625em;
 }
-/* line 224, ../../style/globals/_type.scss */
+/* line 225, ../../style/globals/_type.scss */
 .largeType.typeOutline, .largeType.typeOutlineClear, .largeType.typeOutlineWhite {
   font-weight: 500;
 }
 
-/* line 229, ../../style/globals/_type.scss */
+/* line 230, ../../style/globals/_type.scss */
 .smallType, .typeSmall {
   font-size: 8pt;
   font-weight: 500;
   letter-spacing: 0.08333em;
   line-height: 12pt;
 }
-/* line 232, ../../style/globals/_type.scss */
+/* line 233, ../../style/globals/_type.scss */
 .smallType.smallCaps, .typeSmall.smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -749,7 +750,7 @@ html {
   letter-spacing: 0.16667em;
 }
 
-/* line 237, ../../style/globals/_type.scss */
+/* line 238, ../../style/globals/_type.scss */
 .typeNav {
   font-size: 60pt;
   font-weight: 500;
@@ -760,13 +761,13 @@ html {
   text-transform: lowercase;
 }
 @media (max-width: 1024px) {
-  /* line 237, ../../style/globals/_type.scss */
+  /* line 238, ../../style/globals/_type.scss */
   .typeNav {
     font-size: 40pt;
     line-height: 40pt;
   }
 }
-/* line 240, ../../style/globals/_type.scss */
+/* line 241, ../../style/globals/_type.scss */
 .typeNav.smallCaps, .typeNav .smallCaps {
   font-size: .666em;
   letter-spacing: .03125em;
@@ -776,37 +777,37 @@ html {
   letter-spacing: 0.0625em;
 }
 
-/* line 245, ../../style/globals/_type.scss */
+/* line 246, ../../style/globals/_type.scss */
 .typeWeightBold {
   font-weight: 700;
 }
 
-/* line 249, ../../style/globals/_type.scss */
+/* line 250, ../../style/globals/_type.scss */
 .typeOutlineClear {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
-/* line 253, ../../style/globals/_type.scss */
+/* line 254, ../../style/globals/_type.scss */
 .typeOutlineWhite {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
 
-/* line 258, ../../style/globals/_type.scss */
+/* line 259, ../../style/globals/_type.scss */
 .typeOutlineBlackOnHover:hover {
   -webkit-text-fill-color: #000000 !important;
   -webkit-text-stroke: 1px #000000;
 }
 
-/* line 263, ../../style/globals/_type.scss */
+/* line 264, ../../style/globals/_type.scss */
 a {
   color: #000000;
   text-decoration: none;
   border: 0;
 }
 
-/* line 269, ../../style/globals/_type.scss */
+/* line 270, ../../style/globals/_type.scss */
 p + p {
   margin-top: 8pt;
 }
@@ -863,7 +864,7 @@ p + p {
   bottom: 16pt;
   left: 16pt;
   right: 16pt;
-  font-family: "Univers Next W01", "Univers Next W04";
+  font-family: "Arial";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1003,7 +1004,7 @@ input {
   margin: 0;
   border: 0;
   background: transparent;
-  font-family: "Univers Next W01", "Univers Next W04";
+  font-family: "Arial";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1127,7 +1128,7 @@ ul.headerMenu {
   background: white;
   top: -1px;
   width: 168pt;
-  font-family: "Univers Next W01", "Univers Next W04";
+  font-family: "Arial";
   font-size: 12pt;
   font-weight: 400;
   letter-spacing: 0.0625em;
@@ -1863,7 +1864,6 @@ body article.text .editable {
 body article.image .card {
   height: auto !important;
   width: auto !important;
-  padding: 16pt;
 }
 /* line 219, ../../style/layout/_article.scss */
 body article.image .card img {
@@ -2674,39 +2674,35 @@ nav section .addForm article {
 
 /* line 227, ../../style/prototype.scss */
 .wrapper {
-  padding: 8pt;
   position: relative;
-}
-@media (min-width: 1024px) {
-  /* line 227, ../../style/prototype.scss */
-  .wrapper {
-    padding: 16pt;
-  }
-}
-@media (min-width: 1280px) {
-  /* line 227, ../../style/prototype.scss */
-  .wrapper {
-    padding: 32pt;
-  }
+  /*
+      @media (min-width: $breakMedium) {
+          padding: $cell * 2;
+      }
+      
+      @media (min-width: $breakLarge) {
+          padding: $cell * 4;
+      }
+  */
 }
 
-/* line 241, ../../style/prototype.scss */
+/* line 243, ../../style/prototype.scss */
 .pop .perspective, .pop .transform {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
-/* line 246, ../../style/prototype.scss */
+/* line 248, ../../style/prototype.scss */
 .pop .popLayer {
   transform-origin: center center;
   -webkit-transform-origin: center center;
 }
 
-/* line 252, ../../style/prototype.scss */
+/* line 254, ../../style/prototype.scss */
 #articleContainer {
   width: 100%;
   margin-top: 25vh;
 }
-/* line 258, ../../style/prototype.scss */
+/* line 260, ../../style/prototype.scss */
 #articleContainer article .collections {
   position: absolute;
   top: 0;
@@ -2716,7 +2712,7 @@ nav section .addForm article {
   width: 100%;
   height: 100%;
 }
-/* line 267, ../../style/prototype.scss */
+/* line 269, ../../style/prototype.scss */
 #articleContainer article .collections li {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
@@ -2724,7 +2720,7 @@ nav section .addForm article {
   transform-origin: center center;
   width: 100%;
 }
-/* line 271, ../../style/prototype.scss */
+/* line 273, ../../style/prototype.scss */
 #articleContainer article .collections li a, #articleContainer article .collections li input {
   font-size: 36pt;
   font-weight: 400;
@@ -2741,13 +2737,13 @@ nav section .addForm article {
   white-space: nowrap;
 }
 @media (max-width: 1024px) {
-  /* line 271, ../../style/prototype.scss */
+  /* line 273, ../../style/prototype.scss */
   #articleContainer article .collections li a, #articleContainer article .collections li input {
     font-size: 27pt;
     line-height: 27pt;
   }
 }
-/* line 279, ../../style/prototype.scss */
+/* line 281, ../../style/prototype.scss */
 #articleContainer article .collections li a .animate, #articleContainer article .collections li input .animate {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
@@ -2755,25 +2751,25 @@ nav section .addForm article {
   transform-origin: center center;
   width: -webkit-fit-content;
 }
-/* line 285, ../../style/prototype.scss */
+/* line 287, ../../style/prototype.scss */
 #articleContainer article .collections li .dot {
   display: none;
   opacity: 0;
 }
-/* line 294, ../../style/prototype.scss */
+/* line 296, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li {
   display: block;
 }
-/* line 299, ../../style/prototype.scss */
+/* line 301, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li:first-child a {
   border-left-width: 1px;
 }
-/* line 305, ../../style/prototype.scss */
+/* line 307, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li.addCollection a {
   -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: white;
 }
-/* line 310, ../../style/prototype.scss */
+/* line 312, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li a {
   display: block;
   padding: 0;
@@ -2783,27 +2779,27 @@ nav section .addForm article {
   right: 0;
   width: 280pt;
 }
-/* line 322, ../../style/prototype.scss */
+/* line 324, ../../style/prototype.scss */
 #articleContainer article .collections ul.articleCollections li .dot {
   height: 12pt;
   width: 12pt;
   border: 1px solid #000000;
   position: absolute;
 }
-/* line 333, ../../style/prototype.scss */
+/* line 335, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 338, ../../style/prototype.scss */
+/* line 340, ../../style/prototype.scss */
 #articleContainer article .collections ul.addCollectionMenu li input {
   border: 0;
   padding: 0;
   margin: 0;
   height: 36pt;
 }
-/* line 349, ../../style/prototype.scss */
+/* line 351, ../../style/prototype.scss */
 #articleContainer article:hover ul.articleCollections li.collection a {
   background-color: transparent !important;
 }
